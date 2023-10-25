@@ -103,7 +103,7 @@ public class TooltipProviderShaderOptions extends TooltipProviderOptions
 
     private String[] makeTooltipLines(int width, List<String> args)
     {
-        FontRenderer fontrenderer = Config.getMinecraft().fontRendererObj;
+        FontRenderer fontrenderer = Config.getMinecraft().字体渲染员;
         List<String> list = new ArrayList();
 
         for (int i = 0; i < args.size(); ++i)

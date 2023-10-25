@@ -84,7 +84,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Matrix4f;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 import net.minecraft.util.Vector3d;
 import net.minecraft.world.IWorldAccess;
@@ -119,11 +119,11 @@ import org.lwjgl.util.vector.Vector4f;
 public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListener
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final ResourceLocation locationMoonPhasesPng = new ResourceLocation("textures/environment/moon_phases.png");
-    private static final ResourceLocation locationSunPng = new ResourceLocation("textures/environment/sun.png");
-    private static final ResourceLocation locationCloudsPng = new ResourceLocation("textures/environment/clouds.png");
-    private static final ResourceLocation locationEndSkyPng = new ResourceLocation("textures/environment/end_sky.png");
-    private static final ResourceLocation locationForcefieldPng = new ResourceLocation("textures/misc/forcefield.png");
+    private static final 图像位置 locationMoonPhasesPng = new 图像位置("textures/environment/moon_phases.png");
+    private static final 图像位置 locationSunPng = new 图像位置("textures/environment/sun.png");
+    private static final 图像位置 locationCloudsPng = new 图像位置("textures/environment/clouds.png");
+    private static final 图像位置 locationEndSkyPng = new 图像位置("textures/environment/end_sky.png");
+    private static final 图像位置 locationForcefieldPng = new 图像位置("textures/misc/forcefield.png");
     public final 我的手艺 mc;
     private final TextureManager renderEngine;
     private final RenderManager renderManager;
@@ -254,7 +254,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 ShaderLinkHelper.setNewStaticShaderLinkHelper();
             }
 
-            ResourceLocation resourcelocation = new ResourceLocation("shaders/post/entity_outline.json");
+            图像位置 resourcelocation = new 图像位置("shaders/post/entity_outline.json");
 
             try
             {
@@ -633,8 +633,8 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             double d1 = renderViewEntity.prevPosY + (renderViewEntity.posY - renderViewEntity.prevPosY) * (double)partialTicks;
             double d2 = renderViewEntity.prevPosZ + (renderViewEntity.posZ - renderViewEntity.prevPosZ) * (double)partialTicks;
             this.theWorld.theProfiler.startSection("prepare");
-            TileEntityRendererDispatcher.instance.cacheActiveRenderInfo(this.theWorld, this.mc.得到手感经理(), this.mc.fontRendererObj, this.mc.getRenderViewEntity(), partialTicks);
-            this.renderManager.cacheActiveRenderInfo(this.theWorld, this.mc.fontRendererObj, this.mc.getRenderViewEntity(), this.mc.pointedEntity, this.mc.游戏一窝, partialTicks);
+            TileEntityRendererDispatcher.instance.cacheActiveRenderInfo(this.theWorld, this.mc.得到手感经理(), this.mc.字体渲染员, this.mc.getRenderViewEntity(), partialTicks);
+            this.renderManager.cacheActiveRenderInfo(this.theWorld, this.mc.字体渲染员, this.mc.getRenderViewEntity(), this.mc.pointedEntity, this.mc.游戏一窝, partialTicks);
             ++renderEntitiesCounter;
 
             if (i == 0)
@@ -2714,7 +2714,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 this.mc.ingameGUI.setRecordPlayingMessage(itemrecord.getRecordNameLocal());
             }
 
-            PositionedSoundRecord positionedsoundrecord = PositionedSoundRecord.create(new ResourceLocation(recordName), (float)blockPosIn.getX(), (float)blockPosIn.getY(), (float)blockPosIn.getZ());
+            PositionedSoundRecord positionedsoundrecord = PositionedSoundRecord.create(new 图像位置(recordName), (float)blockPosIn.getX(), (float)blockPosIn.getY(), (float)blockPosIn.getZ());
             this.mapSoundPositions.put(blockPosIn, positionedsoundrecord);
             this.mc.getSoundHandler().playSound(positionedsoundrecord);
         }
@@ -3092,7 +3092,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
                 if (block.getMaterial() != Material.air)
                 {
-                    this.mc.getSoundHandler().playSound(new PositionedSoundRecord(new ResourceLocation(block.stepSound.getBreakSound()), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getFrequency() * 0.8F, (float)blockPosIn.getX() + 0.5F, (float)blockPosIn.getY() + 0.5F, (float)blockPosIn.getZ() + 0.5F));
+                    this.mc.getSoundHandler().playSound(new PositionedSoundRecord(new 图像位置(block.stepSound.getBreakSound()), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getFrequency() * 0.8F, (float)blockPosIn.getX() + 0.5F, (float)blockPosIn.getY() + 0.5F, (float)blockPosIn.getZ() + 0.5F));
                 }
 
                 this.mc.effectRenderer.addBlockDestroyEffects(blockPosIn, block.getStateFromMeta(data >> 12 & 255));

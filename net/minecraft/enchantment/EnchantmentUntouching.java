@@ -2,11 +2,11 @@ package net.minecraft.enchantment;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentUntouching extends Enchantment
 {
-    protected EnchantmentUntouching(int p_i45763_1_, ResourceLocation p_i45763_2_, int p_i45763_3_)
+    protected EnchantmentUntouching(int p_i45763_1_, 图像位置 p_i45763_2_, int p_i45763_3_)
     {
         super(p_i45763_1_, p_i45763_2_, p_i45763_3_, EnumEnchantmentType.DIGGER);
         this.setName("untouching");

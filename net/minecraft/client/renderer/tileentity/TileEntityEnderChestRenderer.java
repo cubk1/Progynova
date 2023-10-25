@@ -3,11 +3,11 @@ package net.minecraft.client.renderer.tileentity;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.tileentity.TileEntityEnderChest;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class TileEntityEnderChestRenderer extends TileEntitySpecialRenderer<TileEntityEnderChest>
 {
-    private static final ResourceLocation ENDER_CHEST_TEXTURE = new ResourceLocation("textures/entity/chest/ender.png");
+    private static final 图像位置 ENDER_CHEST_TEXTURE = new 图像位置("textures/entity/chest/ender.png");
     private ModelChest field_147521_c = new ModelChest();
 
     public void renderTileEntityAt(TileEntityEnderChest te, double x, double y, double z, float partialTicks, int destroyStage)

@@ -1,10 +1,10 @@
 package net.minecraft.client.audio;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public interface ISound
 {
-    ResourceLocation getSoundLocation();
+    图像位置 getSoundLocation();
 
     boolean canRepeat();
 

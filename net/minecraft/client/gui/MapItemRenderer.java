@@ -9,13 +9,13 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec4b;
 import net.minecraft.world.storage.MapData;
 
 public class MapItemRenderer
 {
-    private static final ResourceLocation mapIcons = new ResourceLocation("textures/map/map_icons.png");
+    private static final 图像位置 mapIcons = new 图像位置("textures/map/map_icons.png");
     private final TextureManager textureManager;
     private final Map<String, MapItemRenderer.Instance> loadedMaps = Maps.<String, MapItemRenderer.Instance>newHashMap();
 
@@ -61,7 +61,7 @@ public class MapItemRenderer
     {
         private final MapData mapData;
         private final DynamicTexture mapTexture;
-        private final ResourceLocation location;
+        private final 图像位置 location;
         private final int[] mapTextureData;
 
         private Instance(MapData mapdataIn)

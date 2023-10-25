@@ -396,7 +396,7 @@ public class EntityGuardian extends EntityMob
             int k = 6000;
             int l = 2;
 
-            if ((this.ticksExisted + this.getEntityId()) % 1200 == 0)
+            if ((this.已存在的刻度 + this.getEntityId()) % 1200 == 0)
             {
                 Potion potion = Potion.digSlowdown;
 
@@ -627,12 +627,12 @@ public class EntityGuardian extends EntityMob
                 this.entityGuardian.renderYawOffset = this.entityGuardian.旋转侧滑;
                 float f1 = (float)(this.speed * this.entityGuardian.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
                 this.entityGuardian.setAIMoveSpeed(this.entityGuardian.getAIMoveSpeed() + (f1 - this.entityGuardian.getAIMoveSpeed()) * 0.125F);
-                double d4 = Math.sin((double)(this.entityGuardian.ticksExisted + this.entityGuardian.getEntityId()) * 0.5D) * 0.05D;
+                double d4 = Math.sin((double)(this.entityGuardian.已存在的刻度 + this.entityGuardian.getEntityId()) * 0.5D) * 0.05D;
                 double d5 = Math.cos((double)(this.entityGuardian.旋转侧滑 * (float)Math.PI / 180.0F));
                 double d6 = Math.sin((double)(this.entityGuardian.旋转侧滑 * (float)Math.PI / 180.0F));
                 this.entityGuardian.通便X += d4 * d5;
                 this.entityGuardian.通便Z += d4 * d6;
-                d4 = Math.sin((double)(this.entityGuardian.ticksExisted + this.entityGuardian.getEntityId()) * 0.75D) * 0.05D;
+                d4 = Math.sin((double)(this.entityGuardian.已存在的刻度 + this.entityGuardian.getEntityId()) * 0.75D) * 0.05D;
                 this.entityGuardian.motionY += d4 * (d6 + d5) * 0.25D;
                 this.entityGuardian.motionY += (double)this.entityGuardian.getAIMoveSpeed() * d1 * 0.1D;
                 EntityLookHelper entitylookhelper = this.entityGuardian.getLookHelper();

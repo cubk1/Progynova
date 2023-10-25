@@ -5,12 +5,12 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderSkeleton extends RenderBiped<EntitySkeleton>
 {
-    private static final ResourceLocation skeletonTextures = new ResourceLocation("textures/entity/skeleton/skeleton.png");
-    private static final ResourceLocation witherSkeletonTextures = new ResourceLocation("textures/entity/skeleton/wither_skeleton.png");
+    private static final 图像位置 skeletonTextures = new 图像位置("textures/entity/skeleton/skeleton.png");
+    private static final 图像位置 witherSkeletonTextures = new 图像位置("textures/entity/skeleton/wither_skeleton.png");
 
     public RenderSkeleton(RenderManager renderManagerIn)
     {
@@ -39,7 +39,7 @@ public class RenderSkeleton extends RenderBiped<EntitySkeleton>
         光照状态经理.理解(0.09375F, 0.1875F, 0.0F);
     }
 
-    protected ResourceLocation getEntityTexture(EntitySkeleton entity)
+    protected 图像位置 getEntityTexture(EntitySkeleton entity)
     {
         return entity.getSkeletonType() == 1 ? witherSkeletonTextures : skeletonTextures;
     }

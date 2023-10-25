@@ -7,7 +7,7 @@ import net.minecraft.client.gui.鬼Button;
 import net.minecraft.client.gui.鬼Screen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 
 public class 鬼StreamOptions extends 鬼Screen
 {
@@ -126,7 +126,7 @@ public class 鬼StreamOptions extends 鬼Screen
 
         if (this.field_152315_t)
         {
-            this.drawCenteredString(this.fontRendererObj, EnumChatFormatting.RED + I18n.format("options.stream.changes", new Object[0]), this.width / 2, 20 + this.fontRendererObj.FONT_HEIGHT, 16777215);
+            this.drawCenteredString(this.fontRendererObj, 枚举聊天格式.RED + I18n.format("options.stream.changes", new Object[0]), this.width / 2, 20 + this.fontRendererObj.FONT_HEIGHT, 16777215);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);

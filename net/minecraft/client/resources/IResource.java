@@ -2,11 +2,11 @@ package net.minecraft.client.resources;
 
 import java.io.InputStream;
 import net.minecraft.client.resources.data.IMetadataSection;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public interface IResource
 {
-    ResourceLocation getResourceLocation();
+    图像位置 getResourceLocation();
 
     InputStream getInputStream();
 

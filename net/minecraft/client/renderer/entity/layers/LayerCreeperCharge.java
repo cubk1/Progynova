@@ -4,11 +4,11 @@ import net.minecraft.client.model.ModelCreeper;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.RenderCreeper;
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class LayerCreeperCharge implements LayerRenderer<EntityCreeper>
 {
-    private static final ResourceLocation LIGHTNING_TEXTURE = new ResourceLocation("textures/entity/creeper/creeper_armor.png");
+    private static final 图像位置 LIGHTNING_TEXTURE = new 图像位置("textures/entity/creeper/creeper_armor.png");
     private final RenderCreeper creeperRenderer;
     private final ModelCreeper creeperModel = new ModelCreeper(2.0F);
 
@@ -26,7 +26,7 @@ public class LayerCreeperCharge implements LayerRenderer<EntityCreeper>
             this.creeperRenderer.bindTexture(LIGHTNING_TEXTURE);
             光照状态经理.matrixMode(5890);
             光照状态经理.loadIdentity();
-            float f = (float)entitylivingbaseIn.ticksExisted + partialTicks;
+            float f = (float)entitylivingbaseIn.已存在的刻度 + partialTicks;
             光照状态经理.理解(f * 0.01F, f * 0.01F, 0.0F);
             光照状态经理.matrixMode(5888);
             光照状态经理.启用混合品();

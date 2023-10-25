@@ -17,7 +17,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.MinecraftException;
 import net.minecraft.world.NextTickListEntry;
@@ -310,7 +310,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
             for (NextTickListEntry nextticklistentry : list)
             {
                 NBTTagCompound nbttagcompound3 = new NBTTagCompound();
-                ResourceLocation resourcelocation = (ResourceLocation)Block.blockRegistry.getNameForObject(nextticklistentry.getBlock());
+                图像位置 resourcelocation = (图像位置)Block.blockRegistry.getNameForObject(nextticklistentry.getBlock());
                 nbttagcompound3.setString("i", resourcelocation == null ? "" : resourcelocation.toString());
                 nbttagcompound3.setInteger("x", nextticklistentry.position.getX());
                 nbttagcompound3.setInteger("y", nextticklistentry.position.getY());

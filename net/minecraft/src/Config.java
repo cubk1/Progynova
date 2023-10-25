@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import net.minecraft.client.LoadingScreenRenderer;
 import net.minecraft.client.我的手艺;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.比例解析;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -48,7 +48,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.FrameTimer;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Util;
 import net.optifine.DynamicLights;
 import net.optifine.GlErrors;
@@ -625,7 +625,7 @@ public class Config
         {
             try
             {
-                InputStream inputstream = iresourcemanager.getResource(new ResourceLocation("mcpatcher/color.properties")).getInputStream();
+                InputStream inputstream = iresourcemanager.getResource(new 图像位置("mcpatcher/color.properties")).getInputStream();
 
                 if (inputstream == null)
                 {
@@ -936,23 +936,23 @@ public class Config
         return 宇轩的世界.getResourceManager();
     }
 
-    public static InputStream getResourceStream(ResourceLocation p_getResourceStream_0_) throws IOException
+    public static InputStream getResourceStream(图像位置 p_getResourceStream_0_) throws IOException
     {
         return getResourceStream(宇轩的世界.getResourceManager(), p_getResourceStream_0_);
     }
 
-    public static InputStream getResourceStream(IResourceManager p_getResourceStream_0_, ResourceLocation p_getResourceStream_1_) throws IOException
+    public static InputStream getResourceStream(IResourceManager p_getResourceStream_0_, 图像位置 p_getResourceStream_1_) throws IOException
     {
         IResource iresource = p_getResourceStream_0_.getResource(p_getResourceStream_1_);
         return iresource == null ? null : iresource.getInputStream();
     }
 
-    public static IResource getResource(ResourceLocation p_getResource_0_) throws IOException
+    public static IResource getResource(图像位置 p_getResource_0_) throws IOException
     {
         return 宇轩的世界.getResourceManager().getResource(p_getResource_0_);
     }
 
-    public static boolean hasResource(ResourceLocation p_hasResource_0_)
+    public static boolean hasResource(图像位置 p_hasResource_0_)
     {
         if (p_hasResource_0_ == null)
         {
@@ -965,7 +965,7 @@ public class Config
         }
     }
 
-    public static boolean hasResource(IResourceManager p_hasResource_0_, ResourceLocation p_hasResource_1_)
+    public static boolean hasResource(IResourceManager p_hasResource_0_, 图像位置 p_hasResource_1_)
     {
         try
         {
@@ -1049,13 +1049,13 @@ public class Config
         return defaultResourcePackLazy;
     }
 
-    public static boolean isFromDefaultResourcePack(ResourceLocation p_isFromDefaultResourcePack_0_)
+    public static boolean isFromDefaultResourcePack(图像位置 p_isFromDefaultResourcePack_0_)
     {
         IResourcePack iresourcepack = getDefiningResourcePack(p_isFromDefaultResourcePack_0_);
         return iresourcepack == getDefaultResourcePack();
     }
 
-    public static IResourcePack getDefiningResourcePack(ResourceLocation p_getDefiningResourcePack_0_)
+    public static IResourcePack getDefiningResourcePack(图像位置 p_getDefiningResourcePack_0_)
     {
         ResourcePackRepository resourcepackrepository = 宇轩的世界.getResourcePackRepository();
         IResourcePack iresourcepack = resourcepackrepository.getResourcePackInstance();
@@ -1946,8 +1946,8 @@ public class Config
 
                 try
                 {
-                    inputstream = getDefaultResourcePack().getInputStreamAssets(new ResourceLocation("icons/icon_16x16.png"));
-                    inputstream1 = getDefaultResourcePack().getInputStreamAssets(new ResourceLocation("icons/icon_32x32.png"));
+                    inputstream = getDefaultResourcePack().getInputStreamAssets(new 图像位置("icons/icon_16x16.png"));
+                    inputstream1 = getDefaultResourcePack().getInputStreamAssets(new 图像位置("icons/icon_32x32.png"));
 
                     if (inputstream != null && inputstream1 != null)
                     {
@@ -2031,9 +2031,9 @@ public class Config
 
                 if (宇轩的世界.currentScreen != null)
                 {
-                    ScaledResolution scaledresolution = new ScaledResolution(宇轩的世界);
+                    比例解析 scaledresolution = new 比例解析(宇轩的世界);
                     int i = scaledresolution.getScaledWidth();
-                    int j = scaledresolution.getScaledHeight();
+                    int j = scaledresolution.得到高度();
                     宇轩的世界.currentScreen.setWorldAndResolution(宇轩的世界, i, j);
                 }
 
@@ -2170,7 +2170,7 @@ public class Config
         int k = 宇轩的世界.renderGlobal.getCountEntitiesRendered();
         int l = 宇轩的世界.renderGlobal.getCountTileEntitiesRendered();
         String s1 = "" + i + "/" + getFpsMin() + " fps, C: " + j + ", E: " + k + "+" + l + ", U: " + s;
-        宇轩的世界.fontRendererObj.drawString(s1, 2, 2, -2039584);
+        宇轩的世界.字体渲染员.drawString(s1, 2, 2, -2039584);
     }
 
     public static int getFpsMin()
@@ -2314,7 +2314,7 @@ public class Config
     {
         try
         {
-            ResourceLocation resourcelocation = new ResourceLocation("textures/gui/title/mojang.png");
+            图像位置 resourcelocation = new 图像位置("textures/gui/title/mojang.png");
             InputStream inputstream = getResourceStream(resourcelocation);
 
             if (inputstream == null)

@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelManager;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.Model图像位置;
 import net.minecraft.client.resources.model.ModelRotation;
 import net.minecraft.client.resources.model.SimpleBakedModel;
 import net.minecraft.src.Config;
@@ -111,7 +111,7 @@ public class BlockModelUtils
             }
             else
             {
-                ModelResourceLocation modelresourcelocation = new ModelResourceLocation(modelName, "normal");
+                Model图像位置 modelresourcelocation = new Model图像位置(modelName, "normal");
                 IBakedModel ibakedmodel = modelmanager.getModel(modelresourcelocation);
 
                 if (ibakedmodel != null && ibakedmodel != modelmanager.getMissingModel())

@@ -12,13 +12,13 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntityEndPortal;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.shaders.ShadersRender;
 
 public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileEntityEndPortal>
 {
-    private static final ResourceLocation END_SKY_TEXTURE = new ResourceLocation("textures/environment/end_sky.png");
-    private static final ResourceLocation END_PORTAL_TEXTURE = new ResourceLocation("textures/entity/end_portal.png");
+    private static final 图像位置 END_SKY_TEXTURE = new 图像位置("textures/environment/end_sky.png");
+    private static final 图像位置 END_PORTAL_TEXTURE = new 图像位置("textures/entity/end_portal.png");
     private static final Random field_147527_e = new Random(31100L);
     FloatBuffer field_147528_b = GLAllocation.createDirectFloatBuffer(16);
 

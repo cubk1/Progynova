@@ -10,10 +10,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelManager;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.Model图像位置;
 import net.minecraft.src.Config;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.model.ModelUtils;
 
 public class SmartLeaves
@@ -107,7 +107,7 @@ public class SmartLeaves
         }
         else
         {
-            ResourceLocation resourcelocation = new ResourceLocation("blockstates/" + type + "_leaves.json");
+            图像位置 resourcelocation = new 图像位置("blockstates/" + type + "_leaves.json");
 
             if (Config.getDefiningResourcePack(resourcelocation) != Config.getDefaultResourcePack())
             {
@@ -115,7 +115,7 @@ public class SmartLeaves
             }
             else
             {
-                ResourceLocation resourcelocation1 = new ResourceLocation("models/block/" + type + "_leaves.json");
+                图像位置 resourcelocation1 = new 图像位置("models/block/" + type + "_leaves.json");
 
                 if (Config.getDefiningResourcePack(resourcelocation1) != Config.getDefaultResourcePack())
                 {
@@ -123,7 +123,7 @@ public class SmartLeaves
                 }
                 else
                 {
-                    ModelResourceLocation modelresourcelocation = new ModelResourceLocation(type + "_leaves", "normal");
+                    Model图像位置 modelresourcelocation = new Model图像位置(type + "_leaves", "normal");
                     IBakedModel ibakedmodel = modelmanager.getModel(modelresourcelocation);
 
                     if (ibakedmodel != null && ibakedmodel != modelmanager.getMissingModel())

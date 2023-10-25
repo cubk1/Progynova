@@ -14,7 +14,7 @@ import java.io.Reader;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.IMetadataSerializer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public abstract class AbstractResourcePack implements IResourcePack
         this.resourcePackFile = resourcePackFileIn;
     }
 
-    private static String locationToName(ResourceLocation location)
+    private static String locationToName(图像位置 location)
     {
         return String.format("%s/%s/%s", new Object[] {"assets", location.getResourceDomain(), location.getResourcePath()});
     }
@@ -39,12 +39,12 @@ public abstract class AbstractResourcePack implements IResourcePack
         return p_110595_0_.toURI().relativize(p_110595_1_.toURI()).getPath();
     }
 
-    public InputStream getInputStream(ResourceLocation location) throws IOException
+    public InputStream getInputStream(图像位置 location) throws IOException
     {
         return this.getInputStreamByName(locationToName(location));
     }
 
-    public boolean resourceExists(ResourceLocation location)
+    public boolean resourceExists(图像位置 location)
     {
         return this.hasResourceName(locationToName(location));
     }

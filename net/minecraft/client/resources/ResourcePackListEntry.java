@@ -8,11 +8,11 @@ import net.minecraft.client.gui.鬼;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListEntry
 {
-    private static final ResourceLocation RESOURCE_PACKS_TEXTURE = new ResourceLocation("textures/gui/resource_packs.png");
+    private static final 图像位置 RESOURCE_PACKS_TEXTURE = new 图像位置("textures/gui/resource_packs.png");
     private static final IChatComponent field_183020_d = new ChatComponentTranslation("resourcePack.incompatible", new Object[0]);
     private static final IChatComponent field_183021_e = new ChatComponentTranslation("resourcePack.incompatible.old", new Object[0]);
     private static final IChatComponent field_183022_f = new ChatComponentTranslation("resourcePack.incompatible.new", new Object[0]);
@@ -111,19 +111,19 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
             }
         }
 
-        int i1 = this.mc.fontRendererObj.getStringWidth(s);
+        int i1 = this.mc.字体渲染员.getStringWidth(s);
 
         if (i1 > 157)
         {
-            s = this.mc.fontRendererObj.trimStringToWidth(s, 157 - this.mc.fontRendererObj.getStringWidth("...")) + "...";
+            s = this.mc.字体渲染员.trimStringToWidth(s, 157 - this.mc.字体渲染员.getStringWidth("...")) + "...";
         }
 
-        this.mc.fontRendererObj.drawStringWithShadow(s, (float)(x + 32 + 2), (float)(y + 1), 16777215);
-        List<String> list = this.mc.fontRendererObj.listFormattedStringToWidth(s1, 157);
+        this.mc.字体渲染员.绘制纵梁带心理阴影(s, (float)(x + 32 + 2), (float)(y + 1), 16777215);
+        List<String> list = this.mc.字体渲染员.listFormattedStringToWidth(s1, 157);
 
         for (int l = 0; l < 2 && l < list.size(); ++l)
         {
-            this.mc.fontRendererObj.drawStringWithShadow((String)list.get(l), (float)(x + 32 + 2), (float)(y + 12 + 10 * l), 8421504);
+            this.mc.字体渲染员.绘制纵梁带心理阴影((String)list.get(l), (float)(x + 32 + 2), (float)(y + 12 + 10 * l), 8421504);
         }
     }
 

@@ -26,7 +26,7 @@ import net.minecraft.src.Config;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class ConnectedParser
@@ -1256,7 +1256,7 @@ public class ConnectedParser
         for (int i = 0; i < astring.length; ++i)
         {
             String s = astring[i];
-            ResourceLocation resourcelocation = new ResourceLocation(s);
+            图像位置 resourcelocation = new 图像位置(s);
             Item item = (Item)Item.itemRegistry.getObject(resourcelocation);
 
             if (item == null)

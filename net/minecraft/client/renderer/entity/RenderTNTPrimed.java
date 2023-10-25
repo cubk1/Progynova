@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderTNTPrimed extends Render<EntityTNTPrimed>
 {
@@ -61,7 +61,7 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityTNTPrimed entity)
+    protected 图像位置 getEntityTexture(EntityTNTPrimed entity)
     {
         return TextureMap.locationBlocksTexture;
     }

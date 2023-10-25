@@ -1,11 +1,11 @@
 package net.minecraft.potion;
 
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class PotionAttackDamage extends Potion
 {
-    protected PotionAttackDamage(int potionID, ResourceLocation location, boolean badEffect, int potionColor)
+    protected PotionAttackDamage(int potionID, 图像位置 location, boolean badEffect, int potionColor)
     {
         super(potionID, location, badEffect, potionColor);
     }

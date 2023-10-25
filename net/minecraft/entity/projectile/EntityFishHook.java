@@ -22,7 +22,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.WeightedRandomFishable;
@@ -484,7 +484,7 @@ public class EntityFishHook extends Entity
         tagCompound.setShort("xTile", (short)this.xTile);
         tagCompound.setShort("yTile", (short)this.yTile);
         tagCompound.setShort("zTile", (short)this.zTile);
-        ResourceLocation resourcelocation = (ResourceLocation)Block.blockRegistry.getNameForObject(this.inTile);
+        图像位置 resourcelocation = (图像位置)Block.blockRegistry.getNameForObject(this.inTile);
         tagCompound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
         tagCompound.setByte("shake", (byte)this.shake);
         tagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));

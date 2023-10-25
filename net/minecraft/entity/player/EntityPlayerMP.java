@@ -364,7 +364,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 this.playerNetServerHandler.sendPacket(new S1FPacketSetExperience(this.experience, this.experienceTotal, this.experienceLevel));
             }
 
-            if (this.ticksExisted % 20 * 5 == 0 && !this.getStatFile().hasAchievementUnlocked(AchievementList.exploreAllBiomes))
+            if (this.已存在的刻度 % 20 * 5 == 0 && !this.getStatFile().hasAchievementUnlocked(AchievementList.exploreAllBiomes))
             {
                 this.updateBiomesExplored();
             }

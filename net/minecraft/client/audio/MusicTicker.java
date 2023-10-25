@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.client.我的手艺;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class MusicTicker implements ITickable
 {
@@ -63,26 +63,26 @@ public class MusicTicker implements ITickable
 
     public static enum MusicType
     {
-        MENU(new ResourceLocation("minecraft:music.menu"), 20, 600),
-        GAME(new ResourceLocation("minecraft:music.game"), 12000, 24000),
-        CREATIVE(new ResourceLocation("minecraft:music.game.creative"), 1200, 3600),
-        CREDITS(new ResourceLocation("minecraft:music.game.end.credits"), Integer.MAX_VALUE, Integer.MAX_VALUE),
-        NETHER(new ResourceLocation("minecraft:music.game.nether"), 1200, 3600),
-        END_BOSS(new ResourceLocation("minecraft:music.game.end.dragon"), 0, 0),
-        END(new ResourceLocation("minecraft:music.game.end"), 6000, 24000);
+        MENU(new 图像位置("minecraft:music.menu"), 20, 600),
+        GAME(new 图像位置("minecraft:music.game"), 12000, 24000),
+        CREATIVE(new 图像位置("minecraft:music.game.creative"), 1200, 3600),
+        CREDITS(new 图像位置("minecraft:music.game.end.credits"), Integer.MAX_VALUE, Integer.MAX_VALUE),
+        NETHER(new 图像位置("minecraft:music.game.nether"), 1200, 3600),
+        END_BOSS(new 图像位置("minecraft:music.game.end.dragon"), 0, 0),
+        END(new 图像位置("minecraft:music.game.end"), 6000, 24000);
 
-        private final ResourceLocation musicLocation;
+        private final 图像位置 musicLocation;
         private final int minDelay;
         private final int maxDelay;
 
-        private MusicType(ResourceLocation location, int minDelayIn, int maxDelayIn)
+        private MusicType(图像位置 location, int minDelayIn, int maxDelayIn)
         {
             this.musicLocation = location;
             this.minDelay = minDelayIn;
             this.maxDelay = maxDelayIn;
         }
 
-        public ResourceLocation getMusicLocation()
+        public 图像位置 getMusicLocation()
         {
             return this.musicLocation;
         }

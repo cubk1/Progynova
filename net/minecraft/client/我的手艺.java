@@ -141,7 +141,7 @@ import net.minecraft.util.MouseHelper;
 import net.minecraft.util.MovementInputFromOptions;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.ScreenShotHelper;
 import net.minecraft.util.Session;
 import net.minecraft.util.Timer;
@@ -179,7 +179,7 @@ import rip.liyuxuan.宇轩科技;
 public class 我的手艺 implements IThreadListener, IPlayerUsage
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final ResourceLocation locationMojangPng = new ResourceLocation("textures/gui/title/mojang.png");
+    private static final 图像位置 locationMojangPng = new 图像位置("textures/gui/title/mojang.png");
     public static final boolean isRunningOnMac = Util.getOSType() == Util.EnumOS.OSX;
     public static byte[] memoryReserve = new byte[10485760];
     private static final List<DisplayMode> macDisplayModes = Lists.newArrayList(new DisplayMode(2560, 1600), new DisplayMode(2880, 1800));
@@ -210,7 +210,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
     public EffectRenderer effectRenderer;
     private final Session session;
     private boolean isGamePaused;
-    public FontRenderer fontRendererObj;
+    public FontRenderer 字体渲染员;
     public FontRenderer standardGalacticFontRenderer;
     public 鬼Screen currentScreen;
     public LoadingScreenRenderer loadingScreen;
@@ -256,7 +256,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
     private TextureMap textureMapBlocks;
     private SoundHandler mcSoundHandler;
     private MusicTicker mcMusicTicker;
-    private ResourceLocation mojangLogo;
+    private 图像位置 mojangLogo;
     private final MinecraftSessionService sessionService;
     private SkinManager skinManager;
     private final Queue < FutureTask<? >> scheduledTasks = Queues.newArrayDeque();
@@ -409,16 +409,16 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
         this.mcSoundHandler = new SoundHandler(this.mcResourceManager, this.游戏一窝);
         this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
         this.mcMusicTicker = new MusicTicker(this);
-        this.fontRendererObj = new FontRenderer(this.游戏一窝, new ResourceLocation("textures/font/ascii.png"), this.renderEngine, false);
+        this.字体渲染员 = new FontRenderer(this.游戏一窝, new 图像位置("textures/font/ascii.png"), this.renderEngine, false);
 
         if (this.游戏一窝.language != null)
         {
-            this.fontRendererObj.setUnicodeFlag(this.isUnicode());
-            this.fontRendererObj.setBidiFlag(this.mcLanguageManager.isCurrentLanguageBidirectional());
+            this.字体渲染员.setUnicodeFlag(this.isUnicode());
+            this.字体渲染员.setBidiFlag(this.mcLanguageManager.isCurrentLanguageBidirectional());
         }
 
-        this.standardGalacticFontRenderer = new FontRenderer(this.游戏一窝, new ResourceLocation("textures/font/ascii_sga.png"), this.renderEngine, false);
-        this.mcResourceManager.registerReloadListener(this.fontRendererObj);
+        this.standardGalacticFontRenderer = new FontRenderer(this.游戏一窝, new 图像位置("textures/font/ascii_sga.png"), this.renderEngine, false);
+        this.mcResourceManager.registerReloadListener(this.字体渲染员);
         this.mcResourceManager.registerReloadListener(this.standardGalacticFontRenderer);
         this.mcResourceManager.registerReloadListener(new GrassColorReloadListener());
         this.mcResourceManager.registerReloadListener(new FoliageColorReloadListener());
@@ -580,8 +580,8 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
 
             try
             {
-                inputstream = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_16x16.png"));
-                inputstream1 = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_32x32.png"));
+                inputstream = this.mcDefaultResourcePack.getInputStreamAssets(new 图像位置("icons/icon_16x16.png"));
+                inputstream1 = this.mcDefaultResourcePack.getInputStreamAssets(new 图像位置("icons/icon_32x32.png"));
 
                 if (inputstream != null && inputstream1 != null)
                 {
@@ -784,13 +784,13 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
     }
 
     private void drawSplashScreen(TextureManager textureManagerInstance) {
-        ScaledResolution scaledresolution = new ScaledResolution(this);
+        比例解析 scaledresolution = new 比例解析(this);
         int i = scaledresolution.getScaleFactor();
-        Framebuffer framebuffer = new Framebuffer(scaledresolution.getScaledWidth() * i, scaledresolution.getScaledHeight() * i, true);
+        Framebuffer framebuffer = new Framebuffer(scaledresolution.getScaledWidth() * i, scaledresolution.得到高度() * i, true);
         framebuffer.bindFramebuffer(false);
         光照状态经理.matrixMode(5889);
         光照状态经理.loadIdentity();
-        光照状态经理.ortho(0.0D, scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight(), 0.0D, 1000.0D, 3000.0D);
+        光照状态经理.ortho(0.0D, scaledresolution.getScaledWidth(), scaledresolution.得到高度(), 0.0D, 1000.0D, 3000.0D);
         光照状态经理.matrixMode(5888);
         光照状态经理.loadIdentity();
         光照状态经理.理解(0.0F, 0.0F, -2000.0F);
@@ -826,11 +826,11 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
         int j = 256;
         int k = 256;
-        this.draw((scaledresolution.getScaledWidth() - j) / 2, (scaledresolution.getScaledHeight() - k) / 2, 0, 0, j, k, 255, 255, 255, 255);
+        this.draw((scaledresolution.getScaledWidth() - j) / 2, (scaledresolution.得到高度() - k) / 2, 0, 0, j, k, 255, 255, 255, 255);
         光照状态经理.disableLighting();
         光照状态经理.disableFog();
         framebuffer.unbindFramebuffer();
-        framebuffer.framebufferRender(scaledresolution.getScaledWidth() * i, scaledresolution.getScaledHeight() * i);
+        framebuffer.framebufferRender(scaledresolution.getScaledWidth() * i, scaledresolution.得到高度() * i);
         光照状态经理.启用希腊字母表的第1个字母();
         光照状态经理.alphaFunc(516, 0.1F);
         this.updateDisplay();
@@ -881,9 +881,9 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
         if (guiScreenIn != null)
         {
             this.setIngameNotInFocus();
-            ScaledResolution scaledresolution = new ScaledResolution(this);
+            比例解析 scaledresolution = new 比例解析(this);
             int i = scaledresolution.getScaledWidth();
-            int j = scaledresolution.getScaledHeight();
+            int j = scaledresolution.得到高度();
             guiScreenIn.setWorldAndResolution(this, i, j);
             this.skipRenderWorld = false;
         }
@@ -1271,8 +1271,8 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
             }
 
             int l2 = 16777215;
-            this.fontRendererObj.drawStringWithShadow(s, (float)(j - i), (float)(k - i / 2 - 16), l2);
-            this.fontRendererObj.drawStringWithShadow(s = decimalformat.format(profiler$result.field_76330_b) + "%", (float)(j + i - this.fontRendererObj.getStringWidth(s)), (float)(k - i / 2 - 16), l2);
+            this.字体渲染员.绘制纵梁带心理阴影(s, (float)(j - i), (float)(k - i / 2 - 16), l2);
+            this.字体渲染员.绘制纵梁带心理阴影(s = decimalformat.format(profiler$result.field_76330_b) + "%", (float)(j + i - this.字体渲染员.getStringWidth(s)), (float)(k - i / 2 - 16), l2);
 
             for (int k2 = 0; k2 < list.size(); ++k2)
             {
@@ -1289,9 +1289,9 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
                 }
 
                 s1 = s1 + profiler$result2.field_76331_c;
-                this.fontRendererObj.drawStringWithShadow(s1, (float)(j - i), (float)(k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
-                this.fontRendererObj.drawStringWithShadow(s1 = decimalformat.format(profiler$result2.field_76332_a) + "%", (float)(j + i - 50 - this.fontRendererObj.getStringWidth(s1)), (float)(k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
-                this.fontRendererObj.drawStringWithShadow(s1 = decimalformat.format(profiler$result2.field_76330_b) + "%", (float)(j + i - this.fontRendererObj.getStringWidth(s1)), (float)(k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
+                this.字体渲染员.绘制纵梁带心理阴影(s1, (float)(j - i), (float)(k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
+                this.字体渲染员.绘制纵梁带心理阴影(s1 = decimalformat.format(profiler$result2.field_76332_a) + "%", (float)(j + i - 50 - this.字体渲染员.getStringWidth(s1)), (float)(k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
+                this.字体渲染员.绘制纵梁带心理阴影(s1 = decimalformat.format(profiler$result2.field_76330_b) + "%", (float)(j + i - this.字体渲染员.getStringWidth(s1)), (float)(k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
             }
         }
     }
@@ -1534,8 +1534,8 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
 
         if (this.currentScreen != null)
         {
-            ScaledResolution scaledresolution = new ScaledResolution(this);
-            this.currentScreen.onResize(this, scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
+            比例解析 scaledresolution = new 比例解析(this);
+            this.currentScreen.onResize(this, scaledresolution.getScaledWidth(), scaledresolution.得到高度());
         }
 
         this.loadingScreen = new LoadingScreenRenderer(this);

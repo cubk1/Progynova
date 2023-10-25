@@ -5,12 +5,12 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerWorkbench;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 
 public class 鬼Crafting extends 鬼Container
 {
-    private static final ResourceLocation craftingTableGuiTextures = new ResourceLocation("textures/gui/container/crafting_table.png");
+    private static final 图像位置 craftingTableGuiTextures = new 图像位置("textures/gui/container/crafting_table.png");
 
     public 鬼Crafting(InventoryPlayer playerInv, World worldIn)
     {

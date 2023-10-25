@@ -4,7 +4,7 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.gui.鬼;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.util.交流组分文本;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_FLAT;
@@ -62,7 +62,7 @@ public class 渲染的功能 {
         });
     }
 
-    public static void 渲染图片(ResourceLocation 图像位置, double 未知的人, double 基督教女青年会, double 宽幅, double 垂直) {
+    public static void 渲染图片(图像位置 图像位置, double 未知的人, double 基督教女青年会, double 宽幅, double 垂直) {
         光照状态经理.推黑客帝国();
         光照状态经理.启用混合品();
         光照状态经理.正常工作(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -77,7 +77,7 @@ public class 渲染的功能 {
         光照状态经理.流行音乐黑客帝国();
     }
 
-    public static void 渲染图片(ResourceLocation 图像位置, double 未知的人, double 基督教女青年会, double 宽幅, double 垂直, int 染料) {
+    public static void 渲染图片(图像位置 图像位置, double 未知的人, double 基督教女青年会, double 宽幅, double 垂直, int 染料) {
         光照状态经理.推黑客帝国();
         光照状态经理.启用混合品();
         光照状态经理.正常工作(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

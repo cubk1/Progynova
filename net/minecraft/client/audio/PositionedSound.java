@@ -1,10 +1,10 @@
 package net.minecraft.client.audio;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public abstract class PositionedSound implements ISound
 {
-    protected final ResourceLocation positionedSoundLocation;
+    protected final 图像位置 positionedSoundLocation;
     protected float volume = 1.0F;
     protected float pitch = 1.0F;
     protected float xPosF;
@@ -14,12 +14,12 @@ public abstract class PositionedSound implements ISound
     protected int repeatDelay = 0;
     protected ISound.AttenuationType attenuationType = ISound.AttenuationType.LINEAR;
 
-    protected PositionedSound(ResourceLocation soundResource)
+    protected PositionedSound(图像位置 soundResource)
     {
         this.positionedSoundLocation = soundResource;
     }
 
-    public ResourceLocation getSoundLocation()
+    public 图像位置 getSoundLocation()
     {
         return this.positionedSoundLocation;
     }

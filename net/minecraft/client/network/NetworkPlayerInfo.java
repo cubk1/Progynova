@@ -10,7 +10,7 @@ import net.minecraft.client.resources.SkinManager;
 import net.minecraft.network.play.server.S38PacketPlayerListItem;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.WorldSettings;
 
 public class NetworkPlayerInfo
@@ -19,8 +19,8 @@ public class NetworkPlayerInfo
     private WorldSettings.GameType gameType;
     private int responseTime;
     private boolean playerTexturesLoaded = false;
-    private ResourceLocation locationSkin;
-    private ResourceLocation locationCape;
+    private 图像位置 locationSkin;
+    private 图像位置 locationCape;
     private String skinType;
     private IChatComponent displayName;
     private int field_178873_i = 0;
@@ -77,17 +77,17 @@ public class NetworkPlayerInfo
         return this.skinType == null ? DefaultPlayerSkin.getSkinType(this.gameProfile.getId()) : this.skinType;
     }
 
-    public ResourceLocation getLocationSkin()
+    public 图像位置 getLocationSkin()
     {
         if (this.locationSkin == null)
         {
             this.loadPlayerTextures();
         }
 
-        return (ResourceLocation)Objects.firstNonNull(this.locationSkin, DefaultPlayerSkin.getDefaultSkin(this.gameProfile.getId()));
+        return (图像位置)Objects.firstNonNull(this.locationSkin, DefaultPlayerSkin.getDefaultSkin(this.gameProfile.getId()));
     }
 
-    public ResourceLocation getLocationCape()
+    public 图像位置 getLocationCape()
     {
         if (this.locationCape == null)
         {
@@ -111,7 +111,7 @@ public class NetworkPlayerInfo
                 this.playerTexturesLoaded = true;
                 我的手艺.得到我的手艺().getSkinManager().loadProfileTextures(this.gameProfile, new SkinManager.SkinAvailableCallback()
                 {
-                    public void skinAvailable(Type p_180521_1_, ResourceLocation location, MinecraftProfileTexture profileTexture)
+                    public void skinAvailable(Type p_180521_1_, 图像位置 location, MinecraftProfileTexture profileTexture)
                     {
                         switch (p_180521_1_)
                         {

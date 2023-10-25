@@ -5,14 +5,14 @@ import java.net.URI;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class 鬼ScreenDemo extends 鬼Screen
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final ResourceLocation field_146348_f = new ResourceLocation("textures/gui/demo_background.png");
+    private static final 图像位置 field_146348_f = new 图像位置("textures/gui/demo_background.png");
 
     public void initGui()
     {

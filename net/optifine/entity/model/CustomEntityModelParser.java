@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.config.ConnectedParser;
 import net.optifine.entity.model.anim.ModelUpdater;
 import net.optifine.entity.model.anim.ModelVariableUpdater;
@@ -81,7 +81,7 @@ public class CustomEntityModelParser
         }
 
         CustomModelRenderer[] acustommodelrenderer = (CustomModelRenderer[])((CustomModelRenderer[])list.toArray(new CustomModelRenderer[list.size()]));
-        ResourceLocation resourcelocation = null;
+        图像位置 resourcelocation = null;
 
         if (s2 != null)
         {
@@ -117,7 +117,7 @@ public class CustomEntityModelParser
 
         if (s != null)
         {
-            ResourceLocation resourcelocation = getResourceLocation(basePath, s, ".jpm");
+            图像位置 resourcelocation = getResourceLocation(basePath, s, ".jpm");
 
             try
             {
@@ -157,7 +157,7 @@ public class CustomEntityModelParser
         }
     }
 
-    public static ResourceLocation getResourceLocation(String basePath, String path, String extension)
+    public static 图像位置 getResourceLocation(String basePath, String path, String extension)
     {
         if (!path.endsWith(extension))
         {
@@ -177,7 +177,7 @@ public class CustomEntityModelParser
             path = "optifine/" + path.substring(2);
         }
 
-        return new ResourceLocation(path);
+        return new 图像位置(path);
     }
 
     private static void processId(JsonObject elem, Map mapModelJsons)
@@ -254,7 +254,7 @@ public class CustomEntityModelParser
         }
     }
 
-    public static JsonObject loadJson(ResourceLocation location) throws IOException, JsonParseException
+    public static JsonObject loadJson(图像位置 location) throws IOException, JsonParseException
     {
         InputStream inputstream = Config.getResourceStream(location);
 

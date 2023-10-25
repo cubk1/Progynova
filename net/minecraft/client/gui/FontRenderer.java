@@ -22,7 +22,7 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.CustomColors;
 import net.optifine.render.GlBlendState;
 import net.optifine.util.FontUtils;
@@ -31,13 +31,13 @@ import org.lwjgl.opengl.GL11;
 
 public class FontRenderer implements IResourceManagerReloadListener
 {
-    private static final ResourceLocation[] unicodePageLocations = new ResourceLocation[256];
+    private static final 图像位置[] unicodePageLocations = new 图像位置[256];
     private final int[] charWidth = new int[256];
     public int FONT_HEIGHT = 9;
     public Random fontRandom = new Random();
     private byte[] glyphWidth = new byte[65536];
     private int[] colorCode = new int[32];
-    private ResourceLocation locationFontTexture;
+    private 图像位置 locationFontTexture;
     private final TextureManager renderEngine;
     private float posX;
     private float posY;
@@ -54,13 +54,13 @@ public class FontRenderer implements IResourceManagerReloadListener
     private boolean underlineStyle;
     private boolean strikethroughStyle;
     public GameSettings gameSettings;
-    public ResourceLocation locationFontTextureBase;
+    public 图像位置 locationFontTextureBase;
     public float offsetBold = 1.0F;
     private float[] charWidthFloat = new float[256];
     private boolean blend = false;
     private GlBlendState oldBlendState = new GlBlendState();
 
-    public FontRenderer(GameSettings gameSettingsIn, ResourceLocation location, TextureManager textureManagerIn, boolean unicode)
+    public FontRenderer(GameSettings gameSettingsIn, 图像位置 location, TextureManager textureManagerIn, boolean unicode)
     {
         this.gameSettings = gameSettingsIn;
         this.locationFontTextureBase = location;
@@ -213,7 +213,7 @@ public class FontRenderer implements IResourceManagerReloadListener
 
         try
         {
-            inputstream = this.getResourceInputStream(new ResourceLocation("font/glyph_sizes.bin"));
+            inputstream = this.getResourceInputStream(new 图像位置("font/glyph_sizes.bin"));
             inputstream.read(this.glyphWidth);
         }
         catch (IOException ioexception)
@@ -260,11 +260,11 @@ public class FontRenderer implements IResourceManagerReloadListener
         return f;
     }
 
-    private ResourceLocation getUnicodePageLocation(int page)
+    private 图像位置 getUnicodePageLocation(int page)
     {
         if (unicodePageLocations[page] == null)
         {
-            unicodePageLocations[page] = new ResourceLocation(String.format("textures/font/unicode_page_%02x.png", new Object[] {Integer.valueOf(page)}));
+            unicodePageLocations[page] = new 图像位置(String.format("textures/font/unicode_page_%02x.png", new Object[] {Integer.valueOf(page)}));
             unicodePageLocations[page] = FontUtils.getHdFontLocation(unicodePageLocations[page]);
         }
 
@@ -308,7 +308,7 @@ public class FontRenderer implements IResourceManagerReloadListener
         }
     }
 
-    public int drawStringWithShadow(String text, float x, float y, int color)
+    public int 绘制纵梁带心理阴影(String text, float x, float y, int color)
     {
         return this.drawString(text, x, y, color, true);
     }
@@ -976,12 +976,12 @@ public class FontRenderer implements IResourceManagerReloadListener
         光照状态经理.启用希腊字母表的第1个字母();
     }
 
-    protected void bindTexture(ResourceLocation p_bindTexture_1_)
+    protected void bindTexture(图像位置 p_bindTexture_1_)
     {
         this.renderEngine.绑定手感(p_bindTexture_1_);
     }
 
-    protected InputStream getResourceInputStream(ResourceLocation p_getResourceInputStream_1_) throws IOException
+    protected InputStream getResourceInputStream(图像位置 p_getResourceInputStream_1_) throws IOException
     {
         return 我的手艺.得到我的手艺().getResourceManager().getResource(p_getResourceInputStream_1_).getInputStream();
     }

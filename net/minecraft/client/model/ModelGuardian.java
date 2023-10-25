@@ -62,7 +62,7 @@ public class ModelGuardian extends ModelBase
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
         EntityGuardian entityguardian = (EntityGuardian)entityIn;
-        float f = ageInTicks - (float)entityguardian.ticksExisted;
+        float f = ageInTicks - (float)entityguardian.已存在的刻度;
         this.guardianBody.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
         this.guardianBody.rotateAngleX = headPitch / (180F / (float)Math.PI);
         float[] afloat = new float[] {1.75F, 0.25F, 0.0F, 0.0F, 0.5F, 0.5F, 0.5F, 0.5F, 1.25F, 0.75F, 0.0F, 0.0F};

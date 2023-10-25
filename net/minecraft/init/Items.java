@@ -10,7 +10,7 @@ import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemShears;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class Items
 {
@@ -204,7 +204,7 @@ public class Items
 
     private static Item getRegisteredItem(String name)
     {
-        return Item.itemRegistry.getObject(new ResourceLocation(name));
+        return Item.itemRegistry.getObject(new 图像位置(name));
     }
 
     static

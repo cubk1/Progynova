@@ -4,16 +4,16 @@ import net.minecraft.client.model.ModelVillager;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerCustomHead;
 import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderVillager extends RenderLiving<EntityVillager>
 {
-    private static final ResourceLocation villagerTextures = new ResourceLocation("textures/entity/villager/villager.png");
-    private static final ResourceLocation farmerVillagerTextures = new ResourceLocation("textures/entity/villager/farmer.png");
-    private static final ResourceLocation librarianVillagerTextures = new ResourceLocation("textures/entity/villager/librarian.png");
-    private static final ResourceLocation priestVillagerTextures = new ResourceLocation("textures/entity/villager/priest.png");
-    private static final ResourceLocation smithVillagerTextures = new ResourceLocation("textures/entity/villager/smith.png");
-    private static final ResourceLocation butcherVillagerTextures = new ResourceLocation("textures/entity/villager/butcher.png");
+    private static final 图像位置 villagerTextures = new 图像位置("textures/entity/villager/villager.png");
+    private static final 图像位置 farmerVillagerTextures = new 图像位置("textures/entity/villager/farmer.png");
+    private static final 图像位置 librarianVillagerTextures = new 图像位置("textures/entity/villager/librarian.png");
+    private static final 图像位置 priestVillagerTextures = new 图像位置("textures/entity/villager/priest.png");
+    private static final 图像位置 smithVillagerTextures = new 图像位置("textures/entity/villager/smith.png");
+    private static final 图像位置 butcherVillagerTextures = new 图像位置("textures/entity/villager/butcher.png");
 
     public RenderVillager(RenderManager renderManagerIn)
     {
@@ -26,7 +26,7 @@ public class RenderVillager extends RenderLiving<EntityVillager>
         return (ModelVillager)super.getMainModel();
     }
 
-    protected ResourceLocation getEntityTexture(EntityVillager entity)
+    protected 图像位置 getEntityTexture(EntityVillager entity)
     {
         switch (entity.getProfession())
         {

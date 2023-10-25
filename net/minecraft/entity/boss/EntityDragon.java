@@ -353,7 +353,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
 
                 this.healingEnderCrystal = null;
             }
-            else if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth())
+            else if (this.已存在的刻度 % 10 == 0 && this.getHealth() < this.getMaxHealth())
             {
                 this.setHealth(this.getHealth() + 1.0F);
             }

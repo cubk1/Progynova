@@ -5,7 +5,7 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.键入绑定;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class GuiKeyBindingList extends GuiListExtended
@@ -36,7 +36,7 @@ public class GuiKeyBindingList extends GuiListExtended
                 this.listEntries[i++] = new GuiKeyBindingList.CategoryEntry(s1);
             }
 
-            int j = mcIn.fontRendererObj.getStringWidth(I18n.format(keybinding.getKeyDescription(), new Object[0]));
+            int j = mcIn.字体渲染员.getStringWidth(I18n.format(keybinding.getKeyDescription(), new Object[0]));
 
             if (j > this.maxListLabelWidth)
             {
@@ -75,12 +75,12 @@ public class GuiKeyBindingList extends GuiListExtended
         public CategoryEntry(String p_i45028_2_)
         {
             this.labelText = I18n.format(p_i45028_2_, new Object[0]);
-            this.labelWidth = GuiKeyBindingList.this.mc.fontRendererObj.getStringWidth(this.labelText);
+            this.labelWidth = GuiKeyBindingList.this.mc.字体渲染员.getStringWidth(this.labelText);
         }
 
         public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected)
         {
-            GuiKeyBindingList.this.mc.fontRendererObj.drawString(this.labelText, GuiKeyBindingList.this.mc.currentScreen.width / 2 - this.labelWidth / 2, y + slotHeight - GuiKeyBindingList.this.mc.fontRendererObj.FONT_HEIGHT - 1, 16777215);
+            GuiKeyBindingList.this.mc.字体渲染员.drawString(this.labelText, GuiKeyBindingList.this.mc.currentScreen.width / 2 - this.labelWidth / 2, y + slotHeight - GuiKeyBindingList.this.mc.字体渲染员.FONT_HEIGHT - 1, 16777215);
         }
 
         public boolean mousePressed(int slotIndex, int p_148278_2_, int p_148278_3_, int p_148278_4_, int p_148278_5_, int p_148278_6_)
@@ -115,7 +115,7 @@ public class GuiKeyBindingList extends GuiListExtended
         public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected)
         {
             boolean flag = GuiKeyBindingList.this.field_148191_k.buttonId == this.keybinding;
-            GuiKeyBindingList.this.mc.fontRendererObj.drawString(this.keyDesc, x + 90 - GuiKeyBindingList.this.maxListLabelWidth, y + slotHeight / 2 - GuiKeyBindingList.this.mc.fontRendererObj.FONT_HEIGHT / 2, 16777215);
+            GuiKeyBindingList.this.mc.字体渲染员.drawString(this.keyDesc, x + 90 - GuiKeyBindingList.this.maxListLabelWidth, y + slotHeight / 2 - GuiKeyBindingList.this.mc.字体渲染员.FONT_HEIGHT / 2, 16777215);
             this.btnReset.xPosition = x + 190;
             this.btnReset.yPosition = y;
             this.btnReset.enabled = this.keybinding.getKeyCode() != this.keybinding.getKeyCodeDefault();
@@ -139,11 +139,11 @@ public class GuiKeyBindingList extends GuiListExtended
 
             if (flag)
             {
-                this.btnChangeKeyBinding.displayString = EnumChatFormatting.WHITE + "> " + EnumChatFormatting.YELLOW + this.btnChangeKeyBinding.displayString + EnumChatFormatting.WHITE + " <";
+                this.btnChangeKeyBinding.displayString = 枚举聊天格式.白的 + "> " + 枚举聊天格式.YELLOW + this.btnChangeKeyBinding.displayString + 枚举聊天格式.白的 + " <";
             }
             else if (flag1)
             {
-                this.btnChangeKeyBinding.displayString = EnumChatFormatting.RED + this.btnChangeKeyBinding.displayString;
+                this.btnChangeKeyBinding.displayString = 枚举聊天格式.RED + this.btnChangeKeyBinding.displayString;
             }
 
             this.btnChangeKeyBinding.drawButton(GuiKeyBindingList.this.mc, mouseX, mouseY);

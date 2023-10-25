@@ -1163,7 +1163,7 @@ public abstract class EntityLiving extends EntityLivingBase
         {
             return false;
         }
-        else if (this.ticksExisted < 20)
+        else if (this.已存在的刻度 < 20)
         {
             return false;
         }

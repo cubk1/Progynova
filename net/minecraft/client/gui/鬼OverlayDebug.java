@@ -17,7 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -46,15 +46,15 @@ public class 鬼OverlayDebug extends 鬼
     public 鬼OverlayDebug(我的手艺 mc)
     {
         this.mc = mc;
-        this.fontRenderer = mc.fontRendererObj;
+        this.fontRenderer = mc.字体渲染员;
     }
 
-    public void renderDebugInfo(ScaledResolution scaledResolutionIn)
+    public void renderDebugInfo(比例解析 比例解析In)
     {
         this.mc.mcProfiler.startSection("debug");
         光照状态经理.推黑客帝国();
         this.renderDebugInfoLeft();
-        this.renderDebugInfoRight(scaledResolutionIn);
+        this.renderDebugInfoRight(比例解析In);
         光照状态经理.流行音乐黑客帝国();
 
         if (this.mc.游戏一窝.showLagometer)
@@ -97,7 +97,7 @@ public class 鬼OverlayDebug extends 鬼
         }
     }
 
-    protected void renderDebugInfoRight(ScaledResolution scaledRes)
+    protected void renderDebugInfoRight(比例解析 scaledRes)
     {
         List<String> list = this.debugInfoRight;
 
@@ -302,11 +302,11 @@ public class 鬼OverlayDebug extends 鬼
 
                     if (entry.getValue() == Boolean.TRUE)
                     {
-                        s1 = EnumChatFormatting.GREEN + s1;
+                        s1 = 枚举聊天格式.GREEN + s1;
                     }
                     else if (entry.getValue() == Boolean.FALSE)
                     {
-                        s1 = EnumChatFormatting.RED + s1;
+                        s1 = 枚举聊天格式.RED + s1;
                     }
 
                     list.add(((IProperty)entry.getKey()).getName() + ": " + s1);

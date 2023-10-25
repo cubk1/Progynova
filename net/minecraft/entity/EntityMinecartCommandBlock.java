@@ -96,10 +96,10 @@ public class EntityMinecartCommandBlock extends EntityMinecart
 
     public void onActivatorRailPass(int x, int y, int z, boolean receivingPower)
     {
-        if (receivingPower && this.ticksExisted - this.activatorRailCooldown >= 4)
+        if (receivingPower && this.已存在的刻度 - this.activatorRailCooldown >= 4)
         {
             this.getCommandBlockLogic().trigger(this.worldObj);
-            this.activatorRailCooldown = this.ticksExisted;
+            this.activatorRailCooldown = this.已存在的刻度;
         }
     }
 

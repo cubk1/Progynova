@@ -15,7 +15,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.src.Config;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.entity.model.CustomEntityModelParser;
 import net.optifine.util.Json;
 
@@ -136,19 +136,19 @@ public class PlayerItemParser
         }
     }
 
-    private static ResourceLocation makeResourceLocation(String texture)
+    private static 图像位置 makeResourceLocation(String texture)
     {
         int i = texture.indexOf(58);
 
         if (i < 0)
         {
-            return new ResourceLocation(texture);
+            return new 图像位置(texture);
         }
         else
         {
             String s = texture.substring(0, i);
             String s1 = texture.substring(i + 1);
-            return new ResourceLocation(s, s1);
+            return new 图像位置(s, s1);
         }
     }
 

@@ -20,7 +20,7 @@ import net.minecraft.client.gui.鬼Chat;
 import net.minecraft.client.gui.鬼DownloadTerrain;
 import net.minecraft.client.gui.鬼MainMenu;
 import net.minecraft.client.gui.MapItemRenderer;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.比例解析;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.client.renderer.culling.ClippingHelper;
@@ -68,7 +68,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MouseFilter;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -100,8 +100,8 @@ import org.lwjgl.util.glu.Project;
 public class EntityRenderer implements IResourceManagerReloadListener
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final ResourceLocation locationRainPng = new ResourceLocation("textures/environment/rain.png");
-    private static final ResourceLocation locationSnowPng = new ResourceLocation("textures/environment/snow.png");
+    private static final 图像位置 locationRainPng = new 图像位置("textures/environment/rain.png");
+    private static final 图像位置 locationSnowPng = new 图像位置("textures/environment/snow.png");
     public static boolean anaglyphEnable;
     public static int anaglyphField;
     private 我的手艺 mc;
@@ -132,7 +132,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     private long renderEndNanoTime;
     private final DynamicTexture lightmapTexture;
     private final int[] lightmapColors;
-    private final ResourceLocation locationLightMap;
+    private final 图像位置 locationLightMap;
     private boolean lightmapUpdateNeeded;
     private float torchFlickerX;
     private float torchFlickerDX;
@@ -151,8 +151,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
     private double cameraYaw;
     private double cameraPitch;
     private ShaderGroup theShaderGroup;
-    private static final ResourceLocation[] shaderResourceLocations = new ResourceLocation[] {new ResourceLocation("shaders/post/notch.json"), new ResourceLocation("shaders/post/fxaa.json"), new ResourceLocation("shaders/post/art.json"), new ResourceLocation("shaders/post/bumpy.json"), new ResourceLocation("shaders/post/blobs2.json"), new ResourceLocation("shaders/post/pencil.json"), new ResourceLocation("shaders/post/color_convolve.json"), new ResourceLocation("shaders/post/deconverge.json"), new ResourceLocation("shaders/post/flip.json"), new ResourceLocation("shaders/post/invert.json"), new ResourceLocation("shaders/post/ntsc.json"), new ResourceLocation("shaders/post/outline.json"), new ResourceLocation("shaders/post/phosphor.json"), new ResourceLocation("shaders/post/scan_pincushion.json"), new ResourceLocation("shaders/post/sobel.json"), new ResourceLocation("shaders/post/bits.json"), new ResourceLocation("shaders/post/desaturate.json"), new ResourceLocation("shaders/post/green.json"), new ResourceLocation("shaders/post/blur.json"), new ResourceLocation("shaders/post/wobble.json"), new ResourceLocation("shaders/post/blobs.json"), new ResourceLocation("shaders/post/antialias.json"), new ResourceLocation("shaders/post/creeper.json"), new ResourceLocation("shaders/post/spider.json")};
-    public static final int shaderCount = shaderResourceLocations.length;
+    private static final 图像位置[] SHADER_图像位置s = new 图像位置[] {new 图像位置("shaders/post/notch.json"), new 图像位置("shaders/post/fxaa.json"), new 图像位置("shaders/post/art.json"), new 图像位置("shaders/post/bumpy.json"), new 图像位置("shaders/post/blobs2.json"), new 图像位置("shaders/post/pencil.json"), new 图像位置("shaders/post/color_convolve.json"), new 图像位置("shaders/post/deconverge.json"), new 图像位置("shaders/post/flip.json"), new 图像位置("shaders/post/invert.json"), new 图像位置("shaders/post/ntsc.json"), new 图像位置("shaders/post/outline.json"), new 图像位置("shaders/post/phosphor.json"), new 图像位置("shaders/post/scan_pincushion.json"), new 图像位置("shaders/post/sobel.json"), new 图像位置("shaders/post/bits.json"), new 图像位置("shaders/post/desaturate.json"), new 图像位置("shaders/post/green.json"), new 图像位置("shaders/post/blur.json"), new 图像位置("shaders/post/wobble.json"), new 图像位置("shaders/post/blobs.json"), new 图像位置("shaders/post/antialias.json"), new 图像位置("shaders/post/creeper.json"), new 图像位置("shaders/post/spider.json")};
+    public static final int shaderCount = SHADER_图像位置s.length;
     private int shaderIndex;
     private boolean useShader;
     public int frameCount;
@@ -231,15 +231,15 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
             if (entityIn instanceof EntityCreeper)
             {
-                this.loadShader(new ResourceLocation("shaders/post/creeper.json"));
+                this.loadShader(new 图像位置("shaders/post/creeper.json"));
             }
             else if (entityIn instanceof EntitySpider)
             {
-                this.loadShader(new ResourceLocation("shaders/post/spider.json"));
+                this.loadShader(new 图像位置("shaders/post/spider.json"));
             }
             else if (entityIn instanceof EntityEnderman)
             {
-                this.loadShader(new ResourceLocation("shaders/post/invert.json"));
+                this.loadShader(new 图像位置("shaders/post/invert.json"));
             }
             else if (Reflector.ForgeHooksClient_loadEntityShader.exists())
             {
@@ -257,11 +257,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 this.theShaderGroup.deleteShaderGroup();
             }
 
-            this.shaderIndex = (this.shaderIndex + 1) % (shaderResourceLocations.length + 1);
+            this.shaderIndex = (this.shaderIndex + 1) % (SHADER_图像位置s.length + 1);
 
             if (this.shaderIndex != shaderCount)
             {
-                this.loadShader(shaderResourceLocations[this.shaderIndex]);
+                this.loadShader(SHADER_图像位置s[this.shaderIndex]);
             }
             else
             {
@@ -270,25 +270,25 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
     }
 
-    private void loadShader(ResourceLocation resourceLocationIn)
+    private void loadShader(图像位置 图像位置In)
     {
         if (OpenGlHelper.isFramebufferEnabled())
         {
             try
             {
-                this.theShaderGroup = new ShaderGroup(this.mc.得到手感经理(), this.resourceManager, this.mc.getFramebuffer(), resourceLocationIn);
+                this.theShaderGroup = new ShaderGroup(this.mc.得到手感经理(), this.resourceManager, this.mc.getFramebuffer(), 图像位置In);
                 this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
                 this.useShader = true;
             }
             catch (IOException ioexception)
             {
-                logger.warn((String)("Failed to load shader: " + resourceLocationIn), (Throwable)ioexception);
+                logger.warn((String)("Failed to load shader: " + 图像位置In), (Throwable)ioexception);
                 this.shaderIndex = shaderCount;
                 this.useShader = false;
             }
             catch (JsonSyntaxException jsonsyntaxexception)
             {
-                logger.warn((String)("Failed to load shader: " + resourceLocationIn), (Throwable)jsonsyntaxexception);
+                logger.warn((String)("Failed to load shader: " + 图像位置In), (Throwable)jsonsyntaxexception);
                 this.shaderIndex = shaderCount;
                 this.useShader = false;
             }
@@ -306,7 +306,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         if (this.shaderIndex != shaderCount)
         {
-            this.loadShader(shaderResourceLocations[this.shaderIndex]);
+            this.loadShader(SHADER_图像位置s[this.shaderIndex]);
         }
         else
         {
@@ -1233,9 +1233,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
         if (!this.mc.skipRenderWorld)
         {
             anaglyphEnable = this.mc.游戏一窝.anaglyph;
-            final ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+            final 比例解析 scaledresolution = new 比例解析(this.mc);
             int i1 = scaledresolution.getScaledWidth();
-            int j1 = scaledresolution.getScaledHeight();
+            int j1 = scaledresolution.得到高度();
             final int k1 = Mouse.getX() * i1 / this.mc.displayWidth;
             final int l1 = j1 - Mouse.getY() * j1 / this.mc.displayHeight - 1;
             int i2 = this.mc.游戏一窝.limitFramerate;
@@ -1296,7 +1296,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 this.setupOverlayRendering();
                 this.renderEndNanoTime = System.nanoTime();
                 TileEntityRendererDispatcher.instance.renderEngine = this.mc.得到手感经理();
-                TileEntityRendererDispatcher.instance.fontRenderer = this.mc.fontRendererObj;
+                TileEntityRendererDispatcher.instance.fontRenderer = this.mc.字体渲染员;
             }
 
             if (this.mc.currentScreen != null)
@@ -1336,7 +1336,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                     {
                         public String call() throws Exception
                         {
-                            return String.format("Scaled: (%d, %d). Absolute: (%d, %d). Scale factor of %d", new Object[] {Integer.valueOf(scaledresolution.getScaledWidth()), Integer.valueOf(scaledresolution.getScaledHeight()), Integer.valueOf(EntityRenderer.this.mc.displayWidth), Integer.valueOf(EntityRenderer.this.mc.displayHeight), Integer.valueOf(scaledresolution.getScaleFactor())});
+                            return String.format("Scaled: (%d, %d). Absolute: (%d, %d). Scale factor of %d", new Object[] {Integer.valueOf(scaledresolution.getScaledWidth()), Integer.valueOf(scaledresolution.得到高度()), Integer.valueOf(EntityRenderer.this.mc.displayWidth), Integer.valueOf(EntityRenderer.this.mc.displayHeight), Integer.valueOf(scaledresolution.getScaleFactor())});
                         }
                     });
                     throw new ReportedException(crashreport);
@@ -1358,7 +1358,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     public void renderStreamIndicator(float partialTicks)
     {
         this.setupOverlayRendering();
-        this.mc.ingameGUI.renderStreamIndicator(new ScaledResolution(this.mc));
+        this.mc.ingameGUI.renderStreamIndicator(new 比例解析(this.mc));
     }
 
     private boolean isDrawBlockOutline()
@@ -2113,7 +2113,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     public void setupOverlayRendering()
     {
-        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        比例解析 scaledresolution = new 比例解析(this.mc);
         光照状态经理.clear(256);
         光照状态经理.matrixMode(5889);
         光照状态经理.loadIdentity();
@@ -2702,7 +2702,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
         else
         {
-            this.loadShader(new ResourceLocation("shaders/post/fxaa_of_" + p_setFxaaShader_1_ + "x.json"));
+            this.loadShader(new 图像位置("shaders/post/fxaa_of_" + p_setFxaaShader_1_ + "x.json"));
             this.fxaaShaders[p_setFxaaShader_1_] = this.theShaderGroup;
             return this.useShader;
         }

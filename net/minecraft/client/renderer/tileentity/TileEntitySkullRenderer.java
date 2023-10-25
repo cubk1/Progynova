@@ -16,14 +16,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class TileEntitySkullRenderer extends TileEntitySpecialRenderer<TileEntitySkull>
 {
-    private static final ResourceLocation SKELETON_TEXTURES = new ResourceLocation("textures/entity/skeleton/skeleton.png");
-    private static final ResourceLocation WITHER_SKELETON_TEXTURES = new ResourceLocation("textures/entity/skeleton/wither_skeleton.png");
-    private static final ResourceLocation ZOMBIE_TEXTURES = new ResourceLocation("textures/entity/zombie/zombie.png");
-    private static final ResourceLocation CREEPER_TEXTURES = new ResourceLocation("textures/entity/creeper/creeper.png");
+    private static final 图像位置 SKELETON_TEXTURES = new 图像位置("textures/entity/skeleton/skeleton.png");
+    private static final 图像位置 WITHER_SKELETON_TEXTURES = new 图像位置("textures/entity/skeleton/wither_skeleton.png");
+    private static final 图像位置 ZOMBIE_TEXTURES = new 图像位置("textures/entity/zombie/zombie.png");
+    private static final 图像位置 CREEPER_TEXTURES = new 图像位置("textures/entity/creeper/creeper.png");
     public static TileEntitySkullRenderer instance;
     private final ModelSkeletonHead skeletonHead = new ModelSkeletonHead(0, 0, 64, 32);
     private final ModelSkeletonHead humanoidHead = new ModelHumanoidHead();
@@ -73,7 +73,7 @@ public class TileEntitySkullRenderer extends TileEntitySpecialRenderer<TileEntit
 
                 case 3:
                     modelbase = this.humanoidHead;
-                    ResourceLocation resourcelocation = DefaultPlayerSkin.getDefaultSkinLegacy();
+                    图像位置 resourcelocation = DefaultPlayerSkin.getDefaultSkinLegacy();
 
                     if (p_180543_7_ != null)
                     {

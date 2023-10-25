@@ -11,13 +11,13 @@ import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
 {
     private final RenderMooshroom mooshroomRenderer;
     private ModelRenderer modelRendererMushroom;
-    private static final ResourceLocation LOCATION_MUSHROOM_RED = new ResourceLocation("textures/entity/cow/mushroom_red.png");
+    private static final 图像位置 LOCATION_MUSHROOM_RED = new 图像位置("textures/entity/cow/mushroom_red.png");
     private static boolean hasTextureMushroom = false;
 
     public static void update()

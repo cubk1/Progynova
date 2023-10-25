@@ -3,21 +3,21 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderOcelot extends RenderLiving<EntityOcelot>
 {
-    private static final ResourceLocation blackOcelotTextures = new ResourceLocation("textures/entity/cat/black.png");
-    private static final ResourceLocation ocelotTextures = new ResourceLocation("textures/entity/cat/ocelot.png");
-    private static final ResourceLocation redOcelotTextures = new ResourceLocation("textures/entity/cat/red.png");
-    private static final ResourceLocation siameseOcelotTextures = new ResourceLocation("textures/entity/cat/siamese.png");
+    private static final 图像位置 blackOcelotTextures = new 图像位置("textures/entity/cat/black.png");
+    private static final 图像位置 ocelotTextures = new 图像位置("textures/entity/cat/ocelot.png");
+    private static final 图像位置 redOcelotTextures = new 图像位置("textures/entity/cat/red.png");
+    private static final 图像位置 siameseOcelotTextures = new 图像位置("textures/entity/cat/siamese.png");
 
     public RenderOcelot(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
     {
         super(renderManagerIn, modelBaseIn, shadowSizeIn);
     }
 
-    protected ResourceLocation getEntityTexture(EntityOcelot entity)
+    protected 图像位置 getEntityTexture(EntityOcelot entity)
     {
         switch (entity.getTameSkin())
         {

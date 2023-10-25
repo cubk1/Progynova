@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
 import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.optifine.config.ConnectedParser;
 import net.optifine.config.MatchBlock;
@@ -1158,7 +1158,7 @@ public class ConnectedProperties
             for (int i = 0; i < tileNames.length; ++i)
             {
                 String s = tileNames[i];
-                ResourceLocation resourcelocation = new ResourceLocation(s);
+                图像位置 resourcelocation = new 图像位置(s);
                 String s1 = resourcelocation.getResourceDomain();
                 String s2 = resourcelocation.getResourcePath();
 
@@ -1179,7 +1179,7 @@ public class ConnectedProperties
                 }
                 else
                 {
-                    ResourceLocation resourcelocation1 = new ResourceLocation(s1, s3);
+                    图像位置 resourcelocation1 = new 图像位置(s1, s3);
                     boolean flag = Config.hasResource(resourcelocation1);
 
                     if (!flag)
@@ -1195,7 +1195,7 @@ public class ConnectedProperties
                         s5 = s2.substring(s4.length());
                     }
 
-                    ResourceLocation resourcelocation2 = new ResourceLocation(s1, s5);
+                    图像位置 resourcelocation2 = new 图像位置(s1, s5);
                     TextureAtlasSprite textureatlassprite = textureMap.registerSprite(resourcelocation2);
                     list.add(textureatlassprite);
                 }

@@ -221,7 +221,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
 
             this.setInvulTime(j1);
 
-            if (this.ticksExisted % 10 == 0)
+            if (this.已存在的刻度 % 10 == 0)
             {
                 this.heal(10.0F);
             }
@@ -232,9 +232,9 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
 
             for (int i = 1; i < 3; ++i)
             {
-                if (this.ticksExisted >= this.field_82223_h[i - 1])
+                if (this.已存在的刻度 >= this.field_82223_h[i - 1])
                 {
-                    this.field_82223_h[i - 1] = this.ticksExisted + 10 + this.rand.nextInt(10);
+                    this.field_82223_h[i - 1] = this.已存在的刻度 + 10 + this.rand.nextInt(10);
 
                     if (this.worldObj.getDifficulty() == EnumDifficulty.NORMAL || this.worldObj.getDifficulty() == EnumDifficulty.HARD)
                     {
@@ -269,7 +269,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                             else
                             {
                                 this.launchWitherSkullToEntity(i + 1, (EntityLivingBase)entity);
-                                this.field_82223_h[i - 1] = this.ticksExisted + 40 + this.rand.nextInt(20);
+                                this.field_82223_h[i - 1] = this.已存在的刻度 + 40 + this.rand.nextInt(20);
                                 this.field_82224_i[i - 1] = 0;
                             }
                         }
@@ -356,7 +356,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                 }
             }
 
-            if (this.ticksExisted % 20 == 0)
+            if (this.已存在的刻度 % 20 == 0)
             {
                 this.heal(1.0F);
             }

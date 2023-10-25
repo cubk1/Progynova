@@ -5,14 +5,14 @@ import java.util.List;
 
 import net.minecraft.client.我的手艺;
 import net.minecraft.util.交流组分文本;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.IChatComponent;
 
 public class GuiUtilRenderComponents
 {
     public static String func_178909_a(String p_178909_0_, boolean p_178909_1_)
     {
-        return !p_178909_1_ && !我的手艺.得到我的手艺().游戏一窝.chatColours ? EnumChatFormatting.getTextWithoutFormattingCodes(p_178909_0_) : p_178909_0_;
+        return !p_178909_1_ && !我的手艺.得到我的手艺().游戏一窝.chatColours ? 枚举聊天格式.getTextWithoutFormattingCodes(p_178909_0_) : p_178909_0_;
     }
 
     public static List<IChatComponent> splitText(IChatComponent p_178908_0_, int p_178908_1_, FontRenderer p_178908_2_, boolean p_178908_3_, boolean p_178908_4_)

@@ -288,7 +288,7 @@ public abstract class EntityLivingBase extends Entity
             {
                 this.setRevengeTarget((EntityLivingBase)null);
             }
-            else if (this.ticksExisted - this.revengeTimer > 100)
+            else if (this.已存在的刻度 - this.revengeTimer > 100)
             {
                 this.setRevengeTarget((EntityLivingBase)null);
             }
@@ -377,7 +377,7 @@ public abstract class EntityLivingBase extends Entity
     public void setRevengeTarget(EntityLivingBase livingBase)
     {
         this.entityLivingToAttack = livingBase;
-        this.revengeTimer = this.ticksExisted;
+        this.revengeTimer = this.已存在的刻度;
     }
 
     public EntityLivingBase getLastAttacker()
@@ -401,7 +401,7 @@ public abstract class EntityLivingBase extends Entity
             this.lastAttacker = null;
         }
 
-        this.lastAttackerTime = this.ticksExisted;
+        this.lastAttackerTime = this.已存在的刻度;
     }
 
     public int getAge()
@@ -1567,7 +1567,7 @@ public abstract class EntityLivingBase extends Entity
                 }
             }
 
-            if (this.ticksExisted % 20 == 0)
+            if (this.已存在的刻度 % 20 == 0)
             {
                 this.getCombatTracker().reset();
             }

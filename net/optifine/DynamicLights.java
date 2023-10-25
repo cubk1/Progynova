@@ -24,7 +24,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.optifine.config.ConnectedParser;
 import net.optifine.config.EntityClassLocator;
@@ -111,7 +111,7 @@ public class DynamicLights
 
             try
             {
-                ResourceLocation resourcelocation = new ResourceLocation(s, "optifine/dynamic_lights.properties");
+                图像位置 resourcelocation = new 图像位置(s, "optifine/dynamic_lights.properties");
                 InputStream inputstream = Config.getResourceStream(resourcelocation);
                 loadModConfiguration(inputstream, resourcelocation.toString(), s);
             }
@@ -173,7 +173,7 @@ public class DynamicLights
                     String s1 = astring1[0];
                     String s2 = astring1[1];
                     String s3 = modId + ":" + s1;
-                    ResourceLocation resourcelocation = new ResourceLocation(s3);
+                    图像位置 resourcelocation = new 图像位置(s3);
                     Object object = ol.getObject(resourcelocation);
 
                     if (object == null)

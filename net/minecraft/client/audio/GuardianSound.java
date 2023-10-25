@@ -1,7 +1,7 @@
 package net.minecraft.client.audio;
 
 import net.minecraft.entity.monster.EntityGuardian;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class GuardianSound extends MovingSound
 {
@@ -9,7 +9,7 @@ public class GuardianSound extends MovingSound
 
     public GuardianSound(EntityGuardian guardian)
     {
-        super(new ResourceLocation("minecraft:mob.guardian.attack"));
+        super(new 图像位置("minecraft:mob.guardian.attack"));
         this.guardian = guardian;
         this.attenuationType = ISound.AttenuationType.NONE;
         this.repeat = true;

@@ -1,13 +1,13 @@
 package net.optifine;
 
 import java.util.Properties;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.config.ConnectedParser;
 
 public class CustomPanoramaProperties
 {
     private String path;
-    private ResourceLocation[] panoramaLocations;
+    private 图像位置[] panoramaLocations;
     private int weight = 1;
     private int blur1 = 64;
     private int blur2 = 3;
@@ -21,11 +21,11 @@ public class CustomPanoramaProperties
     {
         ConnectedParser connectedparser = new ConnectedParser("CustomPanorama");
         this.path = path;
-        this.panoramaLocations = new ResourceLocation[6];
+        this.panoramaLocations = new 图像位置[6];
 
         for (int i = 0; i < this.panoramaLocations.length; ++i)
         {
-            this.panoramaLocations[i] = new ResourceLocation(path + "/panorama_" + i + ".png");
+            this.panoramaLocations[i] = new 图像位置(path + "/panorama_" + i + ".png");
         }
 
         this.weight = connectedparser.parseInt(props.getProperty("weight"), 1);
@@ -38,7 +38,7 @@ public class CustomPanoramaProperties
         this.overlay2Bottom = ConnectedParser.parseColor4(props.getProperty("overlay2.bottom"), Integer.MIN_VALUE);
     }
 
-    public ResourceLocation[] getPanoramaLocations()
+    public 图像位置[] getPanoramaLocations()
     {
         return this.panoramaLocations;
     }

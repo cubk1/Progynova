@@ -3,7 +3,7 @@ package net.optifine.gui;
 import net.minecraft.client.gui.鬼Button;
 import net.minecraft.client.gui.鬼OptionButton;
 import net.minecraft.client.gui.鬼Screen;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.比例解析;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 
@@ -63,8 +63,8 @@ public class 鬼QualitySettingsOF extends 鬼Screen
 
             if (guibutton.id != GameSettings.Options.AA_LEVEL.ordinal())
             {
-                ScaledResolution scaledresolution = new ScaledResolution(this.mc);
-                this.setWorldAndResolution(this.mc, scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
+                比例解析 scaledresolution = new 比例解析(this.mc);
+                this.setWorldAndResolution(this.mc, scaledresolution.getScaledWidth(), scaledresolution.得到高度());
             }
         }
     }

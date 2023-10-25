@@ -1,10 +1,10 @@
 package net.minecraft.enchantment;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentArrowInfinite extends Enchantment
 {
-    public EnchantmentArrowInfinite(int enchID, ResourceLocation enchName, int enchWeight)
+    public EnchantmentArrowInfinite(int enchID, 图像位置 enchName, int enchWeight)
     {
         super(enchID, enchName, enchWeight, EnumEnchantmentType.BOW);
         this.setName("arrowInfinite");

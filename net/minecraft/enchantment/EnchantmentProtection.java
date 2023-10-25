@@ -3,7 +3,7 @@ package net.minecraft.enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentProtection extends Enchantment
 {
@@ -13,7 +13,7 @@ public class EnchantmentProtection extends Enchantment
     private static final int[] thresholdEnchantability = new int[] {20, 12, 10, 12, 15};
     public final int protectionType;
 
-    public EnchantmentProtection(int p_i45765_1_, ResourceLocation p_i45765_2_, int p_i45765_3_, int p_i45765_4_)
+    public EnchantmentProtection(int p_i45765_1_, 图像位置 p_i45765_2_, int p_i45765_3_, int p_i45765_4_)
     {
         super(p_i45765_1_, p_i45765_2_, p_i45765_3_, EnumEnchantmentType.ARMOR);
         this.protectionType = p_i45765_4_;

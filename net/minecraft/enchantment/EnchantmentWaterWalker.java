@@ -1,10 +1,10 @@
 package net.minecraft.enchantment;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentWaterWalker extends Enchantment
 {
-    public EnchantmentWaterWalker(int p_i45762_1_, ResourceLocation p_i45762_2_, int p_i45762_3_)
+    public EnchantmentWaterWalker(int p_i45762_1_, 图像位置 p_i45762_2_, int p_i45762_3_)
     {
         super(p_i45762_1_, p_i45762_2_, p_i45762_3_, EnumEnchantmentType.ARMOR_FEET);
         this.setName("waterWalker");

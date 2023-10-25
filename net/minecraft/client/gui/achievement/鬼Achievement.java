@@ -2,17 +2,17 @@ package net.minecraft.client.gui.achievement;
 
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.gui.鬼;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.比例解析;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.stats.Achievement;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼Achievement extends 鬼
 {
-    private static final ResourceLocation achievementBg = new ResourceLocation("textures/gui/achievement/achievement_background.png");
+    private static final 图像位置 achievementBg = new 图像位置("textures/gui/achievement/achievement_background.png");
     private 我的手艺 mc;
     private int width;
     private int height;
@@ -56,9 +56,9 @@ public class 鬼Achievement extends 鬼
         光照状态经理.loadIdentity();
         this.width = this.mc.displayWidth;
         this.height = this.mc.displayHeight;
-        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        比例解析 scaledresolution = new 比例解析(this.mc);
         this.width = scaledresolution.getScaledWidth();
-        this.height = scaledresolution.getScaledHeight();
+        this.height = scaledresolution.得到高度();
         光照状态经理.clear(256);
         光照状态经理.matrixMode(5889);
         光照状态经理.loadIdentity();
@@ -117,12 +117,12 @@ public class 鬼Achievement extends 鬼
 
             if (this.permanentNotification)
             {
-                this.mc.fontRendererObj.drawSplitString(this.achievementDescription, i + 30, j + 7, 120, -1);
+                this.mc.字体渲染员.drawSplitString(this.achievementDescription, i + 30, j + 7, 120, -1);
             }
             else
             {
-                this.mc.fontRendererObj.drawString(this.achievementTitle, i + 30, j + 7, -256);
-                this.mc.fontRendererObj.drawString(this.achievementDescription, i + 30, j + 18, -1);
+                this.mc.字体渲染员.drawString(this.achievementTitle, i + 30, j + 7, -256);
+                this.mc.字体渲染员.drawString(this.achievementDescription, i + 30, j + 18, -1);
             }
 
             RenderHelper.enableGUIStandardItemLighting();

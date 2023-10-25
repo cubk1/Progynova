@@ -3,18 +3,18 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelMagmaCube;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderMagmaCube extends RenderLiving<EntityMagmaCube>
 {
-    private static final ResourceLocation magmaCubeTextures = new ResourceLocation("textures/entity/slime/magmacube.png");
+    private static final 图像位置 magmaCubeTextures = new 图像位置("textures/entity/slime/magmacube.png");
 
     public RenderMagmaCube(RenderManager renderManagerIn)
     {
         super(renderManagerIn, new ModelMagmaCube(), 0.25F);
     }
 
-    protected ResourceLocation getEntityTexture(EntityMagmaCube entity)
+    protected 图像位置 getEntityTexture(EntityMagmaCube entity)
     {
         return magmaCubeTextures;
     }

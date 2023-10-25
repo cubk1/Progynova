@@ -1,8 +1,8 @@
 package net.optifine.config;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public interface IObjectLocator
 {
-    Object getObject(ResourceLocation var1);
+    Object getObject(图像位置 var1);
 }

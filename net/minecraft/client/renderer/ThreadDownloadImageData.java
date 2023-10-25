@@ -16,7 +16,7 @@ import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.http.HttpPipeline;
 import net.optifine.http.HttpRequest;
 import net.optifine.http.HttpResponse;
@@ -39,9 +39,9 @@ public class ThreadDownloadImageData extends SimpleTexture
     public Boolean imageFound = null;
     public boolean pipeline = false;
 
-    public ThreadDownloadImageData(File cacheFileIn, String imageUrlIn, ResourceLocation textureResourceLocation, IImageBuffer imageBufferIn)
+    public ThreadDownloadImageData(File cacheFileIn, String imageUrlIn, 图像位置 texture图像位置, IImageBuffer imageBufferIn)
     {
-        super(textureResourceLocation);
+        super(texture图像位置);
         this.cacheFile = cacheFileIn;
         this.imageUrl = imageUrlIn;
         this.imageBuffer = imageBufferIn;

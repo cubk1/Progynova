@@ -25,7 +25,7 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.src.Config;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.BetterGrass;
 import net.optifine.ConnectedTextures;
 import net.optifine.CustomItems;
@@ -43,8 +43,8 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 {
     private static final boolean ENABLE_SKIP = Boolean.parseBoolean(System.getProperty("fml.skipFirstTextureLoad", "true"));
     private static final Logger logger = LogManager.getLogger();
-    public static final ResourceLocation LOCATION_MISSING_TEXTURE = new ResourceLocation("missingno");
-    public static final ResourceLocation locationBlocksTexture = new ResourceLocation("textures/atlas/blocks.png");
+    public static final 图像位置 LOCATION_MISSING_TEXTURE = new 图像位置("missingno");
+    public static final 图像位置 locationBlocksTexture = new 图像位置("textures/atlas/blocks.png");
     private final List<TextureAtlasSprite> listAnimatedSprites;
     private final Map<String, TextureAtlasSprite> mapRegisteredSprites;
     private final Map<String, TextureAtlasSprite> mapUploadedSprites;
@@ -175,8 +175,8 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
                 if (!this.skipFirst)
                 {
                     TextureAtlasSprite textureatlassprite3 = (TextureAtlasSprite)entry.getValue();
-                    ResourceLocation resourcelocation1 = new ResourceLocation(textureatlassprite3.getIconName());
-                    ResourceLocation resourcelocation2 = this.completeResourceLocation(resourcelocation1, 0);
+                    图像位置 resourcelocation1 = new 图像位置(textureatlassprite3.getIconName());
+                    图像位置 resourcelocation2 = this.completeResourceLocation(resourcelocation1, 0);
                     textureatlassprite3.updateIndexInMap(this.counterIndexInMap);
 
                     if (textureatlassprite3.hasCustomLoader(resourceManager, resourcelocation1))
@@ -253,7 +253,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
                                 if (j4 > 0 && j4 < abufferedimage.length - 1 && abufferedimage[j4] == null)
                                 {
-                                    ResourceLocation resourcelocation = this.completeResourceLocation(resourcelocation1, j4);
+                                    图像位置 resourcelocation = this.completeResourceLocation(resourcelocation1, j4);
 
                                     try
                                     {
@@ -489,14 +489,14 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         }
     }
 
-    public ResourceLocation completeResourceLocation(ResourceLocation p_completeResourceLocation_1_)
+    public 图像位置 completeResourceLocation(图像位置 p_complete图像位置_1_)
     {
-        return this.completeResourceLocation(p_completeResourceLocation_1_, 0);
+        return this.completeResourceLocation(p_complete图像位置_1_, 0);
     }
 
-    public ResourceLocation completeResourceLocation(ResourceLocation location, int p_147634_2_)
+    public 图像位置 completeResourceLocation(图像位置 location, int p_147634_2_)
     {
-        return this.isAbsoluteLocation(location) ? new ResourceLocation(location.getResourceDomain(), location.getResourcePath() + ".png") : (p_147634_2_ == 0 ? new ResourceLocation(location.getResourceDomain(), String.format("%s/%s%s", new Object[] {this.basePath, location.getResourcePath(), ".png"})): new ResourceLocation(location.getResourceDomain(), String.format("%s/mipmaps/%s.%d%s", new Object[] {this.basePath, location.getResourcePath(), Integer.valueOf(p_147634_2_), ".png"})));
+        return this.isAbsoluteLocation(location) ? new 图像位置(location.getResourceDomain(), location.getResourcePath() + ".png") : (p_147634_2_ == 0 ? new 图像位置(location.getResourceDomain(), String.format("%s/%s%s", new Object[] {this.basePath, location.getResourcePath(), ".png"})): new 图像位置(location.getResourceDomain(), String.format("%s/mipmaps/%s.%d%s", new Object[] {this.basePath, location.getResourcePath(), Integer.valueOf(p_147634_2_), ".png"})));
     }
 
     public TextureAtlasSprite getAtlasSprite(String iconName)
@@ -638,7 +638,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         }
     }
 
-    public TextureAtlasSprite registerSprite(ResourceLocation location)
+    public TextureAtlasSprite registerSprite(图像位置 location)
     {
         if (location == null)
         {
@@ -713,7 +713,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         return this.mipmapLevels;
     }
 
-    private boolean isAbsoluteLocation(ResourceLocation p_isAbsoluteLocation_1_)
+    private boolean isAbsoluteLocation(图像位置 p_isAbsoluteLocation_1_)
     {
         String s = p_isAbsoluteLocation_1_.getResourcePath();
         return this.isAbsoluteLocationPath(s);
@@ -727,11 +727,11 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
     public TextureAtlasSprite getSpriteSafe(String p_getSpriteSafe_1_)
     {
-        ResourceLocation resourcelocation = new ResourceLocation(p_getSpriteSafe_1_);
+        图像位置 resourcelocation = new 图像位置(p_getSpriteSafe_1_);
         return (TextureAtlasSprite)this.mapRegisteredSprites.get(resourcelocation.toString());
     }
 
-    public TextureAtlasSprite getRegisteredSprite(ResourceLocation p_getRegisteredSprite_1_)
+    public TextureAtlasSprite getRegisteredSprite(图像位置 p_getRegisteredSprite_1_)
     {
         return (TextureAtlasSprite)this.mapRegisteredSprites.get(p_getRegisteredSprite_1_.toString());
     }
@@ -780,8 +780,8 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         {
             Entry entry = (Entry) o;
             TextureAtlasSprite textureatlassprite = (TextureAtlasSprite)entry.getValue();
-            ResourceLocation resourcelocation = new ResourceLocation(textureatlassprite.getIconName());
-            ResourceLocation resourcelocation1 = this.completeResourceLocation(resourcelocation);
+            图像位置 resourcelocation = new 图像位置(textureatlassprite.getIconName());
+            图像位置 resourcelocation1 = this.completeResourceLocation(resourcelocation);
 
             if (!textureatlassprite.hasCustomLoader(p_detectMinimumSpriteSize_2_, resourcelocation))
             {
@@ -956,7 +956,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         }
     }
 
-    private void checkEmissive(ResourceLocation p_checkEmissive_1_, TextureAtlasSprite p_checkEmissive_2_)
+    private void checkEmissive(图像位置 p_checkEmissive_1_, TextureAtlasSprite p_checkEmissive_2_)
     {
         String s = EmissiveTextures.getSuffixEmissive();
 
@@ -964,8 +964,8 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         {
             if (!p_checkEmissive_1_.getResourcePath().endsWith(s))
             {
-                ResourceLocation resourcelocation = new ResourceLocation(p_checkEmissive_1_.getResourceDomain(), p_checkEmissive_1_.getResourcePath() + s);
-                ResourceLocation resourcelocation1 = this.completeResourceLocation(resourcelocation);
+                图像位置 resourcelocation = new 图像位置(p_checkEmissive_1_.getResourceDomain(), p_checkEmissive_1_.getResourcePath() + s);
+                图像位置 resourcelocation1 = this.completeResourceLocation(resourcelocation);
 
                 if (Config.hasResource(resourcelocation1))
                 {

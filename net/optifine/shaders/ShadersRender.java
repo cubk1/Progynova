@@ -19,7 +19,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntityEndPortal;
 import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.reflect.Reflector;
 import org.lwjgl.opengl.EXTFramebufferObject;
 import org.lwjgl.opengl.GL11;
@@ -28,7 +28,7 @@ import org.lwjgl.opengl.GL30;
 
 public class ShadersRender
 {
-    private static final ResourceLocation END_PORTAL_TEXTURE = new ResourceLocation("textures/entity/end_portal.png");
+    private static final 图像位置 END_PORTAL_TEXTURE = new 图像位置("textures/entity/end_portal.png");
 
     public static void setFrustrumPosition(ICamera frustum, double x, double y, double z)
     {

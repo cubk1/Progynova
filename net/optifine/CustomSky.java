@@ -9,7 +9,7 @@ import java.util.Properties;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.optifine.render.Blender;
 import net.optifine.util.PropertiesOrdered;
@@ -51,7 +51,7 @@ public class CustomSky
 
                 try
                 {
-                    ResourceLocation resourcelocation = new ResourceLocation(s2);
+                    图像位置 resourcelocation = new 图像位置(s2);
                     InputStream inputstream = Config.getResourceStream(resourcelocation);
 
                     if (inputstream == null)
@@ -68,7 +68,7 @@ public class CustomSky
 
                     if (customskylayer.isValid(s2))
                     {
-                        ResourceLocation resourcelocation1 = new ResourceLocation(customskylayer.source);
+                        图像位置 resourcelocation1 = new 图像位置(customskylayer.source);
                         ITextureObject itextureobject = TextureUtils.getTexture(resourcelocation1);
 
                         if (itextureobject == null)

@@ -6,12 +6,12 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.lwjgl.opengl.GL11;
 
 public class RenderArrow extends Render<EntityArrow>
 {
-    private static final ResourceLocation arrowTextures = new ResourceLocation("textures/entity/arrow.png");
+    private static final 图像位置 arrowTextures = new 图像位置("textures/entity/arrow.png");
 
     public RenderArrow(RenderManager renderManagerIn)
     {
@@ -82,7 +82,7 @@ public class RenderArrow extends Render<EntityArrow>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityArrow entity)
+    protected 图像位置 getEntityTexture(EntityArrow entity)
     {
         return arrowTextures;
     }

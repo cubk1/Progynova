@@ -2,11 +2,11 @@ package net.minecraft.potion;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class PotionHealthBoost extends Potion
 {
-    public PotionHealthBoost(int potionID, ResourceLocation location, boolean badEffect, int potionColor)
+    public PotionHealthBoost(int potionID, 图像位置 location, boolean badEffect, int potionColor)
     {
         super(potionID, location, badEffect, potionColor);
     }

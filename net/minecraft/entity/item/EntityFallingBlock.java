@@ -19,7 +19,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 
 public class EntityFallingBlock extends Entity
@@ -209,7 +209,7 @@ public class EntityFallingBlock extends Entity
     protected void writeEntityToNBT(NBTTagCompound tagCompound)
     {
         Block block = this.fallTile != null ? this.fallTile.getBlock() : Blocks.air;
-        ResourceLocation resourcelocation = (ResourceLocation)Block.blockRegistry.getNameForObject(block);
+        图像位置 resourcelocation = (图像位置)Block.blockRegistry.getNameForObject(block);
         tagCompound.setString("Block", resourcelocation == null ? "" : resourcelocation.toString());
         tagCompound.setByte("Data", (byte)block.getMetaFromState(this.fallTile));
         tagCompound.setByte("Time", (byte)this.fallTime);

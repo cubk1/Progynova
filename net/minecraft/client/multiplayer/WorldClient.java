@@ -24,7 +24,7 @@ import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -393,7 +393,7 @@ public class WorldClient extends World
     public void playSound(double x, double y, double z, String soundName, float volume, float pitch, boolean distanceDelay)
     {
         double d0 = this.mc.getRenderViewEntity().getDistanceSq(x, y, z);
-        PositionedSoundRecord positionedsoundrecord = new PositionedSoundRecord(new ResourceLocation(soundName), volume, pitch, (float)x, (float)y, (float)z);
+        PositionedSoundRecord positionedsoundrecord = new PositionedSoundRecord(new 图像位置(soundName), volume, pitch, (float)x, (float)y, (float)z);
 
         if (distanceDelay && d0 > 100.0D)
         {

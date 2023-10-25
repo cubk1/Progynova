@@ -4,18 +4,18 @@ import net.minecraft.client.model.ModelBat;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderBat extends RenderLiving<EntityBat>
 {
-    private static final ResourceLocation batTextures = new ResourceLocation("textures/entity/bat.png");
+    private static final 图像位置 batTextures = new 图像位置("textures/entity/bat.png");
 
     public RenderBat(RenderManager renderManagerIn)
     {
         super(renderManagerIn, new ModelBat(), 0.25F);
     }
 
-    protected ResourceLocation getEntityTexture(EntityBat entity)
+    protected 图像位置 getEntityTexture(EntityBat entity)
     {
         return batTextures;
     }

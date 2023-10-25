@@ -6,8 +6,8 @@ import net.minecraft.client.gui.鬼ScreenResourcePacks;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.data.PackMetadataSection;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.枚举聊天格式;
+import net.minecraft.util.图像位置;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +15,7 @@ public class ResourcePackListEntryDefault extends ResourcePackListEntry
 {
     private static final Logger logger = LogManager.getLogger();
     private final IResourcePack field_148320_d;
-    private final ResourceLocation resourcePackIcon;
+    private final 图像位置 resourcePackIcon;
 
     public ResourcePackListEntryDefault(鬼ScreenResourcePacks resourcePacksGUIIn)
     {
@@ -60,7 +60,7 @@ public class ResourcePackListEntryDefault extends ResourcePackListEntry
             logger.error((String)"Couldn\'t load metadata info", (Throwable)ioexception);
         }
 
-        return EnumChatFormatting.RED + "Missing " + "pack.mcmeta" + " :(";
+        return 枚举聊天格式.RED + "Missing " + "pack.mcmeta" + " :(";
     }
 
     protected boolean func_148309_e()

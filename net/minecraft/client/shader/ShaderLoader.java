@@ -9,7 +9,7 @@ import java.util.Map;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.util.JsonException;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.BufferUtils;
@@ -56,7 +56,7 @@ public class ShaderLoader
 
         if (shaderloader == null)
         {
-            ResourceLocation resourcelocation = new ResourceLocation("shaders/program/" + filename + type.getShaderExtension());
+            图像位置 resourcelocation = new 图像位置("shaders/program/" + filename + type.getShaderExtension());
             BufferedInputStream bufferedinputstream = new BufferedInputStream(resourceManager.getResource(resourcelocation).getInputStream());
             byte[] abyte = toByteArray(bufferedinputstream);
             ByteBuffer bytebuffer = BufferUtils.createByteBuffer(abyte.length);

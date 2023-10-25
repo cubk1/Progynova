@@ -58,9 +58,9 @@ public class 鬼Language extends 鬼Screen
                     {
                         this.game_settings_3.setOptionValue(((鬼OptionButton)button).returnEnumOptions(), 1);
                         button.displayString = this.game_settings_3.getKeyBinding(GameSettings.Options.FORCE_UNICODE_FONT);
-                        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+                        比例解析 scaledresolution = new 比例解析(this.mc);
                         int i = scaledresolution.getScaledWidth();
-                        int j = scaledresolution.getScaledHeight();
+                        int j = scaledresolution.得到高度();
                         this.setWorldAndResolution(this.mc, i, j);
                     }
 

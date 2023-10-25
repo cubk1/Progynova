@@ -18,14 +18,14 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.C17PacketCustomPayload;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityBeacon;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class 鬼Beacon extends 鬼Container
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final ResourceLocation beaconGuiTextures = new ResourceLocation("textures/gui/container/beacon.png");
+    private static final 图像位置 beaconGuiTextures = new 图像位置("textures/gui/container/beacon.png");
     private IInventory tileBeacon;
     private 鬼Beacon.ConfirmButton beaconConfirmButton;
     private boolean buttonsNotDrawn;
@@ -195,12 +195,12 @@ public class 鬼Beacon extends 鬼Container
 
     static class Button extends 鬼Button
     {
-        private final ResourceLocation field_146145_o;
+        private final 图像位置 field_146145_o;
         private final int field_146144_p;
         private final int field_146143_q;
         private boolean field_146142_r;
 
-        protected Button(int p_i1077_1_, int p_i1077_2_, int p_i1077_3_, ResourceLocation p_i1077_4_, int p_i1077_5_, int p_i1077_6_)
+        protected Button(int p_i1077_1_, int p_i1077_2_, int p_i1077_3_, 图像位置 p_i1077_4_, int p_i1077_5_, int p_i1077_6_)
         {
             super(p_i1077_1_, p_i1077_2_, p_i1077_3_, 22, 22, "");
             this.field_146145_o = p_i1077_4_;

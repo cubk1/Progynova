@@ -9,7 +9,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderEntityItem extends Render<EntityItem>
 {
@@ -150,7 +150,7 @@ public class RenderEntityItem extends Render<EntityItem>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityItem entity)
+    protected 图像位置 getEntityTexture(EntityItem entity)
     {
         return TextureMap.locationBlocksTexture;
     }

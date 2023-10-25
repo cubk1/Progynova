@@ -33,7 +33,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
@@ -243,7 +243,7 @@ public class CustomColors
     {
         try
         {
-            ResourceLocation resourcelocation = new ResourceLocation(fileName);
+            图像位置 resourcelocation = new 图像位置(fileName);
             InputStream inputstream = Config.getResourceStream(resourcelocation);
 
             if (inputstream == null)
@@ -376,7 +376,7 @@ public class CustomColors
     {
         try
         {
-            InputStream inputstream = Config.getResourceStream(new ResourceLocation(path));
+            InputStream inputstream = Config.getResourceStream(new 图像位置(path));
 
             if (inputstream == null)
             {
@@ -399,7 +399,7 @@ public class CustomColors
     {
         try
         {
-            ResourceLocation resourcelocation = new ResourceLocation(fileName);
+            图像位置 resourcelocation = new 图像位置(fileName);
             InputStream inputstream = Config.getResourceStream(resourcelocation);
 
             if (inputstream == null)
@@ -530,7 +530,7 @@ public class CustomColors
 
             try
             {
-                ResourceLocation resourcelocation = new ResourceLocation("minecraft", s);
+                图像位置 resourcelocation = new 图像位置("minecraft", s);
                 InputStream inputstream = Config.getResourceStream(resourcelocation);
 
                 if (inputstream == null)
@@ -747,7 +747,7 @@ public class CustomColors
     {
         try
         {
-            ResourceLocation resourcelocation = new ResourceLocation(pathImage);
+            图像位置 resourcelocation = new 图像位置(pathImage);
 
             if (!Config.hasResource(resourcelocation))
             {
@@ -758,7 +758,7 @@ public class CustomColors
                 dbg("Colormap " + pathImage);
                 Properties properties = new PropertiesOrdered();
                 String s = StrUtils.replaceSuffix(pathImage, ".png", ".properties");
-                ResourceLocation resourcelocation1 = new ResourceLocation(s);
+                图像位置 resourcelocation1 = new 图像位置(s);
 
                 if (Config.hasResource(resourcelocation1))
                 {

@@ -27,15 +27,15 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 public class 鬼ContainerCreative extends InventoryEffectRenderer
 {
-    private static final ResourceLocation creativeInventoryTabs = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
+    private static final 图像位置 creativeInventoryTabs = new 图像位置("textures/gui/container/creative_inventory/tabs.png");
     private static InventoryBasic field_147060_v = new InventoryBasic("tmp", true, 45);
     private static int selectedTabIndex = CreativeTabs.tabBlock.getTabIndex();
     private float currentScroll;
@@ -342,7 +342,7 @@ public class 鬼ContainerCreative extends InventoryEffectRenderer
 
             for (String s : itemstack.getTooltip(this.mc.宇轩游玩者, this.mc.游戏一窝.advancedItemTooltips))
             {
-                if (EnumChatFormatting.getTextWithoutFormattingCodes(s).toLowerCase().contains(s1))
+                if (枚举聊天格式.getTextWithoutFormattingCodes(s).toLowerCase().contains(s1))
                 {
                     flag = true;
                     break;
@@ -602,7 +602,7 @@ public class 鬼ContainerCreative extends InventoryEffectRenderer
 
             if (creativetabs != null)
             {
-                list.add(1, "" + EnumChatFormatting.BOLD + EnumChatFormatting.BLUE + I18n.format(creativetabs.getTranslatedTabLabel(), new Object[0]));
+                list.add(1, "" + 枚举聊天格式.BOLD + 枚举聊天格式.BLUE + I18n.format(creativetabs.getTranslatedTabLabel(), new Object[0]));
             }
 
             for (int i = 0; i < list.size(); ++i)
@@ -613,7 +613,7 @@ public class 鬼ContainerCreative extends InventoryEffectRenderer
                 }
                 else
                 {
-                    list.set(i, EnumChatFormatting.GRAY + (String)list.get(i));
+                    list.set(i, 枚举聊天格式.GRAY + (String)list.get(i));
                 }
             }
 
@@ -641,7 +641,7 @@ public class 鬼ContainerCreative extends InventoryEffectRenderer
             }
         }
 
-        this.mc.得到手感经理().绑定手感(new ResourceLocation("textures/gui/container/creative_inventory/tab_" + creativetabs.getBackgroundImageName()));
+        this.mc.得到手感经理().绑定手感(new 图像位置("textures/gui/container/creative_inventory/tab_" + creativetabs.getBackgroundImageName()));
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
         this.searchField.drawTextBox();
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);

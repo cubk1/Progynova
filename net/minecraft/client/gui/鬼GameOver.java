@@ -4,7 +4,7 @@ import java.io.IOException;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 
 public class 鬼GameOver extends 鬼Screen implements GuiYesNoCallback
 {
@@ -100,7 +100,7 @@ public class 鬼GameOver extends 鬼Screen implements GuiYesNoCallback
             this.drawCenteredString(this.fontRendererObj, I18n.format("deathScreen.hardcoreInfo", new Object[0]), this.width / 2, 144, 16777215);
         }
 
-        this.drawCenteredString(this.fontRendererObj, I18n.format("deathScreen.score", new Object[0]) + ": " + EnumChatFormatting.YELLOW + this.mc.宇轩游玩者.getScore(), this.width / 2, 100, 16777215);
+        this.drawCenteredString(this.fontRendererObj, I18n.format("deathScreen.score", new Object[0]) + ": " + 枚举聊天格式.YELLOW + this.mc.宇轩游玩者.getScore(), this.width / 2, 100, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 

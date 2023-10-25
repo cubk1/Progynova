@@ -5,11 +5,11 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class GuiStreamIndicator
 {
-    private static final ResourceLocation locationStreamIndicator = new ResourceLocation("textures/gui/stream_indicator.png");
+    private static final 图像位置 locationStreamIndicator = new 图像位置("textures/gui/stream_indicator.png");
     private final 我的手艺 mc;
     private float streamAlpha = 1.0F;
     private int streamAlphaDelta = 1;
@@ -29,11 +29,11 @@ public class GuiStreamIndicator
             if (i > 0)
             {
                 String s = "" + i;
-                int j = this.mc.fontRendererObj.getStringWidth(s);
+                int j = this.mc.字体渲染员.getStringWidth(s);
                 int k = 20;
                 int l = p_152437_1_ - j - 1;
                 int i1 = p_152437_2_ + 20 - 1;
-                int j1 = p_152437_2_ + 20 + this.mc.fontRendererObj.FONT_HEIGHT - 1;
+                int j1 = p_152437_2_ + 20 + this.mc.字体渲染员.FONT_HEIGHT - 1;
                 光照状态经理.禁用手感();
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
@@ -45,7 +45,7 @@ public class GuiStreamIndicator
                 worldrenderer.pos((double)l, (double)i1, 0.0D).endVertex();
                 tessellator.draw();
                 光照状态经理.启用手感();
-                this.mc.fontRendererObj.drawString(s, p_152437_1_ - j, p_152437_2_ + 20, 16777215);
+                this.mc.字体渲染员.drawString(s, p_152437_1_ - j, p_152437_2_ + 20, 16777215);
             }
 
             this.render(p_152437_1_, p_152437_2_, this.func_152440_b(), 0);

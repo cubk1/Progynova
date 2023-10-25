@@ -64,8 +64,8 @@ public class TooltipManager
                                 k = 16719904;
                             }
 
-                            FontRenderer fontrenderer = 我的手艺.得到我的手艺().fontRendererObj;
-                            fontrenderer.drawStringWithShadow(s, (float)(rectangle.x + 5), (float)(rectangle.y + 5 + l * 11), k);
+                            FontRenderer fontrenderer = 我的手艺.得到我的手艺().字体渲染员;
+                            fontrenderer.绘制纵梁带心理阴影(s, (float)(rectangle.x + 5), (float)(rectangle.y + 5 + l * 11), k);
                         }
                     }
                 }

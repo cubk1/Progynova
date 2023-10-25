@@ -22,7 +22,7 @@ import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.tileentity.TileEntityDropper;
 import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.IWorldNameable;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -41,7 +41,7 @@ public class CustomGuiProperties
     private String fileName = null;
     private String basePath = null;
     private CustomGuiProperties.EnumContainer container = null;
-    private Map<ResourceLocation, ResourceLocation> textureLocations = null;
+    private Map<图像位置, 图像位置> textureLocations = null;
     private NbtTagValue nbtName = null;
     private BiomeGenBase[] biomes = null;
     private RangeListInt heights = null;
@@ -57,19 +57,19 @@ public class CustomGuiProperties
     private static final CustomGuiProperties.EnumVariant[] VARIANTS_DISPENSER = new CustomGuiProperties.EnumVariant[] {CustomGuiProperties.EnumVariant.DISPENSER, CustomGuiProperties.EnumVariant.DROPPER};
     private static final CustomGuiProperties.EnumVariant[] VARIANTS_INVALID = new CustomGuiProperties.EnumVariant[0];
     private static final EnumDyeColor[] COLORS_INVALID = new EnumDyeColor[0];
-    private static final ResourceLocation ANVIL_GUI_TEXTURE = new ResourceLocation("textures/gui/container/anvil.png");
-    private static final ResourceLocation BEACON_GUI_TEXTURE = new ResourceLocation("textures/gui/container/beacon.png");
-    private static final ResourceLocation BREWING_STAND_GUI_TEXTURE = new ResourceLocation("textures/gui/container/brewing_stand.png");
-    private static final ResourceLocation CHEST_GUI_TEXTURE = new ResourceLocation("textures/gui/container/generic_54.png");
-    private static final ResourceLocation CRAFTING_TABLE_GUI_TEXTURE = new ResourceLocation("textures/gui/container/crafting_table.png");
-    private static final ResourceLocation HORSE_GUI_TEXTURE = new ResourceLocation("textures/gui/container/horse.png");
-    private static final ResourceLocation DISPENSER_GUI_TEXTURE = new ResourceLocation("textures/gui/container/dispenser.png");
-    private static final ResourceLocation ENCHANTMENT_TABLE_GUI_TEXTURE = new ResourceLocation("textures/gui/container/enchanting_table.png");
-    private static final ResourceLocation FURNACE_GUI_TEXTURE = new ResourceLocation("textures/gui/container/furnace.png");
-    private static final ResourceLocation HOPPER_GUI_TEXTURE = new ResourceLocation("textures/gui/container/hopper.png");
-    private static final ResourceLocation INVENTORY_GUI_TEXTURE = new ResourceLocation("textures/gui/container/inventory.png");
-    private static final ResourceLocation SHULKER_BOX_GUI_TEXTURE = new ResourceLocation("textures/gui/container/shulker_box.png");
-    private static final ResourceLocation VILLAGER_GUI_TEXTURE = new ResourceLocation("textures/gui/container/villager.png");
+    private static final 图像位置 ANVIL_GUI_TEXTURE = new 图像位置("textures/gui/container/anvil.png");
+    private static final 图像位置 BEACON_GUI_TEXTURE = new 图像位置("textures/gui/container/beacon.png");
+    private static final 图像位置 BREWING_STAND_GUI_TEXTURE = new 图像位置("textures/gui/container/brewing_stand.png");
+    private static final 图像位置 CHEST_GUI_TEXTURE = new 图像位置("textures/gui/container/generic_54.png");
+    private static final 图像位置 CRAFTING_TABLE_GUI_TEXTURE = new 图像位置("textures/gui/container/crafting_table.png");
+    private static final 图像位置 HORSE_GUI_TEXTURE = new 图像位置("textures/gui/container/horse.png");
+    private static final 图像位置 DISPENSER_GUI_TEXTURE = new 图像位置("textures/gui/container/dispenser.png");
+    private static final 图像位置 ENCHANTMENT_TABLE_GUI_TEXTURE = new 图像位置("textures/gui/container/enchanting_table.png");
+    private static final 图像位置 FURNACE_GUI_TEXTURE = new 图像位置("textures/gui/container/furnace.png");
+    private static final 图像位置 HOPPER_GUI_TEXTURE = new 图像位置("textures/gui/container/hopper.png");
+    private static final 图像位置 INVENTORY_GUI_TEXTURE = new 图像位置("textures/gui/container/inventory.png");
+    private static final 图像位置 SHULKER_BOX_GUI_TEXTURE = new 图像位置("textures/gui/container/shulker_box.png");
+    private static final 图像位置 VILLAGER_GUI_TEXTURE = new 图像位置("textures/gui/container/villager.png");
 
     public CustomGuiProperties(Properties props, String path)
     {
@@ -156,7 +156,7 @@ public class CustomGuiProperties
         }
     }
 
-    private static ResourceLocation parseTextureLocation(String str, String basePath)
+    private static 图像位置 parseTextureLocation(String str, String basePath)
     {
         if (str == null)
         {
@@ -172,19 +172,19 @@ public class CustomGuiProperties
                 s = s + ".png";
             }
 
-            return new ResourceLocation(basePath + "/" + s);
+            return new 图像位置(basePath + "/" + s);
         }
     }
 
-    private static Map<ResourceLocation, ResourceLocation> parseTextureLocations(Properties props, String property, CustomGuiProperties.EnumContainer container, String pathPrefix, String basePath)
+    private static Map<图像位置, 图像位置> parseTextureLocations(Properties props, String property, CustomGuiProperties.EnumContainer container, String pathPrefix, String basePath)
     {
-        Map<ResourceLocation, ResourceLocation> map = new HashMap();
+        Map<图像位置, 图像位置> map = new HashMap();
         String s = props.getProperty(property);
 
         if (s != null)
         {
-            ResourceLocation resourcelocation = getGuiTextureLocation(container);
-            ResourceLocation resourcelocation1 = parseTextureLocation(s, basePath);
+            图像位置 resourcelocation = getGuiTextureLocation(container);
+            图像位置 resourcelocation1 = parseTextureLocation(s, basePath);
 
             if (resourcelocation != null && resourcelocation1 != null)
             {
@@ -204,8 +204,8 @@ public class CustomGuiProperties
                 s2 = StrUtils.removePrefixSuffix(s2, "/", ".png");
                 String s3 = pathPrefix + s2 + ".png";
                 String s4 = props.getProperty(s1);
-                ResourceLocation resourcelocation2 = new ResourceLocation(s3);
-                ResourceLocation resourcelocation3 = parseTextureLocation(s4, basePath);
+                图像位置 resourcelocation2 = new 图像位置(s3);
+                图像位置 resourcelocation3 = parseTextureLocation(s4, basePath);
                 map.put(resourcelocation2, resourcelocation3);
             }
         }
@@ -213,7 +213,7 @@ public class CustomGuiProperties
         return map;
     }
 
-    private static ResourceLocation getGuiTextureLocation(CustomGuiProperties.EnumContainer container)
+    private static 图像位置 getGuiTextureLocation(CustomGuiProperties.EnumContainer container)
     {
         if (container == null)
         {
@@ -618,9 +618,9 @@ public class CustomGuiProperties
         return this.container;
     }
 
-    public ResourceLocation getTextureLocation(ResourceLocation loc)
+    public 图像位置 getTextureLocation(图像位置 loc)
     {
-        ResourceLocation resourcelocation = (ResourceLocation)this.textureLocations.get(loc);
+        图像位置 resourcelocation = (图像位置)this.textureLocations.get(loc);
         return resourcelocation == null ? loc : resourcelocation;
     }
 

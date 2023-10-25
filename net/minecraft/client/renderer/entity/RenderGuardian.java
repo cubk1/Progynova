@@ -10,15 +10,15 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
 public class RenderGuardian extends RenderLiving<EntityGuardian>
 {
-    private static final ResourceLocation GUARDIAN_TEXTURE = new ResourceLocation("textures/entity/guardian.png");
-    private static final ResourceLocation GUARDIAN_ELDER_TEXTURE = new ResourceLocation("textures/entity/guardian_elder.png");
-    private static final ResourceLocation GUARDIAN_BEAM_TEXTURE = new ResourceLocation("textures/entity/guardian_beam.png");
+    private static final 图像位置 GUARDIAN_TEXTURE = new 图像位置("textures/entity/guardian.png");
+    private static final 图像位置 GUARDIAN_ELDER_TEXTURE = new 图像位置("textures/entity/guardian_elder.png");
+    private static final 图像位置 GUARDIAN_BEAM_TEXTURE = new 图像位置("textures/entity/guardian_beam.png");
     int field_177115_a;
 
     public RenderGuardian(RenderManager renderManagerIn)
@@ -142,7 +142,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
             worldrenderer.pos(d18, d0, d19).tex(0.0D, d23).color(j, k, l, 255).endVertex();
             double d24 = 0.0D;
 
-            if (entity.ticksExisted % 2 == 0)
+            if (entity.已存在的刻度 % 2 == 0)
             {
                 d24 = 0.5D;
             }
@@ -164,7 +164,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
         }
     }
 
-    protected ResourceLocation getEntityTexture(EntityGuardian entity)
+    protected 图像位置 getEntityTexture(EntityGuardian entity)
     {
         return entity.isElder() ? GUARDIAN_ELDER_TEXTURE : GUARDIAN_TEXTURE;
     }

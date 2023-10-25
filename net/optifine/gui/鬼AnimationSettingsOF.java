@@ -72,8 +72,8 @@ public class 鬼AnimationSettingsOF extends 鬼Screen
                 this.mc.游戏一窝.setAllAnimations(false);
             }
 
-            ScaledResolution scaledresolution = new ScaledResolution(this.mc);
-            this.setWorldAndResolution(this.mc, scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
+            比例解析 scaledresolution = new 比例解析(this.mc);
+            this.setWorldAndResolution(this.mc, scaledresolution.getScaledWidth(), scaledresolution.得到高度());
         }
     }
 

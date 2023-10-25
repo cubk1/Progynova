@@ -12,7 +12,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import net.minecraft.client.我的手艺;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.http.HttpPipeline;
 import net.optifine.http.HttpUtils;
 import net.optifine.util.Json;
@@ -86,7 +86,7 @@ public class PlayerConfigurationParser
                                     }
 
                                     playeritemmodel.setTextureImage(bufferedimage);
-                                    ResourceLocation resourcelocation = new ResourceLocation("optifine.net", s2);
+                                    图像位置 resourcelocation = new 图像位置("optifine.net", s2);
                                     playeritemmodel.setTextureLocation(resourcelocation);
                                 }
 

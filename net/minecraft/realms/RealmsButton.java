@@ -3,11 +3,11 @@ package net.minecraft.realms;
 import net.minecraft.client.gui.鬼Button;
 import net.minecraft.client.gui.鬼ButtonRealmsProxy;
 import net.minecraft.client.我的手艺;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RealmsButton
 {
-    protected static final ResourceLocation WIDGETS_LOCATION = new ResourceLocation("textures/gui/widgets.png");
+    protected static final 图像位置 WIDGETS_LOCATION = new 图像位置("textures/gui/widgets.png");
     private 鬼ButtonRealmsProxy proxy;
 
     public RealmsButton(int buttonId, int x, int y, String text)

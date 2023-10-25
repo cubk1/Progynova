@@ -8,12 +8,12 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 
 public class EntityFootStepFX extends EntityFX
 {
-    private static final ResourceLocation FOOTPRINT_TEXTURE = new ResourceLocation("textures/particle/footprint.png");
+    private static final 图像位置 FOOTPRINT_TEXTURE = new 图像位置("textures/particle/footprint.png");
     private int footstepAge;
     private int footstepMaxAge;
     private TextureManager currentFootSteps;

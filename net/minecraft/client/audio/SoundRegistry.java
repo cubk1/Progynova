@@ -3,15 +3,15 @@ package net.minecraft.client.audio;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import net.minecraft.util.RegistrySimple;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
-public class SoundRegistry extends RegistrySimple<ResourceLocation, SoundEventAccessorComposite>
+public class SoundRegistry extends RegistrySimple<图像位置, SoundEventAccessorComposite>
 {
-    private Map<ResourceLocation, SoundEventAccessorComposite> soundRegistry;
+    private Map<图像位置, SoundEventAccessorComposite> soundRegistry;
 
-    protected Map<ResourceLocation, SoundEventAccessorComposite> createUnderlyingMap()
+    protected Map<图像位置, SoundEventAccessorComposite> createUnderlyingMap()
     {
-        this.soundRegistry = Maps.<ResourceLocation, SoundEventAccessorComposite>newHashMap();
+        this.soundRegistry = Maps.<图像位置, SoundEventAccessorComposite>newHashMap();
         return this.soundRegistry;
     }
 

@@ -51,10 +51,10 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelManager;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.Model图像位置;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class BlockModelShapes
 {
@@ -140,9 +140,9 @@ public class BlockModelShapes
     {
         this.bakedModelStore.clear();
 
-        for (Entry<IBlockState, ModelResourceLocation> entry : this.blockStateMapper.putAllStateModelLocations().entrySet())
+        for (Entry<IBlockState, Model图像位置> entry : this.blockStateMapper.putAllStateModelLocations().entrySet())
         {
-            this.bakedModelStore.put(entry.getKey(), this.modelManager.getModel((ModelResourceLocation)entry.getValue()));
+            this.bakedModelStore.put(entry.getKey(), this.modelManager.getModel((Model图像位置)entry.getValue()));
         }
     }
 
@@ -214,7 +214,7 @@ public class BlockModelShapes
         this.registerBlockWithStateMapper(Blocks.flower_pot, (new StateMap.Builder()).ignore(new IProperty[] {BlockFlowerPot.LEGACY_DATA}).build());
         this.registerBlockWithStateMapper(Blocks.quartz_block, new StateMapperBase()
         {
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            protected Model图像位置 getModelResourceLocation(IBlockState state)
             {
                 BlockQuartz.EnumType blockquartz$enumtype = (BlockQuartz.EnumType)state.getValue(BlockQuartz.VARIANT);
 
@@ -222,32 +222,32 @@ public class BlockModelShapes
                 {
                     case DEFAULT:
                     default:
-                        return new ModelResourceLocation("quartz_block", "normal");
+                        return new Model图像位置("quartz_block", "normal");
 
                     case CHISELED:
-                        return new ModelResourceLocation("chiseled_quartz_block", "normal");
+                        return new Model图像位置("chiseled_quartz_block", "normal");
 
                     case LINES_Y:
-                        return new ModelResourceLocation("quartz_column", "axis=y");
+                        return new Model图像位置("quartz_column", "axis=y");
 
                     case LINES_X:
-                        return new ModelResourceLocation("quartz_column", "axis=x");
+                        return new Model图像位置("quartz_column", "axis=x");
 
                     case LINES_Z:
-                        return new ModelResourceLocation("quartz_column", "axis=z");
+                        return new Model图像位置("quartz_column", "axis=z");
                 }
             }
         });
         this.registerBlockWithStateMapper(Blocks.deadbush, new StateMapperBase()
         {
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            protected Model图像位置 getModelResourceLocation(IBlockState state)
             {
-                return new ModelResourceLocation("dead_bush", "normal");
+                return new Model图像位置("dead_bush", "normal");
             }
         });
         this.registerBlockWithStateMapper(Blocks.pumpkin_stem, new StateMapperBase()
         {
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            protected Model图像位置 getModelResourceLocation(IBlockState state)
             {
                 Map<IProperty, Comparable> map = Maps.<IProperty, Comparable>newLinkedHashMap(state.getProperties());
 
@@ -256,12 +256,12 @@ public class BlockModelShapes
                     map.remove(BlockStem.AGE);
                 }
 
-                return new ModelResourceLocation((ResourceLocation)Block.blockRegistry.getNameForObject(state.getBlock()), this.getPropertyString(map));
+                return new Model图像位置((图像位置)Block.blockRegistry.getNameForObject(state.getBlock()), this.getPropertyString(map));
             }
         });
         this.registerBlockWithStateMapper(Blocks.melon_stem, new StateMapperBase()
         {
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            protected Model图像位置 getModelResourceLocation(IBlockState state)
             {
                 Map<IProperty, Comparable> map = Maps.<IProperty, Comparable>newLinkedHashMap(state.getProperties());
 
@@ -270,12 +270,12 @@ public class BlockModelShapes
                     map.remove(BlockStem.AGE);
                 }
 
-                return new ModelResourceLocation((ResourceLocation)Block.blockRegistry.getNameForObject(state.getBlock()), this.getPropertyString(map));
+                return new Model图像位置((图像位置)Block.blockRegistry.getNameForObject(state.getBlock()), this.getPropertyString(map));
             }
         });
         this.registerBlockWithStateMapper(Blocks.dirt, new StateMapperBase()
         {
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            protected Model图像位置 getModelResourceLocation(IBlockState state)
             {
                 Map<IProperty, Comparable> map = Maps.<IProperty, Comparable>newLinkedHashMap(state.getProperties());
                 String s = BlockDirt.VARIANT.getName((BlockDirt.DirtType)map.remove(BlockDirt.VARIANT));
@@ -285,29 +285,29 @@ public class BlockModelShapes
                     map.remove(BlockDirt.SNOWY);
                 }
 
-                return new ModelResourceLocation(s, this.getPropertyString(map));
+                return new Model图像位置(s, this.getPropertyString(map));
             }
         });
         this.registerBlockWithStateMapper(Blocks.double_stone_slab, new StateMapperBase()
         {
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            protected Model图像位置 getModelResourceLocation(IBlockState state)
             {
                 Map<IProperty, Comparable> map = Maps.<IProperty, Comparable>newLinkedHashMap(state.getProperties());
                 String s = BlockStoneSlab.VARIANT.getName((BlockStoneSlab.EnumType)map.remove(BlockStoneSlab.VARIANT));
                 map.remove(BlockStoneSlab.SEAMLESS);
                 String s1 = ((Boolean)state.getValue(BlockStoneSlab.SEAMLESS)).booleanValue() ? "all" : "normal";
-                return new ModelResourceLocation(s + "_double_slab", s1);
+                return new Model图像位置(s + "_double_slab", s1);
             }
         });
         this.registerBlockWithStateMapper(Blocks.double_stone_slab2, new StateMapperBase()
         {
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            protected Model图像位置 getModelResourceLocation(IBlockState state)
             {
                 Map<IProperty, Comparable> map = Maps.<IProperty, Comparable>newLinkedHashMap(state.getProperties());
                 String s = BlockStoneSlabNew.VARIANT.getName((BlockStoneSlabNew.EnumType)map.remove(BlockStoneSlabNew.VARIANT));
                 map.remove(BlockStoneSlab.SEAMLESS);
                 String s1 = ((Boolean)state.getValue(BlockStoneSlabNew.SEAMLESS)).booleanValue() ? "all" : "normal";
-                return new ModelResourceLocation(s + "_double_slab", s1);
+                return new Model图像位置(s + "_double_slab", s1);
             }
         });
     }

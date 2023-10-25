@@ -13,14 +13,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.CustomColors;
 import net.optifine.shaders.Shaders;
 import org.lwjgl.opengl.GL11;
 
 public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntitySign>
 {
-    private static final ResourceLocation SIGN_TEXTURE = new ResourceLocation("textures/entity/sign.png");
+    private static final 图像位置 SIGN_TEXTURE = new 图像位置("textures/entity/sign.png");
     private final ModelSign model = new ModelSign();
     private static double textRenderDistanceSq = 4096.0D;
 

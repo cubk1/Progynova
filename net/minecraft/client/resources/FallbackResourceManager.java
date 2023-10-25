@@ -9,7 +9,7 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Set;
 import net.minecraft.client.resources.data.IMetadataSerializer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,10 +34,10 @@ public class FallbackResourceManager implements IResourceManager
         return null;
     }
 
-    public IResource getResource(ResourceLocation location) throws IOException
+    public IResource getResource(图像位置 location) throws IOException
     {
         IResourcePack iresourcepack = null;
-        ResourceLocation resourcelocation = getLocationMcmeta(location);
+        图像位置 resourcelocation = getLocationMcmeta(location);
 
         for (int i = this.resourcePacks.size() - 1; i >= 0; --i)
         {
@@ -64,16 +64,16 @@ public class FallbackResourceManager implements IResourceManager
         throw new FileNotFoundException(location.toString());
     }
 
-    protected InputStream getInputStream(ResourceLocation location, IResourcePack resourcePack) throws IOException
+    protected InputStream getInputStream(图像位置 location, IResourcePack resourcePack) throws IOException
     {
         InputStream inputstream = resourcePack.getInputStream(location);
         return (InputStream)(logger.isDebugEnabled() ? new FallbackResourceManager.InputStreamLeakedResourceLogger(inputstream, location, resourcePack.getPackName()) : inputstream);
     }
 
-    public List<IResource> getAllResources(ResourceLocation location) throws IOException
+    public List<IResource> getAllResources(图像位置 location) throws IOException
     {
         List<IResource> list = Lists.<IResource>newArrayList();
-        ResourceLocation resourcelocation = getLocationMcmeta(location);
+        图像位置 resourcelocation = getLocationMcmeta(location);
 
         for (IResourcePack iresourcepack : this.resourcePacks)
         {
@@ -94,9 +94,9 @@ public class FallbackResourceManager implements IResourceManager
         }
     }
 
-    static ResourceLocation getLocationMcmeta(ResourceLocation location)
+    static 图像位置 getLocationMcmeta(图像位置 location)
     {
-        return new ResourceLocation(location.getResourceDomain(), location.getResourcePath() + ".mcmeta");
+        return new 图像位置(location.getResourceDomain(), location.getResourcePath() + ".mcmeta");
     }
 
     static class InputStreamLeakedResourceLogger extends InputStream
@@ -105,7 +105,7 @@ public class FallbackResourceManager implements IResourceManager
         private final String message;
         private boolean isClosed = false;
 
-        public InputStreamLeakedResourceLogger(InputStream p_i46093_1_, ResourceLocation location, String resourcePack)
+        public InputStreamLeakedResourceLogger(InputStream p_i46093_1_, 图像位置 location, String resourcePack)
         {
             this.inputStream = p_i46093_1_;
             ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream();

@@ -3,18 +3,18 @@ package net.minecraft.client.audio;
 import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Random;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class SoundEventAccessorComposite implements ISoundEventAccessor<SoundPoolEntry>
 {
     private final List<ISoundEventAccessor<SoundPoolEntry>> soundPool = Lists.<ISoundEventAccessor<SoundPoolEntry>>newArrayList();
     private final Random rnd = new Random();
-    private final ResourceLocation soundLocation;
+    private final 图像位置 soundLocation;
     private final SoundCategory category;
     private double eventPitch;
     private double eventVolume;
 
-    public SoundEventAccessorComposite(ResourceLocation soundLocation, double pitch, double volume, SoundCategory category)
+    public SoundEventAccessorComposite(图像位置 soundLocation, double pitch, double volume, SoundCategory category)
     {
         this.soundLocation = soundLocation;
         this.eventVolume = volume;
@@ -68,7 +68,7 @@ public class SoundEventAccessorComposite implements ISoundEventAccessor<SoundPoo
         this.soundPool.add(sound);
     }
 
-    public ResourceLocation getSoundEventLocation()
+    public 图像位置 getSoundEventLocation()
     {
         return this.soundLocation;
     }

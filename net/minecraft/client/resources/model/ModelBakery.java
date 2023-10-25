@@ -51,30 +51,30 @@ import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IRegistry;
 import net.minecraft.util.RegistrySimple;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class ModelBakery
 {
-    private static final Set<ResourceLocation> LOCATIONS_BUILTIN_TEXTURES = Sets.newHashSet(new ResourceLocation[] {new ResourceLocation("blocks/water_flow"), new ResourceLocation("blocks/water_still"), new ResourceLocation("blocks/lava_flow"), new ResourceLocation("blocks/lava_still"), new ResourceLocation("blocks/destroy_stage_0"), new ResourceLocation("blocks/destroy_stage_1"), new ResourceLocation("blocks/destroy_stage_2"), new ResourceLocation("blocks/destroy_stage_3"), new ResourceLocation("blocks/destroy_stage_4"), new ResourceLocation("blocks/destroy_stage_5"), new ResourceLocation("blocks/destroy_stage_6"), new ResourceLocation("blocks/destroy_stage_7"), new ResourceLocation("blocks/destroy_stage_8"), new ResourceLocation("blocks/destroy_stage_9"), new ResourceLocation("items/empty_armor_slot_helmet"), new ResourceLocation("items/empty_armor_slot_chestplate"), new ResourceLocation("items/empty_armor_slot_leggings"), new ResourceLocation("items/empty_armor_slot_boots")});
+    private static final Set<图像位置> LOCATIONS_BUILTIN_TEXTURES = Sets.newHashSet(new 图像位置[] {new 图像位置("blocks/water_flow"), new 图像位置("blocks/water_still"), new 图像位置("blocks/lava_flow"), new 图像位置("blocks/lava_still"), new 图像位置("blocks/destroy_stage_0"), new 图像位置("blocks/destroy_stage_1"), new 图像位置("blocks/destroy_stage_2"), new 图像位置("blocks/destroy_stage_3"), new 图像位置("blocks/destroy_stage_4"), new 图像位置("blocks/destroy_stage_5"), new 图像位置("blocks/destroy_stage_6"), new 图像位置("blocks/destroy_stage_7"), new 图像位置("blocks/destroy_stage_8"), new 图像位置("blocks/destroy_stage_9"), new 图像位置("items/empty_armor_slot_helmet"), new 图像位置("items/empty_armor_slot_chestplate"), new 图像位置("items/empty_armor_slot_leggings"), new 图像位置("items/empty_armor_slot_boots")});
     private static final Logger LOGGER = LogManager.getLogger();
-    protected static final ModelResourceLocation MODEL_MISSING = new ModelResourceLocation("builtin/missing", "missing");
+    protected static final Model图像位置 MODEL_MISSING = new Model图像位置("builtin/missing", "missing");
     private static final Map<String, String> BUILT_IN_MODELS = Maps.<String, String>newHashMap();
     private static final Joiner JOINER = Joiner.on(" -> ");
     private final IResourceManager resourceManager;
-    private final Map<ResourceLocation, TextureAtlasSprite> sprites = Maps.<ResourceLocation, TextureAtlasSprite>newHashMap();
-    private final Map<ResourceLocation, ModelBlock> models = Maps.<ResourceLocation, ModelBlock>newLinkedHashMap();
-    private final Map<ModelResourceLocation, ModelBlockDefinition.Variants> variants = Maps.<ModelResourceLocation, ModelBlockDefinition.Variants>newLinkedHashMap();
+    private final Map<图像位置, TextureAtlasSprite> sprites = Maps.<图像位置, TextureAtlasSprite>newHashMap();
+    private final Map<图像位置, ModelBlock> models = Maps.<图像位置, ModelBlock>newLinkedHashMap();
+    private final Map<Model图像位置, ModelBlockDefinition.Variants> variants = Maps.<Model图像位置, ModelBlockDefinition.Variants>newLinkedHashMap();
     private final TextureMap textureMap;
     private final BlockModelShapes blockModelShapes;
     private final FaceBakery faceBakery = new FaceBakery();
     private final ItemModelGenerator itemModelGenerator = new ItemModelGenerator();
-    private RegistrySimple<ModelResourceLocation, IBakedModel> bakedRegistry = new RegistrySimple();
+    private RegistrySimple<Model图像位置, IBakedModel> bakedRegistry = new RegistrySimple();
     private static final ModelBlock MODEL_GENERATED = ModelBlock.deserialize("{\"elements\":[{  \"from\": [0, 0, 0],   \"to\": [16, 16, 16],   \"faces\": {       \"down\": {\"uv\": [0, 0, 16, 16], \"texture\":\"\"}   }}]}");
     private static final ModelBlock MODEL_COMPASS = ModelBlock.deserialize("{\"elements\":[{  \"from\": [0, 0, 0],   \"to\": [16, 16, 16],   \"faces\": {       \"down\": {\"uv\": [0, 0, 16, 16], \"texture\":\"\"}   }}]}");
     private static final ModelBlock MODEL_CLOCK = ModelBlock.deserialize("{\"elements\":[{  \"from\": [0, 0, 0],   \"to\": [16, 16, 16],   \"faces\": {       \"down\": {\"uv\": [0, 0, 16, 16], \"texture\":\"\"}   }}]}");
     private static final ModelBlock MODEL_ENTITY = ModelBlock.deserialize("{\"elements\":[{  \"from\": [0, 0, 0],   \"to\": [16, 16, 16],   \"faces\": {       \"down\": {\"uv\": [0, 0, 16, 16], \"texture\":\"\"}   }}]}");
-    private Map<String, ResourceLocation> itemLocations = Maps.<String, ResourceLocation>newLinkedHashMap();
-    private final Map<ResourceLocation, ModelBlockDefinition> blockDefinitions = Maps.<ResourceLocation, ModelBlockDefinition>newHashMap();
+    private Map<String, 图像位置> itemLocations = Maps.<String, 图像位置>newLinkedHashMap();
+    private final Map<图像位置, ModelBlockDefinition> blockDefinitions = Maps.<图像位置, ModelBlockDefinition>newHashMap();
     private Map<Item, List<String>> variantNames = Maps.<Item, List<String>>newIdentityHashMap();
     private static Map<RegistryDelegate<Item>, Set<String>> customVariantNames = Maps.<RegistryDelegate<Item>, Set<String>>newHashMap();
 
@@ -85,7 +85,7 @@ public class ModelBakery
         this.blockModelShapes = p_i46085_3_;
     }
 
-    public IRegistry<ModelResourceLocation, IBakedModel> setupModelRegistry()
+    public IRegistry<Model图像位置, IBakedModel> setupModelRegistry()
     {
         this.loadVariantItemModels();
         this.loadModelsCheck();
@@ -98,18 +98,18 @@ public class ModelBakery
     private void loadVariantItemModels()
     {
         this.loadVariants(this.blockModelShapes.getBlockStateMapper().putAllStateModelLocations().values());
-        this.variants.put(MODEL_MISSING, new ModelBlockDefinition.Variants(MODEL_MISSING.getVariant(), Lists.newArrayList(new ModelBlockDefinition.Variant[] {new ModelBlockDefinition.Variant(new ResourceLocation(MODEL_MISSING.getResourcePath()), ModelRotation.X0_Y0, false, 1)})));
-        ResourceLocation resourcelocation = new ResourceLocation("item_frame");
+        this.variants.put(MODEL_MISSING, new ModelBlockDefinition.Variants(MODEL_MISSING.getVariant(), Lists.newArrayList(new ModelBlockDefinition.Variant[] {new ModelBlockDefinition.Variant(new 图像位置(MODEL_MISSING.getResourcePath()), ModelRotation.X0_Y0, false, 1)})));
+        图像位置 resourcelocation = new 图像位置("item_frame");
         ModelBlockDefinition modelblockdefinition = this.getModelBlockDefinition(resourcelocation);
-        this.registerVariant(modelblockdefinition, new ModelResourceLocation(resourcelocation, "normal"));
-        this.registerVariant(modelblockdefinition, new ModelResourceLocation(resourcelocation, "map"));
+        this.registerVariant(modelblockdefinition, new Model图像位置(resourcelocation, "normal"));
+        this.registerVariant(modelblockdefinition, new Model图像位置(resourcelocation, "map"));
         this.loadVariantModels();
         this.loadItemModels();
     }
 
-    private void loadVariants(Collection<ModelResourceLocation> p_177591_1_)
+    private void loadVariants(Collection<Model图像位置> p_177591_1_)
     {
-        for (ModelResourceLocation modelresourcelocation : p_177591_1_)
+        for (Model图像位置 modelresourcelocation : p_177591_1_)
         {
             try
             {
@@ -131,14 +131,14 @@ public class ModelBakery
         }
     }
 
-    private void registerVariant(ModelBlockDefinition p_177569_1_, ModelResourceLocation p_177569_2_)
+    private void registerVariant(ModelBlockDefinition p_177569_1_, Model图像位置 p_177569_2_)
     {
         this.variants.put(p_177569_2_, p_177569_1_.getVariants(p_177569_2_.getVariant()));
     }
 
-    private ModelBlockDefinition getModelBlockDefinition(ResourceLocation p_177586_1_)
+    private ModelBlockDefinition getModelBlockDefinition(图像位置 p_177586_1_)
     {
-        ResourceLocation resourcelocation = this.getBlockStateLocation(p_177586_1_);
+        图像位置 resourcelocation = this.getBlockStateLocation(p_177586_1_);
         ModelBlockDefinition modelblockdefinition = (ModelBlockDefinition)this.blockDefinitions.get(resourcelocation);
 
         if (modelblockdefinition == null)
@@ -179,18 +179,18 @@ public class ModelBakery
         return modelblockdefinition;
     }
 
-    private ResourceLocation getBlockStateLocation(ResourceLocation p_177584_1_)
+    private 图像位置 getBlockStateLocation(图像位置 p_177584_1_)
     {
-        return new ResourceLocation(p_177584_1_.getResourceDomain(), "blockstates/" + p_177584_1_.getResourcePath() + ".json");
+        return new 图像位置(p_177584_1_.getResourceDomain(), "blockstates/" + p_177584_1_.getResourcePath() + ".json");
     }
 
     private void loadVariantModels()
     {
-        for (ModelResourceLocation modelresourcelocation : this.variants.keySet())
+        for (Model图像位置 modelresourcelocation : this.variants.keySet())
         {
             for (ModelBlockDefinition.Variant modelblockdefinition$variant : ((ModelBlockDefinition.Variants)this.variants.get(modelresourcelocation)).getVariants())
             {
-                ResourceLocation resourcelocation = modelblockdefinition$variant.getModelLocation();
+                图像位置 resourcelocation = modelblockdefinition$variant.getModelLocation();
 
                 if (this.models.get(resourcelocation) == null)
                 {
@@ -208,7 +208,7 @@ public class ModelBakery
         }
     }
 
-    private ModelBlock loadModel(ResourceLocation p_177594_1_) throws IOException
+    private ModelBlock loadModel(图像位置 p_177594_1_) throws IOException
     {
         String s = p_177594_1_.getResourcePath();
 
@@ -270,20 +270,20 @@ public class ModelBakery
         }
     }
 
-    private ResourceLocation getModelLocation(ResourceLocation p_177580_1_)
+    private 图像位置 getModelLocation(图像位置 p_177580_1_)
     {
-        ResourceLocation resourcelocation = p_177580_1_;
+        图像位置 resourcelocation = p_177580_1_;
         String s = p_177580_1_.getResourcePath();
 
         if (!s.startsWith("mcpatcher") && !s.startsWith("optifine"))
         {
-            return new ResourceLocation(p_177580_1_.getResourceDomain(), "models/" + p_177580_1_.getResourcePath() + ".json");
+            return new 图像位置(p_177580_1_.getResourceDomain(), "models/" + p_177580_1_.getResourcePath() + ".json");
         }
         else
         {
             if (!s.endsWith(".json"))
             {
-                resourcelocation = new ResourceLocation(p_177580_1_.getResourceDomain(), s + ".json");
+                resourcelocation = new 图像位置(p_177580_1_.getResourceDomain(), s + ".json");
             }
 
             return resourcelocation;
@@ -298,7 +298,7 @@ public class ModelBakery
         {
             for (String s : this.getVariantNames(item))
             {
-                ResourceLocation resourcelocation = this.getItemLocation(s);
+                图像位置 resourcelocation = this.getItemLocation(s);
                 this.itemLocations.put(s, resourcelocation);
 
                 if (this.models.get(resourcelocation) == null)
@@ -317,7 +317,7 @@ public class ModelBakery
         }
     }
 
-    public void loadItemModel(String p_loadItemModel_1_, ResourceLocation p_loadItemModel_2_, ResourceLocation p_loadItemModel_3_)
+    public void loadItemModel(String p_loadItemModel_1_, 图像位置 p_loadItemModel_2_, 图像位置 p_loadItemModel_3_)
     {
         this.itemLocations.put(p_loadItemModel_1_, p_loadItemModel_2_);
 
@@ -397,27 +397,27 @@ public class ModelBakery
 
         if (list == null)
         {
-            list = Collections.<String>singletonList(((ResourceLocation)Item.itemRegistry.getNameForObject(p_177596_1_)).toString());
+            list = Collections.<String>singletonList(((图像位置)Item.itemRegistry.getNameForObject(p_177596_1_)).toString());
         }
 
         return list;
     }
 
-    private ResourceLocation getItemLocation(String p_177583_1_)
+    private 图像位置 getItemLocation(String p_177583_1_)
     {
-        ResourceLocation resourcelocation = new ResourceLocation(p_177583_1_);
+        图像位置 resourcelocation = new 图像位置(p_177583_1_);
 
         if (Reflector.ForgeHooksClient.exists())
         {
-            resourcelocation = new ResourceLocation(p_177583_1_.replaceAll("#.*", ""));
+            resourcelocation = new 图像位置(p_177583_1_.replaceAll("#.*", ""));
         }
 
-        return new ResourceLocation(resourcelocation.getResourceDomain(), "item/" + resourcelocation.getResourcePath());
+        return new 图像位置(resourcelocation.getResourceDomain(), "item/" + resourcelocation.getResourcePath());
     }
 
     private void bakeBlockModels()
     {
-        for (ModelResourceLocation modelresourcelocation : this.variants.keySet())
+        for (Model图像位置 modelresourcelocation : this.variants.keySet())
         {
             WeightedBakedModel.Builder weightedbakedmodel$builder = new WeightedBakedModel.Builder();
             int i = 0;
@@ -451,14 +451,14 @@ public class ModelBakery
             }
         }
 
-        for (Entry<String, ResourceLocation> entry : this.itemLocations.entrySet())
+        for (Entry<String, 图像位置> entry : this.itemLocations.entrySet())
         {
-            ResourceLocation resourcelocation = (ResourceLocation)entry.getValue();
-            ModelResourceLocation modelresourcelocation1 = new ModelResourceLocation((String)entry.getKey(), "inventory");
+            图像位置 resourcelocation = (图像位置)entry.getValue();
+            Model图像位置 modelresourcelocation1 = new Model图像位置((String)entry.getKey(), "inventory");
 
             if (Reflector.ModelLoader_getInventoryVariant.exists())
             {
-                modelresourcelocation1 = (ModelResourceLocation)Reflector.call(Reflector.ModelLoader_getInventoryVariant, new Object[] {entry.getKey()});
+                modelresourcelocation1 = (Model图像位置)Reflector.call(Reflector.ModelLoader_getInventoryVariant, new Object[] {entry.getKey()});
             }
 
             ModelBlock modelblock1 = (ModelBlock)this.models.get(resourcelocation);
@@ -481,19 +481,19 @@ public class ModelBakery
         }
     }
 
-    private Set<ResourceLocation> getVariantsTextureLocations()
+    private Set<图像位置> getVariantsTextureLocations()
     {
-        Set<ResourceLocation> set = Sets.<ResourceLocation>newHashSet();
-        List<ModelResourceLocation> list = Lists.newArrayList(this.variants.keySet());
-        Collections.sort(list, new Comparator<ModelResourceLocation>()
+        Set<图像位置> set = Sets.<图像位置>newHashSet();
+        List<Model图像位置> list = Lists.newArrayList(this.variants.keySet());
+        Collections.sort(list, new Comparator<Model图像位置>()
         {
-            public int compare(ModelResourceLocation p_compare_1_, ModelResourceLocation p_compare_2_)
+            public int compare(Model图像位置 p_compare_1_, Model图像位置 p_compare_2_)
             {
                 return p_compare_1_.toString().compareTo(p_compare_2_.toString());
             }
         });
 
-        for (ModelResourceLocation modelresourcelocation : list)
+        for (Model图像位置 modelresourcelocation : list)
         {
             ModelBlockDefinition.Variants modelblockdefinition$variants = (ModelBlockDefinition.Variants)this.variants.get(modelresourcelocation);
 
@@ -523,7 +523,7 @@ public class ModelBakery
 
     protected IBakedModel bakeModel(ModelBlock p_bakeModel_1_, ITransformation p_bakeModel_2_, boolean p_bakeModel_3_)
     {
-        TextureAtlasSprite textureatlassprite = (TextureAtlasSprite)this.sprites.get(new ResourceLocation(p_bakeModel_1_.resolveTextureName("particle")));
+        TextureAtlasSprite textureatlassprite = (TextureAtlasSprite)this.sprites.get(new 图像位置(p_bakeModel_1_.resolveTextureName("particle")));
         SimpleBakedModel.Builder simplebakedmodel$builder = (new SimpleBakedModel.Builder(p_bakeModel_1_)).setTexture(textureatlassprite);
 
         for (BlockPart blockpart : p_bakeModel_1_.getElements())
@@ -531,7 +531,7 @@ public class ModelBakery
             for (EnumFacing enumfacing : blockpart.mapFaces.keySet())
             {
                 BlockPartFace blockpartface = (BlockPartFace)blockpart.mapFaces.get(enumfacing);
-                TextureAtlasSprite textureatlassprite1 = (TextureAtlasSprite)this.sprites.get(new ResourceLocation(p_bakeModel_1_.resolveTextureName(blockpartface.texture)));
+                TextureAtlasSprite textureatlassprite1 = (TextureAtlasSprite)this.sprites.get(new 图像位置(p_bakeModel_1_.resolveTextureName(blockpartface.texture)));
                 boolean flag = true;
 
                 if (Reflector.ForgeHooksClient.exists())
@@ -577,13 +577,13 @@ public class ModelBakery
 
     private void loadModels()
     {
-        Deque<ResourceLocation> deque = Queues.<ResourceLocation>newArrayDeque();
-        Set<ResourceLocation> set = Sets.<ResourceLocation>newHashSet();
+        Deque<图像位置> deque = Queues.<图像位置>newArrayDeque();
+        Set<图像位置> set = Sets.<图像位置>newHashSet();
 
-        for (ResourceLocation resourcelocation : this.models.keySet())
+        for (图像位置 resourcelocation : this.models.keySet())
         {
             set.add(resourcelocation);
-            ResourceLocation resourcelocation1 = ((ModelBlock)this.models.get(resourcelocation)).getParentLocation();
+            图像位置 resourcelocation1 = ((ModelBlock)this.models.get(resourcelocation)).getParentLocation();
 
             if (resourcelocation1 != null)
             {
@@ -593,7 +593,7 @@ public class ModelBakery
 
         while (!((Deque)deque).isEmpty())
         {
-            ResourceLocation resourcelocation2 = (ResourceLocation)deque.pop();
+            图像位置 resourcelocation2 = (图像位置)deque.pop();
 
             try
             {
@@ -604,7 +604,7 @@ public class ModelBakery
 
                 ModelBlock modelblock = this.loadModel(resourcelocation2);
                 this.models.put(resourcelocation2, modelblock);
-                ResourceLocation resourcelocation3 = modelblock.getParentLocation();
+                图像位置 resourcelocation3 = modelblock.getParentLocation();
 
                 if (resourcelocation3 != null && !set.contains(resourcelocation3))
                 {
@@ -620,10 +620,10 @@ public class ModelBakery
         }
     }
 
-    private List<ResourceLocation> getParentPath(ResourceLocation p_177573_1_)
+    private List<图像位置> getParentPath(图像位置 p_177573_1_)
     {
-        List<ResourceLocation> list = Lists.newArrayList(new ResourceLocation[] {p_177573_1_});
-        ResourceLocation resourcelocation = p_177573_1_;
+        List<图像位置> list = Lists.newArrayList(new 图像位置[] {p_177573_1_});
+        图像位置 resourcelocation = p_177573_1_;
 
         while ((resourcelocation = this.getParentLocation(resourcelocation)) != null)
         {
@@ -633,48 +633,48 @@ public class ModelBakery
         return list;
     }
 
-    private ResourceLocation getParentLocation(ResourceLocation p_177576_1_)
+    private 图像位置 getParentLocation(图像位置 p_177576_1_)
     {
-        for (Entry<ResourceLocation, ModelBlock> entry : this.models.entrySet())
+        for (Entry<图像位置, ModelBlock> entry : this.models.entrySet())
         {
             ModelBlock modelblock = (ModelBlock)entry.getValue();
 
             if (modelblock != null && p_177576_1_.equals(modelblock.getParentLocation()))
             {
-                return (ResourceLocation)entry.getKey();
+                return (图像位置)entry.getKey();
             }
         }
 
         return null;
     }
 
-    private Set<ResourceLocation> getTextureLocations(ModelBlock p_177585_1_)
+    private Set<图像位置> getTextureLocations(ModelBlock p_177585_1_)
     {
-        Set<ResourceLocation> set = Sets.<ResourceLocation>newHashSet();
+        Set<图像位置> set = Sets.<图像位置>newHashSet();
 
         for (BlockPart blockpart : p_177585_1_.getElements())
         {
             for (BlockPartFace blockpartface : blockpart.mapFaces.values())
             {
-                ResourceLocation resourcelocation = new ResourceLocation(p_177585_1_.resolveTextureName(blockpartface.texture));
+                图像位置 resourcelocation = new 图像位置(p_177585_1_.resolveTextureName(blockpartface.texture));
                 set.add(resourcelocation);
             }
         }
 
-        set.add(new ResourceLocation(p_177585_1_.resolveTextureName("particle")));
+        set.add(new 图像位置(p_177585_1_.resolveTextureName("particle")));
         return set;
     }
 
     private void loadSprites()
     {
-        final Set<ResourceLocation> set = this.getVariantsTextureLocations();
+        final Set<图像位置> set = this.getVariantsTextureLocations();
         set.addAll(this.getItemsTextureLocations());
         set.remove(TextureMap.LOCATION_MISSING_TEXTURE);
         IIconCreator iiconcreator = new IIconCreator()
         {
             public void registerSprites(TextureMap iconRegistry)
             {
-                for (ResourceLocation resourcelocation : set)
+                for (图像位置 resourcelocation : set)
                 {
                     TextureAtlasSprite textureatlassprite = iconRegistry.registerSprite(resourcelocation);
                     ModelBakery.this.sprites.put(resourcelocation, textureatlassprite);
@@ -682,26 +682,26 @@ public class ModelBakery
             }
         };
         this.textureMap.loadSprites(this.resourceManager, iiconcreator);
-        this.sprites.put(new ResourceLocation("missingno"), this.textureMap.getMissingSprite());
+        this.sprites.put(new 图像位置("missingno"), this.textureMap.getMissingSprite());
     }
 
-    private Set<ResourceLocation> getItemsTextureLocations()
+    private Set<图像位置> getItemsTextureLocations()
     {
-        Set<ResourceLocation> set = Sets.<ResourceLocation>newHashSet();
+        Set<图像位置> set = Sets.<图像位置>newHashSet();
 
-        for (ResourceLocation resourcelocation : this.itemLocations.values())
+        for (图像位置 resourcelocation : this.itemLocations.values())
         {
             ModelBlock modelblock = (ModelBlock)this.models.get(resourcelocation);
 
             if (modelblock != null)
             {
-                set.add(new ResourceLocation(modelblock.resolveTextureName("particle")));
+                set.add(new 图像位置(modelblock.resolveTextureName("particle")));
 
                 if (this.hasItemModel(modelblock))
                 {
                     for (String s : ItemModelGenerator.LAYERS)
                     {
-                        ResourceLocation resourcelocation2 = new ResourceLocation(modelblock.resolveTextureName(s));
+                        图像位置 resourcelocation2 = new 图像位置(modelblock.resolveTextureName(s));
 
                         if (modelblock.getRootModel() == MODEL_COMPASS && !TextureMap.LOCATION_MISSING_TEXTURE.equals(resourcelocation2))
                         {
@@ -721,7 +721,7 @@ public class ModelBakery
                     {
                         for (BlockPartFace blockpartface : blockpart.mapFaces.values())
                         {
-                            ResourceLocation resourcelocation1 = new ResourceLocation(modelblock.resolveTextureName(blockpartface.texture));
+                            图像位置 resourcelocation1 = new 图像位置(modelblock.resolveTextureName(blockpartface.texture));
                             set.add(resourcelocation1);
                         }
                     }
@@ -760,7 +760,7 @@ public class ModelBakery
 
     private void bakeItemModels()
     {
-        for (ResourceLocation resourcelocation : this.itemLocations.values())
+        for (图像位置 resourcelocation : this.itemLocations.values())
         {
             ModelBlock modelblock = (ModelBlock)this.models.get(resourcelocation);
 
@@ -795,7 +795,7 @@ public class ModelBakery
         return this.itemModelGenerator.makeItemModel(this.textureMap, p_177582_1_);
     }
 
-    public ModelBlock getModelBlock(ResourceLocation p_getModelBlock_1_)
+    public ModelBlock getModelBlock(图像位置 p_getModelBlock_1_)
     {
         ModelBlock modelblock = (ModelBlock)this.models.get(p_getModelBlock_1_);
         return modelblock;
@@ -803,7 +803,7 @@ public class ModelBakery
 
     public static void fixModelLocations(ModelBlock p_fixModelLocations_0_, String p_fixModelLocations_1_)
     {
-        ResourceLocation resourcelocation = fixModelLocation(p_fixModelLocations_0_.getParentLocation(), p_fixModelLocations_1_);
+        图像位置 resourcelocation = fixModelLocation(p_fixModelLocations_0_.getParentLocation(), p_fixModelLocations_1_);
 
         if (resourcelocation != p_fixModelLocations_0_.getParentLocation())
         {
@@ -827,7 +827,7 @@ public class ModelBakery
         }
     }
 
-    public static ResourceLocation fixModelLocation(ResourceLocation p_fixModelLocation_0_, String p_fixModelLocation_1_)
+    public static 图像位置 fixModelLocation(图像位置 p_fixModelLocation_0_, String p_fixModelLocation_1_)
     {
         if (p_fixModelLocation_0_ != null && p_fixModelLocation_1_ != null)
         {
@@ -842,7 +842,7 @@ public class ModelBakery
 
                 if (s1 != s)
                 {
-                    p_fixModelLocation_0_ = new ResourceLocation(p_fixModelLocation_0_.getResourceDomain(), s1);
+                    p_fixModelLocation_0_ = new 图像位置(p_fixModelLocation_0_.getResourceDomain(), s1);
                 }
 
                 return p_fixModelLocation_0_;
@@ -877,7 +877,7 @@ public class ModelBakery
         }
     }
 
-    public static <T extends ResourceLocation> void registerItemVariants(Item p_registerItemVariants_0_, T... p_registerItemVariants_1_)
+    public static <T extends 图像位置> void registerItemVariants(Item p_registerItemVariants_0_, T... p_registerItemVariants_1_)
     {
         RegistryDelegate registrydelegate = (RegistryDelegate)Reflector.getFieldValue(p_registerItemVariants_0_, Reflector.ForgeItem_delegate);
 
@@ -886,7 +886,7 @@ public class ModelBakery
             customVariantNames.put(registrydelegate, Sets.<String>newHashSet());
         }
 
-        for (ResourceLocation resourcelocation : p_registerItemVariants_1_)
+        for (图像位置 resourcelocation : p_registerItemVariants_1_)
         {
             ((Set)customVariantNames.get(registrydelegate)).add(resourcelocation.toString());
         }

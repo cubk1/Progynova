@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public abstract class BlockStateBase implements IBlockState
 {
@@ -32,7 +32,7 @@ public abstract class BlockStateBase implements IBlockState
     private int blockId = -1;
     private int blockStateId = -1;
     private int metadata = -1;
-    private ResourceLocation blockLocation = null;
+    private 图像位置 blockLocation = null;
 
     public int getBlockId()
     {
@@ -64,11 +64,11 @@ public abstract class BlockStateBase implements IBlockState
         return this.metadata;
     }
 
-    public ResourceLocation getBlockLocation()
+    public 图像位置 getBlockLocation()
     {
         if (this.blockLocation == null)
         {
-            this.blockLocation = (ResourceLocation)Block.blockRegistry.getNameForObject(this.getBlock());
+            this.blockLocation = (图像位置)Block.blockRegistry.getNameForObject(this.getBlock());
         }
 
         return this.blockLocation;

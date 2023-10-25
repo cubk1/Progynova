@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelManager;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.Model图像位置;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityItemFrame;
@@ -29,7 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.storage.MapData;
 import net.optifine.reflect.Reflector;
 import net.optifine.shaders.Shaders;
@@ -37,10 +37,10 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderItemFrame extends Render<EntityItemFrame>
 {
-    private static final ResourceLocation mapBackgroundTextures = new ResourceLocation("textures/map/map_background.png");
+    private static final 图像位置 mapBackgroundTextures = new 图像位置("textures/map/map_background.png");
     private final 我的手艺 mc = 我的手艺.得到我的手艺();
-    private final ModelResourceLocation itemFrameModel = new ModelResourceLocation("item_frame", "normal");
-    private final ModelResourceLocation mapModel = new ModelResourceLocation("item_frame", "map");
+    private final Model图像位置 itemFrameModel = new Model图像位置("item_frame", "normal");
+    private final Model图像位置 mapModel = new Model图像位置("item_frame", "map");
     private RenderItem itemRenderer;
     private static double itemRenderDistanceSq = 4096.0D;
 
@@ -83,7 +83,7 @@ public class RenderItemFrame extends Render<EntityItemFrame>
         this.renderName(entity, x + (double)((float)entity.facingDirection.getFrontOffsetX() * 0.3F), y - 0.25D, z + (double)((float)entity.facingDirection.getFrontOffsetZ() * 0.3F));
     }
 
-    protected ResourceLocation getEntityTexture(EntityItemFrame entity)
+    protected 图像位置 getEntityTexture(EntityItemFrame entity)
     {
         return null;
     }

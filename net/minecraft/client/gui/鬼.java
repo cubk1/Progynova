@@ -5,13 +5,13 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼
 {
-    public static final ResourceLocation optionsBackground = new ResourceLocation("textures/gui/options_background.png");
-    public static final ResourceLocation statIcons = new ResourceLocation("textures/gui/container/stats_icons.png");
-    public static final ResourceLocation icons = new ResourceLocation("textures/gui/icons.png");
+    public static final 图像位置 optionsBackground = new 图像位置("textures/gui/options_background.png");
+    public static final 图像位置 statIcons = new 图像位置("textures/gui/container/stats_icons.png");
+    public static final 图像位置 icons = new 图像位置("textures/gui/icons.png");
     protected float zLevel;
 
     protected void drawHorizontalLine(int startX, int endX, int y, int color)
@@ -105,12 +105,12 @@ public class 鬼
 
     public void drawCenteredString(FontRenderer fontRendererIn, String text, int x, int y, int color)
     {
-        fontRendererIn.drawStringWithShadow(text, (float)(x - fontRendererIn.getStringWidth(text) / 2), (float)y, color);
+        fontRendererIn.绘制纵梁带心理阴影(text, (float)(x - fontRendererIn.getStringWidth(text) / 2), (float)y, color);
     }
 
     public void drawString(FontRenderer fontRendererIn, String text, int x, int y, int color)
     {
-        fontRendererIn.drawStringWithShadow(text, (float)x, (float)y, color);
+        fontRendererIn.绘制纵梁带心理阴影(text, (float)x, (float)y, color);
     }
 
     public void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height)

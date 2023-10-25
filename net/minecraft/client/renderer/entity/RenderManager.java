@@ -318,7 +318,7 @@ public class RenderManager
 
     public boolean renderEntityStatic(Entity entity, float partialTicks, boolean hideDebugBox)
     {
-        if (entity.ticksExisted == 0)
+        if (entity.已存在的刻度 == 0)
         {
             entity.lastTickPosX = entity.posX;
             entity.lastTickPosY = entity.posY;

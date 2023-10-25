@@ -2,7 +2,7 @@ package net.optifine;
 
 import net.minecraft.client.gui.鬼Ingame;
 import net.minecraft.client.我的手艺;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.比例解析;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -88,7 +88,7 @@ public class Lagometer
         }
     }
 
-    public static void showLagometer(ScaledResolution scaledResolution)
+    public static void showLagometer(比例解析 比例解析)
     {
         if (gameSettings != null)
         {
@@ -141,10 +141,10 @@ public class Lagometer
                 光照状态经理.启用手感();
                 int j2 = mc.displayHeight - 80;
                 int k2 = mc.displayHeight - 160;
-                mc.fontRendererObj.drawString("30", 2, k2 + 1, -8947849);
-                mc.fontRendererObj.drawString("30", 1, k2, -3881788);
-                mc.fontRendererObj.drawString("60", 2, j2 + 1, -8947849);
-                mc.fontRendererObj.drawString("60", 1, j2, -3881788);
+                mc.字体渲染员.drawString("30", 2, k2 + 1, -8947849);
+                mc.字体渲染员.drawString("30", 1, k2, -3881788);
+                mc.字体渲染员.drawString("60", 2, j2 + 1, -8947849);
+                mc.字体渲染员.drawString("60", 1, j2, -3881788);
                 光照状态经理.matrixMode(5889);
                 光照状态经理.流行音乐黑客帝国();
                 光照状态经理.matrixMode(5888);
@@ -156,11 +156,11 @@ public class Lagometer
                 int i1 = (int)(100.0F + f1 * 55.0F);
                 int j1 = (int)(10.0F + f1 * 10.0F);
                 int k1 = l2 << 16 | i1 << 8 | j1;
-                int l1 = 512 / scaledResolution.getScaleFactor() + 2;
-                int i2 = mc.displayHeight / scaledResolution.getScaleFactor() - 8;
+                int l1 = 512 / 比例解析.getScaleFactor() + 2;
+                int i2 = mc.displayHeight / 比例解析.getScaleFactor() - 8;
                 鬼Ingame guiingame = mc.ingameGUI;
                 鬼Ingame.drawRect(l1 - 1, i2 - 1, l1 + 50, i2 + 10, -1605349296);
-                mc.fontRendererObj.drawString(" " + MemoryMonitor.getAllocationRateMb() + " MB/s", l1, i2, k1);
+                mc.字体渲染员.drawString(" " + MemoryMonitor.getAllocationRateMb() + " MB/s", l1, i2, k1);
                 renderTimeNano = System.nanoTime() - i;
             }
         }

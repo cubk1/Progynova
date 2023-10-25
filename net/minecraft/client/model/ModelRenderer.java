@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.entity.model.anim.ModelUpdater;
 import net.optifine.model.ModelSprite;
 import net.optifine.shaders.Shaders;
@@ -45,7 +45,7 @@ public class ModelRenderer
     public float scaleY;
     public float scaleZ;
     private int countResetDisplayList;
-    private ResourceLocation textureLocation;
+    private 图像位置 textureLocation;
     private String id;
     private ModelUpdater modelUpdater;
     private RenderGlobal renderGlobal;
@@ -429,12 +429,12 @@ public class ModelRenderer
         }
     }
 
-    public ResourceLocation getTextureLocation()
+    public 图像位置 getTextureLocation()
     {
         return this.textureLocation;
     }
 
-    public void setTextureLocation(ResourceLocation p_setTextureLocation_1_)
+    public void setTextureLocation(图像位置 p_setTextureLocation_1_)
     {
         this.textureLocation = p_setTextureLocation_1_;
     }

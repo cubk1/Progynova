@@ -5,12 +5,12 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerWitherAura;
 import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderWither extends RenderLiving<EntityWither>
 {
-    private static final ResourceLocation invulnerableWitherTextures = new ResourceLocation("textures/entity/wither/wither_invulnerable.png");
-    private static final ResourceLocation witherTextures = new ResourceLocation("textures/entity/wither/wither.png");
+    private static final 图像位置 invulnerableWitherTextures = new 图像位置("textures/entity/wither/wither_invulnerable.png");
+    private static final 图像位置 witherTextures = new 图像位置("textures/entity/wither/wither.png");
 
     public RenderWither(RenderManager renderManagerIn)
     {
@@ -24,7 +24,7 @@ public class RenderWither extends RenderLiving<EntityWither>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityWither entity)
+    protected 图像位置 getEntityTexture(EntityWither entity)
     {
         int i = entity.getInvulTime();
         return i > 0 && (i > 80 || i / 5 % 2 != 1) ? invulnerableWitherTextures : witherTextures;

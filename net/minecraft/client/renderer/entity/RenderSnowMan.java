@@ -3,11 +3,11 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelSnowMan;
 import net.minecraft.client.renderer.entity.layers.LayerSnowmanHead;
 import net.minecraft.entity.monster.EntitySnowman;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderSnowMan extends RenderLiving<EntitySnowman>
 {
-    private static final ResourceLocation snowManTextures = new ResourceLocation("textures/entity/snowman.png");
+    private static final 图像位置 snowManTextures = new 图像位置("textures/entity/snowman.png");
 
     public RenderSnowMan(RenderManager renderManagerIn)
     {
@@ -15,7 +15,7 @@ public class RenderSnowMan extends RenderLiving<EntitySnowman>
         this.addLayer(new LayerSnowmanHead(this));
     }
 
-    protected ResourceLocation getEntityTexture(EntitySnowman entity)
+    protected 图像位置 getEntityTexture(EntitySnowman entity)
     {
         return snowManTextures;
     }

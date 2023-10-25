@@ -5,12 +5,12 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderEnderman;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.shaders.Shaders;
 
 public class LayerEndermanEyes implements LayerRenderer<EntityEnderman>
 {
-    private static final ResourceLocation RES_ENDERMAN_EYES = new ResourceLocation("textures/entity/enderman/enderman_eyes.png");
+    private static final 图像位置 RES_ENDERMAN_EYES = new 图像位置("textures/entity/enderman/enderman_eyes.png");
     private final RenderEnderman endermanRenderer;
 
     public LayerEndermanEyes(RenderEnderman endermanRendererIn)

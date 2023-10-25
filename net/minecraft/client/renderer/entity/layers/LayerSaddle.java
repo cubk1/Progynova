@@ -3,11 +3,11 @@ package net.minecraft.client.renderer.entity.layers;
 import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.renderer.entity.RenderPig;
 import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class LayerSaddle implements LayerRenderer<EntityPig>
 {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/pig/pig_saddle.png");
+    private static final 图像位置 TEXTURE = new 图像位置("textures/entity/pig/pig_saddle.png");
     private final RenderPig pigRenderer;
     private final ModelPig pigModel = new ModelPig(0.5F);
 

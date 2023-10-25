@@ -7,7 +7,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.data.TextureMetadataSection;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.EmissiveTextures;
 import net.optifine.shaders.ShadersTex;
 import org.apache.logging.log4j.LogManager;
@@ -16,13 +16,13 @@ import org.apache.logging.log4j.Logger;
 public class SimpleTexture extends AbstractTexture
 {
     private static final Logger logger = LogManager.getLogger();
-    protected final ResourceLocation textureLocation;
-    public ResourceLocation locationEmissive;
+    protected final 图像位置 textureLocation;
+    public 图像位置 locationEmissive;
     public boolean isEmissive;
 
-    public SimpleTexture(ResourceLocation textureResourceLocation)
+    public SimpleTexture(图像位置 texture图像位置)
     {
-        this.textureLocation = textureResourceLocation;
+        this.textureLocation = texture图像位置;
     }
 
     public void loadTexture(IResourceManager resourceManager) throws IOException

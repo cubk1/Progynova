@@ -11,7 +11,7 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.src.Config;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.shaders.ShadersTex;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,11 +19,11 @@ import org.apache.logging.log4j.Logger;
 public class LayeredColorMaskTexture extends AbstractTexture
 {
     private static final Logger LOG = LogManager.getLogger();
-    private final ResourceLocation textureLocation;
+    private final 图像位置 textureLocation;
     private final List<String> field_174949_h;
     private final List<EnumDyeColor> field_174950_i;
 
-    public LayeredColorMaskTexture(ResourceLocation textureLocationIn, List<String> p_i46101_2_, List<EnumDyeColor> p_i46101_3_)
+    public LayeredColorMaskTexture(图像位置 textureLocationIn, List<String> p_i46101_2_, List<EnumDyeColor> p_i46101_3_)
     {
         this.textureLocation = textureLocationIn;
         this.field_174949_h = p_i46101_2_;
@@ -56,7 +56,7 @@ public class LayeredColorMaskTexture extends AbstractTexture
 
                 if (s != null)
                 {
-                    InputStream inputstream = resourceManager.getResource(new ResourceLocation(s)).getInputStream();
+                    InputStream inputstream = resourceManager.getResource(new 图像位置(s)).getInputStream();
                     BufferedImage bufferedimage2 = TextureUtil.readBufferedImage(inputstream);
 
                     if (bufferedimage2.getWidth() == bufferedimage.getWidth() && bufferedimage2.getHeight() == bufferedimage.getHeight() && bufferedimage2.getType() == 6)

@@ -185,7 +185,7 @@ import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IChatComponent;
@@ -1761,7 +1761,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
             scoreplayerteam.setTeamName(packetIn.getDisplayName());
             scoreplayerteam.setNamePrefix(packetIn.getPrefix());
             scoreplayerteam.setNameSuffix(packetIn.getSuffix());
-            scoreplayerteam.setChatFormat(EnumChatFormatting.func_175744_a(packetIn.getColor()));
+            scoreplayerteam.setChatFormat(枚举聊天格式.func_175744_a(packetIn.getColor()));
             scoreplayerteam.func_98298_a(packetIn.getFriendlyFlags());
             Team.EnumVisible team$enumvisible = Team.EnumVisible.func_178824_a(packetIn.getNameTagVisibility());
 

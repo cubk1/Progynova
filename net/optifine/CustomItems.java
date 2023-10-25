@@ -33,7 +33,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.config.NbtTagValue;
 import net.optifine.render.Blender;
 import net.optifine.shaders.Shaders;
@@ -99,7 +99,7 @@ public class CustomItems
     {
         try
         {
-            ResourceLocation resourcelocation = new ResourceLocation(fileName);
+            图像位置 resourcelocation = new 图像位置(fileName);
             InputStream inputstream = Config.getResourceStream(resourcelocation);
 
             if (inputstream == null)
@@ -155,7 +155,7 @@ public class CustomItems
 
                 if (customitemproperties == null)
                 {
-                    ResourceLocation resourcelocation = new ResourceLocation(s);
+                    图像位置 resourcelocation = new 图像位置(s);
                     InputStream inputstream = rp.getInputStream(resourcelocation);
 
                     if (inputstream == null)
@@ -565,7 +565,7 @@ public class CustomItems
         list.add(cp);
     }
 
-    public static IBakedModel getCustomItemModel(ItemStack itemStack, IBakedModel model, ResourceLocation modelLocation, boolean fullModel)
+    public static IBakedModel getCustomItemModel(ItemStack itemStack, IBakedModel model, 图像位置 modelLocation, boolean fullModel)
     {
         if (!fullModel && model.isGui3d())
         {
@@ -599,7 +599,7 @@ public class CustomItems
         }
         else
         {
-            ResourceLocation resourcelocation = getCustomArmorLocation(itemStack, layer, overlay);
+            图像位置 resourcelocation = getCustomArmorLocation(itemStack, layer, overlay);
 
             if (resourcelocation == null)
             {
@@ -613,7 +613,7 @@ public class CustomItems
         }
     }
 
-    private static ResourceLocation getCustomArmorLocation(ItemStack itemStack, int layer, String overlay)
+    private static 图像位置 getCustomArmorLocation(ItemStack itemStack, int layer, String overlay)
     {
         CustomItemProperties customitemproperties = getCustomItemProperties(itemStack, 3);
 
@@ -650,7 +650,7 @@ public class CustomItems
                 }
 
                 String s1 = stringbuffer.toString();
-                ResourceLocation resourcelocation = (ResourceLocation)customitemproperties.mapTextureLocations.get(s1);
+                图像位置 resourcelocation = (图像位置)customitemproperties.mapTextureLocations.get(s1);
                 return resourcelocation == null ? customitemproperties.textureLocation : resourcelocation;
             }
         }

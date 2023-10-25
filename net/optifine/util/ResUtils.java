@@ -18,7 +18,7 @@ import net.minecraft.client.resources.AbstractResourcePack;
 import net.minecraft.client.resources.DefaultResourcePack;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class ResUtils
 {
@@ -102,7 +102,7 @@ public class ResUtils
             for (int i = 0; i < paths.length; ++i)
             {
                 String s = paths[i];
-                ResourceLocation resourcelocation = new ResourceLocation(s);
+                图像位置 resourcelocation = new 图像位置(s);
 
                 if (rp.resourceExists(resourcelocation))
                 {
@@ -207,7 +207,7 @@ public class ResUtils
 
     public static Properties readProperties(String path, String module)
     {
-        ResourceLocation resourcelocation = new ResourceLocation(path);
+        图像位置 resourcelocation = new 图像位置(path);
 
         try
         {

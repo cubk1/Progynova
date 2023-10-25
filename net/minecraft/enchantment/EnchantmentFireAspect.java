@@ -1,10 +1,10 @@
 package net.minecraft.enchantment;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentFireAspect extends Enchantment
 {
-    protected EnchantmentFireAspect(int enchID, ResourceLocation enchName, int enchWeight)
+    protected EnchantmentFireAspect(int enchID, 图像位置 enchName, int enchWeight)
     {
         super(enchID, enchName, enchWeight, EnumEnchantmentType.WEAPON);
         this.setName("fire");

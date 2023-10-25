@@ -82,7 +82,7 @@ public class 鬼NewChat extends 鬼
                                 drawRect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
                                 String s = chatline.getChatComponent().getFormattedText();
                                 光照状态经理.启用混合品();
-                                this.mc.fontRendererObj.drawStringWithShadow(s, (float)i2, (float)(j2 - 8), 16777215 + (l1 << 24));
+                                this.mc.字体渲染员.绘制纵梁带心理阴影(s, (float)i2, (float)(j2 - 8), 16777215 + (l1 << 24));
                                 光照状态经理.禁用希腊字母表的第1个字母();
                                 光照状态经理.禁用混合品();
                             }
@@ -92,7 +92,7 @@ public class 鬼NewChat extends 鬼
 
                 if (flag)
                 {
-                    int k2 = this.mc.fontRendererObj.FONT_HEIGHT;
+                    int k2 = this.mc.字体渲染员.FONT_HEIGHT;
                     光照状态经理.理解(-3.0F, 0.0F, 0.0F);
                     int l2 = k * k2 + k;
                     int i3 = j * k2 + j;
@@ -139,7 +139,7 @@ public class 鬼NewChat extends 鬼
         }
 
         int i = MathHelper.floor_float((float)this.getChatWidth() / this.getChatScale());
-        List<IChatComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, this.mc.fontRendererObj, false, false);
+        List<IChatComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, this.mc.字体渲染员, false, false);
         boolean flag = this.getChatOpen();
 
         for (IChatComponent ichatcomponent : list)
@@ -225,7 +225,7 @@ public class 鬼NewChat extends 鬼
         }
         else
         {
-            ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+            比例解析 scaledresolution = new 比例解析(this.mc);
             int i = scaledresolution.getScaleFactor();
             float f = this.getChatScale();
             int j = mouseX / i - 3;
@@ -237,9 +237,9 @@ public class 鬼NewChat extends 鬼
             {
                 int l = Math.min(this.getLineCount(), this.drawnChatLines.size());
 
-                if (j <= MathHelper.floor_float((float)this.getChatWidth() / this.getChatScale()) && k < this.mc.fontRendererObj.FONT_HEIGHT * l + l)
+                if (j <= MathHelper.floor_float((float)this.getChatWidth() / this.getChatScale()) && k < this.mc.字体渲染员.FONT_HEIGHT * l + l)
                 {
-                    int i1 = k / this.mc.fontRendererObj.FONT_HEIGHT + this.scrollPos;
+                    int i1 = k / this.mc.字体渲染员.FONT_HEIGHT + this.scrollPos;
 
                     if (i1 >= 0 && i1 < this.drawnChatLines.size())
                     {
@@ -250,7 +250,7 @@ public class 鬼NewChat extends 鬼
                         {
                             if (ichatcomponent instanceof 交流组分文本)
                             {
-                                j1 += this.mc.fontRendererObj.getStringWidth(GuiUtilRenderComponents.func_178909_a(((交流组分文本)ichatcomponent).getChatComponentText_TextValue(), false));
+                                j1 += this.mc.字体渲染员.getStringWidth(GuiUtilRenderComponents.func_178909_a(((交流组分文本)ichatcomponent).getChatComponentText_TextValue(), false));
 
                                 if (j1 > j)
                                 {

@@ -29,7 +29,7 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.src.Config;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.BetterGrass;
 import net.optifine.BetterSnow;
 import net.optifine.CustomBlockLayers;
@@ -227,7 +227,7 @@ public class TextureUtils
         return i;
     }
 
-    public static ITextureObject getTexture(ResourceLocation loc)
+    public static ITextureObject getTexture(图像位置 loc)
     {
         ITextureObject itextureobject = Config.getTextureManager().getTexture(loc);
 
@@ -323,11 +323,11 @@ public class TextureUtils
                 return null;
             }
         };
-        ResourceLocation resourcelocation = new ResourceLocation("optifine/TickableTextures");
+        图像位置 resourcelocation = new 图像位置("optifine/TickableTextures");
         Config.getTextureManager().loadTickableTexture(resourcelocation, itickabletextureobject);
     }
 
-    public static ResourceLocation fixResourceLocation(ResourceLocation loc, String basePath)
+    public static 图像位置 fixResourceLocation(图像位置 loc, String basePath)
     {
         if (!loc.getResourceDomain().equals("minecraft"))
         {
@@ -340,7 +340,7 @@ public class TextureUtils
 
             if (s1 != s)
             {
-                loc = new ResourceLocation(loc.getResourceDomain(), s1);
+                loc = new 图像位置(loc.getResourceDomain(), s1);
             }
 
             return loc;

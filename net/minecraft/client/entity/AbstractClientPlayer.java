@@ -15,7 +15,7 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -27,11 +27,11 @@ import net.optifine.reflect.Reflector;
 public abstract class AbstractClientPlayer extends EntityPlayer
 {
     private NetworkPlayerInfo playerInfo;
-    private ResourceLocation locationOfCape = null;
+    private 图像位置 locationOfCape = null;
     private long reloadCapeTimeMs = 0L;
     private boolean elytraOfCape = false;
     private String nameClear = null;
-    private static final ResourceLocation TEXTURE_ELYTRA = new ResourceLocation("textures/entity/elytra.png");
+    private static final 图像位置 TEXTURE_ELYTRA = new 图像位置("textures/entity/elytra.png");
 
     public AbstractClientPlayer(World worldIn, GameProfile playerProfile)
     {
@@ -74,13 +74,13 @@ public abstract class AbstractClientPlayer extends EntityPlayer
         return networkplayerinfo != null && networkplayerinfo.hasLocationSkin();
     }
 
-    public ResourceLocation getLocationSkin()
+    public 图像位置 getLocationSkin()
     {
         NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
         return networkplayerinfo == null ? DefaultPlayerSkin.getDefaultSkin(this.getUniqueID()) : networkplayerinfo.getLocationSkin();
     }
 
-    public ResourceLocation getLocationCape()
+    public 图像位置 getLocationCape()
     {
         if (!Config.isShowCapes())
         {
@@ -106,23 +106,23 @@ public abstract class AbstractClientPlayer extends EntityPlayer
         }
     }
 
-    public static ThreadDownloadImageData getDownloadImageSkin(ResourceLocation resourceLocationIn, String username)
+    public static ThreadDownloadImageData getDownloadImageSkin(图像位置 图像位置In, String username)
     {
         TextureManager texturemanager = 我的手艺.得到我的手艺().得到手感经理();
-        ITextureObject itextureobject = texturemanager.getTexture(resourceLocationIn);
+        ITextureObject itextureobject = texturemanager.getTexture(图像位置In);
 
         if (itextureobject == null)
         {
             itextureobject = new ThreadDownloadImageData((File)null, String.format("http://skins.minecraft.net/MinecraftSkins/%s.png", new Object[] {StringUtils.stripControlCodes(username)}), DefaultPlayerSkin.getDefaultSkin(getOfflineUUID(username)), new ImageBufferDownload());
-            texturemanager.loadTexture(resourceLocationIn, itextureobject);
+            texturemanager.loadTexture(图像位置In, itextureobject);
         }
 
         return (ThreadDownloadImageData)itextureobject;
     }
 
-    public static ResourceLocation getLocationSkin(String username)
+    public static 图像位置 getLocationSkin(String username)
     {
-        return new ResourceLocation("skins/" + StringUtils.stripControlCodes(username));
+        return new 图像位置("skins/" + StringUtils.stripControlCodes(username));
     }
 
     public String getSkinType()
@@ -173,19 +173,19 @@ public abstract class AbstractClientPlayer extends EntityPlayer
         return this.nameClear;
     }
 
-    public ResourceLocation getLocationOfCape()
+    public 图像位置 getLocationOfCape()
     {
         return this.locationOfCape;
     }
 
-    public void setLocationOfCape(ResourceLocation p_setLocationOfCape_1_)
+    public void setLocationOfCape(图像位置 p_setLocationOfCape_1_)
     {
         this.locationOfCape = p_setLocationOfCape_1_;
     }
 
     public boolean hasElytraCape()
     {
-        ResourceLocation resourcelocation = this.getLocationCape();
+        图像位置 resourcelocation = this.getLocationCape();
         return resourcelocation == null ? false : (resourcelocation == this.locationOfCape ? this.elytraOfCape : true);
     }
 

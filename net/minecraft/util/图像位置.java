@@ -2,24 +2,24 @@ package net.minecraft.util;
 
 import org.apache.commons.lang3.Validate;
 
-public class ResourceLocation
+public class 图像位置
 {
     protected final String resourceDomain;
     protected final String resourcePath;
 
-    protected ResourceLocation(int p_i45928_1_, String... resourceName)
+    protected 图像位置(int p_i45928_1_, String... resourceName)
     {
         this.resourceDomain = org.apache.commons.lang3.StringUtils.isEmpty(resourceName[0]) ? "minecraft" : resourceName[0].toLowerCase();
         this.resourcePath = resourceName[1];
         Validate.notNull(this.resourcePath);
     }
 
-    public ResourceLocation(String resourceName)
+    public 图像位置(String resourceName)
     {
         this(0, splitObjectName(resourceName));
     }
 
-    public ResourceLocation(String resourceDomainIn, String resourcePathIn)
+    public 图像位置(String resourceDomainIn, String resourcePathIn)
     {
         this(0, new String[] {resourceDomainIn, resourcePathIn});
     }
@@ -63,13 +63,13 @@ public class ResourceLocation
         {
             return true;
         }
-        else if (!(p_equals_1_ instanceof ResourceLocation))
+        else if (!(p_equals_1_ instanceof 图像位置))
         {
             return false;
         }
         else
         {
-            ResourceLocation resourcelocation = (ResourceLocation)p_equals_1_;
+            图像位置 resourcelocation = (图像位置)p_equals_1_;
             return this.resourceDomain.equals(resourcelocation.resourceDomain) && this.resourcePath.equals(resourcelocation.resourcePath);
         }
     }

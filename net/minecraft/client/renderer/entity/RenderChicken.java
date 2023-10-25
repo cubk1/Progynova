@@ -3,18 +3,18 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderChicken extends RenderLiving<EntityChicken>
 {
-    private static final ResourceLocation chickenTextures = new ResourceLocation("textures/entity/chicken.png");
+    private static final 图像位置 chickenTextures = new 图像位置("textures/entity/chicken.png");
 
     public RenderChicken(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
     {
         super(renderManagerIn, modelBaseIn, shadowSizeIn);
     }
 
-    protected ResourceLocation getEntityTexture(EntityChicken entity)
+    protected 图像位置 getEntityTexture(EntityChicken entity)
     {
         return chickenTextures;
     }

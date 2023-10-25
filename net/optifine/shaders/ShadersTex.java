@@ -25,7 +25,7 @@ import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -374,7 +374,7 @@ public class ShadersTex
         int[] aint1;
         aint[0] = aint1 = new int[width * height];
         boolean flag = false;
-        BufferedImage bufferedimage = readImage(updatingTextureMap.completeResourceLocation(new ResourceLocation(name)));
+        BufferedImage bufferedimage = readImage(updatingTextureMap.completeResourceLocation(new 图像位置(name)));
 
         if (bufferedimage != null)
         {
@@ -398,7 +398,7 @@ public class ShadersTex
         return aint;
     }
 
-    public static BufferedImage readImage(ResourceLocation resLoc)
+    public static BufferedImage readImage(图像位置 resLoc)
     {
         try
         {
@@ -752,7 +752,7 @@ public class ShadersTex
         光照状态经理.setActiveTexture(33984);
     }
 
-    public static ResourceLocation getNSMapLocation(ResourceLocation location, String mapName)
+    public static 图像位置 getNSMapLocation(图像位置 location, String mapName)
     {
         if (location == null)
         {
@@ -763,11 +763,11 @@ public class ShadersTex
             String s = location.getResourcePath();
             String[] astring = s.split(".png");
             String s1 = astring[0];
-            return new ResourceLocation(location.getResourceDomain(), s1 + "_" + mapName + ".png");
+            return new 图像位置(location.getResourceDomain(), s1 + "_" + mapName + ".png");
         }
     }
 
-    public static void loadNSMap(IResourceManager manager, ResourceLocation location, int width, int height, int[] aint)
+    public static void loadNSMap(IResourceManager manager, 图像位置 location, int width, int height, int[] aint)
     {
         if (Shaders.configNormalMap)
         {
@@ -780,7 +780,7 @@ public class ShadersTex
         }
     }
 
-    private static void loadNSMap1(IResourceManager manager, ResourceLocation location, int width, int height, int[] aint, int offset, int defaultColor)
+    private static void loadNSMap1(IResourceManager manager, 图像位置 location, int width, int height, int[] aint, int offset, int defaultColor)
     {
         if (!loadNSMapFile(manager, location, width, height, aint, offset))
         {
@@ -788,7 +788,7 @@ public class ShadersTex
         }
     }
 
-    private static boolean loadNSMapFile(IResourceManager manager, ResourceLocation location, int width, int height, int[] aint, int offset)
+    private static boolean loadNSMapFile(IResourceManager manager, 图像位置 location, int width, int height, int[] aint, int offset)
     {
         if (location == null)
         {
@@ -822,7 +822,7 @@ public class ShadersTex
         }
     }
 
-    public static int loadSimpleTexture(int textureID, BufferedImage bufferedimage, boolean linear, boolean clamp, IResourceManager resourceManager, ResourceLocation location, MultiTexID multiTex)
+    public static int loadSimpleTexture(int textureID, BufferedImage bufferedimage, boolean linear, boolean clamp, IResourceManager resourceManager, 图像位置 location, MultiTexID multiTex)
     {
         int i = bufferedimage.getWidth();
         int j = bufferedimage.getHeight();
@@ -858,7 +858,7 @@ public class ShadersTex
             {
                 try
                 {
-                    ResourceLocation resourcelocation = new ResourceLocation(s);
+                    图像位置 resourcelocation = new 图像位置(s);
                     InputStream inputstream = manager.getResource(resourcelocation).getInputStream();
                     BufferedImage bufferedimage = ImageIO.read(inputstream);
 

@@ -15,17 +15,17 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerEnchantment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnchantmentNameParts;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.IWorldNameable;
 import net.minecraft.world.World;
 import org.lwjgl.util.glu.Project;
 
 public class 鬼Enchantment extends 鬼Container
 {
-    private static final ResourceLocation ENCHANTMENT_TABLE_GUI_TEXTURE = new ResourceLocation("textures/gui/container/enchanting_table.png");
-    private static final ResourceLocation ENCHANTMENT_TABLE_BOOK_TEXTURE = new ResourceLocation("textures/entity/enchanting_table_book.png");
+    private static final 图像位置 ENCHANTMENT_TABLE_GUI_TEXTURE = new 图像位置("textures/gui/container/enchanting_table.png");
+    private static final 图像位置 ENCHANTMENT_TABLE_BOOK_TEXTURE = new 图像位置("textures/entity/enchanting_table_book.png");
     private static final ModelBook MODEL_BOOK = new ModelBook();
     private final InventoryPlayer playerInventory;
     private Random random = new Random();
@@ -89,8 +89,8 @@ public class 鬼Enchantment extends 鬼Container
         光照状态经理.matrixMode(5889);
         光照状态经理.推黑客帝国();
         光照状态经理.loadIdentity();
-        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
-        光照状态经理.viewport((scaledresolution.getScaledWidth() - 320) / 2 * scaledresolution.getScaleFactor(), (scaledresolution.getScaledHeight() - 240) / 2 * scaledresolution.getScaleFactor(), 320 * scaledresolution.getScaleFactor(), 240 * scaledresolution.getScaleFactor());
+        比例解析 scaledresolution = new 比例解析(this.mc);
+        光照状态经理.viewport((scaledresolution.getScaledWidth() - 320) / 2 * scaledresolution.getScaleFactor(), (scaledresolution.得到高度() - 240) / 2 * scaledresolution.getScaleFactor(), 320 * scaledresolution.getScaleFactor(), 240 * scaledresolution.getScaleFactor());
         光照状态经理.理解(-0.34F, 0.23F, 0.0F);
         Project.gluPerspective(90.0F, 1.3333334F, 9.0F, 80.0F);
         float f = 1.0F;
@@ -195,8 +195,8 @@ public class 鬼Enchantment extends 鬼Container
                     i2 = 8453920;
                 }
 
-                fontrenderer = this.mc.fontRendererObj;
-                fontrenderer.drawStringWithShadow(s1, (float)(j1 + 86 - fontrenderer.getStringWidth(s1)), (float)(j + 16 + 19 * l + 7), i2);
+                fontrenderer = this.mc.字体渲染员;
+                fontrenderer.绘制纵梁带心理阴影(s1, (float)(j1 + 86 - fontrenderer.getStringWidth(s1)), (float)(j + 16 + 19 * l + 7), i2);
             }
         }
     }
@@ -220,7 +220,7 @@ public class 鬼Enchantment extends 鬼Container
                 if (l >= 0 && Enchantment.getEnchantmentById(l & 255) != null)
                 {
                     String s = Enchantment.getEnchantmentById(l & 255).getTranslatedName((l & 65280) >> 8);
-                    list.add(EnumChatFormatting.WHITE.toString() + EnumChatFormatting.ITALIC.toString() + I18n.format("container.enchant.clue", new Object[] {s}));
+                    list.add(枚举聊天格式.白的.toString() + 枚举聊天格式.ITALIC.toString() + I18n.format("container.enchant.clue", new Object[] {s}));
                 }
 
                 if (!flag)
@@ -232,7 +232,7 @@ public class 鬼Enchantment extends 鬼Container
 
                     if (this.mc.宇轩游玩者.experienceLevel < k)
                     {
-                        list.add(EnumChatFormatting.RED.toString() + "Level Requirement: " + this.container.enchantLevels[j]);
+                        list.add(枚举聊天格式.RED.toString() + "Level Requirement: " + this.container.enchantLevels[j]);
                     }
                     else
                     {
@@ -249,11 +249,11 @@ public class 鬼Enchantment extends 鬼Container
 
                         if (i >= i1)
                         {
-                            list.add(EnumChatFormatting.GRAY.toString() + "" + s1);
+                            list.add(枚举聊天格式.GRAY.toString() + "" + s1);
                         }
                         else
                         {
-                            list.add(EnumChatFormatting.RED.toString() + "" + s1);
+                            list.add(枚举聊天格式.RED.toString() + "" + s1);
                         }
 
                         if (i1 == 1)
@@ -265,7 +265,7 @@ public class 鬼Enchantment extends 鬼Container
                             s1 = I18n.format("container.enchant.level.many", new Object[] {Integer.valueOf(i1)});
                         }
 
-                        list.add(EnumChatFormatting.GRAY.toString() + "" + s1);
+                        list.add(枚举聊天格式.GRAY.toString() + "" + s1);
                     }
                 }
 

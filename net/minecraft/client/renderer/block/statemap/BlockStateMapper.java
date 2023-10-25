@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.Model图像位置;
 
 public class BlockStateMapper
 {
@@ -25,9 +25,9 @@ public class BlockStateMapper
         Collections.addAll(this.setBuiltInBlocks, p_178448_1_);
     }
 
-    public Map<IBlockState, ModelResourceLocation> putAllStateModelLocations()
+    public Map<IBlockState, Model图像位置> putAllStateModelLocations()
     {
-        Map<IBlockState, ModelResourceLocation> map = Maps.<IBlockState, ModelResourceLocation>newIdentityHashMap();
+        Map<IBlockState, Model图像位置> map = Maps.<IBlockState, Model图像位置>newIdentityHashMap();
 
         for (Block block : Block.blockRegistry)
         {

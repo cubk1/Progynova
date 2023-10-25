@@ -8,13 +8,13 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.shaders.Shaders;
 import org.lwjgl.opengl.GL11;
 
 public class TileEntityBeaconRenderer extends TileEntitySpecialRenderer<TileEntityBeacon>
 {
-    private static final ResourceLocation beaconBeam = new ResourceLocation("textures/entity/beacon_beam.png");
+    private static final 图像位置 beaconBeam = new 图像位置("textures/entity/beacon_beam.png");
 
     public void renderTileEntityAt(TileEntityBeacon te, double x, double y, double z, float partialTicks, int destroyStage)
     {

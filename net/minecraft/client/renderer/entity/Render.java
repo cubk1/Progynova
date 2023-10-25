@@ -19,7 +19,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.optifine.entity.model.IEntityRenderer;
 import net.optifine.shaders.Shaders;
@@ -27,12 +27,12 @@ import org.lwjgl.opengl.GL11;
 
 public abstract class Render<T extends Entity> implements IEntityRenderer
 {
-    private static final ResourceLocation shadowTextures = new ResourceLocation("textures/misc/shadow.png");
+    private static final 图像位置 shadowTextures = new 图像位置("textures/misc/shadow.png");
     protected final RenderManager renderManager;
     public float shadowSize;
     protected float shadowOpaque = 1.0F;
     private Class entityClass = null;
-    private ResourceLocation locationTextureCustom = null;
+    private 图像位置 locationTextureCustom = null;
 
     protected Render(RenderManager renderManager)
     {
@@ -74,11 +74,11 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
         this.renderLivingLabel(entityIn, str, x, y, z, 64);
     }
 
-    protected abstract ResourceLocation getEntityTexture(T entity);
+    protected abstract 图像位置 getEntityTexture(T entity);
 
     protected boolean bindEntityTexture(T entity)
     {
-        ResourceLocation resourcelocation = this.getEntityTexture(entity);
+        图像位置 resourcelocation = this.getEntityTexture(entity);
 
         if (this.locationTextureCustom != null)
         {
@@ -96,7 +96,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
         }
     }
 
-    public void bindTexture(ResourceLocation location)
+    public void bindTexture(图像位置 location)
     {
         this.renderManager.renderEngine.绑定手感(location);
     }
@@ -400,12 +400,12 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
         this.entityClass = p_setEntityClass_1_;
     }
 
-    public ResourceLocation getLocationTextureCustom()
+    public 图像位置 getLocationTextureCustom()
     {
         return this.locationTextureCustom;
     }
 
-    public void setLocationTextureCustom(ResourceLocation p_setLocationTextureCustom_1_)
+    public void setLocationTextureCustom(图像位置 p_setLocationTextureCustom_1_)
     {
         this.locationTextureCustom = p_setLocationTextureCustom_1_;
     }

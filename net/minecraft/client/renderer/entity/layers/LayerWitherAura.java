@@ -5,11 +5,11 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.RenderWither;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class LayerWitherAura implements LayerRenderer<EntityWither>
 {
-    private static final ResourceLocation WITHER_ARMOR = new ResourceLocation("textures/entity/wither/wither_armor.png");
+    private static final 图像位置 WITHER_ARMOR = new 图像位置("textures/entity/wither/wither_armor.png");
     private final RenderWither witherRenderer;
     private final ModelWither witherModel = new ModelWither(0.5F);
 
@@ -26,7 +26,7 @@ public class LayerWitherAura implements LayerRenderer<EntityWither>
             this.witherRenderer.bindTexture(WITHER_ARMOR);
             光照状态经理.matrixMode(5890);
             光照状态经理.loadIdentity();
-            float f = (float)entitylivingbaseIn.ticksExisted + partialTicks;
+            float f = (float)entitylivingbaseIn.已存在的刻度 + partialTicks;
             float f1 = MathHelper.cos(f * 0.02F) * 3.0F;
             float f2 = f * 0.01F;
             光照状态经理.理解(f1, f2, 0.0F);

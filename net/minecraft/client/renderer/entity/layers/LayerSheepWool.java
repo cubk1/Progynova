@@ -6,12 +6,12 @@ import net.minecraft.client.renderer.entity.RenderSheep;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.CustomColors;
 
 public class LayerSheepWool implements LayerRenderer<EntitySheep>
 {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/sheep/sheep_fur.png");
+    private static final 图像位置 TEXTURE = new 图像位置("textures/entity/sheep/sheep_fur.png");
     private final RenderSheep sheepRenderer;
     public ModelSheep1 sheepModel = new ModelSheep1();
 
@@ -29,11 +29,11 @@ public class LayerSheepWool implements LayerRenderer<EntitySheep>
             if (entitylivingbaseIn.hasCustomName() && "jeb_".equals(entitylivingbaseIn.getCustomNameTag()))
             {
                 int i1 = 25;
-                int i = entitylivingbaseIn.ticksExisted / 25 + entitylivingbaseIn.getEntityId();
+                int i = entitylivingbaseIn.已存在的刻度 / 25 + entitylivingbaseIn.getEntityId();
                 int j = EnumDyeColor.values().length;
                 int k = i % j;
                 int l = (i + 1) % j;
-                float f = ((float)(entitylivingbaseIn.ticksExisted % 25) + partialTicks) / 25.0F;
+                float f = ((float)(entitylivingbaseIn.已存在的刻度 % 25) + partialTicks) / 25.0F;
                 float[] afloat1 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(k));
                 float[] afloat2 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(l));
 

@@ -41,7 +41,7 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelManager;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.Model图像位置;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.EntityLivingBase;
@@ -54,11 +54,11 @@ import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.Config;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3i;
 import net.optifine.CustomColors;
 import net.optifine.CustomItems;
@@ -69,12 +69,12 @@ import net.optifine.shaders.ShadersRender;
 
 public class RenderItem implements IResourceManagerReloadListener
 {
-    private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+    private static final 图像位置 RES_ITEM_GLINT = new 图像位置("textures/misc/enchanted_item_glint.png");
     private boolean notRenderingEffectsInGUI = true;
     public float zLevel;
     private final ItemModelMesher itemModelMesher;
     private final TextureManager textureManager;
-    private ModelResourceLocation modelLocation = null;
+    private Model图像位置 modelLocation = null;
     private boolean renderItemGui = false;
     public ModelManager modelManager = null;
     private boolean renderModelHasEmissive = false;
@@ -109,7 +109,7 @@ public class RenderItem implements IResourceManagerReloadListener
 
     protected void registerItem(Item itm, int subType, String identifier)
     {
-        this.itemModelMesher.register(itm, subType, new ModelResourceLocation(identifier, "inventory"));
+        this.itemModelMesher.register(itm, subType, new Model图像位置(identifier, "inventory"));
     }
 
     protected void registerBlock(Block blk, int subType, String identifier)
@@ -380,11 +380,11 @@ public class RenderItem implements IResourceManagerReloadListener
             {
                 EntityPlayer entityplayer = (EntityPlayer)entityToRenderFor;
                 Item item = stack.getItem();
-                ModelResourceLocation modelresourcelocation = null;
+                Model图像位置 modelresourcelocation = null;
 
                 if (item == Items.fishing_rod && entityplayer.fishEntity != null)
                 {
-                    modelresourcelocation = new ModelResourceLocation("fishing_rod_cast", "inventory");
+                    modelresourcelocation = new Model图像位置("fishing_rod_cast", "inventory");
                 }
                 else if (item == Items.bow && entityplayer.getItemInUse() != null)
                 {
@@ -392,20 +392,20 @@ public class RenderItem implements IResourceManagerReloadListener
 
                     if (i >= 18)
                     {
-                        modelresourcelocation = new ModelResourceLocation("bow_pulling_2", "inventory");
+                        modelresourcelocation = new Model图像位置("bow_pulling_2", "inventory");
                     }
                     else if (i > 13)
                     {
-                        modelresourcelocation = new ModelResourceLocation("bow_pulling_1", "inventory");
+                        modelresourcelocation = new Model图像位置("bow_pulling_1", "inventory");
                     }
                     else if (i > 0)
                     {
-                        modelresourcelocation = new ModelResourceLocation("bow_pulling_0", "inventory");
+                        modelresourcelocation = new Model图像位置("bow_pulling_0", "inventory");
                     }
                 }
                 else if (Reflector.ForgeItem_getModel.exists())
                 {
-                    modelresourcelocation = (ModelResourceLocation)Reflector.call(item, Reflector.ForgeItem_getModel, new Object[] {stack, entityplayer, Integer.valueOf(entityplayer.getItemInUseCount())});
+                    modelresourcelocation = (Model图像位置)Reflector.call(item, Reflector.ForgeItem_getModel, new Object[] {stack, entityplayer, Integer.valueOf(entityplayer.getItemInUseCount())});
                 }
 
                 if (modelresourcelocation != null)
@@ -580,13 +580,13 @@ public class RenderItem implements IResourceManagerReloadListener
 
                 if (text == null && stack.stackSize < 1)
                 {
-                    s = EnumChatFormatting.RED + String.valueOf(stack.stackSize);
+                    s = 枚举聊天格式.RED + String.valueOf(stack.stackSize);
                 }
 
                 光照状态经理.disableLighting();
                 光照状态经理.禁用纵深();
                 光照状态经理.禁用混合品();
-                fr.drawStringWithShadow(s, (float)(xPosition + 19 - 2 - fr.getStringWidth(s)), (float)(yPosition + 6 + 3), 16777215);
+                fr.绘制纵梁带心理阴影(s, (float)(xPosition + 19 - 2 - fr.getStringWidth(s)), (float)(yPosition + 6 + 3), 16777215);
                 光照状态经理.enableLighting();
                 光照状态经理.启用纵深();
                 光照状态经理.启用混合品();
@@ -1098,9 +1098,9 @@ public class RenderItem implements IResourceManagerReloadListener
         this.registerItem(Items.nether_wart, "nether_wart");
         this.itemModelMesher.register(Items.potionitem, new ItemMeshDefinition()
         {
-            public ModelResourceLocation getModelLocation(ItemStack stack)
+            public Model图像位置 getModelLocation(ItemStack stack)
             {
-                return ItemPotion.isSplash(stack.getMetadata()) ? new ModelResourceLocation("bottle_splash", "inventory") : new ModelResourceLocation("bottle_drinkable", "inventory");
+                return ItemPotion.isSplash(stack.getMetadata()) ? new Model图像位置("bottle_splash", "inventory") : new Model图像位置("bottle_drinkable", "inventory");
             }
         });
         this.registerItem(Items.glass_bottle, "glass_bottle");
@@ -1114,9 +1114,9 @@ public class RenderItem implements IResourceManagerReloadListener
         this.registerItem(Items.speckled_melon, "speckled_melon");
         this.itemModelMesher.register(Items.spawn_egg, new ItemMeshDefinition()
         {
-            public ModelResourceLocation getModelLocation(ItemStack stack)
+            public Model图像位置 getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation("spawn_egg", "inventory");
+                return new Model图像位置("spawn_egg", "inventory");
             }
         });
         this.registerItem(Items.experience_bottle, "experience_bottle");
@@ -1153,9 +1153,9 @@ public class RenderItem implements IResourceManagerReloadListener
         this.registerItem(Items.name_tag, "name_tag");
         this.itemModelMesher.register(Items.banner, new ItemMeshDefinition()
         {
-            public ModelResourceLocation getModelLocation(ItemStack stack)
+            public Model图像位置 getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation("banner", "inventory");
+                return new Model图像位置("banner", "inventory");
             }
         });
         this.registerItem(Items.record_13, "record_13");
@@ -1174,16 +1174,16 @@ public class RenderItem implements IResourceManagerReloadListener
         this.registerItem(Items.prismarine_crystals, "prismarine_crystals");
         this.itemModelMesher.register(Items.enchanted_book, new ItemMeshDefinition()
         {
-            public ModelResourceLocation getModelLocation(ItemStack stack)
+            public Model图像位置 getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation("enchanted_book", "inventory");
+                return new Model图像位置("enchanted_book", "inventory");
             }
         });
         this.itemModelMesher.register(Items.filled_map, new ItemMeshDefinition()
         {
-            public ModelResourceLocation getModelLocation(ItemStack stack)
+            public Model图像位置 getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation("filled_map", "inventory");
+                return new Model图像位置("filled_map", "inventory");
             }
         });
         this.registerBlock(Blocks.command_block, "command_block");

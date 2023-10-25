@@ -1464,7 +1464,7 @@ public abstract class World implements IBlockAccess
 
             try
             {
-                ++entity.ticksExisted;
+                ++entity.已存在的刻度;
                 entity.onUpdate();
             }
             catch (Throwable throwable2)
@@ -1698,7 +1698,7 @@ public abstract class World implements IBlockAccess
 
             if (forceUpdate && entityIn.addedToChunk)
             {
-                ++entityIn.ticksExisted;
+                ++entityIn.已存在的刻度;
 
                 if (entityIn.ridingEntity != null)
                 {

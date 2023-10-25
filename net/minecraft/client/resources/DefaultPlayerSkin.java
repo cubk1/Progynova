@@ -1,19 +1,19 @@
 package net.minecraft.client.resources;
 
 import java.util.UUID;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class DefaultPlayerSkin
 {
-    private static final ResourceLocation TEXTURE_STEVE = new ResourceLocation("textures/entity/steve.png");
-    private static final ResourceLocation TEXTURE_ALEX = new ResourceLocation("textures/entity/alex.png");
+    private static final 图像位置 TEXTURE_STEVE = new 图像位置("textures/entity/steve.png");
+    private static final 图像位置 TEXTURE_ALEX = new 图像位置("textures/entity/alex.png");
 
-    public static ResourceLocation getDefaultSkinLegacy()
+    public static 图像位置 getDefaultSkinLegacy()
     {
         return TEXTURE_STEVE;
     }
 
-    public static ResourceLocation getDefaultSkin(UUID playerUUID)
+    public static 图像位置 getDefaultSkin(UUID playerUUID)
     {
         return isSlimSkin(playerUUID) ? TEXTURE_ALEX : TEXTURE_STEVE;
     }

@@ -58,7 +58,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.optifine.CustomBlockLayers;
@@ -1144,7 +1144,7 @@ public class Shaders
             }
         }
 
-        ResourceLocation resourcelocation = new ResourceLocation(s);
+        图像位置 resourcelocation = new 图像位置(s);
         CustomTextureLocation customtexturelocation = new CustomTextureLocation(textureUnit, resourcelocation, i);
         return customtexturelocation;
     }
@@ -3586,7 +3586,7 @@ public class Shaders
 
         if (mapBlockToEntityData.isEmpty())
         {
-            for (ResourceLocation resourcelocation : Block.blockRegistry.getKeys())
+            for (图像位置 resourcelocation : Block.blockRegistry.getKeys())
             {
                 Block block = (Block)Block.blockRegistry.getObject(resourcelocation);
                 int i = Block.blockRegistry.getIDForObject(block);

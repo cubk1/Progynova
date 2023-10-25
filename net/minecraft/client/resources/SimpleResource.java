@@ -10,32 +10,32 @@ import java.io.Reader;
 import java.util.Map;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.IMetadataSerializer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.IOUtils;
 
 public class SimpleResource implements IResource
 {
     private final Map<String, IMetadataSection> mapMetadataSections = Maps.<String, IMetadataSection>newHashMap();
     private final String resourcePackName;
-    private final ResourceLocation srResourceLocation;
+    private final 图像位置 sr图像位置;
     private final InputStream resourceInputStream;
     private final InputStream mcmetaInputStream;
     private final IMetadataSerializer srMetadataSerializer;
     private boolean mcmetaJsonChecked;
     private JsonObject mcmetaJson;
 
-    public SimpleResource(String resourcePackNameIn, ResourceLocation srResourceLocationIn, InputStream resourceInputStreamIn, InputStream mcmetaInputStreamIn, IMetadataSerializer srMetadataSerializerIn)
+    public SimpleResource(String resourcePackNameIn, 图像位置 sr图像位置In, InputStream resourceInputStreamIn, InputStream mcmetaInputStreamIn, IMetadataSerializer srMetadataSerializerIn)
     {
         this.resourcePackName = resourcePackNameIn;
-        this.srResourceLocation = srResourceLocationIn;
+        this.sr图像位置 = sr图像位置In;
         this.resourceInputStream = resourceInputStreamIn;
         this.mcmetaInputStream = mcmetaInputStreamIn;
         this.srMetadataSerializer = srMetadataSerializerIn;
     }
 
-    public ResourceLocation getResourceLocation()
+    public 图像位置 getResourceLocation()
     {
-        return this.srResourceLocation;
+        return this.sr图像位置;
     }
 
     public InputStream getInputStream()
@@ -102,14 +102,14 @@ public class SimpleResource implements IResource
         {
             SimpleResource simpleresource = (SimpleResource)p_equals_1_;
 
-            if (this.srResourceLocation != null)
+            if (this.sr图像位置 != null)
             {
-                if (!this.srResourceLocation.equals(simpleresource.srResourceLocation))
+                if (!this.sr图像位置.equals(simpleresource.sr图像位置))
                 {
                     return false;
                 }
             }
-            else if (simpleresource.srResourceLocation != null)
+            else if (simpleresource.sr图像位置 != null)
             {
                 return false;
             }
@@ -133,7 +133,7 @@ public class SimpleResource implements IResource
     public int hashCode()
     {
         int i = this.resourcePackName != null ? this.resourcePackName.hashCode() : 0;
-        i = 31 * i + (this.srResourceLocation != null ? this.srResourceLocation.hashCode() : 0);
+        i = 31 * i + (this.sr图像位置 != null ? this.sr图像位置.hashCode() : 0);
         return i;
     }
 }

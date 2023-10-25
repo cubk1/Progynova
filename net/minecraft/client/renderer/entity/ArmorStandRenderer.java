@@ -7,11 +7,11 @@ import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerCustomHead;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class ArmorStandRenderer extends RendererLivingEntity<EntityArmorStand>
 {
-    public static final ResourceLocation TEXTURE_ARMOR_STAND = new ResourceLocation("textures/entity/armorstand/wood.png");
+    public static final 图像位置 TEXTURE_ARMOR_STAND = new 图像位置("textures/entity/armorstand/wood.png");
 
     public ArmorStandRenderer(RenderManager p_i46195_1_)
     {
@@ -29,7 +29,7 @@ public class ArmorStandRenderer extends RendererLivingEntity<EntityArmorStand>
         this.addLayer(new LayerCustomHead(this.getMainModel().bipedHead));
     }
 
-    protected ResourceLocation getEntityTexture(EntityArmorStand entity)
+    protected 图像位置 getEntityTexture(EntityArmorStand entity)
     {
         return TEXTURE_ARMOR_STAND;
     }

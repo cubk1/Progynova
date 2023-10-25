@@ -18,7 +18,7 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.util.JsonBlendingMode;
 import net.minecraft.client.util.JsonException;
 import net.minecraft.util.JsonUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,7 +49,7 @@ public class ShaderManager
     public ShaderManager(IResourceManager resourceManager, String programName) throws JsonException, IOException
     {
         JsonParser jsonparser = new JsonParser();
-        ResourceLocation resourcelocation = new ResourceLocation("shaders/program/" + programName + ".json");
+        图像位置 resourcelocation = new 图像位置("shaders/program/" + programName + ".json");
         this.programFilename = programName;
         InputStream inputstream = null;
 

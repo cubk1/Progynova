@@ -17,7 +17,7 @@ import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.entity.Entity;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.IBlockAccess;
 import net.optifine.override.PlayerControllerOF;
 import net.optifine.util.PropertiesOrdered;
@@ -30,7 +30,7 @@ public class CustomGuis
     private static CustomGuiProperties[][] guiProperties = (CustomGuiProperties[][])null;
     public static boolean isChristmas = isChristmas();
 
-    public static ResourceLocation getTextureLocation(ResourceLocation loc)
+    public static 图像位置 getTextureLocation(图像位置 loc)
     {
         if (guiProperties == null)
         {
@@ -144,7 +144,7 @@ public class CustomGuis
         }
     }
 
-    private static ResourceLocation getTexturePos(CustomGuiProperties.EnumContainer container, BlockPos pos, IBlockAccess blockAccess, ResourceLocation loc, 鬼Screen screen)
+    private static 图像位置 getTexturePos(CustomGuiProperties.EnumContainer container, BlockPos pos, IBlockAccess blockAccess, 图像位置 loc, 鬼Screen screen)
     {
         CustomGuiProperties[] acustomguiproperties = guiProperties[container.ordinal()];
 
@@ -168,7 +168,7 @@ public class CustomGuis
         }
     }
 
-    private static ResourceLocation getTextureEntity(CustomGuiProperties.EnumContainer container, Entity entity, IBlockAccess blockAccess, ResourceLocation loc)
+    private static 图像位置 getTextureEntity(CustomGuiProperties.EnumContainer container, Entity entity, IBlockAccess blockAccess, 图像位置 loc)
     {
         CustomGuiProperties[] acustomguiproperties = guiProperties[container.ordinal()];
 
@@ -251,7 +251,7 @@ public class CustomGuis
 
             try
             {
-                ResourceLocation resourcelocation = new ResourceLocation(s);
+                图像位置 resourcelocation = new 图像位置(s);
                 InputStream inputstream = rp.getInputStream(resourcelocation);
 
                 if (inputstream == null)

@@ -9,11 +9,11 @@ import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderPainting extends Render<EntityPainting>
 {
-    private static final ResourceLocation KRISTOFFER_PAINTING_TEXTURE = new ResourceLocation("textures/painting/paintings_kristoffer_zetterstrand.png");
+    private static final 图像位置 KRISTOFFER_PAINTING_TEXTURE = new 图像位置("textures/painting/paintings_kristoffer_zetterstrand.png");
 
     public RenderPainting(RenderManager renderManagerIn)
     {
@@ -36,7 +36,7 @@ public class RenderPainting extends Render<EntityPainting>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityPainting entity)
+    protected 图像位置 getEntityTexture(EntityPainting entity)
     {
         return KRISTOFFER_PAINTING_TEXTURE;
     }

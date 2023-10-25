@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IJsonSerializable;
 import net.minecraft.util.StatCollector;
@@ -87,7 +87,7 @@ public class Achievement extends StatBase
     public IChatComponent getStatName()
     {
         IChatComponent ichatcomponent = super.getStatName();
-        ichatcomponent.getChatStyle().setColor(this.getSpecial() ? EnumChatFormatting.DARK_PURPLE : EnumChatFormatting.GREEN);
+        ichatcomponent.getChatStyle().setColor(this.getSpecial() ? 枚举聊天格式.DARK_PURPLE : 枚举聊天格式.GREEN);
         return ichatcomponent;
     }
 

@@ -3,7 +3,7 @@ package net.minecraft.client.gui;
 import net.minecraft.client.我的手艺;
 import net.minecraft.util.MathHelper;
 
-public class ScaledResolution
+public class 比例解析
 {
     private final double scaledWidthD;
     private final double scaledHeightD;
@@ -11,7 +11,7 @@ public class ScaledResolution
     private int scaledHeight;
     private int scaleFactor;
 
-    public ScaledResolution(我的手艺 p_i46445_1_)
+    public 比例解析(我的手艺 p_i46445_1_)
     {
         this.scaledWidth = p_i46445_1_.displayWidth;
         this.scaledHeight = p_i46445_1_.displayHeight;
@@ -45,7 +45,7 @@ public class ScaledResolution
         return this.scaledWidth;
     }
 
-    public int getScaledHeight()
+    public int 得到高度()
     {
         return this.scaledHeight;
     }

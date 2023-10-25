@@ -37,7 +37,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MovementInput;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import rip.liyuxuan.event.implement.宇轩の玩家更新事件;
@@ -617,7 +617,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
             if (this.timeInPortal == 0.0F)
             {
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("portal.trigger"), this.rand.nextFloat() * 0.4F + 0.8F));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.create(new 图像位置("portal.trigger"), this.rand.nextFloat() * 0.4F + 0.8F));
             }
 
             this.timeInPortal += 0.0125F;

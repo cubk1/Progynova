@@ -8,12 +8,12 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 
 public class RenderMinecart<T extends EntityMinecart> extends Render<T>
 {
-    private static final ResourceLocation minecartTextures = new ResourceLocation("textures/entity/minecart.png");
+    private static final 图像位置 minecartTextures = new 图像位置("textures/entity/minecart.png");
     protected ModelBase modelMinecart = new ModelMinecart();
 
     public RenderMinecart(RenderManager renderManagerIn)
@@ -105,7 +105,7 @@ public class RenderMinecart<T extends EntityMinecart> extends Render<T>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(T entity)
+    protected 图像位置 getEntityTexture(T entity)
     {
         return minecartTextures;
     }

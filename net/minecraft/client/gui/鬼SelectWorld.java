@@ -8,7 +8,7 @@ import java.util.Date;
 import net.minecraft.client.AnvilConverterException;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.ISaveHandler;
@@ -298,7 +298,7 @@ public class 鬼SelectWorld extends 鬼Screen implements GuiYesNoCallback
 
                 if (saveformatcomparator.isHardcoreModeEnabled())
                 {
-                    s2 = EnumChatFormatting.DARK_RED + I18n.format("gameMode.hardcore", new Object[0]) + EnumChatFormatting.RESET;
+                    s2 = 枚举聊天格式.DARK_RED + I18n.format("gameMode.hardcore", new Object[0]) + 枚举聊天格式.RESET;
                 }
 
                 if (saveformatcomparator.getCheatsEnabled())

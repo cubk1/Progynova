@@ -14,7 +14,7 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.src.Config;
 import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.SmartAnimations;
 import net.optifine.shaders.Shaders;
 import net.optifine.util.CounterInt;
@@ -72,9 +72,9 @@ public class TextureAtlasSprite
         }
     }
 
-    protected static TextureAtlasSprite makeAtlasSprite(ResourceLocation spriteResourceLocation)
+    protected static TextureAtlasSprite makeAtlasSprite(图像位置 sprite图像位置)
     {
-        String s = spriteResourceLocation.toString();
+        String s = sprite图像位置.toString();
         return (TextureAtlasSprite)(locationNameClock.equals(s) ? new TextureClock(s) : (locationNameCompass.equals(s) ? new TextureCompass(s) : new TextureAtlasSprite(s)));
     }
 
@@ -560,12 +560,12 @@ public class TextureAtlasSprite
         return "TextureAtlasSprite{name=\'" + this.iconName + '\'' + ", frameCount=" + this.framesTextureData.size() + ", rotated=" + this.rotated + ", x=" + this.originX + ", y=" + this.originY + ", height=" + this.height + ", width=" + this.width + ", u0=" + this.minU + ", u1=" + this.maxU + ", v0=" + this.minV + ", v1=" + this.maxV + '}';
     }
 
-    public boolean hasCustomLoader(IResourceManager p_hasCustomLoader_1_, ResourceLocation p_hasCustomLoader_2_)
+    public boolean hasCustomLoader(IResourceManager p_hasCustomLoader_1_, 图像位置 p_hasCustomLoader_2_)
     {
         return false;
     }
 
-    public boolean load(IResourceManager p_load_1_, ResourceLocation p_load_2_)
+    public boolean load(IResourceManager p_load_1_, 图像位置 p_load_2_)
     {
         return true;
     }
@@ -731,7 +731,7 @@ public class TextureAtlasSprite
         if (Shaders.configNormalMap)
         {
             String s = this.iconName + "_n";
-            ResourceLocation resourcelocation = new ResourceLocation(s);
+            图像位置 resourcelocation = new 图像位置(s);
             resourcelocation = Config.getTextureMap().completeResourceLocation(resourcelocation);
 
             if (Config.hasResource(resourcelocation))
@@ -746,7 +746,7 @@ public class TextureAtlasSprite
         if (Shaders.configSpecularMap)
         {
             String s1 = this.iconName + "_s";
-            ResourceLocation resourcelocation1 = new ResourceLocation(s1);
+            图像位置 resourcelocation1 = new 图像位置(s1);
             resourcelocation1 = Config.getTextureMap().completeResourceLocation(resourcelocation1);
 
             if (Config.hasResource(resourcelocation1))

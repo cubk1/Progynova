@@ -11,13 +11,13 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderDragon extends RenderLiving<EntityDragon>
 {
-    private static final ResourceLocation enderDragonCrystalBeamTextures = new ResourceLocation("textures/entity/endercrystal/endercrystal_beam.png");
-    private static final ResourceLocation enderDragonExplodingTextures = new ResourceLocation("textures/entity/enderdragon/dragon_exploding.png");
-    private static final ResourceLocation enderDragonTextures = new ResourceLocation("textures/entity/enderdragon/dragon.png");
+    private static final 图像位置 enderDragonCrystalBeamTextures = new 图像位置("textures/entity/endercrystal/endercrystal_beam.png");
+    private static final 图像位置 enderDragonExplodingTextures = new 图像位置("textures/entity/enderdragon/dragon_exploding.png");
+    private static final 图像位置 enderDragonTextures = new 图像位置("textures/entity/enderdragon/dragon.png");
     protected ModelDragon modelDragon;
 
     public RenderDragon(RenderManager renderManagerIn)
@@ -112,8 +112,8 @@ public class RenderDragon extends RenderLiving<EntityDragon>
         光照状态经理.disableCull();
         this.bindTexture(enderDragonCrystalBeamTextures);
         光照状态经理.shadeModel(7425);
-        float f7 = 0.0F - ((float)dragon.ticksExisted + p_180574_8_) * 0.01F;
-        float f8 = MathHelper.sqrt_float(f2 * f2 + f3 * f3 + f4 * f4) / 32.0F - ((float)dragon.ticksExisted + p_180574_8_) * 0.01F;
+        float f7 = 0.0F - ((float)dragon.已存在的刻度 + p_180574_8_) * 0.01F;
+        float f8 = MathHelper.sqrt_float(f2 * f2 + f3 * f3 + f4 * f4) / 32.0F - ((float)dragon.已存在的刻度 + p_180574_8_) * 0.01F;
         worldrenderer.begin(5, DefaultVertexFormats.POSITION_TEX_COLOR);
         int i = 8;
 
@@ -133,7 +133,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
         光照状态经理.流行音乐黑客帝国();
     }
 
-    protected ResourceLocation getEntityTexture(EntityDragon entity)
+    protected 图像位置 getEntityTexture(EntityDragon entity)
     {
         return enderDragonTextures;
     }

@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class FontUtils
 {
-    public static Properties readFontProperties(ResourceLocation locationFontTexture)
+    public static Properties readFontProperties(图像位置 locationFontTexture)
     {
         String s = locationFontTexture.getResourcePath();
         Properties properties = new PropertiesOrdered();
@@ -25,7 +25,7 @@ public class FontUtils
 
             try
             {
-                ResourceLocation resourcelocation = new ResourceLocation(locationFontTexture.getResourceDomain(), s2);
+                图像位置 resourcelocation = new 图像位置(locationFontTexture.getResourceDomain(), s2);
                 InputStream inputstream = Config.getResourceStream(Config.getResourceManager(), resourcelocation);
 
                 if (inputstream == null)
@@ -131,7 +131,7 @@ public class FontUtils
         }
     }
 
-    public static ResourceLocation getHdFontLocation(ResourceLocation fontLoc)
+    public static 图像位置 getHdFontLocation(图像位置 fontLoc)
     {
         if (!Config.isCustomFonts())
         {
@@ -159,7 +159,7 @@ public class FontUtils
             {
                 s = s.substring(s1.length());
                 s = s2 + s;
-                ResourceLocation resourcelocation = new ResourceLocation(fontLoc.getResourceDomain(), s);
+                图像位置 resourcelocation = new 图像位置(fontLoc.getResourceDomain(), s);
                 return Config.hasResource(Config.getResourceManager(), resourcelocation) ? resourcelocation : fontLoc;
             }
         }

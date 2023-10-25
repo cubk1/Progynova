@@ -19,7 +19,7 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.optifine.reflect.Reflector;
 import net.optifine.reflect.ReflectorRaw;
@@ -102,7 +102,7 @@ public class RandomEntities
         randomTileEntity.setTileEntity((TileEntity)null);
     }
 
-    public static ResourceLocation getTextureLocation(ResourceLocation loc)
+    public static 图像位置 getTextureLocation(图像位置 loc)
     {
         if (!active)
         {
@@ -114,7 +114,7 @@ public class RandomEntities
         }
         else
         {
-            ResourceLocation name;
+            图像位置 name;
 
             try
             {
@@ -132,7 +132,7 @@ public class RandomEntities
 
                     if (!s.startsWith("textures/entity/") && !s.startsWith("textures/painting/"))
                     {
-                        ResourceLocation resourcelocation2 = loc;
+                        图像位置 resourcelocation2 = loc;
                         return resourcelocation2;
                     }
 
@@ -140,11 +140,11 @@ public class RandomEntities
 
                     if (randomentityproperties == null)
                     {
-                        ResourceLocation resourcelocation3 = loc;
+                        图像位置 resourcelocation3 = loc;
                         return resourcelocation3;
                     }
 
-                    ResourceLocation resourcelocation1 = randomentityproperties.getTextureLocation(loc, irandomentity);
+                    图像位置 resourcelocation1 = randomentityproperties.getTextureLocation(loc, irandomentity);
                     return resourcelocation1;
                 }
 
@@ -205,10 +205,10 @@ public class RandomEntities
         }
     }
 
-    private static RandomEntityProperties makeProperties(ResourceLocation loc, boolean mcpatcher)
+    private static RandomEntityProperties makeProperties(图像位置 loc, boolean mcpatcher)
     {
         String s = loc.getResourcePath();
-        ResourceLocation resourcelocation = getLocationProperties(loc, mcpatcher);
+        图像位置 resourcelocation = getLocationProperties(loc, mcpatcher);
 
         if (resourcelocation != null)
         {
@@ -220,11 +220,11 @@ public class RandomEntities
             }
         }
 
-        ResourceLocation[] aresourcelocation = getLocationsVariants(loc, mcpatcher);
+        图像位置[] aresourcelocation = getLocationsVariants(loc, mcpatcher);
         return aresourcelocation == null ? null : new RandomEntityProperties(s, aresourcelocation);
     }
 
-    private static RandomEntityProperties parseProperties(ResourceLocation propLoc, ResourceLocation resLoc)
+    private static RandomEntityProperties parseProperties(图像位置 propLoc, 图像位置 resLoc)
     {
         try
         {
@@ -258,9 +258,9 @@ public class RandomEntities
         }
     }
 
-    private static ResourceLocation getLocationProperties(ResourceLocation loc, boolean mcpatcher)
+    private static 图像位置 getLocationProperties(图像位置 loc, boolean mcpatcher)
     {
-        ResourceLocation resourcelocation = getLocationRandom(loc, mcpatcher);
+        图像位置 resourcelocation = getLocationRandom(loc, mcpatcher);
 
         if (resourcelocation == null)
         {
@@ -272,7 +272,7 @@ public class RandomEntities
             String s1 = resourcelocation.getResourcePath();
             String s2 = StrUtils.removeSuffix(s1, ".png");
             String s3 = s2 + ".properties";
-            ResourceLocation resourcelocation1 = new ResourceLocation(s, s3);
+            图像位置 resourcelocation1 = new 图像位置(s, s3);
 
             if (Config.hasResource(resourcelocation1))
             {
@@ -288,14 +288,14 @@ public class RandomEntities
                 }
                 else
                 {
-                    ResourceLocation resourcelocation2 = new ResourceLocation(s, s4 + ".properties");
+                    图像位置 resourcelocation2 = new 图像位置(s, s4 + ".properties");
                     return Config.hasResource(resourcelocation2) ? resourcelocation2 : null;
                 }
             }
         }
     }
 
-    protected static ResourceLocation getLocationRandom(ResourceLocation loc, boolean mcpatcher)
+    protected static 图像位置 getLocationRandom(图像位置 loc, boolean mcpatcher)
     {
         String s = loc.getResourceDomain();
         String s1 = loc.getResourcePath();
@@ -315,7 +315,7 @@ public class RandomEntities
         else
         {
             String s4 = StrUtils.replacePrefix(s1, s2, s3);
-            return new ResourceLocation(s, s4);
+            return new 图像位置(s, s4);
         }
     }
 
@@ -324,7 +324,7 @@ public class RandomEntities
         return pathRandom.startsWith("optifine/random/") ? StrUtils.replacePrefix(pathRandom, "optifine/random/", "textures/") : (pathRandom.startsWith("mcpatcher/mob/") ? StrUtils.replacePrefix(pathRandom, "mcpatcher/mob/", "textures/entity/") : null);
     }
 
-    protected static ResourceLocation getLocationIndexed(ResourceLocation loc, int index)
+    protected static 图像位置 getLocationIndexed(图像位置 loc, int index)
     {
         if (loc == null)
         {
@@ -344,7 +344,7 @@ public class RandomEntities
                 String s1 = s.substring(0, i);
                 String s2 = s.substring(i);
                 String s3 = s1 + index + s2;
-                ResourceLocation resourcelocation = new ResourceLocation(loc.getResourceDomain(), s3);
+                图像位置 resourcelocation = new 图像位置(loc.getResourceDomain(), s3);
                 return resourcelocation;
             }
         }
@@ -366,11 +366,11 @@ public class RandomEntities
         return null;
     }
 
-    private static ResourceLocation[] getLocationsVariants(ResourceLocation loc, boolean mcpatcher)
+    private static 图像位置[] getLocationsVariants(图像位置 loc, boolean mcpatcher)
     {
         List list = new ArrayList();
         list.add(loc);
-        ResourceLocation resourcelocation = getLocationRandom(loc, mcpatcher);
+        图像位置 resourcelocation = getLocationRandom(loc, mcpatcher);
 
         if (resourcelocation == null)
         {
@@ -381,7 +381,7 @@ public class RandomEntities
             for (int i = 1; i < ((List)list).size() + 10; ++i)
             {
                 int j = i + 1;
-                ResourceLocation resourcelocation1 = getLocationIndexed(resourcelocation, j);
+                图像位置 resourcelocation1 = getLocationIndexed(resourcelocation, j);
 
                 if (Config.hasResource(resourcelocation1))
                 {
@@ -395,7 +395,7 @@ public class RandomEntities
             }
             else
             {
-                ResourceLocation[] aresourcelocation = (ResourceLocation[])((ResourceLocation[])list.toArray(new ResourceLocation[list.size()]));
+                图像位置[] aresourcelocation = (图像位置[])((图像位置[])list.toArray(new 图像位置[list.size()]));
                 dbg(loc.getResourcePath() + ", variants: " + aresourcelocation.length);
                 return aresourcelocation;
             }
@@ -433,7 +433,7 @@ public class RandomEntities
             if (!set.contains(s1))
             {
                 set.add(s1);
-                ResourceLocation resourcelocation = new ResourceLocation(s1);
+                图像位置 resourcelocation = new 图像位置(s1);
 
                 if (Config.hasResource(resourcelocation))
                 {

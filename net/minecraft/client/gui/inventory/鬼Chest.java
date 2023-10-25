@@ -4,11 +4,11 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼Chest extends 鬼Container
 {
-    private static final ResourceLocation CHEST_GUI_TEXTURE = new ResourceLocation("textures/gui/container/generic_54.png");
+    private static final 图像位置 CHEST_GUI_TEXTURE = new 图像位置("textures/gui/container/generic_54.png");
     private IInventory upperChestInventory;
     private IInventory lowerChestInventory;
     private int inventoryRows;

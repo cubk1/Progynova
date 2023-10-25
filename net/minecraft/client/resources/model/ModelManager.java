@@ -8,7 +8,7 @@ import net.minecraft.util.IRegistry;
 
 public class ModelManager implements IResourceManagerReloadListener
 {
-    private IRegistry<ModelResourceLocation, IBakedModel> modelRegistry;
+    private IRegistry<Model图像位置, IBakedModel> modelRegistry;
     private final TextureMap texMap;
     private final BlockModelShapes modelProvider;
     private IBakedModel defaultModel;
@@ -27,7 +27,7 @@ public class ModelManager implements IResourceManagerReloadListener
         this.modelProvider.reloadModels();
     }
 
-    public IBakedModel getModel(ModelResourceLocation modelLocation)
+    public IBakedModel getModel(Model图像位置 modelLocation)
     {
         if (modelLocation == null)
         {

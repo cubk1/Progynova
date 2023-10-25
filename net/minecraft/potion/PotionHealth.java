@@ -1,10 +1,10 @@
 package net.minecraft.potion;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class PotionHealth extends Potion
 {
-    public PotionHealth(int potionID, ResourceLocation location, boolean badEffect, int potionColor)
+    public PotionHealth(int potionID, 图像位置 location, boolean badEffect, int potionColor)
     {
         super(potionID, location, badEffect, potionColor);
     }

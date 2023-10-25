@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.C17PacketCustomPayload;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
@@ -25,7 +25,7 @@ import org.apache.logging.log4j.Logger;
 public class 鬼Merchant extends 鬼Container
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final ResourceLocation MERCHANT_GUI_TEXTURE = new ResourceLocation("textures/gui/container/villager.png");
+    private static final 图像位置 MERCHANT_GUI_TEXTURE = new 图像位置("textures/gui/container/villager.png");
     private IMerchant merchant;
     private 鬼Merchant.MerchantButton nextButton;
     private 鬼Merchant.MerchantButton previousButton;

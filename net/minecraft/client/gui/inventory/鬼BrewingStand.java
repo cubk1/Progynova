@@ -4,11 +4,11 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerBrewingStand;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼BrewingStand extends 鬼Container
 {
-    private static final ResourceLocation brewingStandGuiTextures = new ResourceLocation("textures/gui/container/brewing_stand.png");
+    private static final 图像位置 brewingStandGuiTextures = new 图像位置("textures/gui/container/brewing_stand.png");
     private final InventoryPlayer playerInventory;
     private IInventory tileBrewingStand;
 

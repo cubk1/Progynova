@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.config.ConnectedParser;
 import net.optifine.reflect.Reflector;
 import net.optifine.reflect.ReflectorForge;
@@ -87,7 +87,7 @@ public class EntityAliases
 
             try
             {
-                ResourceLocation resourcelocation = new ResourceLocation(s, "shaders/entity.properties");
+                图像位置 resourcelocation = new 图像位置(s, "shaders/entity.properties");
                 InputStream inputstream = Config.getResourceStream(resourcelocation);
                 loadEntityAliases(inputstream, resourcelocation.toString(), listEntityAliases);
             }

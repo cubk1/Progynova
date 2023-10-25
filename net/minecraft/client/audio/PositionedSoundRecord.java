@@ -1,30 +1,30 @@
 package net.minecraft.client.audio;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class PositionedSoundRecord extends PositionedSound
 {
-    public static PositionedSoundRecord create(ResourceLocation soundResource, float pitch)
+    public static PositionedSoundRecord create(图像位置 soundResource, float pitch)
     {
         return new PositionedSoundRecord(soundResource, 0.25F, pitch, false, 0, ISound.AttenuationType.NONE, 0.0F, 0.0F, 0.0F);
     }
 
-    public static PositionedSoundRecord create(ResourceLocation soundResource)
+    public static PositionedSoundRecord create(图像位置 soundResource)
     {
         return new PositionedSoundRecord(soundResource, 1.0F, 1.0F, false, 0, ISound.AttenuationType.NONE, 0.0F, 0.0F, 0.0F);
     }
 
-    public static PositionedSoundRecord create(ResourceLocation soundResource, float xPosition, float yPosition, float zPosition)
+    public static PositionedSoundRecord create(图像位置 soundResource, float xPosition, float yPosition, float zPosition)
     {
         return new PositionedSoundRecord(soundResource, 4.0F, 1.0F, false, 0, ISound.AttenuationType.LINEAR, xPosition, yPosition, zPosition);
     }
 
-    public PositionedSoundRecord(ResourceLocation soundResource, float volume, float pitch, float xPosition, float yPosition, float zPosition)
+    public PositionedSoundRecord(图像位置 soundResource, float volume, float pitch, float xPosition, float yPosition, float zPosition)
     {
         this(soundResource, volume, pitch, false, 0, ISound.AttenuationType.LINEAR, xPosition, yPosition, zPosition);
     }
 
-    private PositionedSoundRecord(ResourceLocation soundResource, float volume, float pitch, boolean repeat, int repeatDelay, ISound.AttenuationType attenuationType, float xPosition, float yPosition, float zPosition)
+    private PositionedSoundRecord(图像位置 soundResource, float volume, float pitch, boolean repeat, int repeatDelay, ISound.AttenuationType attenuationType, float xPosition, float yPosition, float zPosition)
     {
         super(soundResource);
         this.volume = volume;

@@ -2,11 +2,11 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelEnderMite;
 import net.minecraft.entity.monster.EntityEndermite;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderEndermite extends RenderLiving<EntityEndermite>
 {
-    private static final ResourceLocation ENDERMITE_TEXTURES = new ResourceLocation("textures/entity/endermite.png");
+    private static final 图像位置 ENDERMITE_TEXTURES = new 图像位置("textures/entity/endermite.png");
 
     public RenderEndermite(RenderManager renderManagerIn)
     {
@@ -18,7 +18,7 @@ public class RenderEndermite extends RenderLiving<EntityEndermite>
         return 180.0F;
     }
 
-    protected ResourceLocation getEntityTexture(EntityEndermite entity)
+    protected 图像位置 getEntityTexture(EntityEndermite entity)
     {
         return ENDERMITE_TEXTURES;
     }

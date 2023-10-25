@@ -3,18 +3,18 @@ package net.optifine.player;
 import java.awt.image.BufferedImage;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.ImageBufferDownload;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class CapeImageBuffer extends ImageBufferDownload
 {
     private AbstractClientPlayer player;
-    private ResourceLocation resourceLocation;
+    private 图像位置 图像位置;
     private boolean elytraOfCape;
 
-    public CapeImageBuffer(AbstractClientPlayer player, ResourceLocation resourceLocation)
+    public CapeImageBuffer(AbstractClientPlayer player, 图像位置 图像位置)
     {
         this.player = player;
-        this.resourceLocation = resourceLocation;
+        this.图像位置 = 图像位置;
     }
 
     public BufferedImage parseUserSkin(BufferedImage imageRaw)
@@ -28,7 +28,7 @@ public class CapeImageBuffer extends ImageBufferDownload
     {
         if (this.player != null)
         {
-            this.player.setLocationOfCape(this.resourceLocation);
+            this.player.setLocationOfCape(this.图像位置);
             this.player.setElytraOfCape(this.elytraOfCape);
         }
 

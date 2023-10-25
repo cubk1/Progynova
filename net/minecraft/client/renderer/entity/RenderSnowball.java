@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderSnowball<T extends Entity> extends Render<T>
 {
@@ -40,7 +40,7 @@ public class RenderSnowball<T extends Entity> extends Render<T>
         return new ItemStack(this.field_177084_a, 1, 0);
     }
 
-    protected ResourceLocation getEntityTexture(Entity entity)
+    protected 图像位置 getEntityTexture(Entity entity)
     {
         return TextureMap.locationBlocksTexture;
     }

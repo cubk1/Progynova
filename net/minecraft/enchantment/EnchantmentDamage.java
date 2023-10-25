@@ -7,7 +7,7 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentDamage extends Enchantment
 {
@@ -17,7 +17,7 @@ public class EnchantmentDamage extends Enchantment
     private static final int[] thresholdEnchantability = new int[] {20, 20, 20};
     public final int damageType;
 
-    public EnchantmentDamage(int enchID, ResourceLocation enchName, int enchWeight, int classification)
+    public EnchantmentDamage(int enchID, 图像位置 enchName, int enchWeight, int classification)
     {
         super(enchID, enchName, enchWeight, EnumEnchantmentType.WEAPON);
         this.damageType = classification;

@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.util.TextureUtils;
 
 public class NaturalTextures
@@ -25,7 +25,7 @@ public class NaturalTextures
 
             try
             {
-                ResourceLocation resourcelocation = new ResourceLocation(s);
+                图像位置 resourcelocation = new 图像位置(s);
 
                 if (!Config.hasResource(resourcelocation))
                 {
@@ -84,7 +84,7 @@ public class NaturalTextures
                                 }
                                 else
                                 {
-                                    if (flag && !Config.isFromDefaultResourcePack(new ResourceLocation("textures/blocks/" + s3 + ".png")))
+                                    if (flag && !Config.isFromDefaultResourcePack(new 图像位置("textures/blocks/" + s3 + ".png")))
                                     {
                                         return;
                                     }

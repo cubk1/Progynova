@@ -14,8 +14,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.network.play.client.C16PacketClientStatus;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.枚举聊天格式;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.Charsets;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,8 +23,8 @@ import org.apache.logging.log4j.Logger;
 public class 鬼WinGame extends 鬼Screen
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final ResourceLocation MINECRAFT_LOGO = new ResourceLocation("textures/gui/title/minecraft.png");
-    private static final ResourceLocation VIGNETTE_TEXTURE = new ResourceLocation("textures/misc/vignette.png");
+    private static final 图像位置 MINECRAFT_LOGO = new 图像位置("textures/gui/title/minecraft.png");
+    private static final 图像位置 VIGNETTE_TEXTURE = new 图像位置("textures/misc/vignette.png");
     private int field_146581_h;
     private List<String> field_146582_i;
     private int field_146579_r;
@@ -80,9 +80,9 @@ public class 鬼WinGame extends 鬼Screen
             try
             {
                 String s = "";
-                String s1 = "" + EnumChatFormatting.WHITE + EnumChatFormatting.OBFUSCATED + EnumChatFormatting.GREEN + EnumChatFormatting.AQUA;
+                String s1 = "" + 枚举聊天格式.白的 + 枚举聊天格式.OBFUSCATED + 枚举聊天格式.GREEN + 枚举聊天格式.AQUA;
                 int i = 274;
-                InputStream inputstream = this.mc.getResourceManager().getResource(new ResourceLocation("texts/end.txt")).getInputStream();
+                InputStream inputstream = this.mc.getResourceManager().getResource(new 图像位置("texts/end.txt")).getInputStream();
                 BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(inputstream, Charsets.UTF_8));
                 Random random = new Random(8124371L);
 
@@ -91,14 +91,14 @@ public class 鬼WinGame extends 鬼Screen
                     String s2;
                     String s3;
 
-                    for (s = s.replaceAll("PLAYERNAME", this.mc.getSession().getUsername()); s.contains(s1); s = s2 + EnumChatFormatting.WHITE + EnumChatFormatting.OBFUSCATED + "XXXXXXXX".substring(0, random.nextInt(4) + 3) + s3)
+                    for (s = s.replaceAll("PLAYERNAME", this.mc.getSession().getUsername()); s.contains(s1); s = s2 + 枚举聊天格式.白的 + 枚举聊天格式.OBFUSCATED + "XXXXXXXX".substring(0, random.nextInt(4) + 3) + s3)
                     {
                         int j = s.indexOf(s1);
                         s2 = s.substring(0, j);
                         s3 = s.substring(j + s1.length());
                     }
 
-                    this.field_146582_i.addAll(this.mc.fontRendererObj.listFormattedStringToWidth(s, i));
+                    this.field_146582_i.addAll(this.mc.字体渲染员.listFormattedStringToWidth(s, i));
                     this.field_146582_i.add("");
                 }
 
@@ -109,14 +109,14 @@ public class 鬼WinGame extends 鬼Screen
                     this.field_146582_i.add("");
                 }
 
-                inputstream = this.mc.getResourceManager().getResource(new ResourceLocation("texts/credits.txt")).getInputStream();
+                inputstream = this.mc.getResourceManager().getResource(new 图像位置("texts/credits.txt")).getInputStream();
                 bufferedreader = new BufferedReader(new InputStreamReader(inputstream, Charsets.UTF_8));
 
                 while ((s = bufferedreader.readLine()) != null)
                 {
                     s = s.replaceAll("PLAYERNAME", this.mc.getSession().getUsername());
                     s = s.replaceAll("\t", "    ");
-                    this.field_146582_i.addAll(this.mc.fontRendererObj.listFormattedStringToWidth(s, i));
+                    this.field_146582_i.addAll(this.mc.字体渲染员.listFormattedStringToWidth(s, i));
                     this.field_146582_i.add("");
                 }
 
@@ -198,12 +198,12 @@ public class 鬼WinGame extends 鬼Screen
 
                 if (s.startsWith("[C]"))
                 {
-                    this.fontRendererObj.drawStringWithShadow(s.substring(3), (float)(j + (i - this.fontRendererObj.getStringWidth(s.substring(3))) / 2), (float)l, 16777215);
+                    this.fontRendererObj.绘制纵梁带心理阴影(s.substring(3), (float)(j + (i - this.fontRendererObj.getStringWidth(s.substring(3))) / 2), (float)l, 16777215);
                 }
                 else
                 {
                     this.fontRendererObj.fontRandom.setSeed((long)i1 * 4238972211L + (long)(this.field_146581_h / 4));
-                    this.fontRendererObj.drawStringWithShadow(s, (float)j, (float)l, 16777215);
+                    this.fontRendererObj.绘制纵梁带心理阴影(s, (float)j, (float)l, 16777215);
                 }
             }
 

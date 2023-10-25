@@ -14,15 +14,15 @@ public class 释放剑气 extends 宇轩の模块 {
 
     @Override
     public void 开启时 () {
-        for (int i = 0; i < 36; ++i) {
-            drop(i);
+        for (int 宇轩 = 0; 宇轩 < 36; ++宇轩) {
+            不要了(宇轩);
         }
         开关();
         super.开启时();
     }
 
-    public void drop (int slot) {
-        我D世界.玩家控制者.windowClick(0, slot, 1, 4, 我D世界.宇轩游玩者);
+    public void 不要了(int 格) {
+        我D世界.玩家控制者.视窗点击(0, 格, 1, 4, 我D世界.宇轩游玩者);
     }
 
     @Override

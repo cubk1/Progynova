@@ -110,7 +110,7 @@ public class 鬼ScreenRealmsProxy extends 鬼Screen
 
     public void func_154319_c(String p_154319_1_, int p_154319_2_, int p_154319_3_, int p_154319_4_)
     {
-        this.fontRendererObj.drawStringWithShadow(p_154319_1_, (float)p_154319_2_, (float)p_154319_3_, p_154319_4_);
+        this.fontRendererObj.绘制纵梁带心理阴影(p_154319_1_, (float)p_154319_2_, (float)p_154319_3_, p_154319_4_);
     }
 
     public List<String> func_154323_a(String p_154323_1_, int p_154323_2_)

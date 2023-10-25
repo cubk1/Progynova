@@ -7,16 +7,16 @@ import net.minecraft.client.model.ModelHorse;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.texture.LayeredTexture;
 import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderHorse extends RenderLiving<EntityHorse>
 {
-    private static final Map<String, ResourceLocation> field_110852_a = Maps.<String, ResourceLocation>newHashMap();
-    private static final ResourceLocation whiteHorseTextures = new ResourceLocation("textures/entity/horse/horse_white.png");
-    private static final ResourceLocation muleTextures = new ResourceLocation("textures/entity/horse/mule.png");
-    private static final ResourceLocation donkeyTextures = new ResourceLocation("textures/entity/horse/donkey.png");
-    private static final ResourceLocation zombieHorseTextures = new ResourceLocation("textures/entity/horse/horse_zombie.png");
-    private static final ResourceLocation skeletonHorseTextures = new ResourceLocation("textures/entity/horse/horse_skeleton.png");
+    private static final Map<String, 图像位置> field_110852_a = Maps.<String, 图像位置>newHashMap();
+    private static final 图像位置 whiteHorseTextures = new 图像位置("textures/entity/horse/horse_white.png");
+    private static final 图像位置 muleTextures = new 图像位置("textures/entity/horse/mule.png");
+    private static final 图像位置 donkeyTextures = new 图像位置("textures/entity/horse/donkey.png");
+    private static final 图像位置 zombieHorseTextures = new 图像位置("textures/entity/horse/horse_zombie.png");
+    private static final 图像位置 skeletonHorseTextures = new 图像位置("textures/entity/horse/horse_skeleton.png");
 
     public RenderHorse(RenderManager rendermanagerIn, ModelHorse model, float shadowSizeIn)
     {
@@ -41,7 +41,7 @@ public class RenderHorse extends RenderLiving<EntityHorse>
         super.preRenderCallback(entitylivingbaseIn, partialTickTime);
     }
 
-    protected ResourceLocation getEntityTexture(EntityHorse entity)
+    protected 图像位置 getEntityTexture(EntityHorse entity)
     {
         if (!entity.func_110239_cn())
         {
@@ -70,7 +70,7 @@ public class RenderHorse extends RenderLiving<EntityHorse>
         }
     }
 
-    private ResourceLocation func_110848_b(EntityHorse horse)
+    private 图像位置 func_110848_b(EntityHorse horse)
     {
         String s = horse.getHorseTexture();
 
@@ -80,11 +80,11 @@ public class RenderHorse extends RenderLiving<EntityHorse>
         }
         else
         {
-            ResourceLocation resourcelocation = (ResourceLocation)field_110852_a.get(s);
+            图像位置 resourcelocation = (图像位置)field_110852_a.get(s);
 
             if (resourcelocation == null)
             {
-                resourcelocation = new ResourceLocation(s);
+                resourcelocation = new 图像位置(s);
                 我的手艺.得到我的手艺().得到手感经理().loadTexture(resourcelocation, new LayeredTexture(horse.getVariantTexturePaths()));
                 field_110852_a.put(s, resourcelocation);
             }

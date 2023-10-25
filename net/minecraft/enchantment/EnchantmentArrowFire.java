@@ -1,10 +1,10 @@
 package net.minecraft.enchantment;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentArrowFire extends Enchantment
 {
-    public EnchantmentArrowFire(int enchID, ResourceLocation enchName, int enchWeight)
+    public EnchantmentArrowFire(int enchID, 图像位置 enchName, int enchWeight)
     {
         super(enchID, enchName, enchWeight, EnumEnchantmentType.BOW);
         this.setName("arrowFire");

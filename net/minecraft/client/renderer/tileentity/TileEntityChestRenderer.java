@@ -7,16 +7,16 @@ import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class TileEntityChestRenderer extends TileEntitySpecialRenderer<TileEntityChest>
 {
-    private static final ResourceLocation textureTrappedDouble = new ResourceLocation("textures/entity/chest/trapped_double.png");
-    private static final ResourceLocation textureChristmasDouble = new ResourceLocation("textures/entity/chest/christmas_double.png");
-    private static final ResourceLocation textureNormalDouble = new ResourceLocation("textures/entity/chest/normal_double.png");
-    private static final ResourceLocation textureTrapped = new ResourceLocation("textures/entity/chest/trapped.png");
-    private static final ResourceLocation textureChristmas = new ResourceLocation("textures/entity/chest/christmas.png");
-    private static final ResourceLocation textureNormal = new ResourceLocation("textures/entity/chest/normal.png");
+    private static final 图像位置 textureTrappedDouble = new 图像位置("textures/entity/chest/trapped_double.png");
+    private static final 图像位置 textureChristmasDouble = new 图像位置("textures/entity/chest/christmas_double.png");
+    private static final 图像位置 textureNormalDouble = new 图像位置("textures/entity/chest/normal_double.png");
+    private static final 图像位置 textureTrapped = new 图像位置("textures/entity/chest/trapped.png");
+    private static final 图像位置 textureChristmas = new 图像位置("textures/entity/chest/christmas.png");
+    private static final 图像位置 textureNormal = new 图像位置("textures/entity/chest/normal.png");
     private ModelChest simpleChest = new ModelChest();
     private ModelChest largeChest = new ModelLargeChest();
     private boolean isChristmas;

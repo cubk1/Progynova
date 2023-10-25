@@ -500,12 +500,12 @@ public abstract class EntityPlayer extends EntityLivingBase
 
         if (this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL && this.worldObj.getGameRules().getBoolean("naturalRegeneration"))
         {
-            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0)
+            if (this.getHealth() < this.getMaxHealth() && this.已存在的刻度 % 20 == 0)
             {
                 this.heal(1.0F);
             }
 
-            if (this.foodStats.needFood() && this.ticksExisted % 10 == 0)
+            if (this.foodStats.needFood() && this.已存在的刻度 % 10 == 0)
             {
                 this.foodStats.setFoodLevel(this.foodStats.获取饥饿等级() + 1);
             }
@@ -1791,11 +1791,11 @@ public abstract class EntityPlayer extends EntityLivingBase
             this.experienceTotal = 0;
         }
 
-        if (levels > 0 && this.experienceLevel % 5 == 0 && (float)this.lastXPSound < (float)this.ticksExisted - 100.0F)
+        if (levels > 0 && this.experienceLevel % 5 == 0 && (float)this.lastXPSound < (float)this.已存在的刻度 - 100.0F)
         {
             float f = this.experienceLevel > 30 ? 1.0F : (float)this.experienceLevel / 30.0F;
             this.worldObj.playSoundAtEntity(this, "random.levelup", f * 0.75F, 1.0F);
-            this.lastXPSound = this.ticksExisted;
+            this.lastXPSound = this.已存在的刻度;
         }
     }
 

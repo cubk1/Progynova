@@ -8,12 +8,12 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.src.Config;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.CustomColors;
 
 public class RenderXPOrb extends Render<EntityXPOrb>
 {
-    private static final ResourceLocation experienceOrbTextures = new ResourceLocation("textures/entity/experience_orb.png");
+    private static final 图像位置 experienceOrbTextures = new 图像位置("textures/entity/experience_orb.png");
 
     public RenderXPOrb(RenderManager renderManagerIn)
     {
@@ -85,7 +85,7 @@ public class RenderXPOrb extends Render<EntityXPOrb>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityXPOrb entity)
+    protected 图像位置 getEntityTexture(EntityXPOrb entity)
     {
         return experienceOrbTextures;
     }

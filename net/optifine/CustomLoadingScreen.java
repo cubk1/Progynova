@@ -6,11 +6,11 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class CustomLoadingScreen
 {
-    private ResourceLocation locationTexture;
+    private 图像位置 locationTexture;
     private int scaleMode = 0;
     private int scale = 2;
     private boolean center;
@@ -19,7 +19,7 @@ public class CustomLoadingScreen
     private static final int SCALE_MODE_FULL = 1;
     private static final int SCALE_MODE_STRETCH = 2;
 
-    public CustomLoadingScreen(ResourceLocation locationTexture, int scaleMode, int scale, boolean center)
+    public CustomLoadingScreen(图像位置 locationTexture, int scaleMode, int scale, boolean center)
     {
         this.locationTexture = locationTexture;
         this.scaleMode = scaleMode;
@@ -29,7 +29,7 @@ public class CustomLoadingScreen
 
     public static CustomLoadingScreen parseScreen(String path, int dimId, Properties props)
     {
-        ResourceLocation resourcelocation = new ResourceLocation(path);
+        图像位置 resourcelocation = new 图像位置(path);
         int i = parseScaleMode(getProperty("scaleMode", dimId, props));
         int j = i == 0 ? 2 : 1;
         int k = parseScale(getProperty("scale", dimId, props), j);

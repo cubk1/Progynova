@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer>
 {
@@ -109,7 +109,7 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer>
         }
     }
 
-    protected ResourceLocation getEntityTexture(AbstractClientPlayer entity)
+    protected 图像位置 getEntityTexture(AbstractClientPlayer entity)
     {
         return entity.getLocationSkin();
     }

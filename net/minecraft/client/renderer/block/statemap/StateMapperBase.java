@@ -6,11 +6,11 @@ import java.util.Map.Entry;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.Model图像位置;
 
 public abstract class StateMapperBase implements IStateMapper
 {
-    protected Map<IBlockState, ModelResourceLocation> mapStateModelLocations = Maps.<IBlockState, ModelResourceLocation>newLinkedHashMap();
+    protected Map<IBlockState, Model图像位置> mapStateModelLocations = Maps.<IBlockState, Model图像位置>newLinkedHashMap();
 
     public String getPropertyString(Map<IProperty, Comparable> p_178131_1_)
     {
@@ -38,7 +38,7 @@ public abstract class StateMapperBase implements IStateMapper
         return stringbuilder.toString();
     }
 
-    public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block blockIn)
+    public Map<IBlockState, Model图像位置> putStateModelLocations(Block blockIn)
     {
         for (IBlockState iblockstate : blockIn.getBlockState().getValidStates())
         {
@@ -48,5 +48,5 @@ public abstract class StateMapperBase implements IStateMapper
         return this.mapStateModelLocations;
     }
 
-    protected abstract ModelResourceLocation getModelResourceLocation(IBlockState state);
+    protected abstract Model图像位置 getModelResourceLocation(IBlockState state);
 }

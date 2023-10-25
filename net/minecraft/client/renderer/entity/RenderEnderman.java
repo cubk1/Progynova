@@ -6,11 +6,11 @@ import net.minecraft.client.model.ModelEnderman;
 import net.minecraft.client.renderer.entity.layers.LayerEndermanEyes;
 import net.minecraft.client.renderer.entity.layers.LayerHeldBlock;
 import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderEnderman extends RenderLiving<EntityEnderman>
 {
-    private static final ResourceLocation endermanTextures = new ResourceLocation("textures/entity/enderman/enderman.png");
+    private static final 图像位置 endermanTextures = new 图像位置("textures/entity/enderman/enderman.png");
     private ModelEnderman endermanModel;
     private Random rnd = new Random();
 
@@ -37,7 +37,7 @@ public class RenderEnderman extends RenderLiving<EntityEnderman>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityEnderman entity)
+    protected 图像位置 getEntityTexture(EntityEnderman entity)
     {
         return endermanTextures;
     }

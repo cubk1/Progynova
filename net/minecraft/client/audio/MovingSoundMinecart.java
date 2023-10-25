@@ -2,7 +2,7 @@ package net.minecraft.client.audio;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class MovingSoundMinecart extends MovingSound
 {
@@ -11,7 +11,7 @@ public class MovingSoundMinecart extends MovingSound
 
     public MovingSoundMinecart(EntityMinecart minecartIn)
     {
-        super(new ResourceLocation("minecraft:minecart.base"));
+        super(new 图像位置("minecraft:minecart.base"));
         this.minecart = minecartIn;
         this.repeat = true;
         this.repeatDelay = 0;

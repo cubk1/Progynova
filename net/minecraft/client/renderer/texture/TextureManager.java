@@ -15,7 +15,7 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.src.Config;
 import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.CustomGuis;
 import net.optifine.EmissiveTextures;
 import net.optifine.RandomEntities;
@@ -26,19 +26,19 @@ import org.apache.logging.log4j.Logger;
 public class TextureManager implements ITickable, IResourceManagerReloadListener
 {
     private static final Logger logger = LogManager.getLogger();
-    private final Map<ResourceLocation, ITextureObject> mapTextureObjects = Maps.<ResourceLocation, ITextureObject>newHashMap();
+    private final Map<图像位置, ITextureObject> mapTextureObjects = Maps.<图像位置, ITextureObject>newHashMap();
     private final List<ITickable> listTickables = Lists.<ITickable>newArrayList();
     private final Map<String, Integer> mapTextureCounters = Maps.<String, Integer>newHashMap();
     private IResourceManager theResourceManager;
     private ITextureObject boundTexture;
-    private ResourceLocation boundTextureLocation;
+    private 图像位置 boundTextureLocation;
 
     public TextureManager(IResourceManager resourceManager)
     {
         this.theResourceManager = resourceManager;
     }
 
-    public void 绑定手感(ResourceLocation resource)
+    public void 绑定手感(图像位置 resource)
     {
         if (Config.isRandomEntities())
         {
@@ -76,7 +76,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         this.boundTextureLocation = resource;
     }
 
-    public boolean loadTickableTexture(ResourceLocation textureLocation, ITickableTextureObject textureObj)
+    public boolean loadTickableTexture(图像位置 textureLocation, ITickableTextureObject textureObj)
     {
         if (this.loadTexture(textureLocation, textureObj))
         {
@@ -89,7 +89,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         }
     }
 
-    public boolean loadTexture(ResourceLocation textureLocation, ITextureObject textureObj)
+    public boolean loadTexture(图像位置 textureLocation, ITextureObject textureObj)
     {
         boolean flag = true;
 
@@ -124,12 +124,12 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         return flag;
     }
 
-    public ITextureObject getTexture(ResourceLocation textureLocation)
+    public ITextureObject getTexture(图像位置 textureLocation)
     {
         return (ITextureObject)this.mapTextureObjects.get(textureLocation);
     }
 
-    public ResourceLocation getDynamicTextureLocation(String name, DynamicTexture texture)
+    public 图像位置 getDynamicTextureLocation(String name, DynamicTexture texture)
     {
         if (name.equals("logo"))
         {
@@ -148,7 +148,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         }
 
         this.mapTextureCounters.put(name, integer);
-        ResourceLocation resourcelocation = new ResourceLocation(String.format("dynamic/%s_%d", new Object[] {name, integer}));
+        图像位置 resourcelocation = new 图像位置(String.format("dynamic/%s_%d", new Object[] {name, integer}));
         this.loadTexture(resourcelocation, texture);
         return resourcelocation;
     }
@@ -161,7 +161,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         }
     }
 
-    public void deleteTexture(ResourceLocation textureLocation)
+    public void deleteTexture(图像位置 textureLocation)
     {
         ITextureObject itextureobject = this.getTexture(textureLocation);
 
@@ -180,7 +180,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
 
         while (iterator.hasNext())
         {
-            ResourceLocation resourcelocation = (ResourceLocation)iterator.next();
+            图像位置 resourcelocation = (图像位置)iterator.next();
             String s = resourcelocation.getResourcePath();
 
             if (s.startsWith("mcpatcher/") || s.startsWith("optifine/") || EmissiveTextures.isEmissive(resourcelocation))
@@ -201,8 +201,8 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
 
         for (Object o : new HashSet(this.mapTextureObjects.entrySet()))
         {
-            Entry<ResourceLocation, ITextureObject> entry = (Entry<ResourceLocation, ITextureObject>) o;
-            this.loadTexture((ResourceLocation)entry.getKey(), (ITextureObject)entry.getValue());
+            Entry<图像位置, ITextureObject> entry = (Entry<图像位置, ITextureObject>) o;
+            this.loadTexture((图像位置)entry.getKey(), (ITextureObject)entry.getValue());
         }
     }
 
@@ -210,8 +210,8 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
     {
         for (Object o : new HashSet(this.mapTextureObjects.entrySet()))
         {
-            Entry<ResourceLocation, ITextureObject> entry = (Entry<ResourceLocation, ITextureObject>) o;
-            ResourceLocation resourcelocation = (ResourceLocation)entry.getKey();
+            Entry<图像位置, ITextureObject> entry = (Entry<图像位置, ITextureObject>) o;
+            图像位置 resourcelocation = (图像位置)entry.getKey();
             ITextureObject itextureobject = (ITextureObject)entry.getValue();
 
             if (itextureobject instanceof LayeredColorMaskTexture)
@@ -226,7 +226,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         return this.boundTexture;
     }
 
-    public ResourceLocation getBoundTextureLocation()
+    public 图像位置 getBoundTextureLocation()
     {
         return this.boundTextureLocation;
     }

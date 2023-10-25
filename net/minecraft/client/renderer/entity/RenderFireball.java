@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.init.Items;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderFireball extends Render<EntityFireball>
 {
@@ -51,7 +51,7 @@ public class RenderFireball extends Render<EntityFireball>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityFireball entity)
+    protected 图像位置 getEntityTexture(EntityFireball entity)
     {
         return TextureMap.locationBlocksTexture;
     }

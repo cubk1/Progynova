@@ -8,18 +8,18 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.network.play.client.C18PacketSpectate;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class PlayerMenuObject implements ISpectatorMenuObject
 {
     private final GameProfile profile;
-    private final ResourceLocation resourceLocation;
+    private final 图像位置 图像位置;
 
     public PlayerMenuObject(GameProfile profileIn)
     {
         this.profile = profileIn;
-        this.resourceLocation = AbstractClientPlayer.getLocationSkin(profileIn.getName());
-        AbstractClientPlayer.getDownloadImageSkin(this.resourceLocation, profileIn.getName());
+        this.图像位置 = AbstractClientPlayer.getLocationSkin(profileIn.getName());
+        AbstractClientPlayer.getDownloadImageSkin(this.图像位置, profileIn.getName());
     }
 
     public void func_178661_a(SpectatorMenu menu)
@@ -34,7 +34,7 @@ public class PlayerMenuObject implements ISpectatorMenuObject
 
     public void func_178663_a(float p_178663_1_, int alpha)
     {
-        我的手艺.得到我的手艺().得到手感经理().绑定手感(this.resourceLocation);
+        我的手艺.得到我的手艺().得到手感经理().绑定手感(this.图像位置);
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, (float)alpha / 255.0F);
         鬼.drawScaledCustomSizeModalRect(2, 2, 8.0F, 8.0F, 8, 8, 12, 12, 64.0F, 64.0F);
         鬼.drawScaledCustomSizeModalRect(2, 2, 40.0F, 8.0F, 8, 8, 12, 12, 64.0F, 64.0F);

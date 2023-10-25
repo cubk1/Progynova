@@ -15,14 +15,14 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.lwjgl.input.Keyboard;
 
 public abstract class 鬼Container extends 鬼Screen
 {
-    protected static final ResourceLocation inventoryBackground = new ResourceLocation("textures/gui/container/inventory.png");
+    protected static final 图像位置 inventoryBackground = new 图像位置("textures/gui/container/inventory.png");
     protected int xSize = 176;
     protected int ySize = 166;
     public Container inventorySlots;
@@ -131,7 +131,7 @@ public abstract class 鬼Container extends 鬼Screen
 
                 if (itemstack.stackSize == 0)
                 {
-                    s = "" + EnumChatFormatting.YELLOW + "0";
+                    s = "" + 枚举聊天格式.YELLOW + "0";
                 }
             }
 
@@ -215,13 +215,13 @@ public abstract class 鬼Container extends 鬼Screen
 
                 if (itemstack.stackSize > itemstack.getMaxStackSize())
                 {
-                    s = EnumChatFormatting.YELLOW + "" + itemstack.getMaxStackSize();
+                    s = 枚举聊天格式.YELLOW + "" + itemstack.getMaxStackSize();
                     itemstack.stackSize = itemstack.getMaxStackSize();
                 }
 
                 if (itemstack.stackSize > slotIn.getItemStackLimit(itemstack))
                 {
-                    s = EnumChatFormatting.YELLOW + "" + slotIn.getItemStackLimit(itemstack);
+                    s = 枚举聊天格式.YELLOW + "" + slotIn.getItemStackLimit(itemstack);
                     itemstack.stackSize = slotIn.getItemStackLimit(itemstack);
                 }
             }
@@ -619,7 +619,7 @@ public abstract class 鬼Container extends 鬼Screen
             slotId = slotIn.slotNumber;
         }
 
-        this.mc.玩家控制者.windowClick(this.inventorySlots.windowId, slotId, clickedButton, clickType, this.mc.宇轩游玩者);
+        this.mc.玩家控制者.视窗点击(this.inventorySlots.windowId, slotId, clickedButton, clickType, this.mc.宇轩游玩者);
     }
 
     protected void keyTyped(char typedChar, int keyCode) throws IOException

@@ -10,7 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.CustomItems;
 import net.optifine.reflect.Reflector;
 import net.optifine.reflect.ReflectorForge;
@@ -19,7 +19,7 @@ import net.optifine.shaders.ShadersRender;
 
 public abstract class LayerArmorBase<T extends ModelBase> implements LayerRenderer<EntityLivingBase>
 {
-    protected static final ResourceLocation ENCHANTED_ITEM_GLINT_RES = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+    protected static final 图像位置 ENCHANTED_ITEM_GLINT_RES = new 图像位置("textures/misc/enchanted_item_glint.png");
     protected T modelLeggings;
     protected T modelArmor;
     private final RendererLivingEntity<?> renderer;
@@ -28,7 +28,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
     private float colorG = 1.0F;
     private float colorB = 1.0F;
     private boolean skipRenderGlint;
-    private static final Map<String, ResourceLocation> ARMOR_TEXTURE_RES_MAP = Maps.<String, ResourceLocation>newHashMap();
+    private static final Map<String, 图像位置> ARMOR_TEXTURE_RES_MAP = Maps.<String, 图像位置>newHashMap();
 
     public LayerArmorBase(RendererLivingEntity<?> rendererIn)
     {
@@ -157,7 +157,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
     {
         if (!Config.isShaders() || !Shaders.isShadowPass)
         {
-            float f = (float)entitylivingbaseIn.ticksExisted + partialTicks;
+            float f = (float)entitylivingbaseIn.已存在的刻度 + partialTicks;
             this.renderer.bindTexture(ENCHANTED_ITEM_GLINT_RES);
 
             if (Config.isShaders())
@@ -202,19 +202,19 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
         }
     }
 
-    private ResourceLocation getArmorResource(ItemArmor p_177181_1_, boolean p_177181_2_)
+    private 图像位置 getArmorResource(ItemArmor p_177181_1_, boolean p_177181_2_)
     {
         return this.getArmorResource(p_177181_1_, p_177181_2_, (String)null);
     }
 
-    private ResourceLocation getArmorResource(ItemArmor p_177178_1_, boolean p_177178_2_, String p_177178_3_)
+    private 图像位置 getArmorResource(ItemArmor p_177178_1_, boolean p_177178_2_, String p_177178_3_)
     {
         String s = String.format("textures/models/armor/%s_layer_%d%s.png", new Object[] {p_177178_1_.getArmorMaterial().getName(), Integer.valueOf(p_177178_2_ ? 2 : 1), p_177178_3_ == null ? "" : String.format("_%s", new Object[]{p_177178_3_})});
-        ResourceLocation resourcelocation = (ResourceLocation)ARMOR_TEXTURE_RES_MAP.get(s);
+        图像位置 resourcelocation = (图像位置)ARMOR_TEXTURE_RES_MAP.get(s);
 
         if (resourcelocation == null)
         {
-            resourcelocation = new ResourceLocation(s);
+            resourcelocation = new 图像位置(s);
             ARMOR_TEXTURE_RES_MAP.put(s, resourcelocation);
         }
 
@@ -230,7 +230,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
         return (T)p_getArmorModelHook_4_;
     }
 
-    public ResourceLocation getArmorResource(Entity p_getArmorResource_1_, ItemStack p_getArmorResource_2_, int p_getArmorResource_3_, String p_getArmorResource_4_)
+    public 图像位置 getArmorResource(Entity p_getArmorResource_1_, ItemStack p_getArmorResource_2_, int p_getArmorResource_3_, String p_getArmorResource_4_)
     {
         ItemArmor itemarmor = (ItemArmor)p_getArmorResource_2_.getItem();
         String s = itemarmor.getArmorMaterial().getName();
@@ -245,11 +245,11 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 
         String s2 = String.format("%s:textures/models/armor/%s_layer_%d%s.png", new Object[] {s1, s, Integer.valueOf(this.isSlotForLeggings(p_getArmorResource_3_) ? 2 : 1), p_getArmorResource_4_ == null ? "" : String.format("_%s", new Object[]{p_getArmorResource_4_})});
         s2 = Reflector.callString(Reflector.ForgeHooksClient_getArmorTexture, new Object[] {p_getArmorResource_1_, p_getArmorResource_2_, s2, Integer.valueOf(p_getArmorResource_3_), p_getArmorResource_4_});
-        ResourceLocation resourcelocation = (ResourceLocation)ARMOR_TEXTURE_RES_MAP.get(s2);
+        图像位置 resourcelocation = (图像位置)ARMOR_TEXTURE_RES_MAP.get(s2);
 
         if (resourcelocation == null)
         {
-            resourcelocation = new ResourceLocation(s2);
+            resourcelocation = new 图像位置(s2);
             ARMOR_TEXTURE_RES_MAP.put(s2, resourcelocation);
         }
 

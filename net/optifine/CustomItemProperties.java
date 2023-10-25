@@ -23,7 +23,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelManager;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.Model图像位置;
 import net.minecraft.client.resources.model.ModelRotation;
 import net.minecraft.client.resources.model.SimpleBakedModel;
 import net.minecraft.init.Items;
@@ -31,7 +31,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.src.Config;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.config.IParserInt;
 import net.optifine.config.NbtTagValue;
 import net.optifine.config.ParserEnchantmentId;
@@ -67,7 +67,7 @@ public class CustomItemProperties
     public int layer = 0;
     public float duration = 1.0F;
     public int weight = 0;
-    public ResourceLocation textureLocation = null;
+    public 图像位置 textureLocation = null;
     public Map mapTextureLocations = null;
     public TextureAtlasSprite sprite = null;
     public Map mapSprites = null;
@@ -773,7 +773,7 @@ public class CustomItemProperties
 
             if (this.type == 1)
             {
-                ResourceLocation resourcelocation = this.getSpriteLocation(this.textureLocation);
+                图像位置 resourcelocation = this.getSpriteLocation(this.textureLocation);
                 this.sprite = textureMap.registerSprite(resourcelocation);
             }
         }
@@ -786,12 +786,12 @@ public class CustomItemProperties
             for (String s : this.mapTextures.keySet())
             {
                 String s1 = (String)this.mapTextures.get(s);
-                ResourceLocation resourcelocation1 = this.getTextureLocation(s1);
+                图像位置 resourcelocation1 = this.getTextureLocation(s1);
                 this.mapTextureLocations.put(s, resourcelocation1);
 
                 if (this.type == 1)
                 {
-                    ResourceLocation resourcelocation2 = this.getSpriteLocation(resourcelocation1);
+                    图像位置 resourcelocation2 = this.getSpriteLocation(resourcelocation1);
                     TextureAtlasSprite textureatlassprite = textureMap.registerSprite(resourcelocation2);
                     this.mapSprites.put(s, textureatlassprite);
                 }
@@ -799,7 +799,7 @@ public class CustomItemProperties
         }
     }
 
-    private ResourceLocation getTextureLocation(String texName)
+    private 图像位置 getTextureLocation(String texName)
     {
         if (texName == null)
         {
@@ -807,7 +807,7 @@ public class CustomItemProperties
         }
         else
         {
-            ResourceLocation resourcelocation = new ResourceLocation(texName);
+            图像位置 resourcelocation = new 图像位置(texName);
             String s = resourcelocation.getResourceDomain();
             String s1 = resourcelocation.getResourcePath();
 
@@ -817,7 +817,7 @@ public class CustomItemProperties
             }
 
             String s2 = s1 + ".png";
-            ResourceLocation resourcelocation1 = new ResourceLocation(s, s2);
+            图像位置 resourcelocation1 = new 图像位置(s, s2);
             boolean flag = Config.hasResource(resourcelocation1);
 
             if (!flag)
@@ -829,12 +829,12 @@ public class CustomItemProperties
         }
     }
 
-    private ResourceLocation getSpriteLocation(ResourceLocation resLoc)
+    private 图像位置 getSpriteLocation(图像位置 resLoc)
     {
         String s = resLoc.getResourcePath();
         s = StrUtils.removePrefix(s, "textures/");
         s = StrUtils.removeSuffix(s, ".png");
-        ResourceLocation resourcelocation = new ResourceLocation(resLoc.getResourceDomain(), s);
+        图像位置 resourcelocation = new 图像位置(resLoc.getResourceDomain(), s);
         return resourcelocation;
     }
 
@@ -998,7 +998,7 @@ public class CustomItemProperties
         ModelRotation modelrotation = ModelRotation.X0_Y0;
         boolean flag = false;
         String s = modelBlockIn.resolveTextureName("particle");
-        TextureAtlasSprite textureatlassprite = textureMap.getAtlasSprite((new ResourceLocation(s)).toString());
+        TextureAtlasSprite textureatlassprite = textureMap.getAtlasSprite((new 图像位置(s)).toString());
         SimpleBakedModel.Builder simplebakedmodel$builder = (new SimpleBakedModel.Builder(modelBlockIn)).setTexture(textureatlassprite);
 
         for (BlockPart blockpart : modelBlockIn.getElements())
@@ -1013,7 +1013,7 @@ public class CustomItemProperties
                 }
 
                 String s1 = modelBlockIn.resolveTextureName(blockpartface.texture);
-                TextureAtlasSprite textureatlassprite1 = textureMap.getAtlasSprite((new ResourceLocation(s1)).toString());
+                TextureAtlasSprite textureatlassprite1 = textureMap.getAtlasSprite((new 图像位置(s1)).toString());
                 BakedQuad bakedquad = makeBakedQuad(blockpart, blockpartface, textureatlassprite1, enumfacing, modelrotation, flag);
 
                 if (blockpartface.cullFace == null)
@@ -1087,7 +1087,7 @@ public class CustomItemProperties
         return (float)this.textureHeight;
     }
 
-    public IBakedModel getBakedModel(ResourceLocation modelLocation, boolean fullModel)
+    public IBakedModel getBakedModel(图像位置 modelLocation, boolean fullModel)
     {
         IBakedModel ibakedmodel;
         Map<String, IBakedModel> map;
@@ -1146,8 +1146,8 @@ public class CustomItemProperties
 
         if (this.model != null)
         {
-            ResourceLocation resourcelocation = getModelLocation(this.model);
-            ModelResourceLocation modelresourcelocation = new ModelResourceLocation(resourcelocation, "inventory");
+            图像位置 resourcelocation = getModelLocation(this.model);
+            Model图像位置 modelresourcelocation = new Model图像位置(resourcelocation, "inventory");
             this.bakedModelFull = modelmanager.getModel(modelresourcelocation);
 
             if (this.bakedModelFull == ibakedmodel)
@@ -1166,8 +1166,8 @@ public class CustomItemProperties
 
                 if (s2.startsWith("bow") || s2.startsWith("fishing_rod") || s2.startsWith("shield"))
                 {
-                    ResourceLocation resourcelocation1 = getModelLocation(s1);
-                    ModelResourceLocation modelresourcelocation1 = new ModelResourceLocation(resourcelocation1, "inventory");
+                    图像位置 resourcelocation1 = getModelLocation(s1);
+                    Model图像位置 modelresourcelocation1 = new Model图像位置(resourcelocation1, "inventory");
                     IBakedModel ibakedmodel1 = modelmanager.getModel(modelresourcelocation1);
 
                     if (ibakedmodel1 == ibakedmodel)
@@ -1190,8 +1190,8 @@ public class CustomItemProperties
 
     private static void loadItemModel(ModelBakery modelBakery, String model)
     {
-        ResourceLocation resourcelocation = getModelLocation(model);
-        ModelResourceLocation modelresourcelocation = new ModelResourceLocation(resourcelocation, "inventory");
+        图像位置 resourcelocation = getModelLocation(model);
+        Model图像位置 modelresourcelocation = new Model图像位置(resourcelocation, "inventory");
 
         if (Reflector.ModelLoader.exists())
         {
@@ -1229,8 +1229,8 @@ public class CustomItemProperties
         }
     }
 
-    private static ResourceLocation getModelLocation(String modelName)
+    private static 图像位置 getModelLocation(String modelName)
     {
-        return Reflector.ModelLoader.exists() && !modelName.startsWith("mcpatcher/") && !modelName.startsWith("optifine/") ? new ResourceLocation("models/" + modelName) : new ResourceLocation(modelName);
+        return Reflector.ModelLoader.exists() && !modelName.startsWith("mcpatcher/") && !modelName.startsWith("optifine/") ? new 图像位置("models/" + modelName) : new 图像位置(modelName);
     }
 }

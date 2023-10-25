@@ -5,11 +5,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerFurnace;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼Furnace extends 鬼Container
 {
-    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("textures/gui/container/furnace.png");
+    private static final 图像位置 furnaceGuiTextures = new 图像位置("textures/gui/container/furnace.png");
     private final InventoryPlayer playerInventory;
     private IInventory tileFurnace;
 

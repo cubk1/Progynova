@@ -3,11 +3,11 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.layers.LayerMooshroomMushroom;
 import net.minecraft.entity.passive.EntityMooshroom;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderMooshroom extends RenderLiving<EntityMooshroom>
 {
-    private static final ResourceLocation mooshroomTextures = new ResourceLocation("textures/entity/cow/mooshroom.png");
+    private static final 图像位置 mooshroomTextures = new 图像位置("textures/entity/cow/mooshroom.png");
 
     public RenderMooshroom(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
     {
@@ -15,7 +15,7 @@ public class RenderMooshroom extends RenderLiving<EntityMooshroom>
         this.addLayer(new LayerMooshroomMushroom(this));
     }
 
-    protected ResourceLocation getEntityTexture(EntityMooshroom entity)
+    protected 图像位置 getEntityTexture(EntityMooshroom entity)
     {
         return mooshroomTextures;
     }

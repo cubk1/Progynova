@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import net.minecraft.client.resources.data.IMetadataSerializer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -52,7 +52,7 @@ public class SimpleReloadableResourceManager implements IReloadableResourceManag
         return this.setResourceDomains;
     }
 
-    public IResource getResource(ResourceLocation location) throws IOException
+    public IResource getResource(图像位置 location) throws IOException
     {
         IResourceManager iresourcemanager = (IResourceManager)this.domainResourceManagers.get(location.getResourceDomain());
 
@@ -66,7 +66,7 @@ public class SimpleReloadableResourceManager implements IReloadableResourceManag
         }
     }
 
-    public List<IResource> getAllResources(ResourceLocation location) throws IOException
+    public List<IResource> getAllResources(图像位置 location) throws IOException
     {
         IResourceManager iresourcemanager = (IResourceManager)this.domainResourceManagers.get(location.getResourceDomain());
 

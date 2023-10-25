@@ -457,7 +457,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic
         boolean flag = this.isHorseSaddled();
         this.updateHorseSlots();
 
-        if (this.ticksExisted > 20)
+        if (this.已存在的刻度 > 20)
         {
             if (i == 0 && i != this.getHorseArmorIndexSynced())
             {

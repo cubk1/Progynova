@@ -5,12 +5,12 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.shaders.Shaders;
 
 public class LayerSpiderEyes implements LayerRenderer<EntitySpider>
 {
-    private static final ResourceLocation SPIDER_EYES = new ResourceLocation("textures/entity/spider_eyes.png");
+    private static final 图像位置 SPIDER_EYES = new 图像位置("textures/entity/spider_eyes.png");
     private final RenderSpider spiderRenderer;
 
     public LayerSpiderEyes(RenderSpider spiderRendererIn)

@@ -5,11 +5,11 @@ import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderBoat extends Render<EntityBoat>
 {
-    private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
+    private static final 图像位置 boatTextures = new 图像位置("textures/entity/boat.png");
     protected ModelBase modelBoat = new ModelBoat();
 
     public RenderBoat(RenderManager renderManagerIn)
@@ -46,7 +46,7 @@ public class RenderBoat extends Render<EntityBoat>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityBoat entity)
+    protected 图像位置 getEntityTexture(EntityBoat entity)
     {
         return boatTextures;
     }

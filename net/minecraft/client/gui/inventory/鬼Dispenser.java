@@ -4,11 +4,11 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerDispenser;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼Dispenser extends 鬼Container
 {
-    private static final ResourceLocation dispenserGuiTextures = new ResourceLocation("textures/gui/container/dispenser.png");
+    private static final 图像位置 dispenserGuiTextures = new 图像位置("textures/gui/container/dispenser.png");
     private final InventoryPlayer playerInventory;
     public IInventory dispenserInventory;
 

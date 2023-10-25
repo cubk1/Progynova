@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import net.minecraft.util.JsonUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,7 +33,7 @@ public class ModelBlock
     public String name;
     protected final Map<String, String> textures;
     protected ModelBlock parent;
-    protected ResourceLocation parentLocation;
+    protected 图像位置 parentLocation;
 
     public static ModelBlock deserialize(Reader readerIn)
     {
@@ -47,15 +47,15 @@ public class ModelBlock
 
     protected ModelBlock(List<BlockPart> elementsIn, Map<String, String> texturesIn, boolean ambientOcclusionIn, boolean gui3dIn, ItemCameraTransforms cameraTransformsIn)
     {
-        this((ResourceLocation)null, elementsIn, texturesIn, ambientOcclusionIn, gui3dIn, cameraTransformsIn);
+        this((图像位置)null, elementsIn, texturesIn, ambientOcclusionIn, gui3dIn, cameraTransformsIn);
     }
 
-    protected ModelBlock(ResourceLocation parentLocationIn, Map<String, String> texturesIn, boolean ambientOcclusionIn, boolean gui3dIn, ItemCameraTransforms cameraTransformsIn)
+    protected ModelBlock(图像位置 parentLocationIn, Map<String, String> texturesIn, boolean ambientOcclusionIn, boolean gui3dIn, ItemCameraTransforms cameraTransformsIn)
     {
         this(parentLocationIn, Collections.<BlockPart>emptyList(), texturesIn, ambientOcclusionIn, gui3dIn, cameraTransformsIn);
     }
 
-    private ModelBlock(ResourceLocation parentLocationIn, List<BlockPart> elementsIn, Map<String, String> texturesIn, boolean ambientOcclusionIn, boolean gui3dIn, ItemCameraTransforms cameraTransformsIn)
+    private ModelBlock(图像位置 parentLocationIn, List<BlockPart> elementsIn, Map<String, String> texturesIn, boolean ambientOcclusionIn, boolean gui3dIn, ItemCameraTransforms cameraTransformsIn)
     {
         this.name = "";
         this.elements = elementsIn;
@@ -91,7 +91,7 @@ public class ModelBlock
         return this.parentLocation == null || this.parent != null && this.parent.isResolved();
     }
 
-    public void getParentFromMap(Map<ResourceLocation, ModelBlock> p_178299_1_)
+    public void getParentFromMap(Map<图像位置, ModelBlock> p_178299_1_)
     {
         if (this.parentLocation != null)
         {
@@ -153,7 +153,7 @@ public class ModelBlock
         return hash.charAt(0) == 35;
     }
 
-    public ResourceLocation getParentLocation()
+    public 图像位置 getParentLocation()
     {
         return this.parentLocation;
     }
@@ -179,7 +179,7 @@ public class ModelBlock
         return this.parent != null && !this.cameraTransforms.func_181687_c(type) ? this.parent.getTransform(type) : this.cameraTransforms.getTransform(type);
     }
 
-    public static void checkModelHierarchy(Map<ResourceLocation, ModelBlock> p_178312_0_)
+    public static void checkModelHierarchy(Map<图像位置, ModelBlock> p_178312_0_)
     {
         for (ModelBlock modelblock : p_178312_0_.values())
         {
@@ -242,7 +242,7 @@ public class ModelBlock
                     itemcameratransforms = (ItemCameraTransforms)p_deserialize_3_.deserialize(jsonobject1, ItemCameraTransforms.class);
                 }
 
-                return flag1 ? new ModelBlock(new ResourceLocation(s), map, flag2, true, itemcameratransforms) : new ModelBlock(list, map, flag2, true, itemcameratransforms);
+                return flag1 ? new ModelBlock(new 图像位置(s), map, flag2, true, itemcameratransforms) : new ModelBlock(list, map, flag2, true, itemcameratransforms);
             }
         }
 

@@ -4,11 +4,11 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerSlimeGel;
 import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderSlime extends RenderLiving<EntitySlime>
 {
-    private static final ResourceLocation slimeTextures = new ResourceLocation("textures/entity/slime/slime.png");
+    private static final 图像位置 slimeTextures = new 图像位置("textures/entity/slime/slime.png");
 
     public RenderSlime(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
     {
@@ -30,7 +30,7 @@ public class RenderSlime extends RenderLiving<EntitySlime>
         光照状态经理.障眼物(f2 * f, 1.0F / f2 * f, f2 * f);
     }
 
-    protected ResourceLocation getEntityTexture(EntitySlime entity)
+    protected 图像位置 getEntityTexture(EntitySlime entity)
     {
         return slimeTextures;
     }

@@ -28,13 +28,13 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.optifine.reflect.Reflector;
 
 public class EffectRenderer
 {
-    private static final ResourceLocation particleTextures = new ResourceLocation("textures/particle/particles.png");
+    private static final 图像位置 particleTextures = new 图像位置("textures/particle/particles.png");
     protected World worldObj;
     private List<EntityFX>[][] fxLayers = new List[4][];
     private List<EntityParticleEmitter> particleEmitters = Lists.<EntityParticleEmitter>newArrayList();

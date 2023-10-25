@@ -1,15 +1,15 @@
 package net.minecraft.client.audio;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class SoundPoolEntry
 {
-    private final ResourceLocation location;
+    private final 图像位置 location;
     private final boolean streamingSound;
     private double pitch;
     private double volume;
 
-    public SoundPoolEntry(ResourceLocation locationIn, double pitchIn, double volumeIn, boolean streamingSoundIn)
+    public SoundPoolEntry(图像位置 locationIn, double pitchIn, double volumeIn, boolean streamingSoundIn)
     {
         this.location = locationIn;
         this.pitch = pitchIn;
@@ -25,7 +25,7 @@ public class SoundPoolEntry
         this.streamingSound = locationIn.streamingSound;
     }
 
-    public ResourceLocation getSoundPoolEntryLocation()
+    public 图像位置 getSoundPoolEntryLocation()
     {
         return this.location;
     }

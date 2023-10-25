@@ -7,12 +7,12 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 
 public class RenderFish extends Render<EntityFishHook>
 {
-    private static final ResourceLocation FISH_PARTICLES = new ResourceLocation("textures/particle/particles.png");
+    private static final 图像位置 FISH_PARTICLES = new 图像位置("textures/particle/particles.png");
 
     public RenderFish(RenderManager renderManagerIn)
     {
@@ -99,7 +99,7 @@ public class RenderFish extends Render<EntityFishHook>
         }
     }
 
-    protected ResourceLocation getEntityTexture(EntityFishHook entity)
+    protected 图像位置 getEntityTexture(EntityFishHook entity)
     {
         return FISH_PARTICLES;
     }

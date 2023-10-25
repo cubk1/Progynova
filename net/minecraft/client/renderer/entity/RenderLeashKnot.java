@@ -3,11 +3,11 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelLeashKnot;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.EntityLeashKnot;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderLeashKnot extends Render<EntityLeashKnot>
 {
-    private static final ResourceLocation leashKnotTextures = new ResourceLocation("textures/entity/lead_knot.png");
+    private static final 图像位置 leashKnotTextures = new 图像位置("textures/entity/lead_knot.png");
     private ModelLeashKnot leashKnotModel = new ModelLeashKnot();
 
     public RenderLeashKnot(RenderManager renderManagerIn)
@@ -30,7 +30,7 @@ public class RenderLeashKnot extends Render<EntityLeashKnot>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityLeashKnot entity)
+    protected 图像位置 getEntityTexture(EntityLeashKnot entity)
     {
         return leashKnotTextures;
     }

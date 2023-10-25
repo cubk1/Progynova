@@ -8,8 +8,8 @@ import java.util.Map;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.resources.model.Model图像位置;
+import net.minecraft.util.图像位置;
 
 public class StateMap extends StateMapperBase
 {
@@ -24,14 +24,14 @@ public class StateMap extends StateMapperBase
         this.ignored = ignored;
     }
 
-    protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+    protected Model图像位置 getModelResourceLocation(IBlockState state)
     {
         Map<IProperty, Comparable> map = Maps.<IProperty, Comparable>newLinkedHashMap(state.getProperties());
         String s;
 
         if (this.name == null)
         {
-            s = ((ResourceLocation)Block.blockRegistry.getNameForObject(state.getBlock())).toString();
+            s = ((图像位置)Block.blockRegistry.getNameForObject(state.getBlock())).toString();
         }
         else
         {
@@ -48,7 +48,7 @@ public class StateMap extends StateMapperBase
             map.remove(iproperty);
         }
 
-        return new ModelResourceLocation(s, this.getPropertyString(map));
+        return new Model图像位置(s, this.getPropertyString(map));
     }
 
     public static class Builder

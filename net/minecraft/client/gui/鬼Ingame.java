@@ -34,12 +34,12 @@ import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.FoodStats;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.border.WorldBorder;
 import net.optifine.CustomColors;
@@ -48,9 +48,9 @@ import rip.liyuxuan.宇轩科技;
 
 public class 鬼Ingame extends 鬼
 {
-    private static final ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
-    private static final ResourceLocation widgetsTexPath = new ResourceLocation("textures/gui/widgets.png");
-    private static final ResourceLocation pumpkinBlurTexPath = new ResourceLocation("textures/misc/pumpkinblur.png");
+    private static final 图像位置 vignetteTexPath = new 图像位置("textures/misc/vignette.png");
+    private static final 图像位置 widgetsTexPath = new 图像位置("textures/gui/widgets.png");
+    private static final 图像位置 pumpkinBlurTexPath = new 图像位置("textures/misc/pumpkinblur.png");
     private final Random rand = new Random();
     private final 我的手艺 mc;
     private final RenderItem itemRenderer;
@@ -98,9 +98,9 @@ public class 鬼Ingame extends 鬼
 
     public void renderGameOverlay(float partialTicks)
     {
-        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        比例解析 scaledresolution = new 比例解析(this.mc);
         int i = scaledresolution.getScaledWidth();
-        int j = scaledresolution.getScaledHeight();
+        int j = scaledresolution.得到高度();
         this.mc.entityRenderer.setupOverlayRendering();
         光照状态经理.启用混合品();
 
@@ -336,7 +336,7 @@ public class 鬼Ingame extends 鬼
         光照状态经理.启用希腊字母表的第1个字母();
     }
 
-    protected void renderTooltip(ScaledResolution sr, float partialTicks)
+    protected void renderTooltip(比例解析 sr, float partialTicks)
     {
         if (this.mc.getRenderViewEntity() instanceof EntityPlayer)
         {
@@ -346,8 +346,8 @@ public class 鬼Ingame extends 鬼
             int i = sr.getScaledWidth() / 2;
             float f = this.zLevel;
             this.zLevel = -90.0F;
-            this.drawTexturedModalRect(i - 91, sr.getScaledHeight() - 22, 0, 0, 182, 22);
-            this.drawTexturedModalRect(i - 91 - 1 + entityplayer.inventory.currentItem * 20, sr.getScaledHeight() - 22 - 1, 0, 22, 24, 22);
+            this.drawTexturedModalRect(i - 91, sr.得到高度() - 22, 0, 0, 182, 22);
+            this.drawTexturedModalRect(i - 91 - 1 + entityplayer.inventory.currentItem * 20, sr.得到高度() - 22 - 1, 0, 22, 24, 22);
             this.zLevel = f;
             光照状态经理.enableRescaleNormal();
             光照状态经理.启用混合品();
@@ -357,7 +357,7 @@ public class 鬼Ingame extends 鬼
             for (int j = 0; j < 9; ++j)
             {
                 int k = sr.getScaledWidth() / 2 - 90 + j * 20 + 2;
-                int l = sr.getScaledHeight() - 16 - 3;
+                int l = sr.得到高度() - 16 - 3;
                 this.renderHotbarItem(j, k, l, partialTicks, entityplayer);
             }
 
@@ -367,14 +367,14 @@ public class 鬼Ingame extends 鬼
         }
     }
 
-    public void renderHorseJumpBar(ScaledResolution scaledRes, int x)
+    public void renderHorseJumpBar(比例解析 scaledRes, int x)
     {
         this.mc.mcProfiler.startSection("jumpBar");
         this.mc.得到手感经理().绑定手感(鬼.icons);
         float f = this.mc.宇轩游玩者.getHorseJumpPower();
         int i = 182;
         int j = (int)(f * (float)(i + 1));
-        int k = scaledRes.getScaledHeight() - 32 + 3;
+        int k = scaledRes.得到高度() - 32 + 3;
         this.drawTexturedModalRect(x, k, 0, 84, i, 5);
 
         if (j > 0)
@@ -385,7 +385,7 @@ public class 鬼Ingame extends 鬼
         this.mc.mcProfiler.endSection();
     }
 
-    public void renderExpBar(ScaledResolution scaledRes, int x)
+    public void renderExpBar(比例解析 scaledRes, int x)
     {
         this.mc.mcProfiler.startSection("expBar");
         this.mc.得到手感经理().绑定手感(鬼.icons);
@@ -395,7 +395,7 @@ public class 鬼Ingame extends 鬼
         {
             int j = 182;
             int k = (int)(this.mc.宇轩游玩者.experience * (float)(j + 1));
-            int l = scaledRes.getScaledHeight() - 32 + 3;
+            int l = scaledRes.得到高度() - 32 + 3;
             this.drawTexturedModalRect(x, l, 0, 64, j, 5);
 
             if (k > 0)
@@ -418,7 +418,7 @@ public class 鬼Ingame extends 鬼
 
             String s = "" + this.mc.宇轩游玩者.experienceLevel;
             int l1 = (scaledRes.getScaledWidth() - this.getFontRenderer().getStringWidth(s)) / 2;
-            int i1 = scaledRes.getScaledHeight() - 31 - 4;
+            int i1 = scaledRes.得到高度() - 31 - 4;
             int j1 = 0;
             this.getFontRenderer().drawString(s, l1 + 1, i1, 0);
             this.getFontRenderer().drawString(s, l1 - 1, i1, 0);
@@ -429,7 +429,7 @@ public class 鬼Ingame extends 鬼
         }
     }
 
-    public void renderSelectedItem(ScaledResolution scaledRes)
+    public void renderSelectedItem(比例解析 scaledRes)
     {
         this.mc.mcProfiler.startSection("selectedItemName");
 
@@ -439,11 +439,11 @@ public class 鬼Ingame extends 鬼
 
             if (this.highlightingItemStack.hasDisplayName())
             {
-                s = EnumChatFormatting.ITALIC + s;
+                s = 枚举聊天格式.ITALIC + s;
             }
 
             int i = (scaledRes.getScaledWidth() - this.getFontRenderer().getStringWidth(s)) / 2;
-            int j = scaledRes.getScaledHeight() - 59;
+            int j = scaledRes.得到高度() - 59;
 
             if (!this.mc.玩家控制者.shouldDrawHUD())
             {
@@ -462,7 +462,7 @@ public class 鬼Ingame extends 鬼
                 光照状态经理.推黑客帝国();
                 光照状态经理.启用混合品();
                 光照状态经理.tryBlendFuncSeparate(770, 771, 1, 0);
-                this.getFontRenderer().drawStringWithShadow(s, (float)i, (float)j, 16777215 + (k << 24));
+                this.getFontRenderer().绘制纵梁带心理阴影(s, (float)i, (float)j, 16777215 + (k << 24));
                 光照状态经理.禁用混合品();
                 光照状态经理.流行音乐黑客帝国();
             }
@@ -471,7 +471,7 @@ public class 鬼Ingame extends 鬼
         this.mc.mcProfiler.endSection();
     }
 
-    public void renderDemo(ScaledResolution scaledRes)
+    public void renderDemo(比例解析 scaledRes)
     {
         this.mc.mcProfiler.startSection("demo");
         String s = "";
@@ -486,7 +486,7 @@ public class 鬼Ingame extends 鬼
         }
 
         int i = this.getFontRenderer().getStringWidth(s);
-        this.getFontRenderer().drawStringWithShadow(s, (float)(scaledRes.getScaledWidth() - i - 10), 5.0F, 16777215);
+        this.getFontRenderer().绘制纵梁带心理阴影(s, (float)(scaledRes.getScaledWidth() - i - 10), 5.0F, 16777215);
         this.mc.mcProfiler.endSection();
     }
 
@@ -523,12 +523,12 @@ public class 鬼Ingame extends 鬼
         }
     }
 
-    public void renderStreamIndicator(ScaledResolution scaledRes)
+    public void renderStreamIndicator(比例解析 scaledRes)
     {
         this.streamIndicator.render(scaledRes.getScaledWidth() - 10, 10);
     }
 
-    private void renderScoreboard(ScoreObjective objective, ScaledResolution scaledRes)
+    private void renderScoreboard(ScoreObjective objective, 比例解析 scaledRes)
     {
         Scoreboard scoreboard = objective.getScoreboard();
         Collection<Score> collection = scoreboard.getSortedScores(objective);
@@ -554,12 +554,12 @@ public class 鬼Ingame extends 鬼
         for (Score score : collection)
         {
             ScorePlayerTeam scoreplayerteam = scoreboard.getPlayersTeam(score.getPlayerName());
-            String s = ScorePlayerTeam.formatPlayerName(scoreplayerteam, score.getPlayerName()) + ": " + EnumChatFormatting.RED + score.getScorePoints();
+            String s = ScorePlayerTeam.formatPlayerName(scoreplayerteam, score.getPlayerName()) + ": " + 枚举聊天格式.RED + score.getScorePoints();
             i = Math.max(i, this.getFontRenderer().getStringWidth(s));
         }
 
         int i1 = collection.size() * this.getFontRenderer().FONT_HEIGHT;
-        int j1 = scaledRes.getScaledHeight() / 2 + i1 / 3;
+        int j1 = scaledRes.得到高度() / 2 + i1 / 3;
         int k1 = 3;
         int l1 = scaledRes.getScaledWidth() - i - k1;
         int j = 0;
@@ -569,7 +569,7 @@ public class 鬼Ingame extends 鬼
             ++j;
             ScorePlayerTeam scoreplayerteam1 = scoreboard.getPlayersTeam(score1.getPlayerName());
             String s1 = ScorePlayerTeam.formatPlayerName(scoreplayerteam1, score1.getPlayerName());
-            String s2 = EnumChatFormatting.RED + "" + score1.getScorePoints();
+            String s2 = 枚举聊天格式.RED + "" + score1.getScorePoints();
             int k = j1 - j * this.getFontRenderer().FONT_HEIGHT;
             int l = scaledRes.getScaledWidth() - k1 + 2;
             drawRect(l1 - 2, k, l, k + this.getFontRenderer().FONT_HEIGHT, 1342177280);
@@ -586,7 +586,7 @@ public class 鬼Ingame extends 鬼
         }
     }
 
-    private void renderPlayerStats(ScaledResolution scaledRes)
+    private void renderPlayerStats(比例解析 scaledRes)
     {
         if (this.mc.getRenderViewEntity() instanceof EntityPlayer)
         {
@@ -622,7 +622,7 @@ public class 鬼Ingame extends 鬼
             IAttributeInstance iattributeinstance = entityplayer.getEntityAttribute(SharedMonsterAttributes.maxHealth);
             int i1 = scaledRes.getScaledWidth() / 2 - 91;
             int j1 = scaledRes.getScaledWidth() / 2 + 91;
-            int k1 = scaledRes.getScaledHeight() - 39;
+            int k1 = scaledRes.得到高度() - 39;
             float f = (float)iattributeinstance.getAttributeValue();
             float f1 = entityplayer.getAbsorptionAmount();
             int l1 = MathHelper.ceiling_float_int((f + f1) / 2.0F / 10.0F);
@@ -880,8 +880,8 @@ public class 鬼Ingame extends 鬼
         if (BossStatus.bossName != null && BossStatus.statusBarTime > 0)
         {
             --BossStatus.statusBarTime;
-            FontRenderer fontrenderer = this.mc.fontRendererObj;
-            ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+            FontRenderer fontrenderer = this.mc.字体渲染员;
+            比例解析 scaledresolution = new 比例解析(this.mc);
             int i = scaledresolution.getScaledWidth();
             int j = 182;
             int k = i / 2 - j / 2;
@@ -896,13 +896,13 @@ public class 鬼Ingame extends 鬼
             }
 
             String s = BossStatus.bossName;
-            this.getFontRenderer().drawStringWithShadow(s, (float)(i / 2 - this.getFontRenderer().getStringWidth(s) / 2), (float)(i1 - 10), 16777215);
+            this.getFontRenderer().绘制纵梁带心理阴影(s, (float)(i / 2 - this.getFontRenderer().getStringWidth(s) / 2), (float)(i1 - 10), 16777215);
             光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
             this.mc.得到手感经理().绑定手感(icons);
         }
     }
 
-    private void renderPumpkinOverlay(ScaledResolution scaledRes)
+    private void renderPumpkinOverlay(比例解析 scaledRes)
     {
         光照状态经理.禁用纵深();
         光照状态经理.depthMask(false);
@@ -913,8 +913,8 @@ public class 鬼Ingame extends 鬼
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(0.0D, (double)scaledRes.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
-        worldrenderer.pos((double)scaledRes.getScaledWidth(), (double)scaledRes.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
+        worldrenderer.pos(0.0D, (double)scaledRes.得到高度(), -90.0D).tex(0.0D, 1.0D).endVertex();
+        worldrenderer.pos((double)scaledRes.getScaledWidth(), (double)scaledRes.得到高度(), -90.0D).tex(1.0D, 1.0D).endVertex();
         worldrenderer.pos((double)scaledRes.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
         worldrenderer.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
         tessellator.draw();
@@ -924,7 +924,7 @@ public class 鬼Ingame extends 鬼
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    private void renderVignette(float lightLevel, ScaledResolution scaledRes)
+    private void renderVignette(float lightLevel, 比例解析 scaledRes)
     {
         if (!Config.isVignetteEnabled())
         {
@@ -967,8 +967,8 @@ public class 鬼Ingame extends 鬼
             Tessellator tessellator = Tessellator.getInstance();
             WorldRenderer worldrenderer = tessellator.getWorldRenderer();
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-            worldrenderer.pos(0.0D, (double)scaledRes.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
-            worldrenderer.pos((double)scaledRes.getScaledWidth(), (double)scaledRes.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
+            worldrenderer.pos(0.0D, (double)scaledRes.得到高度(), -90.0D).tex(0.0D, 1.0D).endVertex();
+            worldrenderer.pos((double)scaledRes.getScaledWidth(), (double)scaledRes.得到高度(), -90.0D).tex(1.0D, 1.0D).endVertex();
             worldrenderer.pos((double)scaledRes.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
             worldrenderer.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
             tessellator.draw();
@@ -979,7 +979,7 @@ public class 鬼Ingame extends 鬼
         }
     }
 
-    private void renderPortal(float timeInPortal, ScaledResolution scaledRes)
+    private void renderPortal(float timeInPortal, 比例解析 scaledRes)
     {
         if (timeInPortal < 1.0F)
         {
@@ -1002,8 +1002,8 @@ public class 鬼Ingame extends 鬼
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(0.0D, (double)scaledRes.getScaledHeight(), -90.0D).tex((double)f, (double)f3).endVertex();
-        worldrenderer.pos((double)scaledRes.getScaledWidth(), (double)scaledRes.getScaledHeight(), -90.0D).tex((double)f2, (double)f3).endVertex();
+        worldrenderer.pos(0.0D, (double)scaledRes.得到高度(), -90.0D).tex((double)f, (double)f3).endVertex();
+        worldrenderer.pos((double)scaledRes.getScaledWidth(), (double)scaledRes.得到高度(), -90.0D).tex((double)f2, (double)f3).endVertex();
         worldrenderer.pos((double)scaledRes.getScaledWidth(), 0.0D, -90.0D).tex((double)f2, (double)f1).endVertex();
         worldrenderer.pos(0.0D, 0.0D, -90.0D).tex((double)f, (double)f1).endVertex();
         tessellator.draw();
@@ -1037,7 +1037,7 @@ public class 鬼Ingame extends 鬼
                 光照状态经理.流行音乐黑客帝国();
             }
 
-            this.itemRenderer.renderItemOverlays(this.mc.fontRendererObj, itemstack, xPos, yPos);
+            this.itemRenderer.renderItemOverlays(this.mc.字体渲染员, itemstack, xPos, yPos);
         }
     }
 
@@ -1156,7 +1156,7 @@ public class 鬼Ingame extends 鬼
 
     public FontRenderer getFontRenderer()
     {
-        return this.mc.fontRendererObj;
+        return this.mc.字体渲染员;
     }
 
     public 鬼Spectator getSpectatorGui()

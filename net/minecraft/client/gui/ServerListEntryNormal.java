@@ -17,8 +17,8 @@ import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureUtil;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.枚举聊天格式;
+import net.minecraft.util.图像位置;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,12 +27,12 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 {
     private static final Logger logger = LogManager.getLogger();
     private static final ThreadPoolExecutor field_148302_b = new ScheduledThreadPoolExecutor(5, (new ThreadFactoryBuilder()).setNameFormat("Server Pinger #%d").setDaemon(true).build());
-    private static final ResourceLocation UNKNOWN_SERVER = new ResourceLocation("textures/misc/unknown_server.png");
-    private static final ResourceLocation SERVER_SELECTION_BUTTONS = new ResourceLocation("textures/gui/server_selection.png");
+    private static final 图像位置 UNKNOWN_SERVER = new 图像位置("textures/misc/unknown_server.png");
+    private static final 图像位置 SERVER_SELECTION_BUTTONS = new 图像位置("textures/gui/server_selection.png");
     private final 鬼Multiplayer owner;
     private final 我的手艺 mc;
     private final ServerData server;
-    private final ResourceLocation serverIcon;
+    private final 图像位置 serverIcon;
     private String field_148299_g;
     private DynamicTexture field_148305_h;
     private long field_148298_f;
@@ -42,7 +42,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
         this.owner = p_i45048_1_;
         this.server = serverIn;
         this.mc = 我的手艺.得到我的手艺();
-        this.serverIcon = new ResourceLocation("servers/" + serverIn.serverIP + "/icon");
+        this.serverIcon = new 图像位置("servers/" + serverIn.serverIP + "/icon");
         this.field_148305_h = (DynamicTexture)this.mc.得到手感经理().getTexture(this.serverIcon);
     }
 
@@ -65,12 +65,12 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
                     catch (UnknownHostException var2)
                     {
                         ServerListEntryNormal.this.server.pingToServer = -1L;
-                        ServerListEntryNormal.this.server.serverMOTD = EnumChatFormatting.DARK_RED + "Can\'t resolve hostname";
+                        ServerListEntryNormal.this.server.serverMOTD = 枚举聊天格式.DARK_RED + "Can\'t resolve hostname";
                     }
                     catch (Exception var3)
                     {
                         ServerListEntryNormal.this.server.pingToServer = -1L;
-                        ServerListEntryNormal.this.server.serverMOTD = EnumChatFormatting.DARK_RED + "Can\'t connect to server.";
+                        ServerListEntryNormal.this.server.serverMOTD = 枚举聊天格式.DARK_RED + "Can\'t connect to server.";
                     }
                 }
             });
@@ -79,17 +79,17 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
         boolean flag = this.server.version > 47;
         boolean flag1 = this.server.version < 47;
         boolean flag2 = flag || flag1;
-        this.mc.fontRendererObj.drawString(this.server.serverName, x + 32 + 3, y + 1, 16777215);
-        List<String> list = this.mc.fontRendererObj.listFormattedStringToWidth(this.server.serverMOTD, listWidth - 32 - 2);
+        this.mc.字体渲染员.drawString(this.server.serverName, x + 32 + 3, y + 1, 16777215);
+        List<String> list = this.mc.字体渲染员.listFormattedStringToWidth(this.server.serverMOTD, listWidth - 32 - 2);
 
         for (int i = 0; i < Math.min(list.size(), 2); ++i)
         {
-            this.mc.fontRendererObj.drawString((String)list.get(i), x + 32 + 3, y + 12 + this.mc.fontRendererObj.FONT_HEIGHT * i, 8421504);
+            this.mc.字体渲染员.drawString((String)list.get(i), x + 32 + 3, y + 12 + this.mc.字体渲染员.FONT_HEIGHT * i, 8421504);
         }
 
-        String s2 = flag2 ? EnumChatFormatting.DARK_RED + this.server.gameVersion : this.server.populationInfo;
-        int j = this.mc.fontRendererObj.getStringWidth(s2);
-        this.mc.fontRendererObj.drawString(s2, x + listWidth - j - 15 - 2, y + 1, 8421504);
+        String s2 = flag2 ? 枚举聊天格式.DARK_RED + this.server.gameVersion : this.server.populationInfo;
+        int j = this.mc.字体渲染员.getStringWidth(s2);
+        this.mc.字体渲染员.drawString(s2, x + listWidth - j - 15 - 2, y + 1, 8421504);
         int k = 0;
         String s = null;
         int l;
@@ -229,7 +229,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
         }
     }
 
-    protected void drawTextureAt(int p_178012_1_, int p_178012_2_, ResourceLocation p_178012_3_)
+    protected void drawTextureAt(int p_178012_1_, int p_178012_2_, 图像位置 p_178012_3_)
     {
         this.mc.得到手感经理().绑定手感(p_178012_3_);
         光照状态经理.启用混合品();

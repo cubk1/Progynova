@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.util.PropertiesOrdered;
 import net.optifine.util.ResUtils;
 import net.optifine.util.TextureUtils;
@@ -114,7 +114,7 @@ public class TextureAnimations
 
                 try
                 {
-                    ResourceLocation resourcelocation = new ResourceLocation(s);
+                    图像位置 resourcelocation = new 图像位置(s);
                     InputStream inputstream = rp.getInputStream(resourcelocation);
                     Properties properties = new PropertiesOrdered();
                     properties.load(inputstream);
@@ -123,7 +123,7 @@ public class TextureAnimations
 
                     if (textureanimation != null)
                     {
-                        ResourceLocation resourcelocation1 = new ResourceLocation(textureanimation.getDstTex());
+                        图像位置 resourcelocation1 = new 图像位置(textureanimation.getDstTex());
 
                         if (Config.getDefiningResourcePack(resourcelocation1) != rp)
                         {
@@ -150,7 +150,7 @@ public class TextureAnimations
         }
     }
 
-    private static TextureAnimation makeTextureAnimation(Properties props, ResourceLocation propLoc)
+    private static TextureAnimation makeTextureAnimation(Properties props, 图像位置 propLoc)
     {
         String s = props.getProperty("from");
         String s1 = props.getProperty("to");
@@ -188,7 +188,7 @@ public class TextureAnimations
                     }
                     else
                     {
-                        ResourceLocation resourcelocation = new ResourceLocation(s1);
+                        图像位置 resourcelocation = new 图像位置(s1);
 
                         try
                         {
@@ -254,7 +254,7 @@ public class TextureAnimations
 
         try
         {
-            ResourceLocation resourcelocation = new ResourceLocation(name);
+            图像位置 resourcelocation = new 图像位置(name);
             InputStream inputstream = Config.getResourceStream(resourcelocation);
 
             if (inputstream == null)

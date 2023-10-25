@@ -32,7 +32,7 @@ import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.BlockStaticLiquid;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.BlockTripWireHook;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class Blocks
 {
@@ -237,7 +237,7 @@ public class Blocks
 
     private static Block getRegisteredBlock(String blockName)
     {
-        return Block.blockRegistry.getObject(new ResourceLocation(blockName));
+        return Block.blockRegistry.getObject(new 图像位置(blockName));
     }
 
     static

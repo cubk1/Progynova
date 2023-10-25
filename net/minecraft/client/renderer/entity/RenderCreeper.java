@@ -5,11 +5,11 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerCreeperCharge;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderCreeper extends RenderLiving<EntityCreeper>
 {
-    private static final ResourceLocation creeperTextures = new ResourceLocation("textures/entity/creeper/creeper.png");
+    private static final 图像位置 creeperTextures = new 图像位置("textures/entity/creeper/creeper.png");
 
     public RenderCreeper(RenderManager renderManagerIn)
     {
@@ -45,7 +45,7 @@ public class RenderCreeper extends RenderLiving<EntityCreeper>
         }
     }
 
-    protected ResourceLocation getEntityTexture(EntityCreeper entity)
+    protected 图像位置 getEntityTexture(EntityCreeper entity)
     {
         return creeperTextures;
     }

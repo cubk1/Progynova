@@ -15,12 +15,12 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEntityBanner>
 {
     private static final Map<String, TileEntityBannerRenderer.TimedBannerTexture> DESIGNS = Maps.<String, TileEntityBannerRenderer.TimedBannerTexture>newHashMap();
-    private static final ResourceLocation BANNERTEXTURES = new ResourceLocation("textures/entity/banner_base.png");
+    private static final 图像位置 BANNERTEXTURES = new 图像位置("textures/entity/banner_base.png");
     private ModelBanner bannerModel = new ModelBanner();
 
     public void renderTileEntityAt(TileEntityBanner te, double x, double y, double z, float partialTicks, int destroyStage)
@@ -68,7 +68,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
         float f3 = (float)(blockpos.getX() * 7 + blockpos.getY() * 9 + blockpos.getZ() * 13) + (float)j + partialTicks;
         this.bannerModel.bannerSlate.rotateAngleX = (-0.0125F + 0.01F * MathHelper.cos(f3 * (float)Math.PI * 0.02F)) * (float)Math.PI;
         光照状态经理.enableRescaleNormal();
-        ResourceLocation resourcelocation = this.func_178463_a(te);
+        图像位置 resourcelocation = this.func_178463_a(te);
 
         if (resourcelocation != null)
         {
@@ -83,7 +83,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
         光照状态经理.流行音乐黑客帝国();
     }
 
-    private ResourceLocation func_178463_a(TileEntityBanner bannerObj)
+    private 图像位置 func_178463_a(TileEntityBanner bannerObj)
     {
         String s = bannerObj.getPatternResourceLocation();
 
@@ -130,7 +130,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
                 }
 
                 tileentitybannerrenderer$timedbannertexture = new TileEntityBannerRenderer.TimedBannerTexture();
-                tileentitybannerrenderer$timedbannertexture.bannerTexture = new ResourceLocation(s);
+                tileentitybannerrenderer$timedbannertexture.bannerTexture = new 图像位置(s);
                 我的手艺.得到我的手艺().得到手感经理().loadTexture(tileentitybannerrenderer$timedbannertexture.bannerTexture, new LayeredColorMaskTexture(BANNERTEXTURES, list2, list));
                 DESIGNS.put(s, tileentitybannerrenderer$timedbannertexture);
             }
@@ -143,7 +143,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
     static class TimedBannerTexture
     {
         public long systemTime;
-        public ResourceLocation bannerTexture;
+        public 图像位置 bannerTexture;
 
         private TimedBannerTexture()
         {

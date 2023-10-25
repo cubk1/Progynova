@@ -3,7 +3,7 @@ package net.minecraft.scoreboard;
 import com.google.common.collect.Sets;
 import java.util.Collection;
 import java.util.Set;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 
 public class ScorePlayerTeam extends Team
 {
@@ -17,7 +17,7 @@ public class ScorePlayerTeam extends Team
     private boolean canSeeFriendlyInvisibles = true;
     private Team.EnumVisible nameTagVisibility = Team.EnumVisible.ALWAYS;
     private Team.EnumVisible deathMessageVisibility = Team.EnumVisible.ALWAYS;
-    private EnumChatFormatting chatFormat = EnumChatFormatting.RESET;
+    private 枚举聊天格式 chatFormat = 枚举聊天格式.RESET;
 
     public ScorePlayerTeam(Scoreboard theScoreboardIn, String name)
     {
@@ -160,12 +160,12 @@ public class ScorePlayerTeam extends Team
         this.setSeeFriendlyInvisiblesEnabled((p_98298_1_ & 2) > 0);
     }
 
-    public void setChatFormat(EnumChatFormatting p_178774_1_)
+    public void setChatFormat(枚举聊天格式 p_178774_1_)
     {
         this.chatFormat = p_178774_1_;
     }
 
-    public EnumChatFormatting getChatFormat()
+    public 枚举聊天格式 getChatFormat()
     {
         return this.chatFormat;
     }

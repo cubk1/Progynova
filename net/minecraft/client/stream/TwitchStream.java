@@ -24,7 +24,7 @@ import net.minecraft.event.ClickEvent;
 import net.minecraft.event.HoverEvent;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.HttpUtil;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.JsonUtils;
@@ -80,7 +80,7 @@ public class TwitchStream implements BroadcastController.BroadcastListener, Chat
         this.chatController.func_152990_a(this);
         this.broadcastController.func_152842_a("nmt37qblda36pvonovdkbopzfzw3wlq");
         this.chatController.func_152984_a("nmt37qblda36pvonovdkbopzfzw3wlq");
-        this.twitchComponent.getChatStyle().setColor(EnumChatFormatting.DARK_PURPLE);
+        this.twitchComponent.getChatStyle().setColor(枚举聊天格式.DARK_PURPLE);
 
         if (streamProperty != null && !Strings.isNullOrEmpty(streamProperty.getValue()) && OpenGlHelper.framebufferSupported)
         {
@@ -482,13 +482,13 @@ public class TwitchStream implements BroadcastController.BroadcastListener, Chat
             ichatcomponent.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://help.mojang.com/customer/portal/articles/1374877-configuring-soundflower-for-streaming-on-apple-computers"));
             ichatcomponent.getChatStyle().setUnderlined(Boolean.valueOf(true));
             IChatComponent ichatcomponent1 = new ChatComponentTranslation("stream.unavailable.soundflower.chat", new Object[] {ichatcomponent});
-            ichatcomponent1.getChatStyle().setColor(EnumChatFormatting.DARK_RED);
+            ichatcomponent1.getChatStyle().setColor(枚举聊天格式.DARK_RED);
             this.mc.ingameGUI.getChatGUI().printChatMessage(ichatcomponent1);
         }
         else
         {
             IChatComponent ichatcomponent2 = new ChatComponentTranslation("stream.unavailable.unknown.chat", new Object[] {ErrorCode.getString(p_152892_1_)});
-            ichatcomponent2.getChatStyle().setColor(EnumChatFormatting.DARK_RED);
+            ichatcomponent2.getChatStyle().setColor(枚举聊天格式.DARK_RED);
             this.mc.ingameGUI.getChatGUI().printChatMessage(ichatcomponent2);
         }
     }
@@ -577,7 +577,7 @@ public class TwitchStream implements BroadcastController.BroadcastListener, Chat
             if (this.func_176028_a(chatrawmessage.modes, chatrawmessage.subscriptions, this.mc.游戏一窝.streamChatUserFilter))
             {
                 IChatComponent ichatcomponent = new 交流组分文本(chatrawmessage.userName);
-                IChatComponent ichatcomponent1 = new ChatComponentTranslation("chat.stream." + (chatrawmessage.action ? "emote" : "text"), new Object[] {this.twitchComponent, ichatcomponent, EnumChatFormatting.getTextWithoutFormattingCodes(chatrawmessage.message)});
+                IChatComponent ichatcomponent1 = new ChatComponentTranslation("chat.stream." + (chatrawmessage.action ? "emote" : "text"), new Object[] {this.twitchComponent, ichatcomponent, 枚举聊天格式.getTextWithoutFormattingCodes(chatrawmessage.message)});
 
                 if (chatrawmessage.action)
                 {

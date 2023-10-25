@@ -9,7 +9,7 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 
 import net.minecraft.client.我的手艺;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.比例解析;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.texture.TextureUtil;
@@ -42,7 +42,7 @@ public class ScreenShotHelper
             file1.mkdir();
             我的手艺 宇轩的世界 = 我的手艺.得到我的手艺();
             int i = Config.getGameSettings().guiScale;
-            ScaledResolution scaledresolution = new ScaledResolution(宇轩的世界);
+            比例解析 scaledresolution = new 比例解析(宇轩的世界);
             int j = scaledresolution.getScaleFactor();
             int k = Config.getScreenshotSize();
             boolean flag = OpenGlHelper.isFramebufferEnabled() && k > 1;
@@ -167,8 +167,8 @@ public class ScreenShotHelper
 
         if (宇轩的世界.currentScreen != null)
         {
-            ScaledResolution scaledresolution = new ScaledResolution(宇轩的世界);
-            宇轩的世界.currentScreen.onResize(宇轩的世界, scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
+            比例解析 scaledresolution = new 比例解析(宇轩的世界);
+            宇轩的世界.currentScreen.onResize(宇轩的世界, scaledresolution.getScaledWidth(), scaledresolution.得到高度());
         }
 
         updateFramebufferSize();

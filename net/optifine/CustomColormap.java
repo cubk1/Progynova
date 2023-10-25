@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.optifine.config.ConnectedParser;
@@ -201,7 +201,7 @@ public class CustomColormap implements CustomColors.IColorizer
             }
 
             String s = this.source + ".png";
-            ResourceLocation resourcelocation = new ResourceLocation(s);
+            图像位置 resourcelocation = new 图像位置(s);
             InputStream inputstream = Config.getResourceStream(resourcelocation);
 
             if (inputstream == null)

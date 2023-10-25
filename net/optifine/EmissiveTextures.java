@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.util.PropertiesOrdered;
 
 public class EmissiveTextures
@@ -24,7 +24,7 @@ public class EmissiveTextures
     private static float lightMapX;
     private static float lightMapY;
     private static final String SUFFIX_PNG = ".png";
-    private static final ResourceLocation LOCATION_EMPTY = new ResourceLocation("mcpatcher/ctm/default/empty.png");
+    private static final 图像位置 LOCATION_EMPTY = new 图像位置("mcpatcher/ctm/default/empty.png");
 
     public static boolean isActive()
     {
@@ -42,7 +42,7 @@ public class EmissiveTextures
         hasEmissive = false;
     }
 
-    public static ITextureObject getEmissiveTexture(ITextureObject texture, Map<ResourceLocation, ITextureObject> mapTextures)
+    public static ITextureObject getEmissiveTexture(ITextureObject texture, Map<图像位置, ITextureObject> mapTextures)
     {
         if (!render)
         {
@@ -55,7 +55,7 @@ public class EmissiveTextures
         else
         {
             SimpleTexture simpletexture = (SimpleTexture)texture;
-            ResourceLocation resourcelocation = simpletexture.locationEmissive;
+            图像位置 resourcelocation = simpletexture.locationEmissive;
 
             if (!renderEmissive)
             {
@@ -123,7 +123,7 @@ public class EmissiveTextures
             try
             {
                 String s = "optifine/emissive.properties";
-                ResourceLocation resourcelocation = new ResourceLocation(s);
+                图像位置 resourcelocation = new 图像位置(s);
                 InputStream inputstream = Config.getResourceStream(resourcelocation);
 
                 if (inputstream == null)
@@ -165,12 +165,12 @@ public class EmissiveTextures
         Config.warn("EmissiveTextures: " + str);
     }
 
-    public static boolean isEmissive(ResourceLocation loc)
+    public static boolean isEmissive(图像位置 loc)
     {
         return suffixEmissivePng == null ? false : loc.getResourcePath().endsWith(suffixEmissivePng);
     }
 
-    public static void loadTexture(ResourceLocation loc, SimpleTexture tex)
+    public static void loadTexture(图像位置 loc, SimpleTexture tex)
     {
         if (loc != null && tex != null)
         {
@@ -190,7 +190,7 @@ public class EmissiveTextures
                     else
                     {
                         String s1 = s.substring(0, s.length() - ".png".length()) + suffixEmissivePng;
-                        ResourceLocation resourcelocation = new ResourceLocation(loc.getResourceDomain(), s1);
+                        图像位置 resourcelocation = new 图像位置(loc.getResourceDomain(), s1);
 
                         if (Config.hasResource(resourcelocation))
                         {

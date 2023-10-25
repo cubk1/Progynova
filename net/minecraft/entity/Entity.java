@@ -94,7 +94,7 @@ public abstract class Entity implements ICommandSender
     public boolean noClip;
     public float entityCollisionReduction;
     protected Random rand;
-    public int ticksExisted;
+    public int 已存在的刻度;
     public int fireResistance;
     private int fire;
     protected boolean inWater;

@@ -30,7 +30,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.optifine.config.Matches;
@@ -2207,7 +2207,7 @@ public class ConnectedTextures
             }
 
             updateIcons(textureMap, Config.getDefaultResourcePack());
-            ResourceLocation resourcelocation = new ResourceLocation("mcpatcher/ctm/default/empty");
+            图像位置 resourcelocation = new 图像位置("mcpatcher/ctm/default/empty");
             emptySprite = textureMap.registerSprite(resourcelocation);
             spriteQuadMaps = new Map[textureMap.getCountRegisteredSprites() + 1];
             spriteQuadFullMaps = new Map[textureMap.getCountRegisteredSprites() + 1];
@@ -2243,7 +2243,7 @@ public class ConnectedTextures
 
             try
             {
-                ResourceLocation resourcelocation = new ResourceLocation(s);
+                图像位置 resourcelocation = new 图像位置(s);
                 InputStream inputstream = rp.getInputStream(resourcelocation);
 
                 if (inputstream == null)
@@ -2441,18 +2441,18 @@ public class ConnectedTextures
         List list = new ArrayList();
         String s = "mcpatcher/ctm/default/";
 
-        if (Config.isFromDefaultResourcePack(new ResourceLocation("textures/blocks/glass.png")))
+        if (Config.isFromDefaultResourcePack(new 图像位置("textures/blocks/glass.png")))
         {
             list.add(s + "glass.properties");
             list.add(s + "glasspane.properties");
         }
 
-        if (Config.isFromDefaultResourcePack(new ResourceLocation("textures/blocks/bookshelf.png")))
+        if (Config.isFromDefaultResourcePack(new 图像位置("textures/blocks/bookshelf.png")))
         {
             list.add(s + "bookshelf.properties");
         }
 
-        if (Config.isFromDefaultResourcePack(new ResourceLocation("textures/blocks/sandstone_normal.png")))
+        if (Config.isFromDefaultResourcePack(new 图像位置("textures/blocks/sandstone_normal.png")))
         {
             list.add(s + "sandstone.properties");
         }
@@ -2463,7 +2463,7 @@ public class ConnectedTextures
         {
             String s1 = astring[i];
 
-            if (Config.isFromDefaultResourcePack(new ResourceLocation("textures/blocks/glass_" + s1 + ".png")))
+            if (Config.isFromDefaultResourcePack(new 图像位置("textures/blocks/glass_" + s1 + ".png")))
             {
                 list.add(s + i + "_glass_" + s1 + "/glass_" + s1 + ".properties");
                 list.add(s + i + "_glass_" + s1 + "/glass_pane_" + s1 + ".properties");

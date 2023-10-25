@@ -9,7 +9,7 @@ public class RealmsEditBox
 
     public RealmsEditBox(int p_i45743_1_, int p_i45743_2_, int p_i45743_3_, int p_i45743_4_, int p_i45743_5_)
     {
-        this.editBox = new 鬼TextField(p_i45743_1_, 我的手艺.得到我的手艺().fontRendererObj, p_i45743_2_, p_i45743_3_, p_i45743_4_, p_i45743_5_);
+        this.editBox = new 鬼TextField(p_i45743_1_, 我的手艺.得到我的手艺().字体渲染员, p_i45743_2_, p_i45743_3_, p_i45743_4_, p_i45743_5_);
     }
 
     public String getValue()

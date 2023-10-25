@@ -23,7 +23,7 @@ public class 鬼ScreenCapeOF extends 鬼ScreenOF
 
     public 鬼ScreenCapeOF(鬼Screen parentScreenIn)
     {
-        this.fontRenderer = Config.getMinecraft().fontRendererObj;
+        this.fontRenderer = Config.getMinecraft().字体渲染员;
         this.parentScreen = parentScreenIn;
     }
 

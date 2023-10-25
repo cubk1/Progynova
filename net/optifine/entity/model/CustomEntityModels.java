@@ -21,7 +21,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.entity.model.anim.ModelResolver;
 import net.optifine.entity.model.anim.ModelUpdater;
 
@@ -54,11 +54,11 @@ public class CustomEntityModels
 
             if (Config.isCustomEntityModels())
             {
-                ResourceLocation[] aresourcelocation = getModelLocations();
+                图像位置[] aresourcelocation = getModelLocations();
 
                 for (int i = 0; i < aresourcelocation.length; ++i)
                 {
-                    ResourceLocation resourcelocation = aresourcelocation[i];
+                    图像位置 resourcelocation = aresourcelocation[i];
                     Config.dbg("CustomEntityModel: " + resourcelocation.getResourcePath());
                     IEntityRenderer ientityrenderer = parseEntityRender(resourcelocation);
 
@@ -121,18 +121,18 @@ public class CustomEntityModels
         return map;
     }
 
-    private static ResourceLocation[] getModelLocations()
+    private static 图像位置[] getModelLocations()
     {
         String s = "optifine/cem/";
         String s1 = ".jem";
-        List<ResourceLocation> list = new ArrayList();
+        List<图像位置> list = new ArrayList();
         String[] astring = CustomModelRegistry.getModelNames();
 
         for (int i = 0; i < astring.length; ++i)
         {
             String s2 = astring[i];
             String s3 = s + s2 + s1;
-            ResourceLocation resourcelocation = new ResourceLocation(s3);
+            图像位置 resourcelocation = new 图像位置(s3);
 
             if (Config.hasResource(resourcelocation))
             {
@@ -140,11 +140,11 @@ public class CustomEntityModels
             }
         }
 
-        ResourceLocation[] aresourcelocation = (ResourceLocation[])((ResourceLocation[])list.toArray(new ResourceLocation[list.size()]));
+        图像位置[] aresourcelocation = (图像位置[])((图像位置[])list.toArray(new 图像位置[list.size()]));
         return aresourcelocation;
     }
 
-    private static IEntityRenderer parseEntityRender(ResourceLocation location)
+    private static IEntityRenderer parseEntityRender(图像位置 location)
     {
         try
         {
@@ -192,7 +192,7 @@ public class CustomEntityModels
 
     private static IEntityRenderer makeEntityRender(ModelAdapter modelAdapter, CustomEntityRenderer cer)
     {
-        ResourceLocation resourcelocation = cer.getTextureLocation();
+        图像位置 resourcelocation = cer.getTextureLocation();
         CustomModelRenderer[] acustommodelrenderer = cer.getCustomModelRenderers();
         float f = cer.getShadowSize();
 

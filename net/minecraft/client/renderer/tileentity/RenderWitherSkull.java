@@ -5,12 +5,12 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.projectile.EntityWitherSkull;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderWitherSkull extends Render<EntityWitherSkull>
 {
-    private static final ResourceLocation invulnerableWitherTextures = new ResourceLocation("textures/entity/wither/wither_invulnerable.png");
-    private static final ResourceLocation witherTextures = new ResourceLocation("textures/entity/wither/wither.png");
+    private static final 图像位置 invulnerableWitherTextures = new 图像位置("textures/entity/wither/wither_invulnerable.png");
+    private static final 图像位置 witherTextures = new 图像位置("textures/entity/wither/wither.png");
     private final ModelSkeletonHead skeletonHeadModel = new ModelSkeletonHead();
 
     public RenderWitherSkull(RenderManager renderManagerIn)
@@ -52,7 +52,7 @@ public class RenderWitherSkull extends Render<EntityWitherSkull>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityWitherSkull entity)
+    protected 图像位置 getEntityTexture(EntityWitherSkull entity)
     {
         return entity.isInvulnerable() ? invulnerableWitherTextures : witherTextures;
     }

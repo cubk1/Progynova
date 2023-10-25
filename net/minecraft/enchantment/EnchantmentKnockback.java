@@ -1,10 +1,10 @@
 package net.minecraft.enchantment;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentKnockback extends Enchantment
 {
-    protected EnchantmentKnockback(int p_i45768_1_, ResourceLocation p_i45768_2_, int p_i45768_3_)
+    protected EnchantmentKnockback(int p_i45768_1_, 图像位置 p_i45768_2_, int p_i45768_3_)
     {
         super(p_i45768_1_, p_i45768_2_, p_i45768_3_, EnumEnchantmentType.WEAPON);
         this.setName("knockback");

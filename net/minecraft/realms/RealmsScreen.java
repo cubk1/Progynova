@@ -10,7 +10,7 @@ import net.minecraft.client.gui.鬼;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RealmsScreen
 {
@@ -117,7 +117,7 @@ public class RealmsScreen
 
     public static void bindFace(String p_bindFace_0_, String p_bindFace_1_)
     {
-        ResourceLocation resourcelocation = AbstractClientPlayer.getLocationSkin(p_bindFace_1_);
+        图像位置 resourcelocation = AbstractClientPlayer.getLocationSkin(p_bindFace_1_);
 
         if (resourcelocation == null)
         {
@@ -130,7 +130,7 @@ public class RealmsScreen
 
     public static void bind(String p_bind_0_)
     {
-        ResourceLocation resourcelocation = new ResourceLocation(p_bind_0_);
+        图像位置 resourcelocation = new 图像位置(p_bind_0_);
         我的手艺.得到我的手艺().得到手感经理().绑定手感(resourcelocation);
     }
 

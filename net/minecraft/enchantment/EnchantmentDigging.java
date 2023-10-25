@@ -2,11 +2,11 @@ package net.minecraft.enchantment;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentDigging extends Enchantment
 {
-    protected EnchantmentDigging(int enchID, ResourceLocation enchName, int enchWeight)
+    protected EnchantmentDigging(int enchID, 图像位置 enchName, int enchWeight)
     {
         super(enchID, enchName, enchWeight, EnumEnchantmentType.DIGGER);
         this.setName("digging");

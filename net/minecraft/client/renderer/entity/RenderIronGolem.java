@@ -4,11 +4,11 @@ import net.minecraft.client.model.ModelIronGolem;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerIronGolemFlower;
 import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderIronGolem extends RenderLiving<EntityIronGolem>
 {
-    private static final ResourceLocation ironGolemTextures = new ResourceLocation("textures/entity/iron_golem.png");
+    private static final 图像位置 ironGolemTextures = new 图像位置("textures/entity/iron_golem.png");
 
     public RenderIronGolem(RenderManager renderManagerIn)
     {
@@ -16,7 +16,7 @@ public class RenderIronGolem extends RenderLiving<EntityIronGolem>
         this.addLayer(new LayerIronGolemFlower(this));
     }
 
-    protected ResourceLocation getEntityTexture(EntityIronGolem entity)
+    protected 图像位置 getEntityTexture(EntityIronGolem entity)
     {
         return ironGolemTextures;
     }

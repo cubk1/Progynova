@@ -477,7 +477,7 @@ public class 鬼TextField extends 鬼
             if (s.length() > 0)
             {
                 String s1 = flag ? s.substring(0, j) : s;
-                j1 = this.fontRendererInstance.drawStringWithShadow(s1, (float)l, (float)i1, i);
+                j1 = this.fontRendererInstance.绘制纵梁带心理阴影(s1, (float)l, (float)i1, i);
             }
 
             boolean flag2 = this.cursorPosition < this.text.length() || this.text.length() >= this.getMaxStringLength();
@@ -495,7 +495,7 @@ public class 鬼TextField extends 鬼
 
             if (s.length() > 0 && flag && j < s.length())
             {
-                j1 = this.fontRendererInstance.drawStringWithShadow(s.substring(j), (float)j1, (float)i1, i);
+                j1 = this.fontRendererInstance.绘制纵梁带心理阴影(s.substring(j), (float)j1, (float)i1, i);
             }
 
             if (flag1)
@@ -506,7 +506,7 @@ public class 鬼TextField extends 鬼
                 }
                 else
                 {
-                    this.fontRendererInstance.drawStringWithShadow("_", (float)k1, (float)i1, i);
+                    this.fontRendererInstance.绘制纵梁带心理阴影("_", (float)k1, (float)i1, i);
                 }
             }
 

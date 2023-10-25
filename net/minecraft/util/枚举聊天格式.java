@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public enum EnumChatFormatting
+public enum 枚举聊天格式
 {
     BLACK("BLACK", '0', 0),
     DARK_BLUE("DARK_BLUE", '1', 1),
@@ -24,7 +24,7 @@ public enum EnumChatFormatting
     RED("RED", 'c', 12),
     LIGHT_PURPLE("LIGHT_PURPLE", 'd', 13),
     YELLOW("YELLOW", 'e', 14),
-    WHITE("WHITE", 'f', 15),
+    白的("WHITE", 'f', 15),
     OBFUSCATED("OBFUSCATED", 'k', true),
     BOLD("BOLD", 'l', true),
     STRIKETHROUGH("STRIKETHROUGH", 'm', true),
@@ -32,7 +32,7 @@ public enum EnumChatFormatting
     ITALIC("ITALIC", 'o', true),
     RESET("RESET", 'r', -1);
 
-    private static final Map<String, EnumChatFormatting> nameMapping = Maps.<String, EnumChatFormatting>newHashMap();
+    private static final Map<String, 枚举聊天格式> nameMapping = Maps.<String, 枚举聊天格式>newHashMap();
     private static final Pattern formattingCodePattern = Pattern.compile("(?i)" + String.valueOf('\u00a7') + "[0-9A-FK-OR]");
     private final String name;
     private final char formattingCode;
@@ -45,17 +45,17 @@ public enum EnumChatFormatting
         return p_175745_0_.toLowerCase().replaceAll("[^a-z]", "");
     }
 
-    private EnumChatFormatting(String formattingName, char formattingCodeIn, int colorIndex)
+    private 枚举聊天格式(String formattingName, char formattingCodeIn, int colorIndex)
     {
         this(formattingName, formattingCodeIn, false, colorIndex);
     }
 
-    private EnumChatFormatting(String formattingName, char formattingCodeIn, boolean fancyStylingIn)
+    private 枚举聊天格式(String formattingName, char formattingCodeIn, boolean fancyStylingIn)
     {
         this(formattingName, formattingCodeIn, fancyStylingIn, -1);
     }
 
-    private EnumChatFormatting(String formattingName, char formattingCodeIn, boolean fancyStylingIn, int colorIndex)
+    private 枚举聊天格式(String formattingName, char formattingCodeIn, boolean fancyStylingIn, int colorIndex)
     {
         this.name = formattingName;
         this.formattingCode = formattingCodeIn;
@@ -94,12 +94,12 @@ public enum EnumChatFormatting
         return text == null ? null : formattingCodePattern.matcher(text).replaceAll("");
     }
 
-    public static EnumChatFormatting getValueByName(String friendlyName)
+    public static 枚举聊天格式 getValueByName(String friendlyName)
     {
-        return friendlyName == null ? null : (EnumChatFormatting)nameMapping.get(func_175745_c(friendlyName));
+        return friendlyName == null ? null : (枚举聊天格式)nameMapping.get(func_175745_c(friendlyName));
     }
 
-    public static EnumChatFormatting func_175744_a(int p_175744_0_)
+    public static 枚举聊天格式 func_175744_a(int p_175744_0_)
     {
         if (p_175744_0_ < 0)
         {
@@ -107,7 +107,7 @@ public enum EnumChatFormatting
         }
         else
         {
-            for (EnumChatFormatting enumchatformatting : values())
+            for (枚举聊天格式 enumchatformatting : values())
             {
                 if (enumchatformatting.getColorIndex() == p_175744_0_)
                 {
@@ -123,7 +123,7 @@ public enum EnumChatFormatting
     {
         List<String> list = Lists.<String>newArrayList();
 
-        for (EnumChatFormatting enumchatformatting : values())
+        for (枚举聊天格式 enumchatformatting : values())
         {
             if ((!enumchatformatting.isColor() || p_96296_0_) && (!enumchatformatting.isFancyStyling() || p_96296_1_))
             {
@@ -135,7 +135,7 @@ public enum EnumChatFormatting
     }
 
     static {
-        for (EnumChatFormatting enumchatformatting : values())
+        for (枚举聊天格式 enumchatformatting : values())
         {
             nameMapping.put(func_175745_c(enumchatformatting.name), enumchatformatting);
         }

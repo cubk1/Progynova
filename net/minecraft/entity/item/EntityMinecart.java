@@ -24,7 +24,7 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IWorldNameable;
 import net.minecraft.world.World;
@@ -805,7 +805,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
         {
             tagCompound.setBoolean("CustomDisplayTile", true);
             IBlockState iblockstate = this.getDisplayTile();
-            ResourceLocation resourcelocation = (ResourceLocation)Block.blockRegistry.getNameForObject(iblockstate.getBlock());
+            图像位置 resourcelocation = (图像位置)Block.blockRegistry.getNameForObject(iblockstate.getBlock());
             tagCompound.setString("DisplayTile", resourcelocation == null ? "" : resourcelocation.toString());
             tagCompound.setInteger("DisplayData", iblockstate.getBlock().getMetaFromState(iblockstate));
             tagCompound.setInteger("DisplayOffset", this.getDisplayTileOffset());

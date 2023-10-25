@@ -2,7 +2,7 @@ package net.minecraft.world.gen;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class FlatLayerInfo
 {
@@ -66,7 +66,7 @@ public class FlatLayerInfo
 
         if (this.field_175902_a >= 3)
         {
-            ResourceLocation resourcelocation = (ResourceLocation)Block.blockRegistry.getNameForObject(this.getLayerMaterialBlock());
+            图像位置 resourcelocation = (图像位置)Block.blockRegistry.getNameForObject(this.getLayerMaterialBlock());
             s = resourcelocation == null ? "null" : resourcelocation.toString();
 
             if (this.layerCount > 1)

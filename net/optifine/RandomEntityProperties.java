@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.config.ConnectedParser;
 
 public class RandomEntityProperties
 {
     public String name = null;
     public String basePath = null;
-    public ResourceLocation[] resourceLocations = null;
+    public 图像位置[] 图像位置s = null;
     public RandomEntityRule[] rules = null;
 
-    public RandomEntityProperties(String path, ResourceLocation[] variants)
+    public RandomEntityProperties(String path, 图像位置[] variants)
     {
         ConnectedParser connectedparser = new ConnectedParser("RandomEntities");
         this.name = connectedparser.parseName(path);
         this.basePath = connectedparser.parseBasePath(path);
-        this.resourceLocations = variants;
+        this.图像位置s = variants;
     }
 
-    public RandomEntityProperties(Properties props, String path, ResourceLocation baseResLoc)
+    public RandomEntityProperties(Properties props, String path, 图像位置 baseResLoc)
     {
         ConnectedParser connectedparser = new ConnectedParser("RandomEntities");
         this.name = connectedparser.parseName(path);
@@ -30,7 +30,7 @@ public class RandomEntityProperties
         this.rules = this.parseRules(props, path, baseResLoc, connectedparser);
     }
 
-    public ResourceLocation getTextureLocation(ResourceLocation loc, IRandomEntity randomEntity)
+    public 图像位置 getTextureLocation(图像位置 loc, IRandomEntity randomEntity)
     {
         if (this.rules != null)
         {
@@ -45,11 +45,11 @@ public class RandomEntityProperties
             }
         }
 
-        if (this.resourceLocations != null)
+        if (this.图像位置s != null)
         {
             int j = randomEntity.getId();
-            int k = j % this.resourceLocations.length;
-            return this.resourceLocations[k];
+            int k = j % this.图像位置s.length;
+            return this.图像位置s[k];
         }
         else
         {
@@ -57,7 +57,7 @@ public class RandomEntityProperties
         }
     }
 
-    private RandomEntityRule[] parseRules(Properties props, String pathProps, ResourceLocation baseResLoc, ConnectedParser cp)
+    private RandomEntityRule[] parseRules(Properties props, String pathProps, 图像位置 baseResLoc, ConnectedParser cp)
     {
         List list = new ArrayList();
         int i = props.size();
@@ -89,7 +89,7 @@ public class RandomEntityProperties
 
     public boolean isValid(String path)
     {
-        if (this.resourceLocations == null && this.rules == null)
+        if (this.图像位置s == null && this.rules == null)
         {
             Config.warn("No skins specified: " + path);
             return false;
@@ -109,11 +109,11 @@ public class RandomEntityProperties
                 }
             }
 
-            if (this.resourceLocations != null)
+            if (this.图像位置s != null)
             {
-                for (int j = 0; j < this.resourceLocations.length; ++j)
+                for (int j = 0; j < this.图像位置s.length; ++j)
                 {
-                    ResourceLocation resourcelocation = this.resourceLocations[j];
+                    图像位置 resourcelocation = this.图像位置s[j];
 
                     if (!Config.hasResource(resourcelocation))
                     {
@@ -129,6 +129,6 @@ public class RandomEntityProperties
 
     public boolean isDefault()
     {
-        return this.rules != null ? false : this.resourceLocations == null;
+        return this.rules != null ? false : this.图像位置s == null;
     }
 }

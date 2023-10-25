@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import net.minecraft.client.resources.model.ModelRotation;
 import net.minecraft.util.JsonUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class ModelBlockDefinition
 {
@@ -131,12 +131,12 @@ public class ModelBlockDefinition
 
     public static class Variant
     {
-        private final ResourceLocation modelLocation;
+        private final 图像位置 modelLocation;
         private final ModelRotation modelRotation;
         private final boolean uvLock;
         private final int weight;
 
-        public Variant(ResourceLocation modelLocationIn, ModelRotation modelRotationIn, boolean uvLockIn, int weightIn)
+        public Variant(图像位置 modelLocationIn, ModelRotation modelRotationIn, boolean uvLockIn, int weightIn)
         {
             this.modelLocation = modelLocationIn;
             this.modelRotation = modelRotationIn;
@@ -144,7 +144,7 @@ public class ModelBlockDefinition
             this.weight = weightIn;
         }
 
-        public ResourceLocation getModelLocation()
+        public 图像位置 getModelLocation()
         {
             return this.modelLocation;
         }
@@ -201,10 +201,10 @@ public class ModelBlockDefinition
                 return new ModelBlockDefinition.Variant(this.makeModelLocation(s), modelrotation, flag, i);
             }
 
-            private ResourceLocation makeModelLocation(String p_178426_1_)
+            private 图像位置 makeModelLocation(String p_178426_1_)
             {
-                ResourceLocation resourcelocation = new ResourceLocation(p_178426_1_);
-                resourcelocation = new ResourceLocation(resourcelocation.getResourceDomain(), "block/" + resourcelocation.getResourcePath());
+                图像位置 resourcelocation = new 图像位置(p_178426_1_);
+                resourcelocation = new 图像位置(resourcelocation.getResourceDomain(), "block/" + resourcelocation.getResourcePath());
                 return resourcelocation;
             }
 

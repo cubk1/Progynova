@@ -16,7 +16,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class StatList
 {
@@ -189,7 +189,7 @@ public class StatList
 
     private static String func_180204_a(Item p_180204_0_)
     {
-        ResourceLocation resourcelocation = (ResourceLocation)Item.itemRegistry.getNameForObject(p_180204_0_);
+        图像位置 resourcelocation = (图像位置)Item.itemRegistry.getNameForObject(p_180204_0_);
         return resourcelocation != null ? resourcelocation.toString().replace(':', '.') : null;
     }
 

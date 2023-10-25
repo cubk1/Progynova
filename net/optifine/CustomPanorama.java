@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.util.MathUtils;
 import net.optifine.util.PropertiesOrdered;
 
@@ -58,7 +58,7 @@ public class CustomPanorama
         {
             String s = "optifine/gui/background" + i;
             String s1 = s + "/panorama_0.png";
-            ResourceLocation resourcelocation = new ResourceLocation(s1);
+            图像位置 resourcelocation = new 图像位置(s1);
 
             if (Config.hasResource(resourcelocation))
             {
@@ -87,7 +87,7 @@ public class CustomPanorama
                 Config.dbg("CustomPanorama: " + s);
             }
 
-            ResourceLocation resourcelocation = new ResourceLocation(s + "/background.properties");
+            图像位置 resourcelocation = new 图像位置(s + "/background.properties");
 
             try
             {

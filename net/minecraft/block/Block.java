@@ -26,7 +26,7 @@ import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ObjectIntIdentityMap;
 import net.minecraft.util.RegistryNamespacedDefaultedByKey;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.Explosion;
@@ -35,8 +35,8 @@ import net.minecraft.world.World;
 
 public class Block
 {
-    private static final ResourceLocation AIR_ID = new ResourceLocation("air");
-    public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Block> blockRegistry = new RegistryNamespacedDefaultedByKey(AIR_ID);
+    private static final 图像位置 AIR_ID = new 图像位置("air");
+    public static final RegistryNamespacedDefaultedByKey<图像位置, Block> blockRegistry = new RegistryNamespacedDefaultedByKey(AIR_ID);
     public static final ObjectIntIdentityMap<IBlockState> BLOCK_STATE_IDS = new ObjectIntIdentityMap();
     private CreativeTabs displayOnCreativeTab;
     public static final Block.SoundType soundTypeStone = new Block.SoundType("stone", 1.0F, 1.0F);
@@ -147,7 +147,7 @@ public class Block
 
     public static Block getBlockFromName(String name)
     {
-        ResourceLocation resourcelocation = new ResourceLocation(name);
+        图像位置 resourcelocation = new 图像位置(name);
 
         if (blockRegistry.containsKey(resourcelocation))
         {
@@ -1240,14 +1240,14 @@ public class Block
         }
     }
 
-    private static void registerBlock(int id, ResourceLocation textualID, Block block_)
+    private static void registerBlock(int id, 图像位置 textualID, Block block_)
     {
         blockRegistry.register(id, textualID, block_);
     }
 
     private static void registerBlock(int id, String textualID, Block block_)
     {
-        registerBlock(id, new ResourceLocation(textualID), block_);
+        registerBlock(id, new 图像位置(textualID), block_);
     }
 
     public static enum EnumOffsetType

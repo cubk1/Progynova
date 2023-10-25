@@ -83,7 +83,7 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.LongHashMap;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.IBlockAccess;
@@ -324,7 +324,7 @@ public class Reflector
     public static ReflectorField ModelBlaze_blazeHead = new ReflectorField(ModelBlaze, ModelRenderer.class);
     public static ReflectorField ModelBlaze_blazeSticks = new ReflectorField(ModelBlaze, ModelRenderer[].class);
     public static ReflectorClass ModelBlock = new ReflectorClass(ModelBlock.class);
-    public static ReflectorField ModelBlock_parentLocation = new ReflectorField(ModelBlock, ResourceLocation.class);
+    public static ReflectorField ModelBlock_parentLocation = new ReflectorField(ModelBlock, 图像位置.class);
     public static ReflectorField ModelBlock_textures = new ReflectorField(ModelBlock, Map.class);
     public static ReflectorClass ModelDragon = new ReflectorClass(ModelDragon.class);
     public static ReflectorFields ModelDragon_ModelRenderers = new ReflectorFields(ModelDragon, ModelRenderer.class, 12);

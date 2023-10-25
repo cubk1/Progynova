@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼ScreenOptionsSounds extends 鬼Screen
 {
@@ -145,7 +145,7 @@ public class 鬼ScreenOptionsSounds extends 鬼Screen
                     鬼ScreenOptionsSounds.this.game_settings_4.getSoundLevel(this.field_146153_r);
                 }
 
-                鬼ScreenOptionsSounds.this.mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
+                鬼ScreenOptionsSounds.this.mc.getSoundHandler().playSound(PositionedSoundRecord.create(new 图像位置("gui.button.press"), 1.0F));
             }
 
             this.field_146155_p = false;

@@ -10,7 +10,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.stream.IStream;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.IChatComponent;
 import tv.twitch.chat.ChatUserInfo;
 import tv.twitch.chat.ChatUserMode;
@@ -18,9 +18,9 @@ import tv.twitch.chat.ChatUserSubscription;
 
 public class 鬼TwitchUserMode extends 鬼Screen
 {
-    private static final EnumChatFormatting field_152331_a = EnumChatFormatting.DARK_GREEN;
-    private static final EnumChatFormatting field_152335_f = EnumChatFormatting.RED;
-    private static final EnumChatFormatting field_152336_g = EnumChatFormatting.DARK_PURPLE;
+    private static final 枚举聊天格式 field_152331_a = 枚举聊天格式.DARK_GREEN;
+    private static final 枚举聊天格式 field_152335_f = 枚举聊天格式.RED;
+    private static final 枚举聊天格式 field_152336_g = 枚举聊天格式.DARK_PURPLE;
     private final ChatUserInfo field_152337_h;
     private final IChatComponent field_152338_i;
     private final List<IChatComponent> field_152332_r = Lists.<IChatComponent>newArrayList();

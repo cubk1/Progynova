@@ -25,7 +25,7 @@ import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.storage.MapData;
 import net.optifine.DynamicLights;
 import net.optifine.reflect.Reflector;
@@ -34,8 +34,8 @@ import org.lwjgl.opengl.GL11;
 
 public class ItemRenderer
 {
-    private static final ResourceLocation RES_MAP_BACKGROUND = new ResourceLocation("textures/map/map_background.png");
-    private static final ResourceLocation RES_UNDERWATER_OVERLAY = new ResourceLocation("textures/misc/underwater.png");
+    private static final 图像位置 RES_MAP_BACKGROUND = new 图像位置("textures/map/map_background.png");
+    private static final 图像位置 RES_UNDERWATER_OVERLAY = new 图像位置("textures/misc/underwater.png");
     private final 我的手艺 mc;
     private ItemStack itemToRender;
     private float equippedProgress;

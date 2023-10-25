@@ -16,13 +16,13 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.C17PacketCustomPayload;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 
 public class 鬼Repair extends 鬼Container implements ICrafting
 {
-    private static final ResourceLocation anvilResource = new ResourceLocation("textures/gui/container/anvil.png");
+    private static final 图像位置 anvilResource = new 图像位置("textures/gui/container/anvil.png");
     private ContainerRepair anvil;
     private 鬼TextField nameField;
     private InventoryPlayer playerInventory;

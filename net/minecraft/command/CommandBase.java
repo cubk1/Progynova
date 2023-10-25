@@ -18,7 +18,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public abstract class CommandBase implements ICommand
 {
@@ -475,7 +475,7 @@ public abstract class CommandBase implements ICommand
 
     public static Item getItemByText(ICommandSender sender, String id) throws NumberInvalidException
     {
-        ResourceLocation resourcelocation = new ResourceLocation(id);
+        图像位置 resourcelocation = new 图像位置(id);
         Item item = Item.itemRegistry.getObject(resourcelocation);
 
         if (item == null)
@@ -490,7 +490,7 @@ public abstract class CommandBase implements ICommand
 
     public static Block getBlockByText(ICommandSender sender, String id) throws NumberInvalidException
     {
-        ResourceLocation resourcelocation = new ResourceLocation(id);
+        图像位置 resourcelocation = new 图像位置(id);
 
         if (!Block.blockRegistry.containsKey(resourcelocation))
         {
@@ -656,7 +656,7 @@ public abstract class CommandBase implements ICommand
             {
                 for (Object object : p_175762_1_)
                 {
-                    if (object instanceof ResourceLocation && doesStringStartWith(s, ((ResourceLocation)object).getResourcePath()))
+                    if (object instanceof 图像位置 && doesStringStartWith(s, ((图像位置)object).getResourcePath()))
                     {
                         list.add(String.valueOf(object));
                     }

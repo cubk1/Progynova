@@ -6,11 +6,11 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerHopper;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼Hopper extends 鬼Container
 {
-    private static final ResourceLocation HOPPER_GUI_TEXTURE = new ResourceLocation("textures/gui/container/hopper.png");
+    private static final 图像位置 HOPPER_GUI_TEXTURE = new 图像位置("textures/gui/container/hopper.png");
     private IInventory playerInventory;
     private IInventory hopperInventory;
 

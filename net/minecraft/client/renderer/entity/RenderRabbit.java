@@ -2,28 +2,28 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.枚举聊天格式;
+import net.minecraft.util.图像位置;
 
 public class RenderRabbit extends RenderLiving<EntityRabbit>
 {
-    private static final ResourceLocation BROWN = new ResourceLocation("textures/entity/rabbit/brown.png");
-    private static final ResourceLocation WHITE = new ResourceLocation("textures/entity/rabbit/white.png");
-    private static final ResourceLocation BLACK = new ResourceLocation("textures/entity/rabbit/black.png");
-    private static final ResourceLocation GOLD = new ResourceLocation("textures/entity/rabbit/gold.png");
-    private static final ResourceLocation SALT = new ResourceLocation("textures/entity/rabbit/salt.png");
-    private static final ResourceLocation WHITE_SPLOTCHED = new ResourceLocation("textures/entity/rabbit/white_splotched.png");
-    private static final ResourceLocation TOAST = new ResourceLocation("textures/entity/rabbit/toast.png");
-    private static final ResourceLocation CAERBANNOG = new ResourceLocation("textures/entity/rabbit/caerbannog.png");
+    private static final 图像位置 BROWN = new 图像位置("textures/entity/rabbit/brown.png");
+    private static final 图像位置 WHITE = new 图像位置("textures/entity/rabbit/white.png");
+    private static final 图像位置 BLACK = new 图像位置("textures/entity/rabbit/black.png");
+    private static final 图像位置 GOLD = new 图像位置("textures/entity/rabbit/gold.png");
+    private static final 图像位置 SALT = new 图像位置("textures/entity/rabbit/salt.png");
+    private static final 图像位置 WHITE_SPLOTCHED = new 图像位置("textures/entity/rabbit/white_splotched.png");
+    private static final 图像位置 TOAST = new 图像位置("textures/entity/rabbit/toast.png");
+    private static final 图像位置 CAERBANNOG = new 图像位置("textures/entity/rabbit/caerbannog.png");
 
     public RenderRabbit(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
     {
         super(renderManagerIn, modelBaseIn, shadowSizeIn);
     }
 
-    protected ResourceLocation getEntityTexture(EntityRabbit entity)
+    protected 图像位置 getEntityTexture(EntityRabbit entity)
     {
-        String s = EnumChatFormatting.getTextWithoutFormattingCodes(entity.getName());
+        String s = 枚举聊天格式.getTextWithoutFormattingCodes(entity.getName());
 
         if (s != null && s.equals("Toast"))
         {

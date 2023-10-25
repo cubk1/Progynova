@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class CapeUtils
 {
@@ -25,7 +25,7 @@ public class CapeUtils
         if (s != null && !s.isEmpty() && !s.contains("\u0000") && PATTERN_USERNAME.matcher(s).matches())
         {
             String s1 = "http://s.optifine.net/capes/" + s + ".png";
-            ResourceLocation resourcelocation = new ResourceLocation("capeof/" + s);
+            图像位置 resourcelocation = new 图像位置("capeof/" + s);
             TextureManager texturemanager = 我的手艺.得到我的手艺().得到手感经理();
             ITextureObject itextureobject = texturemanager.getTexture(resourcelocation);
 
@@ -51,7 +51,7 @@ public class CapeUtils
             }
 
             CapeImageBuffer capeimagebuffer = new CapeImageBuffer(player, resourcelocation);
-            ThreadDownloadImageData threaddownloadimagedata1 = new ThreadDownloadImageData((File)null, s1, (ResourceLocation)null, capeimagebuffer);
+            ThreadDownloadImageData threaddownloadimagedata1 = new ThreadDownloadImageData((File)null, s1, (图像位置)null, capeimagebuffer);
             threaddownloadimagedata1.pipeline = true;
             texturemanager.loadTexture(resourcelocation, threaddownloadimagedata1);
         }
@@ -83,7 +83,7 @@ public class CapeUtils
     public static void reloadCape(AbstractClientPlayer player)
     {
         String s = player.getNameClear();
-        ResourceLocation resourcelocation = new ResourceLocation("capeof/" + s);
+        图像位置 resourcelocation = new 图像位置("capeof/" + s);
         TextureManager texturemanager = Config.getTextureManager();
         ITextureObject itextureobject = texturemanager.getTexture(resourcelocation);
 
@@ -94,7 +94,7 @@ public class CapeUtils
             texturemanager.deleteTexture(resourcelocation);
         }
 
-        player.setLocationOfCape((ResourceLocation)null);
+        player.setLocationOfCape((图像位置)null);
         player.setElytraOfCape(false);
         downloadCape(player);
     }

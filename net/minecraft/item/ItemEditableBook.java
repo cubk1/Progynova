@@ -11,7 +11,7 @@ import net.minecraft.network.play.server.S2FPacketSetSlot;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ChatComponentProcessor;
 import net.minecraft.util.交流组分文本;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.StringUtils;
@@ -71,10 +71,10 @@ public class ItemEditableBook extends Item
 
             if (!StringUtils.isNullOrEmpty(s))
             {
-                tooltip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocalFormatted("book.byAuthor", new Object[] {s}));
+                tooltip.add(枚举聊天格式.GRAY + StatCollector.translateToLocalFormatted("book.byAuthor", new Object[] {s}));
             }
 
-            tooltip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("book.generation." + nbttagcompound.getInteger("generation")));
+            tooltip.add(枚举聊天格式.GRAY + StatCollector.translateToLocal("book.generation." + nbttagcompound.getInteger("generation")));
         }
     }
 

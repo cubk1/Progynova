@@ -144,7 +144,7 @@ public class ModelRabbit extends ModelBase
 
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        float f = ageInTicks - (float)entityIn.ticksExisted;
+        float f = ageInTicks - (float)entityIn.已存在的刻度;
         EntityRabbit entityrabbit = (EntityRabbit)entityIn;
         this.rabbitNose.rotateAngleX = this.rabbitHead.rotateAngleX = this.rabbitRightEar.rotateAngleX = this.rabbitLeftEar.rotateAngleX = headPitch * 0.017453292F;
         this.rabbitNose.rotateAngleY = this.rabbitHead.rotateAngleY = netHeadYaw * 0.017453292F;

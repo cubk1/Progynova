@@ -8,7 +8,7 @@ import java.util.Properties;
 
 import net.minecraft.client.我的手艺;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.config.ConnectedParser;
 import net.optifine.config.MatchBlock;
 import net.optifine.reflect.Reflector;
@@ -109,7 +109,7 @@ public class BlockAliases
 
             try
             {
-                ResourceLocation resourcelocation = new ResourceLocation(s, "shaders/block.properties");
+                图像位置 resourcelocation = new 图像位置(s, "shaders/block.properties");
                 InputStream inputstream = Config.getResourceStream(resourcelocation);
                 loadBlockAliases(inputstream, resourcelocation.toString(), listBlockAliases);
             }

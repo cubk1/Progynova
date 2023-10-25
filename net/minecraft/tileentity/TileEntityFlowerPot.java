@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class TileEntityFlowerPot extends TileEntity
 {
@@ -24,7 +24,7 @@ public class TileEntityFlowerPot extends TileEntity
     public void writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        ResourceLocation resourcelocation = (ResourceLocation)Item.itemRegistry.getNameForObject(this.flowerPotItem);
+        图像位置 resourcelocation = (图像位置)Item.itemRegistry.getNameForObject(this.flowerPotItem);
         compound.setString("Item", resourcelocation == null ? "" : resourcelocation.toString());
         compound.setInteger("Data", this.flowerPotData);
     }

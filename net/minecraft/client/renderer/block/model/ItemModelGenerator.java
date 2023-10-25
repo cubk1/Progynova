@@ -7,7 +7,7 @@ import java.util.Map;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.lwjgl.util.vector.Vector3f;
 
 public class ItemModelGenerator
@@ -30,7 +30,7 @@ public class ItemModelGenerator
 
             String s1 = blockModel.resolveTextureName(s);
             map.put(s, s1);
-            TextureAtlasSprite textureatlassprite = textureMapIn.getAtlasSprite((new ResourceLocation(s1)).toString());
+            TextureAtlasSprite textureatlassprite = textureMapIn.getAtlasSprite((new 图像位置(s1)).toString());
             list.addAll(this.func_178394_a(i, s, textureatlassprite));
         }
 

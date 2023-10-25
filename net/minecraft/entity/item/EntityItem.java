@@ -88,7 +88,7 @@ public class EntityItem extends Entity
             this.moveEntity(this.通便X, this.motionY, this.通便Z);
             boolean flag = (int)this.prevPosX != (int)this.posX || (int)this.prevPosY != (int)this.posY || (int)this.prevPosZ != (int)this.posZ;
 
-            if (flag || this.ticksExisted % 25 == 0)
+            if (flag || this.已存在的刻度 % 25 == 0)
             {
                 if (this.worldObj.getBlockState(new BlockPos(this)).getBlock().getMaterial() == Material.lava)
                 {

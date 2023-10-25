@@ -19,7 +19,7 @@ import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.StatFileWriter;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.lwjgl.input.Mouse;
 
 public class 鬼Achievements extends 鬼Screen implements IProgressMeter
@@ -28,7 +28,7 @@ public class 鬼Achievements extends 鬼Screen implements IProgressMeter
     private static final int field_146571_z = AchievementList.minDisplayRow * 24 - 112;
     private static final int field_146559_A = AchievementList.maxDisplayColumn * 24 - 77;
     private static final int field_146560_B = AchievementList.maxDisplayRow * 24 - 77;
-    private static final ResourceLocation ACHIEVEMENT_BACKGROUND = new ResourceLocation("textures/gui/achievement/achievement_background.png");
+    private static final 图像位置 ACHIEVEMENT_BACKGROUND = new 图像位置("textures/gui/achievement/achievement_background.png");
     protected 鬼Screen parentScreen;
     protected int field_146555_f = 256;
     protected int field_146557_g = 202;
@@ -499,7 +499,7 @@ public class 鬼Achievements extends 鬼Screen implements IProgressMeter
 
                 if (this.statFileWriter.hasAchievementUnlocked(achievement))
                 {
-                    this.fontRendererObj.drawStringWithShadow(I18n.format("achievement.taken", new Object[0]), (float)i7, (float)(k7 + i9 + 4), -7302913);
+                    this.fontRendererObj.绘制纵梁带心理阴影(I18n.format("achievement.taken", new Object[0]), (float)i7, (float)(k7 + i9 + 4), -7302913);
                 }
             }
             else if (i8 == 3)
@@ -526,7 +526,7 @@ public class 鬼Achievements extends 鬼Screen implements IProgressMeter
 
             if (s != null)
             {
-                this.fontRendererObj.drawStringWithShadow(s, (float)i7, (float)k7, this.statFileWriter.canUnlockAchievement(achievement) ? (achievement.getSpecial() ? -128 : -1) : (achievement.getSpecial() ? -8355776 : -8355712));
+                this.fontRendererObj.绘制纵梁带心理阴影(s, (float)i7, (float)k7, this.statFileWriter.canUnlockAchievement(achievement) ? (achievement.getSpecial() ? -128 : -1) : (achievement.getSpecial() ? -8355776 : -8355712));
             }
         }
 

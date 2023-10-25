@@ -26,7 +26,7 @@ import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatCrafting;
 import net.minecraft.stats.StatFileWriter;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.lwjgl.input.Mouse;
 
 public class 鬼Stats extends 鬼Screen implements IProgressMeter
@@ -305,7 +305,7 @@ public class 鬼Stats extends 鬼Screen implements IProgressMeter
             if (this.field_148218_l >= 0)
             {
                 this.func_148212_h(this.field_148218_l);
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.create(new 图像位置("gui.button.press"), 1.0F));
             }
         }
 
@@ -382,7 +382,7 @@ public class 鬼Stats extends 鬼Screen implements IProgressMeter
                         int l = p_148142_2_ - 12;
                         int i1 = 鬼Stats.this.fontRendererObj.getStringWidth(s);
                         鬼Stats.this.drawGradientRect(k - 3, l - 3, k + i1 + 3, l + 8 + 3, -1073741824, -1073741824);
-                        鬼Stats.this.fontRendererObj.drawStringWithShadow(s, (float)k, (float)l, -1);
+                        鬼Stats.this.fontRendererObj.绘制纵梁带心理阴影(s, (float)k, (float)l, -1);
                     }
                 }
             }
@@ -403,7 +403,7 @@ public class 鬼Stats extends 鬼Screen implements IProgressMeter
                     int j = p_148213_3_ - 12;
                     int k = 鬼Stats.this.fontRendererObj.getStringWidth(s1);
                     鬼Stats.this.drawGradientRect(i - 3, j - 3, i + k + 3, j + 8 + 3, -1073741824, -1073741824);
-                    鬼Stats.this.fontRendererObj.drawStringWithShadow(s1, (float)i, (float)j, -1);
+                    鬼Stats.this.fontRendererObj.绘制纵梁带心理阴影(s1, (float)i, (float)j, -1);
                 }
             }
         }

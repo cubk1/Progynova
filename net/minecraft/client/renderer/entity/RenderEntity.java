@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderEntity extends Render<Entity>
 {
@@ -19,7 +19,7 @@ public class RenderEntity extends Render<Entity>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(Entity entity)
+    protected 图像位置 getEntityTexture(Entity entity)
     {
         return null;
     }

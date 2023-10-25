@@ -12,7 +12,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapData;
 
@@ -22,7 +22,7 @@ public class ReflectorForge
     public static Object EVENT_RESULT_DENY = Reflector.getFieldValue(Reflector.Event_Result_DENY);
     public static Object EVENT_RESULT_DEFAULT = Reflector.getFieldValue(Reflector.Event_Result_DEFAULT);
 
-    public static void FMLClientHandler_trackBrokenTexture(ResourceLocation loc, String message)
+    public static void FMLClientHandler_trackBrokenTexture(图像位置 loc, String message)
     {
         if (!Reflector.FMLClientHandler_trackBrokenTexture.exists())
         {
@@ -31,7 +31,7 @@ public class ReflectorForge
         }
     }
 
-    public static void FMLClientHandler_trackMissingTexture(ResourceLocation loc)
+    public static void FMLClientHandler_trackMissingTexture(图像位置 loc)
     {
         if (!Reflector.FMLClientHandler_trackMissingTexture.exists())
         {

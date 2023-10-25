@@ -19,7 +19,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.util.JsonException;
 import net.minecraft.util.JsonUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
@@ -38,7 +38,7 @@ public class ShaderGroup
     private float field_148036_j;
     private float field_148037_k;
 
-    public ShaderGroup(TextureManager p_i1050_1_, IResourceManager p_i1050_2_, Framebuffer p_i1050_3_, ResourceLocation p_i1050_4_) throws IOException, JsonSyntaxException
+    public ShaderGroup(TextureManager p_i1050_1_, IResourceManager p_i1050_2_, Framebuffer p_i1050_3_, 图像位置 p_i1050_4_) throws IOException, JsonSyntaxException
     {
         this.resourceManager = p_i1050_2_;
         this.mainFramebuffer = p_i1050_3_;
@@ -51,7 +51,7 @@ public class ShaderGroup
         this.parseGroup(p_i1050_1_, p_i1050_4_);
     }
 
-    public void parseGroup(TextureManager p_152765_1_, ResourceLocation p_152765_2_) throws IOException, JsonSyntaxException
+    public void parseGroup(TextureManager p_152765_1_, 图像位置 p_152765_2_) throws IOException, JsonSyntaxException
     {
         JsonParser jsonparser = new JsonParser();
         InputStream inputstream = null;
@@ -177,7 +177,7 @@ public class ShaderGroup
 
                         if (framebuffer2 == null)
                         {
-                            ResourceLocation resourcelocation = new ResourceLocation("textures/effect/" + s3 + ".png");
+                            图像位置 resourcelocation = new 图像位置("textures/effect/" + s3 + ".png");
 
                             try
                             {

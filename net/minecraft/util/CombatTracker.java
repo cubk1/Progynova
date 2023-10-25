@@ -52,15 +52,15 @@ public class CombatTracker
     {
         this.reset();
         this.func_94545_a();
-        CombatEntry combatentry = new CombatEntry(damageSrc, this.fighter.ticksExisted, healthIn, damageAmount, this.field_94551_f, this.fighter.fallDistance);
+        CombatEntry combatentry = new CombatEntry(damageSrc, this.fighter.已存在的刻度, healthIn, damageAmount, this.field_94551_f, this.fighter.fallDistance);
         this.combatEntries.add(combatentry);
-        this.field_94555_c = this.fighter.ticksExisted;
+        this.field_94555_c = this.fighter.已存在的刻度;
         this.field_94553_e = true;
 
         if (combatentry.isLivingDamageSrc() && !this.field_94552_d && this.fighter.isEntityAlive())
         {
             this.field_94552_d = true;
-            this.field_152775_d = this.fighter.ticksExisted;
+            this.field_152775_d = this.fighter.已存在的刻度;
             this.field_152776_e = this.field_152775_d;
             this.fighter.sendEnterCombat();
         }
@@ -217,7 +217,7 @@ public class CombatTracker
 
     public int func_180134_f()
     {
-        return this.field_94552_d ? this.fighter.ticksExisted - this.field_152775_d : this.field_152776_e - this.field_152775_d;
+        return this.field_94552_d ? this.fighter.已存在的刻度 - this.field_152775_d : this.field_152776_e - this.field_152775_d;
     }
 
     private void func_94542_g()
@@ -229,12 +229,12 @@ public class CombatTracker
     {
         int i = this.field_94552_d ? 300 : 100;
 
-        if (this.field_94553_e && (!this.fighter.isEntityAlive() || this.fighter.ticksExisted - this.field_94555_c > i))
+        if (this.field_94553_e && (!this.fighter.isEntityAlive() || this.fighter.已存在的刻度 - this.field_94555_c > i))
         {
             boolean flag = this.field_94552_d;
             this.field_94553_e = false;
             this.field_94552_d = false;
-            this.field_152776_e = this.fighter.ticksExisted;
+            this.field_152776_e = this.fighter.已存在的刻度;
 
             if (flag)
             {

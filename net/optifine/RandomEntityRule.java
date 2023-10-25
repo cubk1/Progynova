@@ -8,7 +8,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.optifine.config.ConnectedParser;
@@ -25,10 +25,10 @@ import net.optifine.util.MathUtils;
 public class RandomEntityRule
 {
     private String pathProps = null;
-    private ResourceLocation baseResLoc = null;
+    private 图像位置 baseResLoc = null;
     private int index;
     private int[] textures = null;
-    private ResourceLocation[] resourceLocations = null;
+    private 图像位置[] 图像位置s = null;
     private int[] weights = null;
     private BiomeGenBase[] biomes = null;
     private RangeListInt heights = null;
@@ -44,7 +44,7 @@ public class RandomEntityRule
     private RangeListInt dayTimes = null;
     private Weather[] weatherList = null;
 
-    public RandomEntityRule(Properties props, String pathProps, ResourceLocation baseResLoc, int index, String valTextures, ConnectedParser cp)
+    public RandomEntityRule(Properties props, String pathProps, 图像位置 baseResLoc, int index, String valTextures, ConnectedParser cp)
     {
         this.pathProps = pathProps;
         this.baseResLoc = baseResLoc;
@@ -132,15 +132,15 @@ public class RandomEntityRule
     {
         if (this.textures != null && this.textures.length != 0)
         {
-            if (this.resourceLocations != null)
+            if (this.图像位置s != null)
             {
                 return true;
             }
             else
             {
-                this.resourceLocations = new ResourceLocation[this.textures.length];
+                this.图像位置s = new 图像位置[this.textures.length];
                 boolean flag = this.pathProps.startsWith("mcpatcher/mob/");
-                ResourceLocation resourcelocation = RandomEntities.getLocationRandom(this.baseResLoc, flag);
+                图像位置 resourcelocation = RandomEntities.getLocationRandom(this.baseResLoc, flag);
 
                 if (resourcelocation == null)
                 {
@@ -149,17 +149,17 @@ public class RandomEntityRule
                 }
                 else
                 {
-                    for (int i = 0; i < this.resourceLocations.length; ++i)
+                    for (int i = 0; i < this.图像位置s.length; ++i)
                     {
                         int j = this.textures[i];
 
                         if (j <= 1)
                         {
-                            this.resourceLocations[i] = this.baseResLoc;
+                            this.图像位置s[i] = this.baseResLoc;
                         }
                         else
                         {
-                            ResourceLocation resourcelocation1 = RandomEntities.getLocationIndexed(resourcelocation, j);
+                            图像位置 resourcelocation1 = RandomEntities.getLocationIndexed(resourcelocation, j);
 
                             if (resourcelocation1 == null)
                             {
@@ -173,24 +173,24 @@ public class RandomEntityRule
                                 return false;
                             }
 
-                            this.resourceLocations[i] = resourcelocation1;
+                            this.图像位置s[i] = resourcelocation1;
                         }
                     }
 
                     if (this.weights != null)
                     {
-                        if (this.weights.length > this.resourceLocations.length)
+                        if (this.weights.length > this.图像位置s.length)
                         {
                             Config.warn("More weights defined than skins, trimming weights: " + path);
-                            int[] aint = new int[this.resourceLocations.length];
+                            int[] aint = new int[this.图像位置s.length];
                             System.arraycopy(this.weights, 0, aint, 0, aint.length);
                             this.weights = aint;
                         }
 
-                        if (this.weights.length < this.resourceLocations.length)
+                        if (this.weights.length < this.图像位置s.length)
                         {
                             Config.warn("Less weights defined than skins, expanding weights: " + path);
-                            int[] aint1 = new int[this.resourceLocations.length];
+                            int[] aint1 = new int[this.图像位置s.length];
                             System.arraycopy(this.weights, 0, aint1, 0, this.weights.length);
                             int l = MathUtils.getAverage(this.weights);
 
@@ -422,15 +422,15 @@ public class RandomEntityRule
         }
     }
 
-    public ResourceLocation getTextureLocation(ResourceLocation loc, int randomId)
+    public 图像位置 getTextureLocation(图像位置 loc, int randomId)
     {
-        if (this.resourceLocations != null && this.resourceLocations.length != 0)
+        if (this.图像位置s != null && this.图像位置s.length != 0)
         {
             int i = 0;
 
             if (this.weights == null)
             {
-                i = randomId % this.resourceLocations.length;
+                i = randomId % this.图像位置s.length;
             }
             else
             {
@@ -446,7 +446,7 @@ public class RandomEntityRule
                 }
             }
 
-            return this.resourceLocations[i];
+            return this.图像位置s[i];
         }
         else
         {

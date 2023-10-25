@@ -27,9 +27,9 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.data.IMetadataSerializer;
 import net.minecraft.client.resources.data.PackMetadataSection;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.HttpUtil;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
@@ -309,7 +309,7 @@ public class ResourcePackRepository
         private IResourcePack reResourcePack;
         private PackMetadataSection rePackMetadataSection;
         private BufferedImage texturePackIcon;
-        private ResourceLocation locationTexturePackIcon;
+        private 图像位置 locationTexturePackIcon;
 
         private Entry(File resourcePackFileIn)
         {
@@ -368,7 +368,7 @@ public class ResourcePackRepository
 
         public String getTexturePackDescription()
         {
-            return this.rePackMetadataSection == null ? EnumChatFormatting.RED + "Invalid pack.mcmeta (or missing \'pack\' section)" : this.rePackMetadataSection.getPackDescription().getFormattedText();
+            return this.rePackMetadataSection == null ? 枚举聊天格式.RED + "Invalid pack.mcmeta (or missing \'pack\' section)" : this.rePackMetadataSection.getPackDescription().getFormattedText();
         }
 
         public int func_183027_f()

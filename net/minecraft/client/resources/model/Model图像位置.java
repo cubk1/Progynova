@@ -1,29 +1,29 @@
 package net.minecraft.client.resources.model;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.lang3.StringUtils;
 
-public class ModelResourceLocation extends ResourceLocation
+public class Model图像位置 extends 图像位置
 {
     private final String variant;
 
-    protected ModelResourceLocation(int p_i46078_1_, String... p_i46078_2_)
+    protected Model图像位置(int p_i46078_1_, String... p_i46078_2_)
     {
         super(0, new String[] {p_i46078_2_[0], p_i46078_2_[1]});
         this.variant = StringUtils.isEmpty(p_i46078_2_[2]) ? "normal" : p_i46078_2_[2].toLowerCase();
     }
 
-    public ModelResourceLocation(String p_i46079_1_)
+    public Model图像位置(String p_i46079_1_)
     {
         this(0, parsePathString(p_i46079_1_));
     }
 
-    public ModelResourceLocation(ResourceLocation p_i46080_1_, String p_i46080_2_)
+    public Model图像位置(图像位置 p_i46080_1_, String p_i46080_2_)
     {
         this(p_i46080_1_.toString(), p_i46080_2_);
     }
 
-    public ModelResourceLocation(String p_i46081_1_, String p_i46081_2_)
+    public Model图像位置(String p_i46081_1_, String p_i46081_2_)
     {
         this(0, parsePathString(p_i46081_1_ + '#' + (p_i46081_2_ == null ? "normal" : p_i46081_2_)));
     }
@@ -44,7 +44,7 @@ public class ModelResourceLocation extends ResourceLocation
             }
         }
 
-        System.arraycopy(ResourceLocation.splitObjectName(s), 0, astring, 0, 2);
+        System.arraycopy(图像位置.splitObjectName(s), 0, astring, 0, 2);
         return astring;
     }
 
@@ -59,9 +59,9 @@ public class ModelResourceLocation extends ResourceLocation
         {
             return true;
         }
-        else if (p_equals_1_ instanceof ModelResourceLocation && super.equals(p_equals_1_))
+        else if (p_equals_1_ instanceof Model图像位置 && super.equals(p_equals_1_))
         {
-            ModelResourceLocation modelresourcelocation = (ModelResourceLocation)p_equals_1_;
+            Model图像位置 modelresourcelocation = (Model图像位置)p_equals_1_;
             return this.variant.equals(modelresourcelocation.variant);
         }
         else

@@ -5,11 +5,11 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class TileEntityEnchantmentTableRenderer extends TileEntitySpecialRenderer<TileEntityEnchantmentTable>
 {
-    private static final ResourceLocation TEXTURE_BOOK = new ResourceLocation("textures/entity/enchanting_table_book.png");
+    private static final 图像位置 TEXTURE_BOOK = new 图像位置("textures/entity/enchanting_table_book.png");
     private ModelBook field_147541_c = new ModelBook();
 
     public void renderTileEntityAt(TileEntityEnchantmentTable te, double x, double y, double z, float partialTicks, int destroyStage)

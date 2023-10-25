@@ -1,6 +1,6 @@
 package net.optifine.entity.model;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public interface IEntityRenderer
 {
@@ -8,7 +8,7 @@ public interface IEntityRenderer
 
     void setEntityClass(Class var1);
 
-    ResourceLocation getLocationTextureCustom();
+    图像位置 getLocationTextureCustom();
 
-    void setLocationTextureCustom(ResourceLocation var1);
+    void setLocationTextureCustom(图像位置 var1);
 }

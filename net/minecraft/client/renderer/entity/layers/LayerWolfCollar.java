@@ -6,12 +6,12 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.CustomColors;
 
 public class LayerWolfCollar implements LayerRenderer<EntityWolf>
 {
-    private static final ResourceLocation WOLF_COLLAR = new ResourceLocation("textures/entity/wolf/wolf_collar.png");
+    private static final 图像位置 WOLF_COLLAR = new 图像位置("textures/entity/wolf/wolf_collar.png");
     private final RenderWolf wolfRenderer;
 
     public LayerWolfCollar(RenderWolf wolfRendererIn)

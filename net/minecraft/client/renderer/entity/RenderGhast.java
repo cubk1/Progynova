@@ -3,19 +3,19 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelGhast;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderGhast extends RenderLiving<EntityGhast>
 {
-    private static final ResourceLocation ghastTextures = new ResourceLocation("textures/entity/ghast/ghast.png");
-    private static final ResourceLocation ghastShootingTextures = new ResourceLocation("textures/entity/ghast/ghast_shooting.png");
+    private static final 图像位置 ghastTextures = new 图像位置("textures/entity/ghast/ghast.png");
+    private static final 图像位置 ghastShootingTextures = new 图像位置("textures/entity/ghast/ghast_shooting.png");
 
     public RenderGhast(RenderManager renderManagerIn)
     {
         super(renderManagerIn, new ModelGhast(), 0.5F);
     }
 
-    protected ResourceLocation getEntityTexture(EntityGhast entity)
+    protected 图像位置 getEntityTexture(EntityGhast entity)
     {
         return entity.isAttacking() ? ghastShootingTextures : ghastTextures;
     }

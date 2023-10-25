@@ -5,11 +5,11 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerCustomHead;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderBiped<T extends EntityLiving> extends RenderLiving<T>
 {
-    private static final ResourceLocation DEFAULT_RES_LOC = new ResourceLocation("textures/entity/steve.png");
+    private static final 图像位置 DEFAULT_RES_LOC = new 图像位置("textures/entity/steve.png");
     protected ModelBiped modelBipedMain;
     protected float field_77070_b;
 
@@ -27,7 +27,7 @@ public class RenderBiped<T extends EntityLiving> extends RenderLiving<T>
         this.addLayer(new LayerCustomHead(modelBipedIn.bipedHead));
     }
 
-    protected ResourceLocation getEntityTexture(T entity)
+    protected 图像位置 getEntityTexture(T entity)
     {
         return DEFAULT_RES_LOC;
     }

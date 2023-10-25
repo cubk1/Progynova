@@ -23,7 +23,7 @@ import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class SkinManager
 {
@@ -47,14 +47,14 @@ public class SkinManager
         });
     }
 
-    public ResourceLocation loadSkin(MinecraftProfileTexture profileTexture, Type p_152792_2_)
+    public 图像位置 loadSkin(MinecraftProfileTexture profileTexture, Type p_152792_2_)
     {
         return this.loadSkin(profileTexture, p_152792_2_, (SkinManager.SkinAvailableCallback)null);
     }
 
-    public ResourceLocation loadSkin(final MinecraftProfileTexture profileTexture, final Type p_152789_2_, final SkinManager.SkinAvailableCallback skinAvailableCallback)
+    public 图像位置 loadSkin(final MinecraftProfileTexture profileTexture, final Type p_152789_2_, final SkinManager.SkinAvailableCallback skinAvailableCallback)
     {
-        final ResourceLocation resourcelocation = new ResourceLocation("skins/" + profileTexture.getHash());
+        final 图像位置 resourcelocation = new 图像位置("skins/" + profileTexture.getHash());
         ITextureObject itextureobject = this.textureManager.getTexture(resourcelocation);
 
         if (itextureobject != null)
@@ -149,6 +149,6 @@ public class SkinManager
 
     public interface SkinAvailableCallback
     {
-        void skinAvailable(Type p_180521_1_, ResourceLocation location, MinecraftProfileTexture profileTexture);
+        void skinAvailable(Type p_180521_1_, 图像位置 location, MinecraftProfileTexture profileTexture);
     }
 }

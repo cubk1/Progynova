@@ -4,20 +4,20 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.optifine.entity.model.IEntityRenderer;
 
 public abstract class TileEntitySpecialRenderer<T extends TileEntity> implements IEntityRenderer
 {
-    protected static final ResourceLocation[] DESTROY_STAGES = new ResourceLocation[] {new ResourceLocation("textures/blocks/destroy_stage_0.png"), new ResourceLocation("textures/blocks/destroy_stage_1.png"), new ResourceLocation("textures/blocks/destroy_stage_2.png"), new ResourceLocation("textures/blocks/destroy_stage_3.png"), new ResourceLocation("textures/blocks/destroy_stage_4.png"), new ResourceLocation("textures/blocks/destroy_stage_5.png"), new ResourceLocation("textures/blocks/destroy_stage_6.png"), new ResourceLocation("textures/blocks/destroy_stage_7.png"), new ResourceLocation("textures/blocks/destroy_stage_8.png"), new ResourceLocation("textures/blocks/destroy_stage_9.png")};
+    protected static final 图像位置[] DESTROY_STAGES = new 图像位置[] {new 图像位置("textures/blocks/destroy_stage_0.png"), new 图像位置("textures/blocks/destroy_stage_1.png"), new 图像位置("textures/blocks/destroy_stage_2.png"), new 图像位置("textures/blocks/destroy_stage_3.png"), new 图像位置("textures/blocks/destroy_stage_4.png"), new 图像位置("textures/blocks/destroy_stage_5.png"), new 图像位置("textures/blocks/destroy_stage_6.png"), new 图像位置("textures/blocks/destroy_stage_7.png"), new 图像位置("textures/blocks/destroy_stage_8.png"), new 图像位置("textures/blocks/destroy_stage_9.png")};
     protected TileEntityRendererDispatcher rendererDispatcher;
     private Class tileEntityClass = null;
-    private ResourceLocation locationTextureCustom = null;
+    private 图像位置 locationTextureCustom = null;
 
     public abstract void renderTileEntityAt(T te, double x, double y, double z, float partialTicks, int destroyStage);
 
-    protected void bindTexture(ResourceLocation location)
+    protected void bindTexture(图像位置 location)
     {
         TextureManager texturemanager = this.rendererDispatcher.renderEngine;
 
@@ -61,12 +61,12 @@ public abstract class TileEntitySpecialRenderer<T extends TileEntity> implements
         this.tileEntityClass = p_setEntityClass_1_;
     }
 
-    public ResourceLocation getLocationTextureCustom()
+    public 图像位置 getLocationTextureCustom()
     {
         return this.locationTextureCustom;
     }
 
-    public void setLocationTextureCustom(ResourceLocation p_setLocationTextureCustom_1_)
+    public void setLocationTextureCustom(图像位置 p_setLocationTextureCustom_1_)
     {
         this.locationTextureCustom = p_setLocationTextureCustom_1_;
     }

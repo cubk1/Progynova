@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 
 public class RenderFallingBlock extends Render<EntityFallingBlock>
@@ -60,7 +60,7 @@ public class RenderFallingBlock extends Render<EntityFallingBlock>
         }
     }
 
-    protected ResourceLocation getEntityTexture(EntityFallingBlock entity)
+    protected 图像位置 getEntityTexture(EntityFallingBlock entity)
     {
         return TextureMap.locationBlocksTexture;
     }

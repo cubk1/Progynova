@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.List;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.shaders.ShadersTex;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +17,7 @@ public class LayeredTexture extends AbstractTexture
 {
     private static final Logger logger = LogManager.getLogger();
     public final List<String> layeredTextureNames;
-    private ResourceLocation textureLocation;
+    private 图像位置 textureLocation;
 
     public LayeredTexture(String... textureNames)
     {
@@ -25,7 +25,7 @@ public class LayeredTexture extends AbstractTexture
 
         if (textureNames.length > 0 && textureNames[0] != null)
         {
-            this.textureLocation = new ResourceLocation(textureNames[0]);
+            this.textureLocation = new 图像位置(textureNames[0]);
         }
     }
 
@@ -40,7 +40,7 @@ public class LayeredTexture extends AbstractTexture
             {
                 if (s != null)
                 {
-                    InputStream inputstream = resourceManager.getResource(new ResourceLocation(s)).getInputStream();
+                    InputStream inputstream = resourceManager.getResource(new 图像位置(s)).getInputStream();
                     BufferedImage bufferedimage1 = TextureUtil.readBufferedImage(inputstream);
 
                     if (bufferedimage == null)

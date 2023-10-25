@@ -101,9 +101,9 @@ public class 鬼VideoSettings extends 鬼ScreenOF
 
             if (this.guiGameSettings.guiScale != i)
             {
-                ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+                比例解析 scaledresolution = new 比例解析(this.mc);
                 int j = scaledresolution.getScaledWidth();
-                int k = scaledresolution.getScaledHeight();
+                int k = scaledresolution.得到高度();
                 this.setWorldAndResolution(this.mc, j, k);
             }
 

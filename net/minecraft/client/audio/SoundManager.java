@@ -21,7 +21,7 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
@@ -340,7 +340,7 @@ public class SoundManager
                         SoundCategory soundcategory = soundeventaccessorcomposite.getSoundCategory();
                         float f2 = this.getNormalizedVolume(p_sound, soundpoolentry, soundcategory);
                         double d0 = (double)this.getNormalizedPitch(p_sound, soundpoolentry);
-                        ResourceLocation resourcelocation = soundpoolentry.getSoundPoolEntryLocation();
+                        图像位置 resourcelocation = soundpoolentry.getSoundPoolEntryLocation();
 
                         if (f2 == 0.0F)
                         {
@@ -417,7 +417,7 @@ public class SoundManager
         this.delayedSounds.put(sound, Integer.valueOf(this.playTime + delay));
     }
 
-    private static URL getURLForSoundResource(final ResourceLocation p_148612_0_)
+    private static URL getURLForSoundResource(final 图像位置 p_148612_0_)
     {
         String s = String.format("%s:%s:%s", new Object[] {"mcsounddomain", p_148612_0_.getResourceDomain(), p_148612_0_.getResourcePath()});
         URLStreamHandler urlstreamhandler = new URLStreamHandler()

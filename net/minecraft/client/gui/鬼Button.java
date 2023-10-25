@@ -4,11 +4,11 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼Button extends 鬼
 {
-    protected static final ResourceLocation buttonTextures = new ResourceLocation("textures/gui/widgets.png");
+    protected static final 图像位置 buttonTextures = new 图像位置("textures/gui/widgets.png");
     protected int width;
     protected int height;
     public int xPosition;
@@ -58,7 +58,7 @@ public class 鬼Button extends 鬼
     {
         if (this.visible)
         {
-            FontRenderer fontrenderer = mc.fontRendererObj;
+            FontRenderer fontrenderer = mc.字体渲染员;
             mc.得到手感经理().绑定手感(buttonTextures);
             光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
             this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
@@ -108,7 +108,7 @@ public class 鬼Button extends 鬼
 
     public void playPressSound(SoundHandler soundHandlerIn)
     {
-        soundHandlerIn.playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
+        soundHandlerIn.playSound(PositionedSoundRecord.create(new 图像位置("gui.button.press"), 1.0F));
     }
 
     public int getButtonWidth()

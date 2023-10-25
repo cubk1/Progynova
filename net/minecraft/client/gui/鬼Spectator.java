@@ -9,12 +9,12 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼Spectator extends 鬼 implements ISpectatorMenuRecipient
 {
-    private static final ResourceLocation field_175267_f = new ResourceLocation("textures/gui/widgets.png");
-    public static final ResourceLocation field_175269_a = new ResourceLocation("textures/gui/spectator_widgets.png");
+    private static final 图像位置 field_175267_f = new 图像位置("textures/gui/widgets.png");
+    public static final 图像位置 field_175269_a = new 图像位置("textures/gui/spectator_widgets.png");
     private final 我的手艺 field_175268_g;
     private long field_175270_h;
     private SpectatorMenu field_175271_i;
@@ -44,7 +44,7 @@ public class 鬼Spectator extends 鬼 implements ISpectatorMenuRecipient
         return MathHelper.clamp_float((float)i / 2000.0F, 0.0F, 1.0F);
     }
 
-    public void renderTooltip(ScaledResolution p_175264_1_, float p_175264_2_)
+    public void renderTooltip(比例解析 p_175264_1_, float p_175264_2_)
     {
         if (this.field_175271_i != null)
         {
@@ -59,7 +59,7 @@ public class 鬼Spectator extends 鬼 implements ISpectatorMenuRecipient
                 int i = p_175264_1_.getScaledWidth() / 2;
                 float f1 = this.zLevel;
                 this.zLevel = -90.0F;
-                float f2 = (float)p_175264_1_.getScaledHeight() - 22.0F * f;
+                float f2 = (float)p_175264_1_.得到高度() - 22.0F * f;
                 SpectatorDetails spectatordetails = this.field_175271_i.func_178646_f();
                 this.func_175258_a(p_175264_1_, f, i, f2, spectatordetails);
                 this.zLevel = f1;
@@ -67,7 +67,7 @@ public class 鬼Spectator extends 鬼 implements ISpectatorMenuRecipient
         }
     }
 
-    protected void func_175258_a(ScaledResolution p_175258_1_, float p_175258_2_, int p_175258_3_, float p_175258_4_, SpectatorDetails p_175258_5_)
+    protected void func_175258_a(比例解析 p_175258_1_, float p_175258_2_, int p_175258_3_, float p_175258_4_, SpectatorDetails p_175258_5_)
     {
         光照状态经理.enableRescaleNormal();
         光照状态经理.启用混合品();
@@ -110,12 +110,12 @@ public class 鬼Spectator extends 鬼 implements ISpectatorMenuRecipient
 
             if (i > 3 && p_175266_5_.func_178662_A_())
             {
-                this.field_175268_g.fontRendererObj.drawStringWithShadow(s, (float)(p_175266_2_ + 19 - 2 - this.field_175268_g.fontRendererObj.getStringWidth(s)), p_175266_3_ + 6.0F + 3.0F, 16777215 + (i << 24));
+                this.field_175268_g.字体渲染员.绘制纵梁带心理阴影(s, (float)(p_175266_2_ + 19 - 2 - this.field_175268_g.字体渲染员.getStringWidth(s)), p_175266_3_ + 6.0F + 3.0F, 16777215 + (i << 24));
             }
         }
     }
 
-    public void renderSelectedItem(ScaledResolution p_175263_1_)
+    public void renderSelectedItem(比例解析 p_175263_1_)
     {
         int i = (int)(this.func_175265_c() * 255.0F);
 
@@ -126,12 +126,12 @@ public class 鬼Spectator extends 鬼 implements ISpectatorMenuRecipient
 
             if (s != null)
             {
-                int j = (p_175263_1_.getScaledWidth() - this.field_175268_g.fontRendererObj.getStringWidth(s)) / 2;
-                int k = p_175263_1_.getScaledHeight() - 35;
+                int j = (p_175263_1_.getScaledWidth() - this.field_175268_g.字体渲染员.getStringWidth(s)) / 2;
+                int k = p_175263_1_.得到高度() - 35;
                 光照状态经理.推黑客帝国();
                 光照状态经理.启用混合品();
                 光照状态经理.tryBlendFuncSeparate(770, 771, 1, 0);
-                this.field_175268_g.fontRendererObj.drawStringWithShadow(s, (float)j, (float)k, 16777215 + (i << 24));
+                this.field_175268_g.字体渲染员.绘制纵梁带心理阴影(s, (float)j, (float)k, 16777215 + (i << 24));
                 光照状态经理.禁用混合品();
                 光照状态经理.流行音乐黑客帝国();
             }

@@ -3,7 +3,7 @@ package net.optifine.shaders.gui;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.gui.鬼Button;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class 鬼ButtonDownloadShaders extends 鬼Button
 {
@@ -17,7 +17,7 @@ public class 鬼ButtonDownloadShaders extends 鬼Button
         if (this.visible)
         {
             super.drawButton(mc, mouseX, mouseY);
-            ResourceLocation resourcelocation = new ResourceLocation("optifine/textures/icons.png");
+            图像位置 resourcelocation = new 图像位置("optifine/textures/icons.png");
             mc.得到手感经理().绑定手感(resourcelocation);
             光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
             this.drawTexturedModalRect(this.xPosition + 3, this.yPosition + 2, 0, 0, 16, 16);

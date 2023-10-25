@@ -3,11 +3,11 @@ package net.minecraft.enchantment;
 import java.util.Random;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class EnchantmentDurability extends Enchantment
 {
-    protected EnchantmentDurability(int enchID, ResourceLocation enchName, int enchWeight)
+    protected EnchantmentDurability(int enchID, 图像位置 enchName, int enchWeight)
     {
         super(enchID, enchName, enchWeight, EnumEnchantmentType.BREAKABLE);
         this.setName("durability");

@@ -20,7 +20,7 @@ import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
@@ -45,7 +45,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
             return null;
         }
     };
-    public static final SoundPoolEntry missing_sound = new SoundPoolEntry(new ResourceLocation("meta:missing_sound"), 0.0D, 0.0D, false);
+    public static final SoundPoolEntry missing_sound = new SoundPoolEntry(new 图像位置("meta:missing_sound"), 0.0D, 0.0D, false);
     private final SoundRegistry sndRegistry = new SoundRegistry();
     private final SoundManager sndManager;
     private final IResourceManager mcResourceManager;
@@ -65,7 +65,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
         {
             try
             {
-                for (IResource iresource : resourceManager.getAllResources(new ResourceLocation(s, "sounds.json")))
+                for (IResource iresource : resourceManager.getAllResources(new 图像位置(s, "sounds.json")))
                 {
                     try
                     {
@@ -73,7 +73,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
 
                         for (Entry<String, SoundList> entry : map.entrySet())
                         {
-                            this.loadSoundResource(new ResourceLocation(s, (String)entry.getKey()), (SoundList)entry.getValue());
+                            this.loadSoundResource(new 图像位置(s, (String)entry.getKey()), (SoundList)entry.getValue());
                         }
                     }
                     catch (RuntimeException runtimeexception)
@@ -105,7 +105,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
         return map;
     }
 
-    private void loadSoundResource(ResourceLocation location, SoundList sounds)
+    private void loadSoundResource(图像位置 location, SoundList sounds)
     {
         boolean flag = !this.sndRegistry.containsKey(location);
         SoundEventAccessorComposite soundeventaccessorcomposite;
@@ -128,14 +128,14 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
         for (final SoundList.SoundEntry soundlist$soundentry : sounds.getSoundList())
         {
             String s = soundlist$soundentry.getSoundEntryName();
-            ResourceLocation resourcelocation = new ResourceLocation(s);
+            图像位置 resourcelocation = new 图像位置(s);
             final String s1 = s.contains(":") ? resourcelocation.getResourceDomain() : location.getResourceDomain();
             ISoundEventAccessor<SoundPoolEntry> isoundeventaccessor;
 
             switch (soundlist$soundentry.getSoundEntryType())
             {
                 case FILE:
-                    ResourceLocation resourcelocation1 = new ResourceLocation(s1, "sounds/" + resourcelocation.getResourcePath() + ".ogg");
+                    图像位置 resourcelocation1 = new 图像位置(s1, "sounds/" + resourcelocation.getResourcePath() + ".ogg");
                     InputStream inputstream = null;
 
                     try
@@ -163,7 +163,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
                 case SOUND_EVENT:
                     isoundeventaccessor = new ISoundEventAccessor<SoundPoolEntry>()
                     {
-                        final ResourceLocation field_148726_a = new ResourceLocation(s1, soundlist$soundentry.getSoundEntryName());
+                        final 图像位置 field_148726_a = new 图像位置(s1, soundlist$soundentry.getSoundEntryName());
                         public int getWeight()
                         {
                             SoundEventAccessorComposite soundeventaccessorcomposite1 = (SoundEventAccessorComposite)SoundHandler.this.sndRegistry.getObject(this.field_148726_a);
@@ -185,7 +185,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
         }
     }
 
-    public SoundEventAccessorComposite getSound(ResourceLocation location)
+    public SoundEventAccessorComposite getSound(图像位置 location)
     {
         return (SoundEventAccessorComposite)this.sndRegistry.getObject(location);
     }
@@ -249,7 +249,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
     {
         List<SoundEventAccessorComposite> list = Lists.<SoundEventAccessorComposite>newArrayList();
 
-        for (ResourceLocation resourcelocation : this.sndRegistry.getKeys())
+        for (图像位置 resourcelocation : this.sndRegistry.getKeys())
         {
             SoundEventAccessorComposite soundeventaccessorcomposite = (SoundEventAccessorComposite)this.sndRegistry.getObject(resourcelocation);
 

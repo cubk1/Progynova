@@ -3,18 +3,18 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderSquid extends RenderLiving<EntitySquid>
 {
-    private static final ResourceLocation squidTextures = new ResourceLocation("textures/entity/squid.png");
+    private static final 图像位置 squidTextures = new 图像位置("textures/entity/squid.png");
 
     public RenderSquid(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
     {
         super(renderManagerIn, modelBaseIn, shadowSizeIn);
     }
 
-    protected ResourceLocation getEntityTexture(EntitySquid entity)
+    protected 图像位置 getEntityTexture(EntitySquid entity)
     {
         return squidTextures;
     }

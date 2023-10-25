@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.util.TextureUtils;
 import org.lwjgl.opengl.GL11;
 
@@ -14,7 +14,7 @@ public class TextureAnimation
 {
     private String srcTex = null;
     private String dstTex = null;
-    ResourceLocation dstTexLoc = null;
+    图像位置 dstTexLoc = null;
     private int dstTextId = -1;
     private int dstX = 0;
     private int dstY = 0;
@@ -30,7 +30,7 @@ public class TextureAnimation
     private boolean active = true;
     private boolean valid = true;
 
-    public TextureAnimation(String texFrom, byte[] srcData, String texTo, ResourceLocation locTexTo, int dstX, int dstY, int frameWidth, int frameHeight, Properties props)
+    public TextureAnimation(String texFrom, byte[] srcData, String texTo, 图像位置 locTexTo, int dstX, int dstY, int frameWidth, int frameHeight, Properties props)
     {
         this.srcTex = texFrom;
         this.dstTex = texTo;
@@ -244,7 +244,7 @@ public class TextureAnimation
         return this.dstTex;
     }
 
-    public ResourceLocation getDstTexLoc()
+    public 图像位置 getDstTexLoc()
     {
         return this.dstTexLoc;
     }

@@ -7,11 +7,11 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderEnderCrystal extends Render<EntityEnderCrystal>
 {
-    private static final ResourceLocation enderCrystalTextures = new ResourceLocation("textures/entity/endercrystal/endercrystal.png");
+    private static final 图像位置 enderCrystalTextures = new 图像位置("textures/entity/endercrystal/endercrystal.png");
     private ModelBase modelEnderCrystal = new ModelEnderCrystal(0.0F, true);
 
     public RenderEnderCrystal(RenderManager renderManagerIn)
@@ -33,7 +33,7 @@ public class RenderEnderCrystal extends Render<EntityEnderCrystal>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityEnderCrystal entity)
+    protected 图像位置 getEntityTexture(EntityEnderCrystal entity)
     {
         return enderCrystalTextures;
     }

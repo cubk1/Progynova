@@ -91,7 +91,7 @@ public class EntityOcelot extends EntityTameable
 
     protected boolean canDespawn()
     {
-        return !this.isTamed() && this.ticksExisted > 2400;
+        return !this.isTamed() && this.已存在的刻度 > 2400;
     }
 
     protected void applyEntityAttributes()

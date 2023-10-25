@@ -19,7 +19,7 @@ import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class TeleportToTeam implements ISpectatorMenuView, ISpectatorMenuObject
 {
@@ -77,7 +77,7 @@ public class TeleportToTeam implements ISpectatorMenuView, ISpectatorMenuObject
     class TeamSelectionObject implements ISpectatorMenuObject
     {
         private final ScorePlayerTeam field_178676_b;
-        private final ResourceLocation field_178677_c;
+        private final 图像位置 field_178677_c;
         private final List<NetworkPlayerInfo> field_178675_d;
 
         public TeamSelectionObject(ScorePlayerTeam p_i45492_2_)
@@ -124,7 +124,7 @@ public class TeleportToTeam implements ISpectatorMenuView, ISpectatorMenuObject
 
             if (s.length() >= 2)
             {
-                i = 我的手艺.得到我的手艺().fontRendererObj.getColorCode(s.charAt(1));
+                i = 我的手艺.得到我的手艺().字体渲染员.getColorCode(s.charAt(1));
             }
 
             if (i >= 0)

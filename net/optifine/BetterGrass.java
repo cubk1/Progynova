@@ -16,7 +16,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.IBlockAccess;
 import net.optifine.model.BlockModelUtils;
 import net.optifine.util.PropertiesOrdered;
@@ -81,17 +81,17 @@ public class BetterGrass
         betterGrassSnow = true;
         betterMyceliumSnow = true;
         betterPodzolSnow = true;
-        spriteGrass = textureMap.registerSprite(new ResourceLocation("blocks/grass_top"));
-        spriteGrassSide = textureMap.registerSprite(new ResourceLocation("blocks/grass_side"));
-        spriteMycelium = textureMap.registerSprite(new ResourceLocation("blocks/mycelium_top"));
-        spritePodzol = textureMap.registerSprite(new ResourceLocation("blocks/dirt_podzol_top"));
-        spriteSnow = textureMap.registerSprite(new ResourceLocation("blocks/snow"));
+        spriteGrass = textureMap.registerSprite(new 图像位置("blocks/grass_top"));
+        spriteGrassSide = textureMap.registerSprite(new 图像位置("blocks/grass_side"));
+        spriteMycelium = textureMap.registerSprite(new 图像位置("blocks/mycelium_top"));
+        spritePodzol = textureMap.registerSprite(new 图像位置("blocks/dirt_podzol_top"));
+        spriteSnow = textureMap.registerSprite(new 图像位置("blocks/snow"));
         spritesLoaded = true;
         String s = "optifine/bettergrass.properties";
 
         try
         {
-            ResourceLocation resourcelocation = new ResourceLocation(s);
+            图像位置 resourcelocation = new 图像位置(s);
 
             if (!Config.hasResource(resourcelocation))
             {
@@ -147,7 +147,7 @@ public class BetterGrass
             s = textureDefault;
         }
 
-        ResourceLocation resourcelocation = new ResourceLocation("textures/" + s + ".png");
+        图像位置 resourcelocation = new 图像位置("textures/" + s + ".png");
 
         if (!Config.hasResource(resourcelocation))
         {
@@ -155,7 +155,7 @@ public class BetterGrass
             s = textureDefault;
         }
 
-        ResourceLocation resourcelocation1 = new ResourceLocation(s);
+        图像位置 resourcelocation1 = new 图像位置(s);
         TextureAtlasSprite textureatlassprite = textureMap.registerSprite(resourcelocation1);
         return textureatlassprite;
     }

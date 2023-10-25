@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 
@@ -53,7 +53,7 @@ public class Lang
             for (int i = 0; i < files.length; ++i)
             {
                 String s = files[i];
-                ResourceLocation resourcelocation = new ResourceLocation(s);
+                图像位置 resourcelocation = new 图像位置(s);
 
                 if (rp.resourceExists(resourcelocation))
                 {

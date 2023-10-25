@@ -4,11 +4,11 @@ import net.minecraft.client.model.ModelWitch;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItemWitch;
 import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderWitch extends RenderLiving<EntityWitch>
 {
-    private static final ResourceLocation witchTextures = new ResourceLocation("textures/entity/witch.png");
+    private static final 图像位置 witchTextures = new 图像位置("textures/entity/witch.png");
 
     public RenderWitch(RenderManager renderManagerIn)
     {
@@ -22,7 +22,7 @@ public class RenderWitch extends RenderLiving<EntityWitch>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityWitch entity)
+    protected 图像位置 getEntityTexture(EntityWitch entity)
     {
         return witchTextures;
     }

@@ -23,7 +23,7 @@ import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.src.Config;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.MathHelper;
 import net.optifine.EmissiveTextures;
 import net.optifine.entity.model.CustomEntityModels;
@@ -521,7 +521,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
         }
         else
         {
-            String s = EnumChatFormatting.getTextWithoutFormattingCodes(bat.getName());
+            String s = 枚举聊天格式.getTextWithoutFormattingCodes(bat.getName());
 
             if (s != null && (s.equals("Dinnerbone") || s.equals("Grumm")) && (!(bat instanceof EntityPlayer) || ((EntityPlayer)bat).isWearing(EnumPlayerModelParts.CAPE)))
             {
@@ -538,7 +538,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
     protected float handleRotationFloat(T livingBase, float partialTicks)
     {
-        return (float)livingBase.ticksExisted + partialTicks;
+        return (float)livingBase.已存在的刻度 + partialTicks;
     }
 
     protected void renderLayers(T entitylivingbaseIn, float p_177093_2_, float p_177093_3_, float partialTicks, float p_177093_5_, float p_177093_6_, float p_177093_7_, float p_177093_8_)

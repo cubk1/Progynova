@@ -9,7 +9,7 @@ import java.util.IllegalFormatException;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 
@@ -32,7 +32,7 @@ public class Locale
             {
                 try
                 {
-                    this.loadLocaleData(resourceManager.getAllResources(new ResourceLocation(s2, s1)));
+                    this.loadLocaleData(resourceManager.getAllResources(new 图像位置(s2, s1)));
                 }
                 catch (IOException var9)
                 {

@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.src.Config;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.Mipmaps;
 import net.optifine.reflect.Reflector;
 import org.apache.commons.io.IOUtils;
@@ -266,7 +266,7 @@ public class TextureUtil
         光照状态经理.绑定手感(p_94277_0_);
     }
 
-    public static int[] readImageData(IResourceManager resourceManager, ResourceLocation imageLocation) throws IOException
+    public static int[] readImageData(IResourceManager resourceManager, 图像位置 imageLocation) throws IOException
     {
         BufferedImage bufferedimage = readBufferedImage(resourceManager.getResource(imageLocation).getInputStream());
 

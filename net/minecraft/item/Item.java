@@ -39,14 +39,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.RegistryNamespaced;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class Item
 {
-    public static final RegistryNamespaced<ResourceLocation, Item> itemRegistry = new RegistryNamespaced();
+    public static final RegistryNamespaced<图像位置, Item> itemRegistry = new RegistryNamespaced();
     private static final Map<Block, Item> BLOCK_TO_ITEM = Maps.<Block, Item>newHashMap();
     protected static final UUID itemModifierUUID = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
     private CreativeTabs tabToDisplayOn;
@@ -76,7 +76,7 @@ public class Item
 
     public static Item getByNameOrId(String id)
     {
-        Item item = (Item)itemRegistry.getObject(new ResourceLocation(id));
+        Item item = (Item)itemRegistry.getObject(new 图像位置(id));
 
         if (item == null)
         {
@@ -818,16 +818,16 @@ public class Item
 
     protected static void registerItemBlock(Block blockIn, Item itemIn)
     {
-        registerItem(Block.getIdFromBlock(blockIn), (ResourceLocation)Block.blockRegistry.getNameForObject(blockIn), itemIn);
+        registerItem(Block.getIdFromBlock(blockIn), (图像位置)Block.blockRegistry.getNameForObject(blockIn), itemIn);
         BLOCK_TO_ITEM.put(blockIn, itemIn);
     }
 
     private static void registerItem(int id, String textualID, Item itemIn)
     {
-        registerItem(id, new ResourceLocation(textualID), itemIn);
+        registerItem(id, new 图像位置(textualID), itemIn);
     }
 
-    private static void registerItem(int id, ResourceLocation textualID, Item itemIn)
+    private static void registerItem(int id, 图像位置 textualID, Item itemIn)
     {
         itemRegistry.register(id, textualID, itemIn);
     }

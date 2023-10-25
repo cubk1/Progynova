@@ -22,9 +22,9 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.realms.RealmsBridge;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.minecraft.world.demo.DemoWorldServer;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
@@ -53,17 +53,17 @@ public class 鬼MainMenu extends 鬼Screen implements GuiYesNoCallback
     private String openGLWarning1;
     private String openGLWarning2;
     private String openGLWarningLink;
-    private static final ResourceLocation splashTexts = new ResourceLocation("texts/splashes.txt");
-    private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/minecraft.png");
-    private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation("textures/gui/title/background/panorama_0.png"), new ResourceLocation("textures/gui/title/background/panorama_1.png"), new ResourceLocation("textures/gui/title/background/panorama_2.png"), new ResourceLocation("textures/gui/title/background/panorama_3.png"), new ResourceLocation("textures/gui/title/background/panorama_4.png"), new ResourceLocation("textures/gui/title/background/panorama_5.png")};
-    public static final String field_96138_a = "Please click " + EnumChatFormatting.UNDERLINE + "here" + EnumChatFormatting.RESET + " for more information.";
+    private static final 图像位置 splashTexts = new 图像位置("texts/splashes.txt");
+    private static final 图像位置 minecraftTitleTextures = new 图像位置("textures/gui/title/minecraft.png");
+    private static final 图像位置[] titlePanoramaPaths = new 图像位置[] {new 图像位置("textures/gui/title/background/panorama_0.png"), new 图像位置("textures/gui/title/background/panorama_1.png"), new 图像位置("textures/gui/title/background/panorama_2.png"), new 图像位置("textures/gui/title/background/panorama_3.png"), new 图像位置("textures/gui/title/background/panorama_4.png"), new 图像位置("textures/gui/title/background/panorama_5.png")};
+    public static final String field_96138_a = "Please click " + 枚举聊天格式.UNDERLINE + "here" + 枚举聊天格式.RESET + " for more information.";
     private int field_92024_r;
     private int field_92023_s;
     private int field_92022_t;
     private int field_92021_u;
     private int field_92020_v;
     private int field_92019_w;
-    private ResourceLocation backgroundTexture;
+    private 图像位置 backgroundTexture;
     private 鬼Button realmsButton;
     private boolean field_183502_L;
     private 鬼Screen field_183503_M;
@@ -409,7 +409,7 @@ public class 鬼MainMenu extends 鬼Screen implements GuiYesNoCallback
                     光照状态经理.辐射(-90.0F, 1.0F, 0.0F, 0.0F);
                 }
 
-                ResourceLocation[] aresourcelocation = titlePanoramaPaths;
+                图像位置[] aresourcelocation = titlePanoramaPaths;
 
                 if (custompanoramaproperties != null)
                 {

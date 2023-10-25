@@ -3,7 +3,7 @@ package net.minecraft.client.audio;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class MovingSoundMinecartRiding extends MovingSound
 {
@@ -12,7 +12,7 @@ public class MovingSoundMinecartRiding extends MovingSound
 
     public MovingSoundMinecartRiding(EntityPlayer playerRiding, EntityMinecart minecart)
     {
-        super(new ResourceLocation("minecraft:minecart.inside"));
+        super(new 图像位置("minecraft:minecart.inside"));
         this.player = playerRiding;
         this.minecart = minecart;
         this.attenuationType = ISound.AttenuationType.NONE;

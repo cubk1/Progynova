@@ -1,12 +1,12 @@
 package net.minecraft.client.audio;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public abstract class MovingSound extends PositionedSound implements ITickableSound
 {
     protected boolean donePlaying = false;
 
-    protected MovingSound(ResourceLocation location)
+    protected MovingSound(图像位置 location)
     {
         super(location);
     }

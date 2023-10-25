@@ -4,13 +4,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerWolfCollar;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderWolf extends RenderLiving<EntityWolf>
 {
-    private static final ResourceLocation wolfTextures = new ResourceLocation("textures/entity/wolf/wolf.png");
-    private static final ResourceLocation tamedWolfTextures = new ResourceLocation("textures/entity/wolf/wolf_tame.png");
-    private static final ResourceLocation anrgyWolfTextures = new ResourceLocation("textures/entity/wolf/wolf_angry.png");
+    private static final 图像位置 wolfTextures = new 图像位置("textures/entity/wolf/wolf.png");
+    private static final 图像位置 tamedWolfTextures = new 图像位置("textures/entity/wolf/wolf_tame.png");
+    private static final 图像位置 anrgyWolfTextures = new 图像位置("textures/entity/wolf/wolf_angry.png");
 
     public RenderWolf(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
     {
@@ -34,7 +34,7 @@ public class RenderWolf extends RenderLiving<EntityWolf>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityWolf entity)
+    protected 图像位置 getEntityTexture(EntityWolf entity)
     {
         return entity.isTamed() ? tamedWolfTextures : (entity.isAngry() ? anrgyWolfTextures : wolfTextures);
     }

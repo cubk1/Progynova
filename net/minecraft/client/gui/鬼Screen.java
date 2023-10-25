@@ -36,7 +36,7 @@ import net.minecraft.stats.Achievement;
 import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.IChatComponent;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -137,7 +137,7 @@ public abstract class 鬼Screen extends 鬼 implements GuiYesNoCallback
             }
             else
             {
-                list.set(i, EnumChatFormatting.GRAY + (String)list.get(i));
+                list.set(i, 枚举聊天格式.GRAY + (String)list.get(i));
             }
         }
 
@@ -206,7 +206,7 @@ public abstract class 鬼Screen extends 鬼 implements GuiYesNoCallback
             for (int k1 = 0; k1 < textLines.size(); ++k1)
             {
                 String s1 = (String)textLines.get(k1);
-                this.fontRendererObj.drawStringWithShadow(s1, (float)l1, (float)i2, -1);
+                this.fontRendererObj.绘制纵梁带心理阴影(s1, (float)l1, (float)i2, -1);
 
                 if (k1 == 0)
                 {
@@ -255,7 +255,7 @@ public abstract class 鬼Screen extends 鬼 implements GuiYesNoCallback
                 }
                 else
                 {
-                    this.drawCreativeTabHoveringText(EnumChatFormatting.RED + "Invalid Item!", x, y);
+                    this.drawCreativeTabHoveringText(枚举聊天格式.RED + "Invalid Item!", x, y);
                 }
             }
             else if (hoverevent.getAction() == HoverEvent.Action.SHOW_ENTITY)
@@ -283,12 +283,12 @@ public abstract class 鬼Screen extends 鬼 implements GuiYesNoCallback
                         }
                         else
                         {
-                            this.drawCreativeTabHoveringText(EnumChatFormatting.RED + "Invalid Entity!", x, y);
+                            this.drawCreativeTabHoveringText(枚举聊天格式.RED + "Invalid Entity!", x, y);
                         }
                     }
                     catch (NBTException var10)
                     {
-                        this.drawCreativeTabHoveringText(EnumChatFormatting.RED + "Invalid Entity!", x, y);
+                        this.drawCreativeTabHoveringText(枚举聊天格式.RED + "Invalid Entity!", x, y);
                     }
                 }
             }
@@ -317,7 +317,7 @@ public abstract class 鬼Screen extends 鬼 implements GuiYesNoCallback
                 }
                 else
                 {
-                    this.drawCreativeTabHoveringText(EnumChatFormatting.RED + "Invalid statistic/achievement!", x, y);
+                    this.drawCreativeTabHoveringText(枚举聊天格式.RED + "Invalid statistic/achievement!", x, y);
                 }
             }
 
@@ -477,7 +477,7 @@ public abstract class 鬼Screen extends 鬼 implements GuiYesNoCallback
     {
         this.mc = mc;
         this.itemRender = mc.getRenderItem();
-        this.fontRendererObj = mc.fontRendererObj;
+        this.fontRendererObj = mc.字体渲染员;
         this.width = width;
         this.height = height;
         this.buttonList.clear();

@@ -11,12 +11,12 @@ import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerVillagerArmor;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderZombie extends RenderBiped<EntityZombie>
 {
-    private static final ResourceLocation zombieTextures = new ResourceLocation("textures/entity/zombie/zombie.png");
-    private static final ResourceLocation zombieVillagerTextures = new ResourceLocation("textures/entity/zombie/zombie_villager.png");
+    private static final 图像位置 zombieTextures = new 图像位置("textures/entity/zombie/zombie.png");
+    private static final 图像位置 zombieVillagerTextures = new 图像位置("textures/entity/zombie/zombie_villager.png");
     private final ModelBiped field_82434_o;
     private final ModelZombieVillager zombieVillagerModel;
     private final List<LayerRenderer<EntityZombie>> field_177121_n;
@@ -57,7 +57,7 @@ public class RenderZombie extends RenderBiped<EntityZombie>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityZombie entity)
+    protected 图像位置 getEntityTexture(EntityZombie entity)
     {
         return entity.isVillager() ? zombieVillagerTextures : zombieTextures;
     }
@@ -82,7 +82,7 @@ public class RenderZombie extends RenderBiped<EntityZombie>
     {
         if (bat.isConverting())
         {
-            p_77043_3_ += (float)(Math.cos((double)bat.ticksExisted * 3.25D) * Math.PI * 0.25D);
+            p_77043_3_ += (float)(Math.cos((double)bat.已存在的刻度 * 3.25D) * Math.PI * 0.25D);
         }
 
         super.rotateCorpse(bat, p_77043_2_, p_77043_3_, partialTicks);

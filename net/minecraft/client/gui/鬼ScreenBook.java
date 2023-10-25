@@ -21,9 +21,9 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.C17PacketCustomPayload;
 import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.交流组分文本;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
@@ -31,7 +31,7 @@ import org.lwjgl.input.Keyboard;
 public class 鬼ScreenBook extends 鬼Screen
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final ResourceLocation bookGuiTextures = new ResourceLocation("textures/gui/book.png");
+    private static final 图像位置 bookGuiTextures = new 图像位置("textures/gui/book.png");
     private final EntityPlayer editingPlayer;
     private final ItemStack bookObj;
     private final boolean bookIsUnsigned;
@@ -350,7 +350,7 @@ public class 鬼ScreenBook extends 鬼Screen
     {
         String s = this.pageGetCurrent();
         String s1 = s + p_146459_1_;
-        int i = this.fontRendererObj.splitStringWidth(s1 + "" + EnumChatFormatting.BLACK + "_", 118);
+        int i = this.fontRendererObj.splitStringWidth(s1 + "" + 枚举聊天格式.BLACK + "_", 118);
 
         if (i <= 128 && s1.length() < 256)
         {
@@ -374,11 +374,11 @@ public class 鬼ScreenBook extends 鬼Screen
             {
                 if (this.updateCount / 6 % 2 == 0)
                 {
-                    s = s + "" + EnumChatFormatting.BLACK + "_";
+                    s = s + "" + 枚举聊天格式.BLACK + "_";
                 }
                 else
                 {
-                    s = s + "" + EnumChatFormatting.GRAY + "_";
+                    s = s + "" + 枚举聊天格式.GRAY + "_";
                 }
             }
 
@@ -389,7 +389,7 @@ public class 鬼ScreenBook extends 鬼Screen
             this.fontRendererObj.drawString(s, i + 36 + (116 - l) / 2, j + 48, 0);
             String s2 = I18n.format("book.byAuthor", new Object[] {this.editingPlayer.getName()});
             int i1 = this.fontRendererObj.getStringWidth(s2);
-            this.fontRendererObj.drawString(EnumChatFormatting.DARK_GRAY + s2, i + 36 + (116 - i1) / 2, j + 48 + 10, 0);
+            this.fontRendererObj.drawString(枚举聊天格式.DARK_GRAY + s2, i + 36 + (116 - i1) / 2, j + 48 + 10, 0);
             String s3 = I18n.format("book.finalizeWarning", new Object[0]);
             this.fontRendererObj.drawSplitString(s3, i + 36, j + 80, 116, 0);
         }
@@ -411,11 +411,11 @@ public class 鬼ScreenBook extends 鬼Screen
                 }
                 else if (this.updateCount / 6 % 2 == 0)
                 {
-                    s5 = s5 + "" + EnumChatFormatting.BLACK + "_";
+                    s5 = s5 + "" + 枚举聊天格式.BLACK + "_";
                 }
                 else
                 {
-                    s5 = s5 + "" + EnumChatFormatting.GRAY + "_";
+                    s5 = s5 + "" + 枚举聊天格式.GRAY + "_";
                 }
             }
             else if (this.field_175387_B != this.currPage)
@@ -434,7 +434,7 @@ public class 鬼ScreenBook extends 鬼Screen
                 }
                 else
                 {
-                    交流组分文本 chatcomponenttext = new 交流组分文本(EnumChatFormatting.DARK_RED.toString() + "* Invalid book tag *");
+                    交流组分文本 chatcomponenttext = new 交流组分文本(枚举聊天格式.DARK_RED.toString() + "* Invalid book tag *");
                     this.field_175386_A = Lists.newArrayList(chatcomponenttext);
                 }
 
@@ -543,9 +543,9 @@ public class 鬼ScreenBook extends 鬼Screen
             {
                 int k = Math.min(128 / this.fontRendererObj.FONT_HEIGHT, this.field_175386_A.size());
 
-                if (i <= 116 && j < this.mc.fontRendererObj.FONT_HEIGHT * k + k)
+                if (i <= 116 && j < this.mc.字体渲染员.FONT_HEIGHT * k + k)
                 {
-                    int l = j / this.mc.fontRendererObj.FONT_HEIGHT;
+                    int l = j / this.mc.字体渲染员.FONT_HEIGHT;
 
                     if (l >= 0 && l < this.field_175386_A.size())
                     {
@@ -556,7 +556,7 @@ public class 鬼ScreenBook extends 鬼Screen
                         {
                             if (ichatcomponent1 instanceof 交流组分文本)
                             {
-                                i1 += this.mc.fontRendererObj.getStringWidth(((交流组分文本)ichatcomponent1).getChatComponentText_TextValue());
+                                i1 += this.mc.字体渲染员.getStringWidth(((交流组分文本)ichatcomponent1).getChatComponentText_TextValue());
 
                                 if (i1 > i)
                                 {

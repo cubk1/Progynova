@@ -12,7 +12,7 @@ import java.util.Set;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.IMetadataSerializer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 import net.optifine.reflect.ReflectorForge;
 
 public class DefaultResourcePack implements IResourcePack
@@ -25,7 +25,7 @@ public class DefaultResourcePack implements IResourcePack
         this.mapAssets = mapAssetsIn;
     }
 
-    public InputStream getInputStream(ResourceLocation location) throws IOException
+    public InputStream getInputStream(图像位置 location) throws IOException
     {
         InputStream inputstream = this.getResourceStream(location);
 
@@ -48,20 +48,20 @@ public class DefaultResourcePack implements IResourcePack
         }
     }
 
-    public InputStream getInputStreamAssets(ResourceLocation location) throws IOException, FileNotFoundException
+    public InputStream getInputStreamAssets(图像位置 location) throws IOException, FileNotFoundException
     {
         File file1 = (File)this.mapAssets.get(location.toString());
         return file1 != null && file1.isFile() ? new FileInputStream(file1) : null;
     }
 
-    private InputStream getResourceStream(ResourceLocation location)
+    private InputStream getResourceStream(图像位置 location)
     {
         String s = "/assets/" + location.getResourceDomain() + "/" + location.getResourcePath();
         InputStream inputstream = ReflectorForge.getOptiFineResourceStream(s);
         return inputstream != null ? inputstream : DefaultResourcePack.class.getResourceAsStream(s);
     }
 
-    public boolean resourceExists(ResourceLocation location)
+    public boolean resourceExists(图像位置 location)
     {
         return this.getResourceStream(location) != null || this.mapAssets.containsKey(location.toString());
     }
@@ -90,7 +90,7 @@ public class DefaultResourcePack implements IResourcePack
 
     public BufferedImage getPackImage() throws IOException
     {
-        return TextureUtil.readBufferedImage(DefaultResourcePack.class.getResourceAsStream("/" + (new ResourceLocation("pack.png")).getResourcePath()));
+        return TextureUtil.readBufferedImage(DefaultResourcePack.class.getResourceAsStream("/" + (new 图像位置("pack.png")).getResourcePath()));
     }
 
     public String getPackName()

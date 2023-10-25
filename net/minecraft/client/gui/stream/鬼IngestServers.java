@@ -8,7 +8,7 @@ import net.minecraft.client.gui.鬼Screen;
 import net.minecraft.client.gui.GuiSlot;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.stream.IngestServerTester;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.枚举聊天格式;
 import tv.twitch.broadcast.IngestServer;
 
 public class 鬼IngestServers extends 鬼Screen
@@ -78,7 +78,7 @@ public class 鬼IngestServers extends 鬼Screen
     {
         public ServerList(我的手艺 mcIn)
         {
-            super(mcIn, 鬼IngestServers.this.width, 鬼IngestServers.this.height, 32, 鬼IngestServers.this.height - 35, (int)((double)mcIn.fontRendererObj.FONT_HEIGHT * 3.5D));
+            super(mcIn, 鬼IngestServers.this.width, 鬼IngestServers.this.height, 32, 鬼IngestServers.this.height - 35, (int)((double)mcIn.字体渲染员.FONT_HEIGHT * 3.5D));
             this.setShowSelectionBox(false);
         }
 
@@ -114,35 +114,35 @@ public class 鬼IngestServers extends 鬼Screen
             {
                 if (ingestserver == ingestservertester.func_153040_c())
                 {
-                    s = EnumChatFormatting.GREEN + s;
+                    s = 枚举聊天格式.GREEN + s;
                     s1 = (int)(ingestservertester.func_153030_h() * 100.0F) + "%";
                 }
                 else if (entryID < ingestservertester.func_153028_p())
                 {
                     if (ingestserver.bitrateKbps == 0.0F)
                     {
-                        s1 = EnumChatFormatting.RED + "Down!";
+                        s1 = 枚举聊天格式.RED + "Down!";
                     }
                 }
                 else
                 {
-                    s1 = EnumChatFormatting.OBFUSCATED + "1234" + EnumChatFormatting.RESET + " kbps";
+                    s1 = 枚举聊天格式.OBFUSCATED + "1234" + 枚举聊天格式.RESET + " kbps";
                 }
             }
             else if (ingestserver.bitrateKbps == 0.0F)
             {
-                s1 = EnumChatFormatting.RED + "Down!";
+                s1 = 枚举聊天格式.RED + "Down!";
             }
 
             p_180791_2_ = p_180791_2_ - 15;
 
             if (this.isSelected(entryID))
             {
-                s2 = EnumChatFormatting.BLUE + "(Preferred)";
+                s2 = 枚举聊天格式.BLUE + "(Preferred)";
             }
             else if (ingestserver.defaultServer)
             {
-                s2 = EnumChatFormatting.GREEN + "(Default)";
+                s2 = 枚举聊天格式.GREEN + "(Default)";
             }
 
             鬼IngestServers.this.drawString(鬼IngestServers.this.fontRendererObj, ingestserver.serverName, p_180791_2_ + 2, p_180791_3_ + 5, 16777215);

@@ -3,11 +3,11 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelSpider;
 import net.minecraft.client.renderer.entity.layers.LayerSpiderEyes;
 import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderSpider<T extends EntitySpider> extends RenderLiving<T>
 {
-    private static final ResourceLocation spiderTextures = new ResourceLocation("textures/entity/spider/spider.png");
+    private static final 图像位置 spiderTextures = new 图像位置("textures/entity/spider/spider.png");
 
     public RenderSpider(RenderManager renderManagerIn)
     {
@@ -20,7 +20,7 @@ public class RenderSpider<T extends EntitySpider> extends RenderLiving<T>
         return 180.0F;
     }
 
-    protected ResourceLocation getEntityTexture(T entity)
+    protected 图像位置 getEntityTexture(T entity)
     {
         return spiderTextures;
     }

@@ -6,11 +6,11 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.monster.EntityGiantZombie;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.图像位置;
 
 public class RenderGiantZombie extends RenderLiving<EntityGiantZombie>
 {
-    private static final ResourceLocation zombieTextures = new ResourceLocation("textures/entity/zombie/zombie.png");
+    private static final 图像位置 zombieTextures = new 图像位置("textures/entity/zombie/zombie.png");
     private float scale;
 
     public RenderGiantZombie(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn, float scaleIn)
@@ -38,7 +38,7 @@ public class RenderGiantZombie extends RenderLiving<EntityGiantZombie>
         光照状态经理.障眼物(this.scale, this.scale, this.scale);
     }
 
-    protected ResourceLocation getEntityTexture(EntityGiantZombie entity)
+    protected 图像位置 getEntityTexture(EntityGiantZombie entity)
     {
         return zombieTextures;
     }

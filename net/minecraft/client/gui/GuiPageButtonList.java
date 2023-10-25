@@ -220,7 +220,7 @@ public class GuiPageButtonList extends GuiListExtended
 
     private 鬼TextField func_178068_a(int p_178068_1_, int p_178068_2_, GuiPageButtonList.EditBoxEntry p_178068_3_)
     {
-        鬼TextField guitextfield = new 鬼TextField(p_178068_3_.func_178935_b(), this.mc.fontRendererObj, p_178068_1_, p_178068_2_, 150, 20);
+        鬼TextField guitextfield = new 鬼TextField(p_178068_3_.func_178935_b(), this.mc.字体渲染员, p_178068_1_, p_178068_2_, 150, 20);
         guitextfield.setText(p_178068_3_.func_178936_c());
         guitextfield.func_175207_a(this.field_178076_z);
         guitextfield.setVisible(p_178068_3_.func_178934_d());
@@ -234,11 +234,11 @@ public class GuiPageButtonList extends GuiListExtended
 
         if (p_178063_4_)
         {
-            guilabel = new 鬼Label(this.mc.fontRendererObj, p_178063_3_.func_178935_b(), p_178063_1_, p_178063_2_, this.width - p_178063_1_ * 2, 20, -1);
+            guilabel = new 鬼Label(this.mc.字体渲染员, p_178063_3_.func_178935_b(), p_178063_1_, p_178063_2_, this.width - p_178063_1_ * 2, 20, -1);
         }
         else
         {
-            guilabel = new 鬼Label(this.mc.fontRendererObj, p_178063_3_.func_178935_b(), p_178063_1_, p_178063_2_, 150, 20, -1);
+            guilabel = new 鬼Label(this.mc.字体渲染员, p_178063_3_.func_178935_b(), p_178063_1_, p_178063_2_, 150, 20, -1);
         }
 
         guilabel.visible = p_178063_3_.func_178934_d();

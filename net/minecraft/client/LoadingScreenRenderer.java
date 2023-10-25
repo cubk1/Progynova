@@ -1,7 +1,7 @@
 package net.minecraft.client;
 
 import net.minecraft.client.gui.鬼;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.比例解析;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -21,13 +21,13 @@ public class LoadingScreenRenderer implements IProgressUpdate
     private String currentlyDisplayedText = "";
     private long systemTime = 我的手艺.getSystemTime();
     private boolean loadingSuccess;
-    private final ScaledResolution scaledResolution;
+    private final 比例解析 比例解析;
     private final Framebuffer framebuffer;
 
     public LoadingScreenRenderer(我的手艺 mcIn)
     {
         this.mc = mcIn;
-        this.scaledResolution = new ScaledResolution(mcIn);
+        this.比例解析 = new 比例解析(mcIn);
         this.framebuffer = new Framebuffer(mcIn.displayWidth, mcIn.displayHeight, false);
         this.framebuffer.setFramebufferFilter(9728);
     }
@@ -63,12 +63,12 @@ public class LoadingScreenRenderer implements IProgressUpdate
 
             if (OpenGlHelper.isFramebufferEnabled())
             {
-                int i = this.scaledResolution.getScaleFactor();
-                光照状态经理.ortho(0.0D, this.scaledResolution.getScaledWidth() * i, this.scaledResolution.getScaledHeight() * i, 0.0D, 100.0D, 300.0D);
+                int i = this.比例解析.getScaleFactor();
+                光照状态经理.ortho(0.0D, this.比例解析.getScaledWidth() * i, this.比例解析.得到高度() * i, 0.0D, 100.0D, 300.0D);
             }
             else
             {
-                ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+                比例解析 scaledresolution = new 比例解析(this.mc);
                 光照状态经理.ortho(0.0D, scaledresolution.getScaledWidth_double(), scaledresolution.getScaledHeight_double(), 0.0D, 100.0D, 300.0D);
             }
 
@@ -112,10 +112,10 @@ public class LoadingScreenRenderer implements IProgressUpdate
             if (i - this.systemTime >= 100L)
             {
                 this.systemTime = i;
-                ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+                比例解析 scaledresolution = new 比例解析(this.mc);
                 int j = scaledresolution.getScaleFactor();
                 int k = scaledresolution.getScaledWidth();
-                int l = scaledresolution.getScaledHeight();
+                int l = scaledresolution.得到高度();
 
                 if (OpenGlHelper.isFramebufferEnabled())
                 {
@@ -159,7 +159,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
 
                     if (customloadingscreen != null)
                     {
-                        customloadingscreen.drawBackground(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
+                        customloadingscreen.drawBackground(scaledresolution.getScaledWidth(), scaledresolution.得到高度());
                     }
                     else
                     {
@@ -195,8 +195,8 @@ public class LoadingScreenRenderer implements IProgressUpdate
 
                     光照状态经理.启用混合品();
                     光照状态经理.tryBlendFuncSeparate(770, 771, 1, 0);
-                    this.mc.fontRendererObj.drawStringWithShadow(this.currentlyDisplayedText, (float)((k - this.mc.fontRendererObj.getStringWidth(this.currentlyDisplayedText)) / 2), (float)(l / 2 - 4 - 16), 16777215);
-                    this.mc.fontRendererObj.drawStringWithShadow(this.message, (float)((k - this.mc.fontRendererObj.getStringWidth(this.message)) / 2), (float)(l / 2 - 4 + 8), 16777215);
+                    this.mc.字体渲染员.绘制纵梁带心理阴影(this.currentlyDisplayedText, (float)((k - this.mc.字体渲染员.getStringWidth(this.currentlyDisplayedText)) / 2), (float)(l / 2 - 4 - 16), 16777215);
+                    this.mc.字体渲染员.绘制纵梁带心理阴影(this.message, (float)((k - this.mc.字体渲染员.getStringWidth(this.message)) / 2), (float)(l / 2 - 4 + 8), 16777215);
                 }
 
                 this.framebuffer.unbindFramebuffer();

@@ -118,7 +118,7 @@ public class 鬼ShaderOptions extends 鬼ScreenOF
         }
         else
         {
-            FontRenderer fontrenderer = Config.getMinecraft().fontRendererObj;
+            FontRenderer fontrenderer = Config.getMinecraft().字体渲染员;
 
             for (int i = fontrenderer.getStringWidth(": " + Lang.getOff()) + 5; fontrenderer.getStringWidth(s) + i >= btnWidth && s.length() > 0; s = s.substring(0, s.length() - 1))
             {
