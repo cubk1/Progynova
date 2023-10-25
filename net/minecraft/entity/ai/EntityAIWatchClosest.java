@@ -1,19 +1,19 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体Living;
 
 public class EntityAIWatchClosest extends EntityAIBase
 {
-    protected EntityLiving theWatcher;
-    protected Entity closestEntity;
+    protected 实体Living theWatcher;
+    protected 实体 closest实体;
     protected float maxDistanceForPlayer;
     private int lookTime;
     private float chance;
-    protected Class <? extends Entity > watchedClass;
+    protected Class <? extends 实体> watchedClass;
 
-    public EntityAIWatchClosest(EntityLiving entitylivingIn, Class <? extends Entity > watchTargetClass, float maxDistance)
+    public EntityAIWatchClosest(实体Living entitylivingIn, Class <? extends 实体> watchTargetClass, float maxDistance)
     {
         this.theWatcher = entitylivingIn;
         this.watchedClass = watchTargetClass;
@@ -22,7 +22,7 @@ public class EntityAIWatchClosest extends EntityAIBase
         this.setMutexBits(2);
     }
 
-    public EntityAIWatchClosest(EntityLiving entitylivingIn, Class <? extends Entity > watchTargetClass, float maxDistance, float chanceIn)
+    public EntityAIWatchClosest(实体Living entitylivingIn, Class <? extends 实体> watchTargetClass, float maxDistance, float chanceIn)
     {
         this.theWatcher = entitylivingIn;
         this.watchedClass = watchTargetClass;
@@ -41,25 +41,25 @@ public class EntityAIWatchClosest extends EntityAIBase
         {
             if (this.theWatcher.getAttackTarget() != null)
             {
-                this.closestEntity = this.theWatcher.getAttackTarget();
+                this.closest实体 = this.theWatcher.getAttackTarget();
             }
 
-            if (this.watchedClass == EntityPlayer.class)
+            if (this.watchedClass == 实体Player.class)
             {
-                this.closestEntity = this.theWatcher.worldObj.getClosestPlayerToEntity(this.theWatcher, (double)this.maxDistanceForPlayer);
+                this.closest实体 = this.theWatcher.worldObj.getClosestPlayerToEntity(this.theWatcher, (double)this.maxDistanceForPlayer);
             }
             else
             {
-                this.closestEntity = this.theWatcher.worldObj.findNearestEntityWithinAABB(this.watchedClass, this.theWatcher.getEntityBoundingBox().expand((double)this.maxDistanceForPlayer, 3.0D, (double)this.maxDistanceForPlayer), this.theWatcher);
+                this.closest实体 = this.theWatcher.worldObj.findNearestEntityWithinAABB(this.watchedClass, this.theWatcher.getEntityBoundingBox().expand((double)this.maxDistanceForPlayer, 3.0D, (double)this.maxDistanceForPlayer), this.theWatcher);
             }
 
-            return this.closestEntity != null;
+            return this.closest实体 != null;
         }
     }
 
     public boolean continueExecuting()
     {
-        return !this.closestEntity.isEntityAlive() ? false : (this.theWatcher.getDistanceSqToEntity(this.closestEntity) > (double)(this.maxDistanceForPlayer * this.maxDistanceForPlayer) ? false : this.lookTime > 0);
+        return !this.closest实体.isEntityAlive() ? false : (this.theWatcher.getDistanceSqToEntity(this.closest实体) > (double)(this.maxDistanceForPlayer * this.maxDistanceForPlayer) ? false : this.lookTime > 0);
     }
 
     public void startExecuting()
@@ -69,12 +69,12 @@ public class EntityAIWatchClosest extends EntityAIBase
 
     public void resetTask()
     {
-        this.closestEntity = null;
+        this.closest实体 = null;
     }
 
     public void updateTask()
     {
-        this.theWatcher.getLookHelper().setLookPosition(this.closestEntity.posX, this.closestEntity.posY + (double)this.closestEntity.getEyeHeight(), this.closestEntity.posZ, 10.0F, (float)this.theWatcher.getVerticalFaceSpeed());
+        this.theWatcher.getLookHelper().setLookPosition(this.closest实体.X坐标, this.closest实体.Y坐标 + (double)this.closest实体.getEyeHeight(), this.closest实体.Z坐标, 10.0F, (float)this.theWatcher.getVerticalFaceSpeed());
         --this.lookTime;
     }
 }

@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelMagmaCube;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderMagmaCube;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.entity.monster.实体MagmaCube;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterMagmaCube extends ModelAdapter
 {
     public ModelAdapterMagmaCube()
     {
-        super(EntityMagmaCube.class, "magma_cube", 0.5F);
+        super(实体MagmaCube.class, "magma_cube", 0.5F);
     }
 
     public ModelBase makeModel()

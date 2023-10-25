@@ -44,7 +44,7 @@ import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.FrameTimer;
 import net.minecraft.util.MathHelper;
@@ -1756,7 +1756,7 @@ public class Config
         return p_intHash_0_;
     }
 
-    public static int getRandom(BlockPos p_getRandom_0_, int p_getRandom_1_)
+    public static int getRandom(阻止位置 p_getRandom_0_, int p_getRandom_1_)
     {
         int i = intHash(p_getRandom_1_ + 37);
         i = intHash(i + p_getRandom_0_.getX());

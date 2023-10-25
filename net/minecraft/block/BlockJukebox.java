@@ -7,14 +7,14 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体Item;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -29,7 +29,7 @@ public class BlockJukebox extends BlockContainer
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (((Boolean)state.getValue(HAS_RECORD)).booleanValue())
         {
@@ -44,7 +44,7 @@ public class BlockJukebox extends BlockContainer
         }
     }
 
-    public void insertRecord(World worldIn, BlockPos pos, IBlockState state, ItemStack recordStack)
+    public void insertRecord(World worldIn, 阻止位置 pos, IBlockState state, ItemStack recordStack)
     {
         if (!worldIn.isRemote)
         {
@@ -58,7 +58,7 @@ public class BlockJukebox extends BlockContainer
         }
     }
 
-    private void dropRecord(World worldIn, BlockPos pos, IBlockState state)
+    private void dropRecord(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!worldIn.isRemote)
         {
@@ -79,7 +79,7 @@ public class BlockJukebox extends BlockContainer
                     double d1 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.2D + 0.6D;
                     double d2 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
                     ItemStack itemstack1 = itemstack.copy();
-                    EntityItem entityitem = new EntityItem(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, itemstack1);
+                    实体Item entityitem = new 实体Item(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, itemstack1);
                     entityitem.setDefaultPickupDelay();
                     worldIn.spawnEntityInWorld(entityitem);
                 }
@@ -87,13 +87,13 @@ public class BlockJukebox extends BlockContainer
         }
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.dropRecord(worldIn, pos, state);
         super.breakBlock(worldIn, pos, state);
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         if (!worldIn.isRemote)
         {
@@ -111,7 +111,7 @@ public class BlockJukebox extends BlockContainer
         return true;
     }
 
-    public int getComparatorInputOverride(World worldIn, BlockPos pos)
+    public int getComparatorInputOverride(World worldIn, 阻止位置 pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 

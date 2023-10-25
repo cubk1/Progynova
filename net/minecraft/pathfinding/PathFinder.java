@@ -1,7 +1,7 @@
 package net.minecraft.pathfinding;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.pathfinder.NodeProcessor;
 
@@ -16,28 +16,28 @@ public class PathFinder
         this.nodeProcessor = nodeProcessorIn;
     }
 
-    public PathEntity createEntityPathTo(IBlockAccess blockaccess, Entity entityFrom, Entity entityTo, float dist)
+    public PathEntity createEntityPathTo(IBlockAccess blockaccess, 实体 实体From, 实体 实体To, float dist)
     {
-        return this.createEntityPathTo(blockaccess, entityFrom, entityTo.posX, entityTo.getEntityBoundingBox().minY, entityTo.posZ, dist);
+        return this.createEntityPathTo(blockaccess, 实体From, 实体To.X坐标, 实体To.getEntityBoundingBox().minY, 实体To.Z坐标, dist);
     }
 
-    public PathEntity createEntityPathTo(IBlockAccess blockaccess, Entity entityIn, BlockPos targetPos, float dist)
+    public PathEntity createEntityPathTo(IBlockAccess blockaccess, 实体 实体In, 阻止位置 targetPos, float dist)
     {
-        return this.createEntityPathTo(blockaccess, entityIn, (double)((float)targetPos.getX() + 0.5F), (double)((float)targetPos.getY() + 0.5F), (double)((float)targetPos.getZ() + 0.5F), dist);
+        return this.createEntityPathTo(blockaccess, 实体In, (double)((float)targetPos.getX() + 0.5F), (double)((float)targetPos.getY() + 0.5F), (double)((float)targetPos.getZ() + 0.5F), dist);
     }
 
-    private PathEntity createEntityPathTo(IBlockAccess blockaccess, Entity entityIn, double x, double y, double z, float distance)
+    private PathEntity createEntityPathTo(IBlockAccess blockaccess, 实体 实体In, double x, double y, double z, float distance)
     {
         this.path.clearPath();
-        this.nodeProcessor.initProcessor(blockaccess, entityIn);
-        PathPoint pathpoint = this.nodeProcessor.getPathPointTo(entityIn);
-        PathPoint pathpoint1 = this.nodeProcessor.getPathPointToCoords(entityIn, x, y, z);
-        PathEntity pathentity = this.addToPath(entityIn, pathpoint, pathpoint1, distance);
+        this.nodeProcessor.initProcessor(blockaccess, 实体In);
+        PathPoint pathpoint = this.nodeProcessor.getPathPointTo(实体In);
+        PathPoint pathpoint1 = this.nodeProcessor.getPathPointToCoords(实体In, x, y, z);
+        PathEntity pathentity = this.addToPath(实体In, pathpoint, pathpoint1, distance);
         this.nodeProcessor.postProcess();
         return pathentity;
     }
 
-    private PathEntity addToPath(Entity entityIn, PathPoint pathpointStart, PathPoint pathpointEnd, float maxDistance)
+    private PathEntity addToPath(实体 实体In, PathPoint pathpointStart, PathPoint pathpointEnd, float maxDistance)
     {
         pathpointStart.totalPathDistance = 0.0F;
         pathpointStart.distanceToNext = pathpointStart.distanceToSquared(pathpointEnd);
@@ -61,7 +61,7 @@ public class PathFinder
             }
 
             pathpoint1.visited = true;
-            int i = this.nodeProcessor.findPathOptions(this.pathOptions, entityIn, pathpoint1, pathpointEnd, maxDistance);
+            int i = this.nodeProcessor.findPathOptions(this.pathOptions, 实体In, pathpoint1, pathpointEnd, maxDistance);
 
             for (int j = 0; j < i; ++j)
             {

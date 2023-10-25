@@ -15,18 +15,18 @@ import java.util.UUID;
 import java.util.Map.Entry;
 import net.minecraft.block.Block;
 import net.minecraft.client.ClientBrandRetriever;
+import net.minecraft.client.entity.实体OtherPlayerMP;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.鬼ContainerCreative;
+import net.minecraft.client.particle.实体PickupFX;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.audio.GuardianSound;
-import net.minecraft.client.entity.EntityOtherPlayerMP;
-import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.entity.实体PlayerSP;
 import net.minecraft.client.gui.鬼Screen;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.ServerList;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.particle.EntityPickupFX;
 import net.minecraft.client.player.inventory.ContainerLocalMenu;
 import net.minecraft.client.player.inventory.LocalBlockIntercommunication;
 import net.minecraft.client.resources.I18n;
@@ -35,46 +35,22 @@ import net.minecraft.client.stream.MetadataAchievement;
 import net.minecraft.client.stream.MetadataCombat;
 import net.minecraft.client.stream.MetadataPlayerDeath;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.DataWatcher;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLeashKnot;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IMerchant;
-import net.minecraft.entity.NpcMerchant;
+import net.minecraft.entity.*;
+import net.minecraft.entity.item.*;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
-import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityEnderCrystal;
-import net.minecraft.entity.item.EntityEnderEye;
-import net.minecraft.entity.item.EntityEnderPearl;
-import net.minecraft.entity.item.EntityExpBottle;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.item.EntityPainting;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.EntityGuardian;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.effect.实体LightningBolt;
+import net.minecraft.entity.item.实体Item;
+import net.minecraft.entity.monster.实体Guardian;
+import net.minecraft.entity.passive.实体Horse;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityEgg;
-import net.minecraft.entity.projectile.EntityFishHook;
-import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.entity.projectile.EntityPotion;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.entity.projectile.实体FishHook;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.AnimalChest;
 import net.minecraft.inventory.Container;
@@ -88,7 +64,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.PacketThreadUtil;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.network.play.client.C00PacketKeepAlive;
-import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.network.play.client.客户端数据包3玩家;
 import net.minecraft.network.play.client.C0FPacketConfirmTransaction;
 import net.minecraft.network.play.client.C17PacketCustomPayload;
 import net.minecraft.network.play.client.C19PacketResourcePackStatus;
@@ -182,7 +158,7 @@ import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.tileentity.TileEntitySkull;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.枚举聊天格式;
@@ -250,120 +226,120 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         double d0 = (double)packetIn.getX() / 32.0D;
         double d1 = (double)packetIn.getY() / 32.0D;
         double d2 = (double)packetIn.getZ() / 32.0D;
-        Entity entity = null;
+        实体 实体 = null;
 
         if (packetIn.getType() == 10)
         {
-            entity = EntityMinecart.getMinecart(this.clientWorldController, d0, d1, d2, EntityMinecart.EnumMinecartType.byNetworkID(packetIn.func_149009_m()));
+            实体 = 实体Minecart.getMinecart(this.clientWorldController, d0, d1, d2, 实体Minecart.EnumMinecartType.byNetworkID(packetIn.func_149009_m()));
         }
         else if (packetIn.getType() == 90)
         {
-            Entity entity1 = this.clientWorldController.getEntityByID(packetIn.func_149009_m());
+            实体 实体1 = this.clientWorldController.getEntityByID(packetIn.func_149009_m());
 
-            if (entity1 instanceof EntityPlayer)
+            if (实体1 instanceof 实体Player)
             {
-                entity = new EntityFishHook(this.clientWorldController, d0, d1, d2, (EntityPlayer)entity1);
+                实体 = new 实体FishHook(this.clientWorldController, d0, d1, d2, (实体Player) 实体1);
             }
 
             packetIn.func_149002_g(0);
         }
         else if (packetIn.getType() == 60)
         {
-            entity = new EntityArrow(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体Arrow(this.clientWorldController, d0, d1, d2);
         }
         else if (packetIn.getType() == 61)
         {
-            entity = new EntitySnowball(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体Snowball(this.clientWorldController, d0, d1, d2);
         }
         else if (packetIn.getType() == 71)
         {
-            entity = new EntityItemFrame(this.clientWorldController, new BlockPos(MathHelper.floor_double(d0), MathHelper.floor_double(d1), MathHelper.floor_double(d2)), EnumFacing.getHorizontal(packetIn.func_149009_m()));
+            实体 = new 实体ItemFrame(this.clientWorldController, new 阻止位置(MathHelper.floor_double(d0), MathHelper.floor_double(d1), MathHelper.floor_double(d2)), EnumFacing.getHorizontal(packetIn.func_149009_m()));
             packetIn.func_149002_g(0);
         }
         else if (packetIn.getType() == 77)
         {
-            entity = new EntityLeashKnot(this.clientWorldController, new BlockPos(MathHelper.floor_double(d0), MathHelper.floor_double(d1), MathHelper.floor_double(d2)));
+            实体 = new 实体LeashKnot(this.clientWorldController, new 阻止位置(MathHelper.floor_double(d0), MathHelper.floor_double(d1), MathHelper.floor_double(d2)));
             packetIn.func_149002_g(0);
         }
         else if (packetIn.getType() == 65)
         {
-            entity = new EntityEnderPearl(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体EnderPearl(this.clientWorldController, d0, d1, d2);
         }
         else if (packetIn.getType() == 72)
         {
-            entity = new EntityEnderEye(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体EnderEye(this.clientWorldController, d0, d1, d2);
         }
         else if (packetIn.getType() == 76)
         {
-            entity = new EntityFireworkRocket(this.clientWorldController, d0, d1, d2, (ItemStack)null);
+            实体 = new 实体FireworkRocket(this.clientWorldController, d0, d1, d2, (ItemStack)null);
         }
         else if (packetIn.getType() == 63)
         {
-            entity = new EntityLargeFireball(this.clientWorldController, d0, d1, d2, (double)packetIn.getSpeedX() / 8000.0D, (double)packetIn.getSpeedY() / 8000.0D, (double)packetIn.getSpeedZ() / 8000.0D);
+            实体 = new 实体LargeFireball(this.clientWorldController, d0, d1, d2, (double)packetIn.getSpeedX() / 8000.0D, (double)packetIn.getSpeedY() / 8000.0D, (double)packetIn.getSpeedZ() / 8000.0D);
             packetIn.func_149002_g(0);
         }
         else if (packetIn.getType() == 64)
         {
-            entity = new EntitySmallFireball(this.clientWorldController, d0, d1, d2, (double)packetIn.getSpeedX() / 8000.0D, (double)packetIn.getSpeedY() / 8000.0D, (double)packetIn.getSpeedZ() / 8000.0D);
+            实体 = new 实体SmallFireball(this.clientWorldController, d0, d1, d2, (double)packetIn.getSpeedX() / 8000.0D, (double)packetIn.getSpeedY() / 8000.0D, (double)packetIn.getSpeedZ() / 8000.0D);
             packetIn.func_149002_g(0);
         }
         else if (packetIn.getType() == 66)
         {
-            entity = new EntityWitherSkull(this.clientWorldController, d0, d1, d2, (double)packetIn.getSpeedX() / 8000.0D, (double)packetIn.getSpeedY() / 8000.0D, (double)packetIn.getSpeedZ() / 8000.0D);
+            实体 = new 实体WitherSkull(this.clientWorldController, d0, d1, d2, (double)packetIn.getSpeedX() / 8000.0D, (double)packetIn.getSpeedY() / 8000.0D, (double)packetIn.getSpeedZ() / 8000.0D);
             packetIn.func_149002_g(0);
         }
         else if (packetIn.getType() == 62)
         {
-            entity = new EntityEgg(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体Egg(this.clientWorldController, d0, d1, d2);
         }
         else if (packetIn.getType() == 73)
         {
-            entity = new EntityPotion(this.clientWorldController, d0, d1, d2, packetIn.func_149009_m());
+            实体 = new 实体Potion(this.clientWorldController, d0, d1, d2, packetIn.func_149009_m());
             packetIn.func_149002_g(0);
         }
         else if (packetIn.getType() == 75)
         {
-            entity = new EntityExpBottle(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体ExpBottle(this.clientWorldController, d0, d1, d2);
             packetIn.func_149002_g(0);
         }
         else if (packetIn.getType() == 1)
         {
-            entity = new EntityBoat(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体Boat(this.clientWorldController, d0, d1, d2);
         }
         else if (packetIn.getType() == 50)
         {
-            entity = new EntityTNTPrimed(this.clientWorldController, d0, d1, d2, (EntityLivingBase)null);
+            实体 = new 实体TNTPrimed(this.clientWorldController, d0, d1, d2, (实体LivingBase)null);
         }
         else if (packetIn.getType() == 78)
         {
-            entity = new EntityArmorStand(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体ArmorStand(this.clientWorldController, d0, d1, d2);
         }
         else if (packetIn.getType() == 51)
         {
-            entity = new EntityEnderCrystal(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体EnderCrystal(this.clientWorldController, d0, d1, d2);
         }
         else if (packetIn.getType() == 2)
         {
-            entity = new EntityItem(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体Item(this.clientWorldController, d0, d1, d2);
         }
         else if (packetIn.getType() == 70)
         {
-            entity = new EntityFallingBlock(this.clientWorldController, d0, d1, d2, Block.getStateById(packetIn.func_149009_m() & 65535));
+            实体 = new 实体FallingBlock(this.clientWorldController, d0, d1, d2, Block.getStateById(packetIn.func_149009_m() & 65535));
             packetIn.func_149002_g(0);
         }
 
-        if (entity != null)
+        if (实体 != null)
         {
-            entity.serverPosX = packetIn.getX();
-            entity.serverPosY = packetIn.getY();
-            entity.serverPosZ = packetIn.getZ();
-            entity.rotationPitch = (float)(packetIn.getPitch() * 360) / 256.0F;
-            entity.旋转侧滑 = (float)(packetIn.getYaw() * 360) / 256.0F;
-            Entity[] aentity = entity.getParts();
+            实体.serverPosX = packetIn.getX();
+            实体.serverPosY = packetIn.getY();
+            实体.serverPosZ = packetIn.getZ();
+            实体.rotationPitch = (float)(packetIn.getPitch() * 360) / 256.0F;
+            实体.旋转侧滑 = (float)(packetIn.getYaw() * 360) / 256.0F;
+            实体[] aentity = 实体.getParts();
 
             if (aentity != null)
             {
-                int i = packetIn.getEntityID() - entity.getEntityId();
+                int i = packetIn.getEntityID() - 实体.getEntityId();
 
                 for (int j = 0; j < aentity.length; ++j)
                 {
@@ -371,22 +347,22 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                 }
             }
 
-            entity.setEntityId(packetIn.getEntityID());
-            this.clientWorldController.addEntityToWorld(packetIn.getEntityID(), entity);
+            实体.setEntityId(packetIn.getEntityID());
+            this.clientWorldController.addEntityToWorld(packetIn.getEntityID(), 实体);
 
             if (packetIn.func_149009_m() > 0)
             {
                 if (packetIn.getType() == 60)
                 {
-                    Entity entity2 = this.clientWorldController.getEntityByID(packetIn.func_149009_m());
+                    实体 实体2 = this.clientWorldController.getEntityByID(packetIn.func_149009_m());
 
-                    if (entity2 instanceof EntityLivingBase && entity instanceof EntityArrow)
+                    if (实体2 instanceof 实体LivingBase && 实体 instanceof 实体Arrow)
                     {
-                        ((EntityArrow)entity).shootingEntity = entity2;
+                        ((实体Arrow) 实体).shooting实体 = 实体2;
                     }
                 }
 
-                entity.setVelocity((double)packetIn.getSpeedX() / 8000.0D, (double)packetIn.getSpeedY() / 8000.0D, (double)packetIn.getSpeedZ() / 8000.0D);
+                实体.setVelocity((double)packetIn.getSpeedX() / 8000.0D, (double)packetIn.getSpeedY() / 8000.0D, (double)packetIn.getSpeedZ() / 8000.0D);
             }
         }
     }
@@ -394,14 +370,14 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleSpawnExperienceOrb(S11PacketSpawnExperienceOrb packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = new EntityXPOrb(this.clientWorldController, (double)packetIn.getX() / 32.0D, (double)packetIn.getY() / 32.0D, (double)packetIn.getZ() / 32.0D, packetIn.getXPValue());
-        entity.serverPosX = packetIn.getX();
-        entity.serverPosY = packetIn.getY();
-        entity.serverPosZ = packetIn.getZ();
-        entity.旋转侧滑 = 0.0F;
-        entity.rotationPitch = 0.0F;
-        entity.setEntityId(packetIn.getEntityID());
-        this.clientWorldController.addEntityToWorld(packetIn.getEntityID(), entity);
+        实体 实体 = new 实体XPOrb(this.clientWorldController, (double)packetIn.getX() / 32.0D, (double)packetIn.getY() / 32.0D, (double)packetIn.getZ() / 32.0D, packetIn.getXPValue());
+        实体.serverPosX = packetIn.getX();
+        实体.serverPosY = packetIn.getY();
+        实体.serverPosZ = packetIn.getZ();
+        实体.旋转侧滑 = 0.0F;
+        实体.rotationPitch = 0.0F;
+        实体.setEntityId(packetIn.getEntityID());
+        this.clientWorldController.addEntityToWorld(packetIn.getEntityID(), 实体);
     }
 
     public void handleSpawnGlobalEntity(S2CPacketSpawnGlobalEntity packetIn)
@@ -410,51 +386,51 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         double d0 = (double)packetIn.func_149051_d() / 32.0D;
         double d1 = (double)packetIn.func_149050_e() / 32.0D;
         double d2 = (double)packetIn.func_149049_f() / 32.0D;
-        Entity entity = null;
+        实体 实体 = null;
 
         if (packetIn.func_149053_g() == 1)
         {
-            entity = new EntityLightningBolt(this.clientWorldController, d0, d1, d2);
+            实体 = new 实体LightningBolt(this.clientWorldController, d0, d1, d2);
         }
 
-        if (entity != null)
+        if (实体 != null)
         {
-            entity.serverPosX = packetIn.func_149051_d();
-            entity.serverPosY = packetIn.func_149050_e();
-            entity.serverPosZ = packetIn.func_149049_f();
-            entity.旋转侧滑 = 0.0F;
-            entity.rotationPitch = 0.0F;
-            entity.setEntityId(packetIn.func_149052_c());
-            this.clientWorldController.addWeatherEffect(entity);
+            实体.serverPosX = packetIn.func_149051_d();
+            实体.serverPosY = packetIn.func_149050_e();
+            实体.serverPosZ = packetIn.func_149049_f();
+            实体.旋转侧滑 = 0.0F;
+            实体.rotationPitch = 0.0F;
+            实体.setEntityId(packetIn.func_149052_c());
+            this.clientWorldController.addWeatherEffect(实体);
         }
     }
 
     public void handleSpawnPainting(S10PacketSpawnPainting packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        EntityPainting entitypainting = new EntityPainting(this.clientWorldController, packetIn.getPosition(), packetIn.getFacing(), packetIn.getTitle());
+        实体Painting entitypainting = new 实体Painting(this.clientWorldController, packetIn.getPosition(), packetIn.getFacing(), packetIn.getTitle());
         this.clientWorldController.addEntityToWorld(packetIn.getEntityID(), entitypainting);
     }
 
     public void handleEntityVelocity(S12PacketEntityVelocity packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityID());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityID());
 
-        if (entity != null)
+        if (实体 != null)
         {
-            entity.setVelocity((double)packetIn.getMotionX() / 8000.0D, (double)packetIn.getMotionY() / 8000.0D, (double)packetIn.getMotionZ() / 8000.0D);
+            实体.setVelocity((double)packetIn.getMotionX() / 8000.0D, (double)packetIn.getMotionY() / 8000.0D, (double)packetIn.getMotionZ() / 8000.0D);
         }
     }
 
     public void handleEntityMetadata(S1CPacketEntityMetadata packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityId());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityId());
 
-        if (entity != null && packetIn.func_149376_c() != null)
+        if (实体 != null && packetIn.func_149376_c() != null)
         {
-            entity.getDataWatcher().updateWatchedObjectsFromList(packetIn.func_149376_c());
+            实体.getDataWatcher().updateWatchedObjectsFromList(packetIn.func_149376_c());
         }
     }
 
@@ -466,7 +442,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         double d2 = (double)packetIn.getZ() / 32.0D;
         float f = (float)(packetIn.getYaw() * 360) / 256.0F;
         float f1 = (float)(packetIn.getPitch() * 360) / 256.0F;
-        EntityOtherPlayerMP entityotherplayermp = new EntityOtherPlayerMP(this.gameController.宇轩の世界, this.getPlayerInfo(packetIn.getPlayer()).getGameProfile());
+        实体OtherPlayerMP entityotherplayermp = new 实体OtherPlayerMP(this.gameController.宇轩の世界, this.getPlayerInfo(packetIn.getPlayer()).getGameProfile());
         entityotherplayermp.prevPosX = entityotherplayermp.lastTickPosX = (double)(entityotherplayermp.serverPosX = packetIn.getX());
         entityotherplayermp.prevPosY = entityotherplayermp.lastTickPosY = (double)(entityotherplayermp.serverPosY = packetIn.getY());
         entityotherplayermp.prevPosZ = entityotherplayermp.lastTickPosZ = (double)(entityotherplayermp.serverPosZ = packetIn.getZ());
@@ -494,29 +470,29 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleEntityTeleport(S18PacketEntityTeleport packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityId());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityId());
 
-        if (entity != null)
+        if (实体 != null)
         {
-            entity.serverPosX = packetIn.getX();
-            entity.serverPosY = packetIn.getY();
-            entity.serverPosZ = packetIn.getZ();
-            double d0 = (double)entity.serverPosX / 32.0D;
-            double d1 = (double)entity.serverPosY / 32.0D;
-            double d2 = (double)entity.serverPosZ / 32.0D;
+            实体.serverPosX = packetIn.getX();
+            实体.serverPosY = packetIn.getY();
+            实体.serverPosZ = packetIn.getZ();
+            double d0 = (double) 实体.serverPosX / 32.0D;
+            double d1 = (double) 实体.serverPosY / 32.0D;
+            double d2 = (double) 实体.serverPosZ / 32.0D;
             float f = (float)(packetIn.getYaw() * 360) / 256.0F;
             float f1 = (float)(packetIn.getPitch() * 360) / 256.0F;
 
-            if (Math.abs(entity.posX - d0) < 0.03125D && Math.abs(entity.posY - d1) < 0.015625D && Math.abs(entity.posZ - d2) < 0.03125D)
+            if (Math.abs(实体.X坐标 - d0) < 0.03125D && Math.abs(实体.Y坐标 - d1) < 0.015625D && Math.abs(实体.Z坐标 - d2) < 0.03125D)
             {
-                entity.setPositionAndRotation2(entity.posX, entity.posY, entity.posZ, f, f1, 3, true);
+                实体.setPositionAndRotation2(实体.X坐标, 实体.Y坐标, 实体.Z坐标, f, f1, 3, true);
             }
             else
             {
-                entity.setPositionAndRotation2(d0, d1, d2, f, f1, 3, true);
+                实体.setPositionAndRotation2(d0, d1, d2, f, f1, 3, true);
             }
 
-            entity.onGround = packetIn.getOnGround();
+            实体.onGround = packetIn.getOnGround();
         }
     }
 
@@ -533,32 +509,32 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleEntityMovement(S14PacketEntity packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = packetIn.getEntity(this.clientWorldController);
+        实体 实体 = packetIn.getEntity(this.clientWorldController);
 
-        if (entity != null)
+        if (实体 != null)
         {
-            entity.serverPosX += packetIn.func_149062_c();
-            entity.serverPosY += packetIn.func_149061_d();
-            entity.serverPosZ += packetIn.func_149064_e();
-            double d0 = (double)entity.serverPosX / 32.0D;
-            double d1 = (double)entity.serverPosY / 32.0D;
-            double d2 = (double)entity.serverPosZ / 32.0D;
-            float f = packetIn.func_149060_h() ? (float)(packetIn.func_149066_f() * 360) / 256.0F : entity.旋转侧滑;
-            float f1 = packetIn.func_149060_h() ? (float)(packetIn.func_149063_g() * 360) / 256.0F : entity.rotationPitch;
-            entity.setPositionAndRotation2(d0, d1, d2, f, f1, 3, false);
-            entity.onGround = packetIn.getOnGround();
+            实体.serverPosX += packetIn.func_149062_c();
+            实体.serverPosY += packetIn.func_149061_d();
+            实体.serverPosZ += packetIn.func_149064_e();
+            double d0 = (double) 实体.serverPosX / 32.0D;
+            double d1 = (double) 实体.serverPosY / 32.0D;
+            double d2 = (double) 实体.serverPosZ / 32.0D;
+            float f = packetIn.func_149060_h() ? (float)(packetIn.func_149066_f() * 360) / 256.0F : 实体.旋转侧滑;
+            float f1 = packetIn.func_149060_h() ? (float)(packetIn.func_149063_g() * 360) / 256.0F : 实体.rotationPitch;
+            实体.setPositionAndRotation2(d0, d1, d2, f, f1, 3, false);
+            实体.onGround = packetIn.getOnGround();
         }
     }
 
     public void handleEntityHeadLook(S19PacketEntityHeadLook packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = packetIn.getEntity(this.clientWorldController);
+        实体 实体 = packetIn.getEntity(this.clientWorldController);
 
-        if (entity != null)
+        if (实体 != null)
         {
             float f = (float)(packetIn.getYaw() * 360) / 256.0F;
-            entity.setRotationYawHead(f);
+            实体.setRotationYawHead(f);
         }
     }
 
@@ -575,7 +551,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handlePlayerPosLook(S08PacketPlayerPosLook packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        EntityPlayer entityplayer = this.gameController.宇轩游玩者;
+        实体Player entityplayer = this.gameController.宇轩游玩者;
         double d0 = packetIn.getX();
         double d1 = packetIn.getY();
         double d2 = packetIn.getZ();
@@ -584,7 +560,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
         if (packetIn.func_179834_f().contains(S08PacketPlayerPosLook.EnumFlags.X))
         {
-            d0 += entityplayer.posX;
+            d0 += entityplayer.X坐标;
         }
         else
         {
@@ -593,7 +569,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
         if (packetIn.func_179834_f().contains(S08PacketPlayerPosLook.EnumFlags.Y))
         {
-            d1 += entityplayer.posY;
+            d1 += entityplayer.Y坐标;
         }
         else
         {
@@ -602,7 +578,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
         if (packetIn.func_179834_f().contains(S08PacketPlayerPosLook.EnumFlags.Z))
         {
-            d2 += entityplayer.posZ;
+            d2 += entityplayer.Z坐标;
         }
         else
         {
@@ -620,13 +596,13 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         }
 
         entityplayer.setPositionAndRotation(d0, d1, d2, f, f1);
-        this.netManager.sendPacket(new C03PacketPlayer.C06PacketPlayerPosLook(entityplayer.posX, entityplayer.getEntityBoundingBox().minY, entityplayer.posZ, entityplayer.旋转侧滑, entityplayer.rotationPitch, false));
+        this.netManager.sendPacket(new 客户端数据包3玩家.C06PacketPlayerPosLook(entityplayer.X坐标, entityplayer.getEntityBoundingBox().minY, entityplayer.Z坐标, entityplayer.旋转侧滑, entityplayer.rotationPitch, false));
 
         if (!this.doneLoadingTerrain)
         {
-            this.gameController.宇轩游玩者.prevPosX = this.gameController.宇轩游玩者.posX;
-            this.gameController.宇轩游玩者.prevPosY = this.gameController.宇轩游玩者.posY;
-            this.gameController.宇轩游玩者.prevPosZ = this.gameController.宇轩游玩者.posZ;
+            this.gameController.宇轩游玩者.prevPosX = this.gameController.宇轩游玩者.X坐标;
+            this.gameController.宇轩游玩者.prevPosY = this.gameController.宇轩游玩者.Y坐标;
+            this.gameController.宇轩游玩者.prevPosZ = this.gameController.宇轩游玩者.Z坐标;
             this.doneLoadingTerrain = true;
             this.gameController.displayGuiScreen((鬼Screen)null);
         }
@@ -708,26 +684,26 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleCollectItem(S0DPacketCollectItem packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getCollectedItemEntityID());
-        EntityLivingBase entitylivingbase = (EntityLivingBase)this.clientWorldController.getEntityByID(packetIn.getEntityID());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getCollectedItemEntityID());
+        实体LivingBase entitylivingbase = (实体LivingBase)this.clientWorldController.getEntityByID(packetIn.getEntityID());
 
         if (entitylivingbase == null)
         {
             entitylivingbase = this.gameController.宇轩游玩者;
         }
 
-        if (entity != null)
+        if (实体 != null)
         {
-            if (entity instanceof EntityXPOrb)
+            if (实体 instanceof 实体XPOrb)
             {
-                this.clientWorldController.playSoundAtEntity(entity, "random.orb", 0.2F, ((this.avRandomizer.nextFloat() - this.avRandomizer.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                this.clientWorldController.playSoundAtEntity(实体, "random.orb", 0.2F, ((this.avRandomizer.nextFloat() - this.avRandomizer.nextFloat()) * 0.7F + 1.0F) * 2.0F);
             }
             else
             {
-                this.clientWorldController.playSoundAtEntity(entity, "random.pop", 0.2F, ((this.avRandomizer.nextFloat() - this.avRandomizer.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                this.clientWorldController.playSoundAtEntity(实体, "random.pop", 0.2F, ((this.avRandomizer.nextFloat() - this.avRandomizer.nextFloat()) * 0.7F + 1.0F) * 2.0F);
             }
 
-            this.gameController.effectRenderer.addEffect(new EntityPickupFX(this.clientWorldController, entity, entitylivingbase, 0.5F));
+            this.gameController.effectRenderer.addEffect(new 实体PickupFX(this.clientWorldController, 实体, entitylivingbase, 0.5F));
             this.clientWorldController.removeEntityFromWorld(packetIn.getCollectedItemEntityID());
         }
     }
@@ -749,31 +725,31 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleAnimation(S0BPacketAnimation packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityID());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityID());
 
-        if (entity != null)
+        if (实体 != null)
         {
             if (packetIn.getAnimationType() == 0)
             {
-                EntityLivingBase entitylivingbase = (EntityLivingBase)entity;
+                实体LivingBase entitylivingbase = (实体LivingBase) 实体;
                 entitylivingbase.swingItem();
             }
             else if (packetIn.getAnimationType() == 1)
             {
-                entity.performHurtAnimation();
+                实体.performHurtAnimation();
             }
             else if (packetIn.getAnimationType() == 2)
             {
-                EntityPlayer entityplayer = (EntityPlayer)entity;
+                实体Player entityplayer = (实体Player) 实体;
                 entityplayer.wakeUpPlayer(false, false, false);
             }
             else if (packetIn.getAnimationType() == 4)
             {
-                this.gameController.effectRenderer.emitParticleAtEntity(entity, EnumParticleTypes.CRIT);
+                this.gameController.effectRenderer.emitParticleAtEntity(实体, EnumParticleTypes.CRIT);
             }
             else if (packetIn.getAnimationType() == 5)
             {
-                this.gameController.effectRenderer.emitParticleAtEntity(entity, EnumParticleTypes.CRIT_MAGIC);
+                this.gameController.effectRenderer.emitParticleAtEntity(实体, EnumParticleTypes.CRIT_MAGIC);
             }
         }
     }
@@ -792,12 +768,12 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         double d2 = (double)packetIn.getZ() / 32.0D;
         float f = (float)(packetIn.getYaw() * 360) / 256.0F;
         float f1 = (float)(packetIn.getPitch() * 360) / 256.0F;
-        EntityLivingBase entitylivingbase = (EntityLivingBase)EntityList.createEntityByID(packetIn.getEntityType(), this.gameController.宇轩の世界);
+        实体LivingBase entitylivingbase = (实体LivingBase)EntityList.createEntityByID(packetIn.getEntityType(), this.gameController.宇轩の世界);
         entitylivingbase.serverPosX = packetIn.getX();
         entitylivingbase.serverPosY = packetIn.getY();
         entitylivingbase.serverPosZ = packetIn.getZ();
         entitylivingbase.renderYawOffset = entitylivingbase.rotationYawHead = (float)(packetIn.getHeadPitch() * 360) / 256.0F;
-        Entity[] aentity = entitylivingbase.getParts();
+        实体[] aentity = entitylivingbase.getParts();
 
         if (aentity != null)
         {
@@ -840,8 +816,8 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleEntityAttach(S1BPacketEntityAttach packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityId());
-        Entity entity1 = this.clientWorldController.getEntityByID(packetIn.getVehicleEntityId());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityId());
+        实体 实体1 = this.clientWorldController.getEntityByID(packetIn.getVehicleEntityId());
 
         if (packetIn.getLeash() == 0)
         {
@@ -849,26 +825,26 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
             if (packetIn.getEntityId() == this.gameController.宇轩游玩者.getEntityId())
             {
-                entity = this.gameController.宇轩游玩者;
+                实体 = this.gameController.宇轩游玩者;
 
-                if (entity1 instanceof EntityBoat)
+                if (实体1 instanceof 实体Boat)
                 {
-                    ((EntityBoat)entity1).setIsBoatEmpty(false);
+                    ((实体Boat) 实体1).setIsBoatEmpty(false);
                 }
 
-                flag = entity.ridingEntity == null && entity1 != null;
+                flag = 实体.riding实体 == null && 实体1 != null;
             }
-            else if (entity1 instanceof EntityBoat)
+            else if (实体1 instanceof 实体Boat)
             {
-                ((EntityBoat)entity1).setIsBoatEmpty(true);
+                ((实体Boat) 实体1).setIsBoatEmpty(true);
             }
 
-            if (entity == null)
+            if (实体 == null)
             {
                 return;
             }
 
-            entity.mountEntity(entity1);
+            实体.mountEntity(实体1);
 
             if (flag)
             {
@@ -876,15 +852,15 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                 this.gameController.ingameGUI.setRecordPlaying(I18n.format("mount.onboard", new Object[] {GameSettings.getKeyDisplayString(gamesettings.keyBindSneak.getKeyCode())}), false);
             }
         }
-        else if (packetIn.getLeash() == 1 && entity instanceof EntityLiving)
+        else if (packetIn.getLeash() == 1 && 实体 instanceof 实体Living)
         {
-            if (entity1 != null)
+            if (实体1 != null)
             {
-                ((EntityLiving)entity).setLeashedToEntity(entity1, false);
+                ((实体Living) 实体).setLeashedToEntity(实体1, false);
             }
             else
             {
-                ((EntityLiving)entity).clearLeashed(false, false);
+                ((实体Living) 实体).clearLeashed(false, false);
             }
         }
     }
@@ -892,17 +868,17 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleEntityStatus(S19PacketEntityStatus packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = packetIn.getEntity(this.clientWorldController);
+        实体 实体 = packetIn.getEntity(this.clientWorldController);
 
-        if (entity != null)
+        if (实体 != null)
         {
             if (packetIn.getOpCode() == 21)
             {
-                this.gameController.getSoundHandler().playSound(new GuardianSound((EntityGuardian)entity));
+                this.gameController.getSoundHandler().playSound(new GuardianSound((实体Guardian) 实体));
             }
             else
             {
-                entity.handleStatusUpdate(packetIn.getOpCode());
+                实体.handleStatusUpdate(packetIn.getOpCode());
             }
         }
     }
@@ -943,7 +919,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleExplosion(S27PacketExplosion packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Explosion explosion = new Explosion(this.gameController.宇轩の世界, (Entity)null, packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getStrength(), packetIn.getAffectedBlockPositions());
+        Explosion explosion = new Explosion(this.gameController.宇轩の世界, (实体)null, packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getStrength(), packetIn.getAffectedBlockPositions());
         explosion.doExplosionB(true);
         this.gameController.宇轩游玩者.通便X += (double)packetIn.func_149149_c();
         this.gameController.宇轩游玩者.motionY += (double)packetIn.func_149144_d();
@@ -953,7 +929,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleOpenWindow(S2DPacketOpenWindow packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        EntityPlayerSP entityplayersp = this.gameController.宇轩游玩者;
+        实体PlayerSP entityplayersp = this.gameController.宇轩游玩者;
 
         if ("minecraft:container".equals(packetIn.getGuiId()))
         {
@@ -967,11 +943,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         }
         else if ("EntityHorse".equals(packetIn.getGuiId()))
         {
-            Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityId());
+            实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityId());
 
-            if (entity instanceof EntityHorse)
+            if (实体 instanceof 实体Horse)
             {
-                entityplayersp.displayGUIHorse((EntityHorse)entity, new AnimalChest(packetIn.getWindowTitle(), packetIn.getSlotCount()));
+                entityplayersp.displayGUIHorse((实体Horse) 实体, new AnimalChest(packetIn.getWindowTitle(), packetIn.getSlotCount()));
                 entityplayersp.openContainer.windowId = packetIn.getWindowId();
             }
         }
@@ -991,7 +967,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleSetSlot(S2FPacketSetSlot packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        EntityPlayer entityplayer = this.gameController.宇轩游玩者;
+        实体Player entityplayer = this.gameController.宇轩游玩者;
 
         if (packetIn.func_149175_c() == -1)
         {
@@ -1029,7 +1005,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
         Container container = null;
-        EntityPlayer entityplayer = this.gameController.宇轩游玩者;
+        实体Player entityplayer = this.gameController.宇轩游玩者;
 
         if (packetIn.getWindowId() == 0)
         {
@@ -1049,7 +1025,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleWindowItems(S30PacketWindowItems packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        EntityPlayer entityplayer = this.gameController.宇轩游玩者;
+        实体Player entityplayer = this.gameController.宇轩游玩者;
 
         if (packetIn.func_148911_c() == 0)
         {
@@ -1124,7 +1100,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleWindowProperty(S31PacketWindowProperty packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        EntityPlayer entityplayer = this.gameController.宇轩游玩者;
+        实体Player entityplayer = this.gameController.宇轩游玩者;
 
         if (entityplayer.openContainer != null && entityplayer.openContainer.windowId == packetIn.getWindowId())
         {
@@ -1135,11 +1111,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleEntityEquipment(S04PacketEntityEquipment packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityID());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityID());
 
-        if (entity != null)
+        if (实体 != null)
         {
-            entity.setCurrentItemOrArmor(packetIn.getEquipmentSlot(), packetIn.getItemStack());
+            实体.setCurrentItemOrArmor(packetIn.getEquipmentSlot(), packetIn.getItemStack());
         }
     }
 
@@ -1185,7 +1161,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleChangeGameState(S2BPacketChangeGameState packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        EntityPlayer entityplayer = this.gameController.宇轩游玩者;
+        实体Player entityplayer = this.gameController.宇轩游玩者;
         int i = packetIn.getGameState();
         float f = packetIn.func_149137_d();
         int j = MathHelper.floor_float(f + 0.5F);
@@ -1236,7 +1212,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         }
         else if (i == 6)
         {
-            this.clientWorldController.playSound(entityplayer.posX, entityplayer.posY + (double)entityplayer.getEyeHeight(), entityplayer.posZ, "random.successful_hit", 0.18F, 0.45F, false);
+            this.clientWorldController.playSound(entityplayer.X坐标, entityplayer.Y坐标 + (double)entityplayer.getEyeHeight(), entityplayer.Z坐标, "random.successful_hit", 0.18F, 0.45F, false);
         }
         else if (i == 7)
         {
@@ -1248,8 +1224,8 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         }
         else if (i == 10)
         {
-            this.clientWorldController.spawnParticle(EnumParticleTypes.MOB_APPEARANCE, entityplayer.posX, entityplayer.posY, entityplayer.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
-            this.clientWorldController.playSound(entityplayer.posX, entityplayer.posY, entityplayer.posZ, "mob.guardian.curse", 1.0F, 1.0F, false);
+            this.clientWorldController.spawnParticle(EnumParticleTypes.MOB_APPEARANCE, entityplayer.X坐标, entityplayer.Y坐标, entityplayer.Z坐标, 0.0D, 0.0D, 0.0D, new int[0]);
+            this.clientWorldController.playSound(entityplayer.X坐标, entityplayer.Y坐标, entityplayer.Z坐标, "mob.guardian.curse", 1.0F, 1.0F, false);
         }
     }
 
@@ -1322,21 +1298,21 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleEntityEffect(S1DPacketEntityEffect packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityId());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityId());
 
-        if (entity instanceof EntityLivingBase)
+        if (实体 instanceof 实体LivingBase)
         {
             PotionEffect potioneffect = new PotionEffect(packetIn.getEffectId(), packetIn.getDuration(), packetIn.getAmplifier(), false, packetIn.func_179707_f());
             potioneffect.setPotionDurationMax(packetIn.func_149429_c());
-            ((EntityLivingBase)entity).addPotionEffect(potioneffect);
+            ((实体LivingBase) 实体).addPotionEffect(potioneffect);
         }
     }
 
     public void handleCombatEvent(S42PacketCombatEvent packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.field_179775_c);
-        EntityLivingBase entitylivingbase = entity instanceof EntityLivingBase ? (EntityLivingBase)entity : null;
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.field_179775_c);
+        实体LivingBase entitylivingbase = 实体 instanceof 实体LivingBase ? (实体LivingBase) 实体 : null;
 
         if (packetIn.eventType == S42PacketCombatEvent.Event.END_COMBAT)
         {
@@ -1346,11 +1322,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         }
         else if (packetIn.eventType == S42PacketCombatEvent.Event.ENTITY_DIED)
         {
-            Entity entity1 = this.clientWorldController.getEntityByID(packetIn.field_179774_b);
+            实体 实体1 = this.clientWorldController.getEntityByID(packetIn.field_179774_b);
 
-            if (entity1 instanceof EntityPlayer)
+            if (实体1 instanceof 实体Player)
             {
-                MetadataPlayerDeath metadataplayerdeath = new MetadataPlayerDeath((EntityPlayer)entity1, entitylivingbase);
+                MetadataPlayerDeath metadataplayerdeath = new MetadataPlayerDeath((实体Player) 实体1, entitylivingbase);
                 metadataplayerdeath.func_152807_a(packetIn.deathMessage);
                 this.gameController.getTwitchStream().func_152911_a(metadataplayerdeath, 0L);
             }
@@ -1367,11 +1343,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleCamera(S43PacketCamera packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = packetIn.getEntity(this.clientWorldController);
+        实体 实体 = packetIn.getEntity(this.clientWorldController);
 
-        if (entity != null)
+        if (实体 != null)
         {
-            this.gameController.setRenderViewEntity(entity);
+            this.gameController.setRenderViewEntity(实体);
         }
     }
 
@@ -1426,11 +1402,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleRemoveEntityEffect(S1EPacketRemoveEntityEffect packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityId());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityId());
 
-        if (entity instanceof EntityLivingBase)
+        if (实体 instanceof 实体LivingBase)
         {
-            ((EntityLivingBase)entity).removePotionEffectClient(packetIn.getEffectId());
+            ((实体LivingBase) 实体).removePotionEffectClient(packetIn.getEffectId());
         }
     }
 
@@ -1488,7 +1464,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handlePlayerAbilities(S39PacketPlayerAbilities packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        EntityPlayer entityplayer = this.gameController.宇轩游玩者;
+        实体Player entityplayer = this.gameController.宇轩游玩者;
         entityplayer.capabilities.isFlying = packetIn.isFlying();
         entityplayer.capabilities.isCreativeMode = packetIn.isCreativeMode();
         entityplayer.capabilities.disableDamage = packetIn.isInvulnerable();
@@ -1622,11 +1598,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleEntityNBT(S49PacketUpdateEntityNBT packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = packetIn.getEntity(this.clientWorldController);
+        实体 实体 = packetIn.getEntity(this.clientWorldController);
 
-        if (entity != null)
+        if (实体 != null)
         {
-            entity.clientUpdateEntityNBT(packetIn.getTagCompound());
+            实体.clientUpdateEntityNBT(packetIn.getTagCompound());
         }
     }
 
@@ -1839,17 +1815,17 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public void handleEntityProperties(S20PacketEntityProperties packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
-        Entity entity = this.clientWorldController.getEntityByID(packetIn.getEntityId());
+        实体 实体 = this.clientWorldController.getEntityByID(packetIn.getEntityId());
 
-        if (entity != null)
+        if (实体 != null)
         {
-            if (!(entity instanceof EntityLivingBase))
+            if (!(实体 instanceof 实体LivingBase))
             {
-                throw new IllegalStateException("Server tried to update attributes of a non-living entity (actually: " + entity + ")");
+                throw new IllegalStateException("Server tried to update attributes of a non-living entity (actually: " + 实体 + ")");
             }
             else
             {
-                BaseAttributeMap baseattributemap = ((EntityLivingBase)entity).getAttributeMap();
+                BaseAttributeMap baseattributemap = ((实体LivingBase) 实体).getAttributeMap();
 
                 for (S20PacketEntityProperties.Snapshot s20packetentityproperties$snapshot : packetIn.func_149441_d())
                 {

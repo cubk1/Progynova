@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.optifine.reflect.Reflector;
@@ -22,7 +22,7 @@ public class ChunkUtils
         return Reflector.getFieldValueBoolean(chunk, fieldHasEntities, true);
     }
 
-    public static int getPrecipitationHeight(Chunk chunk, BlockPos pos)
+    public static int getPrecipitationHeight(Chunk chunk, 阻止位置 pos)
     {
         int[] aint = (int[])((int[])Reflector.getFieldValue(chunk, fieldPrecipitationHeightMap));
 
@@ -39,7 +39,7 @@ public class ChunkUtils
             }
             else
             {
-                BlockPos blockpos = chunk.getPrecipitationHeight(pos);
+                阻止位置 blockpos = chunk.getPrecipitationHeight(pos);
                 return blockpos.getY();
             }
         }

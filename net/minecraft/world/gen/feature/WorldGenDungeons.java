@@ -9,7 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
@@ -22,7 +22,7 @@ public class WorldGenDungeons extends WorldGenerator
     private static final String[] SPAWNERTYPES = new String[] {"Skeleton", "Zombie", "Zombie", "Spider"};
     private static final List<WeightedRandomChestContent> CHESTCONTENT = Lists.newArrayList(new WeightedRandomChestContent[] {new WeightedRandomChestContent(Items.saddle, 0, 1, 1, 10), new WeightedRandomChestContent(Items.iron_ingot, 0, 1, 4, 10), new WeightedRandomChestContent(Items.bread, 0, 1, 1, 10), new WeightedRandomChestContent(Items.wheat, 0, 1, 4, 10), new WeightedRandomChestContent(Items.gunpowder, 0, 1, 4, 10), new WeightedRandomChestContent(Items.string, 0, 1, 4, 10), new WeightedRandomChestContent(Items.bucket, 0, 1, 1, 10), new WeightedRandomChestContent(Items.golden_apple, 0, 1, 1, 1), new WeightedRandomChestContent(Items.redstone, 0, 1, 4, 10), new WeightedRandomChestContent(Items.record_13, 0, 1, 1, 4), new WeightedRandomChestContent(Items.record_cat, 0, 1, 1, 4), new WeightedRandomChestContent(Items.name_tag, 0, 1, 1, 10), new WeightedRandomChestContent(Items.golden_horse_armor, 0, 1, 1, 2), new WeightedRandomChestContent(Items.iron_horse_armor, 0, 1, 1, 5), new WeightedRandomChestContent(Items.diamond_horse_armor, 0, 1, 1, 1)});
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         int i = 3;
         int j = rand.nextInt(2) + 2;
@@ -41,7 +41,7 @@ public class WorldGenDungeons extends WorldGenerator
             {
                 for (int i3 = l1; i3 <= i2; ++i3)
                 {
-                    BlockPos blockpos = position.add(k2, l2, i3);
+                    阻止位置 blockpos = position.add(k2, l2, i3);
                     Material material = worldIn.getBlockState(blockpos).getBlock().getMaterial();
                     boolean flag = material.isSolid();
 
@@ -71,7 +71,7 @@ public class WorldGenDungeons extends WorldGenerator
                 {
                     for (int k4 = l1; k4 <= i2; ++k4)
                     {
-                        BlockPos blockpos1 = position.add(k3, i4, k4);
+                        阻止位置 blockpos1 = position.add(k3, i4, k4);
 
                         if (k3 != k && i4 != -1 && k4 != l1 && k3 != l && i4 != 4 && k4 != i2)
                         {
@@ -106,7 +106,7 @@ public class WorldGenDungeons extends WorldGenerator
                     int l4 = position.getX() + rand.nextInt(j * 2 + 1) - j;
                     int i5 = position.getY();
                     int j5 = position.getZ() + rand.nextInt(k1 * 2 + 1) - k1;
-                    BlockPos blockpos2 = new BlockPos(l4, i5, j5);
+                    阻止位置 blockpos2 = new 阻止位置(l4, i5, j5);
 
                     if (worldIn.isAirBlock(blockpos2))
                     {

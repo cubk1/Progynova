@@ -3,8 +3,8 @@ package net.minecraft.block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
 
@@ -22,39 +22,39 @@ public class BlockSlime extends BlockBreakable
         return EnumWorldBlockLayer.TRANSLUCENT;
     }
 
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
+    public void onFallenUpon(World worldIn, 阻止位置 pos, 实体 实体In, float fallDistance)
     {
-        if (entityIn.正在下蹲())
+        if (实体In.正在下蹲())
         {
-            super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+            super.onFallenUpon(worldIn, pos, 实体In, fallDistance);
         }
         else
         {
-            entityIn.fall(fallDistance, 0.0F);
+            实体In.fall(fallDistance, 0.0F);
         }
     }
 
-    public void onLanded(World worldIn, Entity entityIn)
+    public void onLanded(World worldIn, 实体 实体In)
     {
-        if (entityIn.正在下蹲())
+        if (实体In.正在下蹲())
         {
-            super.onLanded(worldIn, entityIn);
+            super.onLanded(worldIn, 实体In);
         }
-        else if (entityIn.motionY < 0.0D)
+        else if (实体In.motionY < 0.0D)
         {
-            entityIn.motionY = -entityIn.motionY;
+            实体In.motionY = -实体In.motionY;
         }
     }
 
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn)
+    public void onEntityCollidedWithBlock(World worldIn, 阻止位置 pos, 实体 实体In)
     {
-        if (Math.abs(entityIn.motionY) < 0.1D && !entityIn.正在下蹲())
+        if (Math.abs(实体In.motionY) < 0.1D && !实体In.正在下蹲())
         {
-            double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
-            entityIn.通便X *= d0;
-            entityIn.通便Z *= d0;
+            double d0 = 0.4D + Math.abs(实体In.motionY) * 0.2D;
+            实体In.通便X *= d0;
+            实体In.通便Z *= d0;
         }
 
-        super.onEntityCollidedWithBlock(worldIn, pos, entityIn);
+        super.onEntityCollidedWithBlock(worldIn, pos, 实体In);
     }
 }

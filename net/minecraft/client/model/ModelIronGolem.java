@@ -1,8 +1,8 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.monster.实体IronGolem;
 
 public class ModelIronGolem extends ModelBase
 {
@@ -50,9 +50,9 @@ public class ModelIronGolem extends ModelBase
         this.ironGolemRightLeg.addBox(-3.5F, -3.0F, -3.0F, 6, 16, 5, p_i46362_1_);
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
         this.ironGolemHead.render(scale);
         this.ironGolemBody.render(scale);
         this.ironGolemLeftLeg.render(scale);
@@ -61,7 +61,7 @@ public class ModelIronGolem extends ModelBase
         this.ironGolemLeftArm.render(scale);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
         this.ironGolemHead.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
         this.ironGolemHead.rotateAngleX = headPitch / (180F / (float)Math.PI);
@@ -71,9 +71,9 @@ public class ModelIronGolem extends ModelBase
         this.ironGolemRightLeg.rotateAngleY = 0.0F;
     }
 
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
+    public void setLivingAnimations(实体LivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
     {
-        EntityIronGolem entityirongolem = (EntityIronGolem)entitylivingbaseIn;
+        实体IronGolem entityirongolem = (实体IronGolem)entitylivingbaseIn;
         int i = entityirongolem.getAttackTimer();
 
         if (i > 0)

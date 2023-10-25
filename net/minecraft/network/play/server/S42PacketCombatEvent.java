@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -23,7 +23,7 @@ public class S42PacketCombatEvent implements Packet<INetHandlerPlayClient>
     public S42PacketCombatEvent(CombatTracker combatTrackerIn, S42PacketCombatEvent.Event combatEventType)
     {
         this.eventType = combatEventType;
-        EntityLivingBase entitylivingbase = combatTrackerIn.func_94550_c();
+        实体LivingBase entitylivingbase = combatTrackerIn.func_94550_c();
 
         switch (combatEventType)
         {

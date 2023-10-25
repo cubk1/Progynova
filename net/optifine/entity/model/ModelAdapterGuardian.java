@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelGuardian;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderGuardian;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityGuardian;
+import net.minecraft.entity.monster.实体Guardian;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterGuardian extends ModelAdapter
 {
     public ModelAdapterGuardian()
     {
-        super(EntityGuardian.class, "guardian", 0.5F);
+        super(实体Guardian.class, "guardian", 0.5F);
     }
 
     public ModelBase makeModel()

@@ -1,6 +1,6 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.MathHelper;
 
 public class ModelSpider extends ModelBase
@@ -56,9 +56,9 @@ public class ModelSpider extends ModelBase
         this.spiderLeg8.setRotationPoint(4.0F, (float)i, -1.0F);
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
         this.spiderHead.render(scale);
         this.spiderNeck.render(scale);
         this.spiderBody.render(scale);
@@ -72,7 +72,7 @@ public class ModelSpider extends ModelBase
         this.spiderLeg8.render(scale);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
         this.spiderHead.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
         this.spiderHead.rotateAngleX = headPitch / (180F / (float)Math.PI);

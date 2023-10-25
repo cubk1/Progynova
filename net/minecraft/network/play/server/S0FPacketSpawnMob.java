@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -30,13 +30,13 @@ public class S0FPacketSpawnMob implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S0FPacketSpawnMob(EntityLivingBase entityIn)
+    public S0FPacketSpawnMob(实体LivingBase entityIn)
     {
         this.entityId = entityIn.getEntityId();
         this.type = (byte)EntityList.getEntityID(entityIn);
-        this.x = MathHelper.floor_double(entityIn.posX * 32.0D);
-        this.y = MathHelper.floor_double(entityIn.posY * 32.0D);
-        this.z = MathHelper.floor_double(entityIn.posZ * 32.0D);
+        this.x = MathHelper.floor_double(entityIn.X坐标 * 32.0D);
+        this.y = MathHelper.floor_double(entityIn.Y坐标 * 32.0D);
+        this.z = MathHelper.floor_double(entityIn.Z坐标 * 32.0D);
         this.yaw = (byte)((int)(entityIn.旋转侧滑 * 256.0F / 360.0F));
         this.pitch = (byte)((int)(entityIn.rotationPitch * 256.0F / 360.0F));
         this.headPitch = (byte)((int)(entityIn.rotationYawHead * 256.0F / 360.0F));

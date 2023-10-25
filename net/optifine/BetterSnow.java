@@ -21,7 +21,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 
@@ -44,13 +44,13 @@ public class BetterSnow
         return Blocks.snow_layer.getDefaultState();
     }
 
-    public static boolean shouldRender(IBlockAccess blockAccess, IBlockState blockState, BlockPos blockPos)
+    public static boolean shouldRender(IBlockAccess blockAccess, IBlockState blockState, 阻止位置 阻止位置)
     {
         Block block = blockState.getBlock();
-        return !checkBlock(block, blockState) ? false : hasSnowNeighbours(blockAccess, blockPos);
+        return !checkBlock(block, blockState) ? false : hasSnowNeighbours(blockAccess, 阻止位置);
     }
 
-    private static boolean hasSnowNeighbours(IBlockAccess blockAccess, BlockPos pos)
+    private static boolean hasSnowNeighbours(IBlockAccess blockAccess, 阻止位置 pos)
     {
         Block block = Blocks.snow_layer;
         return blockAccess.getBlockState(pos.north()).getBlock() != block && blockAccess.getBlockState(pos.south()).getBlock() != block && blockAccess.getBlockState(pos.west()).getBlock() != block && blockAccess.getBlockState(pos.east()).getBlock() != block ? false : blockAccess.getBlockState(pos.down()).getBlock().isOpaqueCube();

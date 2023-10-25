@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.entity.实体PlayerSP;
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerArrow;
@@ -50,7 +50,7 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer>
         {
             double d0 = y;
 
-            if (entity.正在下蹲() && !(entity instanceof EntityPlayerSP))
+            if (entity.正在下蹲() && !(entity instanceof 实体PlayerSP))
             {
                 d0 = y - 0.125D;
             }

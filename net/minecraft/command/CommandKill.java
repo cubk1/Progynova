@@ -1,10 +1,11 @@
 package net.minecraft.command;
 
 import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class CommandKill extends CommandBase
 {
@@ -27,15 +28,15 @@ public class CommandKill extends CommandBase
     {
         if (args.length == 0)
         {
-            EntityPlayer entityplayer = getCommandSenderAsPlayer(sender);
+            实体Player entityplayer = getCommandSenderAsPlayer(sender);
             entityplayer.onKillCommand();
             notifyOperators(sender, this, "commands.kill.successful", new Object[] {entityplayer.getDisplayName()});
         }
         else
         {
-            Entity entity = getEntity(sender, args[0]);
-            entity.onKillCommand();
-            notifyOperators(sender, this, "commands.kill.successful", new Object[] {entity.getDisplayName()});
+            实体 实体 = getEntity(sender, args[0]);
+            实体.onKillCommand();
+            notifyOperators(sender, this, "commands.kill.successful", new Object[] {实体.getDisplayName()});
         }
     }
 
@@ -44,7 +45,7 @@ public class CommandKill extends CommandBase
         return index == 0;
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames()) : null;
     }

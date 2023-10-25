@@ -9,11 +9,11 @@ import net.minecraft.client.renderer.entity.layers.LayerEnderDragonDeath;
 import net.minecraft.client.renderer.entity.layers.LayerEnderDragonEyes;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.boss.BossStatus;
-import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.实体Dragon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
-public class RenderDragon extends RenderLiving<EntityDragon>
+public class RenderDragon extends RenderLiving<实体Dragon>
 {
     private static final 图像位置 enderDragonCrystalBeamTextures = new 图像位置("textures/entity/endercrystal/endercrystal_beam.png");
     private static final 图像位置 enderDragonExplodingTextures = new 图像位置("textures/entity/enderdragon/dragon_exploding.png");
@@ -28,7 +28,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
         this.addLayer(new LayerEnderDragonDeath());
     }
 
-    protected void rotateCorpse(EntityDragon bat, float p_77043_2_, float p_77043_3_, float partialTicks)
+    protected void rotateCorpse(实体Dragon bat, float p_77043_2_, float p_77043_3_, float partialTicks)
     {
         float f = (float)bat.getMovementOffsets(7, partialTicks)[0];
         float f1 = (float)(bat.getMovementOffsets(5, partialTicks)[1] - bat.getMovementOffsets(10, partialTicks)[1]);
@@ -50,7 +50,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
         }
     }
 
-    protected void renderModel(EntityDragon entitylivingbaseIn, float p_77036_2_, float p_77036_3_, float p_77036_4_, float p_77036_5_, float p_77036_6_, float scaleFactor)
+    protected void renderModel(实体Dragon entitylivingbaseIn, float p_77036_2_, float p_77036_3_, float p_77036_4_, float p_77036_5_, float p_77036_6_, float scaleFactor)
     {
         if (entitylivingbaseIn.deathTicks > 0)
         {
@@ -81,7 +81,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
         }
     }
 
-    public void doRender(EntityDragon entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体Dragon entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         BossStatus.setBossStatus(entity, false);
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -92,14 +92,14 @@ public class RenderDragon extends RenderLiving<EntityDragon>
         }
     }
 
-    protected void drawRechargeRay(EntityDragon dragon, double p_180574_2_, double p_180574_4_, double p_180574_6_, float p_180574_8_)
+    protected void drawRechargeRay(实体Dragon dragon, double p_180574_2_, double p_180574_4_, double p_180574_6_, float p_180574_8_)
     {
         float f = (float)dragon.healingEnderCrystal.innerRotation + p_180574_8_;
         float f1 = MathHelper.sin(f * 0.2F) / 2.0F + 0.5F;
         f1 = (f1 * f1 + f1) * 0.2F;
-        float f2 = (float)(dragon.healingEnderCrystal.posX - dragon.posX - (dragon.prevPosX - dragon.posX) * (double)(1.0F - p_180574_8_));
-        float f3 = (float)((double)f1 + dragon.healingEnderCrystal.posY - 1.0D - dragon.posY - (dragon.prevPosY - dragon.posY) * (double)(1.0F - p_180574_8_));
-        float f4 = (float)(dragon.healingEnderCrystal.posZ - dragon.posZ - (dragon.prevPosZ - dragon.posZ) * (double)(1.0F - p_180574_8_));
+        float f2 = (float)(dragon.healingEnderCrystal.X坐标 - dragon.X坐标 - (dragon.prevPosX - dragon.X坐标) * (double)(1.0F - p_180574_8_));
+        float f3 = (float)((double)f1 + dragon.healingEnderCrystal.Y坐标 - 1.0D - dragon.Y坐标 - (dragon.prevPosY - dragon.Y坐标) * (double)(1.0F - p_180574_8_));
+        float f4 = (float)(dragon.healingEnderCrystal.Z坐标 - dragon.Z坐标 - (dragon.prevPosZ - dragon.Z坐标) * (double)(1.0F - p_180574_8_));
         float f5 = MathHelper.sqrt_float(f2 * f2 + f4 * f4);
         float f6 = MathHelper.sqrt_float(f2 * f2 + f3 * f3 + f4 * f4);
         光照状态经理.推黑客帝国();
@@ -133,7 +133,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
         光照状态经理.流行音乐黑客帝国();
     }
 
-    protected 图像位置 getEntityTexture(EntityDragon entity)
+    protected 图像位置 getEntityTexture(实体Dragon entity)
     {
         return enderDragonTextures;
     }

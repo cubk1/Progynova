@@ -2,10 +2,10 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelSpider;
 import net.minecraft.client.renderer.entity.layers.LayerSpiderEyes;
-import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.monster.实体Spider;
 import net.minecraft.util.图像位置;
 
-public class RenderSpider<T extends EntitySpider> extends RenderLiving<T>
+public class RenderSpider<T extends 实体Spider> extends RenderLiving<T>
 {
     private static final 图像位置 spiderTextures = new 图像位置("textures/entity/spider/spider.png");
 

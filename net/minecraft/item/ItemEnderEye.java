@@ -3,11 +3,11 @@ package net.minecraft.item;
 import net.minecraft.block.BlockEndPortalFrame;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityEnderEye;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体EnderEye;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
@@ -20,7 +20,7 @@ public class ItemEnderEye extends Item
         this.setCreativeTab(CreativeTabs.tabMisc);
     }
 
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 
@@ -56,7 +56,7 @@ public class ItemEnderEye extends Item
 
                 for (int k = -2; k <= 2; ++k)
                 {
-                    BlockPos blockpos1 = pos.offset(enumfacing1, k);
+                    阻止位置 blockpos1 = pos.offset(enumfacing1, k);
                     IBlockState iblockstate1 = worldIn.getBlockState(blockpos1);
 
                     if (iblockstate1.getBlock() == Blocks.end_portal_frame)
@@ -79,11 +79,11 @@ public class ItemEnderEye extends Item
 
                 if (flag && j == l + 2)
                 {
-                    BlockPos blockpos = pos.offset(enumfacing, 4);
+                    阻止位置 blockpos = pos.offset(enumfacing, 4);
 
                     for (int i1 = l; i1 <= j; ++i1)
                     {
-                        BlockPos blockpos2 = blockpos.offset(enumfacing1, i1);
+                        阻止位置 blockpos2 = blockpos.offset(enumfacing1, i1);
                         IBlockState iblockstate3 = worldIn.getBlockState(blockpos2);
 
                         if (iblockstate3.getBlock() != Blocks.end_portal_frame || !((Boolean)iblockstate3.getValue(BlockEndPortalFrame.EYE)).booleanValue())
@@ -99,7 +99,7 @@ public class ItemEnderEye extends Item
 
                         for (int l1 = 1; l1 <= 3; ++l1)
                         {
-                            BlockPos blockpos3 = blockpos.offset(enumfacing, l1);
+                            阻止位置 blockpos3 = blockpos.offset(enumfacing, l1);
                             IBlockState iblockstate2 = worldIn.getBlockState(blockpos3);
 
                             if (iblockstate2.getBlock() != Blocks.end_portal_frame || !((Boolean)iblockstate2.getValue(BlockEndPortalFrame.EYE)).booleanValue())
@@ -118,7 +118,7 @@ public class ItemEnderEye extends Item
 
                             for (int i2 = 1; i2 <= 3; ++i2)
                             {
-                                BlockPos blockpos4 = blockpos.offset(enumfacing, i2);
+                                阻止位置 blockpos4 = blockpos.offset(enumfacing, i2);
                                 worldIn.setBlockState(blockpos4, Blocks.end_portal.getDefaultState(), 2);
                             }
                         }
@@ -134,7 +134,7 @@ public class ItemEnderEye extends Item
         }
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(worldIn, playerIn, false);
 
@@ -146,15 +146,15 @@ public class ItemEnderEye extends Item
         {
             if (!worldIn.isRemote)
             {
-                BlockPos blockpos = worldIn.getStrongholdPos("Stronghold", new BlockPos(playerIn));
+                阻止位置 blockpos = worldIn.getStrongholdPos("Stronghold", new 阻止位置(playerIn));
 
                 if (blockpos != null)
                 {
-                    EntityEnderEye entityendereye = new EntityEnderEye(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ);
+                    实体EnderEye entityendereye = new 实体EnderEye(worldIn, playerIn.X坐标, playerIn.Y坐标, playerIn.Z坐标);
                     entityendereye.moveTowards(blockpos);
                     worldIn.spawnEntityInWorld(entityendereye);
                     worldIn.playSoundAtEntity(playerIn, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                    worldIn.playAuxSFXAtEntity((EntityPlayer)null, 1002, new BlockPos(playerIn), 0);
+                    worldIn.playAuxSFXAtEntity((实体Player)null, 1002, new 阻止位置(playerIn), 0);
 
                     if (!playerIn.capabilities.isCreativeMode)
                     {

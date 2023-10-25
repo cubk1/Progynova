@@ -2,9 +2,9 @@ package net.minecraft.world.border;
 
 import com.google.common.collect.Lists;
 import java.util.List;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.ChunkCoordIntPair;
 
 public class WorldBorder
@@ -32,7 +32,7 @@ public class WorldBorder
         this.warningDistance = 5;
     }
 
-    public boolean contains(BlockPos pos)
+    public boolean contains(阻止位置 pos)
     {
         return (double)(pos.getX() + 1) > this.minX() && (double)pos.getX() < this.maxX() && (double)(pos.getZ() + 1) > this.minZ() && (double)pos.getZ() < this.maxZ();
     }
@@ -47,9 +47,9 @@ public class WorldBorder
         return bb.maxX > this.minX() && bb.minX < this.maxX() && bb.maxZ > this.minZ() && bb.minZ < this.maxZ();
     }
 
-    public double getClosestDistance(Entity entityIn)
+    public double getClosestDistance(实体 实体In)
     {
-        return this.getClosestDistance(entityIn.posX, entityIn.posZ);
+        return this.getClosestDistance(实体In.X坐标, 实体In.Z坐标);
     }
 
     public double getClosestDistance(double x, double z)

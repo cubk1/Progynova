@@ -8,13 +8,13 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class CommandAchievement extends CommandBase
 {
@@ -49,7 +49,7 @@ public class CommandAchievement extends CommandBase
             }
             else
             {
-                final EntityPlayerMP entityplayermp = args.length >= 3 ? getPlayer(sender, args[2]) : getCommandSenderAsPlayer(sender);
+                final 实体PlayerMP entityplayermp = args.length >= 3 ? getPlayer(sender, args[2]) : getCommandSenderAsPlayer(sender);
                 boolean flag = args[0].equalsIgnoreCase("give");
                 boolean flag1 = args[0].equalsIgnoreCase("take");
 
@@ -162,7 +162,7 @@ public class CommandAchievement extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         if (args.length == 1)
         {

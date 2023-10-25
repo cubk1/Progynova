@@ -15,7 +15,7 @@ saveTextureMap=<true|false>
 shaders.debug.save=<true|false>
 
 # Automatically animate all mob models
-# Useful when testing custom entity models
+# Useful when testing custom 实体 models
 animate.model.living=<true|false>
 
 # Load the player models from the folder "playermodels"

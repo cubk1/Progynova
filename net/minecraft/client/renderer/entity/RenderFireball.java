@@ -7,11 +7,11 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.实体Fireball;
 import net.minecraft.init.Items;
 import net.minecraft.util.图像位置;
 
-public class RenderFireball extends Render<EntityFireball>
+public class RenderFireball extends Render<实体Fireball>
 {
     private float scale;
 
@@ -21,7 +21,7 @@ public class RenderFireball extends Render<EntityFireball>
         this.scale = scaleIn;
     }
 
-    public void doRender(EntityFireball entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体Fireball entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         光照状态经理.推黑客帝国();
         this.bindEntityTexture(entity);
@@ -51,7 +51,7 @@ public class RenderFireball extends Render<EntityFireball>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityFireball entity)
+    protected 图像位置 getEntityTexture(实体Fireball entity)
     {
         return TextureMap.locationBlocksTexture;
     }

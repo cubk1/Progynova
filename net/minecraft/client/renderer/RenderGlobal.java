@@ -31,7 +31,7 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.实体FX;
 import net.minecraft.client.renderer.chunk.ChunkRenderDispatcher;
 import net.minecraft.client.renderer.chunk.CompiledChunk;
 import net.minecraft.client.renderer.chunk.IRenderChunkFactory;
@@ -61,10 +61,10 @@ import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.client.shader.ShaderLinkHelper;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.projectile.实体WitherSkull;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -74,7 +74,7 @@ import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ClassInheritanceMultiMap;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
@@ -141,7 +141,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     private VertexBuffer sky2VBO;
     private int cloudTickCounter;
     public final Map<Integer, DestroyBlockProgress> damagedBlocks = Maps.<Integer, DestroyBlockProgress>newHashMap();
-    private final Map<BlockPos, ISound> mapSoundPositions = Maps.<BlockPos, ISound>newHashMap();
+    private final Map<阻止位置, ISound> mapSoundPositions = Maps.<阻止位置, ISound>newHashMap();
     private final TextureAtlasSprite[] destroyBlockIcons = new TextureAtlasSprite[10];
     private Framebuffer entityOutlineFramebuffer;
     private ShaderGroup entityOutlineShader;
@@ -174,7 +174,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     private double prevRenderSortZ;
     public boolean displayListEntitiesDirty = true;
     private CloudRenderer cloudRenderer;
-    public Entity renderedEntity;
+    public 实体 rendered实体;
     public Set chunksToResortTransparency = new LinkedHashSet();
     public Set chunksToUpdateForced = new LinkedHashSet();
     private Deque visibilityDeque = new ArrayDeque();
@@ -193,7 +193,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     private IChunkProvider worldChunkProvider = null;
     private LongHashMap worldChunkProviderMap = null;
     private int countLoadedChunksPrev = 0;
-    private RenderEnv renderEnv = new RenderEnv(Blocks.air.getDefaultState(), new BlockPos(0, 0, 0));
+    private RenderEnv renderEnv = new RenderEnv(Blocks.air.getDefaultState(), new 阻止位置(0, 0, 0));
     public boolean renderOverlayDamaged = false;
     public boolean renderOverlayEyes = false;
     private boolean firstWorldLoad = false;
@@ -504,7 +504,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         ChunkVisibility.reset();
         this.worldChunkProvider = null;
         this.worldChunkProviderMap = null;
-        this.renderEnv.reset((IBlockState)null, (BlockPos)null);
+        this.renderEnv.reset((IBlockState)null, (阻止位置)null);
         Shaders.checkWorldChanged(this.theWorld);
 
         if (worldClientIn != null)
@@ -578,11 +578,11 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
             if (this.theWorld != null)
             {
-                Entity entity = this.mc.getRenderViewEntity();
+                实体 实体 = this.mc.getRenderViewEntity();
 
-                if (entity != null)
+                if (实体 != null)
                 {
-                    this.viewFrustum.updateChunkPositions(entity.posX, entity.posZ);
+                    this.viewFrustum.updateChunkPositions(实体.X坐标, 实体.Z坐标);
                 }
             }
 
@@ -609,7 +609,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
     }
 
-    public void renderEntities(Entity renderViewEntity, ICamera camera, float partialTicks)
+    public void renderEntities(实体 renderView实体, ICamera camera, float partialTicks)
     {
         int i = 0;
 
@@ -629,12 +629,12 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
         else
         {
-            double d0 = renderViewEntity.prevPosX + (renderViewEntity.posX - renderViewEntity.prevPosX) * (double)partialTicks;
-            double d1 = renderViewEntity.prevPosY + (renderViewEntity.posY - renderViewEntity.prevPosY) * (double)partialTicks;
-            double d2 = renderViewEntity.prevPosZ + (renderViewEntity.posZ - renderViewEntity.prevPosZ) * (double)partialTicks;
+            double d0 = renderView实体.prevPosX + (renderView实体.X坐标 - renderView实体.prevPosX) * (double)partialTicks;
+            double d1 = renderView实体.prevPosY + (renderView实体.Y坐标 - renderView实体.prevPosY) * (double)partialTicks;
+            double d2 = renderView实体.prevPosZ + (renderView实体.Z坐标 - renderView实体.prevPosZ) * (double)partialTicks;
             this.theWorld.theProfiler.startSection("prepare");
             TileEntityRendererDispatcher.instance.cacheActiveRenderInfo(this.theWorld, this.mc.得到手感经理(), this.mc.字体渲染员, this.mc.getRenderViewEntity(), partialTicks);
-            this.renderManager.cacheActiveRenderInfo(this.theWorld, this.mc.字体渲染员, this.mc.getRenderViewEntity(), this.mc.pointedEntity, this.mc.游戏一窝, partialTicks);
+            this.renderManager.cacheActiveRenderInfo(this.theWorld, this.mc.字体渲染员, this.mc.getRenderViewEntity(), this.mc.pointed实体, this.mc.游戏一窝, partialTicks);
             ++renderEntitiesCounter;
 
             if (i == 0)
@@ -645,17 +645,17 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 this.countTileEntitiesRendered = 0;
             }
 
-            Entity entity = this.mc.getRenderViewEntity();
-            double d3 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
-            double d4 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
-            double d5 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
+            实体 实体 = this.mc.getRenderViewEntity();
+            double d3 = 实体.lastTickPosX + (实体.X坐标 - 实体.lastTickPosX) * (double)partialTicks;
+            double d4 = 实体.lastTickPosY + (实体.Y坐标 - 实体.lastTickPosY) * (double)partialTicks;
+            double d5 = 实体.lastTickPosZ + (实体.Z坐标 - 实体.lastTickPosZ) * (double)partialTicks;
             TileEntityRendererDispatcher.staticPlayerX = d3;
             TileEntityRendererDispatcher.staticPlayerY = d4;
             TileEntityRendererDispatcher.staticPlayerZ = d5;
             this.renderManager.setRenderPosition(d3, d4, d5);
             this.mc.entityRenderer.enableLightmap();
             this.theWorld.theProfiler.endStartSection("global");
-            List<Entity> list = this.theWorld.getLoadedEntityList();
+            List<实体> list = this.theWorld.getLoadedEntityList();
 
             if (i == 0)
             {
@@ -672,15 +672,15 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
             for (int j = 0; j < this.theWorld.weatherEffects.size(); ++j)
             {
-                Entity entity1 = (Entity)this.theWorld.weatherEffects.get(j);
+                实体 实体1 = (实体)this.theWorld.weatherEffects.get(j);
 
-                if (!flag || Reflector.callBoolean(entity1, Reflector.ForgeEntity_shouldRenderInPass, new Object[] {Integer.valueOf(i)}))
+                if (!flag || Reflector.callBoolean(实体1, Reflector.ForgeEntity_shouldRenderInPass, new Object[] {Integer.valueOf(i)}))
                 {
                     ++this.countEntitiesRendered;
 
-                    if (entity1.isInRangeToRender3d(d0, d1, d2))
+                    if (实体1.isInRangeToRender3d(d0, d1, d2))
                     {
-                        this.renderManager.renderEntitySimple(entity1, partialTicks);
+                        this.renderManager.renderEntitySimple(实体1, partialTicks);
                     }
                 }
             }
@@ -697,13 +697,13 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
                 for (int k = 0; k < list.size(); ++k)
                 {
-                    Entity entity3 = (Entity)list.get(k);
-                    boolean flag2 = this.mc.getRenderViewEntity() instanceof EntityLivingBase && ((EntityLivingBase)this.mc.getRenderViewEntity()).isPlayerSleeping();
-                    boolean flag3 = entity3.isInRangeToRender3d(d0, d1, d2) && (entity3.ignoreFrustumCheck || camera.isBoundingBoxInFrustum(entity3.getEntityBoundingBox()) || entity3.riddenByEntity == this.mc.宇轩游玩者) && entity3 instanceof EntityPlayer;
+                    实体 实体3 = (实体)list.get(k);
+                    boolean flag2 = this.mc.getRenderViewEntity() instanceof 实体LivingBase && ((实体LivingBase)this.mc.getRenderViewEntity()).isPlayerSleeping();
+                    boolean flag3 = 实体3.isInRangeToRender3d(d0, d1, d2) && (实体3.ignoreFrustumCheck || camera.isBoundingBoxInFrustum(实体3.getEntityBoundingBox()) || 实体3.riddenBy实体 == this.mc.宇轩游玩者) && 实体3 instanceof 实体Player;
 
-                    if ((entity3 != this.mc.getRenderViewEntity() || this.mc.游戏一窝.thirdPersonView != 0 || flag2) && flag3)
+                    if ((实体3 != this.mc.getRenderViewEntity() || this.mc.游戏一窝.thirdPersonView != 0 || flag2) && flag3)
                     {
-                        this.renderManager.renderEntitySimple(entity3, partialTicks);
+                        this.renderManager.renderEntitySimple(实体3, partialTicks);
                     }
                 }
 
@@ -740,7 +740,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             {
                 RenderGlobal.ContainerLocalRenderInformation renderglobal$containerlocalrenderinformation = (ContainerLocalRenderInformation) o;
                 Chunk chunk = renderglobal$containerlocalrenderinformation.renderChunk.getChunk();
-                ClassInheritanceMultiMap<Entity> classinheritancemultimap = chunk.getEntityLists()[renderglobal$containerlocalrenderinformation.renderChunk.getPosition().getY() / 16];
+                ClassInheritanceMultiMap<实体> classinheritancemultimap = chunk.getEntityLists()[renderglobal$containerlocalrenderinformation.renderChunk.getPosition().getY() / 16];
 
                 if (!classinheritancemultimap.isEmpty())
                 {
@@ -748,7 +748,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
                     while (true)
                     {
-                        Entity entity2;
+                        实体 实体2;
                         boolean flag4;
 
                         while (true)
@@ -758,47 +758,47 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                                 continue label926;
                             }
 
-                            entity2 = (Entity)iterator.next();
+                            实体2 = (实体)iterator.next();
 
-                            if (!flag || Reflector.callBoolean(entity2, Reflector.ForgeEntity_shouldRenderInPass, new Object[] {Integer.valueOf(i)}))
+                            if (!flag || Reflector.callBoolean(实体2, Reflector.ForgeEntity_shouldRenderInPass, new Object[] {Integer.valueOf(i)}))
                             {
-                                flag4 = this.renderManager.shouldRender(entity2, camera, d0, d1, d2) || entity2.riddenByEntity == this.mc.宇轩游玩者;
+                                flag4 = this.renderManager.shouldRender(实体2, camera, d0, d1, d2) || 实体2.riddenBy实体 == this.mc.宇轩游玩者;
 
                                 if (!flag4)
                                 {
                                     break;
                                 }
 
-                                boolean flag5 = this.mc.getRenderViewEntity() instanceof EntityLivingBase ? ((EntityLivingBase)this.mc.getRenderViewEntity()).isPlayerSleeping() : false;
+                                boolean flag5 = this.mc.getRenderViewEntity() instanceof 实体LivingBase ? ((实体LivingBase)this.mc.getRenderViewEntity()).isPlayerSleeping() : false;
 
-                                if ((entity2 != this.mc.getRenderViewEntity() || flag8 || this.mc.游戏一窝.thirdPersonView != 0 || flag5) && (entity2.posY < 0.0D || entity2.posY >= 256.0D || this.theWorld.isBlockLoaded(new BlockPos(entity2))))
+                                if ((实体2 != this.mc.getRenderViewEntity() || flag8 || this.mc.游戏一窝.thirdPersonView != 0 || flag5) && (实体2.Y坐标 < 0.0D || 实体2.Y坐标 >= 256.0D || this.theWorld.isBlockLoaded(new 阻止位置(实体2))))
                                 {
                                     ++this.countEntitiesRendered;
-                                    this.renderedEntity = entity2;
+                                    this.rendered实体 = 实体2;
 
                                     if (flag6)
                                     {
-                                        Shaders.nextEntity(entity2);
+                                        Shaders.nextEntity(实体2);
                                     }
 
-                                    this.renderManager.renderEntitySimple(entity2, partialTicks);
-                                    this.renderedEntity = null;
+                                    this.renderManager.renderEntitySimple(实体2, partialTicks);
+                                    this.rendered实体 = null;
                                     break;
                                 }
                             }
                         }
 
-                        if (!flag4 && entity2 instanceof EntityWitherSkull && (!flag || Reflector.callBoolean(entity2, Reflector.ForgeEntity_shouldRenderInPass, new Object[] {Integer.valueOf(i)})))
+                        if (!flag4 && 实体2 instanceof 实体WitherSkull && (!flag || Reflector.callBoolean(实体2, Reflector.ForgeEntity_shouldRenderInPass, new Object[] {Integer.valueOf(i)})))
                         {
-                            this.renderedEntity = entity2;
+                            this.rendered实体 = 实体2;
 
                             if (flag6)
                             {
-                                Shaders.nextEntity(entity2);
+                                Shaders.nextEntity(实体2);
                             }
 
-                            this.mc.getRenderManager().renderWitherSkull(entity2, partialTicks);
-                            this.renderedEntity = null;
+                            this.mc.getRenderManager().renderWitherSkull(实体2, partialTicks);
+                            this.rendered实体 = null;
                         }
                     }
                 }
@@ -898,7 +898,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
             for (DestroyBlockProgress destroyblockprogress : this.damagedBlocks.values())
             {
-                BlockPos blockpos = destroyblockprogress.getPosition();
+                阻止位置 blockpos = destroyblockprogress.getPosition();
                 TileEntity tileentity2 = this.theWorld.getTileEntity(blockpos);
 
                 if (tileentity2 instanceof TileEntityChest)
@@ -987,7 +987,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         return "E: " + this.countEntitiesRendered + "/" + this.countEntitiesTotal + ", B: " + this.countEntitiesHidden + ", I: " + (this.countEntitiesTotal - this.countEntitiesHidden - this.countEntitiesRendered) + ", " + Config.getVersionDebug();
     }
 
-    public void setupTerrain(Entity viewEntity, double partialTicks, ICamera camera, int frameCount, boolean playerSpectator)
+    public void setupTerrain(实体 view实体, double partialTicks, ICamera camera, int frameCount, boolean playerSpectator)
     {
         if (this.mc.游戏一窝.renderDistanceChunks != this.renderDistanceChunks)
         {
@@ -995,19 +995,19 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
 
         this.theWorld.theProfiler.startSection("camera");
-        double d0 = viewEntity.posX - this.frustumUpdatePosX;
-        double d1 = viewEntity.posY - this.frustumUpdatePosY;
-        double d2 = viewEntity.posZ - this.frustumUpdatePosZ;
+        double d0 = view实体.X坐标 - this.frustumUpdatePosX;
+        double d1 = view实体.Y坐标 - this.frustumUpdatePosY;
+        double d2 = view实体.Z坐标 - this.frustumUpdatePosZ;
 
-        if (this.frustumUpdatePosChunkX != viewEntity.chunkCoordX || this.frustumUpdatePosChunkY != viewEntity.chunkCoordY || this.frustumUpdatePosChunkZ != viewEntity.chunkCoordZ || d0 * d0 + d1 * d1 + d2 * d2 > 16.0D)
+        if (this.frustumUpdatePosChunkX != view实体.chunkCoordX || this.frustumUpdatePosChunkY != view实体.chunkCoordY || this.frustumUpdatePosChunkZ != view实体.chunkCoordZ || d0 * d0 + d1 * d1 + d2 * d2 > 16.0D)
         {
-            this.frustumUpdatePosX = viewEntity.posX;
-            this.frustumUpdatePosY = viewEntity.posY;
-            this.frustumUpdatePosZ = viewEntity.posZ;
-            this.frustumUpdatePosChunkX = viewEntity.chunkCoordX;
-            this.frustumUpdatePosChunkY = viewEntity.chunkCoordY;
-            this.frustumUpdatePosChunkZ = viewEntity.chunkCoordZ;
-            this.viewFrustum.updateChunkPositions(viewEntity.posX, viewEntity.posZ);
+            this.frustumUpdatePosX = view实体.X坐标;
+            this.frustumUpdatePosY = view实体.Y坐标;
+            this.frustumUpdatePosZ = view实体.Z坐标;
+            this.frustumUpdatePosChunkX = view实体.chunkCoordX;
+            this.frustumUpdatePosChunkY = view实体.chunkCoordY;
+            this.frustumUpdatePosChunkZ = view实体.chunkCoordZ;
+            this.viewFrustum.updateChunkPositions(view实体.X坐标, view实体.Z坐标);
         }
 
         if (Config.isDynamicLights())
@@ -1016,9 +1016,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
 
         this.theWorld.theProfiler.endStartSection("renderlistcamera");
-        double d3 = viewEntity.lastTickPosX + (viewEntity.posX - viewEntity.lastTickPosX) * partialTicks;
-        double d4 = viewEntity.lastTickPosY + (viewEntity.posY - viewEntity.lastTickPosY) * partialTicks;
-        double d5 = viewEntity.lastTickPosZ + (viewEntity.posZ - viewEntity.lastTickPosZ) * partialTicks;
+        double d3 = view实体.lastTickPosX + (view实体.X坐标 - view实体.lastTickPosX) * partialTicks;
+        double d4 = view实体.lastTickPosY + (view实体.Y坐标 - view实体.lastTickPosY) * partialTicks;
+        double d5 = view实体.lastTickPosZ + (view实体.Z坐标 - view实体.lastTickPosZ) * partialTicks;
         this.renderContainer.initialize(d3, d4, d5);
         this.theWorld.theProfiler.endStartSection("cull");
 
@@ -1030,15 +1030,15 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
 
         this.mc.mcProfiler.endStartSection("culling");
-        BlockPos blockpos = new BlockPos(d3, d4 + (double)viewEntity.getEyeHeight(), d5);
+        阻止位置 blockpos = new 阻止位置(d3, d4 + (double) view实体.getEyeHeight(), d5);
         RenderChunk renderchunk = this.viewFrustum.getRenderChunk(blockpos);
-        new BlockPos(MathHelper.floor_double(d3 / 16.0D) * 16, MathHelper.floor_double(d4 / 16.0D) * 16, MathHelper.floor_double(d5 / 16.0D) * 16);
-        this.displayListEntitiesDirty = this.displayListEntitiesDirty || !this.chunksToUpdate.isEmpty() || viewEntity.posX != this.lastViewEntityX || viewEntity.posY != this.lastViewEntityY || viewEntity.posZ != this.lastViewEntityZ || (double)viewEntity.rotationPitch != this.lastViewEntityPitch || (double)viewEntity.旋转侧滑 != this.lastViewEntityYaw;
-        this.lastViewEntityX = viewEntity.posX;
-        this.lastViewEntityY = viewEntity.posY;
-        this.lastViewEntityZ = viewEntity.posZ;
-        this.lastViewEntityPitch = (double)viewEntity.rotationPitch;
-        this.lastViewEntityYaw = (double)viewEntity.旋转侧滑;
+        new 阻止位置(MathHelper.floor_double(d3 / 16.0D) * 16, MathHelper.floor_double(d4 / 16.0D) * 16, MathHelper.floor_double(d5 / 16.0D) * 16);
+        this.displayListEntitiesDirty = this.displayListEntitiesDirty || !this.chunksToUpdate.isEmpty() || view实体.X坐标 != this.lastViewEntityX || view实体.Y坐标 != this.lastViewEntityY || view实体.Z坐标 != this.lastViewEntityZ || (double) view实体.rotationPitch != this.lastViewEntityPitch || (double) view实体.旋转侧滑 != this.lastViewEntityYaw;
+        this.lastViewEntityX = view实体.X坐标;
+        this.lastViewEntityY = view实体.Y坐标;
+        this.lastViewEntityZ = view实体.Z坐标;
+        this.lastViewEntityPitch = (double) view实体.rotationPitch;
+        this.lastViewEntityYaw = (double) view实体.旋转侧滑;
         boolean flag = this.debugFixedClippingHelper != null;
         this.mc.mcProfiler.endStartSection("update");
         Lagometer.timerVisibility.start();
@@ -1059,10 +1059,10 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
         if (!flag && this.displayListEntitiesDirty && Config.isIntegratedServerRunning())
         {
-            j = ChunkVisibility.getMaxChunkY(this.theWorld, viewEntity, this.renderDistanceChunks);
+            j = ChunkVisibility.getMaxChunkY(this.theWorld, view实体, this.renderDistanceChunks);
         }
 
-        RenderChunk renderchunk1 = this.viewFrustum.getRenderChunk(new BlockPos(viewEntity.posX, viewEntity.posY, viewEntity.posZ));
+        RenderChunk renderchunk1 = this.viewFrustum.getRenderChunk(new 阻止位置(view实体.X坐标, view实体.Y坐标, view实体.Z坐标));
 
         if (Shaders.isShadowPass)
         {
@@ -1079,7 +1079,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                     this.renderInfosEntities.add(renderchunk1.getRenderInfo());
                 }
 
-                Iterator<RenderChunk> iterator = ShadowUtils.makeShadowChunkIterator(this.theWorld, partialTicks, viewEntity, this.renderDistanceChunks, this.viewFrustum);
+                Iterator<RenderChunk> iterator = ShadowUtils.makeShadowChunkIterator(this.theWorld, partialTicks, view实体, this.renderDistanceChunks, this.viewFrustum);
 
                 while (iterator.hasNext())
                 {
@@ -1130,7 +1130,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
                 if (set1.size() == 1)
                 {
-                    Vector3f vector3f = this.getViewVector(viewEntity, partialTicks);
+                    Vector3f vector3f = this.getViewVector(view实体, partialTicks);
                     EnumFacing enumfacing2 = EnumFacing.getFacingFromVector(vector3f.x, vector3f.y, vector3f.z).getOpposite();
                     set1.remove(enumfacing2);
                 }
@@ -1168,7 +1168,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 {
                     for (int l = -this.renderDistanceChunks; l <= this.renderDistanceChunks; ++l)
                     {
-                        RenderChunk renderchunk3 = this.viewFrustum.getRenderChunk(new BlockPos((k << 4) + 8, j1, (l << 4) + 8));
+                        RenderChunk renderchunk3 = this.viewFrustum.getRenderChunk(new 阻止位置((k << 4) + 8, j1, (l << 4) + 8));
 
                         if (renderchunk3 != null && renderchunk3.isBoundingBoxInFrustum((ICamera)camera, frameCount))
                         {
@@ -1255,7 +1255,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 if (renderchunk5.isNeedsUpdate() || set.contains(renderchunk5))
                 {
                     this.displayListEntitiesDirty = true;
-                    BlockPos blockpos1 = renderchunk5.getPosition();
+                    阻止位置 blockpos1 = renderchunk5.getPosition();
                     boolean flag4 = blockpos.distanceSq((double)(blockpos1.getX() + 8), (double)(blockpos1.getY() + 8), (double)(blockpos1.getZ() + 8)) < 768.0D;
 
                     if (!flag4)
@@ -1282,19 +1282,19 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
     }
 
-    private boolean isPositionInRenderChunk(BlockPos pos, RenderChunk renderChunkIn)
+    private boolean isPositionInRenderChunk(阻止位置 pos, RenderChunk renderChunkIn)
     {
-        BlockPos blockpos = renderChunkIn.getPosition();
+        阻止位置 blockpos = renderChunkIn.getPosition();
         return MathHelper.abs_int(pos.getX() - blockpos.getX()) > 16 ? false : (MathHelper.abs_int(pos.getY() - blockpos.getY()) > 16 ? false : MathHelper.abs_int(pos.getZ() - blockpos.getZ()) <= 16);
     }
 
-    private Set<EnumFacing> getVisibleFacings(BlockPos pos)
+    private Set<EnumFacing> getVisibleFacings(阻止位置 pos)
     {
         VisGraph visgraph = new VisGraph();
-        BlockPos blockpos = new BlockPos(pos.getX() >> 4 << 4, pos.getY() >> 4 << 4, pos.getZ() >> 4 << 4);
+        阻止位置 blockpos = new 阻止位置(pos.getX() >> 4 << 4, pos.getY() >> 4 << 4, pos.getZ() >> 4 << 4);
         Chunk chunk = this.theWorld.getChunkFromBlockCoords(blockpos);
 
-        for (BlockPos.MutableBlockPos blockpos$mutableblockpos : BlockPos.getAllInBoxMutable(blockpos, blockpos.add(15, 15, 15)))
+        for (阻止位置.Mutable阻止位置 blockpos$mutableblockpos : 阻止位置.getAllInBoxMutable(blockpos, blockpos.add(15, 15, 15)))
         {
             if (chunk.getBlock(blockpos$mutableblockpos).isOpaqueCube())
             {
@@ -1304,7 +1304,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         return visgraph.func_178609_b(pos);
     }
 
-    private RenderChunk getRenderChunkOffset(BlockPos p_getRenderChunkOffset_1_, RenderChunk p_getRenderChunkOffset_2_, EnumFacing p_getRenderChunkOffset_3_, boolean p_getRenderChunkOffset_4_, int p_getRenderChunkOffset_5_)
+    private RenderChunk getRenderChunkOffset(阻止位置 p_getRenderChunkOffset_1_, RenderChunk p_getRenderChunkOffset_2_, EnumFacing p_getRenderChunkOffset_3_, boolean p_getRenderChunkOffset_4_, int p_getRenderChunkOffset_5_)
     {
         RenderChunk renderchunk = p_getRenderChunkOffset_2_.getRenderChunkNeighbour(p_getRenderChunkOffset_3_);
 
@@ -1320,7 +1320,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         {
             if (p_getRenderChunkOffset_4_)
             {
-                BlockPos blockpos = renderchunk.getPosition();
+                阻止位置 blockpos = renderchunk.getPosition();
                 int i = p_getRenderChunkOffset_1_.getX() - blockpos.getX();
                 int j = p_getRenderChunkOffset_1_.getZ() - blockpos.getZ();
                 int k = i * i + j * j;
@@ -1368,10 +1368,10 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
     }
 
-    protected Vector3f getViewVector(Entity entityIn, double partialTicks)
+    protected Vector3f getViewVector(实体 实体In, double partialTicks)
     {
-        float f = (float)((double)entityIn.prevRotationPitch + (double)(entityIn.rotationPitch - entityIn.prevRotationPitch) * partialTicks);
-        float f1 = (float)((double)entityIn.prevRotationYaw + (double)(entityIn.旋转侧滑 - entityIn.prevRotationYaw) * partialTicks);
+        float f = (float)((double) 实体In.prevRotationPitch + (double)(实体In.rotationPitch - 实体In.prevRotationPitch) * partialTicks);
+        float f1 = (float)((double) 实体In.prevRotationYaw + (double)(实体In.旋转侧滑 - 实体In.prevRotationYaw) * partialTicks);
 
         if (我的手艺.得到我的手艺().游戏一窝.thirdPersonView == 2)
         {
@@ -1385,22 +1385,22 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         return new Vector3f(f3 * f4, f5, f2 * f4);
     }
 
-    public int renderBlockLayer(EnumWorldBlockLayer blockLayerIn, double partialTicks, int pass, Entity entityIn)
+    public int renderBlockLayer(EnumWorldBlockLayer blockLayerIn, double partialTicks, int pass, 实体 实体In)
     {
         RenderHelper.disableStandardItemLighting();
 
         if (blockLayerIn == EnumWorldBlockLayer.TRANSLUCENT && !Shaders.isShadowPass)
         {
             this.mc.mcProfiler.startSection("translucent_sort");
-            double d0 = entityIn.posX - this.prevRenderSortX;
-            double d1 = entityIn.posY - this.prevRenderSortY;
-            double d2 = entityIn.posZ - this.prevRenderSortZ;
+            double d0 = 实体In.X坐标 - this.prevRenderSortX;
+            double d1 = 实体In.Y坐标 - this.prevRenderSortY;
+            double d2 = 实体In.Z坐标 - this.prevRenderSortZ;
 
             if (d0 * d0 + d1 * d1 + d2 * d2 > 1.0D)
             {
-                this.prevRenderSortX = entityIn.posX;
-                this.prevRenderSortY = entityIn.posY;
-                this.prevRenderSortZ = entityIn.posZ;
+                this.prevRenderSortX = 实体In.X坐标;
+                this.prevRenderSortY = 实体In.Y坐标;
+                this.prevRenderSortZ = 实体In.Z坐标;
                 int k = 0;
                 this.chunksToResortTransparency.clear();
 
@@ -1650,7 +1650,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             }
 
             Vec3 vec3 = this.theWorld.getSkyColor(this.mc.getRenderViewEntity(), partialTicks);
-            vec3 = CustomColors.getSkyColor(vec3, this.mc.宇轩の世界, this.mc.getRenderViewEntity().posX, this.mc.getRenderViewEntity().posY + 1.0D, this.mc.getRenderViewEntity().posZ);
+            vec3 = CustomColors.getSkyColor(vec3, this.mc.宇轩の世界, this.mc.getRenderViewEntity().X坐标, this.mc.getRenderViewEntity().Y坐标 + 1.0D, this.mc.getRenderViewEntity().Z坐标);
 
             if (flag)
             {
@@ -1997,7 +1997,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                     float f9 = partialTicks;
                     partialTicks = 0.0F;
                     光照状态经理.disableCull();
-                    float f10 = (float)(this.mc.getRenderViewEntity().lastTickPosY + (this.mc.getRenderViewEntity().posY - this.mc.getRenderViewEntity().lastTickPosY) * (double)partialTicks);
+                    float f10 = (float)(this.mc.getRenderViewEntity().lastTickPosY + (this.mc.getRenderViewEntity().Y坐标 - this.mc.getRenderViewEntity().lastTickPosY) * (double)partialTicks);
                     int i = 32;
                     int j = 8;
                     Tessellator tessellator = Tessellator.getInstance();
@@ -2027,8 +2027,8 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
                         float f11 = 4.8828125E-4F;
                         double d2 = (double)((float)this.cloudTickCounter + partialTicks);
-                        double d0 = this.mc.getRenderViewEntity().prevPosX + (this.mc.getRenderViewEntity().posX - this.mc.getRenderViewEntity().prevPosX) * (double)partialTicks + d2 * 0.029999999329447746D;
-                        double d1 = this.mc.getRenderViewEntity().prevPosZ + (this.mc.getRenderViewEntity().posZ - this.mc.getRenderViewEntity().prevPosZ) * (double)partialTicks;
+                        double d0 = this.mc.getRenderViewEntity().prevPosX + (this.mc.getRenderViewEntity().X坐标 - this.mc.getRenderViewEntity().prevPosX) * (double)partialTicks + d2 * 0.029999999329447746D;
+                        double d1 = this.mc.getRenderViewEntity().prevPosZ + (this.mc.getRenderViewEntity().Z坐标 - this.mc.getRenderViewEntity().prevPosZ) * (double)partialTicks;
                         int k = MathHelper.floor_double(d0 / 2048.0D);
                         int l = MathHelper.floor_double(d1 / 2048.0D);
                         d0 = d0 - (double)(k * 2048);
@@ -2077,14 +2077,14 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     {
         partialTicks = 0.0F;
         光照状态经理.disableCull();
-        float f = (float)(this.mc.getRenderViewEntity().lastTickPosY + (this.mc.getRenderViewEntity().posY - this.mc.getRenderViewEntity().lastTickPosY) * (double)partialTicks);
+        float f = (float)(this.mc.getRenderViewEntity().lastTickPosY + (this.mc.getRenderViewEntity().Y坐标 - this.mc.getRenderViewEntity().lastTickPosY) * (double)partialTicks);
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         float f1 = 12.0F;
         float f2 = 4.0F;
         double d0 = (double)((float)this.cloudTickCounter + partialTicks);
-        double d1 = (this.mc.getRenderViewEntity().prevPosX + (this.mc.getRenderViewEntity().posX - this.mc.getRenderViewEntity().prevPosX) * (double)partialTicks + d0 * 0.029999999329447746D) / 12.0D;
-        double d2 = (this.mc.getRenderViewEntity().prevPosZ + (this.mc.getRenderViewEntity().posZ - this.mc.getRenderViewEntity().prevPosZ) * (double)partialTicks) / 12.0D + 0.33000001311302185D;
+        double d1 = (this.mc.getRenderViewEntity().prevPosX + (this.mc.getRenderViewEntity().X坐标 - this.mc.getRenderViewEntity().prevPosX) * (double)partialTicks + d0 * 0.029999999329447746D) / 12.0D;
+        double d2 = (this.mc.getRenderViewEntity().prevPosZ + (this.mc.getRenderViewEntity().Z坐标 - this.mc.getRenderViewEntity().prevPosZ) * (double)partialTicks) / 12.0D + 0.33000001311302185D;
         float f3 = this.theWorld.provider.getCloudHeight() - f + 0.33F;
         f3 = f3 + this.mc.游戏一窝.ofCloudsHeight * 128.0F;
         int i = MathHelper.floor_double(d1 / 2048.0D);
@@ -2325,14 +2325,14 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
     }
 
-    public void renderWorldBorder(Entity entityIn, float partialTicks)
+    public void renderWorldBorder(实体 实体In, float partialTicks)
     {
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         WorldBorder worldborder = this.theWorld.getWorldBorder();
         double d0 = (double)(this.mc.游戏一窝.renderDistanceChunks * 16);
 
-        if (entityIn.posX >= worldborder.maxX() - d0 || entityIn.posX <= worldborder.minX() + d0 || entityIn.posZ >= worldborder.maxZ() - d0 || entityIn.posZ <= worldborder.minZ() + d0)
+        if (实体In.X坐标 >= worldborder.maxX() - d0 || 实体In.X坐标 <= worldborder.minX() + d0 || 实体In.Z坐标 >= worldborder.maxZ() - d0 || 实体In.Z坐标 <= worldborder.minZ() + d0)
         {
             if (Config.isShaders())
             {
@@ -2340,11 +2340,11 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 Shaders.useProgram(Shaders.ProgramTexturedLit);
             }
 
-            double d1 = 1.0D - worldborder.getClosestDistance(entityIn) / d0;
+            double d1 = 1.0D - worldborder.getClosestDistance(实体In) / d0;
             d1 = Math.pow(d1, 4.0D);
-            double d2 = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double)partialTicks;
-            double d3 = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double)partialTicks;
-            double d4 = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * (double)partialTicks;
+            double d2 = 实体In.lastTickPosX + (实体In.X坐标 - 实体In.lastTickPosX) * (double)partialTicks;
+            double d3 = 实体In.lastTickPosY + (实体In.Y坐标 - 实体In.lastTickPosY) * (double)partialTicks;
+            double d4 = 实体In.lastTickPosZ + (实体In.Z坐标 - 实体In.lastTickPosZ) * (double)partialTicks;
             光照状态经理.启用混合品();
             光照状态经理.tryBlendFuncSeparate(770, 1, 1, 0);
             this.renderEngine.绑定手感(locationForcefieldPng);
@@ -2487,11 +2487,11 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
     }
 
-    public void drawBlockDamageTexture(Tessellator tessellatorIn, WorldRenderer worldRendererIn, Entity entityIn, float partialTicks)
+    public void drawBlockDamageTexture(Tessellator tessellatorIn, WorldRenderer worldRendererIn, 实体 实体In, float partialTicks)
     {
-        double d0 = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double)partialTicks;
-        double d1 = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double)partialTicks;
-        double d2 = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * (double)partialTicks;
+        double d0 = 实体In.lastTickPosX + (实体In.X坐标 - 实体In.lastTickPosX) * (double)partialTicks;
+        double d1 = 实体In.lastTickPosY + (实体In.Y坐标 - 实体In.lastTickPosY) * (double)partialTicks;
+        double d2 = 实体In.lastTickPosZ + (实体In.Z坐标 - 实体In.lastTickPosZ) * (double)partialTicks;
 
         if (!this.damagedBlocks.isEmpty())
         {
@@ -2505,7 +2505,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             while (iterator.hasNext())
             {
                 DestroyBlockProgress destroyblockprogress = (DestroyBlockProgress)iterator.next();
-                BlockPos blockpos = destroyblockprogress.getPosition();
+                阻止位置 blockpos = destroyblockprogress.getPosition();
                 double d3 = (double)blockpos.getX() - d0;
                 double d4 = (double)blockpos.getY() - d1;
                 double d5 = (double)blockpos.getZ() - d2;
@@ -2560,7 +2560,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
     }
 
-    public void drawSelectionBox(EntityPlayer player, MovingObjectPosition movingObjectPositionIn, int execute, float partialTicks)
+    public void drawSelectionBox(实体Player player, MovingObjectPosition movingObjectPositionIn, int execute, float partialTicks)
     {
         if (execute == 0 && movingObjectPositionIn.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
         {
@@ -2577,15 +2577,15 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
             光照状态经理.depthMask(false);
             float f = 0.002F;
-            BlockPos blockpos = movingObjectPositionIn.getBlockPos();
+            阻止位置 blockpos = movingObjectPositionIn.getBlockPos();
             Block block = this.theWorld.getBlockState(blockpos).getBlock();
 
             if (block.getMaterial() != Material.air && this.theWorld.getWorldBorder().contains(blockpos))
             {
                 block.setBlockBoundsBasedOnState(this.theWorld, blockpos);
-                double d0 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double)partialTicks;
-                double d1 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double)partialTicks;
-                double d2 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double)partialTicks;
+                double d0 = player.lastTickPosX + (player.X坐标 - player.lastTickPosX) * (double)partialTicks;
+                double d1 = player.lastTickPosY + (player.Y坐标 - player.lastTickPosY) * (double)partialTicks;
+                double d2 = player.lastTickPosZ + (player.Z坐标 - player.lastTickPosZ) * (double)partialTicks;
                 AxisAlignedBB axisalignedbb = block.getSelectedBoundingBox(this.theWorld, blockpos);
                 Block.EnumOffsetType block$enumoffsettype = block.getOffsetType();
 
@@ -2674,7 +2674,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         this.viewFrustum.markBlocksForUpdate(x1, y1, z1, x2, y2, z2);
     }
 
-    public void markBlockForUpdate(BlockPos pos)
+    public void markBlockForUpdate(阻止位置 pos)
     {
         int i = pos.getX();
         int j = pos.getY();
@@ -2682,7 +2682,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         this.markBlocksForUpdate(i - 1, j - 1, k - 1, i + 1, j + 1, k + 1);
     }
 
-    public void notifyLightSet(BlockPos pos)
+    public void notifyLightSet(阻止位置 pos)
     {
         int i = pos.getX();
         int j = pos.getY();
@@ -2695,14 +2695,14 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         this.markBlocksForUpdate(x1 - 1, y1 - 1, z1 - 1, x2 + 1, y2 + 1, z2 + 1);
     }
 
-    public void playRecord(String recordName, BlockPos blockPosIn)
+    public void playRecord(String recordName, 阻止位置 阻止位置In)
     {
-        ISound isound = (ISound)this.mapSoundPositions.get(blockPosIn);
+        ISound isound = (ISound)this.mapSoundPositions.get(阻止位置In);
 
         if (isound != null)
         {
             this.mc.getSoundHandler().stopSound(isound);
-            this.mapSoundPositions.remove(blockPosIn);
+            this.mapSoundPositions.remove(阻止位置In);
         }
 
         if (recordName != null)
@@ -2714,8 +2714,8 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 this.mc.ingameGUI.setRecordPlayingMessage(itemrecord.getRecordNameLocal());
             }
 
-            PositionedSoundRecord positionedsoundrecord = PositionedSoundRecord.create(new 图像位置(recordName), (float)blockPosIn.getX(), (float)blockPosIn.getY(), (float)blockPosIn.getZ());
-            this.mapSoundPositions.put(blockPosIn, positionedsoundrecord);
+            PositionedSoundRecord positionedsoundrecord = PositionedSoundRecord.create(new 图像位置(recordName), (float) 阻止位置In.getX(), (float) 阻止位置In.getY(), (float) 阻止位置In.getZ());
+            this.mapSoundPositions.put(阻止位置In, positionedsoundrecord);
             this.mc.getSoundHandler().playSound(positionedsoundrecord);
         }
     }
@@ -2724,7 +2724,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     {
     }
 
-    public void playSoundToNearExcept(EntityPlayer except, String soundName, double x, double y, double z, float volume, float pitch)
+    public void playSoundToNearExcept(实体Player except, String soundName, double x, double y, double z, float volume, float pitch)
     {
     }
 
@@ -2761,7 +2761,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         this.spawnParticle(particleIn.getParticleID(), particleIn.getShouldIgnoreRange(), xCoord, yCoord, zCoord, xOffset, yOffset, zOffset, parameters);
     }
 
-    private EntityFX spawnEntityFX(int particleID, boolean ignoreRange, double xCoord, double yCoord, double zCoord, double xOffset, double yOffset, double zOffset, int... parameters)
+    private 实体FX spawnEntityFX(int particleID, boolean ignoreRange, double xCoord, double yCoord, double zCoord, double xOffset, double yOffset, double zOffset, int... parameters)
     {
         if (this.mc != null && this.mc.getRenderViewEntity() != null && this.mc.effectRenderer != null)
         {
@@ -2772,9 +2772,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 i = 2;
             }
 
-            double d0 = this.mc.getRenderViewEntity().posX - xCoord;
-            double d1 = this.mc.getRenderViewEntity().posY - yCoord;
-            double d2 = this.mc.getRenderViewEntity().posZ - zCoord;
+            double d0 = this.mc.getRenderViewEntity().X坐标 - xCoord;
+            double d1 = this.mc.getRenderViewEntity().Y坐标 - yCoord;
+            double d2 = this.mc.getRenderViewEntity().Z坐标 - zCoord;
 
             if (particleID == EnumParticleTypes.EXPLOSION_HUGE.getParticleID() && !Config.isAnimatedExplosion())
             {
@@ -2870,7 +2870,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                     }
                 }
 
-                EntityFX entityfx = this.mc.effectRenderer.spawnEffectParticle(particleID, xCoord, yCoord, zCoord, xOffset, yOffset, zOffset, parameters);
+                实体FX entityfx = this.mc.effectRenderer.spawnEffectParticle(particleID, xCoord, yCoord, zCoord, xOffset, yOffset, zOffset, parameters);
 
                 if (particleID == EnumParticleTypes.WATER_BUBBLE.getParticleID())
                 {
@@ -2911,23 +2911,23 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
     }
 
-    public void onEntityAdded(Entity entityIn)
+    public void onEntityAdded(实体 实体In)
     {
-        RandomEntities.entityLoaded(entityIn, this.theWorld);
+        RandomEntities.entityLoaded(实体In, this.theWorld);
 
         if (Config.isDynamicLights())
         {
-            DynamicLights.entityAdded(entityIn, this);
+            DynamicLights.entityAdded(实体In, this);
         }
     }
 
-    public void onEntityRemoved(Entity entityIn)
+    public void onEntityRemoved(实体 实体In)
     {
-        RandomEntities.entityUnloaded(entityIn, this.theWorld);
+        RandomEntities.entityUnloaded(实体In, this.theWorld);
 
         if (Config.isDynamicLights())
         {
-            DynamicLights.entityRemoved(entityIn, this);
+            DynamicLights.entityRemoved(实体In, this);
         }
     }
 
@@ -2935,7 +2935,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     {
     }
 
-    public void broadcastSound(int soundID, BlockPos pos, int data)
+    public void broadcastSound(int soundID, 阻止位置 pos, int data)
     {
         switch (soundID)
         {
@@ -2943,13 +2943,13 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             case 1018:
                 if (this.mc.getRenderViewEntity() != null)
                 {
-                    double d0 = (double)pos.getX() - this.mc.getRenderViewEntity().posX;
-                    double d1 = (double)pos.getY() - this.mc.getRenderViewEntity().posY;
-                    double d2 = (double)pos.getZ() - this.mc.getRenderViewEntity().posZ;
+                    double d0 = (double)pos.getX() - this.mc.getRenderViewEntity().X坐标;
+                    double d1 = (double)pos.getY() - this.mc.getRenderViewEntity().Y坐标;
+                    double d2 = (double)pos.getZ() - this.mc.getRenderViewEntity().Z坐标;
                     double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
-                    double d4 = this.mc.getRenderViewEntity().posX;
-                    double d5 = this.mc.getRenderViewEntity().posY;
-                    double d6 = this.mc.getRenderViewEntity().posZ;
+                    double d4 = this.mc.getRenderViewEntity().X坐标;
+                    double d5 = this.mc.getRenderViewEntity().Y坐标;
+                    double d6 = this.mc.getRenderViewEntity().Z坐标;
 
                     if (d3 > 0.0D)
                     {
@@ -2972,106 +2972,106 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
     }
 
-    public void playAuxSFX(EntityPlayer player, int sfxType, BlockPos blockPosIn, int data)
+    public void playAuxSFX(实体Player player, int sfxType, 阻止位置 阻止位置In, int data)
     {
         Random random = this.theWorld.rand;
 
         switch (sfxType)
         {
             case 1000:
-                this.theWorld.playSoundAtPos(blockPosIn, "random.click", 1.0F, 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "random.click", 1.0F, 1.0F, false);
                 break;
 
             case 1001:
-                this.theWorld.playSoundAtPos(blockPosIn, "random.click", 1.0F, 1.2F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "random.click", 1.0F, 1.2F, false);
                 break;
 
             case 1002:
-                this.theWorld.playSoundAtPos(blockPosIn, "random.bow", 1.0F, 1.2F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "random.bow", 1.0F, 1.2F, false);
                 break;
 
             case 1003:
-                this.theWorld.playSoundAtPos(blockPosIn, "random.door_open", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "random.door_open", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
                 break;
 
             case 1004:
-                this.theWorld.playSoundAtPos(blockPosIn, "random.fizz", 0.5F, 2.6F + (random.nextFloat() - random.nextFloat()) * 0.8F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "random.fizz", 0.5F, 2.6F + (random.nextFloat() - random.nextFloat()) * 0.8F, false);
                 break;
 
             case 1005:
                 if (Item.getItemById(data) instanceof ItemRecord)
                 {
-                    this.theWorld.playRecord(blockPosIn, "records." + ((ItemRecord)Item.getItemById(data)).recordName);
+                    this.theWorld.playRecord(阻止位置In, "records." + ((ItemRecord)Item.getItemById(data)).recordName);
                 }
                 else
                 {
-                    this.theWorld.playRecord(blockPosIn, (String)null);
+                    this.theWorld.playRecord(阻止位置In, (String)null);
                 }
 
                 break;
 
             case 1006:
-                this.theWorld.playSoundAtPos(blockPosIn, "random.door_close", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "random.door_close", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
                 break;
 
             case 1007:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.ghast.charge", 10.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.ghast.charge", 10.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1008:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.ghast.fireball", 10.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.ghast.fireball", 10.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1009:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.ghast.fireball", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.ghast.fireball", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1010:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.zombie.wood", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.zombie.wood", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1011:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.zombie.metal", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.zombie.metal", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1012:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.zombie.woodbreak", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.zombie.woodbreak", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1014:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.wither.shoot", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.wither.shoot", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1015:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.bat.takeoff", 0.05F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.bat.takeoff", 0.05F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1016:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.zombie.infect", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.zombie.infect", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1017:
-                this.theWorld.playSoundAtPos(blockPosIn, "mob.zombie.unfect", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "mob.zombie.unfect", 2.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F, false);
                 break;
 
             case 1020:
-                this.theWorld.playSoundAtPos(blockPosIn, "random.anvil_break", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "random.anvil_break", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
                 break;
 
             case 1021:
-                this.theWorld.playSoundAtPos(blockPosIn, "random.anvil_use", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "random.anvil_use", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
                 break;
 
             case 1022:
-                this.theWorld.playSoundAtPos(blockPosIn, "random.anvil_land", 0.3F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "random.anvil_land", 0.3F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
                 break;
 
             case 2000:
                 int i = data % 3 - 1;
                 int j = data / 3 % 3 - 1;
-                double d0 = (double)blockPosIn.getX() + (double)i * 0.6D + 0.5D;
-                double d1 = (double)blockPosIn.getY() + 0.5D;
-                double d2 = (double)blockPosIn.getZ() + (double)j * 0.6D + 0.5D;
+                double d0 = (double) 阻止位置In.getX() + (double)i * 0.6D + 0.5D;
+                double d1 = (double) 阻止位置In.getY() + 0.5D;
+                double d2 = (double) 阻止位置In.getZ() + (double)j * 0.6D + 0.5D;
 
                 for (int i1 = 0; i1 < 10; ++i1)
                 {
@@ -3092,16 +3092,16 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
                 if (block.getMaterial() != Material.air)
                 {
-                    this.mc.getSoundHandler().playSound(new PositionedSoundRecord(new 图像位置(block.stepSound.getBreakSound()), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getFrequency() * 0.8F, (float)blockPosIn.getX() + 0.5F, (float)blockPosIn.getY() + 0.5F, (float)blockPosIn.getZ() + 0.5F));
+                    this.mc.getSoundHandler().playSound(new PositionedSoundRecord(new 图像位置(block.stepSound.getBreakSound()), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getFrequency() * 0.8F, (float) 阻止位置In.getX() + 0.5F, (float) 阻止位置In.getY() + 0.5F, (float) 阻止位置In.getZ() + 0.5F));
                 }
 
-                this.mc.effectRenderer.addBlockDestroyEffects(blockPosIn, block.getStateFromMeta(data >> 12 & 255));
+                this.mc.effectRenderer.addBlockDestroyEffects(阻止位置In, block.getStateFromMeta(data >> 12 & 255));
                 break;
 
             case 2002:
-                double d3 = (double)blockPosIn.getX();
-                double d4 = (double)blockPosIn.getY();
-                double d5 = (double)blockPosIn.getZ();
+                double d3 = (double) 阻止位置In.getX();
+                double d4 = (double) 阻止位置In.getY();
+                double d5 = (double) 阻止位置In.getZ();
 
                 for (int k = 0; k < 8; ++k)
                 {
@@ -3126,7 +3126,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                     double d11 = Math.cos(d9) * d7;
                     double d23 = 0.01D + random.nextDouble() * 0.5D;
                     double d24 = Math.sin(d9) * d7;
-                    EntityFX entityfx = this.spawnEntityFX(enumparticletypes.getParticleID(), enumparticletypes.getShouldIgnoreRange(), d3 + d11 * 0.1D, d4 + 0.3D, d5 + d24 * 0.1D, d11, d23, d24, new int[0]);
+                    实体FX entityfx = this.spawnEntityFX(enumparticletypes.getParticleID(), enumparticletypes.getShouldIgnoreRange(), d3 + d11 * 0.1D, d4 + 0.3D, d5 + d24 * 0.1D, d11, d23, d24, new int[0]);
 
                     if (entityfx != null)
                     {
@@ -3136,13 +3136,13 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                     }
                 }
 
-                this.theWorld.playSoundAtPos(blockPosIn, "game.potion.smash", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
+                this.theWorld.playSoundAtPos(阻止位置In, "game.potion.smash", 1.0F, this.theWorld.rand.nextFloat() * 0.1F + 0.9F, false);
                 break;
 
             case 2003:
-                double d6 = (double)blockPosIn.getX() + 0.5D;
-                double d8 = (double)blockPosIn.getY();
-                double d10 = (double)blockPosIn.getZ() + 0.5D;
+                double d6 = (double) 阻止位置In.getX() + 0.5D;
+                double d8 = (double) 阻止位置In.getY();
+                double d10 = (double) 阻止位置In.getZ() + 0.5D;
 
                 for (int l1 = 0; l1 < 8; ++l1)
                 {
@@ -3160,9 +3160,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             case 2004:
                 for (int l = 0; l < 20; ++l)
                 {
-                    double d12 = (double)blockPosIn.getX() + 0.5D + ((double)this.theWorld.rand.nextFloat() - 0.5D) * 2.0D;
-                    double d13 = (double)blockPosIn.getY() + 0.5D + ((double)this.theWorld.rand.nextFloat() - 0.5D) * 2.0D;
-                    double d14 = (double)blockPosIn.getZ() + 0.5D + ((double)this.theWorld.rand.nextFloat() - 0.5D) * 2.0D;
+                    double d12 = (double) 阻止位置In.getX() + 0.5D + ((double)this.theWorld.rand.nextFloat() - 0.5D) * 2.0D;
+                    double d13 = (double) 阻止位置In.getY() + 0.5D + ((double)this.theWorld.rand.nextFloat() - 0.5D) * 2.0D;
+                    double d14 = (double) 阻止位置In.getZ() + 0.5D + ((double)this.theWorld.rand.nextFloat() - 0.5D) * 2.0D;
                     this.theWorld.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d12, d13, d14, 0.0D, 0.0D, 0.0D, new int[0]);
                     this.theWorld.spawnParticle(EnumParticleTypes.FLAME, d12, d13, d14, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
@@ -3170,11 +3170,11 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 return;
 
             case 2005:
-                ItemDye.spawnBonemealParticles(this.theWorld, blockPosIn, data);
+                ItemDye.spawnBonemealParticles(this.theWorld, 阻止位置In, data);
         }
     }
 
-    public void sendBlockBreakProgress(int breakerId, BlockPos pos, int progress)
+    public void sendBlockBreakProgress(int breakerId, 阻止位置 pos, int progress)
     {
         if (progress >= 0 && progress < 10)
         {
@@ -3262,7 +3262,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         return this.chunksToUpdate.size();
     }
 
-    public RenderChunk getRenderChunk(BlockPos p_getRenderChunk_1_)
+    public RenderChunk getRenderChunk(阻止位置 p_getRenderChunk_1_)
     {
         return this.viewFrustum.getRenderChunk(p_getRenderChunk_1_);
     }

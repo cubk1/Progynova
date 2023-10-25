@@ -2,81 +2,55 @@ package net.minecraft.entity;
 
 import com.google.common.collect.Maps;
 import java.util.HashMap;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityCaveSpider;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityEndermite;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityGiantZombie;
-import net.minecraft.entity.monster.EntityGuardian;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntitySilverfish;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.monster.EntitySnowman;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityMooshroom;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.boss.实体Dragon;
+import net.minecraft.entity.boss.实体Wither;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.monster.实体Ghast;
+import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.实体Bat;
 
 public class EntitySpawnPlacementRegistry
 {
-    private static final HashMap<Class, EntityLiving.SpawnPlacementType> ENTITY_PLACEMENTS = Maps.<Class, EntityLiving.SpawnPlacementType>newHashMap();
+    private static final HashMap<Class, 实体Living.SpawnPlacementType> ENTITY_PLACEMENTS = Maps.<Class, 实体Living.SpawnPlacementType>newHashMap();
 
-    public static EntityLiving.SpawnPlacementType getPlacementForEntity(Class entityClass)
+    public static 实体Living.SpawnPlacementType getPlacementForEntity(Class entityClass)
     {
-        return (EntityLiving.SpawnPlacementType)ENTITY_PLACEMENTS.get(entityClass);
+        return (实体Living.SpawnPlacementType)ENTITY_PLACEMENTS.get(entityClass);
     }
 
     static
     {
-        ENTITY_PLACEMENTS.put(EntityBat.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityChicken.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityCow.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityHorse.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityMooshroom.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityOcelot.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityPig.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityRabbit.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntitySheep.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntitySnowman.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntitySquid.class, EntityLiving.SpawnPlacementType.IN_WATER);
-        ENTITY_PLACEMENTS.put(EntityIronGolem.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityWolf.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityVillager.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityDragon.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityWither.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityBlaze.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityCaveSpider.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityCreeper.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityEnderman.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityEndermite.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityGhast.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityGiantZombie.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityGuardian.class, EntityLiving.SpawnPlacementType.IN_WATER);
-        ENTITY_PLACEMENTS.put(EntityMagmaCube.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityPigZombie.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntitySilverfish.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntitySkeleton.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntitySlime.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntitySpider.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityWitch.class, EntityLiving.SpawnPlacementType.ON_GROUND);
-        ENTITY_PLACEMENTS.put(EntityZombie.class, EntityLiving.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Bat.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Chicken.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Cow.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Horse.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Mooshroom.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Ocelot.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Pig.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Rabbit.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Sheep.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Snowman.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Squid.class, 实体Living.SpawnPlacementType.IN_WATER);
+        ENTITY_PLACEMENTS.put(实体IronGolem.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Wolf.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Villager.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Dragon.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Wither.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Blaze.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体CaveSpider.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Creeper.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Enderman.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Endermite.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Ghast.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体GiantZombie.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Guardian.class, 实体Living.SpawnPlacementType.IN_WATER);
+        ENTITY_PLACEMENTS.put(实体MagmaCube.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体PigZombie.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Silverfish.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Skeleton.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Slime.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Spider.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Witch.class, 实体Living.SpawnPlacementType.ON_GROUND);
+        ENTITY_PLACEMENTS.put(实体Zombie.class, 实体Living.SpawnPlacementType.ON_GROUND);
     }
 }

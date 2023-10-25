@@ -4,10 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
@@ -18,7 +18,7 @@ public class ItemLilyPad extends ItemColored
         super(block, false);
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(worldIn, playerIn, true);
 
@@ -30,7 +30,7 @@ public class ItemLilyPad extends ItemColored
         {
             if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
             {
-                BlockPos blockpos = movingobjectposition.getBlockPos();
+                阻止位置 blockpos = movingobjectposition.getBlockPos();
 
                 if (!worldIn.isBlockModifiable(playerIn, blockpos))
                 {
@@ -42,7 +42,7 @@ public class ItemLilyPad extends ItemColored
                     return itemStackIn;
                 }
 
-                BlockPos blockpos1 = blockpos.up();
+                阻止位置 blockpos1 = blockpos.up();
                 IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
                 if (iblockstate.getBlock().getMaterial() == Material.water && ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0 && worldIn.isAirBlock(blockpos1))

@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.LongHashMap;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.NextTickListEntry;
@@ -115,7 +115,7 @@ public class NextTickHashSet extends TreeSet
         }
         else
         {
-            BlockPos blockpos = entry.position;
+            阻止位置 blockpos = entry.position;
             int i = blockpos.getX() >> 4;
             int j = blockpos.getZ() >> 4;
             return this.getSubSet(i, j, autoCreate);

@@ -2,7 +2,7 @@ package net.minecraft.stats;
 
 import com.google.common.collect.Maps;
 import java.util.Map;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.util.IJsonSerializable;
 import net.minecraft.util.TupleIntJsonSerializable;
 
@@ -39,7 +39,7 @@ public class StatFileWriter
         }
     }
 
-    public void increaseStat(EntityPlayer player, StatBase stat, int amount)
+    public void increaseStat(实体Player player, StatBase stat, int amount)
     {
         if (!stat.isAchievement() || this.canUnlockAchievement((Achievement)stat))
         {
@@ -47,7 +47,7 @@ public class StatFileWriter
         }
     }
 
-    public void unlockAchievement(EntityPlayer playerIn, StatBase statIn, int p_150873_3_)
+    public void unlockAchievement(实体Player playerIn, StatBase statIn, int p_150873_3_)
     {
         TupleIntJsonSerializable tupleintjsonserializable = (TupleIntJsonSerializable)this.statsData.get(statIn);
 

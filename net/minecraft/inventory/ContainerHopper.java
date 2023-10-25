@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -8,7 +8,7 @@ public class ContainerHopper extends Container
 {
     private final IInventory hopperInventory;
 
-    public ContainerHopper(InventoryPlayer playerInventory, IInventory hopperInventoryIn, EntityPlayer player)
+    public ContainerHopper(InventoryPlayer playerInventory, IInventory hopperInventoryIn, 实体Player player)
     {
         this.hopperInventory = hopperInventoryIn;
         hopperInventoryIn.openInventory(player);
@@ -33,12 +33,12 @@ public class ContainerHopper extends Container
         }
     }
 
-    public boolean canInteractWith(EntityPlayer playerIn)
+    public boolean canInteractWith(实体Player playerIn)
     {
         return this.hopperInventory.isUseableByPlayer(playerIn);
     }
 
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    public ItemStack transferStackInSlot(实体Player playerIn, int index)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(index);
@@ -73,7 +73,7 @@ public class ContainerHopper extends Container
         return itemstack;
     }
 
-    public void onContainerClosed(EntityPlayer playerIn)
+    public void onContainerClosed(实体Player playerIn)
     {
         super.onContainerClosed(playerIn);
         this.hopperInventory.closeInventory(playerIn);

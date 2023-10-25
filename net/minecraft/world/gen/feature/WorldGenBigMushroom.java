@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockHugeMushroom;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class WorldGenBigMushroom extends WorldGenerator
@@ -23,7 +23,7 @@ public class WorldGenBigMushroom extends WorldGenerator
         super(false);
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         if (this.mushroomType == null)
         {
@@ -44,7 +44,7 @@ public class WorldGenBigMushroom extends WorldGenerator
                     k = 0;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
                 for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
                 {
@@ -188,7 +188,7 @@ public class WorldGenBigMushroom extends WorldGenerator
 
                                 if (position.getY() >= position.getY() + i - 1 || blockhugemushroom$enumtype != BlockHugeMushroom.EnumType.ALL_INSIDE)
                                 {
-                                    BlockPos blockpos = new BlockPos(l1, l2, i2);
+                                    阻止位置 blockpos = new 阻止位置(l1, l2, i2);
 
                                     if (!worldIn.getBlockState(blockpos).getBlock().isFullBlock())
                                     {

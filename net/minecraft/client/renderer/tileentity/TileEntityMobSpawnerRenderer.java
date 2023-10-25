@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.tileentity;
 
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 
@@ -18,9 +18,9 @@ public class TileEntityMobSpawnerRenderer extends TileEntitySpecialRenderer<Tile
 
     public static void renderMob(MobSpawnerBaseLogic mobSpawnerLogic, double posX, double posY, double posZ, float partialTicks)
     {
-        Entity entity = mobSpawnerLogic.func_180612_a(mobSpawnerLogic.getSpawnerWorld());
+        实体 实体 = mobSpawnerLogic.func_180612_a(mobSpawnerLogic.getSpawnerWorld());
 
-        if (entity != null)
+        if (实体 != null)
         {
             float f = 0.4375F;
             光照状态经理.理解(0.0F, 0.4F, 0.0F);
@@ -28,8 +28,8 @@ public class TileEntityMobSpawnerRenderer extends TileEntitySpecialRenderer<Tile
             光照状态经理.辐射(-30.0F, 1.0F, 0.0F, 0.0F);
             光照状态经理.理解(0.0F, -0.4F, 0.0F);
             光照状态经理.障眼物(f, f, f);
-            entity.setLocationAndAngles(posX, posY, posZ, 0.0F, 0.0F);
-            我的手艺.得到我的手艺().getRenderManager().renderEntityWithPosYaw(entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
+            实体.setLocationAndAngles(posX, posY, posZ, 0.0F, 0.0F);
+            我的手艺.得到我的手艺().getRenderManager().renderEntityWithPosYaw(实体, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
         }
     }
 }

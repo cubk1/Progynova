@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -19,7 +19,7 @@ public class ItemDoor extends Item
         this.setCreativeTab(CreativeTabs.tabRedstone);
     }
 
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (side != EnumFacing.UP)
         {
@@ -52,10 +52,10 @@ public class ItemDoor extends Item
         }
     }
 
-    public static void placeDoor(World worldIn, BlockPos pos, EnumFacing facing, Block door)
+    public static void placeDoor(World worldIn, 阻止位置 pos, EnumFacing facing, Block door)
     {
-        BlockPos blockpos = pos.offset(facing.rotateY());
-        BlockPos blockpos1 = pos.offset(facing.rotateYCCW());
+        阻止位置 blockpos = pos.offset(facing.rotateY());
+        阻止位置 blockpos1 = pos.offset(facing.rotateYCCW());
         int i = (worldIn.getBlockState(blockpos1).getBlock().isNormalCube() ? 1 : 0) + (worldIn.getBlockState(blockpos1.up()).getBlock().isNormalCube() ? 1 : 0);
         int j = (worldIn.getBlockState(blockpos).getBlock().isNormalCube() ? 1 : 0) + (worldIn.getBlockState(blockpos.up()).getBlock().isNormalCube() ? 1 : 0);
         boolean flag = worldIn.getBlockState(blockpos1).getBlock() == door || worldIn.getBlockState(blockpos1.up()).getBlock() == door;
@@ -67,7 +67,7 @@ public class ItemDoor extends Item
             flag2 = true;
         }
 
-        BlockPos blockpos2 = pos.up();
+        阻止位置 blockpos2 = pos.up();
         IBlockState iblockstate = door.getDefaultState().withProperty(BlockDoor.FACING, facing).withProperty(BlockDoor.HINGE, flag2 ? BlockDoor.EnumHingePosition.RIGHT : BlockDoor.EnumHingePosition.LEFT);
         worldIn.setBlockState(pos, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER), 2);
         worldIn.setBlockState(blockpos2, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), 2);

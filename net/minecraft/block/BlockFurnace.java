@@ -6,8 +6,8 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -39,12 +39,12 @@ public class BlockFurnace extends BlockContainer
         return Item.getItemFromBlock(Blocks.furnace);
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.setDefaultFacing(worldIn, pos, state);
     }
 
-    private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
+    private void setDefaultFacing(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!worldIn.isRemote)
         {
@@ -76,7 +76,7 @@ public class BlockFurnace extends BlockContainer
     }
 
     @SuppressWarnings("incomplete-switch")
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (this.isBurning)
         {
@@ -111,7 +111,7 @@ public class BlockFurnace extends BlockContainer
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -131,7 +131,7 @@ public class BlockFurnace extends BlockContainer
         }
     }
 
-    public static void setState(boolean active, World worldIn, BlockPos pos)
+    public static void setState(boolean active, World worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -162,12 +162,12 @@ public class BlockFurnace extends BlockContainer
         return new TileEntityFurnace();
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }
 
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase placer, ItemStack stack)
     {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 
@@ -182,7 +182,7 @@ public class BlockFurnace extends BlockContainer
         }
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!keepInventory)
         {
@@ -203,12 +203,12 @@ public class BlockFurnace extends BlockContainer
         return true;
     }
 
-    public int getComparatorInputOverride(World worldIn, BlockPos pos)
+    public int getComparatorInputOverride(World worldIn, 阻止位置 pos)
     {
         return Container.calcRedstone(worldIn.getTileEntity(pos));
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Item.getItemFromBlock(Blocks.furnace);
     }

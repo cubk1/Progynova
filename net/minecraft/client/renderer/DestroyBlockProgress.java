@@ -1,21 +1,21 @@
 package net.minecraft.client.renderer;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class DestroyBlockProgress
 {
     private final int miningPlayerEntId;
-    private final BlockPos position;
+    private final 阻止位置 position;
     private int partialBlockProgress;
     private int createdAtCloudUpdateTick;
 
-    public DestroyBlockProgress(int miningPlayerEntIdIn, BlockPos positionIn)
+    public DestroyBlockProgress(int miningPlayerEntIdIn, 阻止位置 positionIn)
     {
         this.miningPlayerEntId = miningPlayerEntIdIn;
         this.position = positionIn;
     }
 
-    public BlockPos getPosition()
+    public 阻止位置 getPosition()
     {
         return this.position;
     }

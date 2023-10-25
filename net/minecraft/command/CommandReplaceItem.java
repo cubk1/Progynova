@@ -4,8 +4,8 @@ import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -14,7 +14,7 @@ import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class CommandReplaceItem extends CommandBase
@@ -125,7 +125,7 @@ public class CommandReplaceItem extends CommandBase
             if (flag)
             {
                 sender.setCommandStat(CommandResultStats.Type.AFFECTED_ITEMS, 0);
-                BlockPos blockpos = parseBlockPos(sender, args, 1, false);
+                阻止位置 blockpos = parseBlockPos(sender, args, 1, false);
                 World world = sender.getEntityWorld();
                 TileEntity tileentity = world.getTileEntity(blockpos);
 
@@ -143,22 +143,22 @@ public class CommandReplaceItem extends CommandBase
             }
             else
             {
-                Entity entity = getEntity(sender, args[1]);
+                实体 实体 = getEntity(sender, args[1]);
                 sender.setCommandStat(CommandResultStats.Type.AFFECTED_ITEMS, 0);
 
-                if (entity instanceof EntityPlayer)
+                if (实体 instanceof 实体Player)
                 {
-                    ((EntityPlayer)entity).inventoryContainer.detectAndSendChanges();
+                    ((实体Player) 实体).inventoryContainer.detectAndSendChanges();
                 }
 
-                if (!entity.replaceItemInInventory(j, itemstack))
+                if (!实体.replaceItemInInventory(j, itemstack))
                 {
                     throw new CommandException("commands.replaceitem.failed", new Object[] {Integer.valueOf(j), Integer.valueOf(k), itemstack == null ? "Air" : itemstack.getChatComponent()});
                 }
 
-                if (entity instanceof EntityPlayer)
+                if (实体 instanceof 实体Player)
                 {
-                    ((EntityPlayer)entity).inventoryContainer.detectAndSendChanges();
+                    ((实体Player) 实体).inventoryContainer.detectAndSendChanges();
                 }
             }
 
@@ -179,7 +179,7 @@ public class CommandReplaceItem extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[] {"entity", "block"}): (args.length == 2 && args[0].equals("entity") ? getListOfStringsMatchingLastWord(args, this.getUsernames()) : (args.length >= 2 && args.length <= 4 && args[0].equals("block") ? func_175771_a(args, 1, pos) : ((args.length != 3 || !args[0].equals("entity")) && (args.length != 5 || !args[0].equals("block")) ? ((args.length != 4 || !args[0].equals("entity")) && (args.length != 6 || !args[0].equals("block")) ? null : getListOfStringsMatchingLastWord(args, Item.itemRegistry.getKeys())) : getListOfStringsMatchingLastWord(args, SHORTCUTS.keySet()))));
     }

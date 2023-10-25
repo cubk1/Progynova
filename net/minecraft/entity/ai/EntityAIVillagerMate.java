@@ -1,20 +1,20 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.passive.实体Villager;
+import net.minecraft.entity.实体;
+import net.minecraft.util.阻止位置;
 import net.minecraft.village.Village;
 import net.minecraft.world.World;
 
 public class EntityAIVillagerMate extends EntityAIBase
 {
-    private EntityVillager villagerObj;
-    private EntityVillager mate;
+    private 实体Villager villagerObj;
+    private 实体Villager mate;
     private World worldObj;
     private int matingTimeout;
     Village villageObj;
 
-    public EntityAIVillagerMate(EntityVillager villagerIn)
+    public EntityAIVillagerMate(实体Villager villagerIn)
     {
         this.villagerObj = villagerIn;
         this.worldObj = villagerIn.worldObj;
@@ -33,7 +33,7 @@ public class EntityAIVillagerMate extends EntityAIBase
         }
         else
         {
-            this.villageObj = this.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this.villagerObj), 0);
+            this.villageObj = this.worldObj.getVillageCollection().getNearestVillage(new 阻止位置(this.villagerObj), 0);
 
             if (this.villageObj == null)
             {
@@ -41,15 +41,15 @@ public class EntityAIVillagerMate extends EntityAIBase
             }
             else if (this.checkSufficientDoorsPresentForNewVillager() && this.villagerObj.getIsWillingToMate(true))
             {
-                Entity entity = this.worldObj.findNearestEntityWithinAABB(EntityVillager.class, this.villagerObj.getEntityBoundingBox().expand(8.0D, 3.0D, 8.0D), this.villagerObj);
+                实体 实体 = this.worldObj.findNearestEntityWithinAABB(实体Villager.class, this.villagerObj.getEntityBoundingBox().expand(8.0D, 3.0D, 8.0D), this.villagerObj);
 
-                if (entity == null)
+                if (实体 == null)
                 {
                     return false;
                 }
                 else
                 {
-                    this.mate = (EntityVillager)entity;
+                    this.mate = (实体Villager) 实体;
                     return this.mate.getGrowingAge() == 0 && this.mate.getIsWillingToMate(true);
                 }
             }
@@ -113,13 +113,13 @@ public class EntityAIVillagerMate extends EntityAIBase
 
     private void giveBirth()
     {
-        EntityVillager entityvillager = this.villagerObj.createChild(this.mate);
+        实体Villager entityvillager = this.villagerObj.createChild(this.mate);
         this.mate.setGrowingAge(6000);
         this.villagerObj.setGrowingAge(6000);
         this.mate.setIsWillingToMate(false);
         this.villagerObj.setIsWillingToMate(false);
         entityvillager.setGrowingAge(-24000);
-        entityvillager.setLocationAndAngles(this.villagerObj.posX, this.villagerObj.posY, this.villagerObj.posZ, 0.0F, 0.0F);
+        entityvillager.setLocationAndAngles(this.villagerObj.X坐标, this.villagerObj.Y坐标, this.villagerObj.Z坐标, 0.0F, 0.0F);
         this.worldObj.spawnEntityInWorld(entityvillager);
         this.worldObj.setEntityState(entityvillager, (byte)12);
     }

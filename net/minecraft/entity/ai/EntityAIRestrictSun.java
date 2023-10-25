@@ -1,13 +1,13 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.实体Creature;
 import net.minecraft.pathfinding.PathNavigateGround;
 
 public class EntityAIRestrictSun extends EntityAIBase
 {
-    private EntityCreature theEntity;
+    private 实体Creature theEntity;
 
-    public EntityAIRestrictSun(EntityCreature creature)
+    public EntityAIRestrictSun(实体Creature creature)
     {
         this.theEntity = creature;
     }

@@ -5,13 +5,13 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.实体Item;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
-public class RenderEntityItem extends Render<EntityItem>
+public class RenderEntityItem extends Render<实体Item>
 {
     private final RenderItem itemRenderer;
     private Random field_177079_e = new Random();
@@ -24,7 +24,7 @@ public class RenderEntityItem extends Render<EntityItem>
         this.shadowOpaque = 0.75F;
     }
 
-    private int func_177077_a(EntityItem itemIn, double p_177077_2_, double p_177077_4_, double p_177077_6_, float p_177077_8_, IBakedModel p_177077_9_)
+    private int func_177077_a(实体Item itemIn, double p_177077_2_, double p_177077_4_, double p_177077_6_, float p_177077_8_, IBakedModel p_177077_9_)
     {
         ItemStack itemstack = itemIn.getEntityItem();
         Item item = itemstack.getItem();
@@ -85,7 +85,7 @@ public class RenderEntityItem extends Render<EntityItem>
         return i;
     }
 
-    public void doRender(EntityItem entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体Item entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         ItemStack itemstack = entity.getEntityItem();
         this.field_177079_e.setSeed(187L);
@@ -150,7 +150,7 @@ public class RenderEntityItem extends Render<EntityItem>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityItem entity)
+    protected 图像位置 getEntityTexture(实体Item entity)
     {
         return TextureMap.locationBlocksTexture;
     }

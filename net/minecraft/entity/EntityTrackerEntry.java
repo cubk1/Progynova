@@ -7,31 +7,13 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.attributes.ServersideAttributeMap;
-import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityEnderCrystal;
-import net.minecraft.entity.item.EntityEnderEye;
-import net.minecraft.entity.item.EntityEnderPearl;
-import net.minecraft.entity.item.EntityExpBottle;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.item.EntityPainting;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.item.*;
+import net.minecraft.entity.item.实体Item;
 import net.minecraft.entity.passive.IAnimals;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityEgg;
-import net.minecraft.entity.projectile.EntityFireball;
-import net.minecraft.entity.projectile.EntityFishHook;
-import net.minecraft.entity.projectile.EntityPotion;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.player.实体PlayerMP;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.entity.projectile.实体FishHook;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
@@ -54,7 +36,7 @@ import net.minecraft.network.play.server.S1DPacketEntityEffect;
 import net.minecraft.network.play.server.S20PacketEntityProperties;
 import net.minecraft.network.play.server.S49PacketUpdateEntityNBT;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.storage.MapData;
 import org.apache.logging.log4j.LogManager;
@@ -63,7 +45,7 @@ import org.apache.logging.log4j.Logger;
 public class EntityTrackerEntry
 {
     private static final Logger logger = LogManager.getLogger();
-    public Entity trackedEntity;
+    public 实体 tracked实体;
     public int trackingDistanceThreshold;
     public int updateFrequency;
     public int encodedPosX;
@@ -82,71 +64,71 @@ public class EntityTrackerEntry
     private boolean firstUpdateDone;
     private boolean sendVelocityUpdates;
     private int ticksSinceLastForcedTeleport;
-    private Entity field_85178_v;
+    private 实体 field_85178_v;
     private boolean ridingEntity;
     private boolean onGround;
     public boolean playerEntitiesUpdated;
-    public Set<EntityPlayerMP> trackingPlayers = Sets.<EntityPlayerMP>newHashSet();
+    public Set<实体PlayerMP> trackingPlayers = Sets.<实体PlayerMP>newHashSet();
 
-    public EntityTrackerEntry(Entity trackedEntityIn, int trackingDistanceThresholdIn, int updateFrequencyIn, boolean sendVelocityUpdatesIn)
+    public EntityTrackerEntry(实体 tracked实体In, int trackingDistanceThresholdIn, int updateFrequencyIn, boolean sendVelocityUpdatesIn)
     {
-        this.trackedEntity = trackedEntityIn;
+        this.tracked实体 = tracked实体In;
         this.trackingDistanceThreshold = trackingDistanceThresholdIn;
         this.updateFrequency = updateFrequencyIn;
         this.sendVelocityUpdates = sendVelocityUpdatesIn;
-        this.encodedPosX = MathHelper.floor_double(trackedEntityIn.posX * 32.0D);
-        this.encodedPosY = MathHelper.floor_double(trackedEntityIn.posY * 32.0D);
-        this.encodedPosZ = MathHelper.floor_double(trackedEntityIn.posZ * 32.0D);
-        this.encodedRotationYaw = MathHelper.floor_float(trackedEntityIn.旋转侧滑 * 256.0F / 360.0F);
-        this.encodedRotationPitch = MathHelper.floor_float(trackedEntityIn.rotationPitch * 256.0F / 360.0F);
-        this.lastHeadMotion = MathHelper.floor_float(trackedEntityIn.getRotationYawHead() * 256.0F / 360.0F);
-        this.onGround = trackedEntityIn.onGround;
+        this.encodedPosX = MathHelper.floor_double(tracked实体In.X坐标 * 32.0D);
+        this.encodedPosY = MathHelper.floor_double(tracked实体In.Y坐标 * 32.0D);
+        this.encodedPosZ = MathHelper.floor_double(tracked实体In.Z坐标 * 32.0D);
+        this.encodedRotationYaw = MathHelper.floor_float(tracked实体In.旋转侧滑 * 256.0F / 360.0F);
+        this.encodedRotationPitch = MathHelper.floor_float(tracked实体In.rotationPitch * 256.0F / 360.0F);
+        this.lastHeadMotion = MathHelper.floor_float(tracked实体In.getRotationYawHead() * 256.0F / 360.0F);
+        this.onGround = tracked实体In.onGround;
     }
 
     public boolean equals(Object p_equals_1_)
     {
-        return p_equals_1_ instanceof EntityTrackerEntry ? ((EntityTrackerEntry)p_equals_1_).trackedEntity.getEntityId() == this.trackedEntity.getEntityId() : false;
+        return p_equals_1_ instanceof EntityTrackerEntry ? ((EntityTrackerEntry)p_equals_1_).tracked实体.getEntityId() == this.tracked实体.getEntityId() : false;
     }
 
     public int hashCode()
     {
-        return this.trackedEntity.getEntityId();
+        return this.tracked实体.getEntityId();
     }
 
-    public void updatePlayerList(List<EntityPlayer> players)
+    public void updatePlayerList(List<实体Player> players)
     {
         this.playerEntitiesUpdated = false;
 
-        if (!this.firstUpdateDone || this.trackedEntity.getDistanceSq(this.lastTrackedEntityPosX, this.lastTrackedEntityPosY, this.lastTrackedEntityPosZ) > 16.0D)
+        if (!this.firstUpdateDone || this.tracked实体.getDistanceSq(this.lastTrackedEntityPosX, this.lastTrackedEntityPosY, this.lastTrackedEntityPosZ) > 16.0D)
         {
-            this.lastTrackedEntityPosX = this.trackedEntity.posX;
-            this.lastTrackedEntityPosY = this.trackedEntity.posY;
-            this.lastTrackedEntityPosZ = this.trackedEntity.posZ;
+            this.lastTrackedEntityPosX = this.tracked实体.X坐标;
+            this.lastTrackedEntityPosY = this.tracked实体.Y坐标;
+            this.lastTrackedEntityPosZ = this.tracked实体.Z坐标;
             this.firstUpdateDone = true;
             this.playerEntitiesUpdated = true;
             this.updatePlayerEntities(players);
         }
 
-        if (this.field_85178_v != this.trackedEntity.ridingEntity || this.trackedEntity.ridingEntity != null && this.updateCounter % 60 == 0)
+        if (this.field_85178_v != this.tracked实体.riding实体 || this.tracked实体.riding实体 != null && this.updateCounter % 60 == 0)
         {
-            this.field_85178_v = this.trackedEntity.ridingEntity;
-            this.sendPacketToTrackedPlayers(new S1BPacketEntityAttach(0, this.trackedEntity, this.trackedEntity.ridingEntity));
+            this.field_85178_v = this.tracked实体.riding实体;
+            this.sendPacketToTrackedPlayers(new S1BPacketEntityAttach(0, this.tracked实体, this.tracked实体.riding实体));
         }
 
-        if (this.trackedEntity instanceof EntityItemFrame && this.updateCounter % 10 == 0)
+        if (this.tracked实体 instanceof 实体ItemFrame && this.updateCounter % 10 == 0)
         {
-            EntityItemFrame entityitemframe = (EntityItemFrame)this.trackedEntity;
+            实体ItemFrame entityitemframe = (实体ItemFrame)this.tracked实体;
             ItemStack itemstack = entityitemframe.getDisplayedItem();
 
             if (itemstack != null && itemstack.getItem() instanceof ItemMap)
             {
-                MapData mapdata = Items.filled_map.getMapData(itemstack, this.trackedEntity.worldObj);
+                MapData mapdata = Items.filled_map.getMapData(itemstack, this.tracked实体.worldObj);
 
-                for (EntityPlayer entityplayer : players)
+                for (实体Player entityplayer : players)
                 {
-                    EntityPlayerMP entityplayermp = (EntityPlayerMP)entityplayer;
+                    实体PlayerMP entityplayermp = (实体PlayerMP)entityplayer;
                     mapdata.updateVisiblePlayers(entityplayermp, itemstack);
-                    Packet packet = Items.filled_map.createMapDataPacket(itemstack, this.trackedEntity.worldObj, entityplayermp);
+                    Packet packet = Items.filled_map.createMapDataPacket(itemstack, this.tracked实体.worldObj, entityplayermp);
 
                     if (packet != null)
                     {
@@ -158,16 +140,16 @@ public class EntityTrackerEntry
             this.sendMetadataToAllAssociatedPlayers();
         }
 
-        if (this.updateCounter % this.updateFrequency == 0 || this.trackedEntity.isAirBorne || this.trackedEntity.getDataWatcher().hasObjectChanged())
+        if (this.updateCounter % this.updateFrequency == 0 || this.tracked实体.isAirBorne || this.tracked实体.getDataWatcher().hasObjectChanged())
         {
-            if (this.trackedEntity.ridingEntity == null)
+            if (this.tracked实体.riding实体 == null)
             {
                 ++this.ticksSinceLastForcedTeleport;
-                int k = MathHelper.floor_double(this.trackedEntity.posX * 32.0D);
-                int j1 = MathHelper.floor_double(this.trackedEntity.posY * 32.0D);
-                int k1 = MathHelper.floor_double(this.trackedEntity.posZ * 32.0D);
-                int l1 = MathHelper.floor_float(this.trackedEntity.旋转侧滑 * 256.0F / 360.0F);
-                int i2 = MathHelper.floor_float(this.trackedEntity.rotationPitch * 256.0F / 360.0F);
+                int k = MathHelper.floor_double(this.tracked实体.X坐标 * 32.0D);
+                int j1 = MathHelper.floor_double(this.tracked实体.Y坐标 * 32.0D);
+                int k1 = MathHelper.floor_double(this.tracked实体.Z坐标 * 32.0D);
+                int l1 = MathHelper.floor_float(this.tracked实体.旋转侧滑 * 256.0F / 360.0F);
+                int i2 = MathHelper.floor_float(this.tracked实体.rotationPitch * 256.0F / 360.0F);
                 int j2 = k - this.encodedPosX;
                 int k2 = j1 - this.encodedPosY;
                 int i = k1 - this.encodedPosZ;
@@ -175,48 +157,48 @@ public class EntityTrackerEntry
                 boolean flag = Math.abs(j2) >= 4 || Math.abs(k2) >= 4 || Math.abs(i) >= 4 || this.updateCounter % 60 == 0;
                 boolean flag1 = Math.abs(l1 - this.encodedRotationYaw) >= 4 || Math.abs(i2 - this.encodedRotationPitch) >= 4;
 
-                if (this.updateCounter > 0 || this.trackedEntity instanceof EntityArrow)
+                if (this.updateCounter > 0 || this.tracked实体 instanceof 实体Arrow)
                 {
-                    if (j2 >= -128 && j2 < 128 && k2 >= -128 && k2 < 128 && i >= -128 && i < 128 && this.ticksSinceLastForcedTeleport <= 400 && !this.ridingEntity && this.onGround == this.trackedEntity.onGround)
+                    if (j2 >= -128 && j2 < 128 && k2 >= -128 && k2 < 128 && i >= -128 && i < 128 && this.ticksSinceLastForcedTeleport <= 400 && !this.ridingEntity && this.onGround == this.tracked实体.onGround)
                     {
-                        if ((!flag || !flag1) && !(this.trackedEntity instanceof EntityArrow))
+                        if ((!flag || !flag1) && !(this.tracked实体 instanceof 实体Arrow))
                         {
                             if (flag)
                             {
-                                packet1 = new S14PacketEntity.S15PacketEntityRelMove(this.trackedEntity.getEntityId(), (byte)j2, (byte)k2, (byte)i, this.trackedEntity.onGround);
+                                packet1 = new S14PacketEntity.S15PacketEntityRelMove(this.tracked实体.getEntityId(), (byte)j2, (byte)k2, (byte)i, this.tracked实体.onGround);
                             }
                             else if (flag1)
                             {
-                                packet1 = new S14PacketEntity.S16PacketEntityLook(this.trackedEntity.getEntityId(), (byte)l1, (byte)i2, this.trackedEntity.onGround);
+                                packet1 = new S14PacketEntity.S16PacketEntityLook(this.tracked实体.getEntityId(), (byte)l1, (byte)i2, this.tracked实体.onGround);
                             }
                         }
                         else
                         {
-                            packet1 = new S14PacketEntity.S17PacketEntityLookMove(this.trackedEntity.getEntityId(), (byte)j2, (byte)k2, (byte)i, (byte)l1, (byte)i2, this.trackedEntity.onGround);
+                            packet1 = new S14PacketEntity.S17PacketEntityLookMove(this.tracked实体.getEntityId(), (byte)j2, (byte)k2, (byte)i, (byte)l1, (byte)i2, this.tracked实体.onGround);
                         }
                     }
                     else
                     {
-                        this.onGround = this.trackedEntity.onGround;
+                        this.onGround = this.tracked实体.onGround;
                         this.ticksSinceLastForcedTeleport = 0;
-                        packet1 = new S18PacketEntityTeleport(this.trackedEntity.getEntityId(), k, j1, k1, (byte)l1, (byte)i2, this.trackedEntity.onGround);
+                        packet1 = new S18PacketEntityTeleport(this.tracked实体.getEntityId(), k, j1, k1, (byte)l1, (byte)i2, this.tracked实体.onGround);
                     }
                 }
 
                 if (this.sendVelocityUpdates)
                 {
-                    double d0 = this.trackedEntity.通便X - this.lastTrackedEntityMotionX;
-                    double d1 = this.trackedEntity.motionY - this.lastTrackedEntityMotionY;
-                    double d2 = this.trackedEntity.通便Z - this.motionZ;
+                    double d0 = this.tracked实体.通便X - this.lastTrackedEntityMotionX;
+                    double d1 = this.tracked实体.motionY - this.lastTrackedEntityMotionY;
+                    double d2 = this.tracked实体.通便Z - this.motionZ;
                     double d3 = 0.02D;
                     double d4 = d0 * d0 + d1 * d1 + d2 * d2;
 
-                    if (d4 > d3 * d3 || d4 > 0.0D && this.trackedEntity.通便X == 0.0D && this.trackedEntity.motionY == 0.0D && this.trackedEntity.通便Z == 0.0D)
+                    if (d4 > d3 * d3 || d4 > 0.0D && this.tracked实体.通便X == 0.0D && this.tracked实体.motionY == 0.0D && this.tracked实体.通便Z == 0.0D)
                     {
-                        this.lastTrackedEntityMotionX = this.trackedEntity.通便X;
-                        this.lastTrackedEntityMotionY = this.trackedEntity.motionY;
-                        this.motionZ = this.trackedEntity.通便Z;
-                        this.sendPacketToTrackedPlayers(new S12PacketEntityVelocity(this.trackedEntity.getEntityId(), this.lastTrackedEntityMotionX, this.lastTrackedEntityMotionY, this.motionZ));
+                        this.lastTrackedEntityMotionX = this.tracked实体.通便X;
+                        this.lastTrackedEntityMotionY = this.tracked实体.motionY;
+                        this.motionZ = this.tracked实体.通便Z;
+                        this.sendPacketToTrackedPlayers(new S12PacketEntityVelocity(this.tracked实体.getEntityId(), this.lastTrackedEntityMotionX, this.lastTrackedEntityMotionY, this.motionZ));
                     }
                 }
 
@@ -244,61 +226,61 @@ public class EntityTrackerEntry
             }
             else
             {
-                int j = MathHelper.floor_float(this.trackedEntity.旋转侧滑 * 256.0F / 360.0F);
-                int i1 = MathHelper.floor_float(this.trackedEntity.rotationPitch * 256.0F / 360.0F);
+                int j = MathHelper.floor_float(this.tracked实体.旋转侧滑 * 256.0F / 360.0F);
+                int i1 = MathHelper.floor_float(this.tracked实体.rotationPitch * 256.0F / 360.0F);
                 boolean flag2 = Math.abs(j - this.encodedRotationYaw) >= 4 || Math.abs(i1 - this.encodedRotationPitch) >= 4;
 
                 if (flag2)
                 {
-                    this.sendPacketToTrackedPlayers(new S14PacketEntity.S16PacketEntityLook(this.trackedEntity.getEntityId(), (byte)j, (byte)i1, this.trackedEntity.onGround));
+                    this.sendPacketToTrackedPlayers(new S14PacketEntity.S16PacketEntityLook(this.tracked实体.getEntityId(), (byte)j, (byte)i1, this.tracked实体.onGround));
                     this.encodedRotationYaw = j;
                     this.encodedRotationPitch = i1;
                 }
 
-                this.encodedPosX = MathHelper.floor_double(this.trackedEntity.posX * 32.0D);
-                this.encodedPosY = MathHelper.floor_double(this.trackedEntity.posY * 32.0D);
-                this.encodedPosZ = MathHelper.floor_double(this.trackedEntity.posZ * 32.0D);
+                this.encodedPosX = MathHelper.floor_double(this.tracked实体.X坐标 * 32.0D);
+                this.encodedPosY = MathHelper.floor_double(this.tracked实体.Y坐标 * 32.0D);
+                this.encodedPosZ = MathHelper.floor_double(this.tracked实体.Z坐标 * 32.0D);
                 this.sendMetadataToAllAssociatedPlayers();
                 this.ridingEntity = true;
             }
 
-            int l = MathHelper.floor_float(this.trackedEntity.getRotationYawHead() * 256.0F / 360.0F);
+            int l = MathHelper.floor_float(this.tracked实体.getRotationYawHead() * 256.0F / 360.0F);
 
             if (Math.abs(l - this.lastHeadMotion) >= 4)
             {
-                this.sendPacketToTrackedPlayers(new S19PacketEntityHeadLook(this.trackedEntity, (byte)l));
+                this.sendPacketToTrackedPlayers(new S19PacketEntityHeadLook(this.tracked实体, (byte)l));
                 this.lastHeadMotion = l;
             }
 
-            this.trackedEntity.isAirBorne = false;
+            this.tracked实体.isAirBorne = false;
         }
 
         ++this.updateCounter;
 
-        if (this.trackedEntity.velocityChanged)
+        if (this.tracked实体.velocityChanged)
         {
-            this.func_151261_b(new S12PacketEntityVelocity(this.trackedEntity));
-            this.trackedEntity.velocityChanged = false;
+            this.func_151261_b(new S12PacketEntityVelocity(this.tracked实体));
+            this.tracked实体.velocityChanged = false;
         }
     }
 
     private void sendMetadataToAllAssociatedPlayers()
     {
-        DataWatcher datawatcher = this.trackedEntity.getDataWatcher();
+        DataWatcher datawatcher = this.tracked实体.getDataWatcher();
 
         if (datawatcher.hasObjectChanged())
         {
-            this.func_151261_b(new S1CPacketEntityMetadata(this.trackedEntity.getEntityId(), datawatcher, false));
+            this.func_151261_b(new S1CPacketEntityMetadata(this.tracked实体.getEntityId(), datawatcher, false));
         }
 
-        if (this.trackedEntity instanceof EntityLivingBase)
+        if (this.tracked实体 instanceof 实体LivingBase)
         {
-            ServersideAttributeMap serversideattributemap = (ServersideAttributeMap)((EntityLivingBase)this.trackedEntity).getAttributeMap();
+            ServersideAttributeMap serversideattributemap = (ServersideAttributeMap)((实体LivingBase)this.tracked实体).getAttributeMap();
             Set<IAttributeInstance> set = serversideattributemap.getAttributeInstanceSet();
 
             if (!set.isEmpty())
             {
-                this.func_151261_b(new S20PacketEntityProperties(this.trackedEntity.getEntityId(), set));
+                this.func_151261_b(new S20PacketEntityProperties(this.tracked实体.getEntityId(), set));
             }
 
             set.clear();
@@ -307,7 +289,7 @@ public class EntityTrackerEntry
 
     public void sendPacketToTrackedPlayers(Packet packetIn)
     {
-        for (EntityPlayerMP entityplayermp : this.trackingPlayers)
+        for (实体PlayerMP entityplayermp : this.trackingPlayers)
         {
             entityplayermp.playerNetServerHandler.sendPacket(packetIn);
         }
@@ -317,113 +299,113 @@ public class EntityTrackerEntry
     {
         this.sendPacketToTrackedPlayers(packetIn);
 
-        if (this.trackedEntity instanceof EntityPlayerMP)
+        if (this.tracked实体 instanceof 实体PlayerMP)
         {
-            ((EntityPlayerMP)this.trackedEntity).playerNetServerHandler.sendPacket(packetIn);
+            ((实体PlayerMP)this.tracked实体).playerNetServerHandler.sendPacket(packetIn);
         }
     }
 
     public void sendDestroyEntityPacketToTrackedPlayers()
     {
-        for (EntityPlayerMP entityplayermp : this.trackingPlayers)
+        for (实体PlayerMP entityplayermp : this.trackingPlayers)
         {
-            entityplayermp.removeEntity(this.trackedEntity);
+            entityplayermp.removeEntity(this.tracked实体);
         }
     }
 
-    public void removeFromTrackedPlayers(EntityPlayerMP playerMP)
+    public void removeFromTrackedPlayers(实体PlayerMP playerMP)
     {
         if (this.trackingPlayers.contains(playerMP))
         {
-            playerMP.removeEntity(this.trackedEntity);
+            playerMP.removeEntity(this.tracked实体);
             this.trackingPlayers.remove(playerMP);
         }
     }
 
-    public void updatePlayerEntity(EntityPlayerMP playerMP)
+    public void updatePlayerEntity(实体PlayerMP playerMP)
     {
-        if (playerMP != this.trackedEntity)
+        if (playerMP != this.tracked实体)
         {
             if (this.func_180233_c(playerMP))
             {
-                if (!this.trackingPlayers.contains(playerMP) && (this.isPlayerWatchingThisChunk(playerMP) || this.trackedEntity.forceSpawn))
+                if (!this.trackingPlayers.contains(playerMP) && (this.isPlayerWatchingThisChunk(playerMP) || this.tracked实体.forceSpawn))
                 {
                     this.trackingPlayers.add(playerMP);
                     Packet packet = this.createSpawnPacket();
                     playerMP.playerNetServerHandler.sendPacket(packet);
 
-                    if (!this.trackedEntity.getDataWatcher().getIsBlank())
+                    if (!this.tracked实体.getDataWatcher().getIsBlank())
                     {
-                        playerMP.playerNetServerHandler.sendPacket(new S1CPacketEntityMetadata(this.trackedEntity.getEntityId(), this.trackedEntity.getDataWatcher(), true));
+                        playerMP.playerNetServerHandler.sendPacket(new S1CPacketEntityMetadata(this.tracked实体.getEntityId(), this.tracked实体.getDataWatcher(), true));
                     }
 
-                    NBTTagCompound nbttagcompound = this.trackedEntity.getNBTTagCompound();
+                    NBTTagCompound nbttagcompound = this.tracked实体.getNBTTagCompound();
 
                     if (nbttagcompound != null)
                     {
-                        playerMP.playerNetServerHandler.sendPacket(new S49PacketUpdateEntityNBT(this.trackedEntity.getEntityId(), nbttagcompound));
+                        playerMP.playerNetServerHandler.sendPacket(new S49PacketUpdateEntityNBT(this.tracked实体.getEntityId(), nbttagcompound));
                     }
 
-                    if (this.trackedEntity instanceof EntityLivingBase)
+                    if (this.tracked实体 instanceof 实体LivingBase)
                     {
-                        ServersideAttributeMap serversideattributemap = (ServersideAttributeMap)((EntityLivingBase)this.trackedEntity).getAttributeMap();
+                        ServersideAttributeMap serversideattributemap = (ServersideAttributeMap)((实体LivingBase)this.tracked实体).getAttributeMap();
                         Collection<IAttributeInstance> collection = serversideattributemap.getWatchedAttributes();
 
                         if (!collection.isEmpty())
                         {
-                            playerMP.playerNetServerHandler.sendPacket(new S20PacketEntityProperties(this.trackedEntity.getEntityId(), collection));
+                            playerMP.playerNetServerHandler.sendPacket(new S20PacketEntityProperties(this.tracked实体.getEntityId(), collection));
                         }
                     }
 
-                    this.lastTrackedEntityMotionX = this.trackedEntity.通便X;
-                    this.lastTrackedEntityMotionY = this.trackedEntity.motionY;
-                    this.motionZ = this.trackedEntity.通便Z;
+                    this.lastTrackedEntityMotionX = this.tracked实体.通便X;
+                    this.lastTrackedEntityMotionY = this.tracked实体.motionY;
+                    this.motionZ = this.tracked实体.通便Z;
 
                     if (this.sendVelocityUpdates && !(packet instanceof S0FPacketSpawnMob))
                     {
-                        playerMP.playerNetServerHandler.sendPacket(new S12PacketEntityVelocity(this.trackedEntity.getEntityId(), this.trackedEntity.通便X, this.trackedEntity.motionY, this.trackedEntity.通便Z));
+                        playerMP.playerNetServerHandler.sendPacket(new S12PacketEntityVelocity(this.tracked实体.getEntityId(), this.tracked实体.通便X, this.tracked实体.motionY, this.tracked实体.通便Z));
                     }
 
-                    if (this.trackedEntity.ridingEntity != null)
+                    if (this.tracked实体.riding实体 != null)
                     {
-                        playerMP.playerNetServerHandler.sendPacket(new S1BPacketEntityAttach(0, this.trackedEntity, this.trackedEntity.ridingEntity));
+                        playerMP.playerNetServerHandler.sendPacket(new S1BPacketEntityAttach(0, this.tracked实体, this.tracked实体.riding实体));
                     }
 
-                    if (this.trackedEntity instanceof EntityLiving && ((EntityLiving)this.trackedEntity).getLeashedToEntity() != null)
+                    if (this.tracked实体 instanceof 实体Living && ((实体Living)this.tracked实体).getLeashedToEntity() != null)
                     {
-                        playerMP.playerNetServerHandler.sendPacket(new S1BPacketEntityAttach(1, this.trackedEntity, ((EntityLiving)this.trackedEntity).getLeashedToEntity()));
+                        playerMP.playerNetServerHandler.sendPacket(new S1BPacketEntityAttach(1, this.tracked实体, ((实体Living)this.tracked实体).getLeashedToEntity()));
                     }
 
-                    if (this.trackedEntity instanceof EntityLivingBase)
+                    if (this.tracked实体 instanceof 实体LivingBase)
                     {
                         for (int i = 0; i < 5; ++i)
                         {
-                            ItemStack itemstack = ((EntityLivingBase)this.trackedEntity).getEquipmentInSlot(i);
+                            ItemStack itemstack = ((实体LivingBase)this.tracked实体).getEquipmentInSlot(i);
 
                             if (itemstack != null)
                             {
-                                playerMP.playerNetServerHandler.sendPacket(new S04PacketEntityEquipment(this.trackedEntity.getEntityId(), i, itemstack));
+                                playerMP.playerNetServerHandler.sendPacket(new S04PacketEntityEquipment(this.tracked实体.getEntityId(), i, itemstack));
                             }
                         }
                     }
 
-                    if (this.trackedEntity instanceof EntityPlayer)
+                    if (this.tracked实体 instanceof 实体Player)
                     {
-                        EntityPlayer entityplayer = (EntityPlayer)this.trackedEntity;
+                        实体Player entityplayer = (实体Player)this.tracked实体;
 
                         if (entityplayer.isPlayerSleeping())
                         {
-                            playerMP.playerNetServerHandler.sendPacket(new S0APacketUseBed(entityplayer, new BlockPos(this.trackedEntity)));
+                            playerMP.playerNetServerHandler.sendPacket(new S0APacketUseBed(entityplayer, new 阻止位置(this.tracked实体)));
                         }
                     }
 
-                    if (this.trackedEntity instanceof EntityLivingBase)
+                    if (this.tracked实体 instanceof 实体LivingBase)
                     {
-                        EntityLivingBase entitylivingbase = (EntityLivingBase)this.trackedEntity;
+                        实体LivingBase entitylivingbase = (实体LivingBase)this.tracked实体;
 
                         for (PotionEffect potioneffect : entitylivingbase.getActivePotionEffects())
                         {
-                            playerMP.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(this.trackedEntity.getEntityId(), potioneffect));
+                            playerMP.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(this.tracked实体.getEntityId(), potioneffect));
                         }
                     }
                 }
@@ -431,116 +413,116 @@ public class EntityTrackerEntry
             else if (this.trackingPlayers.contains(playerMP))
             {
                 this.trackingPlayers.remove(playerMP);
-                playerMP.removeEntity(this.trackedEntity);
+                playerMP.removeEntity(this.tracked实体);
             }
         }
     }
 
-    public boolean func_180233_c(EntityPlayerMP playerMP)
+    public boolean func_180233_c(实体PlayerMP playerMP)
     {
-        double d0 = playerMP.posX - (double)(this.encodedPosX / 32);
-        double d1 = playerMP.posZ - (double)(this.encodedPosZ / 32);
-        return d0 >= (double)(-this.trackingDistanceThreshold) && d0 <= (double)this.trackingDistanceThreshold && d1 >= (double)(-this.trackingDistanceThreshold) && d1 <= (double)this.trackingDistanceThreshold && this.trackedEntity.isSpectatedByPlayer(playerMP);
+        double d0 = playerMP.X坐标 - (double)(this.encodedPosX / 32);
+        double d1 = playerMP.Z坐标 - (double)(this.encodedPosZ / 32);
+        return d0 >= (double)(-this.trackingDistanceThreshold) && d0 <= (double)this.trackingDistanceThreshold && d1 >= (double)(-this.trackingDistanceThreshold) && d1 <= (double)this.trackingDistanceThreshold && this.tracked实体.isSpectatedByPlayer(playerMP);
     }
 
-    private boolean isPlayerWatchingThisChunk(EntityPlayerMP playerMP)
+    private boolean isPlayerWatchingThisChunk(实体PlayerMP playerMP)
     {
-        return playerMP.getServerForPlayer().getPlayerManager().isPlayerWatchingChunk(playerMP, this.trackedEntity.chunkCoordX, this.trackedEntity.chunkCoordZ);
+        return playerMP.getServerForPlayer().getPlayerManager().isPlayerWatchingChunk(playerMP, this.tracked实体.chunkCoordX, this.tracked实体.chunkCoordZ);
     }
 
-    public void updatePlayerEntities(List<EntityPlayer> players)
+    public void updatePlayerEntities(List<实体Player> players)
     {
         for (int i = 0; i < players.size(); ++i)
         {
-            this.updatePlayerEntity((EntityPlayerMP)players.get(i));
+            this.updatePlayerEntity((实体PlayerMP)players.get(i));
         }
     }
 
     private Packet createSpawnPacket()
     {
-        if (this.trackedEntity.isDead)
+        if (this.tracked实体.isDead)
         {
             logger.warn("Fetching addPacket for removed entity");
         }
 
-        if (this.trackedEntity instanceof EntityItem)
+        if (this.tracked实体 instanceof 实体Item)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 2, 1);
+            return new S0EPacketSpawnObject(this.tracked实体, 2, 1);
         }
-        else if (this.trackedEntity instanceof EntityPlayerMP)
+        else if (this.tracked实体 instanceof 实体PlayerMP)
         {
-            return new S0CPacketSpawnPlayer((EntityPlayer)this.trackedEntity);
+            return new S0CPacketSpawnPlayer((实体Player)this.tracked实体);
         }
-        else if (this.trackedEntity instanceof EntityMinecart)
+        else if (this.tracked实体 instanceof 实体Minecart)
         {
-            EntityMinecart entityminecart = (EntityMinecart)this.trackedEntity;
-            return new S0EPacketSpawnObject(this.trackedEntity, 10, entityminecart.getMinecartType().getNetworkID());
+            实体Minecart entityminecart = (实体Minecart)this.tracked实体;
+            return new S0EPacketSpawnObject(this.tracked实体, 10, entityminecart.getMinecartType().getNetworkID());
         }
-        else if (this.trackedEntity instanceof EntityBoat)
+        else if (this.tracked实体 instanceof 实体Boat)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 1);
+            return new S0EPacketSpawnObject(this.tracked实体, 1);
         }
-        else if (this.trackedEntity instanceof IAnimals)
+        else if (this.tracked实体 instanceof IAnimals)
         {
-            this.lastHeadMotion = MathHelper.floor_float(this.trackedEntity.getRotationYawHead() * 256.0F / 360.0F);
-            return new S0FPacketSpawnMob((EntityLivingBase)this.trackedEntity);
+            this.lastHeadMotion = MathHelper.floor_float(this.tracked实体.getRotationYawHead() * 256.0F / 360.0F);
+            return new S0FPacketSpawnMob((实体LivingBase)this.tracked实体);
         }
-        else if (this.trackedEntity instanceof EntityFishHook)
+        else if (this.tracked实体 instanceof 实体FishHook)
         {
-            Entity entity1 = ((EntityFishHook)this.trackedEntity).angler;
-            return new S0EPacketSpawnObject(this.trackedEntity, 90, entity1 != null ? entity1.getEntityId() : this.trackedEntity.getEntityId());
+            实体 实体1 = ((实体FishHook)this.tracked实体).angler;
+            return new S0EPacketSpawnObject(this.tracked实体, 90, 实体1 != null ? 实体1.getEntityId() : this.tracked实体.getEntityId());
         }
-        else if (this.trackedEntity instanceof EntityArrow)
+        else if (this.tracked实体 instanceof 实体Arrow)
         {
-            Entity entity = ((EntityArrow)this.trackedEntity).shootingEntity;
-            return new S0EPacketSpawnObject(this.trackedEntity, 60, entity != null ? entity.getEntityId() : this.trackedEntity.getEntityId());
+            实体 实体 = ((实体Arrow)this.tracked实体).shooting实体;
+            return new S0EPacketSpawnObject(this.tracked实体, 60, 实体 != null ? 实体.getEntityId() : this.tracked实体.getEntityId());
         }
-        else if (this.trackedEntity instanceof EntitySnowball)
+        else if (this.tracked实体 instanceof 实体Snowball)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 61);
+            return new S0EPacketSpawnObject(this.tracked实体, 61);
         }
-        else if (this.trackedEntity instanceof EntityPotion)
+        else if (this.tracked实体 instanceof 实体Potion)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 73, ((EntityPotion)this.trackedEntity).getPotionDamage());
+            return new S0EPacketSpawnObject(this.tracked实体, 73, ((实体Potion)this.tracked实体).getPotionDamage());
         }
-        else if (this.trackedEntity instanceof EntityExpBottle)
+        else if (this.tracked实体 instanceof 实体ExpBottle)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 75);
+            return new S0EPacketSpawnObject(this.tracked实体, 75);
         }
-        else if (this.trackedEntity instanceof EntityEnderPearl)
+        else if (this.tracked实体 instanceof 实体EnderPearl)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 65);
+            return new S0EPacketSpawnObject(this.tracked实体, 65);
         }
-        else if (this.trackedEntity instanceof EntityEnderEye)
+        else if (this.tracked实体 instanceof 实体EnderEye)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 72);
+            return new S0EPacketSpawnObject(this.tracked实体, 72);
         }
-        else if (this.trackedEntity instanceof EntityFireworkRocket)
+        else if (this.tracked实体 instanceof 实体FireworkRocket)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 76);
+            return new S0EPacketSpawnObject(this.tracked实体, 76);
         }
-        else if (this.trackedEntity instanceof EntityFireball)
+        else if (this.tracked实体 instanceof 实体Fireball)
         {
-            EntityFireball entityfireball = (EntityFireball)this.trackedEntity;
+            实体Fireball entityfireball = (实体Fireball)this.tracked实体;
             S0EPacketSpawnObject s0epacketspawnobject2 = null;
             int i = 63;
 
-            if (this.trackedEntity instanceof EntitySmallFireball)
+            if (this.tracked实体 instanceof 实体SmallFireball)
             {
                 i = 64;
             }
-            else if (this.trackedEntity instanceof EntityWitherSkull)
+            else if (this.tracked实体 instanceof 实体WitherSkull)
             {
                 i = 66;
             }
 
             if (entityfireball.shootingEntity != null)
             {
-                s0epacketspawnobject2 = new S0EPacketSpawnObject(this.trackedEntity, i, ((EntityFireball)this.trackedEntity).shootingEntity.getEntityId());
+                s0epacketspawnobject2 = new S0EPacketSpawnObject(this.tracked实体, i, ((实体Fireball)this.tracked实体).shootingEntity.getEntityId());
             }
             else
             {
-                s0epacketspawnobject2 = new S0EPacketSpawnObject(this.trackedEntity, i, 0);
+                s0epacketspawnobject2 = new S0EPacketSpawnObject(this.tracked实体, i, 0);
             }
 
             s0epacketspawnobject2.setSpeedX((int)(entityfireball.accelerationX * 8000.0D));
@@ -548,67 +530,67 @@ public class EntityTrackerEntry
             s0epacketspawnobject2.setSpeedZ((int)(entityfireball.accelerationZ * 8000.0D));
             return s0epacketspawnobject2;
         }
-        else if (this.trackedEntity instanceof EntityEgg)
+        else if (this.tracked实体 instanceof 实体Egg)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 62);
+            return new S0EPacketSpawnObject(this.tracked实体, 62);
         }
-        else if (this.trackedEntity instanceof EntityTNTPrimed)
+        else if (this.tracked实体 instanceof 实体TNTPrimed)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 50);
+            return new S0EPacketSpawnObject(this.tracked实体, 50);
         }
-        else if (this.trackedEntity instanceof EntityEnderCrystal)
+        else if (this.tracked实体 instanceof 实体EnderCrystal)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 51);
+            return new S0EPacketSpawnObject(this.tracked实体, 51);
         }
-        else if (this.trackedEntity instanceof EntityFallingBlock)
+        else if (this.tracked实体 instanceof 实体FallingBlock)
         {
-            EntityFallingBlock entityfallingblock = (EntityFallingBlock)this.trackedEntity;
-            return new S0EPacketSpawnObject(this.trackedEntity, 70, Block.getStateId(entityfallingblock.getBlock()));
+            实体FallingBlock entityfallingblock = (实体FallingBlock)this.tracked实体;
+            return new S0EPacketSpawnObject(this.tracked实体, 70, Block.getStateId(entityfallingblock.getBlock()));
         }
-        else if (this.trackedEntity instanceof EntityArmorStand)
+        else if (this.tracked实体 instanceof 实体ArmorStand)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 78);
+            return new S0EPacketSpawnObject(this.tracked实体, 78);
         }
-        else if (this.trackedEntity instanceof EntityPainting)
+        else if (this.tracked实体 instanceof 实体Painting)
         {
-            return new S10PacketSpawnPainting((EntityPainting)this.trackedEntity);
+            return new S10PacketSpawnPainting((实体Painting)this.tracked实体);
         }
-        else if (this.trackedEntity instanceof EntityItemFrame)
+        else if (this.tracked实体 instanceof 实体ItemFrame)
         {
-            EntityItemFrame entityitemframe = (EntityItemFrame)this.trackedEntity;
-            S0EPacketSpawnObject s0epacketspawnobject1 = new S0EPacketSpawnObject(this.trackedEntity, 71, entityitemframe.facingDirection.getHorizontalIndex());
-            BlockPos blockpos1 = entityitemframe.getHangingPosition();
+            实体ItemFrame entityitemframe = (实体ItemFrame)this.tracked实体;
+            S0EPacketSpawnObject s0epacketspawnobject1 = new S0EPacketSpawnObject(this.tracked实体, 71, entityitemframe.facingDirection.getHorizontalIndex());
+            阻止位置 blockpos1 = entityitemframe.getHangingPosition();
             s0epacketspawnobject1.setX(MathHelper.floor_float((float)(blockpos1.getX() * 32)));
             s0epacketspawnobject1.setY(MathHelper.floor_float((float)(blockpos1.getY() * 32)));
             s0epacketspawnobject1.setZ(MathHelper.floor_float((float)(blockpos1.getZ() * 32)));
             return s0epacketspawnobject1;
         }
-        else if (this.trackedEntity instanceof EntityLeashKnot)
+        else if (this.tracked实体 instanceof 实体LeashKnot)
         {
-            EntityLeashKnot entityleashknot = (EntityLeashKnot)this.trackedEntity;
-            S0EPacketSpawnObject s0epacketspawnobject = new S0EPacketSpawnObject(this.trackedEntity, 77);
-            BlockPos blockpos = entityleashknot.getHangingPosition();
+            实体LeashKnot entityleashknot = (实体LeashKnot)this.tracked实体;
+            S0EPacketSpawnObject s0epacketspawnobject = new S0EPacketSpawnObject(this.tracked实体, 77);
+            阻止位置 blockpos = entityleashknot.getHangingPosition();
             s0epacketspawnobject.setX(MathHelper.floor_float((float)(blockpos.getX() * 32)));
             s0epacketspawnobject.setY(MathHelper.floor_float((float)(blockpos.getY() * 32)));
             s0epacketspawnobject.setZ(MathHelper.floor_float((float)(blockpos.getZ() * 32)));
             return s0epacketspawnobject;
         }
-        else if (this.trackedEntity instanceof EntityXPOrb)
+        else if (this.tracked实体 instanceof 实体XPOrb)
         {
-            return new S11PacketSpawnExperienceOrb((EntityXPOrb)this.trackedEntity);
+            return new S11PacketSpawnExperienceOrb((实体XPOrb)this.tracked实体);
         }
         else
         {
-            throw new IllegalArgumentException("Don\'t know how to add " + this.trackedEntity.getClass() + "!");
+            throw new IllegalArgumentException("Don\'t know how to add " + this.tracked实体.getClass() + "!");
         }
     }
 
-    public void removeTrackedPlayerSymmetric(EntityPlayerMP playerMP)
+    public void removeTrackedPlayerSymmetric(实体PlayerMP playerMP)
     {
         if (this.trackingPlayers.contains(playerMP))
         {
             this.trackingPlayers.remove(playerMP);
-            playerMP.removeEntity(this.trackedEntity);
+            playerMP.removeEntity(this.tracked实体);
         }
     }
 }

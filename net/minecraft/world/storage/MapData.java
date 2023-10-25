@@ -4,14 +4,14 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体ItemFrame;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S34PacketMaps;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec4b;
 import net.minecraft.world.World;
@@ -25,7 +25,7 @@ public class MapData extends WorldSavedData
     public byte scale;
     public byte[] colors = new byte[16384];
     public List<MapData.MapInfo> playersArrayList = Lists.<MapData.MapInfo>newArrayList();
-    private Map<EntityPlayer, MapData.MapInfo> playersHashMap = Maps.<EntityPlayer, MapData.MapInfo>newHashMap();
+    private Map<实体Player, MapData.MapInfo> playersHashMap = Maps.<实体Player, MapData.MapInfo>newHashMap();
     public Map<String, Vec4b> mapDecorations = Maps.<String, Vec4b>newLinkedHashMap();
 
     public MapData(String mapname)
@@ -94,7 +94,7 @@ public class MapData extends WorldSavedData
         nbt.setByteArray("colors", this.colors);
     }
 
-    public void updateVisiblePlayers(EntityPlayer player, ItemStack mapStack)
+    public void updateVisiblePlayers(实体Player player, ItemStack mapStack)
     {
         if (!this.playersHashMap.containsKey(player))
         {
@@ -116,7 +116,7 @@ public class MapData extends WorldSavedData
             {
                 if (!mapStack.isOnItemFrame() && mapdata$mapinfo1.entityplayerObj.dimension == this.dimension)
                 {
-                    this.updateDecorations(0, mapdata$mapinfo1.entityplayerObj.worldObj, mapdata$mapinfo1.entityplayerObj.getName(), mapdata$mapinfo1.entityplayerObj.posX, mapdata$mapinfo1.entityplayerObj.posZ, (double)mapdata$mapinfo1.entityplayerObj.旋转侧滑);
+                    this.updateDecorations(0, mapdata$mapinfo1.entityplayerObj.worldObj, mapdata$mapinfo1.entityplayerObj.getName(), mapdata$mapinfo1.entityplayerObj.X坐标, mapdata$mapinfo1.entityplayerObj.Z坐标, (double)mapdata$mapinfo1.entityplayerObj.旋转侧滑);
                 }
             }
             else
@@ -128,8 +128,8 @@ public class MapData extends WorldSavedData
 
         if (mapStack.isOnItemFrame())
         {
-            EntityItemFrame entityitemframe = mapStack.getItemFrame();
-            BlockPos blockpos = entityitemframe.getHangingPosition();
+            实体ItemFrame entityitemframe = mapStack.getItemFrame();
+            阻止位置 blockpos = entityitemframe.getHangingPosition();
             this.updateDecorations(1, player.worldObj, "frame-" + entityitemframe.getEntityId(), (double)blockpos.getX(), (double)blockpos.getZ(), (double)(entityitemframe.facingDirection.getHorizontalIndex() * 90));
         }
 
@@ -205,7 +205,7 @@ public class MapData extends WorldSavedData
         this.mapDecorations.put(entityIdentifier, new Vec4b((byte)type, b0, b1, b2));
     }
 
-    public Packet getMapPacket(ItemStack mapStack, World worldIn, EntityPlayer player)
+    public Packet getMapPacket(ItemStack mapStack, World worldIn, 实体Player player)
     {
         MapData.MapInfo mapdata$mapinfo = (MapData.MapInfo)this.playersHashMap.get(player);
         return mapdata$mapinfo == null ? null : mapdata$mapinfo.getPacket(mapStack);
@@ -221,7 +221,7 @@ public class MapData extends WorldSavedData
         }
     }
 
-    public MapData.MapInfo getMapInfo(EntityPlayer player)
+    public MapData.MapInfo getMapInfo(实体Player player)
     {
         MapData.MapInfo mapdata$mapinfo = (MapData.MapInfo)this.playersHashMap.get(player);
 
@@ -237,7 +237,7 @@ public class MapData extends WorldSavedData
 
     public class MapInfo
     {
-        public final EntityPlayer entityplayerObj;
+        public final 实体Player entityplayerObj;
         private boolean field_176105_d = true;
         private int minX = 0;
         private int minY = 0;
@@ -246,7 +246,7 @@ public class MapData extends WorldSavedData
         private int field_176109_i;
         public int field_82569_d;
 
-        public MapInfo(EntityPlayer player)
+        public MapInfo(实体Player player)
         {
             this.entityplayerObj = player;
         }

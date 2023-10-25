@@ -7,11 +7,11 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.实体Sheep;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -33,7 +33,7 @@ public class ItemDye extends Item
         return super.getUnlocalizedName() + "." + EnumDyeColor.byDyeDamage(i).getUnlocalizedName();
     }
 
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (!playerIn.canPlayerEdit(pos.offset(side), side, stack))
         {
@@ -93,7 +93,7 @@ public class ItemDye extends Item
         }
     }
 
-    public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target)
+    public static boolean applyBonemeal(ItemStack stack, World worldIn, 阻止位置 target)
     {
         IBlockState iblockstate = worldIn.getBlockState(target);
 
@@ -120,7 +120,7 @@ public class ItemDye extends Item
         return false;
     }
 
-    public static void spawnBonemealParticles(World worldIn, BlockPos pos, int amount)
+    public static void spawnBonemealParticles(World worldIn, 阻止位置 pos, int amount)
     {
         if (amount == 0)
         {
@@ -143,11 +143,11 @@ public class ItemDye extends Item
         }
     }
 
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target)
+    public boolean itemInteractionForEntity(ItemStack stack, 实体Player playerIn, 实体LivingBase target)
     {
-        if (target instanceof EntitySheep)
+        if (target instanceof 实体Sheep)
         {
-            EntitySheep entitysheep = (EntitySheep)target;
+            实体Sheep entitysheep = (实体Sheep)target;
             EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(stack.getMetadata());
 
             if (!entitysheep.getSheared() && entitysheep.getFleeceColor() != enumdyecolor)

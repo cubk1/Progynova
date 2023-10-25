@@ -2,17 +2,15 @@ package net.minecraft.tileentity;
 
 import com.google.common.collect.Lists;
 import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.item.EntityMinecart;
+
+import net.minecraft.entity.*;
+import net.minecraft.entity.item.实体Minecart;
+import net.minecraft.entity.实体;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.WeightedRandom;
@@ -29,7 +27,7 @@ public abstract class MobSpawnerBaseLogic
     private int minSpawnDelay = 200;
     private int maxSpawnDelay = 800;
     private int spawnCount = 4;
-    private Entity cachedEntity;
+    private 实体 cached实体;
     private int maxNearbyEntities = 6;
     private int activatingRangeFromPlayer = 16;
     private int spawnRange = 4;
@@ -58,7 +56,7 @@ public abstract class MobSpawnerBaseLogic
 
     private boolean isActivated()
     {
-        BlockPos blockpos = this.getSpawnerPosition();
+        阻止位置 blockpos = this.getSpawnerPosition();
         return this.getSpawnerWorld().isAnyPlayerWithinRangeAt((double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.5D, (double)blockpos.getZ() + 0.5D, (double)this.activatingRangeFromPlayer);
     }
 
@@ -66,7 +64,7 @@ public abstract class MobSpawnerBaseLogic
     {
         if (this.isActivated())
         {
-            BlockPos blockpos = this.getSpawnerPosition();
+            阻止位置 blockpos = this.getSpawnerPosition();
 
             if (this.getSpawnerWorld().isRemote)
             {
@@ -101,14 +99,14 @@ public abstract class MobSpawnerBaseLogic
 
                 for (int i = 0; i < this.spawnCount; ++i)
                 {
-                    Entity entity = EntityList.createEntityByName(this.getEntityNameToSpawn(), this.getSpawnerWorld());
+                    实体 实体 = EntityList.createEntityByName(this.getEntityNameToSpawn(), this.getSpawnerWorld());
 
-                    if (entity == null)
+                    if (实体 == null)
                     {
                         return;
                     }
 
-                    int j = this.getSpawnerWorld().getEntitiesWithinAABB(entity.getClass(), (new AxisAlignedBB((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), (double)(blockpos.getX() + 1), (double)(blockpos.getY() + 1), (double)(blockpos.getZ() + 1))).expand((double)this.spawnRange, (double)this.spawnRange, (double)this.spawnRange)).size();
+                    int j = this.getSpawnerWorld().getEntitiesWithinAABB(实体.getClass(), (new AxisAlignedBB((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), (double)(blockpos.getX() + 1), (double)(blockpos.getY() + 1), (double)(blockpos.getZ() + 1))).expand((double)this.spawnRange, (double)this.spawnRange, (double)this.spawnRange)).size();
 
                     if (j >= this.maxNearbyEntities)
                     {
@@ -119,12 +117,12 @@ public abstract class MobSpawnerBaseLogic
                     double d0 = (double)blockpos.getX() + (this.getSpawnerWorld().rand.nextDouble() - this.getSpawnerWorld().rand.nextDouble()) * (double)this.spawnRange + 0.5D;
                     double d1 = (double)(blockpos.getY() + this.getSpawnerWorld().rand.nextInt(3) - 1);
                     double d2 = (double)blockpos.getZ() + (this.getSpawnerWorld().rand.nextDouble() - this.getSpawnerWorld().rand.nextDouble()) * (double)this.spawnRange + 0.5D;
-                    EntityLiving entityliving = entity instanceof EntityLiving ? (EntityLiving)entity : null;
-                    entity.setLocationAndAngles(d0, d1, d2, this.getSpawnerWorld().rand.nextFloat() * 360.0F, 0.0F);
+                    实体Living entityliving = 实体 instanceof 实体Living ? (实体Living) 实体 : null;
+                    实体.setLocationAndAngles(d0, d1, d2, this.getSpawnerWorld().rand.nextFloat() * 360.0F, 0.0F);
 
                     if (entityliving == null || entityliving.getCanSpawnHere() && entityliving.isNotColliding())
                     {
-                        this.spawnNewEntity(entity, true);
+                        this.spawnNewEntity(实体, true);
                         this.getSpawnerWorld().playAuxSFX(2004, blockpos, 0);
 
                         if (entityliving != null)
@@ -144,12 +142,12 @@ public abstract class MobSpawnerBaseLogic
         }
     }
 
-    private Entity spawnNewEntity(Entity entityIn, boolean spawn)
+    private 实体 spawnNewEntity(实体 实体In, boolean spawn)
     {
         if (this.getRandomEntity() != null)
         {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
-            entityIn.writeToNBTOptional(nbttagcompound);
+            实体In.writeToNBTOptional(nbttagcompound);
 
             for (String s : this.getRandomEntity().nbtData.getKeySet())
             {
@@ -157,24 +155,24 @@ public abstract class MobSpawnerBaseLogic
                 nbttagcompound.setTag(s, nbtbase.copy());
             }
 
-            entityIn.readFromNBT(nbttagcompound);
+            实体In.readFromNBT(nbttagcompound);
 
-            if (entityIn.worldObj != null && spawn)
+            if (实体In.worldObj != null && spawn)
             {
-                entityIn.worldObj.spawnEntityInWorld(entityIn);
+                实体In.worldObj.spawnEntityInWorld(实体In);
             }
 
             NBTTagCompound nbttagcompound2;
 
-            for (Entity entity = entityIn; nbttagcompound.hasKey("Riding", 10); nbttagcompound = nbttagcompound2)
+            for (实体 实体 = 实体In; nbttagcompound.hasKey("Riding", 10); nbttagcompound = nbttagcompound2)
             {
                 nbttagcompound2 = nbttagcompound.getCompoundTag("Riding");
-                Entity entity1 = EntityList.createEntityByName(nbttagcompound2.getString("id"), entityIn.worldObj);
+                实体 实体1 = EntityList.createEntityByName(nbttagcompound2.getString("id"), 实体In.worldObj);
 
-                if (entity1 != null)
+                if (实体1 != null)
                 {
                     NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                    entity1.writeToNBTOptional(nbttagcompound1);
+                    实体1.writeToNBTOptional(nbttagcompound1);
 
                     for (String s1 : nbttagcompound2.getKeySet())
                     {
@@ -182,31 +180,31 @@ public abstract class MobSpawnerBaseLogic
                         nbttagcompound1.setTag(s1, nbtbase1.copy());
                     }
 
-                    entity1.readFromNBT(nbttagcompound1);
-                    entity1.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.旋转侧滑, entity.rotationPitch);
+                    实体1.readFromNBT(nbttagcompound1);
+                    实体1.setLocationAndAngles(实体.X坐标, 实体.Y坐标, 实体.Z坐标, 实体.旋转侧滑, 实体.rotationPitch);
 
-                    if (entityIn.worldObj != null && spawn)
+                    if (实体In.worldObj != null && spawn)
                     {
-                        entityIn.worldObj.spawnEntityInWorld(entity1);
+                        实体In.worldObj.spawnEntityInWorld(实体1);
                     }
 
-                    entity.mountEntity(entity1);
+                    实体.mountEntity(实体1);
                 }
 
-                entity = entity1;
+                实体 = 实体1;
             }
         }
-        else if (entityIn instanceof EntityLivingBase && entityIn.worldObj != null && spawn)
+        else if (实体In instanceof 实体LivingBase && 实体In.worldObj != null && spawn)
         {
-            if (entityIn instanceof EntityLiving)
+            if (实体In instanceof 实体Living)
             {
-                ((EntityLiving)entityIn).onInitialSpawn(entityIn.worldObj.getDifficultyForLocation(new BlockPos(entityIn)), (IEntityLivingData)null);
+                ((实体Living) 实体In).onInitialSpawn(实体In.worldObj.getDifficultyForLocation(new 阻止位置(实体In)), (IEntityLivingData)null);
             }
 
-            entityIn.worldObj.spawnEntityInWorld(entityIn);
+            实体In.worldObj.spawnEntityInWorld(实体In);
         }
 
-        return entityIn;
+        return 实体In;
     }
 
     private void resetTimer()
@@ -274,7 +272,7 @@ public abstract class MobSpawnerBaseLogic
 
         if (this.getSpawnerWorld() != null)
         {
-            this.cachedEntity = null;
+            this.cached实体 = null;
         }
     }
 
@@ -319,20 +317,20 @@ public abstract class MobSpawnerBaseLogic
         }
     }
 
-    public Entity func_180612_a(World worldIn)
+    public 实体 func_180612_a(World worldIn)
     {
-        if (this.cachedEntity == null)
+        if (this.cached实体 == null)
         {
-            Entity entity = EntityList.createEntityByName(this.getEntityNameToSpawn(), worldIn);
+            实体 实体 = EntityList.createEntityByName(this.getEntityNameToSpawn(), worldIn);
 
-            if (entity != null)
+            if (实体 != null)
             {
-                entity = this.spawnNewEntity(entity, false);
-                this.cachedEntity = entity;
+                实体 = this.spawnNewEntity(实体, false);
+                this.cached实体 = 实体;
             }
         }
 
-        return this.cachedEntity;
+        return this.cached实体;
     }
 
     public boolean setDelayToMin(int delay)
@@ -362,7 +360,7 @@ public abstract class MobSpawnerBaseLogic
 
     public abstract World getSpawnerWorld();
 
-    public abstract BlockPos getSpawnerPosition();
+    public abstract 阻止位置 getSpawnerPosition();
 
     public double getMobRotation()
     {
@@ -397,7 +395,7 @@ public abstract class MobSpawnerBaseLogic
             {
                 if (tagCompound != null)
                 {
-                    type = EntityMinecart.EnumMinecartType.byNetworkID(tagCompound.getInteger("Type")).getName();
+                    type = 实体Minecart.EnumMinecartType.byNetworkID(tagCompound.getInteger("Type")).getName();
                 }
                 else
                 {

@@ -8,13 +8,13 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityDaylightDetector;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumSkyBlock;
@@ -38,17 +38,17 @@ public class BlockDaylightDetector extends BlockContainer
         this.setUnlocalizedName("daylightDetector");
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F);
     }
 
-    public int getWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
+    public int getWeakPower(IBlockAccess worldIn, 阻止位置 pos, IBlockState state, EnumFacing side)
     {
         return ((Integer)state.getValue(POWER)).intValue();
     }
 
-    public void updatePower(World worldIn, BlockPos pos)
+    public void updatePower(World worldIn, 阻止位置 pos)
     {
         if (!worldIn.provider.getHasNoSky())
         {
@@ -72,7 +72,7 @@ public class BlockDaylightDetector extends BlockContainer
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (playerIn.isAllowEdit())
         {
@@ -107,7 +107,7 @@ public class BlockDaylightDetector extends BlockContainer
         return Item.getItemFromBlock(Blocks.daylight_detector);
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Item.getItemFromBlock(Blocks.daylight_detector);
     }

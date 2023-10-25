@@ -1,8 +1,8 @@
 package net.minecraft.client.model;
 
 import net.minecraft.client.我的手艺;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.EntityGuardian;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.monster.实体Guardian;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 
@@ -53,15 +53,15 @@ public class ModelGuardian extends ModelBase
         return 54;
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
         this.guardianBody.render(scale);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        EntityGuardian entityguardian = (EntityGuardian)entityIn;
+        实体Guardian entityguardian = (实体Guardian) 实体In;
         float f = ageInTicks - (float)entityguardian.已存在的刻度;
         this.guardianBody.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
         this.guardianBody.rotateAngleX = headPitch / (180F / (float)Math.PI);
@@ -84,17 +84,17 @@ public class ModelGuardian extends ModelBase
         }
 
         this.guardianEye.rotationPointZ = -8.25F;
-        Entity entity = 我的手艺.得到我的手艺().getRenderViewEntity();
+        实体 实体 = 我的手艺.得到我的手艺().getRenderViewEntity();
 
         if (entityguardian.hasTargetedEntity())
         {
-            entity = entityguardian.getTargetedEntity();
+            实体 = entityguardian.getTargetedEntity();
         }
 
-        if (entity != null)
+        if (实体 != null)
         {
-            Vec3 vec3 = entity.getPositionEyes(0.0F);
-            Vec3 vec31 = entityIn.getPositionEyes(0.0F);
+            Vec3 vec3 = 实体.getPositionEyes(0.0F);
+            Vec3 vec31 = 实体In.getPositionEyes(0.0F);
             double d0 = vec3.yCoord - vec31.yCoord;
 
             if (d0 > 0.0D)
@@ -106,7 +106,7 @@ public class ModelGuardian extends ModelBase
                 this.guardianEye.rotationPointY = 1.0F;
             }
 
-            Vec3 vec32 = entityIn.getLook(0.0F);
+            Vec3 vec32 = 实体In.getLook(0.0F);
             vec32 = new Vec3(vec32.xCoord, 0.0D, vec32.zCoord);
             Vec3 vec33 = (new Vec3(vec31.xCoord - vec3.xCoord, 0.0D, vec31.zCoord - vec3.zCoord)).normalize().rotateYaw(((float)Math.PI / 2F));
             double d1 = vec32.dotProduct(vec33);

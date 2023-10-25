@@ -5,31 +5,32 @@ import com.google.common.base.Predicates;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体Creature;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.util.EntitySelectors;
 
-public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends EntityAITarget
+public class EntityAINearestAttackableTarget<T extends 实体LivingBase> extends EntityAITarget
 {
     protected final Class<T> targetClass;
     private final int targetChance;
     protected final EntityAINearestAttackableTarget.Sorter theNearestAttackableTargetSorter;
     protected Predicate <? super T > targetEntitySelector;
-    protected EntityLivingBase targetEntity;
+    protected 实体LivingBase targetEntity;
 
-    public EntityAINearestAttackableTarget(EntityCreature creature, Class<T> classTarget, boolean checkSight)
+    public EntityAINearestAttackableTarget(实体Creature creature, Class<T> classTarget, boolean checkSight)
     {
         this(creature, classTarget, checkSight, false);
     }
 
-    public EntityAINearestAttackableTarget(EntityCreature creature, Class<T> classTarget, boolean checkSight, boolean onlyNearby)
+    public EntityAINearestAttackableTarget(实体Creature creature, Class<T> classTarget, boolean checkSight, boolean onlyNearby)
     {
         this(creature, classTarget, 10, checkSight, onlyNearby, (Predicate <? super T >)null);
     }
 
-    public EntityAINearestAttackableTarget(EntityCreature creature, Class<T> classTarget, int chance, boolean checkSight, boolean onlyNearby, final Predicate <? super T > targetSelector)
+    public EntityAINearestAttackableTarget(实体Creature creature, Class<T> classTarget, int chance, boolean checkSight, boolean onlyNearby, final Predicate <? super T > targetSelector)
     {
         super(creature, checkSight, onlyNearby);
         this.targetClass = classTarget;
@@ -46,7 +47,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
                 }
                 else
                 {
-                    if (p_apply_1_ instanceof EntityPlayer)
+                    if (p_apply_1_ instanceof 实体Player)
                     {
                         double d0 = EntityAINearestAttackableTarget.this.getTargetDistance();
 
@@ -57,7 +58,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 
                         if (p_apply_1_.isInvisible())
                         {
-                            float f = ((EntityPlayer)p_apply_1_).getArmorVisibility();
+                            float f = ((实体Player)p_apply_1_).getArmorVisibility();
 
                             if (f < 0.1F)
                             {
@@ -97,7 +98,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
             }
             else
             {
-                this.targetEntity = (EntityLivingBase)list.get(0);
+                this.targetEntity = (实体LivingBase)list.get(0);
                 return true;
             }
         }
@@ -109,19 +110,19 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
         super.startExecuting();
     }
 
-    public static class Sorter implements Comparator<Entity>
+    public static class Sorter implements Comparator<实体>
     {
-        private final Entity theEntity;
+        private final 实体 the实体;
 
-        public Sorter(Entity theEntityIn)
+        public Sorter(实体 the实体In)
         {
-            this.theEntity = theEntityIn;
+            this.the实体 = the实体In;
         }
 
-        public int compare(Entity p_compare_1_, Entity p_compare_2_)
+        public int compare(实体 p_compare_1_, 实体 p_compare_2_)
         {
-            double d0 = this.theEntity.getDistanceSqToEntity(p_compare_1_);
-            double d1 = this.theEntity.getDistanceSqToEntity(p_compare_2_);
+            double d0 = this.the实体.getDistanceSqToEntity(p_compare_1_);
+            double d1 = this.the实体.getDistanceSqToEntity(p_compare_2_);
             return d0 < d1 ? -1 : (d0 > d1 ? 1 : 0);
         }
     }

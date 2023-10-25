@@ -3,8 +3,8 @@ package net.minecraft.world.biome;
 import java.util.Random;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockFlower;
-import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.passive.实体Wolf;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -45,7 +45,7 @@ public class BiomeGenForest extends BiomeGenBase
 
         if (this.field_150632_aF == 0)
         {
-            this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWolf.class, 5, 4, 4));
+            this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Wolf.class, 5, 4, 4));
         }
 
         if (this.field_150632_aF == 3)
@@ -79,7 +79,7 @@ public class BiomeGenForest extends BiomeGenBase
         return (WorldGenAbstractTree)(this.field_150632_aF == 3 && rand.nextInt(3) > 0 ? field_150631_aE : (this.field_150632_aF != 2 && rand.nextInt(5) != 0 ? this.worldGeneratorTrees : field_150630_aD));
     }
 
-    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos)
+    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, 阻止位置 pos)
     {
         if (this.field_150632_aF == 1)
         {
@@ -93,7 +93,7 @@ public class BiomeGenForest extends BiomeGenBase
         }
     }
 
-    public void decorate(World worldIn, Random rand, BlockPos pos)
+    public void decorate(World worldIn, Random rand, 阻止位置 pos)
     {
         if (this.field_150632_aF == 3)
         {
@@ -103,7 +103,7 @@ public class BiomeGenForest extends BiomeGenBase
                 {
                     int k = i * 4 + 1 + 8 + rand.nextInt(3);
                     int l = j * 4 + 1 + 8 + rand.nextInt(3);
-                    BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
+                    阻止位置 blockpos = worldIn.getHeight(pos.add(k, 0, l));
 
                     if (rand.nextInt(20) == 0)
                     {
@@ -154,7 +154,7 @@ public class BiomeGenForest extends BiomeGenBase
                 int k2 = rand.nextInt(16) + 8;
                 int i1 = rand.nextInt(worldIn.getHeight(pos.add(j2, 0, k2)).getY() + 32);
 
-                if (DOUBLE_PLANT_GENERATOR.generate(worldIn, rand, new BlockPos(pos.getX() + j2, i1, pos.getZ() + k2)))
+                if (DOUBLE_PLANT_GENERATOR.generate(worldIn, rand, new 阻止位置(pos.getX() + j2, i1, pos.getZ() + k2)))
                 {
                     break;
                 }
@@ -164,7 +164,7 @@ public class BiomeGenForest extends BiomeGenBase
         super.decorate(worldIn, rand, pos);
     }
 
-    public int getGrassColorAtPos(BlockPos pos)
+    public int getGrassColorAtPos(阻止位置 pos)
     {
         int i = super.getGrassColorAtPos(pos);
         return this.field_150632_aF == 3 ? (i & 16711422) + 2634762 >> 1 : i;
@@ -185,7 +185,7 @@ public class BiomeGenForest extends BiomeGenBase
         {
             return this.biomeID != BiomeGenBase.birchForest.biomeID && this.biomeID != BiomeGenBase.birchForestHills.biomeID ? new BiomeGenMutated(p_180277_1_, this)
             {
-                public void decorate(World worldIn, Random rand, BlockPos pos)
+                public void decorate(World worldIn, Random rand, 阻止位置 pos)
                 {
                     this.baseBiome.decorate(worldIn, rand, pos);
                 }

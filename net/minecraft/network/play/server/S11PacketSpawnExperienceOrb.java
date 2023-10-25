@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.item.实体XPOrb;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -19,12 +19,12 @@ public class S11PacketSpawnExperienceOrb implements Packet<INetHandlerPlayClient
     {
     }
 
-    public S11PacketSpawnExperienceOrb(EntityXPOrb xpOrb)
+    public S11PacketSpawnExperienceOrb(实体XPOrb xpOrb)
     {
         this.entityID = xpOrb.getEntityId();
-        this.posX = MathHelper.floor_double(xpOrb.posX * 32.0D);
-        this.posY = MathHelper.floor_double(xpOrb.posY * 32.0D);
-        this.posZ = MathHelper.floor_double(xpOrb.posZ * 32.0D);
+        this.posX = MathHelper.floor_double(xpOrb.X坐标 * 32.0D);
+        this.posY = MathHelper.floor_double(xpOrb.Y坐标 * 32.0D);
+        this.posZ = MathHelper.floor_double(xpOrb.Z坐标 * 32.0D);
         this.xpValue = xpOrb.getXpValue();
     }
 

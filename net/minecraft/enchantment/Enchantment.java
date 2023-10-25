@@ -5,8 +5,8 @@ import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -142,11 +142,11 @@ public abstract class Enchantment
         return this.type.canEnchantItem(stack.getItem());
     }
 
-    public void onEntityDamaged(EntityLivingBase user, Entity target, int level)
+    public void onEntityDamaged(实体LivingBase user, 实体 target, int level)
     {
     }
 
-    public void onUserHurt(EntityLivingBase user, Entity attacker, int level)
+    public void onUserHurt(实体LivingBase user, 实体 attacker, int level)
     {
     }
 

@@ -4,14 +4,14 @@ import java.util.Random;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class BlockDeadBush extends BlockBush
@@ -33,7 +33,7 @@ public class BlockDeadBush extends BlockBush
         return ground == Blocks.sand || ground == Blocks.hardened_clay || ground == Blocks.stained_hardened_clay || ground == Blocks.dirt;
     }
 
-    public boolean isReplaceable(World worldIn, BlockPos pos)
+    public boolean isReplaceable(World worldIn, 阻止位置 pos)
     {
         return true;
     }
@@ -43,7 +43,7 @@ public class BlockDeadBush extends BlockBush
         return null;
     }
 
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World worldIn, 实体Player player, 阻止位置 pos, IBlockState state, TileEntity te)
     {
         if (!worldIn.isRemote && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.shears)
         {

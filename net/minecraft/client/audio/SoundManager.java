@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 import org.apache.logging.log4j.LogManager;
@@ -447,15 +447,15 @@ public class SoundManager
         }
     }
 
-    public void setListener(EntityPlayer player, float p_148615_2_)
+    public void setListener(实体Player player, float p_148615_2_)
     {
         if (this.loaded && player != null)
         {
             float f = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * p_148615_2_;
             float f1 = player.prevRotationYaw + (player.旋转侧滑 - player.prevRotationYaw) * p_148615_2_;
-            double d0 = player.prevPosX + (player.posX - player.prevPosX) * (double)p_148615_2_;
-            double d1 = player.prevPosY + (player.posY - player.prevPosY) * (double)p_148615_2_ + (double)player.getEyeHeight();
-            double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * (double)p_148615_2_;
+            double d0 = player.prevPosX + (player.X坐标 - player.prevPosX) * (double)p_148615_2_;
+            double d1 = player.prevPosY + (player.Y坐标 - player.prevPosY) * (double)p_148615_2_ + (double)player.getEyeHeight();
+            double d2 = player.prevPosZ + (player.Z坐标 - player.prevPosZ) * (double)p_148615_2_;
             float f2 = MathHelper.cos((f1 + 90.0F) * 0.017453292F);
             float f3 = MathHelper.sin((f1 + 90.0F) * 0.017453292F);
             float f4 = MathHelper.cos(-f * 0.017453292F);

@@ -1,6 +1,6 @@
 package net.minecraft.tileentity;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ITickable;
 
@@ -96,7 +96,7 @@ public class TileEntityEnderChest extends TileEntity implements ITickable
         this.worldObj.addBlockEvent(this.pos, Blocks.ender_chest, 1, this.numPlayersUsing);
     }
 
-    public boolean canBeUsed(EntityPlayer p_145971_1_)
+    public boolean canBeUsed(实体Player p_145971_1_)
     {
         return this.worldObj.getTileEntity(this.pos) != this ? false : p_145971_1_.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
     }

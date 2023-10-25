@@ -3,7 +3,7 @@ package net.minecraft.tileentity;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -31,7 +31,7 @@ public class TileEntityNote extends TileEntity
         this.markDirty();
     }
 
-    public void triggerNote(World worldIn, BlockPos p_175108_2_)
+    public void triggerNote(World worldIn, 阻止位置 p_175108_2_)
     {
         if (worldIn.getBlockState(p_175108_2_.up()).getBlock().getMaterial() == Material.air)
         {

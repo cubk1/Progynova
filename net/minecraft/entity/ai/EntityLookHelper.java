@@ -1,13 +1,13 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体Living;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.util.MathHelper;
 
 public class EntityLookHelper
 {
-    private EntityLiving entity;
+    private 实体Living entity;
     private float deltaLookYaw;
     private float deltaLookPitch;
     private boolean isLooking;
@@ -15,25 +15,25 @@ public class EntityLookHelper
     private double posY;
     private double posZ;
 
-    public EntityLookHelper(EntityLiving entitylivingIn)
+    public EntityLookHelper(实体Living entitylivingIn)
     {
         this.entity = entitylivingIn;
     }
 
-    public void setLookPositionWithEntity(Entity entityIn, float deltaYaw, float deltaPitch)
+    public void setLookPositionWithEntity(实体 实体In, float deltaYaw, float deltaPitch)
     {
-        this.posX = entityIn.posX;
+        this.posX = 实体In.X坐标;
 
-        if (entityIn instanceof EntityLivingBase)
+        if (实体In instanceof 实体LivingBase)
         {
-            this.posY = entityIn.posY + (double)entityIn.getEyeHeight();
+            this.posY = 实体In.Y坐标 + (double) 实体In.getEyeHeight();
         }
         else
         {
-            this.posY = (entityIn.getEntityBoundingBox().minY + entityIn.getEntityBoundingBox().maxY) / 2.0D;
+            this.posY = (实体In.getEntityBoundingBox().minY + 实体In.getEntityBoundingBox().maxY) / 2.0D;
         }
 
-        this.posZ = entityIn.posZ;
+        this.posZ = 实体In.Z坐标;
         this.deltaLookYaw = deltaYaw;
         this.deltaLookPitch = deltaPitch;
         this.isLooking = true;
@@ -56,9 +56,9 @@ public class EntityLookHelper
         if (this.isLooking)
         {
             this.isLooking = false;
-            double d0 = this.posX - this.entity.posX;
-            double d1 = this.posY - (this.entity.posY + (double)this.entity.getEyeHeight());
-            double d2 = this.posZ - this.entity.posZ;
+            double d0 = this.posX - this.entity.X坐标;
+            double d1 = this.posY - (this.entity.Y坐标 + (double)this.entity.getEyeHeight());
+            double d2 = this.posZ - this.entity.Z坐标;
             double d3 = (double)MathHelper.sqrt_double(d0 * d0 + d2 * d2);
             float f = (float)(MathHelper.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
             float f1 = (float)(-(MathHelper.atan2(d1, d3) * 180.0D / Math.PI));

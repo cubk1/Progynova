@@ -5,12 +5,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class C08PacketPlayerBlockPlacement implements Packet<INetHandlerPlayServer>
 {
-    private static final BlockPos field_179726_a = new BlockPos(-1, -1, -1);
-    private BlockPos position;
+    private static final 阻止位置 field_179726_a = new 阻止位置(-1, -1, -1);
+    private 阻止位置 position;
     private int placedBlockDirection;
     private ItemStack stack;
     private float facingX;
@@ -26,7 +26,7 @@ public class C08PacketPlayerBlockPlacement implements Packet<INetHandlerPlayServ
         this(field_179726_a, 255, stackIn, 0.0F, 0.0F, 0.0F);
     }
 
-    public C08PacketPlayerBlockPlacement(BlockPos positionIn, int placedBlockDirectionIn, ItemStack stackIn, float facingXIn, float facingYIn, float facingZIn)
+    public C08PacketPlayerBlockPlacement(阻止位置 positionIn, int placedBlockDirectionIn, ItemStack stackIn, float facingXIn, float facingYIn, float facingZIn)
     {
         this.position = positionIn;
         this.placedBlockDirection = placedBlockDirectionIn;
@@ -61,7 +61,7 @@ public class C08PacketPlayerBlockPlacement implements Packet<INetHandlerPlayServ
         handler.processPlayerBlockPlacement(this);
     }
 
-    public BlockPos getPosition()
+    public 阻止位置 getPosition()
     {
         return this.position;
     }

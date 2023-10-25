@@ -2,7 +2,7 @@ package net.minecraft.tileentity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerChest;
@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 
@@ -174,7 +174,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
         return 64;
     }
 
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUseableByPlayer(实体Player player)
     {
         return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
     }
@@ -243,7 +243,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 
     protected TileEntityChest getAdjacentChest(EnumFacing side)
     {
-        BlockPos blockpos = this.pos.offset(side);
+        阻止位置 blockpos = this.pos.offset(side);
 
         if (this.isChestAt(blockpos))
         {
@@ -260,7 +260,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
         return null;
     }
 
-    private boolean isChestAt(BlockPos posIn)
+    private boolean isChestAt(阻止位置 posIn)
     {
         if (this.worldObj == null)
         {
@@ -286,7 +286,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
             this.numPlayersUsing = 0;
             float f = 5.0F;
 
-            for (EntityPlayer entityplayer : this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB((double)((float)i - f), (double)((float)j - f), (double)((float)k - f), (double)((float)(i + 1) + f), (double)((float)(j + 1) + f), (double)((float)(k + 1) + f))))
+            for (实体Player entityplayer : this.worldObj.getEntitiesWithinAABB(实体Player.class, new AxisAlignedBB((double)((float)i - f), (double)((float)j - f), (double)((float)k - f), (double)((float)(i + 1) + f), (double)((float)(j + 1) + f), (double)((float)(k + 1) + f))))
             {
                 if (entityplayer.openContainer instanceof ContainerChest)
                 {
@@ -379,7 +379,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
         }
     }
 
-    public void openInventory(EntityPlayer player)
+    public void openInventory(实体Player player)
     {
         if (!player.isSpectator())
         {
@@ -395,7 +395,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
         }
     }
 
-    public void closeInventory(EntityPlayer player)
+    public void closeInventory(实体Player player)
     {
         if (!player.isSpectator() && this.getBlockType() instanceof BlockChest)
         {
@@ -438,7 +438,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
         return "minecraft:chest";
     }
 
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    public Container createContainer(InventoryPlayer playerInventory, 实体Player playerIn)
     {
         return new ContainerChest(playerInventory, this, playerIn);
     }

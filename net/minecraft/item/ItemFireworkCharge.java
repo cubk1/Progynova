@@ -1,7 +1,7 @@
 package net.minecraft.item;
 
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagIntArray;
@@ -69,7 +69,7 @@ public class ItemFireworkCharge extends Item
         return null;
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, 实体Player playerIn, List<String> tooltip, boolean advanced)
     {
         if (stack.hasTagCompound())
         {

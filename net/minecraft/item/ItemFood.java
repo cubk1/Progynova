@@ -1,7 +1,7 @@
 package net.minecraft.item;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
@@ -32,7 +32,7 @@ public class ItemFood extends Item
         this(amount, 0.6F, isWolfFood);
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, 实体Player playerIn)
     {
         --stack.stackSize;
         playerIn.获取饥饿值().addStats(this, stack);
@@ -42,7 +42,7 @@ public class ItemFood extends Item
         return stack;
     }
 
-    protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
+    protected void onFoodEaten(ItemStack stack, World worldIn, 实体Player player)
     {
         if (!worldIn.isRemote && this.potionId > 0 && worldIn.rand.nextFloat() < this.potionEffectProbability)
         {
@@ -60,7 +60,7 @@ public class ItemFood extends Item
         return EnumAction.EAT;
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         if (playerIn.canEat(this.alwaysEdible))
         {

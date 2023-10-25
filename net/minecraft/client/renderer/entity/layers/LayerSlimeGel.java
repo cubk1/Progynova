@@ -4,9 +4,9 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.RenderSlime;
-import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.实体Slime;
 
-public class LayerSlimeGel implements LayerRenderer<EntitySlime>
+public class LayerSlimeGel implements LayerRenderer<实体Slime>
 {
     private final RenderSlime slimeRenderer;
     private final ModelBase slimeModel = new ModelSlime(0);
@@ -16,7 +16,7 @@ public class LayerSlimeGel implements LayerRenderer<EntitySlime>
         this.slimeRenderer = slimeRendererIn;
     }
 
-    public void doRenderLayer(EntitySlime entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体Slime entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         if (!entitylivingbaseIn.isInvisible())
         {

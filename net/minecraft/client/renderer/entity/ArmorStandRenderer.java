@@ -6,10 +6,10 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerCustomHead;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
-import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.entity.item.实体ArmorStand;
 import net.minecraft.util.图像位置;
 
-public class ArmorStandRenderer extends RendererLivingEntity<EntityArmorStand>
+public class ArmorStandRenderer extends RendererLivingEntity<实体ArmorStand>
 {
     public static final 图像位置 TEXTURE_ARMOR_STAND = new 图像位置("textures/entity/armorstand/wood.png");
 
@@ -29,7 +29,7 @@ public class ArmorStandRenderer extends RendererLivingEntity<EntityArmorStand>
         this.addLayer(new LayerCustomHead(this.getMainModel().bipedHead));
     }
 
-    protected 图像位置 getEntityTexture(EntityArmorStand entity)
+    protected 图像位置 getEntityTexture(实体ArmorStand entity)
     {
         return TEXTURE_ARMOR_STAND;
     }
@@ -39,12 +39,12 @@ public class ArmorStandRenderer extends RendererLivingEntity<EntityArmorStand>
         return (ModelArmorStand)super.getMainModel();
     }
 
-    protected void rotateCorpse(EntityArmorStand bat, float p_77043_2_, float p_77043_3_, float partialTicks)
+    protected void rotateCorpse(实体ArmorStand bat, float p_77043_2_, float p_77043_3_, float partialTicks)
     {
         光照状态经理.辐射(180.0F - p_77043_3_, 0.0F, 1.0F, 0.0F);
     }
 
-    protected boolean canRenderName(EntityArmorStand entity)
+    protected boolean canRenderName(实体ArmorStand entity)
     {
         return entity.getAlwaysRenderNameTag();
     }

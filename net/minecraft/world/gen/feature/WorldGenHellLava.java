@@ -4,7 +4,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class WorldGenHellLava extends WorldGenerator
@@ -18,7 +18,7 @@ public class WorldGenHellLava extends WorldGenerator
         this.field_94524_b = p_i45453_2_;
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         if (worldIn.getBlockState(position.up()).getBlock() != Blocks.netherrack)
         {

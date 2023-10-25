@@ -12,14 +12,14 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSheep;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerSheepWool;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.实体Sheep;
 import net.minecraft.src.Config;
 
 public class ModelAdapterSheepWool extends ModelAdapterQuadruped
 {
     public ModelAdapterSheepWool()
     {
-        super(EntitySheep.class, "sheep_wool", 0.7F);
+        super(实体Sheep.class, "sheep_wool", 0.7F);
     }
 
     public ModelBase makeModel()
@@ -30,7 +30,7 @@ public class ModelAdapterSheepWool extends ModelAdapterQuadruped
     public IEntityRenderer makeEntityRender(ModelBase modelBase, float shadowSize)
     {
         RenderManager rendermanager = 我的手艺.得到我的手艺().getRenderManager();
-        Render render = (Render)rendermanager.getEntityRenderMap().get(EntitySheep.class);
+        Render render = (Render)rendermanager.getEntityRenderMap().get(实体Sheep.class);
 
         if (!(render instanceof RenderSheep))
         {
@@ -45,7 +45,7 @@ public class ModelAdapterSheepWool extends ModelAdapterQuadruped
             }
 
             RenderSheep rendersheep = (RenderSheep)render;
-            List<LayerRenderer<EntitySheep>> list = rendersheep.getLayerRenderers();
+            List<LayerRenderer<实体Sheep>> list = rendersheep.getLayerRenderers();
             Iterator iterator = list.iterator();
 
             while (iterator.hasNext())

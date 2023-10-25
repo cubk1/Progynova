@@ -1,19 +1,19 @@
 package net.minecraft.util;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 
 public class EntityDamageSource extends DamageSource
 {
-    protected Entity damageSourceEntity;
+    protected 实体 damageSource实体;
     private boolean isThornsDamage = false;
 
-    public EntityDamageSource(String damageTypeIn, Entity damageSourceEntityIn)
+    public EntityDamageSource(String damageTypeIn, 实体 damageSource实体In)
     {
         super(damageTypeIn);
-        this.damageSourceEntity = damageSourceEntityIn;
+        this.damageSource实体 = damageSource实体In;
     }
 
     public EntityDamageSource setIsThornsDamage()
@@ -27,21 +27,21 @@ public class EntityDamageSource extends DamageSource
         return this.isThornsDamage;
     }
 
-    public Entity getEntity()
+    public 实体 getEntity()
     {
-        return this.damageSourceEntity;
+        return this.damageSource实体;
     }
 
-    public IChatComponent getDeathMessage(EntityLivingBase entityLivingBaseIn)
+    public IChatComponent getDeathMessage(实体LivingBase entityLivingBaseIn)
     {
-        ItemStack itemstack = this.damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase)this.damageSourceEntity).getHeldItem() : null;
+        ItemStack itemstack = this.damageSource实体 instanceof 实体LivingBase ? ((实体LivingBase)this.damageSource实体).getHeldItem() : null;
         String s = "death.attack." + this.damageType;
         String s1 = s + ".item";
-        return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[] {entityLivingBaseIn.getDisplayName(), this.damageSourceEntity.getDisplayName(), itemstack.getChatComponent()}): new ChatComponentTranslation(s, new Object[] {entityLivingBaseIn.getDisplayName(), this.damageSourceEntity.getDisplayName()});
+        return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[] {entityLivingBaseIn.getDisplayName(), this.damageSource实体.getDisplayName(), itemstack.getChatComponent()}): new ChatComponentTranslation(s, new Object[] {entityLivingBaseIn.getDisplayName(), this.damageSource实体.getDisplayName()});
     }
 
     public boolean isDifficultyScaled()
     {
-        return this.damageSourceEntity != null && this.damageSourceEntity instanceof EntityLivingBase && !(this.damageSourceEntity instanceof EntityPlayer);
+        return this.damageSource实体 != null && this.damageSource实体 instanceof 实体LivingBase && !(this.damageSource实体 instanceof 实体Player);
     }
 }

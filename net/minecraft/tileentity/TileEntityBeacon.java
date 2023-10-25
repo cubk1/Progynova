@@ -7,8 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.实体Sheep;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -24,7 +24,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ITickable;
 
 public class TileEntityBeacon extends TileEntityLockable implements ITickable, IInventory
@@ -70,16 +70,16 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
             int k = this.pos.getY();
             int l = this.pos.getZ();
             AxisAlignedBB axisalignedbb = (new AxisAlignedBB((double)j, (double)k, (double)l, (double)(j + 1), (double)(k + 1), (double)(l + 1))).expand(d0, d0, d0).addCoord(0.0D, (double)this.worldObj.getHeight(), 0.0D);
-            List<EntityPlayer> list = this.worldObj.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+            List<实体Player> list = this.worldObj.<实体Player>getEntitiesWithinAABB(实体Player.class, axisalignedbb);
 
-            for (EntityPlayer entityplayer : list)
+            for (实体Player entityplayer : list)
             {
                 entityplayer.addPotionEffect(new PotionEffect(this.primaryEffect, 180, i, true, true));
             }
 
             if (this.levels >= 4 && this.primaryEffect != this.secondaryEffect && this.secondaryEffect > 0)
             {
-                for (EntityPlayer entityplayer1 : list)
+                for (实体Player entityplayer1 : list)
                 {
                     entityplayer1.addPotionEffect(new PotionEffect(this.secondaryEffect, 180, 0, true, true));
                 }
@@ -96,10 +96,10 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
         this.levels = 0;
         this.beamSegments.clear();
         this.isComplete = true;
-        TileEntityBeacon.BeamSegment tileentitybeacon$beamsegment = new TileEntityBeacon.BeamSegment(EntitySheep.getDyeRgb(EnumDyeColor.WHITE));
+        TileEntityBeacon.BeamSegment tileentitybeacon$beamsegment = new TileEntityBeacon.BeamSegment(实体Sheep.getDyeRgb(EnumDyeColor.WHITE));
         this.beamSegments.add(tileentitybeacon$beamsegment);
         boolean flag = true;
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int i1 = k + 1; i1 < 256; ++i1)
         {
@@ -108,7 +108,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
             if (iblockstate.getBlock() == Blocks.stained_glass)
             {
-                afloat = EntitySheep.getDyeRgb((EnumDyeColor)iblockstate.getValue(BlockStainedGlass.COLOR));
+                afloat = 实体Sheep.getDyeRgb((EnumDyeColor)iblockstate.getValue(BlockStainedGlass.COLOR));
             }
             else
             {
@@ -125,7 +125,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
                     continue;
                 }
 
-                afloat = EntitySheep.getDyeRgb((EnumDyeColor)iblockstate.getValue(BlockStainedGlassPane.COLOR));
+                afloat = 实体Sheep.getDyeRgb((EnumDyeColor)iblockstate.getValue(BlockStainedGlassPane.COLOR));
             }
 
             if (!flag)
@@ -163,7 +163,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
                 {
                     for (int k1 = l - l1; k1 <= l + l1; ++k1)
                     {
-                        Block block = this.worldObj.getBlockState(new BlockPos(j1, i2, k1)).getBlock();
+                        Block block = this.worldObj.getBlockState(new 阻止位置(j1, i2, k1)).getBlock();
 
                         if (block != Blocks.emerald_block && block != Blocks.gold_block && block != Blocks.diamond_block && block != Blocks.iron_block)
                         {
@@ -187,7 +187,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
         if (!this.worldObj.isRemote && this.levels == 4 && i < this.levels)
         {
-            for (EntityPlayer entityplayer : this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, (new AxisAlignedBB((double)j, (double)k, (double)l, (double)j, (double)(k - 4), (double)l)).expand(10.0D, 5.0D, 10.0D)))
+            for (实体Player entityplayer : this.worldObj.getEntitiesWithinAABB(实体Player.class, (new AxisAlignedBB((double)j, (double)k, (double)l, (double)j, (double)(k - 4), (double)l)).expand(10.0D, 5.0D, 10.0D)))
             {
                 entityplayer.triggerAchievement(AchievementList.fullBeacon);
             }
@@ -346,16 +346,16 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
         return 1;
     }
 
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUseableByPlayer(实体Player player)
     {
         return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
-    public void openInventory(EntityPlayer player)
+    public void openInventory(实体Player player)
     {
     }
 
-    public void closeInventory(EntityPlayer player)
+    public void closeInventory(实体Player player)
     {
     }
 
@@ -369,7 +369,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
         return "minecraft:beacon";
     }
 
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    public Container createContainer(InventoryPlayer playerInventory, 实体Player playerIn)
     {
         return new ContainerBeacon(playerInventory, this);
     }

@@ -3,14 +3,12 @@ package net.minecraft.entity.ai;
 import com.google.common.base.Predicate;
 import java.util.Collections;
 import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
+
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.scoreboard.Team;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,29 +16,29 @@ import org.apache.logging.log4j.Logger;
 public class EntityAIFindEntityNearestPlayer extends EntityAIBase
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    private EntityLiving entityLiving;
-    private final Predicate<Entity> predicate;
+    private 实体Living entityLiving;
+    private final Predicate<实体> predicate;
     private final EntityAINearestAttackableTarget.Sorter sorter;
-    private EntityLivingBase entityTarget;
+    private 实体LivingBase entityTarget;
 
-    public EntityAIFindEntityNearestPlayer(EntityLiving entityLivingIn)
+    public EntityAIFindEntityNearestPlayer(实体Living entityLivingIn)
     {
         this.entityLiving = entityLivingIn;
 
-        if (entityLivingIn instanceof EntityCreature)
+        if (entityLivingIn instanceof 实体Creature)
         {
             LOGGER.warn("Use NearestAttackableTargetGoal.class for PathfinerMob mobs!");
         }
 
-        this.predicate = new Predicate<Entity>()
+        this.predicate = new Predicate<实体>()
         {
-            public boolean apply(Entity p_apply_1_)
+            public boolean apply(实体 p_apply_1_)
             {
-                if (!(p_apply_1_ instanceof EntityPlayer))
+                if (!(p_apply_1_ instanceof 实体Player))
                 {
                     return false;
                 }
-                else if (((EntityPlayer)p_apply_1_).capabilities.disableDamage)
+                else if (((实体Player)p_apply_1_).capabilities.disableDamage)
                 {
                     return false;
                 }
@@ -55,7 +53,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
 
                     if (p_apply_1_.isInvisible())
                     {
-                        float f = ((EntityPlayer)p_apply_1_).getArmorVisibility();
+                        float f = ((实体Player)p_apply_1_).getArmorVisibility();
 
                         if (f < 0.1F)
                         {
@@ -65,7 +63,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
                         d0 *= (double)(0.7F * f);
                     }
 
-                    return (double)p_apply_1_.getDistanceToEntity(EntityAIFindEntityNearestPlayer.this.entityLiving) > d0 ? false : EntityAITarget.isSuitableTarget(EntityAIFindEntityNearestPlayer.this.entityLiving, (EntityLivingBase)p_apply_1_, false, true);
+                    return (double)p_apply_1_.getDistanceToEntity(EntityAIFindEntityNearestPlayer.this.entityLiving) > d0 ? false : EntityAITarget.isSuitableTarget(EntityAIFindEntityNearestPlayer.this.entityLiving, (实体LivingBase)p_apply_1_, false, true);
                 }
             }
         };
@@ -75,7 +73,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
     public boolean shouldExecute()
     {
         double d0 = this.maxTargetRange();
-        List<EntityPlayer> list = this.entityLiving.worldObj.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, this.entityLiving.getEntityBoundingBox().expand(d0, 4.0D, d0), this.predicate);
+        List<实体Player> list = this.entityLiving.worldObj.<实体Player>getEntitiesWithinAABB(实体Player.class, this.entityLiving.getEntityBoundingBox().expand(d0, 4.0D, d0), this.predicate);
         Collections.sort(list, this.sorter);
 
         if (list.isEmpty())
@@ -84,14 +82,14 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
         }
         else
         {
-            this.entityTarget = (EntityLivingBase)list.get(0);
+            this.entityTarget = (实体LivingBase)list.get(0);
             return true;
         }
     }
 
     public boolean continueExecuting()
     {
-        EntityLivingBase entitylivingbase = this.entityLiving.getAttackTarget();
+        实体LivingBase entitylivingbase = this.entityLiving.getAttackTarget();
 
         if (entitylivingbase == null)
         {
@@ -101,7 +99,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
         {
             return false;
         }
-        else if (entitylivingbase instanceof EntityPlayer && ((EntityPlayer)entitylivingbase).capabilities.disableDamage)
+        else if (entitylivingbase instanceof 实体Player && ((实体Player)entitylivingbase).capabilities.disableDamage)
         {
             return false;
         }
@@ -117,7 +115,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
             else
             {
                 double d0 = this.maxTargetRange();
-                return this.entityLiving.getDistanceSqToEntity(entitylivingbase) > d0 * d0 ? false : !(entitylivingbase instanceof EntityPlayerMP) || !((EntityPlayerMP)entitylivingbase).theItemInWorldManager.isCreative();
+                return this.entityLiving.getDistanceSqToEntity(entitylivingbase) > d0 * d0 ? false : !(entitylivingbase instanceof 实体PlayerMP) || !((实体PlayerMP)entitylivingbase).theItemInWorldManager.isCreative();
             }
         }
     }
@@ -130,7 +128,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
 
     public void resetTask()
     {
-        this.entityLiving.setAttackTarget((EntityLivingBase)null);
+        this.entityLiving.setAttackTarget((实体LivingBase)null);
         super.startExecuting();
     }
 

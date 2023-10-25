@@ -1,16 +1,16 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.实体Horse;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class ContainerHorseInventory extends Container
 {
     private IInventory horseInventory;
-    private EntityHorse theHorse;
+    private 实体Horse theHorse;
 
-    public ContainerHorseInventory(IInventory playerInventory, final IInventory horseInventoryIn, final EntityHorse horse, EntityPlayer player)
+    public ContainerHorseInventory(IInventory playerInventory, final IInventory horseInventoryIn, final 实体Horse horse, 实体Player player)
     {
         this.horseInventory = horseInventoryIn;
         this.theHorse = horse;
@@ -28,7 +28,7 @@ public class ContainerHorseInventory extends Container
         {
             public boolean isItemValid(ItemStack stack)
             {
-                return super.isItemValid(stack) && horse.canWearArmor() && EntityHorse.isArmorItem(stack.getItem());
+                return super.isItemValid(stack) && horse.canWearArmor() && 实体Horse.isArmorItem(stack.getItem());
             }
             public boolean canBeHovered()
             {
@@ -61,12 +61,12 @@ public class ContainerHorseInventory extends Container
         }
     }
 
-    public boolean canInteractWith(EntityPlayer playerIn)
+    public boolean canInteractWith(实体Player playerIn)
     {
         return this.horseInventory.isUseableByPlayer(playerIn) && this.theHorse.isEntityAlive() && this.theHorse.getDistanceToEntity(playerIn) < 8.0F;
     }
 
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    public ItemStack transferStackInSlot(实体Player playerIn, int index)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(index);
@@ -115,7 +115,7 @@ public class ContainerHorseInventory extends Container
         return itemstack;
     }
 
-    public void onContainerClosed(EntityPlayer playerIn)
+    public void onContainerClosed(实体Player playerIn)
     {
         super.onContainerClosed(playerIn);
         this.horseInventory.closeInventory(playerIn);

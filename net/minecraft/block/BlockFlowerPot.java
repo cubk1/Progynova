@@ -7,7 +7,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFlowerPot;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.IStringSerializable;
@@ -63,7 +63,7 @@ public class BlockFlowerPot extends BlockContainer
         return false;
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -80,7 +80,7 @@ public class BlockFlowerPot extends BlockContainer
         return 16777215;
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         ItemStack itemstack = playerIn.inventory.getCurrentItem();
 
@@ -131,13 +131,13 @@ public class BlockFlowerPot extends BlockContainer
         return blockIn != Blocks.yellow_flower && blockIn != Blocks.red_flower && blockIn != Blocks.cactus && blockIn != Blocks.brown_mushroom && blockIn != Blocks.red_mushroom && blockIn != Blocks.sapling && blockIn != Blocks.deadbush ? blockIn == Blocks.tallgrass && meta == BlockTallGrass.EnumType.FERN.getMeta() : true;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         TileEntityFlowerPot tileentityflowerpot = this.getTileEntity(worldIn, pos);
         return tileentityflowerpot != null && tileentityflowerpot.getFlowerPotItem() != null ? tileentityflowerpot.getFlowerPotItem() : Items.flower_pot;
     }
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         TileEntityFlowerPot tileentityflowerpot = this.getTileEntity(worldIn, pos);
         return tileentityflowerpot != null && tileentityflowerpot.getFlowerPotItem() != null ? tileentityflowerpot.getFlowerPotData() : 0;
@@ -148,12 +148,12 @@ public class BlockFlowerPot extends BlockContainer
         return true;
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return super.canPlaceBlockAt(worldIn, pos) && World.doesBlockHaveSolidTopSurface(worldIn, pos.down());
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (!World.doesBlockHaveSolidTopSurface(worldIn, pos.down()))
         {
@@ -162,7 +162,7 @@ public class BlockFlowerPot extends BlockContainer
         }
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         TileEntityFlowerPot tileentityflowerpot = this.getTileEntity(worldIn, pos);
 
@@ -174,7 +174,7 @@ public class BlockFlowerPot extends BlockContainer
         super.breakBlock(worldIn, pos, state);
     }
 
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    public void onBlockHarvested(World worldIn, 阻止位置 pos, IBlockState state, 实体Player player)
     {
         super.onBlockHarvested(worldIn, pos, state, player);
 
@@ -194,7 +194,7 @@ public class BlockFlowerPot extends BlockContainer
         return Items.flower_pot;
     }
 
-    private TileEntityFlowerPot getTileEntity(World worldIn, BlockPos pos)
+    private TileEntityFlowerPot getTileEntity(World worldIn, 阻止位置 pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         return tileentity instanceof TileEntityFlowerPot ? (TileEntityFlowerPot)tileentity : null;
@@ -280,7 +280,7 @@ public class BlockFlowerPot extends BlockContainer
         return ((Integer)state.getValue(LEGACY_DATA)).intValue();
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         BlockFlowerPot.EnumFlowerType blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.EMPTY;
         TileEntity tileentity = worldIn.getTileEntity(pos);

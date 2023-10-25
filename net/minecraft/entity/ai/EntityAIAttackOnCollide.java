@@ -1,33 +1,33 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体Creature;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.pathfinding.PathEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class EntityAIAttackOnCollide extends EntityAIBase
 {
     World worldObj;
-    protected EntityCreature attacker;
+    protected 实体Creature attacker;
     int attackTick;
     double speedTowardsTarget;
     boolean longMemory;
     PathEntity entityPathEntity;
-    Class <? extends Entity > classTarget;
+    Class <? extends 实体> classTarget;
     private int delayCounter;
     private double targetX;
     private double targetY;
     private double targetZ;
 
-    public EntityAIAttackOnCollide(EntityCreature creature, Class <? extends Entity > targetClass, double speedIn, boolean useLongMemory)
+    public EntityAIAttackOnCollide(实体Creature creature, Class <? extends 实体> targetClass, double speedIn, boolean useLongMemory)
     {
         this(creature, speedIn, useLongMemory);
         this.classTarget = targetClass;
     }
 
-    public EntityAIAttackOnCollide(EntityCreature creature, double speedIn, boolean useLongMemory)
+    public EntityAIAttackOnCollide(实体Creature creature, double speedIn, boolean useLongMemory)
     {
         this.attacker = creature;
         this.worldObj = creature.worldObj;
@@ -38,7 +38,7 @@ public class EntityAIAttackOnCollide extends EntityAIBase
 
     public boolean shouldExecute()
     {
-        EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
+        实体LivingBase entitylivingbase = this.attacker.getAttackTarget();
 
         if (entitylivingbase == null)
         {
@@ -61,8 +61,8 @@ public class EntityAIAttackOnCollide extends EntityAIBase
 
     public boolean continueExecuting()
     {
-        EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
-        return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (!this.longMemory ? !this.attacker.getNavigator().noPath() : this.attacker.isWithinHomeDistanceFromPosition(new BlockPos(entitylivingbase))));
+        实体LivingBase entitylivingbase = this.attacker.getAttackTarget();
+        return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (!this.longMemory ? !this.attacker.getNavigator().noPath() : this.attacker.isWithinHomeDistanceFromPosition(new 阻止位置(entitylivingbase))));
     }
 
     public void startExecuting()
@@ -78,17 +78,17 @@ public class EntityAIAttackOnCollide extends EntityAIBase
 
     public void updateTask()
     {
-        EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
+        实体LivingBase entitylivingbase = this.attacker.getAttackTarget();
         this.attacker.getLookHelper().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
-        double d0 = this.attacker.getDistanceSq(entitylivingbase.posX, entitylivingbase.getEntityBoundingBox().minY, entitylivingbase.posZ);
+        double d0 = this.attacker.getDistanceSq(entitylivingbase.X坐标, entitylivingbase.getEntityBoundingBox().minY, entitylivingbase.Z坐标);
         double d1 = this.func_179512_a(entitylivingbase);
         --this.delayCounter;
 
         if ((this.longMemory || this.attacker.getEntitySenses().canSee(entitylivingbase)) && this.delayCounter <= 0 && (this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D || entitylivingbase.getDistanceSq(this.targetX, this.targetY, this.targetZ) >= 1.0D || this.attacker.getRNG().nextFloat() < 0.05F))
         {
-            this.targetX = entitylivingbase.posX;
+            this.targetX = entitylivingbase.X坐标;
             this.targetY = entitylivingbase.getEntityBoundingBox().minY;
-            this.targetZ = entitylivingbase.posZ;
+            this.targetZ = entitylivingbase.Z坐标;
             this.delayCounter = 4 + this.attacker.getRNG().nextInt(7);
 
             if (d0 > 1024.0D)
@@ -121,7 +121,7 @@ public class EntityAIAttackOnCollide extends EntityAIBase
         }
     }
 
-    protected double func_179512_a(EntityLivingBase attackTarget)
+    protected double func_179512_a(实体LivingBase attackTarget)
     {
         return (double)(this.attacker.width * 2.0F * this.attacker.width * 2.0F + attackTarget.width);
     }

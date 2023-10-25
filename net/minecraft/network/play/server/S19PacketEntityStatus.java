@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -16,9 +16,9 @@ public class S19PacketEntityStatus implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S19PacketEntityStatus(Entity entityIn, byte opCodeIn)
+    public S19PacketEntityStatus(实体 实体In, byte opCodeIn)
     {
-        this.entityId = entityIn.getEntityId();
+        this.entityId = 实体In.getEntityId();
         this.logicOpcode = opCodeIn;
     }
 
@@ -39,7 +39,7 @@ public class S19PacketEntityStatus implements Packet<INetHandlerPlayClient>
         handler.handleEntityStatus(this);
     }
 
-    public Entity getEntity(World worldIn)
+    public 实体 getEntity(World worldIn)
     {
         return worldIn.getEntityByID(this.entityId);
     }

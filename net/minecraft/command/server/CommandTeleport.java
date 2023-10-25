@@ -7,11 +7,11 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
+import net.minecraft.entity.实体;
 import net.minecraft.network.play.server.S08PacketPlayerPosLook;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 
 public class CommandTeleport extends CommandBase
@@ -40,15 +40,15 @@ public class CommandTeleport extends CommandBase
         else
         {
             int i = 0;
-            Entity entity;
+            实体 实体;
 
             if (args.length != 2 && args.length != 4 && args.length != 6)
             {
-                entity = getCommandSenderAsPlayer(sender);
+                实体 = getCommandSenderAsPlayer(sender);
             }
             else
             {
-                entity = getEntity(sender, args[0]);
+                实体 = getEntity(sender, args[0]);
                 i = 1;
             }
 
@@ -58,16 +58,16 @@ public class CommandTeleport extends CommandBase
                 {
                     throw new WrongUsageException("commands.tp.usage", new Object[0]);
                 }
-                else if (entity.worldObj != null)
+                else if (实体.worldObj != null)
                 {
                     int lvt_5_2_ = i + 1;
-                    CommandBase.CoordinateArg commandbase$coordinatearg = parseCoordinate(entity.posX, args[i], true);
-                    CommandBase.CoordinateArg commandbase$coordinatearg1 = parseCoordinate(entity.posY, args[lvt_5_2_++], 0, 0, false);
-                    CommandBase.CoordinateArg commandbase$coordinatearg2 = parseCoordinate(entity.posZ, args[lvt_5_2_++], true);
-                    CommandBase.CoordinateArg commandbase$coordinatearg3 = parseCoordinate((double)entity.旋转侧滑, args.length > lvt_5_2_ ? args[lvt_5_2_++] : "~", false);
-                    CommandBase.CoordinateArg commandbase$coordinatearg4 = parseCoordinate((double)entity.rotationPitch, args.length > lvt_5_2_ ? args[lvt_5_2_] : "~", false);
+                    CommandBase.CoordinateArg commandbase$coordinatearg = parseCoordinate(实体.X坐标, args[i], true);
+                    CommandBase.CoordinateArg commandbase$coordinatearg1 = parseCoordinate(实体.Y坐标, args[lvt_5_2_++], 0, 0, false);
+                    CommandBase.CoordinateArg commandbase$coordinatearg2 = parseCoordinate(实体.Z坐标, args[lvt_5_2_++], true);
+                    CommandBase.CoordinateArg commandbase$coordinatearg3 = parseCoordinate((double) 实体.旋转侧滑, args.length > lvt_5_2_ ? args[lvt_5_2_++] : "~", false);
+                    CommandBase.CoordinateArg commandbase$coordinatearg4 = parseCoordinate((double) 实体.rotationPitch, args.length > lvt_5_2_ ? args[lvt_5_2_] : "~", false);
 
-                    if (entity instanceof EntityPlayerMP)
+                    if (实体 instanceof 实体PlayerMP)
                     {
                         Set<S08PacketPlayerPosLook.EnumFlags> set = EnumSet.<S08PacketPlayerPosLook.EnumFlags>noneOf(S08PacketPlayerPosLook.EnumFlags.class);
 
@@ -116,9 +116,9 @@ public class CommandTeleport extends CommandBase
                             f = MathHelper.wrapAngleTo180_float(f + 180.0F);
                         }
 
-                        entity.mountEntity((Entity)null);
-                        ((EntityPlayerMP)entity).playerNetServerHandler.setPlayerLocation(commandbase$coordinatearg.func_179629_b(), commandbase$coordinatearg1.func_179629_b(), commandbase$coordinatearg2.func_179629_b(), f, f1, set);
-                        entity.setRotationYawHead(f);
+                        实体.mountEntity((实体)null);
+                        ((实体PlayerMP) 实体).playerNetServerHandler.setPlayerLocation(commandbase$coordinatearg.func_179629_b(), commandbase$coordinatearg1.func_179629_b(), commandbase$coordinatearg2.func_179629_b(), f, f1, set);
+                        实体.setRotationYawHead(f);
                     }
                     else
                     {
@@ -131,41 +131,41 @@ public class CommandTeleport extends CommandBase
                             f2 = MathHelper.wrapAngleTo180_float(f2 + 180.0F);
                         }
 
-                        entity.setLocationAndAngles(commandbase$coordinatearg.func_179628_a(), commandbase$coordinatearg1.func_179628_a(), commandbase$coordinatearg2.func_179628_a(), f2, f3);
-                        entity.setRotationYawHead(f2);
+                        实体.setLocationAndAngles(commandbase$coordinatearg.func_179628_a(), commandbase$coordinatearg1.func_179628_a(), commandbase$coordinatearg2.func_179628_a(), f2, f3);
+                        实体.setRotationYawHead(f2);
                     }
 
-                    notifyOperators(sender, this, "commands.tp.success.coordinates", new Object[] {entity.getName(), Double.valueOf(commandbase$coordinatearg.func_179628_a()), Double.valueOf(commandbase$coordinatearg1.func_179628_a()), Double.valueOf(commandbase$coordinatearg2.func_179628_a())});
+                    notifyOperators(sender, this, "commands.tp.success.coordinates", new Object[] {实体.getName(), Double.valueOf(commandbase$coordinatearg.func_179628_a()), Double.valueOf(commandbase$coordinatearg1.func_179628_a()), Double.valueOf(commandbase$coordinatearg2.func_179628_a())});
                 }
             }
             else
             {
-                Entity entity1 = getEntity(sender, args[args.length - 1]);
+                实体 实体1 = getEntity(sender, args[args.length - 1]);
 
-                if (entity1.worldObj != entity.worldObj)
+                if (实体1.worldObj != 实体.worldObj)
                 {
                     throw new CommandException("commands.tp.notSameDimension", new Object[0]);
                 }
                 else
                 {
-                    entity.mountEntity((Entity)null);
+                    实体.mountEntity((实体)null);
 
-                    if (entity instanceof EntityPlayerMP)
+                    if (实体 instanceof 实体PlayerMP)
                     {
-                        ((EntityPlayerMP)entity).playerNetServerHandler.setPlayerLocation(entity1.posX, entity1.posY, entity1.posZ, entity1.旋转侧滑, entity1.rotationPitch);
+                        ((实体PlayerMP) 实体).playerNetServerHandler.setPlayerLocation(实体1.X坐标, 实体1.Y坐标, 实体1.Z坐标, 实体1.旋转侧滑, 实体1.rotationPitch);
                     }
                     else
                     {
-                        entity.setLocationAndAngles(entity1.posX, entity1.posY, entity1.posZ, entity1.旋转侧滑, entity1.rotationPitch);
+                        实体.setLocationAndAngles(实体1.X坐标, 实体1.Y坐标, 实体1.Z坐标, 实体1.旋转侧滑, 实体1.rotationPitch);
                     }
 
-                    notifyOperators(sender, this, "commands.tp.success", new Object[] {entity.getName(), entity1.getName()});
+                    notifyOperators(sender, this, "commands.tp.success", new Object[] {实体.getName(), 实体1.getName()});
                 }
             }
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length != 1 && args.length != 2 ? null : getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames());
     }

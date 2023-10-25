@@ -2,10 +2,10 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.实体Ocelot;
 import net.minecraft.util.图像位置;
 
-public class RenderOcelot extends RenderLiving<EntityOcelot>
+public class RenderOcelot extends RenderLiving<实体Ocelot>
 {
     private static final 图像位置 blackOcelotTextures = new 图像位置("textures/entity/cat/black.png");
     private static final 图像位置 ocelotTextures = new 图像位置("textures/entity/cat/ocelot.png");
@@ -17,7 +17,7 @@ public class RenderOcelot extends RenderLiving<EntityOcelot>
         super(renderManagerIn, modelBaseIn, shadowSizeIn);
     }
 
-    protected 图像位置 getEntityTexture(EntityOcelot entity)
+    protected 图像位置 getEntityTexture(实体Ocelot entity)
     {
         switch (entity.getTameSkin())
         {
@@ -36,7 +36,7 @@ public class RenderOcelot extends RenderLiving<EntityOcelot>
         }
     }
 
-    protected void preRenderCallback(EntityOcelot entitylivingbaseIn, float partialTickTime)
+    protected void preRenderCallback(实体Ocelot entitylivingbaseIn, float partialTickTime)
     {
         super.preRenderCallback(entitylivingbaseIn, partialTickTime);
 

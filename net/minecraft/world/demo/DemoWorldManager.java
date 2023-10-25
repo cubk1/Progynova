@@ -1,10 +1,10 @@
 package net.minecraft.world.demo;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.server.management.ItemInWorldManager;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -78,7 +78,7 @@ public class DemoWorldManager extends ItemInWorldManager
         }
     }
 
-    public void onBlockClicked(BlockPos pos, EnumFacing side)
+    public void onBlockClicked(阻止位置 pos, EnumFacing side)
     {
         if (this.demoTimeExpired)
         {
@@ -90,7 +90,7 @@ public class DemoWorldManager extends ItemInWorldManager
         }
     }
 
-    public void blockRemoving(BlockPos pos)
+    public void blockRemoving(阻止位置 pos)
     {
         if (!this.demoTimeExpired)
         {
@@ -98,12 +98,12 @@ public class DemoWorldManager extends ItemInWorldManager
         }
     }
 
-    public boolean tryHarvestBlock(BlockPos pos)
+    public boolean tryHarvestBlock(阻止位置 pos)
     {
         return this.demoTimeExpired ? false : super.tryHarvestBlock(pos);
     }
 
-    public boolean tryUseItem(EntityPlayer player, World worldIn, ItemStack stack)
+    public boolean tryUseItem(实体Player player, World worldIn, ItemStack stack)
     {
         if (this.demoTimeExpired)
         {
@@ -116,7 +116,7 @@ public class DemoWorldManager extends ItemInWorldManager
         }
     }
 
-    public boolean activateBlockOrUseItem(EntityPlayer player, World worldIn, ItemStack stack, BlockPos pos, EnumFacing side, float offsetX, float offsetY, float offsetZ)
+    public boolean activateBlockOrUseItem(实体Player player, World worldIn, ItemStack stack, 阻止位置 pos, EnumFacing side, float offsetX, float offsetY, float offsetZ)
     {
         if (this.demoTimeExpired)
         {

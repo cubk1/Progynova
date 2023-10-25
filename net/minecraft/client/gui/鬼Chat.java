@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
 import net.minecraft.network.play.client.C14PacketTabComplete;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
@@ -219,7 +219,7 @@ public class 鬼Chat extends 鬼Screen
     {
         if (p_146405_1_.length() >= 1)
         {
-            BlockPos blockpos = null;
+            阻止位置 blockpos = null;
 
             if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
             {

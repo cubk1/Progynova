@@ -6,10 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -193,7 +194,7 @@ public class EnchantmentHelper
         return enchantmentModifierLiving.livingModifier;
     }
 
-    public static void applyThornEnchantments(EntityLivingBase p_151384_0_, Entity p_151384_1_)
+    public static void applyThornEnchantments(实体LivingBase p_151384_0_, 实体 p_151384_1_)
     {
         ENCHANTMENT_ITERATOR_HURT.attacker = p_151384_1_;
         ENCHANTMENT_ITERATOR_HURT.user = p_151384_0_;
@@ -203,13 +204,13 @@ public class EnchantmentHelper
             applyEnchantmentModifierArray(ENCHANTMENT_ITERATOR_HURT, p_151384_0_.getInventory());
         }
 
-        if (p_151384_1_ instanceof EntityPlayer)
+        if (p_151384_1_ instanceof 实体Player)
         {
             applyEnchantmentModifier(ENCHANTMENT_ITERATOR_HURT, p_151384_0_.getHeldItem());
         }
     }
 
-    public static void applyArthropodEnchantments(EntityLivingBase p_151385_0_, Entity p_151385_1_)
+    public static void applyArthropodEnchantments(实体LivingBase p_151385_0_, 实体 p_151385_1_)
     {
         ENCHANTMENT_ITERATOR_DAMAGE.user = p_151385_0_;
         ENCHANTMENT_ITERATOR_DAMAGE.target = p_151385_1_;
@@ -219,68 +220,68 @@ public class EnchantmentHelper
             applyEnchantmentModifierArray(ENCHANTMENT_ITERATOR_DAMAGE, p_151385_0_.getInventory());
         }
 
-        if (p_151385_0_ instanceof EntityPlayer)
+        if (p_151385_0_ instanceof 实体Player)
         {
             applyEnchantmentModifier(ENCHANTMENT_ITERATOR_DAMAGE, p_151385_0_.getHeldItem());
         }
     }
 
-    public static int getKnockbackModifier(EntityLivingBase player)
+    public static int getKnockbackModifier(实体LivingBase player)
     {
         return getEnchantmentLevel(Enchantment.knockback.effectId, player.getHeldItem());
     }
 
-    public static int getFireAspectModifier(EntityLivingBase player)
+    public static int getFireAspectModifier(实体LivingBase player)
     {
         return getEnchantmentLevel(Enchantment.fireAspect.effectId, player.getHeldItem());
     }
 
-    public static int getRespiration(Entity player)
+    public static int getRespiration(实体 player)
     {
         return getMaxEnchantmentLevel(Enchantment.respiration.effectId, player.getInventory());
     }
 
-    public static int getDepthStriderModifier(Entity player)
+    public static int getDepthStriderModifier(实体 player)
     {
         return getMaxEnchantmentLevel(Enchantment.depthStrider.effectId, player.getInventory());
     }
 
-    public static int getEfficiencyModifier(EntityLivingBase player)
+    public static int getEfficiencyModifier(实体LivingBase player)
     {
         return getEnchantmentLevel(Enchantment.efficiency.effectId, player.getHeldItem());
     }
 
-    public static boolean getSilkTouchModifier(EntityLivingBase player)
+    public static boolean getSilkTouchModifier(实体LivingBase player)
     {
         return getEnchantmentLevel(Enchantment.silkTouch.effectId, player.getHeldItem()) > 0;
     }
 
-    public static int getFortuneModifier(EntityLivingBase player)
+    public static int getFortuneModifier(实体LivingBase player)
     {
         return getEnchantmentLevel(Enchantment.fortune.effectId, player.getHeldItem());
     }
 
-    public static int getLuckOfSeaModifier(EntityLivingBase player)
+    public static int getLuckOfSeaModifier(实体LivingBase player)
     {
         return getEnchantmentLevel(Enchantment.luckOfTheSea.effectId, player.getHeldItem());
     }
 
-    public static int getLureModifier(EntityLivingBase player)
+    public static int getLureModifier(实体LivingBase player)
     {
         return getEnchantmentLevel(Enchantment.lure.effectId, player.getHeldItem());
     }
 
-    public static int getLootingModifier(EntityLivingBase player)
+    public static int getLootingModifier(实体LivingBase player)
     {
         return getEnchantmentLevel(Enchantment.looting.effectId, player.getHeldItem());
     }
 
-    public static boolean getAquaAffinityModifier(EntityLivingBase player)
+    public static boolean getAquaAffinityModifier(实体LivingBase player)
     {
         return getMaxEnchantmentLevel(Enchantment.aquaAffinity.effectId, player.getInventory()) > 0;
     }
 
-    public static ItemStack getEnchantedItem(Enchantment p_92099_0_, EntityLivingBase p_92099_1_)
+    public static ItemStack getEnchantedItem(Enchantment p_92099_0_, 实体LivingBase p_92099_1_)
     {
         for (ItemStack itemstack : p_92099_1_.getInventory())
         {
@@ -443,8 +444,8 @@ public class EnchantmentHelper
 
     static final class DamageIterator implements EnchantmentHelper.IModifier
     {
-        public EntityLivingBase user;
-        public Entity target;
+        public 实体LivingBase user;
+        public 实体 target;
 
         private DamageIterator()
         {
@@ -458,8 +459,8 @@ public class EnchantmentHelper
 
     static final class HurtIterator implements EnchantmentHelper.IModifier
     {
-        public EntityLivingBase user;
-        public Entity attacker;
+        public 实体LivingBase user;
+        public 实体 attacker;
 
         private HurtIterator()
         {

@@ -6,7 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class BlockRedstoneLight extends Block
@@ -24,7 +24,7 @@ public class BlockRedstoneLight extends Block
         }
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!worldIn.isRemote)
         {
@@ -39,7 +39,7 @@ public class BlockRedstoneLight extends Block
         }
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (!worldIn.isRemote)
         {
@@ -54,7 +54,7 @@ public class BlockRedstoneLight extends Block
         }
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (!worldIn.isRemote)
         {
@@ -70,7 +70,7 @@ public class BlockRedstoneLight extends Block
         return Item.getItemFromBlock(Blocks.redstone_lamp);
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Item.getItemFromBlock(Blocks.redstone_lamp);
     }

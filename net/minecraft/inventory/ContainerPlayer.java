@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -14,9 +14,9 @@ public class ContainerPlayer extends Container
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 2, 2);
     public IInventory craftResult = new InventoryCraftResult();
     public boolean isLocalWorld;
-    private final EntityPlayer thePlayer;
+    private final 实体Player thePlayer;
 
-    public ContainerPlayer(final InventoryPlayer playerInventory, boolean localWorld, EntityPlayer player)
+    public ContainerPlayer(final InventoryPlayer playerInventory, boolean localWorld, 实体Player player)
     {
         this.isLocalWorld = localWorld;
         this.thePlayer = player;
@@ -71,7 +71,7 @@ public class ContainerPlayer extends Container
         this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.thePlayer.worldObj));
     }
 
-    public void onContainerClosed(EntityPlayer playerIn)
+    public void onContainerClosed(实体Player playerIn)
     {
         super.onContainerClosed(playerIn);
 
@@ -88,12 +88,12 @@ public class ContainerPlayer extends Container
         this.craftResult.setInventorySlotContents(0, (ItemStack)null);
     }
 
-    public boolean canInteractWith(EntityPlayer playerIn)
+    public boolean canInteractWith(实体Player playerIn)
     {
         return true;
     }
 
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    public ItemStack transferStackInSlot(实体Player playerIn, int index)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(index);

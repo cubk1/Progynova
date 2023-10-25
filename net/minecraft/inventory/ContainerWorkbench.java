@@ -1,11 +1,11 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class ContainerWorkbench extends Container
@@ -13,9 +13,9 @@ public class ContainerWorkbench extends Container
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public IInventory craftResult = new InventoryCraftResult();
     private World worldObj;
-    private BlockPos pos;
+    private 阻止位置 pos;
 
-    public ContainerWorkbench(InventoryPlayer playerInventory, World worldIn, BlockPos posIn)
+    public ContainerWorkbench(InventoryPlayer playerInventory, World worldIn, 阻止位置 posIn)
     {
         this.worldObj = worldIn;
         this.pos = posIn;
@@ -50,7 +50,7 @@ public class ContainerWorkbench extends Container
         this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.worldObj));
     }
 
-    public void onContainerClosed(EntityPlayer playerIn)
+    public void onContainerClosed(实体Player playerIn)
     {
         super.onContainerClosed(playerIn);
 
@@ -68,12 +68,12 @@ public class ContainerWorkbench extends Container
         }
     }
 
-    public boolean canInteractWith(EntityPlayer playerIn)
+    public boolean canInteractWith(实体Player playerIn)
     {
         return this.worldObj.getBlockState(this.pos).getBlock() != Blocks.crafting_table ? false : playerIn.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    public ItemStack transferStackInSlot(实体Player playerIn, int index)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(index);

@@ -1,13 +1,14 @@
 package net.optifine;
 
 import java.util.Properties;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.passive.EntityWolf;
+
+import net.minecraft.entity.passive.实体Villager;
+import net.minecraft.entity.passive.实体Wolf;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体Living;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -260,7 +261,7 @@ public class RandomEntityRule
         {
             if (this.heights != null)
             {
-                BlockPos blockpos = randomEntity.getSpawnPosition();
+                阻止位置 blockpos = randomEntity.getSpawnPosition();
 
                 if (blockpos != null && !this.heights.isInRange(blockpos.getY()))
                 {
@@ -301,11 +302,11 @@ public class RandomEntityRule
             if (this.professions != null && randomEntity instanceof RandomEntity)
             {
                 RandomEntity randomentity = (RandomEntity)randomEntity;
-                Entity entity = randomentity.getEntity();
+                实体 实体 = randomentity.getEntity();
 
-                if (entity instanceof EntityVillager)
+                if (实体 instanceof 实体Villager)
                 {
-                    EntityVillager entityvillager = (EntityVillager)entity;
+                    实体Villager entityvillager = (实体Villager) 实体;
                     int j = entityvillager.getProfession();
                     int k = Reflector.getFieldValueInt(entityvillager, Reflector.EntityVillager_careerId, -1);
 
@@ -337,11 +338,11 @@ public class RandomEntityRule
             if (this.collarColors != null && randomEntity instanceof RandomEntity)
             {
                 RandomEntity randomentity1 = (RandomEntity)randomEntity;
-                Entity entity1 = randomentity1.getEntity();
+                实体 实体1 = randomentity1.getEntity();
 
-                if (entity1 instanceof EntityWolf)
+                if (实体1 instanceof 实体Wolf)
                 {
-                    EntityWolf entitywolf = (EntityWolf)entity1;
+                    实体Wolf entitywolf = (实体Wolf) 实体1;
 
                     if (!entitywolf.isTamed())
                     {
@@ -360,11 +361,11 @@ public class RandomEntityRule
             if (this.baby != null && randomEntity instanceof RandomEntity)
             {
                 RandomEntity randomentity2 = (RandomEntity)randomEntity;
-                Entity entity2 = randomentity2.getEntity();
+                实体 实体2 = randomentity2.getEntity();
 
-                if (entity2 instanceof EntityLiving)
+                if (实体2 instanceof 实体Living)
                 {
-                    EntityLiving entityliving = (EntityLiving)entity2;
+                    实体Living entityliving = (实体Living) 实体2;
 
                     if (entityliving.isChild() != this.baby.booleanValue())
                     {

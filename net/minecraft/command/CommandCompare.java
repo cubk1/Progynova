@@ -5,7 +5,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 
@@ -35,9 +35,9 @@ public class CommandCompare extends CommandBase
         else
         {
             sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, 0);
-            BlockPos blockpos = parseBlockPos(sender, args, 0, false);
-            BlockPos blockpos1 = parseBlockPos(sender, args, 3, false);
-            BlockPos blockpos2 = parseBlockPos(sender, args, 6, false);
+            阻止位置 blockpos = parseBlockPos(sender, args, 0, false);
+            阻止位置 blockpos1 = parseBlockPos(sender, args, 3, false);
+            阻止位置 blockpos2 = parseBlockPos(sender, args, 6, false);
             StructureBoundingBox structureboundingbox = new StructureBoundingBox(blockpos, blockpos1);
             StructureBoundingBox structureboundingbox1 = new StructureBoundingBox(blockpos2, blockpos2.add(structureboundingbox.func_175896_b()));
             int i = structureboundingbox.getXSize() * structureboundingbox.getYSize() * structureboundingbox.getZSize();
@@ -60,9 +60,9 @@ public class CommandCompare extends CommandBase
                     }
 
                     i = 0;
-                    BlockPos blockpos3 = new BlockPos(structureboundingbox1.minX - structureboundingbox.minX, structureboundingbox1.minY - structureboundingbox.minY, structureboundingbox1.minZ - structureboundingbox.minZ);
-                    BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-                    BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
+                    阻止位置 blockpos3 = new 阻止位置(structureboundingbox1.minX - structureboundingbox.minX, structureboundingbox1.minY - structureboundingbox.minY, structureboundingbox1.minZ - structureboundingbox.minZ);
+                    阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
+                    阻止位置.Mutable阻止位置 blockpos$mutableblockpos1 = new 阻止位置.Mutable阻止位置();
 
                     for (int j = structureboundingbox.minZ; j <= structureboundingbox.maxZ; ++j)
                     {
@@ -136,7 +136,7 @@ public class CommandCompare extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length > 3 && args.length <= 6 ? func_175771_a(args, 3, pos) : (args.length > 6 && args.length <= 9 ? func_175771_a(args, 6, pos) : (args.length == 10 ? getListOfStringsMatchingLastWord(args, new String[] {"masked", "all"}): null)));
     }

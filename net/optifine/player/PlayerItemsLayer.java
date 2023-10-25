@@ -7,7 +7,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.src.Config;
 
 public class PlayerItemsLayer implements LayerRenderer
@@ -19,12 +19,12 @@ public class PlayerItemsLayer implements LayerRenderer
         this.renderPlayer = renderPlayer;
     }
 
-    public void doRenderLayer(EntityLivingBase entityLiving, float limbSwing, float limbSwingAmount, float partialTicks, float ticksExisted, float headYaw, float rotationPitch, float scale)
+    public void doRenderLayer(实体LivingBase entityLiving, float limbSwing, float limbSwingAmount, float partialTicks, float ticksExisted, float headYaw, float rotationPitch, float scale)
     {
         this.renderEquippedItems(entityLiving, scale, partialTicks);
     }
 
-    protected void renderEquippedItems(EntityLivingBase entityLiving, float scale, float partialTicks)
+    protected void renderEquippedItems(实体LivingBase entityLiving, float scale, float partialTicks)
     {
         if (Config.isShowCapes())
         {

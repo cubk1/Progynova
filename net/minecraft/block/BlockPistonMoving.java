@@ -7,13 +7,13 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityPiston;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -42,7 +42,7 @@ public class BlockPistonMoving extends BlockContainer
         return new TileEntityPiston(state, facing, extending, renderHead);
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -56,19 +56,19 @@ public class BlockPistonMoving extends BlockContainer
         }
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return false;
     }
 
-    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
+    public boolean canPlaceBlockOnSide(World worldIn, 阻止位置 pos, EnumFacing side)
     {
         return false;
     }
 
-    public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockDestroyedByPlayer(World worldIn, 阻止位置 pos, IBlockState state)
     {
-        BlockPos blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
+        阻止位置 blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
         IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
         if (iblockstate.getBlock() instanceof BlockPistonBase && ((Boolean)iblockstate.getValue(BlockPistonBase.EXTENDED)).booleanValue())
@@ -87,7 +87,7 @@ public class BlockPistonMoving extends BlockContainer
         return false;
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (!worldIn.isRemote && worldIn.getTileEntity(pos) == null)
         {
@@ -105,7 +105,7 @@ public class BlockPistonMoving extends BlockContainer
         return null;
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         if (!worldIn.isRemote)
         {
@@ -119,12 +119,12 @@ public class BlockPistonMoving extends BlockContainer
         }
     }
 
-    public MovingObjectPosition collisionRayTrace(World worldIn, BlockPos pos, Vec3 start, Vec3 end)
+    public MovingObjectPosition collisionRayTrace(World worldIn, 阻止位置 pos, Vec3 start, Vec3 end)
     {
         return null;
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (!worldIn.isRemote)
         {
@@ -132,7 +132,7 @@ public class BlockPistonMoving extends BlockContainer
         }
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         TileEntityPiston tileentitypiston = this.getTileEntity(worldIn, pos);
 
@@ -153,7 +153,7 @@ public class BlockPistonMoving extends BlockContainer
         }
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         TileEntityPiston tileentitypiston = this.getTileEntity(worldIn, pos);
 
@@ -191,7 +191,7 @@ public class BlockPistonMoving extends BlockContainer
         }
     }
 
-    public AxisAlignedBB getBoundingBox(World worldIn, BlockPos pos, IBlockState extendingBlock, float progress, EnumFacing direction)
+    public AxisAlignedBB getBoundingBox(World worldIn, 阻止位置 pos, IBlockState extendingBlock, float progress, EnumFacing direction)
     {
         if (extendingBlock.getBlock() != this && extendingBlock.getBlock().getMaterial() != Material.air)
         {
@@ -246,13 +246,13 @@ public class BlockPistonMoving extends BlockContainer
         }
     }
 
-    private TileEntityPiston getTileEntity(IBlockAccess worldIn, BlockPos pos)
+    private TileEntityPiston getTileEntity(IBlockAccess worldIn, 阻止位置 pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         return tileentity instanceof TileEntityPiston ? (TileEntityPiston)tileentity : null;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return null;
     }

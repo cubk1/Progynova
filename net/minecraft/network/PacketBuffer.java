@@ -22,7 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTSizeTracker;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IChatComponent;
 
 public class PacketBuffer extends ByteBuf
@@ -60,12 +60,12 @@ public class PacketBuffer extends ByteBuf
         return abyte;
     }
 
-    public BlockPos readBlockPos()
+    public 阻止位置 readBlockPos()
     {
-        return BlockPos.fromLong(this.readLong());
+        return 阻止位置.fromLong(this.readLong());
     }
 
-    public void writeBlockPos(BlockPos pos)
+    public void writeBlockPos(阻止位置 pos)
     {
         this.writeLong(pos.toLong());
     }

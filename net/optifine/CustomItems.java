@@ -24,7 +24,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -925,7 +925,7 @@ public class CustomItems
         }
     }
 
-    public static boolean renderCustomArmorEffect(EntityLivingBase entity, ItemStack itemStack, ModelBase model, float limbSwing, float prevLimbSwing, float partialTicks, float timeLimbSwing, float yaw, float pitch, float scale)
+    public static boolean renderCustomArmorEffect(实体LivingBase entity, ItemStack itemStack, ModelBase model, float limbSwing, float prevLimbSwing, float partialTicks, float timeLimbSwing, float yaw, float pitch, float scale)
     {
         if (enchantmentProperties == null)
         {

@@ -11,7 +11,7 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.Rotations;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -19,16 +19,16 @@ import org.apache.commons.lang3.ObjectUtils;
 
 public class DataWatcher
 {
-    private final Entity owner;
+    private final 实体 owner;
     private boolean isBlank = true;
     private static final Map < Class<?>, Integer > dataTypes = Maps. < Class<?>, Integer > newHashMap();
     private final Map<Integer, DataWatcher.WatchableObject> watchedObjects = Maps.<Integer, DataWatcher.WatchableObject>newHashMap();
     private boolean objectChanged;
     private ReadWriteLock lock = new ReentrantReadWriteLock();
     public BiomeGenBase spawnBiome = BiomeGenBase.plains;
-    public BlockPos spawnPosition = BlockPos.ORIGIN;
+    public 阻止位置 spawnPosition = 阻止位置.ORIGIN;
 
-    public DataWatcher(Entity owner)
+    public DataWatcher(实体 owner)
     {
         this.owner = owner;
     }
@@ -256,7 +256,7 @@ public class DataWatcher
                 break;
 
             case 6:
-                BlockPos blockpos = (BlockPos)object.getObject();
+                阻止位置 blockpos = (阻止位置)object.getObject();
                 buffer.writeInt(blockpos.getX());
                 buffer.writeInt(blockpos.getY());
                 buffer.writeInt(blockpos.getZ());
@@ -315,7 +315,7 @@ public class DataWatcher
                     int l = buffer.readInt();
                     int i1 = buffer.readInt();
                     int j1 = buffer.readInt();
-                    datawatcher$watchableobject = new DataWatcher.WatchableObject(j, k, new BlockPos(l, i1, j1));
+                    datawatcher$watchableobject = new DataWatcher.WatchableObject(j, k, new 阻止位置(l, i1, j1));
                     break;
 
                 case 7:
@@ -368,7 +368,7 @@ public class DataWatcher
         dataTypes.put(Float.class, Integer.valueOf(3));
         dataTypes.put(String.class, Integer.valueOf(4));
         dataTypes.put(ItemStack.class, Integer.valueOf(5));
-        dataTypes.put(BlockPos.class, Integer.valueOf(6));
+        dataTypes.put(阻止位置.class, Integer.valueOf(6));
         dataTypes.put(Rotations.class, Integer.valueOf(7));
     }
 

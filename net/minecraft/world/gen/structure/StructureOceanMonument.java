@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.Map.Entry;
-import net.minecraft.entity.monster.EntityGuardian;
+import net.minecraft.entity.monster.实体Guardian;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkCoordIntPair;
@@ -78,7 +78,7 @@ public class StructureOceanMonument extends MapGenStructure
 
         if (i == k && j == l)
         {
-            if (this.worldObj.getWorldChunkManager().getBiomeGenerator(new BlockPos(i * 16 + 8, 64, j * 16 + 8), (BiomeGenBase)null) != BiomeGenBase.deepOcean)
+            if (this.worldObj.getWorldChunkManager().getBiomeGenerator(new 阻止位置(i * 16 + 8, 64, j * 16 + 8), (BiomeGenBase)null) != BiomeGenBase.deepOcean)
             {
                 return false;
             }
@@ -106,7 +106,7 @@ public class StructureOceanMonument extends MapGenStructure
 
     static
     {
-        field_175803_h.add(new BiomeGenBase.SpawnListEntry(EntityGuardian.class, 1, 2, 4));
+        field_175803_h.add(new BiomeGenBase.SpawnListEntry(实体Guardian.class, 1, 2, 4));
     }
 
     public static class StartMonument extends StructureStart

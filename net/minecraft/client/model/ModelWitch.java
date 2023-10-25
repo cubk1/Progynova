@@ -1,6 +1,6 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.MathHelper;
 
 public class ModelWitch extends ModelVillager
@@ -39,14 +39,14 @@ public class ModelWitch extends ModelVillager
         modelrenderer1.addChild(modelrenderer2);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, 实体In);
         this.villagerNose.offsetX = this.villagerNose.offsetY = this.villagerNose.offsetZ = 0.0F;
-        float f = 0.01F * (float)(entityIn.getEntityId() % 10);
-        this.villagerNose.rotateAngleX = MathHelper.sin((float)entityIn.已存在的刻度 * f) * 4.5F * (float)Math.PI / 180.0F;
+        float f = 0.01F * (float)(实体In.getEntityId() % 10);
+        this.villagerNose.rotateAngleX = MathHelper.sin((float) 实体In.已存在的刻度 * f) * 4.5F * (float)Math.PI / 180.0F;
         this.villagerNose.rotateAngleY = 0.0F;
-        this.villagerNose.rotateAngleZ = MathHelper.cos((float)entityIn.已存在的刻度 * f) * 2.5F * (float)Math.PI / 180.0F;
+        this.villagerNose.rotateAngleZ = MathHelper.cos((float) 实体In.已存在的刻度 * f) * 2.5F * (float)Math.PI / 180.0F;
 
         if (this.field_82900_g)
         {

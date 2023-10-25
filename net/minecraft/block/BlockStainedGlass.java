@@ -12,7 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
 
@@ -70,7 +70,7 @@ public class BlockStainedGlass extends BlockBreakable
         return this.getDefaultState().withProperty(COLOR, EnumDyeColor.byMetadata(meta));
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!worldIn.isRemote)
         {
@@ -78,7 +78,7 @@ public class BlockStainedGlass extends BlockBreakable
         }
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!worldIn.isRemote)
         {

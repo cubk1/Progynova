@@ -6,14 +6,14 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelWolf;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderWolf;
-import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.实体Wolf;
 import net.optifine.reflect.Reflector;
 
 public class ModelAdapterWolf extends ModelAdapter
 {
     public ModelAdapterWolf()
     {
-        super(EntityWolf.class, "wolf", 0.5F);
+        super(实体Wolf.class, "wolf", 0.5F);
     }
 
     public ModelBase makeModel()

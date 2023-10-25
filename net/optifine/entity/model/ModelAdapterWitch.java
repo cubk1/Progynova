@@ -6,14 +6,14 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelWitch;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderWitch;
-import net.minecraft.entity.monster.EntityWitch;
+import net.minecraft.entity.monster.实体Witch;
 import net.optifine.reflect.Reflector;
 
 public class ModelAdapterWitch extends ModelAdapter
 {
     public ModelAdapterWitch()
     {
-        super(EntityWitch.class, "witch", 0.5F);
+        super(实体Witch.class, "witch", 0.5F);
     }
 
     public ModelBase makeModel()

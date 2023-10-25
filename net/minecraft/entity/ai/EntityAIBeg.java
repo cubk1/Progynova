@@ -1,20 +1,20 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.实体Wolf;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityAIBeg extends EntityAIBase
 {
-    private EntityWolf theWolf;
-    private EntityPlayer thePlayer;
+    private 实体Wolf theWolf;
+    private 实体Player thePlayer;
     private World worldObject;
     private float minPlayerDistance;
     private int timeoutCounter;
 
-    public EntityAIBeg(EntityWolf wolf, float minDistance)
+    public EntityAIBeg(实体Wolf wolf, float minDistance)
     {
         this.theWolf = wolf;
         this.worldObject = wolf.worldObj;
@@ -47,11 +47,11 @@ public class EntityAIBeg extends EntityAIBase
 
     public void updateTask()
     {
-        this.theWolf.getLookHelper().setLookPosition(this.thePlayer.posX, this.thePlayer.posY + (double)this.thePlayer.getEyeHeight(), this.thePlayer.posZ, 10.0F, (float)this.theWolf.getVerticalFaceSpeed());
+        this.theWolf.getLookHelper().setLookPosition(this.thePlayer.X坐标, this.thePlayer.Y坐标 + (double)this.thePlayer.getEyeHeight(), this.thePlayer.Z坐标, 10.0F, (float)this.theWolf.getVerticalFaceSpeed());
         --this.timeoutCounter;
     }
 
-    private boolean hasPlayerGotBoneInHand(EntityPlayer player)
+    private boolean hasPlayerGotBoneInHand(实体Player player)
     {
         ItemStack itemstack = player.inventory.getCurrentItem();
         return itemstack == null ? false : (!this.theWolf.isTamed() && itemstack.getItem() == Items.bone ? true : this.theWolf.isBreedingItem(itemstack));

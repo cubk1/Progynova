@@ -1,6 +1,6 @@
 package net.minecraft.world;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -68,12 +68,12 @@ public class WorldProviderEnd extends WorldProvider
 
     public boolean canCoordinateBeSpawn(int x, int z)
     {
-        return this.worldObj.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getMaterial().blocksMovement();
+        return this.worldObj.getGroundAboveSeaLevel(new 阻止位置(x, 0, z)).getMaterial().blocksMovement();
     }
 
-    public BlockPos getSpawnCoordinate()
+    public 阻止位置 getSpawnCoordinate()
     {
-        return new BlockPos(100, 50, 0);
+        return new 阻止位置(100, 50, 0);
     }
 
     public int getAverageGroundLevel()

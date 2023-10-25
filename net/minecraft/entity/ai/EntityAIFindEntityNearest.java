@@ -3,37 +3,37 @@ package net.minecraft.entity.ai;
 import com.google.common.base.Predicate;
 import java.util.Collections;
 import java.util.List;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
+
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.实体PlayerMP;
+import net.minecraft.entity.实体Living;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.实体LivingBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class EntityAIFindEntityNearest extends EntityAIBase
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    private EntityLiving mob;
-    private final Predicate<EntityLivingBase> field_179443_c;
+    private 实体Living mob;
+    private final Predicate<实体LivingBase> field_179443_c;
     private final EntityAINearestAttackableTarget.Sorter field_179440_d;
-    private EntityLivingBase target;
-    private Class <? extends EntityLivingBase > field_179439_f;
+    private 实体LivingBase target;
+    private Class <? extends 实体LivingBase> field_179439_f;
 
-    public EntityAIFindEntityNearest(EntityLiving mobIn, Class <? extends EntityLivingBase > p_i45884_2_)
+    public EntityAIFindEntityNearest(实体Living mobIn, Class <? extends 实体LivingBase> p_i45884_2_)
     {
         this.mob = mobIn;
         this.field_179439_f = p_i45884_2_;
 
-        if (mobIn instanceof EntityCreature)
+        if (mobIn instanceof 实体Creature)
         {
             LOGGER.warn("Use NearestAttackableTargetGoal.class for PathfinerMob mobs!");
         }
 
-        this.field_179443_c = new Predicate<EntityLivingBase>()
+        this.field_179443_c = new Predicate<实体LivingBase>()
         {
-            public boolean apply(EntityLivingBase p_apply_1_)
+            public boolean apply(实体LivingBase p_apply_1_)
             {
                 double d0 = EntityAIFindEntityNearest.this.getFollowRange();
 
@@ -51,7 +51,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
     public boolean shouldExecute()
     {
         double d0 = this.getFollowRange();
-        List<EntityLivingBase> list = this.mob.worldObj.<EntityLivingBase>getEntitiesWithinAABB(this.field_179439_f, this.mob.getEntityBoundingBox().expand(d0, 4.0D, d0), this.field_179443_c);
+        List<实体LivingBase> list = this.mob.worldObj.<实体LivingBase>getEntitiesWithinAABB(this.field_179439_f, this.mob.getEntityBoundingBox().expand(d0, 4.0D, d0), this.field_179443_c);
         Collections.sort(list, this.field_179440_d);
 
         if (list.isEmpty())
@@ -60,14 +60,14 @@ public class EntityAIFindEntityNearest extends EntityAIBase
         }
         else
         {
-            this.target = (EntityLivingBase)list.get(0);
+            this.target = (实体LivingBase)list.get(0);
             return true;
         }
     }
 
     public boolean continueExecuting()
     {
-        EntityLivingBase entitylivingbase = this.mob.getAttackTarget();
+        实体LivingBase entitylivingbase = this.mob.getAttackTarget();
 
         if (entitylivingbase == null)
         {
@@ -80,7 +80,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
         else
         {
             double d0 = this.getFollowRange();
-            return this.mob.getDistanceSqToEntity(entitylivingbase) > d0 * d0 ? false : !(entitylivingbase instanceof EntityPlayerMP) || !((EntityPlayerMP)entitylivingbase).theItemInWorldManager.isCreative();
+            return this.mob.getDistanceSqToEntity(entitylivingbase) > d0 * d0 ? false : !(entitylivingbase instanceof 实体PlayerMP) || !((实体PlayerMP)entitylivingbase).theItemInWorldManager.isCreative();
         }
     }
 
@@ -92,7 +92,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
 
     public void resetTask()
     {
-        this.mob.setAttackTarget((EntityLivingBase)null);
+        this.mob.setAttackTarget((实体LivingBase)null);
         super.startExecuting();
     }
 

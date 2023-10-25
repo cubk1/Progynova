@@ -12,8 +12,8 @@ import net.minecraft.client.model.ModelHumanoidHead;
 import net.minecraft.client.model.ModelSkeletonHead;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.resources.DefaultPlayerSkin;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.图像位置;
@@ -86,7 +86,7 @@ public class TileEntitySkullRenderer extends TileEntitySpecialRenderer<TileEntit
                         }
                         else
                         {
-                            UUID uuid = EntityPlayer.getUUID(p_180543_7_);
+                            UUID uuid = 实体Player.getUUID(p_180543_7_);
                             resourcelocation = DefaultPlayerSkin.getDefaultSkin(uuid);
                         }
                     }
@@ -135,7 +135,7 @@ public class TileEntitySkullRenderer extends TileEntitySpecialRenderer<TileEntit
         光照状态经理.enableRescaleNormal();
         光照状态经理.障眼物(-1.0F, -1.0F, 1.0F);
         光照状态经理.启用希腊字母表的第1个字母();
-        modelbase.render((Entity)null, 0.0F, 0.0F, 0.0F, p_180543_5_, 0.0F, f);
+        modelbase.render((实体)null, 0.0F, 0.0F, 0.0F, p_180543_5_, 0.0F, f);
         光照状态经理.流行音乐黑客帝国();
 
         if (p_180543_8_ >= 0)

@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -21,15 +21,15 @@ public class S18PacketEntityTeleport implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S18PacketEntityTeleport(Entity entityIn)
+    public S18PacketEntityTeleport(实体 实体In)
     {
-        this.entityId = entityIn.getEntityId();
-        this.posX = MathHelper.floor_double(entityIn.posX * 32.0D);
-        this.posY = MathHelper.floor_double(entityIn.posY * 32.0D);
-        this.posZ = MathHelper.floor_double(entityIn.posZ * 32.0D);
-        this.yaw = (byte)((int)(entityIn.旋转侧滑 * 256.0F / 360.0F));
-        this.pitch = (byte)((int)(entityIn.rotationPitch * 256.0F / 360.0F));
-        this.onGround = entityIn.onGround;
+        this.entityId = 实体In.getEntityId();
+        this.posX = MathHelper.floor_double(实体In.X坐标 * 32.0D);
+        this.posY = MathHelper.floor_double(实体In.Y坐标 * 32.0D);
+        this.posZ = MathHelper.floor_double(实体In.Z坐标 * 32.0D);
+        this.yaw = (byte)((int)(实体In.旋转侧滑 * 256.0F / 360.0F));
+        this.pitch = (byte)((int)(实体In.rotationPitch * 256.0F / 360.0F));
+        this.onGround = 实体In.onGround;
     }
 
     public S18PacketEntityTeleport(int entityIdIn, int posXIn, int posYIn, int posZIn, byte yawIn, byte pitchIn, boolean onGroundIn)

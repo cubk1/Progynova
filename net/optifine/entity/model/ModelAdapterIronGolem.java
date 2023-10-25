@@ -6,13 +6,13 @@ import net.minecraft.client.model.ModelIronGolem;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderIronGolem;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.实体IronGolem;
 
 public class ModelAdapterIronGolem extends ModelAdapter
 {
     public ModelAdapterIronGolem()
     {
-        super(EntityIronGolem.class, "iron_golem", 0.5F);
+        super(实体IronGolem.class, "iron_golem", 0.5F);
     }
 
     public ModelBase makeModel()

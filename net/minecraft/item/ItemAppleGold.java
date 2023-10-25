@@ -2,7 +2,7 @@ package net.minecraft.item;
 
 import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -25,7 +25,7 @@ public class ItemAppleGold extends ItemFood
         return stack.getMetadata() == 0 ? EnumRarity.RARE : EnumRarity.EPIC;
     }
 
-    protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
+    protected void onFoodEaten(ItemStack stack, World worldIn, 实体Player player)
     {
         if (!worldIn.isRemote)
         {

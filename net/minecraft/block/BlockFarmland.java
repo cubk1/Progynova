@@ -6,13 +6,13 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,7 +30,7 @@ public class BlockFarmland extends Block
         this.setLightOpacity(255);
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return new AxisAlignedBB((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 1), (double)(pos.getZ() + 1));
     }
@@ -45,7 +45,7 @@ public class BlockFarmland extends Block
         return false;
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         int i = ((Integer)state.getValue(MOISTURE)).intValue();
 
@@ -66,13 +66,13 @@ public class BlockFarmland extends Block
         }
     }
 
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
+    public void onFallenUpon(World worldIn, 阻止位置 pos, 实体 实体In, float fallDistance)
     {
-        if (entityIn instanceof EntityLivingBase)
+        if (实体In instanceof 实体LivingBase)
         {
             if (!worldIn.isRemote && worldIn.rand.nextFloat() < fallDistance - 0.5F)
             {
-                if (!(entityIn instanceof EntityPlayer) && !worldIn.getGameRules().getBoolean("mobGriefing"))
+                if (!(实体In instanceof 实体Player) && !worldIn.getGameRules().getBoolean("mobGriefing"))
                 {
                     return;
                 }
@@ -80,19 +80,19 @@ public class BlockFarmland extends Block
                 worldIn.setBlockState(pos, Blocks.dirt.getDefaultState());
             }
 
-            super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+            super.onFallenUpon(worldIn, pos, 实体In, fallDistance);
         }
     }
 
-    private boolean hasCrops(World worldIn, BlockPos pos)
+    private boolean hasCrops(World worldIn, 阻止位置 pos)
     {
         Block block = worldIn.getBlockState(pos.up()).getBlock();
         return block instanceof BlockCrops || block instanceof BlockStem;
     }
 
-    private boolean hasWater(World worldIn, BlockPos pos)
+    private boolean hasWater(World worldIn, 阻止位置 pos)
     {
-        for (BlockPos.MutableBlockPos blockpos$mutableblockpos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
+        for (阻止位置.Mutable阻止位置 blockpos$mutableblockpos : 阻止位置.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
         {
             if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock().getMaterial() == Material.water)
             {
@@ -103,7 +103,7 @@ public class BlockFarmland extends Block
         return false;
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
 
@@ -113,7 +113,7 @@ public class BlockFarmland extends Block
         }
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         switch (side)
         {
@@ -137,7 +137,7 @@ public class BlockFarmland extends Block
         return Blocks.dirt.getItemDropped(Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Item.getItemFromBlock(Blocks.dirt);
     }

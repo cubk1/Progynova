@@ -2,7 +2,7 @@ package net.minecraft.network.play.client;
 
 import java.io.IOException;
 import java.util.UUID;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
@@ -36,7 +36,7 @@ public class C18PacketSpectate implements Packet<INetHandlerPlayServer>
         handler.handleSpectate(this);
     }
 
-    public Entity getEntity(WorldServer worldIn)
+    public 实体 getEntity(WorldServer worldIn)
     {
         return worldIn.getEntityFromUuid(this.id);
     }

@@ -8,16 +8,16 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.item.实体FallingBlock;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerRepair;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
@@ -48,13 +48,13 @@ public class BlockAnvil extends BlockFalling
         return false;
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         EnumFacing enumfacing = placer.getHorizontalFacing().rotateY();
         return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(FACING, enumfacing).withProperty(DAMAGE, Integer.valueOf(meta >> 2));
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (!worldIn.isRemote)
         {
@@ -69,7 +69,7 @@ public class BlockAnvil extends BlockFalling
         return ((Integer)state.getValue(DAMAGE)).intValue();
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         EnumFacing enumfacing = (EnumFacing)worldIn.getBlockState(pos).getValue(FACING);
 
@@ -90,17 +90,17 @@ public class BlockAnvil extends BlockFalling
         list.add(new ItemStack(itemIn, 1, 2));
     }
 
-    protected void onStartFalling(EntityFallingBlock fallingEntity)
+    protected void onStartFalling(实体FallingBlock fallingEntity)
     {
         fallingEntity.setHurtEntities(true);
     }
 
-    public void onEndFalling(World worldIn, BlockPos pos)
+    public void onEndFalling(World worldIn, 阻止位置 pos)
     {
         worldIn.playAuxSFX(1022, pos, 0);
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         return true;
     }
@@ -131,9 +131,9 @@ public class BlockAnvil extends BlockFalling
     public static class Anvil implements IInteractionObject
     {
         private final World world;
-        private final BlockPos position;
+        private final 阻止位置 position;
 
-        public Anvil(World worldIn, BlockPos pos)
+        public Anvil(World worldIn, 阻止位置 pos)
         {
             this.world = worldIn;
             this.position = pos;
@@ -154,7 +154,7 @@ public class BlockAnvil extends BlockFalling
             return new ChatComponentTranslation(Blocks.anvil.getUnlocalizedName() + ".name", new Object[0]);
         }
 
-        public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+        public Container createContainer(InventoryPlayer playerInventory, 实体Player playerIn)
         {
             return new ContainerRepair(playerInventory, this.world, this.position, playerIn);
         }

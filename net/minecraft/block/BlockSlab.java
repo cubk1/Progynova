@@ -6,12 +6,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
@@ -42,7 +42,7 @@ public abstract class BlockSlab extends Block
         return false;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         if (this.isDouble())
         {
@@ -78,10 +78,10 @@ public abstract class BlockSlab extends Block
         }
     }
 
-    public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxesToList(World worldIn, 阻止位置 pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, 实体 colliding实体)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
-        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
     }
 
     public boolean isOpaqueCube()
@@ -89,7 +89,7 @@ public abstract class BlockSlab extends Block
         return this.isDouble();
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         IBlockState iblockstate = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
         return this.isDouble() ? iblockstate : (facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double)hitY <= 0.5D) ? iblockstate : iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.TOP));
@@ -105,7 +105,7 @@ public abstract class BlockSlab extends Block
         return this.isDouble();
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         if (this.isDouble())
         {
@@ -117,7 +117,7 @@ public abstract class BlockSlab extends Block
         }
         else
         {
-            BlockPos blockpos = pos.offset(side.getOpposite());
+            阻止位置 blockpos = pos.offset(side.getOpposite());
             IBlockState iblockstate = worldIn.getBlockState(pos);
             IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
             boolean flag = isSlab(iblockstate.getBlock()) && iblockstate.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP;
@@ -133,7 +133,7 @@ public abstract class BlockSlab extends Block
 
     public abstract String getUnlocalizedName(int meta);
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         return super.getDamageValue(worldIn, pos) & 7;
     }

@@ -6,14 +6,14 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
@@ -30,7 +30,7 @@ public class BlockCocoa extends BlockDirectional implements IGrowable
         this.setTickRandomly(true);
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (!this.canBlockStay(worldIn, pos, state))
         {
@@ -47,7 +47,7 @@ public class BlockCocoa extends BlockDirectional implements IGrowable
         }
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    public boolean canBlockStay(World worldIn, 阻止位置 pos, IBlockState state)
     {
         pos = pos.offset((EnumFacing)state.getValue(FACING));
         IBlockState iblockstate = worldIn.getBlockState(pos);
@@ -64,20 +64,20 @@ public class BlockCocoa extends BlockDirectional implements IGrowable
         return false;
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.getCollisionBoundingBox(worldIn, pos, state);
     }
 
-    public AxisAlignedBB getSelectedBoundingBox(World worldIn, BlockPos pos)
+    public AxisAlignedBB getSelectedBoundingBox(World worldIn, 阻止位置 pos)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.getSelectedBoundingBox(worldIn, pos);
     }
 
     @SuppressWarnings("incomplete-switch")
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         EnumFacing enumfacing = (EnumFacing)iblockstate.getValue(FACING);
@@ -105,13 +105,13 @@ public class BlockCocoa extends BlockDirectional implements IGrowable
         }
     }
 
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase placer, ItemStack stack)
     {
         EnumFacing enumfacing = EnumFacing.fromAngle((double)placer.旋转侧滑);
         worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         if (!facing.getAxis().isHorizontal())
         {
@@ -121,7 +121,7 @@ public class BlockCocoa extends BlockDirectional implements IGrowable
         return this.getDefaultState().withProperty(FACING, facing.getOpposite()).withProperty(AGE, Integer.valueOf(0));
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (!this.canBlockStay(worldIn, pos, state))
         {
@@ -129,13 +129,13 @@ public class BlockCocoa extends BlockDirectional implements IGrowable
         }
     }
 
-    private void dropBlock(World worldIn, BlockPos pos, IBlockState state)
+    private void dropBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         worldIn.setBlockState(pos, Blocks.air.getDefaultState(), 3);
         this.dropBlockAsItem(worldIn, pos, state, 0);
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         int i = ((Integer)state.getValue(AGE)).intValue();
         int j = 1;
@@ -151,27 +151,27 @@ public class BlockCocoa extends BlockDirectional implements IGrowable
         }
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Items.dye;
     }
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         return EnumDyeColor.BROWN.getDyeDamage();
     }
 
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
+    public boolean canGrow(World worldIn, 阻止位置 pos, IBlockState state, boolean isClient)
     {
         return ((Integer)state.getValue(AGE)).intValue() < 2;
     }
 
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    public boolean canUseBonemeal(World worldIn, Random rand, 阻止位置 pos, IBlockState state)
     {
         return true;
     }
 
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    public void grow(World worldIn, Random rand, 阻止位置 pos, IBlockState state)
     {
         worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(((Integer)state.getValue(AGE)).intValue() + 1)), 2);
     }

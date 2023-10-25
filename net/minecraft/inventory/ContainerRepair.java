@@ -6,12 +6,12 @@ import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -23,18 +23,18 @@ public class ContainerRepair extends Container
     private IInventory outputSlot;
     private IInventory inputSlots;
     private World theWorld;
-    private BlockPos selfPosition;
+    private 阻止位置 selfPosition;
     public int maximumCost;
     private int materialCost;
     private String repairedItemName;
-    private final EntityPlayer thePlayer;
+    private final 实体Player thePlayer;
 
-    public ContainerRepair(InventoryPlayer playerInventory, World worldIn, EntityPlayer player)
+    public ContainerRepair(InventoryPlayer playerInventory, World worldIn, 实体Player player)
     {
-        this(playerInventory, worldIn, BlockPos.ORIGIN, player);
+        this(playerInventory, worldIn, 阻止位置.ORIGIN, player);
     }
 
-    public ContainerRepair(InventoryPlayer playerInventory, final World worldIn, final BlockPos blockPosIn, EntityPlayer player)
+    public ContainerRepair(InventoryPlayer playerInventory, final World worldIn, final 阻止位置 阻止位置In, 实体Player player)
     {
         this.outputSlot = new InventoryCraftResult();
         this.inputSlots = new InventoryBasic("Repair", true, 2)
@@ -45,7 +45,7 @@ public class ContainerRepair extends Container
                 ContainerRepair.this.onCraftMatrixChanged(this);
             }
         };
-        this.selfPosition = blockPosIn;
+        this.selfPosition = 阻止位置In;
         this.theWorld = worldIn;
         this.thePlayer = player;
         this.addSlotToContainer(new Slot(this.inputSlots, 0, 27, 47));
@@ -56,11 +56,11 @@ public class ContainerRepair extends Container
             {
                 return false;
             }
-            public boolean canTakeStack(EntityPlayer playerIn)
+            public boolean canTakeStack(实体Player playerIn)
             {
                 return (playerIn.capabilities.isCreativeMode || playerIn.experienceLevel >= ContainerRepair.this.maximumCost) && ContainerRepair.this.maximumCost > 0 && this.getHasStack();
             }
-            public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
+            public void onPickupFromSlot(实体Player playerIn, ItemStack stack)
             {
                 if (!playerIn.capabilities.isCreativeMode)
                 {
@@ -89,7 +89,7 @@ public class ContainerRepair extends Container
                 }
 
                 ContainerRepair.this.maximumCost = 0;
-                IBlockState iblockstate = worldIn.getBlockState(blockPosIn);
+                IBlockState iblockstate = worldIn.getBlockState(阻止位置In);
 
                 if (!playerIn.capabilities.isCreativeMode && !worldIn.isRemote && iblockstate.getBlock() == Blocks.anvil && playerIn.getRNG().nextFloat() < 0.12F)
                 {
@@ -98,18 +98,18 @@ public class ContainerRepair extends Container
 
                     if (l > 2)
                     {
-                        worldIn.setBlockToAir(blockPosIn);
-                        worldIn.playAuxSFX(1020, blockPosIn, 0);
+                        worldIn.setBlockToAir(阻止位置In);
+                        worldIn.playAuxSFX(1020, 阻止位置In, 0);
                     }
                     else
                     {
-                        worldIn.setBlockState(blockPosIn, iblockstate.withProperty(BlockAnvil.DAMAGE, Integer.valueOf(l)), 2);
-                        worldIn.playAuxSFX(1021, blockPosIn, 0);
+                        worldIn.setBlockState(阻止位置In, iblockstate.withProperty(BlockAnvil.DAMAGE, Integer.valueOf(l)), 2);
+                        worldIn.playAuxSFX(1021, 阻止位置In, 0);
                     }
                 }
                 else if (!worldIn.isRemote)
                 {
-                    worldIn.playAuxSFX(1021, blockPosIn, 0);
+                    worldIn.playAuxSFX(1021, 阻止位置In, 0);
                 }
             }
         });
@@ -382,7 +382,7 @@ public class ContainerRepair extends Container
         }
     }
 
-    public void onContainerClosed(EntityPlayer playerIn)
+    public void onContainerClosed(实体Player playerIn)
     {
         super.onContainerClosed(playerIn);
 
@@ -400,12 +400,12 @@ public class ContainerRepair extends Container
         }
     }
 
-    public boolean canInteractWith(EntityPlayer playerIn)
+    public boolean canInteractWith(实体Player playerIn)
     {
         return this.theWorld.getBlockState(this.selfPosition).getBlock() != Blocks.anvil ? false : playerIn.getDistanceSq((double)this.selfPosition.getX() + 0.5D, (double)this.selfPosition.getY() + 0.5D, (double)this.selfPosition.getZ() + 0.5D) <= 64.0D;
     }
 
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    public ItemStack transferStackInSlot(实体Player playerIn, int index)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(index);

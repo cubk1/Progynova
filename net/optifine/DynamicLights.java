@@ -8,22 +8,22 @@ import java.util.Map;
 import java.util.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.item.实体Item;
+import net.minecraft.entity.item.实体TNTPrimed;
+import net.minecraft.entity.monster.实体Creeper;
+import net.minecraft.entity.monster.实体MagmaCube;
+import net.minecraft.entity.projectile.实体Fireball;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.monster.实体Blaze;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 import net.optifine.config.ConnectedParser;
@@ -50,15 +50,15 @@ public class DynamicLights
     private static final int LIGHT_LEVEL_PRISMARINE_CRYSTALS = 8;
     private static boolean initialized;
 
-    public static void entityAdded(Entity entityIn, RenderGlobal renderGlobal)
+    public static void entityAdded(实体 实体In, RenderGlobal renderGlobal)
     {
     }
 
-    public static void entityRemoved(Entity entityIn, RenderGlobal renderGlobal)
+    public static void entityRemoved(实体 实体In, RenderGlobal renderGlobal)
     {
         synchronized (mapDynamicLights)
         {
-            DynamicLight dynamiclight = mapDynamicLights.remove(entityIn.getEntityId());
+            DynamicLight dynamiclight = mapDynamicLights.remove(实体In.getEntityId());
 
             if (dynamiclight != null)
             {
@@ -204,24 +204,24 @@ public class DynamicLights
 
         if (world != null)
         {
-            for (Entity entity : world.getLoadedEntityList())
+            for (实体 实体 : world.getLoadedEntityList())
             {
-                int i = getLightLevel(entity);
+                int i = getLightLevel(实体);
 
                 if (i > 0)
                 {
-                    int j = entity.getEntityId();
+                    int j = 实体.getEntityId();
                     DynamicLight dynamiclight = mapDynamicLights.get(j);
 
                     if (dynamiclight == null)
                     {
-                        dynamiclight = new DynamicLight(entity);
+                        dynamiclight = new DynamicLight(实体);
                         mapDynamicLights.put(j, dynamiclight);
                     }
                 }
                 else
                 {
-                    int k = entity.getEntityId();
+                    int k = 实体.getEntityId();
                     DynamicLight dynamiclight1 = mapDynamicLights.remove(k);
 
                     if (dynamiclight1 != null)
@@ -233,16 +233,16 @@ public class DynamicLights
         }
     }
 
-    public static int getCombinedLight(BlockPos pos, int combinedLight)
+    public static int getCombinedLight(阻止位置 pos, int combinedLight)
     {
         double d0 = getLightLevel(pos);
         combinedLight = getCombinedLight(d0, combinedLight);
         return combinedLight;
     }
 
-    public static int getCombinedLight(Entity entity, int combinedLight)
+    public static int getCombinedLight(实体 实体, int combinedLight)
     {
-        double d0 = (double)getLightLevel(entity);
+        double d0 = (double)getLightLevel(实体);
         combinedLight = getCombinedLight(d0, combinedLight);
         return combinedLight;
     }
@@ -264,7 +264,7 @@ public class DynamicLights
         return combinedLight;
     }
 
-    public static double getLightLevel(BlockPos pos)
+    public static double getLightLevel(阻止位置 pos)
     {
         double d0 = 0.0D;
 
@@ -378,17 +378,17 @@ public class DynamicLights
         }
     }
 
-    public static int getLightLevel(Entity entity)
+    public static int getLightLevel(实体 实体)
     {
-        if (entity == Config.getMinecraft().getRenderViewEntity() && !Config.isDynamicHandLight())
+        if (实体 == Config.getMinecraft().getRenderViewEntity() && !Config.isDynamicHandLight())
         {
             return 0;
         }
         else
         {
-            if (entity instanceof EntityPlayer)
+            if (实体 instanceof 实体Player)
             {
-                EntityPlayer entityplayer = (EntityPlayer)entity;
+                实体Player entityplayer = (实体Player) 实体;
 
                 if (entityplayer.isSpectator())
                 {
@@ -396,7 +396,7 @@ public class DynamicLights
                 }
             }
 
-            if (entity.isBurning())
+            if (实体.isBurning())
             {
                 return 15;
             }
@@ -404,7 +404,7 @@ public class DynamicLights
             {
                 if (!mapEntityLightLevels.isEmpty())
                 {
-                    Integer integer = (Integer)mapEntityLightLevels.get(entity.getClass());
+                    Integer integer = (Integer)mapEntityLightLevels.get(实体.getClass());
 
                     if (integer != null)
                     {
@@ -412,29 +412,29 @@ public class DynamicLights
                     }
                 }
 
-                if (entity instanceof EntityFireball)
+                if (实体 instanceof 实体Fireball)
                 {
                     return 15;
                 }
-                else if (entity instanceof EntityTNTPrimed)
+                else if (实体 instanceof 实体TNTPrimed)
                 {
                     return 15;
                 }
-                else if (entity instanceof EntityBlaze)
+                else if (实体 instanceof 实体Blaze)
                 {
-                    EntityBlaze entityblaze = (EntityBlaze)entity;
+                    实体Blaze entityblaze = (实体Blaze) 实体;
                     return entityblaze.func_70845_n() ? 15 : 10;
                 }
-                else if (entity instanceof EntityMagmaCube)
+                else if (实体 instanceof 实体MagmaCube)
                 {
-                    EntityMagmaCube entitymagmacube = (EntityMagmaCube)entity;
+                    实体MagmaCube entitymagmacube = (实体MagmaCube) 实体;
                     return (double)entitymagmacube.squishFactor > 0.6D ? 13 : 8;
                 }
                 else
                 {
-                    if (entity instanceof EntityCreeper)
+                    if (实体 instanceof 实体Creeper)
                     {
-                        EntityCreeper entitycreeper = (EntityCreeper)entity;
+                        实体Creeper entitycreeper = (实体Creeper) 实体;
 
                         if ((double)entitycreeper.getCreeperFlashIntensity(0.0F) > 0.001D)
                         {
@@ -442,18 +442,18 @@ public class DynamicLights
                         }
                     }
 
-                    if (entity instanceof EntityLivingBase)
+                    if (实体 instanceof 实体LivingBase)
                     {
-                        EntityLivingBase entitylivingbase = (EntityLivingBase)entity;
+                        实体LivingBase entitylivingbase = (实体LivingBase) 实体;
                         ItemStack itemstack2 = entitylivingbase.getHeldItem();
                         int i = getLightLevel(itemstack2);
                         ItemStack itemstack1 = entitylivingbase.getEquipmentInSlot(4);
                         int j = getLightLevel(itemstack1);
                         return Math.max(i, j);
                     }
-                    else if (entity instanceof EntityItem)
+                    else if (实体 instanceof 实体Item)
                     {
-                        EntityItem entityitem = (EntityItem)entity;
+                        实体Item entityitem = (实体Item) 实体;
                         ItemStack itemstack = getItemStack(entityitem);
                         return getLightLevel(itemstack);
                     }
@@ -498,7 +498,7 @@ public class DynamicLights
         }
     }
 
-    public static ItemStack getItemStack(EntityItem entityItem)
+    public static ItemStack getItemStack(实体Item entityItem)
     {
         ItemStack itemstack = entityItem.getDataWatcher().getWatchableObjectItemStack(10);
         return itemstack;

@@ -1,7 +1,7 @@
 package net.minecraft.inventory;
 
 import net.minecraft.entity.IMerchant;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.village.MerchantRecipe;
@@ -9,11 +9,11 @@ import net.minecraft.village.MerchantRecipe;
 public class SlotMerchantResult extends Slot
 {
     private final InventoryMerchant theMerchantInventory;
-    private EntityPlayer thePlayer;
+    private 实体Player thePlayer;
     private int field_75231_g;
     private final IMerchant theMerchant;
 
-    public SlotMerchantResult(EntityPlayer player, IMerchant merchant, InventoryMerchant merchantInventory, int slotIndex, int xPosition, int yPosition)
+    public SlotMerchantResult(实体Player player, IMerchant merchant, InventoryMerchant merchantInventory, int slotIndex, int xPosition, int yPosition)
     {
         super(merchantInventory, slotIndex, xPosition, yPosition);
         this.thePlayer = player;
@@ -48,7 +48,7 @@ public class SlotMerchantResult extends Slot
         this.field_75231_g = 0;
     }
 
-    public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
+    public void onPickupFromSlot(实体Player playerIn, ItemStack stack)
     {
         this.onCrafting(stack);
         MerchantRecipe merchantrecipe = this.theMerchantInventory.getCurrentRecipe();

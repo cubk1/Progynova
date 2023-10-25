@@ -17,12 +17,12 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.boss.BossStatus;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -33,7 +33,7 @@ import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.FoodStats;
 import net.minecraft.util.IChatComponent;
@@ -338,11 +338,11 @@ public class 鬼Ingame extends 鬼
 
     protected void renderTooltip(比例解析 sr, float partialTicks)
     {
-        if (this.mc.getRenderViewEntity() instanceof EntityPlayer)
+        if (this.mc.getRenderViewEntity() instanceof 实体Player)
         {
             光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
             this.mc.得到手感经理().绑定手感(widgetsTexPath);
-            EntityPlayer entityplayer = (EntityPlayer)this.mc.getRenderViewEntity();
+            实体Player entityplayer = (实体Player)this.mc.getRenderViewEntity();
             int i = sr.getScaledWidth() / 2;
             float f = this.zLevel;
             this.zLevel = -90.0F;
@@ -498,7 +498,7 @@ public class 鬼Ingame extends 鬼
         }
         else if (this.mc.玩家控制者.isSpectator())
         {
-            if (this.mc.pointedEntity != null)
+            if (this.mc.pointed实体 != null)
             {
                 return true;
             }
@@ -506,7 +506,7 @@ public class 鬼Ingame extends 鬼
             {
                 if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
                 {
-                    BlockPos blockpos = this.mc.objectMouseOver.getBlockPos();
+                    阻止位置 blockpos = this.mc.objectMouseOver.getBlockPos();
 
                     if (this.mc.宇轩の世界.getTileEntity(blockpos) instanceof IInventory)
                     {
@@ -588,9 +588,9 @@ public class 鬼Ingame extends 鬼
 
     private void renderPlayerStats(比例解析 scaledRes)
     {
-        if (this.mc.getRenderViewEntity() instanceof EntityPlayer)
+        if (this.mc.getRenderViewEntity() instanceof 实体Player)
         {
-            EntityPlayer entityplayer = (EntityPlayer)this.mc.getRenderViewEntity();
+            实体Player entityplayer = (实体Player)this.mc.getRenderViewEntity();
             int i = MathHelper.ceiling_float_int(entityplayer.getHealth());
             boolean flag = this.healthUpdateCounter > (long)this.updateCounter && (this.healthUpdateCounter - (long)this.updateCounter) / 3L % 2L == 1L;
 
@@ -747,9 +747,9 @@ public class 鬼Ingame extends 鬼
                 }
             }
 
-            Entity entity = entityplayer.ridingEntity;
+            实体 实体 = entityplayer.riding实体;
 
-            if (entity == null)
+            if (实体 == null)
             {
                 this.mc.mcProfiler.endStartSection("food");
 
@@ -802,10 +802,10 @@ public class 鬼Ingame extends 鬼
                     }
                 }
             }
-            else if (entity instanceof EntityLivingBase)
+            else if (实体 instanceof 实体LivingBase)
             {
                 this.mc.mcProfiler.endStartSection("mountHealth");
-                EntityLivingBase entitylivingbase = (EntityLivingBase)entity;
+                实体LivingBase entitylivingbase = (实体LivingBase) 实体;
                 int i7 = (int)Math.ceil((double)entitylivingbase.getHealth());
                 float f3 = entitylivingbase.getMaxHealth();
                 int j8 = (int)(f3 + 0.5F) / 2;
@@ -1013,7 +1013,7 @@ public class 鬼Ingame extends 鬼
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    private void renderHotbarItem(int index, int xPos, int yPos, float partialTicks, EntityPlayer player)
+    private void renderHotbarItem(int index, int xPos, int yPos, float partialTicks, 实体Player player)
     {
         ItemStack itemstack = player.inventory.mainInventory[index];
 

@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
@@ -45,7 +45,7 @@ public class S49PacketUpdateEntityNBT implements Packet<INetHandlerPlayClient>
         return this.tagCompound;
     }
 
-    public Entity getEntity(World worldIn)
+    public 实体 getEntity(World worldIn)
     {
         return worldIn.getEntityByID(this.entityId);
     }

@@ -6,13 +6,13 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelVillager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderVillager;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.实体Villager;
 
 public class ModelAdapterVillager extends ModelAdapter
 {
     public ModelAdapterVillager()
     {
-        super(EntityVillager.class, "villager", 0.5F);
+        super(实体Villager.class, "villager", 0.5F);
     }
 
     public ModelBase makeModel()

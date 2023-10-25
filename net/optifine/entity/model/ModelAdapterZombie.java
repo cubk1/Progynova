@@ -7,13 +7,13 @@ import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderZombie;
-import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.实体Zombie;
 
 public class ModelAdapterZombie extends ModelAdapterBiped
 {
     public ModelAdapterZombie()
     {
-        super(EntityZombie.class, "zombie", 0.5F);
+        super(实体Zombie.class, "zombie", 0.5F);
     }
 
     public ModelBase makeModel()

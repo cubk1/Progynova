@@ -8,7 +8,7 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class WorldGenForest extends WorldGenAbstractTree
@@ -23,7 +23,7 @@ public class WorldGenForest extends WorldGenAbstractTree
         this.useExtraRandomHeight = p_i45449_2_;
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         int i = rand.nextInt(3) + 5;
 
@@ -50,7 +50,7 @@ public class WorldGenForest extends WorldGenAbstractTree
                     k = 2;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
                 for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
                 {
@@ -98,7 +98,7 @@ public class WorldGenForest extends WorldGenAbstractTree
 
                                 if (Math.abs(j1) != l2 || Math.abs(l1) != l2 || rand.nextInt(2) != 0 && k2 != 0)
                                 {
-                                    BlockPos blockpos = new BlockPos(i3, i2, k1);
+                                    阻止位置 blockpos = new 阻止位置(i3, i2, k1);
                                     Block block = worldIn.getBlockState(blockpos).getBlock();
 
                                     if (block.getMaterial() == Material.air || block.getMaterial() == Material.leaves)

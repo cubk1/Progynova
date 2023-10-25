@@ -1,24 +1,24 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.MathHelper;
 
 public class EntityMoveHelper
 {
-    protected EntityLiving entity;
+    protected 实体Living entity;
     protected double posX;
     protected double posY;
     protected double posZ;
     protected double speed;
     protected boolean update;
 
-    public EntityMoveHelper(EntityLiving entitylivingIn)
+    public EntityMoveHelper(实体Living entitylivingIn)
     {
         this.entity = entitylivingIn;
-        this.posX = entitylivingIn.posX;
-        this.posY = entitylivingIn.posY;
-        this.posZ = entitylivingIn.posZ;
+        this.posX = entitylivingIn.X坐标;
+        this.posY = entitylivingIn.Y坐标;
+        this.posZ = entitylivingIn.Z坐标;
     }
 
     public boolean isUpdating()
@@ -48,8 +48,8 @@ public class EntityMoveHelper
         {
             this.update = false;
             int i = MathHelper.floor_double(this.entity.getEntityBoundingBox().minY + 0.5D);
-            double d0 = this.posX - this.entity.posX;
-            double d1 = this.posZ - this.entity.posZ;
+            double d0 = this.posX - this.entity.X坐标;
+            double d1 = this.posZ - this.entity.Z坐标;
             double d2 = this.posY - (double)i;
             double d3 = d0 * d0 + d2 * d2 + d1 * d1;
 

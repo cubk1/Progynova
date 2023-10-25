@@ -15,11 +15,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ClassInheritanceMultiMap;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
@@ -48,8 +48,8 @@ public class Chunk
     public final int xPosition;
     public final int zPosition;
     private boolean isGapLightingUpdated;
-    private final Map<BlockPos, TileEntity> chunkTileEntityMap;
-    private final ClassInheritanceMultiMap<Entity>[] entityLists;
+    private final Map<阻止位置, TileEntity> chunkTileEntityMap;
+    private final ClassInheritanceMultiMap<实体>[] entityLists;
     private boolean isTerrainPopulated;
     private boolean isLightPopulated;
     private boolean field_150815_m;
@@ -59,7 +59,7 @@ public class Chunk
     private int heightMapMinimum;
     private long inhabitedTime;
     private int queuedLightChecks;
-    private ConcurrentLinkedQueue<BlockPos> tileEntityPosQueue;
+    private ConcurrentLinkedQueue<阻止位置> tileEntityPosQueue;
 
     public Chunk(World worldIn, int x, int z)
     {
@@ -67,9 +67,9 @@ public class Chunk
         this.blockBiomeArray = new byte[256];
         this.precipitationHeightMap = new int[256];
         this.updateSkylightColumns = new boolean[256];
-        this.chunkTileEntityMap = Maps.<BlockPos, TileEntity>newHashMap();
+        this.chunkTileEntityMap = Maps.<阻止位置, TileEntity>newHashMap();
         this.queuedLightChecks = 4096;
-        this.tileEntityPosQueue = Queues.<BlockPos>newConcurrentLinkedQueue();
+        this.tileEntityPosQueue = Queues.<阻止位置>newConcurrentLinkedQueue();
         this.entityLists = (ClassInheritanceMultiMap[])(new ClassInheritanceMultiMap[16]);
         this.worldObj = worldIn;
         this.xPosition = x;
@@ -78,7 +78,7 @@ public class Chunk
 
         for (int i = 0; i < this.entityLists.length; ++i)
         {
-            this.entityLists[i] = new ClassInheritanceMultiMap(Entity.class);
+            this.entityLists[i] = new ClassInheritanceMultiMap(实体.class);
         }
 
         Arrays.fill((int[])this.precipitationHeightMap, (int) - 999);
@@ -121,7 +121,7 @@ public class Chunk
         return x == this.xPosition && z == this.zPosition;
     }
 
-    public int getHeight(BlockPos pos)
+    public int getHeight(阻止位置 pos)
     {
         return this.getHeightValue(pos.getX() & 15, pos.getZ() & 15);
     }
@@ -231,7 +231,7 @@ public class Chunk
                             if (extendedblockstorage != null)
                             {
                                 extendedblockstorage.setExtSkylightValue(j, i1 & 15, k, k1);
-                                this.worldObj.notifyLightSet(new BlockPos((this.xPosition << 4) + j, i1, (this.zPosition << 4) + k));
+                                this.worldObj.notifyLightSet(new 阻止位置((this.xPosition << 4) + j, i1, (this.zPosition << 4) + k));
                             }
                         }
 
@@ -259,7 +259,7 @@ public class Chunk
     {
         this.worldObj.theProfiler.startSection("recheckGaps");
 
-        if (this.worldObj.isAreaLoaded(new BlockPos(this.xPosition * 16 + 8, 0, this.zPosition * 16 + 8), 16))
+        if (this.worldObj.isAreaLoaded(new 阻止位置(this.xPosition * 16 + 8, 0, this.zPosition * 16 + 8), 16))
         {
             for (int i = 0; i < 16; ++i)
             {
@@ -302,7 +302,7 @@ public class Chunk
 
     private void checkSkylightNeighborHeight(int x, int z, int maxValue)
     {
-        int i = this.worldObj.getHeight(new BlockPos(x, 0, z)).getY();
+        int i = this.worldObj.getHeight(new 阻止位置(x, 0, z)).getY();
 
         if (i > maxValue)
         {
@@ -316,11 +316,11 @@ public class Chunk
 
     private void updateSkylightNeighborHeight(int x, int z, int startY, int endY)
     {
-        if (endY > startY && this.worldObj.isAreaLoaded(new BlockPos(x, 0, z), 16))
+        if (endY > startY && this.worldObj.isAreaLoaded(new 阻止位置(x, 0, z), 16))
         {
             for (int i = startY; i < endY; ++i)
             {
-                this.worldObj.checkLightFor(EnumSkyBlock.SKY, new BlockPos(x, i, z));
+                this.worldObj.checkLightFor(EnumSkyBlock.SKY, new 阻止位置(x, i, z));
             }
 
             this.isModified = true;
@@ -360,7 +360,7 @@ public class Chunk
                         if (extendedblockstorage2 != null)
                         {
                             extendedblockstorage2.setExtSkylightValue(x, j1 & 15, z, 15);
-                            this.worldObj.notifyLightSet(new BlockPos((this.xPosition << 4) + x, j1, (this.zPosition << 4) + z));
+                            this.worldObj.notifyLightSet(new 阻止位置((this.xPosition << 4) + x, j1, (this.zPosition << 4) + z));
                         }
                     }
                 }
@@ -373,7 +373,7 @@ public class Chunk
                         if (extendedblockstorage != null)
                         {
                             extendedblockstorage.setExtSkylightValue(x, i1 & 15, z, 0);
-                            this.worldObj.notifyLightSet(new BlockPos((this.xPosition << 4) + x, i1, (this.zPosition << 4) + z));
+                            this.worldObj.notifyLightSet(new 阻止位置((this.xPosition << 4) + x, i1, (this.zPosition << 4) + z));
                         }
                     }
                 }
@@ -435,7 +435,7 @@ public class Chunk
         }
     }
 
-    public int getBlockLightOpacity(BlockPos pos)
+    public int getBlockLightOpacity(阻止位置 pos)
     {
         return this.getBlock(pos).getLightOpacity();
     }
@@ -483,14 +483,14 @@ public class Chunk
             {
                 public String call() throws Exception
                 {
-                    return CrashReportCategory.getCoordinateInfo(new BlockPos(Chunk.this.xPosition * 16 + x, y, Chunk.this.zPosition * 16 + z));
+                    return CrashReportCategory.getCoordinateInfo(new 阻止位置(Chunk.this.xPosition * 16 + x, y, Chunk.this.zPosition * 16 + z));
                 }
             });
             throw reportedexception;
         }
     }
 
-    public Block getBlock(final BlockPos pos)
+    public Block getBlock(final 阻止位置 pos)
     {
         try
         {
@@ -510,7 +510,7 @@ public class Chunk
         }
     }
 
-    public IBlockState getBlockState(final BlockPos pos)
+    public IBlockState getBlockState(final 阻止位置 pos)
     {
         if (this.worldObj.getWorldType() == WorldType.DEBUG_WORLD)
         {
@@ -576,12 +576,12 @@ public class Chunk
         }
     }
 
-    public int getBlockMetadata(BlockPos pos)
+    public int getBlockMetadata(阻止位置 pos)
     {
         return this.getBlockMetadata(pos.getX() & 15, pos.getY(), pos.getZ() & 15);
     }
 
-    public IBlockState setBlockState(BlockPos pos, IBlockState state)
+    public IBlockState setBlockState(阻止位置 pos, IBlockState state)
     {
         int i = pos.getX() & 15;
         int j = pos.getY();
@@ -702,7 +702,7 @@ public class Chunk
         }
     }
 
-    public int getLightFor(EnumSkyBlock p_177413_1_, BlockPos pos)
+    public int getLightFor(EnumSkyBlock p_177413_1_, 阻止位置 pos)
     {
         int i = pos.getX() & 15;
         int j = pos.getY();
@@ -711,7 +711,7 @@ public class Chunk
         return extendedblockstorage == null ? (this.canSeeSky(pos) ? p_177413_1_.defaultLightValue : 0) : (p_177413_1_ == EnumSkyBlock.SKY ? (this.worldObj.provider.getHasNoSky() ? 0 : extendedblockstorage.getExtSkylightValue(i, j & 15, k)) : (p_177413_1_ == EnumSkyBlock.BLOCK ? extendedblockstorage.getExtBlocklightValue(i, j & 15, k) : p_177413_1_.defaultLightValue));
     }
 
-    public void setLightFor(EnumSkyBlock p_177431_1_, BlockPos pos, int value)
+    public void setLightFor(EnumSkyBlock p_177431_1_, 阻止位置 pos, int value)
     {
         int i = pos.getX() & 15;
         int j = pos.getY();
@@ -739,7 +739,7 @@ public class Chunk
         }
     }
 
-    public int getLightSubtracted(BlockPos pos, int amount)
+    public int getLightSubtracted(阻止位置 pos, int amount)
     {
         int i = pos.getX() & 15;
         int j = pos.getY();
@@ -765,19 +765,19 @@ public class Chunk
         }
     }
 
-    public void addEntity(Entity entityIn)
+    public void addEntity(实体 实体In)
     {
         this.hasEntities = true;
-        int i = MathHelper.floor_double(entityIn.posX / 16.0D);
-        int j = MathHelper.floor_double(entityIn.posZ / 16.0D);
+        int i = MathHelper.floor_double(实体In.X坐标 / 16.0D);
+        int j = MathHelper.floor_double(实体In.Z坐标 / 16.0D);
 
         if (i != this.xPosition || j != this.zPosition)
         {
-            logger.warn("Wrong location! (" + i + ", " + j + ") should be (" + this.xPosition + ", " + this.zPosition + "), " + entityIn, new Object[] {entityIn});
-            entityIn.setDead();
+            logger.warn("Wrong location! (" + i + ", " + j + ") should be (" + this.xPosition + ", " + this.zPosition + "), " + 实体In, new Object[] {实体In});
+            实体In.setDead();
         }
 
-        int k = MathHelper.floor_double(entityIn.posY / 16.0D);
+        int k = MathHelper.floor_double(实体In.Y坐标 / 16.0D);
 
         if (k < 0)
         {
@@ -789,19 +789,19 @@ public class Chunk
             k = this.entityLists.length - 1;
         }
 
-        entityIn.addedToChunk = true;
-        entityIn.chunkCoordX = this.xPosition;
-        entityIn.chunkCoordY = k;
-        entityIn.chunkCoordZ = this.zPosition;
-        this.entityLists[k].add(entityIn);
+        实体In.addedToChunk = true;
+        实体In.chunkCoordX = this.xPosition;
+        实体In.chunkCoordY = k;
+        实体In.chunkCoordZ = this.zPosition;
+        this.entityLists[k].add(实体In);
     }
 
-    public void removeEntity(Entity entityIn)
+    public void removeEntity(实体 实体In)
     {
-        this.removeEntityAtIndex(entityIn, entityIn.chunkCoordY);
+        this.removeEntityAtIndex(实体In, 实体In.chunkCoordY);
     }
 
-    public void removeEntityAtIndex(Entity entityIn, int p_76608_2_)
+    public void removeEntityAtIndex(实体 实体In, int p_76608_2_)
     {
         if (p_76608_2_ < 0)
         {
@@ -813,10 +813,10 @@ public class Chunk
             p_76608_2_ = this.entityLists.length - 1;
         }
 
-        this.entityLists[p_76608_2_].remove(entityIn);
+        this.entityLists[p_76608_2_].remove(实体In);
     }
 
-    public boolean canSeeSky(BlockPos pos)
+    public boolean canSeeSky(阻止位置 pos)
     {
         int i = pos.getX() & 15;
         int j = pos.getY();
@@ -824,13 +824,13 @@ public class Chunk
         return j >= this.heightMap[k << 4 | i];
     }
 
-    private TileEntity createNewTileEntity(BlockPos pos)
+    private TileEntity createNewTileEntity(阻止位置 pos)
     {
         Block block = this.getBlock(pos);
         return !block.hasTileEntity() ? null : ((ITileEntityProvider)block).createNewTileEntity(this.worldObj, this.getBlockMetadata(pos));
     }
 
-    public TileEntity getTileEntity(BlockPos pos, Chunk.EnumCreateEntityType p_177424_2_)
+    public TileEntity getTileEntity(阻止位置 pos, Chunk.EnumCreateEntityType p_177424_2_)
     {
         TileEntity tileentity = (TileEntity)this.chunkTileEntityMap.get(pos);
 
@@ -865,7 +865,7 @@ public class Chunk
         }
     }
 
-    public void addTileEntity(BlockPos pos, TileEntity tileEntityIn)
+    public void addTileEntity(阻止位置 pos, TileEntity tileEntityIn)
     {
         tileEntityIn.setWorldObj(this.worldObj);
         tileEntityIn.setPos(pos);
@@ -882,7 +882,7 @@ public class Chunk
         }
     }
 
-    public void removeTileEntity(BlockPos pos)
+    public void removeTileEntity(阻止位置 pos)
     {
         if (this.isChunkLoaded)
         {
@@ -902,9 +902,9 @@ public class Chunk
 
         for (int i = 0; i < this.entityLists.length; ++i)
         {
-            for (Entity entity : this.entityLists[i])
+            for (实体 实体 : this.entityLists[i])
             {
-                entity.onChunkLoad();
+                实体.onChunkLoad();
             }
 
             this.worldObj.loadEntities(this.entityLists[i]);
@@ -931,7 +931,7 @@ public class Chunk
         this.isModified = true;
     }
 
-    public void getEntitiesWithinAABBForEntity(Entity entityIn, AxisAlignedBB aabb, List<Entity> listToFill, Predicate <? super Entity > p_177414_4_)
+    public void getEntitiesWithinAABBForEntity(实体 实体In, AxisAlignedBB aabb, List<实体> listToFill, Predicate <? super 实体> p_177414_4_)
     {
         int i = MathHelper.floor_double((aabb.minY - 2.0D) / 16.0D);
         int j = MathHelper.floor_double((aabb.maxY + 2.0D) / 16.0D);
@@ -942,26 +942,26 @@ public class Chunk
         {
             if (!this.entityLists[k].isEmpty())
             {
-                for (Entity entity : this.entityLists[k])
+                for (实体 实体 : this.entityLists[k])
                 {
-                    if (entity.getEntityBoundingBox().intersectsWith(aabb) && entity != entityIn)
+                    if (实体.getEntityBoundingBox().intersectsWith(aabb) && 实体 != 实体In)
                     {
-                        if (p_177414_4_ == null || p_177414_4_.apply(entity))
+                        if (p_177414_4_ == null || p_177414_4_.apply(实体))
                         {
-                            listToFill.add(entity);
+                            listToFill.add(实体);
                         }
 
-                        Entity[] aentity = entity.getParts();
+                        实体[] aentity = 实体.getParts();
 
                         if (aentity != null)
                         {
                             for (int l = 0; l < aentity.length; ++l)
                             {
-                                entity = aentity[l];
+                                实体 = aentity[l];
 
-                                if (entity != entityIn && entity.getEntityBoundingBox().intersectsWith(aabb) && (p_177414_4_ == null || p_177414_4_.apply(entity)))
+                                if (实体 != 实体In && 实体.getEntityBoundingBox().intersectsWith(aabb) && (p_177414_4_ == null || p_177414_4_.apply(实体)))
                                 {
-                                    listToFill.add(entity);
+                                    listToFill.add(实体);
                                 }
                             }
                         }
@@ -971,7 +971,7 @@ public class Chunk
         }
     }
 
-    public <T extends Entity> void getEntitiesOfTypeWithinAAAB(Class <? extends T > entityClass, AxisAlignedBB aabb, List<T> listToFill, Predicate <? super T > p_177430_4_)
+    public <T extends 实体> void getEntitiesOfTypeWithinAAAB(Class <? extends T > entityClass, AxisAlignedBB aabb, List<T> listToFill, Predicate <? super T > p_177430_4_)
     {
         int i = MathHelper.floor_double((aabb.minY - 2.0D) / 16.0D);
         int j = MathHelper.floor_double((aabb.maxY + 2.0D) / 16.0D);
@@ -1083,17 +1083,17 @@ public class Chunk
         }
     }
 
-    public BlockPos getPrecipitationHeight(BlockPos pos)
+    public 阻止位置 getPrecipitationHeight(阻止位置 pos)
     {
         int i = pos.getX() & 15;
         int j = pos.getZ() & 15;
         int k = i | j << 4;
-        BlockPos blockpos = new BlockPos(pos.getX(), this.precipitationHeightMap[k], pos.getZ());
+        阻止位置 blockpos = new 阻止位置(pos.getX(), this.precipitationHeightMap[k], pos.getZ());
 
         if (blockpos.getY() == -999)
         {
             int l = this.getTopFilledSegment() + 15;
-            blockpos = new BlockPos(pos.getX(), l, pos.getZ());
+            blockpos = new 阻止位置(pos.getX(), l, pos.getZ());
             int i1 = -1;
 
             while (blockpos.getY() > 0 && i1 == -1)
@@ -1114,7 +1114,7 @@ public class Chunk
             this.precipitationHeightMap[k] = i1;
         }
 
-        return new BlockPos(pos.getX(), this.precipitationHeightMap[k], pos.getZ());
+        return new 阻止位置(pos.getX(), this.precipitationHeightMap[k], pos.getZ());
     }
 
     public void func_150804_b(boolean p_150804_1_)
@@ -1133,7 +1133,7 @@ public class Chunk
 
         while (!this.tileEntityPosQueue.isEmpty())
         {
-            BlockPos blockpos = (BlockPos)this.tileEntityPosQueue.poll();
+            阻止位置 blockpos = (阻止位置)this.tileEntityPosQueue.poll();
 
             if (this.getTileEntity(blockpos, Chunk.EnumCreateEntityType.CHECK) == null && this.getBlock(blockpos).hasTileEntity())
             {
@@ -1269,7 +1269,7 @@ public class Chunk
         }
     }
 
-    public BiomeGenBase getBiome(BlockPos pos, WorldChunkManager chunkManager)
+    public BiomeGenBase getBiome(阻止位置 pos, WorldChunkManager chunkManager)
     {
         int i = pos.getX() & 15;
         int j = pos.getZ() & 15;
@@ -1313,7 +1313,7 @@ public class Chunk
 
     public void enqueueRelightChecks()
     {
-        BlockPos blockpos = new BlockPos(this.xPosition << 4, 0, this.zPosition << 4);
+        阻止位置 blockpos = new 阻止位置(this.xPosition << 4, 0, this.zPosition << 4);
 
         for (int i = 0; i < 8; ++i)
         {
@@ -1329,14 +1329,14 @@ public class Chunk
 
             for (int i1 = 0; i1 < 16; ++i1)
             {
-                BlockPos blockpos1 = blockpos.add(k, (j << 4) + i1, l);
+                阻止位置 blockpos1 = blockpos.add(k, (j << 4) + i1, l);
                 boolean flag = i1 == 0 || i1 == 15 || k == 0 || k == 15 || l == 0 || l == 15;
 
                 if (this.storageArrays[j] == null && flag || this.storageArrays[j] != null && this.storageArrays[j].getBlockByExtId(k, i1, l).getMaterial() == Material.air)
                 {
                     for (EnumFacing enumfacing : EnumFacing.values())
                     {
-                        BlockPos blockpos2 = blockpos1.offset(enumfacing);
+                        阻止位置 blockpos2 = blockpos1.offset(enumfacing);
 
                         if (this.worldObj.getBlockState(blockpos2).getBlock().getLightValue() > 0)
                         {
@@ -1354,7 +1354,7 @@ public class Chunk
     {
         this.isTerrainPopulated = true;
         this.isLightPopulated = true;
-        BlockPos blockpos = new BlockPos(this.xPosition << 4, 0, this.zPosition << 4);
+        阻止位置 blockpos = new 阻止位置(this.xPosition << 4, 0, this.zPosition << 4);
 
         if (!this.worldObj.provider.getHasNoSky())
         {
@@ -1442,7 +1442,7 @@ public class Chunk
         int i = this.getTopFilledSegment();
         boolean flag = false;
         boolean flag1 = false;
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos((this.xPosition << 4) + x, 0, (this.zPosition << 4) + z);
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置((this.xPosition << 4) + x, 0, (this.zPosition << 4) + z);
 
         for (int j = i + 16 - 1; j > this.worldObj.getSeaLevel() || j > 0 && !flag1; --j)
         {
@@ -1512,12 +1512,12 @@ public class Chunk
         }
     }
 
-    public Map<BlockPos, TileEntity> getTileEntityMap()
+    public Map<阻止位置, TileEntity> getTileEntityMap()
     {
         return this.chunkTileEntityMap;
     }
 
-    public ClassInheritanceMultiMap<Entity>[] getEntityLists()
+    public ClassInheritanceMultiMap<实体>[] getEntityLists()
     {
         return this.entityLists;
     }

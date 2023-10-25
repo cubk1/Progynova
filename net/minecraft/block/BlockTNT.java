@@ -6,14 +6,14 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.item.实体TNTPrimed;
+import net.minecraft.entity.projectile.实体Arrow;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -29,7 +29,7 @@ public class BlockTNT extends Block
         this.setCreativeTab(CreativeTabs.tabRedstone);
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         super.onBlockAdded(worldIn, pos, state);
 
@@ -40,7 +40,7 @@ public class BlockTNT extends Block
         }
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (worldIn.isBlockPowered(pos))
         {
@@ -49,35 +49,35 @@ public class BlockTNT extends Block
         }
     }
 
-    public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
+    public void onBlockDestroyedByExplosion(World worldIn, 阻止位置 pos, Explosion explosionIn)
     {
         if (!worldIn.isRemote)
         {
-            EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), explosionIn.getExplosivePlacedBy());
+            实体TNTPrimed entitytntprimed = new 实体TNTPrimed(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), explosionIn.getExplosivePlacedBy());
             entitytntprimed.fuse = worldIn.rand.nextInt(entitytntprimed.fuse / 4) + entitytntprimed.fuse / 8;
             worldIn.spawnEntityInWorld(entitytntprimed);
         }
     }
 
-    public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockDestroyedByPlayer(World worldIn, 阻止位置 pos, IBlockState state)
     {
-        this.explode(worldIn, pos, state, (EntityLivingBase)null);
+        this.explode(worldIn, pos, state, (实体LivingBase)null);
     }
 
-    public void explode(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase igniter)
+    public void explode(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase igniter)
     {
         if (!worldIn.isRemote)
         {
             if (((Boolean)state.getValue(EXPLODE)).booleanValue())
             {
-                EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), igniter);
+                实体TNTPrimed entitytntprimed = new 实体TNTPrimed(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), igniter);
                 worldIn.spawnEntityInWorld(entitytntprimed);
                 worldIn.playSoundAtEntity(entitytntprimed, "game.tnt.primed", 1.0F, 1.0F);
             }
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (playerIn.getCurrentEquippedItem() != null)
         {
@@ -104,15 +104,15 @@ public class BlockTNT extends Block
         return super.onBlockActivated(worldIn, pos, state, playerIn, side, hitX, hitY, hitZ);
     }
 
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollidedWithBlock(World worldIn, 阻止位置 pos, IBlockState state, 实体 实体In)
     {
-        if (!worldIn.isRemote && entityIn instanceof EntityArrow)
+        if (!worldIn.isRemote && 实体In instanceof 实体Arrow)
         {
-            EntityArrow entityarrow = (EntityArrow)entityIn;
+            实体Arrow entityarrow = (实体Arrow) 实体In;
 
             if (entityarrow.isBurning())
             {
-                this.explode(worldIn, pos, worldIn.getBlockState(pos).withProperty(EXPLODE, Boolean.valueOf(true)), entityarrow.shootingEntity instanceof EntityLivingBase ? (EntityLivingBase)entityarrow.shootingEntity : null);
+                this.explode(worldIn, pos, worldIn.getBlockState(pos).withProperty(EXPLODE, Boolean.valueOf(true)), entityarrow.shooting实体 instanceof 实体LivingBase ? (实体LivingBase)entityarrow.shooting实体 : null);
                 worldIn.setBlockToAir(pos);
             }
         }

@@ -20,10 +20,10 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.particle.实体FX;
 import net.minecraft.client.我的手艺;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
@@ -31,7 +31,7 @@ import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
@@ -101,10 +101,10 @@ public class CustomColors
     public static Random random = new Random();
     private static final CustomColors.IColorizer COLORIZER_GRASS = new CustomColors.IColorizer()
     {
-        public int getColor(IBlockState blockState, IBlockAccess blockAccess, BlockPos blockPos)
+        public int getColor(IBlockState blockState, IBlockAccess blockAccess, 阻止位置 阻止位置)
         {
-            BiomeGenBase biomegenbase = CustomColors.getColorBiome(blockAccess, blockPos);
-            return CustomColors.swampGrassColors != null && biomegenbase == BiomeGenBase.swampland ? CustomColors.swampGrassColors.getColor(biomegenbase, blockPos) : biomegenbase.getGrassColorAtPos(blockPos);
+            BiomeGenBase biomegenbase = CustomColors.getColorBiome(blockAccess, 阻止位置);
+            return CustomColors.swampGrassColors != null && biomegenbase == BiomeGenBase.swampland ? CustomColors.swampGrassColors.getColor(biomegenbase, 阻止位置) : biomegenbase.getGrassColorAtPos(阻止位置);
         }
         public boolean isColorConstant()
         {
@@ -113,10 +113,10 @@ public class CustomColors
     };
     private static final CustomColors.IColorizer COLORIZER_FOLIAGE = new CustomColors.IColorizer()
     {
-        public int getColor(IBlockState blockState, IBlockAccess blockAccess, BlockPos blockPos)
+        public int getColor(IBlockState blockState, IBlockAccess blockAccess, 阻止位置 阻止位置)
         {
-            BiomeGenBase biomegenbase = CustomColors.getColorBiome(blockAccess, blockPos);
-            return CustomColors.swampFoliageColors != null && biomegenbase == BiomeGenBase.swampland ? CustomColors.swampFoliageColors.getColor(biomegenbase, blockPos) : biomegenbase.getFoliageColorAtPos(blockPos);
+            BiomeGenBase biomegenbase = CustomColors.getColorBiome(blockAccess, 阻止位置);
+            return CustomColors.swampFoliageColors != null && biomegenbase == BiomeGenBase.swampland ? CustomColors.swampFoliageColors.getColor(biomegenbase, 阻止位置) : biomegenbase.getFoliageColorAtPos(阻止位置);
         }
         public boolean isColorConstant()
         {
@@ -125,9 +125,9 @@ public class CustomColors
     };
     private static final CustomColors.IColorizer COLORIZER_FOLIAGE_PINE = new CustomColors.IColorizer()
     {
-        public int getColor(IBlockState blockState, IBlockAccess blockAccess, BlockPos blockPos)
+        public int getColor(IBlockState blockState, IBlockAccess blockAccess, 阻止位置 阻止位置)
         {
-            return CustomColors.foliagePineColors != null ? CustomColors.foliagePineColors.getColor(blockAccess, blockPos) : ColorizerFoliage.getFoliageColorPine();
+            return CustomColors.foliagePineColors != null ? CustomColors.foliagePineColors.getColor(blockAccess, 阻止位置) : ColorizerFoliage.getFoliageColorPine();
         }
         public boolean isColorConstant()
         {
@@ -136,9 +136,9 @@ public class CustomColors
     };
     private static final CustomColors.IColorizer COLORIZER_FOLIAGE_BIRCH = new CustomColors.IColorizer()
     {
-        public int getColor(IBlockState blockState, IBlockAccess blockAccess, BlockPos blockPos)
+        public int getColor(IBlockState blockState, IBlockAccess blockAccess, 阻止位置 阻止位置)
         {
-            return CustomColors.foliageBirchColors != null ? CustomColors.foliageBirchColors.getColor(blockAccess, blockPos) : ColorizerFoliage.getFoliageColorBirch();
+            return CustomColors.foliageBirchColors != null ? CustomColors.foliageBirchColors.getColor(blockAccess, 阻止位置) : ColorizerFoliage.getFoliageColorBirch();
         }
         public boolean isColorConstant()
         {
@@ -147,10 +147,10 @@ public class CustomColors
     };
     private static final CustomColors.IColorizer COLORIZER_WATER = new CustomColors.IColorizer()
     {
-        public int getColor(IBlockState blockState, IBlockAccess blockAccess, BlockPos blockPos)
+        public int getColor(IBlockState blockState, IBlockAccess blockAccess, 阻止位置 阻止位置)
         {
-            BiomeGenBase biomegenbase = CustomColors.getColorBiome(blockAccess, blockPos);
-            return CustomColors.waterColors != null ? CustomColors.waterColors.getColor(biomegenbase, blockPos) : (Reflector.ForgeBiome_getWaterColorMultiplier.exists() ? Reflector.callInt(biomegenbase, Reflector.ForgeBiome_getWaterColorMultiplier, new Object[0]) : biomegenbase.waterColorMultiplier);
+            BiomeGenBase biomegenbase = CustomColors.getColorBiome(blockAccess, 阻止位置);
+            return CustomColors.waterColors != null ? CustomColors.waterColors.getColor(biomegenbase, 阻止位置) : (Reflector.ForgeBiome_getWaterColorMultiplier.exists() ? Reflector.callInt(biomegenbase, Reflector.ForgeBiome_getWaterColorMultiplier, new Object[0]) : biomegenbase.waterColorMultiplier);
         }
         public boolean isColorConstant()
         {
@@ -790,7 +790,7 @@ public class CustomColors
         useDefaultGrassFoliageColors = foliageBirchColors == null && foliagePineColors == null && swampGrassColors == null && swampFoliageColors == null && Config.isSwampColors() && Config.isSmoothBiomes();
     }
 
-    public static int getColorMultiplier(BakedQuad quad, IBlockState blockState, IBlockAccess blockAccess, BlockPos blockPos, RenderEnv renderEnv)
+    public static int getColorMultiplier(BakedQuad quad, IBlockState blockState, IBlockAccess blockAccess, 阻止位置 阻止位置, RenderEnv renderEnv)
     {
         Block block = blockState.getBlock();
         IBlockState iblockstate = renderEnv.getBlockState();
@@ -812,8 +812,8 @@ public class CustomColors
 
             if (block == Blocks.double_plant && renderEnv.getMetadata() >= 8)
             {
-                blockPos = blockPos.down();
-                iblockstate = blockAccess.getBlockState(blockPos);
+                阻止位置 = 阻止位置.down();
+                iblockstate = blockAccess.getBlockState(阻止位置);
             }
 
             CustomColormap customcolormap = getBlockColormap(iblockstate);
@@ -822,10 +822,10 @@ public class CustomColors
             {
                 if (Config.isSmoothBiomes() && !customcolormap.isColorConstant())
                 {
-                    return getSmoothColorMultiplier(blockState, blockAccess, blockPos, customcolormap, renderEnv.getColorizerBlockPosM());
+                    return getSmoothColorMultiplier(blockState, blockAccess, 阻止位置, customcolormap, renderEnv.getColorizerBlockPosM());
                 }
 
-                return customcolormap.getColor(blockAccess, blockPos);
+                return customcolormap.getColor(blockAccess, 阻止位置);
             }
         }
 
@@ -835,7 +835,7 @@ public class CustomColors
         }
         else if (block == Blocks.waterlily)
         {
-            return getLilypadColorMultiplier(blockAccess, blockPos);
+            return getLilypadColorMultiplier(blockAccess, 阻止位置);
         }
         else if (block == Blocks.redstone_wire)
         {
@@ -843,7 +843,7 @@ public class CustomColors
         }
         else if (block instanceof BlockStem)
         {
-            return getStemColorMultiplier(block, blockAccess, blockPos, renderEnv);
+            return getStemColorMultiplier(block, blockAccess, 阻止位置, renderEnv);
         }
         else if (useDefaultGrassFoliageColors)
         {
@@ -862,7 +862,7 @@ public class CustomColors
 
                     if (i >= 8)
                     {
-                        blockPos = blockPos.down();
+                        阻止位置 = 阻止位置.down();
                     }
                 }
                 else if (block == Blocks.leaves)
@@ -904,13 +904,13 @@ public class CustomColors
                 customcolors$icolorizer = COLORIZER_GRASS;
             }
 
-            return Config.isSmoothBiomes() && !customcolors$icolorizer.isColorConstant() ? getSmoothColorMultiplier(blockState, blockAccess, blockPos, customcolors$icolorizer, renderEnv.getColorizerBlockPosM()) : customcolors$icolorizer.getColor(iblockstate, blockAccess, blockPos);
+            return Config.isSmoothBiomes() && !customcolors$icolorizer.isColorConstant() ? getSmoothColorMultiplier(blockState, blockAccess, 阻止位置, customcolors$icolorizer, renderEnv.getColorizerBlockPosM()) : customcolors$icolorizer.getColor(iblockstate, blockAccess, 阻止位置);
         }
     }
 
-    protected static BiomeGenBase getColorBiome(IBlockAccess blockAccess, BlockPos blockPos)
+    protected static BiomeGenBase getColorBiome(IBlockAccess blockAccess, 阻止位置 阻止位置)
     {
-        BiomeGenBase biomegenbase = blockAccess.getBiomeGenForCoords(blockPos);
+        BiomeGenBase biomegenbase = blockAccess.getBiomeGenForCoords(阻止位置);
 
         if (biomegenbase == BiomeGenBase.swampland && !Config.isSwampColors())
         {
@@ -965,15 +965,15 @@ public class CustomColors
         }
     }
 
-    private static int getSmoothColorMultiplier(IBlockState blockState, IBlockAccess blockAccess, BlockPos blockPos, CustomColors.IColorizer colorizer, BlockPosM blockPosM)
+    private static int getSmoothColorMultiplier(IBlockState blockState, IBlockAccess blockAccess, 阻止位置 阻止位置, CustomColors.IColorizer colorizer, 阻止位置M blockPosM)
     {
         int i = 0;
         int j = 0;
         int k = 0;
-        int l = blockPos.getX();
-        int i1 = blockPos.getY();
-        int j1 = blockPos.getZ();
-        BlockPosM blockposm = blockPosM;
+        int l = 阻止位置.getX();
+        int i1 = 阻止位置.getY();
+        int j1 = 阻止位置.getZ();
+        阻止位置M blockposm = blockPosM;
 
         for (int k1 = l - 1; k1 <= l + 1; ++k1)
         {
@@ -993,7 +993,7 @@ public class CustomColors
         return j2 << 16 | k2 << 8 | l2;
     }
 
-    public static int getFluidColor(IBlockAccess blockAccess, IBlockState blockState, BlockPos blockPos, RenderEnv renderEnv)
+    public static int getFluidColor(IBlockAccess blockAccess, IBlockState blockState, 阻止位置 阻止位置, RenderEnv renderEnv)
     {
         Block block = blockState.getBlock();
         CustomColors.IColorizer customcolors$icolorizer = getBlockColormap(blockState);
@@ -1003,10 +1003,10 @@ public class CustomColors
             customcolors$icolorizer = COLORIZER_WATER;
         }
 
-        return customcolors$icolorizer == null ? block.colorMultiplier(blockAccess, blockPos, 0) : (Config.isSmoothBiomes() && !customcolors$icolorizer.isColorConstant() ? getSmoothColorMultiplier(blockState, blockAccess, blockPos, customcolors$icolorizer, renderEnv.getColorizerBlockPosM()) : customcolors$icolorizer.getColor(blockState, blockAccess, blockPos));
+        return customcolors$icolorizer == null ? block.colorMultiplier(blockAccess, 阻止位置, 0) : (Config.isSmoothBiomes() && !customcolors$icolorizer.isColorConstant() ? getSmoothColorMultiplier(blockState, blockAccess, 阻止位置, customcolors$icolorizer, renderEnv.getColorizerBlockPosM()) : customcolors$icolorizer.getColor(blockState, blockAccess, 阻止位置));
     }
 
-    public static void updatePortalFX(EntityFX fx)
+    public static void updatePortalFX(实体FX fx)
     {
         if (particlePortalColor >= 0)
         {
@@ -1021,7 +1021,7 @@ public class CustomColors
         }
     }
 
-    public static void updateMyceliumFX(EntityFX fx)
+    public static void updateMyceliumFX(实体FX fx)
     {
         if (myceliumParticleColors != null)
         {
@@ -1050,11 +1050,11 @@ public class CustomColors
         }
     }
 
-    public static void updateReddustFX(EntityFX fx, IBlockAccess blockAccess, double x, double y, double z)
+    public static void updateReddustFX(实体FX fx, IBlockAccess blockAccess, double x, double y, double z)
     {
         if (redstoneColors != null)
         {
-            IBlockState iblockstate = blockAccess.getBlockState(new BlockPos(x, y, z));
+            IBlockState iblockstate = blockAccess.getBlockState(new 阻止位置(x, y, z));
             int i = getRedstoneLevel(iblockstate, 15);
             int j = redstoneColors.getColor(i);
             int k = j >> 16 & 255;
@@ -1132,11 +1132,11 @@ public class CustomColors
         }
     }
 
-    public static void updateWaterFX(EntityFX fx, IBlockAccess blockAccess, double x, double y, double z, RenderEnv renderEnv)
+    public static void updateWaterFX(实体FX fx, IBlockAccess blockAccess, double x, double y, double z, RenderEnv renderEnv)
     {
         if (waterColors != null || blockColormaps != null || particleWaterColor >= 0)
         {
-            BlockPos blockpos = new BlockPos(x, y, z);
+            阻止位置 blockpos = new 阻止位置(x, y, z);
             renderEnv.reset(BLOCK_STATE_WATER, blockpos);
             int i = getFluidColor(blockAccess, BLOCK_STATE_WATER, blockpos, renderEnv);
             int j = i >> 16 & 255;
@@ -1160,9 +1160,9 @@ public class CustomColors
         }
     }
 
-    private static int getLilypadColorMultiplier(IBlockAccess blockAccess, BlockPos blockPos)
+    private static int getLilypadColorMultiplier(IBlockAccess blockAccess, 阻止位置 阻止位置)
     {
-        return lilyPadColor < 0 ? Blocks.waterlily.colorMultiplier(blockAccess, blockPos) : lilyPadColor;
+        return lilyPadColor < 0 ? Blocks.waterlily.colorMultiplier(blockAccess, 阻止位置) : lilyPadColor;
     }
 
     private static Vec3 getFogColorNether(Vec3 col)
@@ -1262,7 +1262,7 @@ public class CustomColors
         }
     }
 
-    private static int getStemColorMultiplier(Block blockStem, IBlockAccess blockAccess, BlockPos blockPos, RenderEnv renderEnv)
+    private static int getStemColorMultiplier(Block blockStem, IBlockAccess blockAccess, 阻止位置 阻止位置, RenderEnv renderEnv)
     {
         CustomColormap customcolormap = stemColors;
 
@@ -1314,7 +1314,7 @@ public class CustomColors
         }
     }
 
-    public static Vec3 getWorldFogColor(Vec3 fogVec, World world, Entity renderViewEntity, float partialTicks)
+    public static Vec3 getWorldFogColor(Vec3 fogVec, World world, 实体 renderView实体, float partialTicks)
     {
         int i = world.provider.getDimensionId();
 
@@ -1326,7 +1326,7 @@ public class CustomColors
 
             case 0:
                 我的手艺 宇轩的世界 = 我的手艺.得到我的手艺();
-                fogVec = getFogColor(fogVec, 宇轩的世界.宇轩の世界, renderViewEntity.posX, renderViewEntity.posY + 1.0D, renderViewEntity.posZ);
+                fogVec = getFogColor(fogVec, 宇轩的世界.宇轩の世界, renderView实体.X坐标, renderView实体.Y坐标 + 1.0D, renderView实体.Z坐标);
                 break;
 
             case 1:
@@ -1336,7 +1336,7 @@ public class CustomColors
         return fogVec;
     }
 
-    public static Vec3 getWorldSkyColor(Vec3 skyVec, World world, Entity renderViewEntity, float partialTicks)
+    public static Vec3 getWorldSkyColor(Vec3 skyVec, World world, 实体 renderView实体, float partialTicks)
     {
         int i = world.provider.getDimensionId();
 
@@ -1344,7 +1344,7 @@ public class CustomColors
         {
             case 0:
                 我的手艺 宇轩的世界 = 我的手艺.得到我的手艺();
-                skyVec = getSkyColor(skyVec, 宇轩的世界.宇轩の世界, renderViewEntity.posX, renderViewEntity.posY + 1.0D, renderViewEntity.posZ);
+                skyVec = getSkyColor(skyVec, 宇轩的世界.宇轩の世界, renderView实体.X坐标, renderView实体.Y坐标 + 1.0D, renderView实体.Z坐标);
                 break;
 
             case 1:
@@ -1787,7 +1787,7 @@ public class CustomColors
 
     public interface IColorizer
     {
-        int getColor(IBlockState var1, IBlockAccess var2, BlockPos var3);
+        int getColor(IBlockState var1, IBlockAccess var2, 阻止位置 var3);
 
         boolean isColorConstant();
     }

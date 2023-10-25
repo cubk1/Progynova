@@ -4,7 +4,7 @@
 ######################################################################
 # Each model variable which is to be animated is assigned an expression. 
 # The expression is evaluated every time the model is rendered and its value is assigned to the variable.
-# The variables and expressions are defined in the "animation" section of the json entity model (JEM).
+# The variables and expressions are defined in the "animation" section of the json 实体 model (JEM).
 #  
 #  "animations":
 #  [

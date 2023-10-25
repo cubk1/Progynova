@@ -6,13 +6,13 @@ import net.minecraft.client.model.ModelCreeper;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderCreeper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.实体Creeper;
 
 public class ModelAdapterCreeper extends ModelAdapter
 {
     public ModelAdapterCreeper()
     {
-        super(EntityCreeper.class, "creeper", 0.5F);
+        super(实体Creeper.class, "creeper", 0.5F);
     }
 
     public ModelBase makeModel()

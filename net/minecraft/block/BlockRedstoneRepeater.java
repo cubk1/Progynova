@@ -6,11 +6,11 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.StatCollector;
@@ -33,12 +33,12 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
         return StatCollector.translateToLocal("item.diode.name");
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         return state.withProperty(LOCKED, Boolean.valueOf(this.isLocked(worldIn, pos, state)));
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (!playerIn.capabilities.allowEdit)
         {
@@ -77,12 +77,12 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
         return Items.repeater;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Items.repeater;
     }
 
-    public boolean isLocked(IBlockAccess worldIn, BlockPos pos, IBlockState state)
+    public boolean isLocked(IBlockAccess worldIn, 阻止位置 pos, IBlockState state)
     {
         return this.getPowerOnSides(worldIn, pos, state) > 0;
     }
@@ -92,7 +92,7 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
         return isRedstoneRepeaterBlockID(blockIn);
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (this.isRepeaterPowered)
         {
@@ -114,7 +114,7 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
         }
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         super.breakBlock(worldIn, pos, state);
         this.notifyNeighbors(worldIn, pos, state);

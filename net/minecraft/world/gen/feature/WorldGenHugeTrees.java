@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
@@ -36,7 +36,7 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
         return i;
     }
 
-    private boolean func_175926_c(World worldIn, BlockPos p_175926_2_, int p_175926_3_)
+    private boolean func_175926_c(World worldIn, 阻止位置 p_175926_2_, int p_175926_3_)
     {
         boolean flag = true;
 
@@ -75,9 +75,9 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
         }
     }
 
-    private boolean func_175927_a(BlockPos p_175927_1_, World worldIn)
+    private boolean func_175927_a(阻止位置 p_175927_1_, World worldIn)
     {
-        BlockPos blockpos = p_175927_1_.down();
+        阻止位置 blockpos = p_175927_1_.down();
         Block block = worldIn.getBlockState(blockpos).getBlock();
 
         if ((block == Blocks.grass || block == Blocks.dirt) && p_175927_1_.getY() >= 2)
@@ -94,12 +94,12 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
         }
     }
 
-    protected boolean func_175929_a(World worldIn, Random p_175929_2_, BlockPos p_175929_3_, int p_175929_4_)
+    protected boolean func_175929_a(World worldIn, Random p_175929_2_, 阻止位置 p_175929_3_, int p_175929_4_)
     {
         return this.func_175926_c(worldIn, p_175929_3_, p_175929_4_) && this.func_175927_a(p_175929_3_, worldIn);
     }
 
-    protected void func_175925_a(World worldIn, BlockPos p_175925_2_, int p_175925_3_)
+    protected void func_175925_a(World worldIn, 阻止位置 p_175925_2_, int p_175925_3_)
     {
         int i = p_175925_3_ * p_175925_3_;
 
@@ -112,7 +112,7 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
 
                 if (j * j + k * k <= i || l * l + i1 * i1 <= i || j * j + i1 * i1 <= i || l * l + k * k <= i)
                 {
-                    BlockPos blockpos = p_175925_2_.add(j, 0, k);
+                    阻止位置 blockpos = p_175925_2_.add(j, 0, k);
                     Material material = worldIn.getBlockState(blockpos).getBlock().getMaterial();
 
                     if (material == Material.air || material == Material.leaves)
@@ -124,7 +124,7 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
         }
     }
 
-    protected void func_175928_b(World worldIn, BlockPos p_175928_2_, int p_175928_3_)
+    protected void func_175928_b(World worldIn, 阻止位置 p_175928_2_, int p_175928_3_)
     {
         int i = p_175928_3_ * p_175928_3_;
 
@@ -134,7 +134,7 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
             {
                 if (j * j + k * k <= i)
                 {
-                    BlockPos blockpos = p_175928_2_.add(j, 0, k);
+                    阻止位置 blockpos = p_175928_2_.add(j, 0, k);
                     Material material = worldIn.getBlockState(blockpos).getBlock().getMaterial();
 
                     if (material == Material.air || material == Material.leaves)

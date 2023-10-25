@@ -1,6 +1,6 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.MathHelper;
 
 public class ModelVillager extends ModelBase
@@ -44,9 +44,9 @@ public class ModelVillager extends ModelBase
         this.leftVillagerLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, p_i1164_1_);
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
         this.villagerHead.render(scale);
         this.villagerBody.render(scale);
         this.rightVillagerLeg.render(scale);
@@ -54,7 +54,7 @@ public class ModelVillager extends ModelBase
         this.villagerArms.render(scale);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
         this.villagerHead.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
         this.villagerHead.rotateAngleX = headPitch / (180F / (float)Math.PI);

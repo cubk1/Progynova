@@ -1,7 +1,7 @@
 package net.minecraft.command;
 
 import java.util.List;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -114,7 +114,7 @@ public class CommandParticle extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, EnumParticleTypes.getParticleNames()) : (args.length > 1 && args.length <= 4 ? func_175771_a(args, 1, pos) : (args.length == 10 ? getListOfStringsMatchingLastWord(args, new String[] {"normal", "force"}): null));
     }

@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerWorkbench;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 
@@ -14,10 +14,10 @@ public class 鬼Crafting extends 鬼Container
 
     public 鬼Crafting(InventoryPlayer playerInv, World worldIn)
     {
-        this(playerInv, worldIn, BlockPos.ORIGIN);
+        this(playerInv, worldIn, 阻止位置.ORIGIN);
     }
 
-    public 鬼Crafting(InventoryPlayer playerInv, World worldIn, BlockPos blockPosition)
+    public 鬼Crafting(InventoryPlayer playerInv, World worldIn, 阻止位置 blockPosition)
     {
         super(new ContainerWorkbench(playerInv, worldIn, blockPosition));
     }

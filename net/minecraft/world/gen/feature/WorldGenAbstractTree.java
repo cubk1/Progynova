@@ -4,7 +4,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public abstract class WorldGenAbstractTree extends WorldGenerator
@@ -20,11 +20,11 @@ public abstract class WorldGenAbstractTree extends WorldGenerator
         return material == Material.air || material == Material.leaves || p_150523_1_ == Blocks.grass || p_150523_1_ == Blocks.dirt || p_150523_1_ == Blocks.log || p_150523_1_ == Blocks.log2 || p_150523_1_ == Blocks.sapling || p_150523_1_ == Blocks.vine;
     }
 
-    public void func_180711_a(World worldIn, Random p_180711_2_, BlockPos p_180711_3_)
+    public void func_180711_a(World worldIn, Random p_180711_2_, 阻止位置 p_180711_3_)
     {
     }
 
-    protected void func_175921_a(World worldIn, BlockPos pos)
+    protected void func_175921_a(World worldIn, 阻止位置 pos)
     {
         if (worldIn.getBlockState(pos).getBlock() != Blocks.dirt)
         {

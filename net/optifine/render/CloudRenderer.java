@@ -3,7 +3,7 @@ package net.optifine.render;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
@@ -65,9 +65,9 @@ public class CloudRenderer
         }
         else
         {
-            Entity entity = this.mc.getRenderViewEntity();
-            boolean flag = this.updatePlayerY + (double)entity.getEyeHeight() < 128.0D + (double)(this.mc.游戏一窝.ofCloudsHeight * 128.0F);
-            boolean flag1 = entity.prevPosY + (double)entity.getEyeHeight() < 128.0D + (double)(this.mc.游戏一窝.ofCloudsHeight * 128.0F);
+            实体 实体 = this.mc.getRenderViewEntity();
+            boolean flag = this.updatePlayerY + (double) 实体.getEyeHeight() < 128.0D + (double)(this.mc.游戏一窝.ofCloudsHeight * 128.0F);
+            boolean flag1 = 实体.prevPosY + (double) 实体.getEyeHeight() < 128.0D + (double)(this.mc.游戏一窝.ofCloudsHeight * 128.0F);
             return flag1 != flag;
         }
     }
@@ -92,10 +92,10 @@ public class CloudRenderer
 
     public void renderGlList()
     {
-        Entity entity = this.mc.getRenderViewEntity();
-        double d0 = entity.prevPosX + (entity.posX - entity.prevPosX) * (double)this.partialTicks;
-        double d1 = entity.prevPosY + (entity.posY - entity.prevPosY) * (double)this.partialTicks;
-        double d2 = entity.prevPosZ + (entity.posZ - entity.prevPosZ) * (double)this.partialTicks;
+        实体 实体 = this.mc.getRenderViewEntity();
+        double d0 = 实体.prevPosX + (实体.X坐标 - 实体.prevPosX) * (double)this.partialTicks;
+        double d1 = 实体.prevPosY + (实体.Y坐标 - 实体.prevPosY) * (double)this.partialTicks;
+        double d2 = 实体.prevPosZ + (实体.Z坐标 - 实体.prevPosZ) * (double)this.partialTicks;
         double d3 = (double)((float)(this.cloudTickCounter - this.updateCloudTickCounter) + this.partialTicks);
         float f = (float)(d0 - this.updatePlayerX + d3 * 0.03D);
         float f1 = (float)(d1 - this.updatePlayerY);

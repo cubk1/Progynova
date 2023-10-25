@@ -1,8 +1,8 @@
 package net.minecraft.item;
 
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.inventory.Slot;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -62,7 +62,7 @@ public class ItemEditableBook extends Item
         return super.getItemStackDisplayName(stack);
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, 实体Player playerIn, List<String> tooltip, boolean advanced)
     {
         if (stack.hasTagCompound())
         {
@@ -78,7 +78,7 @@ public class ItemEditableBook extends Item
         }
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         if (!worldIn.isRemote)
         {
@@ -90,7 +90,7 @@ public class ItemEditableBook extends Item
         return itemStackIn;
     }
 
-    private void resolveContents(ItemStack stack, EntityPlayer player)
+    private void resolveContents(ItemStack stack, 实体Player player)
     {
         if (stack != null && stack.getTagCompound() != null)
         {
@@ -124,10 +124,10 @@ public class ItemEditableBook extends Item
 
                     nbttagcompound.setTag("pages", nbttaglist);
 
-                    if (player instanceof EntityPlayerMP && player.getCurrentEquippedItem() == stack)
+                    if (player instanceof 实体PlayerMP && player.getCurrentEquippedItem() == stack)
                     {
                         Slot slot = player.openContainer.getSlotFromInventory(player.inventory, player.inventory.currentItem);
-                        ((EntityPlayerMP)player).playerNetServerHandler.sendPacket(new S2FPacketSetSlot(0, slot.slotNumber, stack));
+                        ((实体PlayerMP)player).playerNetServerHandler.sendPacket(new S2FPacketSetSlot(0, slot.slotNumber, stack));
                     }
                 }
             }

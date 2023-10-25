@@ -4,13 +4,13 @@ import java.util.Random;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 public class WorldGenVines extends WorldGenerator
 {
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         for (; position.getY() < 128; position = position.up())
         {

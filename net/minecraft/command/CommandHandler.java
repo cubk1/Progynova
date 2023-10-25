@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.枚举聊天格式;
 import org.apache.logging.log4j.LogManager;
@@ -46,13 +46,13 @@ public class CommandHandler implements ICommandManager
         {
             if (i > -1)
             {
-                List<Entity> list = PlayerSelector.<Entity>matchEntities(sender, astring[i], Entity.class);
+                List<实体> list = PlayerSelector.<实体>matchEntities(sender, astring[i], 实体.class);
                 String s1 = astring[i];
                 sender.setCommandStat(CommandResultStats.Type.AFFECTED_ENTITIES, list.size());
 
-                for (Entity entity : list)
+                for (实体 实体 : list)
                 {
-                    astring[i] = entity.getUniqueID().toString();
+                    astring[i] = 实体.getUniqueID().toString();
 
                     if (this.tryExecute(sender, astring, icommand, rawCommand))
                     {
@@ -138,7 +138,7 @@ public class CommandHandler implements ICommandManager
         return astring;
     }
 
-    public List<String> getTabCompletionOptions(ICommandSender sender, String input, BlockPos pos)
+    public List<String> getTabCompletionOptions(ICommandSender sender, String input, 阻止位置 pos)
     {
         String[] astring = input.split(" ", -1);
         String s = astring[0];

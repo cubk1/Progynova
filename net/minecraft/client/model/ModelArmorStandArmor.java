@@ -1,7 +1,7 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.entity.item.实体ArmorStand;
+import net.minecraft.entity.实体;
 
 public class ModelArmorStandArmor extends ModelBiped
 {
@@ -20,11 +20,11 @@ public class ModelArmorStandArmor extends ModelBiped
         super(modelSize, 0.0F, textureWidthIn, textureHeightIn);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        if (entityIn instanceof EntityArmorStand)
+        if (实体In instanceof 实体ArmorStand)
         {
-            EntityArmorStand entityarmorstand = (EntityArmorStand)entityIn;
+            实体ArmorStand entityarmorstand = (实体ArmorStand) 实体In;
             this.bipedHead.rotateAngleX = 0.017453292F * entityarmorstand.getHeadRotation().getX();
             this.bipedHead.rotateAngleY = 0.017453292F * entityarmorstand.getHeadRotation().getY();
             this.bipedHead.rotateAngleZ = 0.017453292F * entityarmorstand.getHeadRotation().getZ();

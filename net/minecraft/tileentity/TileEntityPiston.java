@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -19,7 +19,7 @@ public class TileEntityPiston extends TileEntity implements ITickable
     private boolean shouldHeadBeRendered;
     private float progress;
     private float lastProgress;
-    private List<Entity> field_174933_k = Lists.<Entity>newArrayList();
+    private List<实体> field_174933_k = Lists.<实体>newArrayList();
 
     public TileEntityPiston()
     {
@@ -98,33 +98,33 @@ public class TileEntityPiston extends TileEntity implements ITickable
 
         if (axisalignedbb != null)
         {
-            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)null, axisalignedbb);
+            List<实体> list = this.worldObj.getEntitiesWithinAABBExcludingEntity((实体)null, axisalignedbb);
 
             if (!list.isEmpty())
             {
                 this.field_174933_k.addAll(list);
 
-                for (Entity entity : this.field_174933_k)
+                for (实体 实体 : this.field_174933_k)
                 {
                     if (this.pistonState.getBlock() == Blocks.slime_block && this.extending)
                     {
                         switch (this.pistonFacing.getAxis())
                         {
                             case X:
-                                entity.通便X = (double)this.pistonFacing.getFrontOffsetX();
+                                实体.通便X = (double)this.pistonFacing.getFrontOffsetX();
                                 break;
 
                             case Y:
-                                entity.motionY = (double)this.pistonFacing.getFrontOffsetY();
+                                实体.motionY = (double)this.pistonFacing.getFrontOffsetY();
                                 break;
 
                             case Z:
-                                entity.通便Z = (double)this.pistonFacing.getFrontOffsetZ();
+                                实体.通便Z = (double)this.pistonFacing.getFrontOffsetZ();
                         }
                     }
                     else
                     {
-                        entity.moveEntity((double)(p_145863_2_ * (float)this.pistonFacing.getFrontOffsetX()), (double)(p_145863_2_ * (float)this.pistonFacing.getFrontOffsetY()), (double)(p_145863_2_ * (float)this.pistonFacing.getFrontOffsetZ()));
+                        实体.moveEntity((double)(p_145863_2_ * (float)this.pistonFacing.getFrontOffsetX()), (double)(p_145863_2_ * (float)this.pistonFacing.getFrontOffsetY()), (double)(p_145863_2_ * (float)this.pistonFacing.getFrontOffsetZ()));
                     }
                 }
 

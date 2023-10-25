@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.texture;
 
 import net.minecraft.client.我的手艺;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -23,7 +23,7 @@ public class TextureCompass extends TextureAtlasSprite
 
         if (宇轩的世界.宇轩の世界 != null && 宇轩的世界.宇轩游玩者 != null)
         {
-            this.updateCompass(宇轩的世界.宇轩の世界, 宇轩的世界.宇轩游玩者.posX, 宇轩的世界.宇轩游玩者.posZ, (double) 宇轩的世界.宇轩游玩者.旋转侧滑, false, false);
+            this.updateCompass(宇轩的世界.宇轩の世界, 宇轩的世界.宇轩游玩者.X坐标, 宇轩的世界.宇轩游玩者.Z坐标, (double) 宇轩的世界.宇轩游玩者.旋转侧滑, false, false);
         }
         else
         {
@@ -39,7 +39,7 @@ public class TextureCompass extends TextureAtlasSprite
 
             if (worldIn != null && !p_94241_8_)
             {
-                BlockPos blockpos = worldIn.getSpawnPoint();
+                阻止位置 blockpos = worldIn.getSpawnPoint();
                 double d1 = (double)blockpos.getX() - p_94241_2_;
                 double d2 = (double)blockpos.getZ() - p_94241_4_;
                 p_94241_6_ = p_94241_6_ % 360.0D;

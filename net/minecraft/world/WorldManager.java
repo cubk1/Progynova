@@ -1,13 +1,13 @@
 package net.minecraft.world;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.player.实体PlayerMP;
+import net.minecraft.entity.实体;
 import net.minecraft.network.play.server.S25PacketBlockBreakAnim;
 import net.minecraft.network.play.server.S28PacketEffect;
 import net.minecraft.network.play.server.S29PacketSoundEffect;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class WorldManager implements IWorldAccess
 {
@@ -24,15 +24,15 @@ public class WorldManager implements IWorldAccess
     {
     }
 
-    public void onEntityAdded(Entity entityIn)
+    public void onEntityAdded(实体 实体In)
     {
-        this.theWorldServer.getEntityTracker().trackEntity(entityIn);
+        this.theWorldServer.getEntityTracker().trackEntity(实体In);
     }
 
-    public void onEntityRemoved(Entity entityIn)
+    public void onEntityRemoved(实体 实体In)
     {
-        this.theWorldServer.getEntityTracker().untrackEntity(entityIn);
-        this.theWorldServer.getScoreboard().func_181140_a(entityIn);
+        this.theWorldServer.getEntityTracker().untrackEntity(实体In);
+        this.theWorldServer.getScoreboard().func_181140_a(实体In);
     }
 
     public void playSound(String soundName, double x, double y, double z, float volume, float pitch)
@@ -40,7 +40,7 @@ public class WorldManager implements IWorldAccess
         this.mcServer.getConfigurationManager().sendToAllNear(x, y, z, volume > 1.0F ? (double)(16.0F * volume) : 16.0D, this.theWorldServer.provider.getDimensionId(), new S29PacketSoundEffect(soundName, x, y, z, volume, pitch));
     }
 
-    public void playSoundToNearExcept(EntityPlayer except, String soundName, double x, double y, double z, float volume, float pitch)
+    public void playSoundToNearExcept(实体Player except, String soundName, double x, double y, double z, float volume, float pitch)
     {
         this.mcServer.getConfigurationManager().sendToAllNearExcept(except, x, y, z, volume > 1.0F ? (double)(16.0F * volume) : 16.0D, this.theWorldServer.provider.getDimensionId(), new S29PacketSoundEffect(soundName, x, y, z, volume, pitch));
     }
@@ -49,38 +49,38 @@ public class WorldManager implements IWorldAccess
     {
     }
 
-    public void markBlockForUpdate(BlockPos pos)
+    public void markBlockForUpdate(阻止位置 pos)
     {
         this.theWorldServer.getPlayerManager().markBlockForUpdate(pos);
     }
 
-    public void notifyLightSet(BlockPos pos)
+    public void notifyLightSet(阻止位置 pos)
     {
     }
 
-    public void playRecord(String recordName, BlockPos blockPosIn)
+    public void playRecord(String recordName, 阻止位置 阻止位置In)
     {
     }
 
-    public void playAuxSFX(EntityPlayer player, int sfxType, BlockPos blockPosIn, int data)
+    public void playAuxSFX(实体Player player, int sfxType, 阻止位置 阻止位置In, int data)
     {
-        this.mcServer.getConfigurationManager().sendToAllNearExcept(player, (double)blockPosIn.getX(), (double)blockPosIn.getY(), (double)blockPosIn.getZ(), 64.0D, this.theWorldServer.provider.getDimensionId(), new S28PacketEffect(sfxType, blockPosIn, data, false));
+        this.mcServer.getConfigurationManager().sendToAllNearExcept(player, (double) 阻止位置In.getX(), (double) 阻止位置In.getY(), (double) 阻止位置In.getZ(), 64.0D, this.theWorldServer.provider.getDimensionId(), new S28PacketEffect(sfxType, 阻止位置In, data, false));
     }
 
-    public void broadcastSound(int soundID, BlockPos pos, int data)
+    public void broadcastSound(int soundID, 阻止位置 pos, int data)
     {
         this.mcServer.getConfigurationManager().sendPacketToAllPlayers(new S28PacketEffect(soundID, pos, data, true));
     }
 
-    public void sendBlockBreakProgress(int breakerId, BlockPos pos, int progress)
+    public void sendBlockBreakProgress(int breakerId, 阻止位置 pos, int progress)
     {
-        for (EntityPlayerMP entityplayermp : this.mcServer.getConfigurationManager().getPlayerList())
+        for (实体PlayerMP entityplayermp : this.mcServer.getConfigurationManager().getPlayerList())
         {
             if (entityplayermp != null && entityplayermp.worldObj == this.theWorldServer && entityplayermp.getEntityId() != breakerId)
             {
-                double d0 = (double)pos.getX() - entityplayermp.posX;
-                double d1 = (double)pos.getY() - entityplayermp.posY;
-                double d2 = (double)pos.getZ() - entityplayermp.posZ;
+                double d0 = (double)pos.getX() - entityplayermp.X坐标;
+                double d1 = (double)pos.getY() - entityplayermp.Y坐标;
+                double d2 = (double)pos.getZ() - entityplayermp.Z坐标;
 
                 if (d0 * d0 + d1 * d1 + d2 * d2 < 1024.0D)
                 {

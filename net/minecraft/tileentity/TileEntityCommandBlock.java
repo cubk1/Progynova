@@ -3,11 +3,11 @@ package net.minecraft.tileentity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.server.CommandBlockLogic;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
@@ -15,7 +15,7 @@ public class TileEntityCommandBlock extends TileEntity
 {
     private final CommandBlockLogic commandBlockLogic = new CommandBlockLogic()
     {
-        public BlockPos getPosition()
+        public 阻止位置 getPosition()
         {
             return TileEntityCommandBlock.this.pos;
         }
@@ -46,7 +46,7 @@ public class TileEntityCommandBlock extends TileEntity
             p_145757_1_.writeInt(TileEntityCommandBlock.this.pos.getY());
             p_145757_1_.writeInt(TileEntityCommandBlock.this.pos.getZ());
         }
-        public Entity getCommandSenderEntity()
+        public 实体 getCommandSenderEntity()
         {
             return null;
         }

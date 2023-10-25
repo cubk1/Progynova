@@ -2,10 +2,10 @@ package net.optifine.shaders;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import net.minecraft.util.BlockPos;
-import net.optifine.BlockPosM;
+import net.minecraft.util.阻止位置;
+import net.optifine.阻止位置M;
 
-public class IteratorAxis implements Iterator<BlockPos>
+public class IteratorAxis implements Iterator<阻止位置>
 {
     private double yDelta;
     private double zDelta;
@@ -18,10 +18,10 @@ public class IteratorAxis implements Iterator<BlockPos>
     private int xNext;
     private double yNext;
     private double zNext;
-    private BlockPosM pos = new BlockPosM(0, 0, 0);
+    private 阻止位置M pos = new 阻止位置M(0, 0, 0);
     private boolean hasNext = false;
 
-    public IteratorAxis(BlockPos posStart, BlockPos posEnd, double yDelta, double zDelta)
+    public IteratorAxis(阻止位置 posStart, 阻止位置 posEnd, double yDelta, double zDelta)
     {
         this.yDelta = yDelta;
         this.zDelta = zDelta;
@@ -42,7 +42,7 @@ public class IteratorAxis implements Iterator<BlockPos>
         return this.hasNext;
     }
 
-    public BlockPos next()
+    public 阻止位置 next()
     {
         if (!this.hasNext)
         {
@@ -92,8 +92,8 @@ public class IteratorAxis implements Iterator<BlockPos>
 
     public static void main(String[] args) throws Exception
     {
-        BlockPos blockpos = new BlockPos(-2, 10, 20);
-        BlockPos blockpos1 = new BlockPos(2, 12, 22);
+        阻止位置 blockpos = new 阻止位置(-2, 10, 20);
+        阻止位置 blockpos1 = new 阻止位置(2, 12, 22);
         double d0 = -0.5D;
         double d1 = 0.5D;
         IteratorAxis iteratoraxis = new IteratorAxis(blockpos, blockpos1, d0, d1);
@@ -101,7 +101,7 @@ public class IteratorAxis implements Iterator<BlockPos>
 
         while (iteratoraxis.hasNext())
         {
-            BlockPos blockpos2 = iteratoraxis.next();
+            阻止位置 blockpos2 = iteratoraxis.next();
             System.out.println("" + blockpos2);
         }
     }

@@ -1,25 +1,25 @@
 package net.minecraft.item;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityHanging;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.item.EntityPainting;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.item.实体ItemFrame;
+import net.minecraft.entity.item.实体Painting;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体Hanging;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 public class ItemHangingEntity extends Item
 {
-    private final Class <? extends EntityHanging > hangingEntityClass;
+    private final Class <? extends 实体Hanging> hangingEntityClass;
 
-    public ItemHangingEntity(Class <? extends EntityHanging > entityClass)
+    public ItemHangingEntity(Class <? extends 实体Hanging> entityClass)
     {
         this.hangingEntityClass = entityClass;
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (side == EnumFacing.DOWN)
         {
@@ -31,7 +31,7 @@ public class ItemHangingEntity extends Item
         }
         else
         {
-            BlockPos blockpos = pos.offset(side);
+            阻止位置 blockpos = pos.offset(side);
 
             if (!playerIn.canPlayerEdit(blockpos, side, stack))
             {
@@ -39,7 +39,7 @@ public class ItemHangingEntity extends Item
             }
             else
             {
-                EntityHanging entityhanging = this.createEntity(worldIn, blockpos, side);
+                实体Hanging entityhanging = this.createEntity(worldIn, blockpos, side);
 
                 if (entityhanging != null && entityhanging.onValidSurface())
                 {
@@ -56,8 +56,8 @@ public class ItemHangingEntity extends Item
         }
     }
 
-    private EntityHanging createEntity(World worldIn, BlockPos pos, EnumFacing clickedSide)
+    private 实体Hanging createEntity(World worldIn, 阻止位置 pos, EnumFacing clickedSide)
     {
-        return (EntityHanging)(this.hangingEntityClass == EntityPainting.class ? new EntityPainting(worldIn, pos, clickedSide) : (this.hangingEntityClass == EntityItemFrame.class ? new EntityItemFrame(worldIn, pos, clickedSide) : null));
+        return (实体Hanging)(this.hangingEntityClass == 实体Painting.class ? new 实体Painting(worldIn, pos, clickedSide) : (this.hangingEntityClass == 实体ItemFrame.class ? new 实体ItemFrame(worldIn, pos, clickedSide) : null));
     }
 }

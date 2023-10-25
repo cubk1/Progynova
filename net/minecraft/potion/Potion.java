@@ -5,14 +5,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.Map.Entry;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.图像位置;
 import net.minecraft.util.StringUtils;
@@ -102,7 +103,7 @@ public class Potion
         return this.id;
     }
 
-    public void performEffect(EntityLivingBase entityLivingBaseIn, int p_76394_2_)
+    public void performEffect(实体LivingBase entityLivingBaseIn, int p_76394_2_)
     {
         if (this.id == regeneration.id)
         {
@@ -122,15 +123,15 @@ public class Potion
         {
             entityLivingBaseIn.attackEntityFrom(DamageSource.wither, 1.0F);
         }
-        else if (this.id == hunger.id && entityLivingBaseIn instanceof EntityPlayer)
+        else if (this.id == hunger.id && entityLivingBaseIn instanceof 实体Player)
         {
-            ((EntityPlayer)entityLivingBaseIn).addExhaustion(0.025F * (float)(p_76394_2_ + 1));
+            ((实体Player)entityLivingBaseIn).addExhaustion(0.025F * (float)(p_76394_2_ + 1));
         }
-        else if (this.id == saturation.id && entityLivingBaseIn instanceof EntityPlayer)
+        else if (this.id == saturation.id && entityLivingBaseIn instanceof 实体Player)
         {
             if (!entityLivingBaseIn.worldObj.isRemote)
             {
-                ((EntityPlayer)entityLivingBaseIn).获取饥饿值().addStats(p_76394_2_ + 1, 1.0F);
+                ((实体Player)entityLivingBaseIn).获取饥饿值().addStats(p_76394_2_ + 1, 1.0F);
             }
         }
         else if ((this.id != heal.id || entityLivingBaseIn.isEntityUndead()) && (this.id != harm.id || !entityLivingBaseIn.isEntityUndead()))
@@ -146,7 +147,7 @@ public class Potion
         }
     }
 
-    public void affectEntity(Entity p_180793_1_, Entity p_180793_2_, EntityLivingBase entityLivingBaseIn, int p_180793_4_, double p_180793_5_)
+    public void affectEntity(实体 p_180793_1_, 实体 p_180793_2_, 实体LivingBase entityLivingBaseIn, int p_180793_4_, double p_180793_5_)
     {
         if ((this.id != heal.id || entityLivingBaseIn.isEntityUndead()) && (this.id != harm.id || !entityLivingBaseIn.isEntityUndead()))
         {
@@ -271,7 +272,7 @@ public class Potion
         return this.attributeModifierMap;
     }
 
-    public void removeAttributesModifiersFromEntity(EntityLivingBase entityLivingBaseIn, BaseAttributeMap p_111187_2_, int amplifier)
+    public void removeAttributesModifiersFromEntity(实体LivingBase entityLivingBaseIn, BaseAttributeMap p_111187_2_, int amplifier)
     {
         for (Entry<IAttribute, AttributeModifier> entry : this.attributeModifierMap.entrySet())
         {
@@ -284,7 +285,7 @@ public class Potion
         }
     }
 
-    public void applyAttributesModifiersToEntity(EntityLivingBase entityLivingBaseIn, BaseAttributeMap p_111185_2_, int amplifier)
+    public void applyAttributesModifiersToEntity(实体LivingBase entityLivingBaseIn, BaseAttributeMap p_111185_2_, int amplifier)
     {
         for (Entry<IAttribute, AttributeModifier> entry : this.attributeModifierMap.entrySet())
         {

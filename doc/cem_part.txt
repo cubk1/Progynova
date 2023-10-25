@@ -3,7 +3,7 @@
 # Reference configuration for OptiFine's feature Custom Entity Models
 ######################################################################
 # This file contains the definition of one model part and it can be
-# referenced as "model" from the entity model.
+# referenced as "model" from the 实体 model.
 # The file extension ".jpm" is recommended, but not required.
 # It should be located in the "assets/宇轩的世界/optifine/cem" folder of your resource pack.
 #

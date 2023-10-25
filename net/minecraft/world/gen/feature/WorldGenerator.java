@@ -2,7 +2,7 @@ package net.minecraft.world.gen.feature;
 
 import java.util.Random;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public abstract class WorldGenerator
@@ -19,13 +19,13 @@ public abstract class WorldGenerator
         this.doBlockNotify = notify;
     }
 
-    public abstract boolean generate(World worldIn, Random rand, BlockPos position);
+    public abstract boolean generate(World worldIn, Random rand, 阻止位置 position);
 
     public void func_175904_e()
     {
     }
 
-    protected void setBlockAndNotifyAdequately(World worldIn, BlockPos pos, IBlockState state)
+    protected void setBlockAndNotifyAdequately(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (this.doBlockNotify)
         {

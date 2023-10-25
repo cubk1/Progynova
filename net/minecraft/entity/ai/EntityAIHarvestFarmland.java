@@ -3,22 +3,22 @@ package net.minecraft.entity.ai;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.实体Villager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
 {
-    private final EntityVillager theVillager;
+    private final 实体Villager theVillager;
     private boolean hasFarmItem;
     private boolean field_179503_e;
     private int field_179501_f;
 
-    public EntityAIHarvestFarmland(EntityVillager theVillagerIn, double speedIn)
+    public EntityAIHarvestFarmland(实体Villager theVillagerIn, double speedIn)
     {
         super(theVillagerIn, speedIn, 16);
         this.theVillager = theVillagerIn;
@@ -64,7 +64,7 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
         if (this.getIsAboveDestination())
         {
             World world = this.theVillager.worldObj;
-            BlockPos blockpos = this.destinationBlock.up();
+            阻止位置 blockpos = this.destinationBlock.up();
             IBlockState iblockstate = world.getBlockState(blockpos);
             Block block = iblockstate.getBlock();
 
@@ -119,7 +119,7 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
         }
     }
 
-    protected boolean shouldMoveTo(World worldIn, BlockPos pos)
+    protected boolean shouldMoveTo(World worldIn, 阻止位置 pos)
     {
         Block block = worldIn.getBlockState(pos).getBlock();
 

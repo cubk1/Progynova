@@ -1,7 +1,7 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体Creature;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.util.AxisAlignedBB;
 
 public class EntityAIHurtByTarget extends EntityAITarget
@@ -10,7 +10,7 @@ public class EntityAIHurtByTarget extends EntityAITarget
     private int revengeTimerOld;
     private final Class[] targetClasses;
 
-    public EntityAIHurtByTarget(EntityCreature creatureIn, boolean entityCallsForHelpIn, Class... targetClassesIn)
+    public EntityAIHurtByTarget(实体Creature creatureIn, boolean entityCallsForHelpIn, Class... targetClassesIn)
     {
         super(creatureIn, false);
         this.entityCallsForHelp = entityCallsForHelpIn;
@@ -33,7 +33,7 @@ public class EntityAIHurtByTarget extends EntityAITarget
         {
             double d0 = this.getTargetDistance();
 
-            for (EntityCreature entitycreature : this.taskOwner.worldObj.getEntitiesWithinAABB(this.taskOwner.getClass(), (new AxisAlignedBB(this.taskOwner.posX, this.taskOwner.posY, this.taskOwner.posZ, this.taskOwner.posX + 1.0D, this.taskOwner.posY + 1.0D, this.taskOwner.posZ + 1.0D)).expand(d0, 10.0D, d0)))
+            for (实体Creature entitycreature : this.taskOwner.worldObj.getEntitiesWithinAABB(this.taskOwner.getClass(), (new AxisAlignedBB(this.taskOwner.X坐标, this.taskOwner.Y坐标, this.taskOwner.Z坐标, this.taskOwner.X坐标 + 1.0D, this.taskOwner.Y坐标 + 1.0D, this.taskOwner.Z坐标 + 1.0D)).expand(d0, 10.0D, d0)))
             {
                 if (this.taskOwner != entitycreature && entitycreature.getAttackTarget() == null && !entitycreature.isOnSameTeam(this.taskOwner.getAITarget()))
                 {
@@ -59,7 +59,7 @@ public class EntityAIHurtByTarget extends EntityAITarget
         super.startExecuting();
     }
 
-    protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn)
+    protected void setEntityAttackTarget(实体Creature creatureIn, 实体LivingBase entityLivingBaseIn)
     {
         creatureIn.setAttackTarget(entityLivingBaseIn);
     }

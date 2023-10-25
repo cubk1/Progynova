@@ -1,16 +1,16 @@
 package net.minecraft.client.audio;
 
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体Minecart;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
 public class MovingSoundMinecartRiding extends MovingSound
 {
-    private final EntityPlayer player;
-    private final EntityMinecart minecart;
+    private final 实体Player player;
+    private final 实体Minecart minecart;
 
-    public MovingSoundMinecartRiding(EntityPlayer playerRiding, EntityMinecart minecart)
+    public MovingSoundMinecartRiding(实体Player playerRiding, 实体Minecart minecart)
     {
         super(new 图像位置("minecraft:minecart.inside"));
         this.player = playerRiding;
@@ -22,7 +22,7 @@ public class MovingSoundMinecartRiding extends MovingSound
 
     public void update()
     {
-        if (!this.minecart.isDead && this.player.isRiding() && this.player.ridingEntity == this.minecart)
+        if (!this.minecart.isDead && this.player.isRiding() && this.player.riding实体 == this.minecart)
         {
             float f = MathHelper.sqrt_double(this.minecart.通便X * this.minecart.通便X + this.minecart.通便Z * this.minecart.通便Z);
 

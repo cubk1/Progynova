@@ -5,11 +5,11 @@ import net.minecraft.client.model.ModelEnderCrystal;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.item.EntityEnderCrystal;
+import net.minecraft.entity.item.实体EnderCrystal;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
-public class RenderEnderCrystal extends Render<EntityEnderCrystal>
+public class RenderEnderCrystal extends Render<实体EnderCrystal>
 {
     private static final 图像位置 enderCrystalTextures = new 图像位置("textures/entity/endercrystal/endercrystal.png");
     private ModelBase modelEnderCrystal = new ModelEnderCrystal(0.0F, true);
@@ -20,7 +20,7 @@ public class RenderEnderCrystal extends Render<EntityEnderCrystal>
         this.shadowSize = 0.5F;
     }
 
-    public void doRender(EntityEnderCrystal entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体EnderCrystal entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         float f = (float)entity.innerRotation + partialTicks;
         光照状态经理.推黑客帝国();
@@ -33,7 +33,7 @@ public class RenderEnderCrystal extends Render<EntityEnderCrystal>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityEnderCrystal entity)
+    protected 图像位置 getEntityTexture(实体EnderCrystal entity)
     {
         return enderCrystalTextures;
     }

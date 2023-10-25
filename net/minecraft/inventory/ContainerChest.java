@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 
 public class ContainerChest extends Container
@@ -8,7 +8,7 @@ public class ContainerChest extends Container
     private IInventory lowerChestInventory;
     private int numRows;
 
-    public ContainerChest(IInventory playerInventory, IInventory chestInventory, EntityPlayer player)
+    public ContainerChest(IInventory playerInventory, IInventory chestInventory, 实体Player player)
     {
         this.lowerChestInventory = chestInventory;
         this.numRows = chestInventory.getSizeInventory() / 9;
@@ -37,12 +37,12 @@ public class ContainerChest extends Container
         }
     }
 
-    public boolean canInteractWith(EntityPlayer playerIn)
+    public boolean canInteractWith(实体Player playerIn)
     {
         return this.lowerChestInventory.isUseableByPlayer(playerIn);
     }
 
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    public ItemStack transferStackInSlot(实体Player playerIn, int index)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(index);
@@ -77,7 +77,7 @@ public class ContainerChest extends Container
         return itemstack;
     }
 
-    public void onContainerClosed(EntityPlayer playerIn)
+    public void onContainerClosed(实体Player playerIn)
     {
         super.onContainerClosed(playerIn);
         this.lowerChestInventory.closeInventory(playerIn);

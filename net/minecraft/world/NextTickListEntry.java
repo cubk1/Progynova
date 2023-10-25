@@ -1,18 +1,18 @@
 package net.minecraft.world;
 
 import net.minecraft.block.Block;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class NextTickListEntry implements Comparable<NextTickListEntry>
 {
     private static long nextTickEntryID;
     private final Block block;
-    public final BlockPos position;
+    public final 阻止位置 position;
     public long scheduledTime;
     public int priority;
     private long tickEntryID;
 
-    public NextTickListEntry(BlockPos positionIn, Block blockIn)
+    public NextTickListEntry(阻止位置 positionIn, Block blockIn)
     {
         this.tickEntryID = (long)(nextTickEntryID++);
         this.position = positionIn;

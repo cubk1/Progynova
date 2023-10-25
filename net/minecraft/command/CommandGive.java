@@ -1,14 +1,14 @@
 package net.minecraft.command;
 
 import java.util.List;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体Item;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class CommandGive extends CommandBase
 {
@@ -35,7 +35,7 @@ public class CommandGive extends CommandBase
         }
         else
         {
-            EntityPlayer entityplayer = getPlayer(sender, args[0]);
+            实体Player entityplayer = getPlayer(sender, args[0]);
             Item item = getItemByText(sender, args[1]);
             int i = args.length >= 3 ? parseInt(args[2], 1, 64) : 1;
             int j = args.length >= 4 ? parseInt(args[3]) : 0;
@@ -67,7 +67,7 @@ public class CommandGive extends CommandBase
             {
                 itemstack.stackSize = 1;
                 sender.setCommandStat(CommandResultStats.Type.AFFECTED_ITEMS, i);
-                EntityItem entityitem1 = entityplayer.dropPlayerItemWithRandomChoice(itemstack);
+                实体Item entityitem1 = entityplayer.dropPlayerItemWithRandomChoice(itemstack);
 
                 if (entityitem1 != null)
                 {
@@ -77,7 +77,7 @@ public class CommandGive extends CommandBase
             else
             {
                 sender.setCommandStat(CommandResultStats.Type.AFFECTED_ITEMS, i - itemstack.stackSize);
-                EntityItem entityitem = entityplayer.dropPlayerItemWithRandomChoice(itemstack);
+                实体Item entityitem = entityplayer.dropPlayerItemWithRandomChoice(itemstack);
 
                 if (entityitem != null)
                 {
@@ -90,7 +90,7 @@ public class CommandGive extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, this.getPlayers()) : (args.length == 2 ? getListOfStringsMatchingLastWord(args, Item.itemRegistry.getKeys()) : null);
     }

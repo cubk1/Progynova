@@ -11,11 +11,11 @@ import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.block.state.pattern.BlockStateHelper;
 import net.minecraft.block.state.pattern.FactoryBlockPattern;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.monster.EntitySnowman;
+import net.minecraft.entity.monster.实体IronGolem;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.monster.实体Snowman;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -42,18 +42,18 @@ public class BlockPumpkin extends BlockDirectional
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         super.onBlockAdded(worldIn, pos, state);
         this.trySpawnGolem(worldIn, pos);
     }
 
-    public boolean canDispenserPlace(World worldIn, BlockPos pos)
+    public boolean canDispenserPlace(World worldIn, 阻止位置 pos)
     {
         return this.getSnowmanBasePattern().match(worldIn, pos) != null || this.getGolemBasePattern().match(worldIn, pos) != null;
     }
 
-    private void trySpawnGolem(World worldIn, BlockPos pos)
+    private void trySpawnGolem(World worldIn, 阻止位置 pos)
     {
         BlockPattern.PatternHelper blockpattern$patternhelper;
 
@@ -65,8 +65,8 @@ public class BlockPumpkin extends BlockDirectional
                 worldIn.setBlockState(blockworldstate.getPos(), Blocks.air.getDefaultState(), 2);
             }
 
-            EntitySnowman entitysnowman = new EntitySnowman(worldIn);
-            BlockPos blockpos1 = blockpattern$patternhelper.translateOffset(0, 2, 0).getPos();
+            实体Snowman entitysnowman = new 实体Snowman(worldIn);
+            阻止位置 blockpos1 = blockpattern$patternhelper.translateOffset(0, 2, 0).getPos();
             entitysnowman.setLocationAndAngles((double)blockpos1.getX() + 0.5D, (double)blockpos1.getY() + 0.05D, (double)blockpos1.getZ() + 0.5D, 0.0F, 0.0F);
             worldIn.spawnEntityInWorld(entitysnowman);
 
@@ -91,8 +91,8 @@ public class BlockPumpkin extends BlockDirectional
                 }
             }
 
-            BlockPos blockpos = blockpattern$patternhelper.translateOffset(1, 2, 0).getPos();
-            EntityIronGolem entityirongolem = new EntityIronGolem(worldIn);
+            阻止位置 blockpos = blockpattern$patternhelper.translateOffset(1, 2, 0).getPos();
+            实体IronGolem entityirongolem = new 实体IronGolem(worldIn);
             entityirongolem.setPlayerCreated(true);
             entityirongolem.setLocationAndAngles((double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.05D, (double)blockpos.getZ() + 0.5D, 0.0F, 0.0F);
             worldIn.spawnEntityInWorld(entityirongolem);
@@ -113,12 +113,12 @@ public class BlockPumpkin extends BlockDirectional
         }
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return worldIn.getBlockState(pos).getBlock().blockMaterial.isReplaceable() && World.doesBlockHaveSolidTopSurface(worldIn, pos.down());
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }

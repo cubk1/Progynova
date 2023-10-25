@@ -1,9 +1,9 @@
 package net.minecraft.client.model;
 
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.boss.实体Dragon;
 
 public class ModelDragon extends ModelBase
 {
@@ -100,15 +100,15 @@ public class ModelDragon extends ModelBase
         this.rearLegTip.addChild(this.rearFoot);
     }
 
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
+    public void setLivingAnimations(实体LivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
     {
         this.partialTicks = partialTickTime;
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
         光照状态经理.推黑客帝国();
-        EntityDragon entitydragon = (EntityDragon)entityIn;
+        实体Dragon entitydragon = (实体Dragon) 实体In;
         float f = entitydragon.prevAnimTime + (entitydragon.animTime - entitydragon.prevAnimTime) * this.partialTicks;
         this.jaw.rotateAngleX = (float)(Math.sin((double)(f * (float)Math.PI * 2.0F)) + 1.0D) * 0.2F;
         float f1 = (float)(Math.sin((double)(f * (float)Math.PI * 2.0F - 1.0F)) + 1.0D);

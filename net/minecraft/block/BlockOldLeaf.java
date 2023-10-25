@@ -7,13 +7,13 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -46,7 +46,7 @@ public class BlockOldLeaf extends BlockLeaves
         }
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 
@@ -68,7 +68,7 @@ public class BlockOldLeaf extends BlockLeaves
         return super.colorMultiplier(worldIn, pos, renderPass);
     }
 
-    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
+    protected void dropApple(World worldIn, 阻止位置 pos, IBlockState state, int chance)
     {
         if (state.getValue(VARIANT) == BlockPlanks.EnumType.OAK && worldIn.rand.nextInt(chance) == 0)
         {
@@ -132,7 +132,7 @@ public class BlockOldLeaf extends BlockLeaves
         return ((BlockPlanks.EnumType)state.getValue(VARIANT)).getMetadata();
     }
 
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World worldIn, 实体Player player, 阻止位置 pos, IBlockState state, TileEntity te)
     {
         if (!worldIn.isRemote && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.shears)
         {

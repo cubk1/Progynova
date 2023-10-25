@@ -5,13 +5,13 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.item.EntityPainting;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.item.实体Painting;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
-public class RenderPainting extends Render<EntityPainting>
+public class RenderPainting extends Render<实体Painting>
 {
     private static final 图像位置 KRISTOFFER_PAINTING_TEXTURE = new 图像位置("textures/painting/paintings_kristoffer_zetterstrand.png");
 
@@ -20,14 +20,14 @@ public class RenderPainting extends Render<EntityPainting>
         super(renderManagerIn);
     }
 
-    public void doRender(EntityPainting entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体Painting entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         光照状态经理.推黑客帝国();
         光照状态经理.理解(x, y, z);
         光照状态经理.辐射(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
         光照状态经理.enableRescaleNormal();
         this.bindEntityTexture(entity);
-        EntityPainting.EnumArt entitypainting$enumart = entity.art;
+        实体Painting.EnumArt entitypainting$enumart = entity.art;
         float f = 0.0625F;
         光照状态经理.障眼物(f, f, f);
         this.renderPainting(entity, entitypainting$enumart.sizeX, entitypainting$enumart.sizeY, entitypainting$enumart.offsetX, entitypainting$enumart.offsetY);
@@ -36,12 +36,12 @@ public class RenderPainting extends Render<EntityPainting>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityPainting entity)
+    protected 图像位置 getEntityTexture(实体Painting entity)
     {
         return KRISTOFFER_PAINTING_TEXTURE;
     }
 
-    private void renderPainting(EntityPainting painting, int width, int height, int textureU, int textureV)
+    private void renderPainting(实体Painting painting, int width, int height, int textureU, int textureV)
     {
         float f = (float)(-width) / 2.0F;
         float f1 = (float)(-height) / 2.0F;
@@ -104,34 +104,34 @@ public class RenderPainting extends Render<EntityPainting>
         }
     }
 
-    private void setLightmap(EntityPainting painting, float p_77008_2_, float p_77008_3_)
+    private void setLightmap(实体Painting painting, float p_77008_2_, float p_77008_3_)
     {
-        int i = MathHelper.floor_double(painting.posX);
-        int j = MathHelper.floor_double(painting.posY + (double)(p_77008_3_ / 16.0F));
-        int k = MathHelper.floor_double(painting.posZ);
+        int i = MathHelper.floor_double(painting.X坐标);
+        int j = MathHelper.floor_double(painting.Y坐标 + (double)(p_77008_3_ / 16.0F));
+        int k = MathHelper.floor_double(painting.Z坐标);
         EnumFacing enumfacing = painting.facingDirection;
 
         if (enumfacing == EnumFacing.NORTH)
         {
-            i = MathHelper.floor_double(painting.posX + (double)(p_77008_2_ / 16.0F));
+            i = MathHelper.floor_double(painting.X坐标 + (double)(p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.WEST)
         {
-            k = MathHelper.floor_double(painting.posZ - (double)(p_77008_2_ / 16.0F));
+            k = MathHelper.floor_double(painting.Z坐标 - (double)(p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.SOUTH)
         {
-            i = MathHelper.floor_double(painting.posX - (double)(p_77008_2_ / 16.0F));
+            i = MathHelper.floor_double(painting.X坐标 - (double)(p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.EAST)
         {
-            k = MathHelper.floor_double(painting.posZ + (double)(p_77008_2_ / 16.0F));
+            k = MathHelper.floor_double(painting.Z坐标 + (double)(p_77008_2_ / 16.0F));
         }
 
-        int l = this.renderManager.worldObj.getCombinedLight(new BlockPos(i, j, k), 0);
+        int l = this.renderManager.worldObj.getCombinedLight(new 阻止位置(i, j, k), 0);
         int i1 = l % 65536;
         int j1 = l / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)i1, (float)j1);

@@ -1,14 +1,14 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.实体Villager;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.inventory.Container;
 
 public class EntityAITradePlayer extends EntityAIBase
 {
-    private EntityVillager villager;
+    private 实体Villager villager;
 
-    public EntityAITradePlayer(EntityVillager villagerIn)
+    public EntityAITradePlayer(实体Villager villagerIn)
     {
         this.villager = villagerIn;
         this.setMutexBits(5);
@@ -34,7 +34,7 @@ public class EntityAITradePlayer extends EntityAIBase
         }
         else
         {
-            EntityPlayer entityplayer = this.villager.getCustomer();
+            实体Player entityplayer = this.villager.getCustomer();
             return entityplayer == null ? false : (this.villager.getDistanceSqToEntity(entityplayer) > 16.0D ? false : entityplayer.openContainer instanceof Container);
         }
     }
@@ -46,6 +46,6 @@ public class EntityAITradePlayer extends EntityAIBase
 
     public void resetTask()
     {
-        this.villager.setCustomer((EntityPlayer)null);
+        this.villager.setCustomer((实体Player)null);
     }
 }

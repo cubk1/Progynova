@@ -7,9 +7,9 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.IChatComponent;
@@ -44,7 +44,7 @@ public class CommandMessage extends CommandBase
         }
         else
         {
-            EntityPlayer entityplayer = getPlayer(sender, args[0]);
+            实体Player entityplayer = getPlayer(sender, args[0]);
 
             if (entityplayer == sender)
             {
@@ -52,7 +52,7 @@ public class CommandMessage extends CommandBase
             }
             else
             {
-                IChatComponent ichatcomponent = getChatComponentFromNthArg(sender, args, 1, !(sender instanceof EntityPlayer));
+                IChatComponent ichatcomponent = getChatComponentFromNthArg(sender, args, 1, !(sender instanceof 实体Player));
                 ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation("commands.message.display.incoming", new Object[] {sender.getDisplayName(), ichatcomponent.createCopy()});
                 ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation("commands.message.display.outgoing", new Object[] {entityplayer.getDisplayName(), ichatcomponent.createCopy()});
                 chatcomponenttranslation.getChatStyle().setColor(枚举聊天格式.GRAY).setItalic(Boolean.valueOf(true));
@@ -63,7 +63,7 @@ public class CommandMessage extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames());
     }

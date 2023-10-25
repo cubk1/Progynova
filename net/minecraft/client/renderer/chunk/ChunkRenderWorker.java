@@ -11,7 +11,7 @@ import java.util.concurrent.CancellationException;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.RegionRenderCacheBuilder;
 import net.minecraft.crash.CrashReport;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.EnumWorldBlockLayer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,7 +78,7 @@ public class ChunkRenderWorker implements Runnable
             generator.getLock().unlock();
         }
 
-        Entity lvt_2_1_ = 我的手艺.得到我的手艺().getRenderViewEntity();
+        实体 lvt_2_1_ = 我的手艺.得到我的手艺().getRenderViewEntity();
 
         if (lvt_2_1_ == null)
         {
@@ -87,9 +87,9 @@ public class ChunkRenderWorker implements Runnable
         else
         {
             generator.setRegionRenderCacheBuilder(this.getRegionRenderCacheBuilder());
-            float f = (float)lvt_2_1_.posX;
-            float f1 = (float)lvt_2_1_.posY + lvt_2_1_.getEyeHeight();
-            float f2 = (float)lvt_2_1_.posZ;
+            float f = (float)lvt_2_1_.X坐标;
+            float f1 = (float)lvt_2_1_.Y坐标 + lvt_2_1_.getEyeHeight();
+            float f2 = (float)lvt_2_1_.Z坐标;
             ChunkCompileTaskGenerator.Type chunkcompiletaskgenerator$type = generator.getType();
 
             if (chunkcompiletaskgenerator$type == ChunkCompileTaskGenerator.Type.REBUILD_CHUNK)

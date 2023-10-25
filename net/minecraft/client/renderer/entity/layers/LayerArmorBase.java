@@ -5,8 +5,8 @@ import java.util.Map;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.Config;
@@ -17,7 +17,7 @@ import net.optifine.reflect.ReflectorForge;
 import net.optifine.shaders.Shaders;
 import net.optifine.shaders.ShadersRender;
 
-public abstract class LayerArmorBase<T extends ModelBase> implements LayerRenderer<EntityLivingBase>
+public abstract class LayerArmorBase<T extends ModelBase> implements LayerRenderer<实体LivingBase>
 {
     protected static final 图像位置 ENCHANTED_ITEM_GLINT_RES = new 图像位置("textures/misc/enchanted_item_glint.png");
     protected T modelLeggings;
@@ -36,7 +36,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
         this.initArmor();
     }
 
-    public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体LivingBase entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         this.renderLayer(entitylivingbaseIn, p_177141_2_, p_177141_3_, partialTicks, p_177141_5_, p_177141_6_, p_177141_7_, scale, 4);
         this.renderLayer(entitylivingbaseIn, p_177141_2_, p_177141_3_, partialTicks, p_177141_5_, p_177141_6_, p_177141_7_, scale, 3);
@@ -49,7 +49,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
         return false;
     }
 
-    private void renderLayer(EntityLivingBase entitylivingbaseIn, float p_177182_2_, float p_177182_3_, float partialTicks, float p_177182_5_, float p_177182_6_, float p_177182_7_, float scale, int armorSlot)
+    private void renderLayer(实体LivingBase entitylivingbaseIn, float p_177182_2_, float p_177182_3_, float partialTicks, float p_177182_5_, float p_177182_6_, float p_177182_7_, float scale, int armorSlot)
     {
         ItemStack itemstack = this.getCurrentArmor(entitylivingbaseIn, armorSlot);
 
@@ -138,7 +138,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
         }
     }
 
-    public ItemStack getCurrentArmor(EntityLivingBase entitylivingbaseIn, int armorSlot)
+    public ItemStack getCurrentArmor(实体LivingBase entitylivingbaseIn, int armorSlot)
     {
         return entitylivingbaseIn.getCurrentArmor(armorSlot - 1);
     }
@@ -153,7 +153,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
         return armorSlot == 2;
     }
 
-    private void renderGlint(EntityLivingBase entitylivingbaseIn, T modelbaseIn, float p_177183_3_, float p_177183_4_, float partialTicks, float p_177183_6_, float p_177183_7_, float p_177183_8_, float scale)
+    private void renderGlint(实体LivingBase entitylivingbaseIn, T modelbaseIn, float p_177183_3_, float p_177183_4_, float partialTicks, float p_177183_6_, float p_177183_7_, float p_177183_8_, float scale)
     {
         if (!Config.isShaders() || !Shaders.isShadowPass)
         {
@@ -225,12 +225,12 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 
     protected abstract void setModelPartVisible(T model, int armorSlot);
 
-    protected T getArmorModelHook(EntityLivingBase p_getArmorModelHook_1_, ItemStack p_getArmorModelHook_2_, int p_getArmorModelHook_3_, T p_getArmorModelHook_4_)
+    protected T getArmorModelHook(实体LivingBase p_getArmorModelHook_1_, ItemStack p_getArmorModelHook_2_, int p_getArmorModelHook_3_, T p_getArmorModelHook_4_)
     {
         return (T)p_getArmorModelHook_4_;
     }
 
-    public 图像位置 getArmorResource(Entity p_getArmorResource_1_, ItemStack p_getArmorResource_2_, int p_getArmorResource_3_, String p_getArmorResource_4_)
+    public 图像位置 getArmorResource(实体 p_getArmorResource_1_, ItemStack p_getArmorResource_2_, int p_getArmorResource_3_, String p_getArmorResource_4_)
     {
         ItemArmor itemarmor = (ItemArmor)p_getArmorResource_2_.getItem();
         String s = itemarmor.getArmorMaterial().getName();

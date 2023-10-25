@@ -9,7 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
@@ -50,7 +50,7 @@ public class SVertexBuilder
         --this.entityDataIndex;
     }
 
-    public static void pushEntity(IBlockState blockState, BlockPos blockPos, IBlockAccess blockAccess, WorldRenderer wrr)
+    public static void pushEntity(IBlockState blockState, 阻止位置 阻止位置, IBlockAccess blockAccess, WorldRenderer wrr)
     {
         Block block = blockState.getBlock();
         int i;

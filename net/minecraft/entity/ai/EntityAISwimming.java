@@ -1,13 +1,13 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 import net.minecraft.pathfinding.PathNavigateGround;
 
 public class EntityAISwimming extends EntityAIBase
 {
-    private EntityLiving theEntity;
+    private 实体Living theEntity;
 
-    public EntityAISwimming(EntityLiving entitylivingIn)
+    public EntityAISwimming(实体Living entitylivingIn)
     {
         this.theEntity = entitylivingIn;
         this.setMutexBits(4);

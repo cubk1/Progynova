@@ -2,10 +2,10 @@ package net.minecraft.command;
 
 import com.google.gson.JsonParseException;
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.network.play.server.S45PacketTitle;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentProcessor;
 import net.minecraft.util.IChatComponent;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -52,7 +52,7 @@ public class CommandTitle extends CommandBase
                 }
             }
 
-            EntityPlayerMP entityplayermp = getPlayer(sender, args[0]);
+            实体PlayerMP entityplayermp = getPlayer(sender, args[0]);
             S45PacketTitle.Type s45packettitle$type = S45PacketTitle.Type.byName(args[1]);
 
             if (s45packettitle$type != S45PacketTitle.Type.CLEAR && s45packettitle$type != S45PacketTitle.Type.RESET)
@@ -110,7 +110,7 @@ public class CommandTitle extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames()) : (args.length == 2 ? getListOfStringsMatchingLastWord(args, S45PacketTitle.Type.getNames()) : null);
     }

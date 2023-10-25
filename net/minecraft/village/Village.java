@@ -9,16 +9,16 @@ import java.util.UUID;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.monster.实体IronGolem;
+import net.minecraft.entity.passive.实体Villager;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerProfileCache;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -27,8 +27,8 @@ public class Village
 {
     private World worldObj;
     private final List<VillageDoorInfo> villageDoorInfoList = Lists.<VillageDoorInfo>newArrayList();
-    private BlockPos centerHelper = BlockPos.ORIGIN;
-    private BlockPos center = BlockPos.ORIGIN;
+    private 阻止位置 centerHelper = 阻止位置.ORIGIN;
+    private 阻止位置 center = 阻止位置.ORIGIN;
     private int villageRadius;
     private int lastAddDoorTimestamp;
     private int tickCounter;
@@ -76,7 +76,7 @@ public class Village
 
             if (vec3 != null)
             {
-                EntityIronGolem entityirongolem = new EntityIronGolem(this.worldObj);
+                实体IronGolem entityirongolem = new 实体IronGolem(this.worldObj);
                 entityirongolem.setPosition(vec3.xCoord, vec3.yCoord, vec3.zCoord);
                 this.worldObj.spawnEntityInWorld(entityirongolem);
                 ++this.numIronGolems;
@@ -84,13 +84,13 @@ public class Village
         }
     }
 
-    private Vec3 func_179862_a(BlockPos p_179862_1_, int p_179862_2_, int p_179862_3_, int p_179862_4_)
+    private Vec3 func_179862_a(阻止位置 p_179862_1_, int p_179862_2_, int p_179862_3_, int p_179862_4_)
     {
         for (int i = 0; i < 10; ++i)
         {
-            BlockPos blockpos = p_179862_1_.add(this.worldObj.rand.nextInt(16) - 8, this.worldObj.rand.nextInt(6) - 3, this.worldObj.rand.nextInt(16) - 8);
+            阻止位置 blockpos = p_179862_1_.add(this.worldObj.rand.nextInt(16) - 8, this.worldObj.rand.nextInt(6) - 3, this.worldObj.rand.nextInt(16) - 8);
 
-            if (this.func_179866_a(blockpos) && this.func_179861_a(new BlockPos(p_179862_2_, p_179862_3_, p_179862_4_), blockpos))
+            if (this.func_179866_a(blockpos) && this.func_179861_a(new 阻止位置(p_179862_2_, p_179862_3_, p_179862_4_), blockpos))
             {
                 return new Vec3((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
             }
@@ -99,7 +99,7 @@ public class Village
         return null;
     }
 
-    private boolean func_179861_a(BlockPos p_179861_1_, BlockPos p_179861_2_)
+    private boolean func_179861_a(阻止位置 p_179861_1_, 阻止位置 p_179861_2_)
     {
         if (!World.doesBlockHaveSolidTopSurface(this.worldObj, p_179861_2_.down()))
         {
@@ -116,7 +116,7 @@ public class Village
                 {
                     for (int i1 = j; i1 < j + p_179861_1_.getZ(); ++i1)
                     {
-                        if (this.worldObj.getBlockState(new BlockPos(k, l, i1)).getBlock().isNormalCube())
+                        if (this.worldObj.getBlockState(new 阻止位置(k, l, i1)).getBlock().isNormalCube())
                         {
                             return false;
                         }
@@ -130,13 +130,13 @@ public class Village
 
     private void updateNumIronGolems()
     {
-        List<EntityIronGolem> list = this.worldObj.<EntityIronGolem>getEntitiesWithinAABB(EntityIronGolem.class, new AxisAlignedBB((double)(this.center.getX() - this.villageRadius), (double)(this.center.getY() - 4), (double)(this.center.getZ() - this.villageRadius), (double)(this.center.getX() + this.villageRadius), (double)(this.center.getY() + 4), (double)(this.center.getZ() + this.villageRadius)));
+        List<实体IronGolem> list = this.worldObj.<实体IronGolem>getEntitiesWithinAABB(实体IronGolem.class, new AxisAlignedBB((double)(this.center.getX() - this.villageRadius), (double)(this.center.getY() - 4), (double)(this.center.getZ() - this.villageRadius), (double)(this.center.getX() + this.villageRadius), (double)(this.center.getY() + 4), (double)(this.center.getZ() + this.villageRadius)));
         this.numIronGolems = list.size();
     }
 
     private void updateNumVillagers()
     {
-        List<EntityVillager> list = this.worldObj.<EntityVillager>getEntitiesWithinAABB(EntityVillager.class, new AxisAlignedBB((double)(this.center.getX() - this.villageRadius), (double)(this.center.getY() - 4), (double)(this.center.getZ() - this.villageRadius), (double)(this.center.getX() + this.villageRadius), (double)(this.center.getY() + 4), (double)(this.center.getZ() + this.villageRadius)));
+        List<实体Villager> list = this.worldObj.<实体Villager>getEntitiesWithinAABB(实体Villager.class, new AxisAlignedBB((double)(this.center.getX() - this.villageRadius), (double)(this.center.getY() - 4), (double)(this.center.getZ() - this.villageRadius), (double)(this.center.getX() + this.villageRadius), (double)(this.center.getY() + 4), (double)(this.center.getZ() + this.villageRadius)));
         this.numVillagers = list.size();
 
         if (this.numVillagers == 0)
@@ -145,7 +145,7 @@ public class Village
         }
     }
 
-    public BlockPos getCenter()
+    public 阻止位置 getCenter()
     {
         return this.center;
     }
@@ -170,7 +170,7 @@ public class Village
         return this.numVillagers;
     }
 
-    public boolean func_179866_a(BlockPos pos)
+    public boolean func_179866_a(阻止位置 pos)
     {
         return this.center.distanceSq(pos) < (double)(this.villageRadius * this.villageRadius);
     }
@@ -180,7 +180,7 @@ public class Village
         return this.villageDoorInfoList;
     }
 
-    public VillageDoorInfo getNearestDoor(BlockPos pos)
+    public VillageDoorInfo getNearestDoor(阻止位置 pos)
     {
         VillageDoorInfo villagedoorinfo = null;
         int i = Integer.MAX_VALUE;
@@ -199,7 +199,7 @@ public class Village
         return villagedoorinfo;
     }
 
-    public VillageDoorInfo getDoorInfo(BlockPos pos)
+    public VillageDoorInfo getDoorInfo(阻止位置 pos)
     {
         VillageDoorInfo villagedoorinfo = null;
         int i = Integer.MAX_VALUE;
@@ -227,7 +227,7 @@ public class Village
         return villagedoorinfo;
     }
 
-    public VillageDoorInfo getExistedDoor(BlockPos doorBlock)
+    public VillageDoorInfo getExistedDoor(阻止位置 doorBlock)
     {
         if (this.center.distanceSq(doorBlock) > (double)(this.villageRadius * this.villageRadius))
         {
@@ -260,7 +260,7 @@ public class Village
         return this.villageDoorInfoList.isEmpty();
     }
 
-    public void addOrRenewAgressor(EntityLivingBase entitylivingbaseIn)
+    public void addOrRenewAgressor(实体LivingBase entitylivingbaseIn)
     {
         for (Village.VillageAggressor village$villageaggressor : this.villageAgressors)
         {
@@ -274,7 +274,7 @@ public class Village
         this.villageAgressors.add(new Village.VillageAggressor(entitylivingbaseIn, this.tickCounter));
     }
 
-    public EntityLivingBase findNearestVillageAggressor(EntityLivingBase entitylivingbaseIn)
+    public 实体LivingBase findNearestVillageAggressor(实体LivingBase entitylivingbaseIn)
     {
         double d0 = Double.MAX_VALUE;
         Village.VillageAggressor village$villageaggressor = null;
@@ -294,16 +294,16 @@ public class Village
         return village$villageaggressor != null ? village$villageaggressor.agressor : null;
     }
 
-    public EntityPlayer getNearestTargetPlayer(EntityLivingBase villageDefender)
+    public 实体Player getNearestTargetPlayer(实体LivingBase villageDefender)
     {
         double d0 = Double.MAX_VALUE;
-        EntityPlayer entityplayer = null;
+        实体Player entityplayer = null;
 
         for (String s : this.playerReputation.keySet())
         {
             if (this.isPlayerReputationTooLow(s))
             {
-                EntityPlayer entityplayer1 = this.worldObj.getPlayerEntityByName(s);
+                实体Player entityplayer1 = this.worldObj.getPlayerEntityByName(s);
 
                 if (entityplayer1 != null)
                 {
@@ -366,7 +366,7 @@ public class Village
         }
     }
 
-    private boolean isWoodDoor(BlockPos pos)
+    private boolean isWoodDoor(阻止位置 pos)
     {
         Block block = this.worldObj.getBlockState(pos).getBlock();
         return block instanceof BlockDoor ? block.getMaterial() == Material.wood : false;
@@ -378,12 +378,12 @@ public class Village
 
         if (i == 0)
         {
-            this.center = new BlockPos(0, 0, 0);
+            this.center = new 阻止位置(0, 0, 0);
             this.villageRadius = 0;
         }
         else
         {
-            this.center = new BlockPos(this.centerHelper.getX() / i, this.centerHelper.getY() / i, this.centerHelper.getZ() / i);
+            this.center = new 阻止位置(this.centerHelper.getX() / i, this.centerHelper.getY() / i, this.centerHelper.getZ() / i);
             int j = 0;
 
             for (VillageDoorInfo villagedoorinfo : this.villageDoorInfoList)
@@ -422,14 +422,14 @@ public class Village
         this.lastAddDoorTimestamp = compound.getInteger("Stable");
         this.tickCounter = compound.getInteger("Tick");
         this.noBreedTicks = compound.getInteger("MTick");
-        this.center = new BlockPos(compound.getInteger("CX"), compound.getInteger("CY"), compound.getInteger("CZ"));
-        this.centerHelper = new BlockPos(compound.getInteger("ACX"), compound.getInteger("ACY"), compound.getInteger("ACZ"));
+        this.center = new 阻止位置(compound.getInteger("CX"), compound.getInteger("CY"), compound.getInteger("CZ"));
+        this.centerHelper = new 阻止位置(compound.getInteger("ACX"), compound.getInteger("ACY"), compound.getInteger("ACZ"));
         NBTTagList nbttaglist = compound.getTagList("Doors", 10);
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-            VillageDoorInfo villagedoorinfo = new VillageDoorInfo(new BlockPos(nbttagcompound.getInteger("X"), nbttagcompound.getInteger("Y"), nbttagcompound.getInteger("Z")), nbttagcompound.getInteger("IDX"), nbttagcompound.getInteger("IDZ"), nbttagcompound.getInteger("TS"));
+            VillageDoorInfo villagedoorinfo = new VillageDoorInfo(new 阻止位置(nbttagcompound.getInteger("X"), nbttagcompound.getInteger("Y"), nbttagcompound.getInteger("Z")), nbttagcompound.getInteger("IDX"), nbttagcompound.getInteger("IDZ"), nbttagcompound.getInteger("TS"));
             this.villageDoorInfoList.add(villagedoorinfo);
         }
 
@@ -524,10 +524,10 @@ public class Village
 
     class VillageAggressor
     {
-        public EntityLivingBase agressor;
+        public 实体LivingBase agressor;
         public int agressionTime;
 
-        VillageAggressor(EntityLivingBase p_i1674_2_, int p_i1674_3_)
+        VillageAggressor(实体LivingBase p_i1674_2_, int p_i1674_3_)
         {
             this.agressor = p_i1674_2_;
             this.agressionTime = p_i1674_3_;

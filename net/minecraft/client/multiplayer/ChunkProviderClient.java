@@ -3,7 +3,7 @@ package net.minecraft.client.multiplayer;
 import com.google.common.collect.Lists;
 import java.util.List;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.LongHashMap;
 import net.minecraft.world.ChunkCoordIntPair;
@@ -107,12 +107,12 @@ public class ChunkProviderClient implements IChunkProvider
         return "MultiplayerChunkCache: " + this.chunkMapping.getNumHashElements() + ", " + this.chunkListing.size();
     }
 
-    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, 阻止位置 pos)
     {
         return null;
     }
 
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position)
+    public 阻止位置 getStrongholdGen(World worldIn, String structureName, 阻止位置 position)
     {
         return null;
     }
@@ -126,8 +126,8 @@ public class ChunkProviderClient implements IChunkProvider
     {
     }
 
-    public Chunk provideChunk(BlockPos blockPosIn)
+    public Chunk provideChunk(阻止位置 阻止位置In)
     {
-        return this.provideChunk(blockPosIn.getX() >> 4, blockPosIn.getZ() >> 4);
+        return this.provideChunk(阻止位置In.getX() >> 4, 阻止位置In.getZ() >> 4);
     }
 }

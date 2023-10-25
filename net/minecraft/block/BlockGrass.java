@@ -9,7 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
@@ -28,7 +28,7 @@ public class BlockGrass extends Block implements IGrowable
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         Block block = worldIn.getBlockState(pos.up()).getBlock();
         return state.withProperty(SNOWY, Boolean.valueOf(block == Blocks.snow || block == Blocks.snow_layer));
@@ -44,12 +44,12 @@ public class BlockGrass extends Block implements IGrowable
         return this.getBlockColor();
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         return BiomeColorHelper.getGrassColorAtPos(worldIn, pos);
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (!worldIn.isRemote)
         {
@@ -63,7 +63,7 @@ public class BlockGrass extends Block implements IGrowable
                 {
                     for (int i = 0; i < 4; ++i)
                     {
-                        BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+                        阻止位置 blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
                         Block block = worldIn.getBlockState(blockpos.up()).getBlock();
                         IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
@@ -82,23 +82,23 @@ public class BlockGrass extends Block implements IGrowable
         return Blocks.dirt.getItemDropped(Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
     }
 
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
+    public boolean canGrow(World worldIn, 阻止位置 pos, IBlockState state, boolean isClient)
     {
         return true;
     }
 
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    public boolean canUseBonemeal(World worldIn, Random rand, 阻止位置 pos, IBlockState state)
     {
         return true;
     }
 
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    public void grow(World worldIn, Random rand, 阻止位置 pos, IBlockState state)
     {
-        BlockPos blockpos = pos.up();
+        阻止位置 blockpos = pos.up();
 
         for (int i = 0; i < 128; ++i)
         {
-            BlockPos blockpos1 = blockpos;
+            阻止位置 blockpos1 = blockpos;
             int j = 0;
 
             while (true)

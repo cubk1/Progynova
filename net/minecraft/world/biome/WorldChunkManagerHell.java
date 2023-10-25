@@ -3,7 +3,7 @@ package net.minecraft.world.biome;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class WorldChunkManagerHell extends WorldChunkManager
 {
@@ -16,7 +16,7 @@ public class WorldChunkManagerHell extends WorldChunkManager
         this.rainfall = p_i45374_2_;
     }
 
-    public BiomeGenBase getBiomeGenerator(BlockPos pos)
+    public BiomeGenBase getBiomeGenerator(阻止位置 pos)
     {
         return this.biomeGenerator;
     }
@@ -59,9 +59,9 @@ public class WorldChunkManagerHell extends WorldChunkManager
         return this.loadBlockGeneratorData(listToReuse, x, z, width, length);
     }
 
-    public BlockPos findBiomePosition(int x, int z, int range, List<BiomeGenBase> biomes, Random random)
+    public 阻止位置 findBiomePosition(int x, int z, int range, List<BiomeGenBase> biomes, Random random)
     {
-        return biomes.contains(this.biomeGenerator) ? new BlockPos(x - range + random.nextInt(range * 2 + 1), 0, z - range + random.nextInt(range * 2 + 1)) : null;
+        return biomes.contains(this.biomeGenerator) ? new 阻止位置(x - range + random.nextInt(range * 2 + 1), 0, z - range + random.nextInt(range * 2 + 1)) : null;
     }
 
     public boolean areBiomesViable(int p_76940_1_, int p_76940_2_, int p_76940_3_, List<BiomeGenBase> p_76940_4_)

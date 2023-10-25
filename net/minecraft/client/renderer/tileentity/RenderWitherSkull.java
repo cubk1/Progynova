@@ -4,10 +4,10 @@ import net.minecraft.client.model.ModelSkeletonHead;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.entity.projectile.实体WitherSkull;
 import net.minecraft.util.图像位置;
 
-public class RenderWitherSkull extends Render<EntityWitherSkull>
+public class RenderWitherSkull extends Render<实体WitherSkull>
 {
     private static final 图像位置 invulnerableWitherTextures = new 图像位置("textures/entity/wither/wither_invulnerable.png");
     private static final 图像位置 witherTextures = new 图像位置("textures/entity/wither/wither.png");
@@ -35,7 +35,7 @@ public class RenderWitherSkull extends Render<EntityWitherSkull>
         return p_82400_1_ + p_82400_3_ * f;
     }
 
-    public void doRender(EntityWitherSkull entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体WitherSkull entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         光照状态经理.推黑客帝国();
         光照状态经理.disableCull();
@@ -52,7 +52,7 @@ public class RenderWitherSkull extends Render<EntityWitherSkull>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityWitherSkull entity)
+    protected 图像位置 getEntityTexture(实体WitherSkull entity)
     {
         return entity.isInvulnerable() ? invulnerableWitherTextures : witherTextures;
     }

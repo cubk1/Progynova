@@ -1,21 +1,21 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体Creature;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public abstract class EntityAIMoveToBlock extends EntityAIBase
 {
-    private final EntityCreature theEntity;
+    private final 实体Creature theEntity;
     private final double movementSpeed;
     protected int runDelay;
     private int timeoutCounter;
     private int field_179490_f;
-    protected BlockPos destinationBlock = BlockPos.ORIGIN;
+    protected 阻止位置 destinationBlock = 阻止位置.ORIGIN;
     private boolean isAboveDestination;
     private int searchLength;
 
-    public EntityAIMoveToBlock(EntityCreature creature, double speedIn, int length)
+    public EntityAIMoveToBlock(实体Creature creature, double speedIn, int length)
     {
         this.theEntity = creature;
         this.movementSpeed = speedIn;
@@ -81,7 +81,7 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
     {
         int i = this.searchLength;
         int j = 1;
-        BlockPos blockpos = new BlockPos(this.theEntity);
+        阻止位置 blockpos = new 阻止位置(this.theEntity);
 
         for (int k = 0; k <= 1; k = k > 0 ? -k : 1 - k)
         {
@@ -91,7 +91,7 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
                 {
                     for (int j1 = i1 < l && i1 > -l ? l : 0; j1 <= l; j1 = j1 > 0 ? -j1 : 1 - j1)
                     {
-                        BlockPos blockpos1 = blockpos.add(i1, k - 1, j1);
+                        阻止位置 blockpos1 = blockpos.add(i1, k - 1, j1);
 
                         if (this.theEntity.isWithinHomeDistanceFromPosition(blockpos1) && this.shouldMoveTo(this.theEntity.worldObj, blockpos1))
                         {
@@ -106,5 +106,5 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
         return false;
     }
 
-    protected abstract boolean shouldMoveTo(World worldIn, BlockPos pos);
+    protected abstract boolean shouldMoveTo(World worldIn, 阻止位置 pos);
 }

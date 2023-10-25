@@ -7,7 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
 
@@ -32,7 +32,7 @@ public class BlockBush extends Block
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return super.canPlaceBlockAt(worldIn, pos) && this.canPlaceBlockOn(worldIn.getBlockState(pos.down()).getBlock());
     }
@@ -42,18 +42,18 @@ public class BlockBush extends Block
         return ground == Blocks.grass || ground == Blocks.dirt || ground == Blocks.farmland;
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
         this.checkAndDropBlock(worldIn, pos, state);
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         this.checkAndDropBlock(worldIn, pos, state);
     }
 
-    protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state)
+    protected void checkAndDropBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!this.canBlockStay(worldIn, pos, state))
         {
@@ -62,12 +62,12 @@ public class BlockBush extends Block
         }
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    public boolean canBlockStay(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return this.canPlaceBlockOn(worldIn.getBlockState(pos.down()).getBlock());
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return null;
     }

@@ -5,13 +5,13 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class CommandTestFor extends CommandBase
 {
@@ -38,7 +38,7 @@ public class CommandTestFor extends CommandBase
         }
         else
         {
-            Entity entity = getEntity(sender, args[0]);
+            实体 实体 = getEntity(sender, args[0]);
             NBTTagCompound nbttagcompound = null;
 
             if (args.length >= 2)
@@ -56,15 +56,15 @@ public class CommandTestFor extends CommandBase
             if (nbttagcompound != null)
             {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                entity.writeToNBT(nbttagcompound1);
+                实体.writeToNBT(nbttagcompound1);
 
                 if (!NBTUtil.func_181123_a(nbttagcompound, nbttagcompound1, true))
                 {
-                    throw new CommandException("commands.testfor.failure", new Object[] {entity.getName()});
+                    throw new CommandException("commands.testfor.failure", new Object[] {实体.getName()});
                 }
             }
 
-            notifyOperators(sender, this, "commands.testfor.success", new Object[] {entity.getName()});
+            notifyOperators(sender, this, "commands.testfor.success", new Object[] {实体.getName()});
         }
     }
 
@@ -73,7 +73,7 @@ public class CommandTestFor extends CommandBase
         return index == 0;
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames()) : null;
     }

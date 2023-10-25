@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Set;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,7 @@ public abstract class Container
     private int dragEvent;
     private final Set<Slot> dragSlots = Sets.<Slot>newHashSet();
     protected List<ICrafting> crafters = Lists.<ICrafting>newArrayList();
-    private Set<EntityPlayer> playerList = Sets.<EntityPlayer>newHashSet();
+    private Set<实体Player> playerList = Sets.<实体Player>newHashSet();
 
     protected Slot addSlotToContainer(Slot slotIn)
     {
@@ -82,7 +82,7 @@ public abstract class Container
         }
     }
 
-    public boolean enchantItem(EntityPlayer playerIn, int id)
+    public boolean enchantItem(实体Player playerIn, int id)
     {
         return false;
     }
@@ -107,13 +107,13 @@ public abstract class Container
         return (Slot)this.inventorySlots.get(slotId);
     }
 
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    public ItemStack transferStackInSlot(实体Player playerIn, int index)
     {
         Slot slot = (Slot)this.inventorySlots.get(index);
         return slot != null ? slot.getStack() : null;
     }
 
-    public ItemStack slotClick(int slotId, int clickedButton, int mode, EntityPlayer playerIn)
+    public ItemStack slotClick(int slotId, int clickedButton, int mode, 实体Player playerIn)
     {
         ItemStack itemstack = null;
         InventoryPlayer inventoryplayer = playerIn.inventory;
@@ -474,12 +474,12 @@ public abstract class Container
         return true;
     }
 
-    protected void retrySlotClick(int slotId, int clickedButton, boolean mode, EntityPlayer playerIn)
+    protected void retrySlotClick(int slotId, int clickedButton, boolean mode, 实体Player playerIn)
     {
         this.slotClick(slotId, clickedButton, 1, playerIn);
     }
 
-    public void onContainerClosed(EntityPlayer playerIn)
+    public void onContainerClosed(实体Player playerIn)
     {
         InventoryPlayer inventoryplayer = playerIn.inventory;
 
@@ -518,12 +518,12 @@ public abstract class Container
         return this.transactionID;
     }
 
-    public boolean getCanCraft(EntityPlayer p_75129_1_)
+    public boolean getCanCraft(实体Player p_75129_1_)
     {
         return !this.playerList.contains(p_75129_1_);
     }
 
-    public void setCanCraft(EntityPlayer p_75128_1_, boolean p_75128_2_)
+    public void setCanCraft(实体Player p_75128_1_, boolean p_75128_2_)
     {
         if (p_75128_2_)
         {
@@ -535,7 +535,7 @@ public abstract class Container
         }
     }
 
-    public abstract boolean canInteractWith(EntityPlayer playerIn);
+    public abstract boolean canInteractWith(实体Player playerIn);
 
     protected boolean mergeItemStack(ItemStack stack, int startIndex, int endIndex, boolean reverseDirection)
     {
@@ -639,7 +639,7 @@ public abstract class Container
         return p_94534_0_ & 3 | (p_94534_1_ & 3) << 2;
     }
 
-    public static boolean isValidDragMode(int dragModeIn, EntityPlayer player)
+    public static boolean isValidDragMode(int dragModeIn, 实体Player player)
     {
         return dragModeIn == 0 ? true : (dragModeIn == 1 ? true : dragModeIn == 2 && player.capabilities.isCreativeMode);
     }

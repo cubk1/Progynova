@@ -1,8 +1,8 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.effect.实体LightningBolt;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -20,14 +20,14 @@ public class S2CPacketSpawnGlobalEntity implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S2CPacketSpawnGlobalEntity(Entity entityIn)
+    public S2CPacketSpawnGlobalEntity(实体 实体In)
     {
-        this.entityId = entityIn.getEntityId();
-        this.x = MathHelper.floor_double(entityIn.posX * 32.0D);
-        this.y = MathHelper.floor_double(entityIn.posY * 32.0D);
-        this.z = MathHelper.floor_double(entityIn.posZ * 32.0D);
+        this.entityId = 实体In.getEntityId();
+        this.x = MathHelper.floor_double(实体In.X坐标 * 32.0D);
+        this.y = MathHelper.floor_double(实体In.Y坐标 * 32.0D);
+        this.z = MathHelper.floor_double(实体In.Z坐标 * 32.0D);
 
-        if (entityIn instanceof EntityLightningBolt)
+        if (实体In instanceof 实体LightningBolt)
         {
             this.type = 1;
         }

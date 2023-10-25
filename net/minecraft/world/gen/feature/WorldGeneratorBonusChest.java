@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 
@@ -22,7 +22,7 @@ public class WorldGeneratorBonusChest extends WorldGenerator
         this.itemsToGenerateInBonusChest = p_i45634_2_;
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         Block block;
 
@@ -41,7 +41,7 @@ public class WorldGeneratorBonusChest extends WorldGenerator
 
             for (int i = 0; i < 4; ++i)
             {
-                BlockPos blockpos = position.add(rand.nextInt(4) - rand.nextInt(4), rand.nextInt(3) - rand.nextInt(3), rand.nextInt(4) - rand.nextInt(4));
+                阻止位置 blockpos = position.add(rand.nextInt(4) - rand.nextInt(4), rand.nextInt(3) - rand.nextInt(3), rand.nextInt(4) - rand.nextInt(4));
 
                 if (worldIn.isAirBlock(blockpos) && World.doesBlockHaveSolidTopSurface(worldIn, blockpos.down()))
                 {
@@ -53,10 +53,10 @@ public class WorldGeneratorBonusChest extends WorldGenerator
                         WeightedRandomChestContent.generateChestContents(rand, this.chestItems, (TileEntityChest)tileentity, this.itemsToGenerateInBonusChest);
                     }
 
-                    BlockPos blockpos1 = blockpos.east();
-                    BlockPos blockpos2 = blockpos.west();
-                    BlockPos blockpos3 = blockpos.north();
-                    BlockPos blockpos4 = blockpos.south();
+                    阻止位置 blockpos1 = blockpos.east();
+                    阻止位置 blockpos2 = blockpos.west();
+                    阻止位置 blockpos3 = blockpos.north();
+                    阻止位置 blockpos4 = blockpos.south();
 
                     if (worldIn.isAirBlock(blockpos2) && World.doesBlockHaveSolidTopSurface(worldIn, blockpos2.down()))
                     {

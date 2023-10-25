@@ -1,15 +1,15 @@
 package net.minecraft.block;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class BlockEventData
 {
-    private BlockPos position;
+    private 阻止位置 position;
     private Block blockType;
     private int eventID;
     private int eventParameter;
 
-    public BlockEventData(BlockPos pos, Block blockType, int eventId, int p_i45756_4_)
+    public BlockEventData(阻止位置 pos, Block blockType, int eventId, int p_i45756_4_)
     {
         this.position = pos;
         this.eventID = eventId;
@@ -17,7 +17,7 @@ public class BlockEventData
         this.blockType = blockType;
     }
 
-    public BlockPos getPosition()
+    public 阻止位置 getPosition()
     {
         return this.position;
     }

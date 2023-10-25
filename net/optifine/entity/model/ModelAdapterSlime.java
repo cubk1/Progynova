@@ -6,14 +6,14 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSlime;
-import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.实体Slime;
 import net.optifine.reflect.Reflector;
 
 public class ModelAdapterSlime extends ModelAdapter
 {
     public ModelAdapterSlime()
     {
-        super(EntitySlime.class, "slime", 0.25F);
+        super(实体Slime.class, "slime", 0.25F);
     }
 
     public ModelBase makeModel()

@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelSkeletonHead;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.RenderWitherSkull;
-import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.entity.projectile.实体WitherSkull;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterWitherSkull extends ModelAdapter
 {
     public ModelAdapterWitherSkull()
     {
-        super(EntityWitherSkull.class, "wither_skull", 0.0F);
+        super(实体WitherSkull.class, "wither_skull", 0.0F);
     }
 
     public ModelBase makeModel()

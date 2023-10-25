@@ -4,11 +4,11 @@ import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityBoat;
+import net.minecraft.entity.item.实体Boat;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -22,15 +22,15 @@ public class BlockLilyPad extends BlockBush
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxesToList(World worldIn, 阻止位置 pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, 实体 colliding实体)
     {
-        if (collidingEntity == null || !(collidingEntity instanceof EntityBoat))
+        if (colliding实体 == null || !(colliding实体 instanceof 实体Boat))
         {
-            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         }
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ);
     }
@@ -45,7 +45,7 @@ public class BlockLilyPad extends BlockBush
         return 7455580;
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         return 2129968;
     }
@@ -55,7 +55,7 @@ public class BlockLilyPad extends BlockBush
         return ground == Blocks.water;
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    public boolean canBlockStay(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (pos.getY() >= 0 && pos.getY() < 256)
         {

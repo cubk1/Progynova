@@ -7,13 +7,13 @@ import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPigZombie;
-import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.实体PigZombie;
 
 public class ModelAdapterPigZombie extends ModelAdapterBiped
 {
     public ModelAdapterPigZombie()
     {
-        super(EntityPigZombie.class, "zombie_pigman", 0.5F);
+        super(实体PigZombie.class, "zombie_pigman", 0.5F);
     }
 
     public ModelBase makeModel()

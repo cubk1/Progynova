@@ -6,14 +6,14 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.ArmorStandRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.entity.item.实体ArmorStand;
 import net.minecraft.src.Config;
 
 public class ModelAdapterArmorStand extends ModelAdapterBiped
 {
     public ModelAdapterArmorStand()
     {
-        super(EntityArmorStand.class, "armor_stand", 0.0F);
+        super(实体ArmorStand.class, "armor_stand", 0.0F);
     }
 
     public ModelBase makeModel()

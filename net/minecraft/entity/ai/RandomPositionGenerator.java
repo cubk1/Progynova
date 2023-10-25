@@ -1,8 +1,8 @@
 package net.minecraft.entity.ai;
 
 import java.util.Random;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体Creature;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 
@@ -10,24 +10,24 @@ public class RandomPositionGenerator
 {
     private static Vec3 staticVector = new Vec3(0.0D, 0.0D, 0.0D);
 
-    public static Vec3 findRandomTarget(EntityCreature entitycreatureIn, int xz, int y)
+    public static Vec3 findRandomTarget(实体Creature entitycreatureIn, int xz, int y)
     {
         return findRandomTargetBlock(entitycreatureIn, xz, y, (Vec3)null);
     }
 
-    public static Vec3 findRandomTargetBlockTowards(EntityCreature entitycreatureIn, int xz, int y, Vec3 targetVec3)
+    public static Vec3 findRandomTargetBlockTowards(实体Creature entitycreatureIn, int xz, int y, Vec3 targetVec3)
     {
-        staticVector = targetVec3.subtract(entitycreatureIn.posX, entitycreatureIn.posY, entitycreatureIn.posZ);
+        staticVector = targetVec3.subtract(entitycreatureIn.X坐标, entitycreatureIn.Y坐标, entitycreatureIn.Z坐标);
         return findRandomTargetBlock(entitycreatureIn, xz, y, staticVector);
     }
 
-    public static Vec3 findRandomTargetBlockAwayFrom(EntityCreature entitycreatureIn, int xz, int y, Vec3 targetVec3)
+    public static Vec3 findRandomTargetBlockAwayFrom(实体Creature entitycreatureIn, int xz, int y, Vec3 targetVec3)
     {
-        staticVector = (new Vec3(entitycreatureIn.posX, entitycreatureIn.posY, entitycreatureIn.posZ)).subtract(targetVec3);
+        staticVector = (new Vec3(entitycreatureIn.X坐标, entitycreatureIn.Y坐标, entitycreatureIn.Z坐标)).subtract(targetVec3);
         return findRandomTargetBlock(entitycreatureIn, xz, y, staticVector);
     }
 
-    private static Vec3 findRandomTargetBlock(EntityCreature entitycreatureIn, int xz, int y, Vec3 targetVec3)
+    private static Vec3 findRandomTargetBlock(实体Creature entitycreatureIn, int xz, int y, Vec3 targetVec3)
     {
         Random random = entitycreatureIn.getRNG();
         boolean flag = false;
@@ -39,7 +39,7 @@ public class RandomPositionGenerator
 
         if (entitycreatureIn.hasHome())
         {
-            double d0 = entitycreatureIn.getHomePosition().distanceSq((double)MathHelper.floor_double(entitycreatureIn.posX), (double)MathHelper.floor_double(entitycreatureIn.posY), (double)MathHelper.floor_double(entitycreatureIn.posZ)) + 4.0D;
+            double d0 = entitycreatureIn.getHomePosition().distanceSq((double)MathHelper.floor_double(entitycreatureIn.X坐标), (double)MathHelper.floor_double(entitycreatureIn.Y坐标), (double)MathHelper.floor_double(entitycreatureIn.Z坐标)) + 4.0D;
             double d1 = (double)(entitycreatureIn.getMaximumHomeDistance() + (float)xz);
             flag1 = d0 < d1 * d1;
         }
@@ -58,9 +58,9 @@ public class RandomPositionGenerator
             {
                 if (entitycreatureIn.hasHome() && xz > 1)
                 {
-                    BlockPos blockpos = entitycreatureIn.getHomePosition();
+                    阻止位置 blockpos = entitycreatureIn.getHomePosition();
 
-                    if (entitycreatureIn.posX > (double)blockpos.getX())
+                    if (entitycreatureIn.X坐标 > (double)blockpos.getX())
                     {
                         l -= random.nextInt(xz / 2);
                     }
@@ -69,7 +69,7 @@ public class RandomPositionGenerator
                         l += random.nextInt(xz / 2);
                     }
 
-                    if (entitycreatureIn.posZ > (double)blockpos.getZ())
+                    if (entitycreatureIn.Z坐标 > (double)blockpos.getZ())
                     {
                         i1 -= random.nextInt(xz / 2);
                     }
@@ -79,10 +79,10 @@ public class RandomPositionGenerator
                     }
                 }
 
-                l = l + MathHelper.floor_double(entitycreatureIn.posX);
-                k1 = k1 + MathHelper.floor_double(entitycreatureIn.posY);
-                i1 = i1 + MathHelper.floor_double(entitycreatureIn.posZ);
-                BlockPos blockpos1 = new BlockPos(l, k1, i1);
+                l = l + MathHelper.floor_double(entitycreatureIn.X坐标);
+                k1 = k1 + MathHelper.floor_double(entitycreatureIn.Y坐标);
+                i1 = i1 + MathHelper.floor_double(entitycreatureIn.Z坐标);
+                阻止位置 blockpos1 = new 阻止位置(l, k1, i1);
 
                 if (!flag1 || entitycreatureIn.isWithinHomeDistanceFromPosition(blockpos1))
                 {

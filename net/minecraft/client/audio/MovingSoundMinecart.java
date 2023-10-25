@@ -1,15 +1,15 @@
 package net.minecraft.client.audio;
 
-import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.item.实体Minecart;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
 public class MovingSoundMinecart extends MovingSound
 {
-    private final EntityMinecart minecart;
+    private final 实体Minecart minecart;
     private float distance = 0.0F;
 
-    public MovingSoundMinecart(EntityMinecart minecartIn)
+    public MovingSoundMinecart(实体Minecart minecartIn)
     {
         super(new 图像位置("minecraft:minecart.base"));
         this.minecart = minecartIn;
@@ -25,9 +25,9 @@ public class MovingSoundMinecart extends MovingSound
         }
         else
         {
-            this.xPosF = (float)this.minecart.posX;
-            this.yPosF = (float)this.minecart.posY;
-            this.zPosF = (float)this.minecart.posZ;
+            this.xPosF = (float)this.minecart.X坐标;
+            this.yPosF = (float)this.minecart.Y坐标;
+            this.zPosF = (float)this.minecart.Z坐标;
             float f = MathHelper.sqrt_double(this.minecart.通便X * this.minecart.通便X + this.minecart.通便Z * this.minecart.通便Z);
 
             if ((double)f >= 0.01D)

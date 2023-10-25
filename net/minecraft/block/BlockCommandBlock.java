@@ -8,12 +8,12 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.server.CommandBlockLogic;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityCommandBlock;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -32,7 +32,7 @@ public class BlockCommandBlock extends BlockContainer
         return new TileEntityCommandBlock();
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (!worldIn.isRemote)
         {
@@ -51,7 +51,7 @@ public class BlockCommandBlock extends BlockContainer
         }
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -67,7 +67,7 @@ public class BlockCommandBlock extends BlockContainer
         return 1;
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         return tileentity instanceof TileEntityCommandBlock ? ((TileEntityCommandBlock)tileentity).getCommandBlockLogic().tryOpenEditCommandBlock(playerIn) : false;
@@ -78,13 +78,13 @@ public class BlockCommandBlock extends BlockContainer
         return true;
     }
 
-    public int getComparatorInputOverride(World worldIn, BlockPos pos)
+    public int getComparatorInputOverride(World worldIn, 阻止位置 pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         return tileentity instanceof TileEntityCommandBlock ? ((TileEntityCommandBlock)tileentity).getCommandBlockLogic().getSuccessCount() : 0;
     }
 
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase placer, ItemStack stack)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -136,7 +136,7 @@ public class BlockCommandBlock extends BlockContainer
         return new BlockState(this, new IProperty[] {TRIGGERED});
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         return this.getDefaultState().withProperty(TRIGGERED, Boolean.valueOf(false));
     }

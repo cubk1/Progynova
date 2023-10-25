@@ -7,9 +7,9 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
@@ -19,7 +19,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityBrewingStand;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -61,12 +61,12 @@ public class BlockBrewingStand extends BlockContainer
         return false;
     }
 
-    public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxesToList(World worldIn, 阻止位置 pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, 实体 colliding实体)
     {
         this.setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 0.875F, 0.5625F);
-        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         this.setBlockBoundsForItemRender();
-        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
     }
 
     public void setBlockBoundsForItemRender()
@@ -74,7 +74,7 @@ public class BlockBrewingStand extends BlockContainer
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -94,7 +94,7 @@ public class BlockBrewingStand extends BlockContainer
         }
     }
 
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase placer, ItemStack stack)
     {
         if (stack.hasDisplayName())
         {
@@ -107,7 +107,7 @@ public class BlockBrewingStand extends BlockContainer
         }
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         double d0 = (double)((float)pos.getX() + 0.4F + rand.nextFloat() * 0.2F);
         double d1 = (double)((float)pos.getY() + 0.7F + rand.nextFloat() * 0.3F);
@@ -115,7 +115,7 @@ public class BlockBrewingStand extends BlockContainer
         worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -132,7 +132,7 @@ public class BlockBrewingStand extends BlockContainer
         return Items.brewing_stand;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Items.brewing_stand;
     }
@@ -142,7 +142,7 @@ public class BlockBrewingStand extends BlockContainer
         return true;
     }
 
-    public int getComparatorInputOverride(World worldIn, BlockPos pos)
+    public int getComparatorInputOverride(World worldIn, 阻止位置 pos)
     {
         return Container.calcRedstone(worldIn.getTileEntity(pos));
     }

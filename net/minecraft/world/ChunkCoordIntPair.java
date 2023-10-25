@@ -1,6 +1,6 @@
 package net.minecraft.world;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class ChunkCoordIntPair
 {
@@ -78,14 +78,14 @@ public class ChunkCoordIntPair
         return (this.chunkZPos << 4) + 15;
     }
 
-    public BlockPos getBlock(int x, int y, int z)
+    public 阻止位置 getBlock(int x, int y, int z)
     {
-        return new BlockPos((this.chunkXPos << 4) + x, y, (this.chunkZPos << 4) + z);
+        return new 阻止位置((this.chunkXPos << 4) + x, y, (this.chunkZPos << 4) + z);
     }
 
-    public BlockPos getCenterBlock(int y)
+    public 阻止位置 getCenterBlock(int y)
     {
-        return new BlockPos(this.getCenterXPos(), y, this.getCenterZPosition());
+        return new 阻止位置(this.getCenterXPos(), y, this.getCenterZPosition());
     }
 
     public String toString()

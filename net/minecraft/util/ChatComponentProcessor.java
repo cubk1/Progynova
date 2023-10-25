@@ -5,11 +5,11 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.EntityNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerSelector;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 
 public class ChatComponentProcessor
 {
-    public static IChatComponent processComponent(ICommandSender commandSender, IChatComponent component, Entity entityIn) throws CommandException
+    public static IChatComponent processComponent(ICommandSender commandSender, IChatComponent component, 实体 实体In) throws CommandException
     {
         IChatComponent ichatcomponent = null;
 
@@ -20,17 +20,17 @@ public class ChatComponentProcessor
 
             if (PlayerSelector.hasArguments(s))
             {
-                List<Entity> list = PlayerSelector.<Entity>matchEntities(commandSender, s, Entity.class);
+                List<实体> list = PlayerSelector.<实体>matchEntities(commandSender, s, 实体.class);
 
                 if (list.size() != 1)
                 {
                     throw new EntityNotFoundException();
                 }
 
-                s = ((Entity)list.get(0)).getName();
+                s = ((实体)list.get(0)).getName();
             }
 
-            ichatcomponent = entityIn != null && s.equals("*") ? new ChatComponentScore(entityIn.getName(), chatcomponentscore.getObjective()) : new ChatComponentScore(s, chatcomponentscore.getObjective());
+            ichatcomponent = 实体In != null && s.equals("*") ? new ChatComponentScore(实体In.getName(), chatcomponentscore.getObjective()) : new ChatComponentScore(s, chatcomponentscore.getObjective());
             ((ChatComponentScore)ichatcomponent).setValue(chatcomponentscore.getUnformattedTextForChat());
         }
         else if (component instanceof ChatComponentSelector)
@@ -62,7 +62,7 @@ public class ChatComponentProcessor
 
                 if (object instanceof IChatComponent)
                 {
-                    aobject[i] = processComponent(commandSender, (IChatComponent)object, entityIn);
+                    aobject[i] = processComponent(commandSender, (IChatComponent)object, 实体In);
                 }
             }
 
@@ -78,7 +78,7 @@ public class ChatComponentProcessor
 
         for (IChatComponent ichatcomponent1 : component.getSiblings())
         {
-            ichatcomponent.appendSibling(processComponent(commandSender, ichatcomponent1, entityIn));
+            ichatcomponent.appendSibling(processComponent(commandSender, ichatcomponent1, 实体In));
         }
 
         return ichatcomponent;

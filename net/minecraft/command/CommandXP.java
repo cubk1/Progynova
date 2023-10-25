@@ -1,9 +1,9 @@
 package net.minecraft.command;
 
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class CommandXP extends CommandBase
 {
@@ -46,7 +46,7 @@ public class CommandXP extends CommandBase
                 i *= -1;
             }
 
-            EntityPlayer entityplayer = args.length > 1 ? getPlayer(sender, args[1]) : getCommandSenderAsPlayer(sender);
+            实体Player entityplayer = args.length > 1 ? getPlayer(sender, args[1]) : getCommandSenderAsPlayer(sender);
 
             if (flag)
             {
@@ -78,7 +78,7 @@ public class CommandXP extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 2 ? getListOfStringsMatchingLastWord(args, this.getAllUsernames()) : null;
     }

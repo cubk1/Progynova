@@ -1,9 +1,9 @@
 package net.minecraft.command;
 
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class CommandServerKick extends CommandBase
 {
@@ -26,7 +26,7 @@ public class CommandServerKick extends CommandBase
     {
         if (args.length > 0 && args[0].length() > 1)
         {
-            EntityPlayerMP entityplayermp = MinecraftServer.getServer().getConfigurationManager().getPlayerByUsername(args[0]);
+            实体PlayerMP entityplayermp = MinecraftServer.getServer().getConfigurationManager().getPlayerByUsername(args[0]);
             String s = "Kicked by an operator.";
             boolean flag = false;
 
@@ -60,7 +60,7 @@ public class CommandServerKick extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length >= 1 ? getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames()) : null;
     }

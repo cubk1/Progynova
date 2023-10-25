@@ -1,7 +1,7 @@
 package net.minecraft.command;
 
 import java.util.List;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public interface ICommand extends Comparable<ICommand>
 {
@@ -15,7 +15,7 @@ public interface ICommand extends Comparable<ICommand>
 
     boolean canCommandSenderUseCommand(ICommandSender sender);
 
-    List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos);
+    List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos);
 
     boolean isUsernameIndex(String[] args, int index);
 }

@@ -1,6 +1,6 @@
 package net.minecraft.item;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.stats.StatList;
@@ -13,7 +13,7 @@ public class ItemWritableBook extends Item
         this.setMaxStackSize(1);
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         playerIn.displayGUIBook(itemStackIn);
         playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);

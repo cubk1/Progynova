@@ -4,19 +4,19 @@ import net.minecraft.util.MathHelper;
 
 public class EntityBodyHelper
 {
-    private EntityLivingBase theLiving;
+    private 实体LivingBase theLiving;
     private int rotationTickCounter;
     private float prevRenderYawHead;
 
-    public EntityBodyHelper(EntityLivingBase p_i1611_1_)
+    public EntityBodyHelper(实体LivingBase p_i1611_1_)
     {
         this.theLiving = p_i1611_1_;
     }
 
     public void updateRenderAngles()
     {
-        double d0 = this.theLiving.posX - this.theLiving.prevPosX;
-        double d1 = this.theLiving.posZ - this.theLiving.prevPosZ;
+        double d0 = this.theLiving.X坐标 - this.theLiving.prevPosX;
+        double d1 = this.theLiving.Z坐标 - this.theLiving.prevPosZ;
 
         if (d0 * d0 + d1 * d1 > 2.500000277905201E-7D)
         {

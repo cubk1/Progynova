@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatComponentTranslation;
@@ -77,16 +77,16 @@ public class InventoryCraftResult implements IInventory
     {
     }
 
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUseableByPlayer(实体Player player)
     {
         return true;
     }
 
-    public void openInventory(EntityPlayer player)
+    public void openInventory(实体Player player)
     {
     }
 
-    public void closeInventory(EntityPlayer player)
+    public void closeInventory(实体Player player)
     {
     }
 

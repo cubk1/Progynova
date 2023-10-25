@@ -3,9 +3,9 @@ package net.minecraft.client.renderer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.entity.实体PlayerSP;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -14,15 +14,15 @@ import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
@@ -51,7 +51,7 @@ public class ItemRenderer
         this.itemRenderer = mcIn.getRenderItem();
     }
 
-    public void renderItem(EntityLivingBase entityIn, ItemStack heldStack, ItemCameraTransforms.TransformType transform)
+    public void renderItem(实体LivingBase entityIn, ItemStack heldStack, ItemCameraTransforms.TransformType transform)
     {
         if (heldStack != null)
         {
@@ -96,7 +96,7 @@ public class ItemRenderer
 
     private void setLightMapFromPlayer(AbstractClientPlayer clientPlayer)
     {
-        int i = this.mc.宇轩の世界.getCombinedLight(new BlockPos(clientPlayer.posX, clientPlayer.posY + (double)clientPlayer.getEyeHeight(), clientPlayer.posZ), 0);
+        int i = this.mc.宇轩の世界.getCombinedLight(new 阻止位置(clientPlayer.X坐标, clientPlayer.Y坐标 + (double)clientPlayer.getEyeHeight(), clientPlayer.Z坐标), 0);
 
         if (Config.isDynamicLights())
         {
@@ -108,7 +108,7 @@ public class ItemRenderer
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, f, f1);
     }
 
-    private void rotateWithPlayerRotations(EntityPlayerSP entityplayerspIn, float partialTicks)
+    private void rotateWithPlayerRotations(实体PlayerSP entityplayerspIn, float partialTicks)
     {
         float f = entityplayerspIn.prevRenderArmPitch + (entityplayerspIn.renderArmPitch - entityplayerspIn.prevRenderArmPitch) * partialTicks;
         float f1 = entityplayerspIn.prevRenderArmYaw + (entityplayerspIn.renderArmYaw - entityplayerspIn.prevRenderArmYaw) * partialTicks;
@@ -317,7 +317,7 @@ public class ItemRenderer
             float f3 = abstractclientplayer.prevRotationYaw + (abstractclientplayer.旋转侧滑 - abstractclientplayer.prevRotationYaw) * partialTicks;
             this.rotateArroundXAndY(f2, f3);
             this.setLightMapFromPlayer(abstractclientplayer);
-            this.rotateWithPlayerRotations((EntityPlayerSP)abstractclientplayer, partialTicks);
+            this.rotateWithPlayerRotations((实体PlayerSP)abstractclientplayer, partialTicks);
             光照状态经理.enableRescaleNormal();
             光照状态经理.推黑客帝国();
 
@@ -378,16 +378,16 @@ public class ItemRenderer
 
         if (this.mc.宇轩游玩者.isEntityInsideOpaqueBlock())
         {
-            IBlockState iblockstate = this.mc.宇轩の世界.getBlockState(new BlockPos(this.mc.宇轩游玩者));
-            BlockPos blockpos = new BlockPos(this.mc.宇轩游玩者);
-            EntityPlayer entityplayer = this.mc.宇轩游玩者;
+            IBlockState iblockstate = this.mc.宇轩の世界.getBlockState(new 阻止位置(this.mc.宇轩游玩者));
+            阻止位置 blockpos = new 阻止位置(this.mc.宇轩游玩者);
+            实体Player entityplayer = this.mc.宇轩游玩者;
 
             for (int i = 0; i < 8; ++i)
             {
-                double d0 = entityplayer.posX + (double)(((float)((i >> 0) % 2) - 0.5F) * entityplayer.width * 0.8F);
-                double d1 = entityplayer.posY + (double)(((float)((i >> 1) % 2) - 0.5F) * 0.1F);
-                double d2 = entityplayer.posZ + (double)(((float)((i >> 2) % 2) - 0.5F) * entityplayer.width * 0.8F);
-                BlockPos blockpos1 = new BlockPos(d0, d1 + (double)entityplayer.getEyeHeight(), d2);
+                double d0 = entityplayer.X坐标 + (double)(((float)((i >> 0) % 2) - 0.5F) * entityplayer.width * 0.8F);
+                double d1 = entityplayer.Y坐标 + (double)(((float)((i >> 1) % 2) - 0.5F) * 0.1F);
+                double d2 = entityplayer.Z坐标 + (double)(((float)((i >> 2) % 2) - 0.5F) * entityplayer.width * 0.8F);
+                阻止位置 blockpos1 = new 阻止位置(d0, d1 + (double)entityplayer.getEyeHeight(), d2);
                 IBlockState iblockstate1 = this.mc.宇轩の世界.getBlockState(blockpos1);
 
                 if (iblockstate1.getBlock().isVisuallyOpaque())
@@ -529,7 +529,7 @@ public class ItemRenderer
     public void updateEquippedItem()
     {
         this.prevEquippedProgress = this.equippedProgress;
-        EntityPlayer entityplayer = this.mc.宇轩游玩者;
+        实体Player entityplayer = this.mc.宇轩游玩者;
         ItemStack itemstack = entityplayer.inventory.getCurrentItem();
         boolean flag = false;
 

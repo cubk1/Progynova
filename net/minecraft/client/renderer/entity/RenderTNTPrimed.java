@@ -4,12 +4,12 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.item.实体TNTPrimed;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
-public class RenderTNTPrimed extends Render<EntityTNTPrimed>
+public class RenderTNTPrimed extends Render<实体TNTPrimed>
 {
     public RenderTNTPrimed(RenderManager renderManagerIn)
     {
@@ -17,7 +17,7 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
         this.shadowSize = 0.5F;
     }
 
-    public void doRender(EntityTNTPrimed entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体TNTPrimed entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         BlockRendererDispatcher blockrendererdispatcher = 我的手艺.得到我的手艺().getBlockRendererDispatcher();
         光照状态经理.推黑客帝国();
@@ -61,7 +61,7 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityTNTPrimed entity)
+    protected 图像位置 getEntityTexture(实体TNTPrimed entity)
     {
         return TextureMap.locationBlocksTexture;
     }

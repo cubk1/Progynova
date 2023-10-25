@@ -5,11 +5,11 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -25,7 +25,7 @@ public class ItemBucket extends Item
         this.setCreativeTab(CreativeTabs.tabMisc);
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         boolean flag = this.isFull == Blocks.air;
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(worldIn, playerIn, flag);
@@ -38,7 +38,7 @@ public class ItemBucket extends Item
         {
             if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
             {
-                BlockPos blockpos = movingobjectposition.getBlockPos();
+                阻止位置 blockpos = movingobjectposition.getBlockPos();
 
                 if (!worldIn.isBlockModifiable(playerIn, blockpos))
                 {
@@ -76,7 +76,7 @@ public class ItemBucket extends Item
                         return new ItemStack(Items.bucket);
                     }
 
-                    BlockPos blockpos1 = blockpos.offset(movingobjectposition.sideHit);
+                    阻止位置 blockpos1 = blockpos.offset(movingobjectposition.sideHit);
 
                     if (!playerIn.canPlayerEdit(blockpos1, movingobjectposition.sideHit, itemStackIn))
                     {
@@ -95,7 +95,7 @@ public class ItemBucket extends Item
         }
     }
 
-    private ItemStack fillBucket(ItemStack emptyBuckets, EntityPlayer player, Item fullBucket)
+    private ItemStack fillBucket(ItemStack emptyBuckets, 实体Player player, Item fullBucket)
     {
         if (player.capabilities.isCreativeMode)
         {
@@ -116,7 +116,7 @@ public class ItemBucket extends Item
         }
     }
 
-    public boolean tryPlaceContainedLiquid(World worldIn, BlockPos pos)
+    public boolean tryPlaceContainedLiquid(World worldIn, 阻止位置 pos)
     {
         if (this.isFull == Blocks.air)
         {

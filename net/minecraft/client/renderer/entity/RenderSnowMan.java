@@ -2,10 +2,10 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelSnowMan;
 import net.minecraft.client.renderer.entity.layers.LayerSnowmanHead;
-import net.minecraft.entity.monster.EntitySnowman;
+import net.minecraft.entity.monster.实体Snowman;
 import net.minecraft.util.图像位置;
 
-public class RenderSnowMan extends RenderLiving<EntitySnowman>
+public class RenderSnowMan extends RenderLiving<实体Snowman>
 {
     private static final 图像位置 snowManTextures = new 图像位置("textures/entity/snowman.png");
 
@@ -15,7 +15,7 @@ public class RenderSnowMan extends RenderLiving<EntitySnowman>
         this.addLayer(new LayerSnowmanHead(this));
     }
 
-    protected 图像位置 getEntityTexture(EntitySnowman entity)
+    protected 图像位置 getEntityTexture(实体Snowman entity)
     {
         return snowManTextures;
     }

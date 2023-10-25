@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderBoat;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.item.EntityBoat;
+import net.minecraft.entity.item.实体Boat;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterBoat extends ModelAdapter
 {
     public ModelAdapterBoat()
     {
-        super(EntityBoat.class, "boat", 0.5F);
+        super(实体Boat.class, "boat", 0.5F);
     }
 
     public ModelBase makeModel()

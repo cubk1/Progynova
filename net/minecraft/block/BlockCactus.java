@@ -7,10 +7,10 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -28,9 +28,9 @@ public class BlockCactus extends Block
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
-        BlockPos blockpos = pos.up();
+        阻止位置 blockpos = pos.up();
 
         if (worldIn.isAirBlock(blockpos))
         {
@@ -60,13 +60,13 @@ public class BlockCactus extends Block
         }
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         float f = 0.0625F;
         return new AxisAlignedBB((double)((float)pos.getX() + f), (double)pos.getY(), (double)((float)pos.getZ() + f), (double)((float)(pos.getX() + 1) - f), (double)((float)(pos.getY() + 1) - f), (double)((float)(pos.getZ() + 1) - f));
     }
 
-    public AxisAlignedBB getSelectedBoundingBox(World worldIn, BlockPos pos)
+    public AxisAlignedBB getSelectedBoundingBox(World worldIn, 阻止位置 pos)
     {
         float f = 0.0625F;
         return new AxisAlignedBB((double)((float)pos.getX() + f), (double)pos.getY(), (double)((float)pos.getZ() + f), (double)((float)(pos.getX() + 1) - f), (double)(pos.getY() + 1), (double)((float)(pos.getZ() + 1) - f));
@@ -82,12 +82,12 @@ public class BlockCactus extends Block
         return false;
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return super.canPlaceBlockAt(worldIn, pos) ? this.canBlockStay(worldIn, pos) : false;
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (!this.canBlockStay(worldIn, pos))
         {
@@ -95,7 +95,7 @@ public class BlockCactus extends Block
         }
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos)
+    public boolean canBlockStay(World worldIn, 阻止位置 pos)
     {
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
         {
@@ -109,9 +109,9 @@ public class BlockCactus extends Block
         return block == Blocks.cactus || block == Blocks.sand;
     }
 
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollidedWithBlock(World worldIn, 阻止位置 pos, IBlockState state, 实体 实体In)
     {
-        entityIn.attackEntityFrom(DamageSource.cactus, 1.0F);
+        实体In.attackEntityFrom(DamageSource.cactus, 1.0F);
     }
 
     public EnumWorldBlockLayer getBlockLayer()

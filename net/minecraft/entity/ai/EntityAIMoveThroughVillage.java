@@ -2,10 +2,10 @@ package net.minecraft.entity.ai;
 
 import com.google.common.collect.Lists;
 import java.util.List;
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.实体Creature;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.village.Village;
@@ -13,14 +13,14 @@ import net.minecraft.village.VillageDoorInfo;
 
 public class EntityAIMoveThroughVillage extends EntityAIBase
 {
-    private EntityCreature theEntity;
+    private 实体Creature theEntity;
     private double movementSpeed;
     private PathEntity entityPathNavigate;
     private VillageDoorInfo doorInfo;
     private boolean isNocturnal;
     private List<VillageDoorInfo> doorList = Lists.<VillageDoorInfo>newArrayList();
 
-    public EntityAIMoveThroughVillage(EntityCreature theEntityIn, double movementSpeedIn, boolean isNocturnalIn)
+    public EntityAIMoveThroughVillage(实体Creature theEntityIn, double movementSpeedIn, boolean isNocturnalIn)
     {
         this.theEntity = theEntityIn;
         this.movementSpeed = movementSpeedIn;
@@ -43,7 +43,7 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
         }
         else
         {
-            Village village = this.theEntity.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this.theEntity), 0);
+            Village village = this.theEntity.worldObj.getVillageCollection().getNearestVillage(new 阻止位置(this.theEntity), 0);
 
             if (village == null)
             {
@@ -123,7 +123,7 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
 
         for (VillageDoorInfo villagedoorinfo1 : villageIn.getVillageDoorInfoList())
         {
-            int j = villagedoorinfo1.getDistanceSquared(MathHelper.floor_double(this.theEntity.posX), MathHelper.floor_double(this.theEntity.posY), MathHelper.floor_double(this.theEntity.posZ));
+            int j = villagedoorinfo1.getDistanceSquared(MathHelper.floor_double(this.theEntity.X坐标), MathHelper.floor_double(this.theEntity.Y坐标), MathHelper.floor_double(this.theEntity.Z坐标));
 
             if (j < i && !this.doesDoorListContain(villagedoorinfo1))
             {

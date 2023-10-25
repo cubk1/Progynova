@@ -9,16 +9,16 @@ import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.tileentity.TileEntityHopper;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.IWorldNameable;
 import net.optifine.reflect.Reflector;
 
 public class TileEntityUtils
 {
-    public static String getTileEntityName(IBlockAccess blockAccess, BlockPos blockPos)
+    public static String getTileEntityName(IBlockAccess blockAccess, 阻止位置 阻止位置)
     {
-        TileEntity tileentity = blockAccess.getTileEntity(blockPos);
+        TileEntity tileentity = blockAccess.getTileEntity(阻止位置);
         return getTileEntityName(tileentity);
     }
 
@@ -38,7 +38,7 @@ public class TileEntityUtils
 
     public static void updateTileEntityName(TileEntity te)
     {
-        BlockPos blockpos = te.getPos();
+        阻止位置 blockpos = te.getPos();
         String s = getTileEntityRawName(te);
 
         if (s == null)
@@ -49,9 +49,9 @@ public class TileEntityUtils
         }
     }
 
-    public static String getServerTileEntityRawName(BlockPos blockPos)
+    public static String getServerTileEntityRawName(阻止位置 阻止位置)
     {
-        TileEntity tileentity = IntegratedServerUtils.getTileEntity(blockPos);
+        TileEntity tileentity = IntegratedServerUtils.getTileEntity(阻止位置);
         return tileentity == null ? null : getTileEntityRawName(tileentity);
     }
 

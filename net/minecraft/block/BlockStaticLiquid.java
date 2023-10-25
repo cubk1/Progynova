@@ -4,7 +4,7 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -21,7 +21,7 @@ public class BlockStaticLiquid extends BlockLiquid
         }
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (!this.checkForMixing(worldIn, pos, state))
         {
@@ -29,14 +29,14 @@ public class BlockStaticLiquid extends BlockLiquid
         }
     }
 
-    private void updateLiquid(World worldIn, BlockPos pos, IBlockState state)
+    private void updateLiquid(World worldIn, 阻止位置 pos, IBlockState state)
     {
         BlockDynamicLiquid blockdynamicliquid = getFlowingBlock(this.blockMaterial);
         worldIn.setBlockState(pos, blockdynamicliquid.getDefaultState().withProperty(LEVEL, state.getValue(LEVEL)), 2);
         worldIn.scheduleUpdate(pos, blockdynamicliquid, this.tickRate(worldIn));
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (this.blockMaterial == Material.lava)
         {
@@ -46,7 +46,7 @@ public class BlockStaticLiquid extends BlockLiquid
 
                 if (i > 0)
                 {
-                    BlockPos blockpos = pos;
+                    阻止位置 blockpos = pos;
 
                     for (int j = 0; j < i; ++j)
                     {
@@ -71,7 +71,7 @@ public class BlockStaticLiquid extends BlockLiquid
                 {
                     for (int k = 0; k < 3; ++k)
                     {
-                        BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, 0, rand.nextInt(3) - 1);
+                        阻止位置 blockpos1 = pos.add(rand.nextInt(3) - 1, 0, rand.nextInt(3) - 1);
 
                         if (worldIn.isAirBlock(blockpos1.up()) && this.getCanBlockBurn(worldIn, blockpos1))
                         {
@@ -83,7 +83,7 @@ public class BlockStaticLiquid extends BlockLiquid
         }
     }
 
-    protected boolean isSurroundingBlockFlammable(World worldIn, BlockPos pos)
+    protected boolean isSurroundingBlockFlammable(World worldIn, 阻止位置 pos)
     {
         for (EnumFacing enumfacing : EnumFacing.values())
         {
@@ -96,7 +96,7 @@ public class BlockStaticLiquid extends BlockLiquid
         return false;
     }
 
-    private boolean getCanBlockBurn(World worldIn, BlockPos pos)
+    private boolean getCanBlockBurn(World worldIn, 阻止位置 pos)
     {
         return worldIn.getBlockState(pos).getBlock().getMaterial().getCanBurn();
     }

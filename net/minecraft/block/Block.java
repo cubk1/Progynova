@@ -9,18 +9,18 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体XPOrb;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.item.实体Item;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MovingObjectPosition;
@@ -218,7 +218,7 @@ public class Block
         }
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         return state;
     }
@@ -288,7 +288,7 @@ public class Block
         return true;
     }
 
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    public boolean isPassable(IBlockAccess worldIn, 阻止位置 pos)
     {
         return !this.blockMaterial.blocksMovement();
     }
@@ -298,7 +298,7 @@ public class Block
         return 3;
     }
 
-    public boolean isReplaceable(World worldIn, BlockPos pos)
+    public boolean isReplaceable(World worldIn, 阻止位置 pos)
     {
         return false;
     }
@@ -321,7 +321,7 @@ public class Block
         return this;
     }
 
-    public float getBlockHardness(World worldIn, BlockPos pos)
+    public float getBlockHardness(World worldIn, 阻止位置 pos)
     {
         return this.blockHardness;
     }
@@ -352,7 +352,7 @@ public class Block
         this.maxZ = (double)maxZ;
     }
 
-    public int getMixedBrightnessForBlock(IBlockAccess worldIn, BlockPos pos)
+    public int getMixedBrightnessForBlock(IBlockAccess worldIn, 阻止位置 pos)
     {
         Block block = worldIn.getBlockState(pos).getBlock();
         int i = worldIn.getCombinedLight(pos, block.getLightValue());
@@ -369,22 +369,22 @@ public class Block
         }
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         return side == EnumFacing.DOWN && this.minY > 0.0D ? true : (side == EnumFacing.UP && this.maxY < 1.0D ? true : (side == EnumFacing.NORTH && this.minZ > 0.0D ? true : (side == EnumFacing.SOUTH && this.maxZ < 1.0D ? true : (side == EnumFacing.WEST && this.minX > 0.0D ? true : (side == EnumFacing.EAST && this.maxX < 1.0D ? true : !worldIn.getBlockState(pos).getBlock().isOpaqueCube())))));
     }
 
-    public boolean isBlockSolid(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean isBlockSolid(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         return worldIn.getBlockState(pos).getBlock().getMaterial().isSolid();
     }
 
-    public AxisAlignedBB getSelectedBoundingBox(World worldIn, BlockPos pos)
+    public AxisAlignedBB getSelectedBoundingBox(World worldIn, 阻止位置 pos)
     {
         return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ);
     }
 
-    public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxesToList(World worldIn, 阻止位置 pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, 实体 colliding实体)
     {
         AxisAlignedBB axisalignedbb = this.getCollisionBoundingBox(worldIn, pos, state);
 
@@ -394,7 +394,7 @@ public class Block
         }
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ);
     }
@@ -414,24 +414,24 @@ public class Block
         return true;
     }
 
-    public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
+    public void randomTick(World worldIn, 阻止位置 pos, IBlockState state, Random random)
     {
         this.updateTick(worldIn, pos, state, random);
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
     }
 
-    public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockDestroyedByPlayer(World worldIn, 阻止位置 pos, IBlockState state)
     {
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
     }
 
@@ -440,11 +440,11 @@ public class Block
         return 10;
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
     }
 
@@ -458,18 +458,18 @@ public class Block
         return Item.getItemFromBlock(this);
     }
 
-    public float getPlayerRelativeBlockHardness(EntityPlayer playerIn, World worldIn, BlockPos pos)
+    public float getPlayerRelativeBlockHardness(实体Player playerIn, World worldIn, 阻止位置 pos)
     {
         float f = this.getBlockHardness(worldIn, pos);
         return f < 0.0F ? 0.0F : (!playerIn.canHarvestBlock(this) ? playerIn.getToolDigEfficiency(this) / f / 100.0F : playerIn.getToolDigEfficiency(this) / f / 30.0F);
     }
 
-    public final void dropBlockAsItem(World worldIn, BlockPos pos, IBlockState state, int forture)
+    public final void dropBlockAsItem(World worldIn, 阻止位置 pos, IBlockState state, int forture)
     {
         this.dropBlockAsItemWithChance(worldIn, pos, state, 1.0F, forture);
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         if (!worldIn.isRemote)
         {
@@ -490,7 +490,7 @@ public class Block
         }
     }
 
-    public static void spawnAsEntity(World worldIn, BlockPos pos, ItemStack stack)
+    public static void spawnAsEntity(World worldIn, 阻止位置 pos, ItemStack stack)
     {
         if (!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops"))
         {
@@ -498,21 +498,21 @@ public class Block
             double d0 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
             double d1 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
             double d2 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
-            EntityItem entityitem = new EntityItem(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, stack);
+            实体Item entityitem = new 实体Item(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, stack);
             entityitem.setDefaultPickupDelay();
             worldIn.spawnEntityInWorld(entityitem);
         }
     }
 
-    protected void dropXpOnBlockBreak(World worldIn, BlockPos pos, int amount)
+    protected void dropXpOnBlockBreak(World worldIn, 阻止位置 pos, int amount)
     {
         if (!worldIn.isRemote)
         {
             while (amount > 0)
             {
-                int i = EntityXPOrb.getXPSplit(amount);
+                int i = 实体XPOrb.getXPSplit(amount);
                 amount -= i;
-                worldIn.spawnEntityInWorld(new EntityXPOrb(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, i));
+                worldIn.spawnEntityInWorld(new 实体XPOrb(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, i));
             }
         }
     }
@@ -522,12 +522,12 @@ public class Block
         return 0;
     }
 
-    public float getExplosionResistance(Entity exploder)
+    public float getExplosionResistance(实体 exploder)
     {
         return this.blockResistance / 5.0F;
     }
 
-    public MovingObjectPosition collisionRayTrace(World worldIn, BlockPos pos, Vec3 start, Vec3 end)
+    public MovingObjectPosition collisionRayTrace(World worldIn, 阻止位置 pos, Vec3 start, Vec3 end)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         start = start.addVector((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()));
@@ -658,7 +658,7 @@ public class Block
         return point == null ? false : point.xCoord >= this.minX && point.xCoord <= this.maxX && point.yCoord >= this.minY && point.yCoord <= this.maxY;
     }
 
-    public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
+    public void onBlockDestroyedByExplosion(World worldIn, 阻止位置 pos, Explosion explosionIn)
     {
     }
 
@@ -667,45 +667,45 @@ public class Block
         return EnumWorldBlockLayer.SOLID;
     }
 
-    public boolean canReplace(World worldIn, BlockPos pos, EnumFacing side, ItemStack stack)
+    public boolean canReplace(World worldIn, 阻止位置 pos, EnumFacing side, ItemStack stack)
     {
         return this.canPlaceBlockOnSide(worldIn, pos, side);
     }
 
-    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
+    public boolean canPlaceBlockOnSide(World worldIn, 阻止位置 pos, EnumFacing side)
     {
         return this.canPlaceBlockAt(worldIn, pos);
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return worldIn.getBlockState(pos).getBlock().blockMaterial.isReplaceable();
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         return false;
     }
 
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn)
+    public void onEntityCollidedWithBlock(World worldIn, 阻止位置 pos, 实体 实体In)
     {
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         return this.getStateFromMeta(meta);
     }
 
-    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
+    public void onBlockClicked(World worldIn, 阻止位置 pos, 实体Player playerIn)
     {
     }
 
-    public Vec3 modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3 motion)
+    public Vec3 modifyAcceleration(World worldIn, 阻止位置 pos, 实体 实体In, Vec3 motion)
     {
         return motion;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
     }
 
@@ -749,17 +749,17 @@ public class Block
         return 16777215;
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         return 16777215;
     }
 
-    public final int colorMultiplier(IBlockAccess worldIn, BlockPos pos)
+    public final int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos)
     {
         return this.colorMultiplier(worldIn, pos, 0);
     }
 
-    public int getWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
+    public int getWeakPower(IBlockAccess worldIn, 阻止位置 pos, IBlockState state, EnumFacing side)
     {
         return 0;
     }
@@ -769,11 +769,11 @@ public class Block
         return false;
     }
 
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollidedWithBlock(World worldIn, 阻止位置 pos, IBlockState state, 实体 实体In)
     {
     }
 
-    public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
+    public int getStrongPower(IBlockAccess worldIn, 阻止位置 pos, IBlockState state, EnumFacing side)
     {
         return 0;
     }
@@ -782,7 +782,7 @@ public class Block
     {
     }
 
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World worldIn, 实体Player player, 阻止位置 pos, IBlockState state, TileEntity te)
     {
         player.triggerAchievement(StatList.mineBlockStatArray[getIdFromBlock(this)]);
         player.addExhaustion(0.025F);
@@ -826,7 +826,7 @@ public class Block
         return this.quantityDropped(random);
     }
 
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase placer, ItemStack stack)
     {
     }
 
@@ -851,7 +851,7 @@ public class Block
         return "tile." + this.unlocalizedName;
     }
 
-    public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam)
+    public boolean onBlockEventReceived(World worldIn, 阻止位置 pos, IBlockState state, int eventID, int eventParam)
     {
         return false;
     }
@@ -877,22 +877,22 @@ public class Block
         return this.isBlockNormalCube() ? 0.2F : 1.0F;
     }
 
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
+    public void onFallenUpon(World worldIn, 阻止位置 pos, 实体 实体In, float fallDistance)
     {
-        entityIn.fall(fallDistance, 1.0F);
+        实体In.fall(fallDistance, 1.0F);
     }
 
-    public void onLanded(World worldIn, Entity entityIn)
+    public void onLanded(World worldIn, 实体 实体In)
     {
-        entityIn.motionY = 0.0D;
+        实体In.motionY = 0.0D;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Item.getItemFromBlock(this);
     }
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         return this.damageDropped(worldIn.getBlockState(pos));
     }
@@ -913,11 +913,11 @@ public class Block
         return this;
     }
 
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    public void onBlockHarvested(World worldIn, 阻止位置 pos, IBlockState state, 实体Player player)
     {
     }
 
-    public void fillWithRain(World worldIn, BlockPos pos)
+    public void fillWithRain(World worldIn, 阻止位置 pos)
     {
     }
 
@@ -951,7 +951,7 @@ public class Block
         return false;
     }
 
-    public int getComparatorInputOverride(World worldIn, BlockPos pos)
+    public int getComparatorInputOverride(World worldIn, 阻止位置 pos)
     {
         return 0;
     }

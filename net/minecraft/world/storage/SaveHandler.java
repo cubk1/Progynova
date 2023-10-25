@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -213,7 +213,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
         }
     }
 
-    public void writePlayerData(EntityPlayer player)
+    public void writePlayerData(实体Player player)
     {
         try
         {
@@ -236,7 +236,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
         }
     }
 
-    public NBTTagCompound readPlayerData(EntityPlayer player)
+    public NBTTagCompound readPlayerData(实体Player player)
     {
         NBTTagCompound nbttagcompound = null;
 

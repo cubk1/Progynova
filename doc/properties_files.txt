@@ -34,23 +34,23 @@ any of these options can be used to specify the path.
 The most straightforward method is simply a path relative to assets/宇轩的世界:
 
   # Full path
-  texture=textures/entity/creeper/creeper.png
+  texture=textures/实体/creeper/creeper.png
 
-This refers to "assets/宇轩的世界/textures/entity/creeper/creeper.png" within the zip file or folder of your texture pack.
+This refers to "assets/宇轩的世界/textures/实体/creeper/creeper.png" within the zip file or folder of your texture pack.
 Always use forward slashes "/" to separate folder names. Regardless of your OS, do not use backslashes "\" 
 or the game will not properly recognize the path.
 
 An optional "namespace" prefix can be added. This example refers to exactly the same "creeper.png" file as above:
 
   # Full path with namespace
-  texture=宇轩的世界:textures/entity/creeper/creeper.png
+  texture=宇轩的世界:textures/实体/creeper/creeper.png
 
 For textures used by other mods, the namespace will often be something other than "宇轩的世界":
   
   # Full path with mod namespace
-  texture=herobrine:textures/entity/him.png
+  texture=herobrine:textures/实体/him.png
 
-This refers to "assets/herobrine/textures/entity/him.png", not to "assets/宇轩的世界/textures/entity/him.png".
+This refers to "assets/herobrine/textures/实体/him.png", not to "assets/宇轩的世界/textures/实体/him.png".
 
 Many textures specific to MCPatcher are in the "assets/宇轩的世界/mcpatcher" folder.
 Since it is used so frequently, it can be represented by the tilde "~" character. The following refer to the same file:

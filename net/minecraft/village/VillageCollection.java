@@ -8,7 +8,7 @@ import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -17,7 +17,7 @@ import net.minecraft.world.WorldSavedData;
 public class VillageCollection extends WorldSavedData
 {
     private World worldObj;
-    private final List<BlockPos> villagerPositionsList = Lists.<BlockPos>newArrayList();
+    private final List<阻止位置> villagerPositionsList = Lists.<阻止位置>newArrayList();
     private final List<VillageDoorInfo> newDoors = Lists.<VillageDoorInfo>newArrayList();
     private final List<Village> villageList = Lists.<Village>newArrayList();
     private int tickCounter;
@@ -44,7 +44,7 @@ public class VillageCollection extends WorldSavedData
         }
     }
 
-    public void addToVillagerPositionList(BlockPos pos)
+    public void addToVillagerPositionList(阻止位置 pos)
     {
         if (this.villagerPositionsList.size() <= 64)
         {
@@ -95,7 +95,7 @@ public class VillageCollection extends WorldSavedData
         return this.villageList;
     }
 
-    public Village getNearestVillage(BlockPos doorBlock, int radius)
+    public Village getNearestVillage(阻止位置 doorBlock, int radius)
     {
         Village village = null;
         double d0 = 3.4028234663852886E38D;
@@ -123,7 +123,7 @@ public class VillageCollection extends WorldSavedData
     {
         if (!this.villagerPositionsList.isEmpty())
         {
-            this.addDoorsAround((BlockPos)this.villagerPositionsList.remove(0));
+            this.addDoorsAround((阻止位置)this.villagerPositionsList.remove(0));
         }
     }
 
@@ -147,7 +147,7 @@ public class VillageCollection extends WorldSavedData
         this.newDoors.clear();
     }
 
-    private void addDoorsAround(BlockPos central)
+    private void addDoorsAround(阻止位置 central)
     {
         int i = 16;
         int j = 4;
@@ -159,7 +159,7 @@ public class VillageCollection extends WorldSavedData
             {
                 for (int j1 = -k; j1 < k; ++j1)
                 {
-                    BlockPos blockpos = central.add(l, i1, j1);
+                    阻止位置 blockpos = central.add(l, i1, j1);
 
                     if (this.isWoodDoor(blockpos))
                     {
@@ -179,7 +179,7 @@ public class VillageCollection extends WorldSavedData
         }
     }
 
-    private VillageDoorInfo checkDoorExistence(BlockPos doorBlock)
+    private VillageDoorInfo checkDoorExistence(阻止位置 doorBlock)
     {
         for (VillageDoorInfo villagedoorinfo : this.newDoors)
         {
@@ -202,7 +202,7 @@ public class VillageCollection extends WorldSavedData
         return null;
     }
 
-    private void addToNewDoorsList(BlockPos doorBlock)
+    private void addToNewDoorsList(阻止位置 doorBlock)
     {
         EnumFacing enumfacing = BlockDoor.getFacing(this.worldObj, doorBlock);
         EnumFacing enumfacing1 = enumfacing.getOpposite();
@@ -215,7 +215,7 @@ public class VillageCollection extends WorldSavedData
         }
     }
 
-    private int countBlocksCanSeeSky(BlockPos centerPos, EnumFacing direction, int limitation)
+    private int countBlocksCanSeeSky(阻止位置 centerPos, EnumFacing direction, int limitation)
     {
         int i = 0;
 
@@ -235,9 +235,9 @@ public class VillageCollection extends WorldSavedData
         return i;
     }
 
-    private boolean positionInList(BlockPos pos)
+    private boolean positionInList(阻止位置 pos)
     {
-        for (BlockPos blockpos : this.villagerPositionsList)
+        for (阻止位置 blockpos : this.villagerPositionsList)
         {
             if (blockpos.equals(pos))
             {
@@ -248,7 +248,7 @@ public class VillageCollection extends WorldSavedData
         return false;
     }
 
-    private boolean isWoodDoor(BlockPos doorPos)
+    private boolean isWoodDoor(阻止位置 doorPos)
     {
         Block block = this.worldObj.getBlockState(doorPos).getBlock();
         return block instanceof BlockDoor ? block.getMaterial() == Material.wood : false;

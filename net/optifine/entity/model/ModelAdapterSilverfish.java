@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelSilverfish;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSilverfish;
-import net.minecraft.entity.monster.EntitySilverfish;
+import net.minecraft.entity.monster.实体Silverfish;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterSilverfish extends ModelAdapter
 {
     public ModelAdapterSilverfish()
     {
-        super(EntitySilverfish.class, "silverfish", 0.3F);
+        super(实体Silverfish.class, "silverfish", 0.3F);
     }
 
     public ModelBase makeModel()

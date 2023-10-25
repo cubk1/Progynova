@@ -1,14 +1,14 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.实体Creeper;
+import net.minecraft.entity.实体LivingBase;
 
 public class EntityAICreeperSwell extends EntityAIBase
 {
-    EntityCreeper swellingCreeper;
-    EntityLivingBase creeperAttackTarget;
+    实体Creeper swellingCreeper;
+    实体LivingBase creeperAttackTarget;
 
-    public EntityAICreeperSwell(EntityCreeper entitycreeperIn)
+    public EntityAICreeperSwell(实体Creeper entitycreeperIn)
     {
         this.swellingCreeper = entitycreeperIn;
         this.setMutexBits(1);
@@ -16,7 +16,7 @@ public class EntityAICreeperSwell extends EntityAIBase
 
     public boolean shouldExecute()
     {
-        EntityLivingBase entitylivingbase = this.swellingCreeper.getAttackTarget();
+        实体LivingBase entitylivingbase = this.swellingCreeper.getAttackTarget();
         return this.swellingCreeper.getCreeperState() > 0 || entitylivingbase != null && this.swellingCreeper.getDistanceSqToEntity(entitylivingbase) < 9.0D;
     }
 

@@ -4,7 +4,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -18,7 +18,7 @@ public class WorldGenLakes extends WorldGenerator
         this.block = blockIn;
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         for (position = position.add(-8, 0, -8); position.getY() > 5 && worldIn.isAirBlock(position); position = position.down())
         {
@@ -112,7 +112,7 @@ public class WorldGenLakes extends WorldGenerator
                     {
                         if (aboolean[(i2 * 16 + j3) * 8 + j4])
                         {
-                            BlockPos blockpos = position.add(i2, j4 - 1, j3);
+                            阻止位置 blockpos = position.add(i2, j4 - 1, j3);
 
                             if (worldIn.getBlockState(blockpos).getBlock() == Blocks.dirt && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0)
                             {

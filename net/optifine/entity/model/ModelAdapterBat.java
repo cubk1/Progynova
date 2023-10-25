@@ -6,14 +6,14 @@ import net.minecraft.client.model.ModelBat;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderBat;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.passive.实体Bat;
 import net.optifine.reflect.Reflector;
 
 public class ModelAdapterBat extends ModelAdapter
 {
     public ModelAdapterBat()
     {
-        super(EntityBat.class, "bat", 0.25F);
+        super(实体Bat.class, "bat", 0.25F);
     }
 
     public ModelBase makeModel()

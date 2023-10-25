@@ -11,13 +11,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentProtection;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体TNTPrimed;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
@@ -32,29 +32,29 @@ public class Explosion
     private final double explosionX;
     private final double explosionY;
     private final double explosionZ;
-    private final Entity exploder;
+    private final 实体 exploder;
     private final float explosionSize;
-    private final List<BlockPos> affectedBlockPositions;
-    private final Map<EntityPlayer, Vec3> playerKnockbackMap;
+    private final List<阻止位置> affectedBlockPositions;
+    private final Map<实体Player, Vec3> playerKnockbackMap;
 
-    public Explosion(World worldIn, Entity entityIn, double x, double y, double z, float size, List<BlockPos> affectedPositions)
+    public Explosion(World worldIn, 实体 实体In, double x, double y, double z, float size, List<阻止位置> affectedPositions)
     {
-        this(worldIn, entityIn, x, y, z, size, false, true, affectedPositions);
+        this(worldIn, 实体In, x, y, z, size, false, true, affectedPositions);
     }
 
-    public Explosion(World worldIn, Entity entityIn, double x, double y, double z, float size, boolean flaming, boolean smoking, List<BlockPos> affectedPositions)
+    public Explosion(World worldIn, 实体 实体In, double x, double y, double z, float size, boolean flaming, boolean smoking, List<阻止位置> affectedPositions)
     {
-        this(worldIn, entityIn, x, y, z, size, flaming, smoking);
+        this(worldIn, 实体In, x, y, z, size, flaming, smoking);
         this.affectedBlockPositions.addAll(affectedPositions);
     }
 
-    public Explosion(World worldIn, Entity entityIn, double x, double y, double z, float size, boolean flaming, boolean smoking)
+    public Explosion(World worldIn, 实体 实体In, double x, double y, double z, float size, boolean flaming, boolean smoking)
     {
         this.explosionRNG = new Random();
-        this.affectedBlockPositions = Lists.<BlockPos>newArrayList();
-        this.playerKnockbackMap = Maps.<EntityPlayer, Vec3>newHashMap();
+        this.affectedBlockPositions = Lists.<阻止位置>newArrayList();
+        this.playerKnockbackMap = Maps.<实体Player, Vec3>newHashMap();
         this.worldObj = worldIn;
-        this.exploder = entityIn;
+        this.exploder = 实体In;
         this.explosionSize = size;
         this.explosionX = x;
         this.explosionY = y;
@@ -65,7 +65,7 @@ public class Explosion
 
     public void doExplosionA()
     {
-        Set<BlockPos> set = Sets.<BlockPos>newHashSet();
+        Set<阻止位置> set = Sets.<阻止位置>newHashSet();
         int i = 16;
 
         for (int j = 0; j < 16; ++j)
@@ -90,12 +90,12 @@ public class Explosion
 
                         for (float f1 = 0.3F; f > 0.0F; f -= 0.22500001F)
                         {
-                            BlockPos blockpos = new BlockPos(d4, d6, d8);
+                            阻止位置 blockpos = new 阻止位置(d4, d6, d8);
                             IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
 
                             if (iblockstate.getBlock().getMaterial() != Material.air)
                             {
-                                float f2 = this.exploder != null ? this.exploder.getExplosionResistance(this, this.worldObj, blockpos, iblockstate) : iblockstate.getBlock().getExplosionResistance((Entity)null);
+                                float f2 = this.exploder != null ? this.exploder.getExplosionResistance(this, this.worldObj, blockpos, iblockstate) : iblockstate.getBlock().getExplosionResistance((实体)null);
                                 f -= (f2 + 0.3F) * 0.3F;
                             }
 
@@ -121,22 +121,22 @@ public class Explosion
         int i1 = MathHelper.floor_double(this.explosionY + (double)f3 + 1.0D);
         int j2 = MathHelper.floor_double(this.explosionZ - (double)f3 - 1.0D);
         int j1 = MathHelper.floor_double(this.explosionZ + (double)f3 + 1.0D);
-        List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this.exploder, new AxisAlignedBB((double)k1, (double)i2, (double)j2, (double)l1, (double)i1, (double)j1));
+        List<实体> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this.exploder, new AxisAlignedBB((double)k1, (double)i2, (double)j2, (double)l1, (double)i1, (double)j1));
         Vec3 vec3 = new Vec3(this.explosionX, this.explosionY, this.explosionZ);
 
         for (int k2 = 0; k2 < list.size(); ++k2)
         {
-            Entity entity = (Entity)list.get(k2);
+            实体 实体 = (实体)list.get(k2);
 
-            if (!entity.isImmuneToExplosions())
+            if (!实体.isImmuneToExplosions())
             {
-                double d12 = entity.getDistance(this.explosionX, this.explosionY, this.explosionZ) / (double)f3;
+                double d12 = 实体.getDistance(this.explosionX, this.explosionY, this.explosionZ) / (double)f3;
 
                 if (d12 <= 1.0D)
                 {
-                    double d5 = entity.posX - this.explosionX;
-                    double d7 = entity.posY + (double)entity.getEyeHeight() - this.explosionY;
-                    double d9 = entity.posZ - this.explosionZ;
+                    double d5 = 实体.X坐标 - this.explosionX;
+                    double d7 = 实体.Y坐标 + (double) 实体.getEyeHeight() - this.explosionY;
+                    double d9 = 实体.Z坐标 - this.explosionZ;
                     double d13 = (double)MathHelper.sqrt_double(d5 * d5 + d7 * d7 + d9 * d9);
 
                     if (d13 != 0.0D)
@@ -144,17 +144,17 @@ public class Explosion
                         d5 = d5 / d13;
                         d7 = d7 / d13;
                         d9 = d9 / d13;
-                        double d14 = (double)this.worldObj.getBlockDensity(vec3, entity.getEntityBoundingBox());
+                        double d14 = (double)this.worldObj.getBlockDensity(vec3, 实体.getEntityBoundingBox());
                         double d10 = (1.0D - d12) * d14;
-                        entity.attackEntityFrom(DamageSource.setExplosionSource(this), (float)((int)((d10 * d10 + d10) / 2.0D * 8.0D * (double)f3 + 1.0D)));
-                        double d11 = EnchantmentProtection.func_92092_a(entity, d10);
-                        entity.通便X += d5 * d11;
-                        entity.motionY += d7 * d11;
-                        entity.通便Z += d9 * d11;
+                        实体.attackEntityFrom(DamageSource.setExplosionSource(this), (float)((int)((d10 * d10 + d10) / 2.0D * 8.0D * (double)f3 + 1.0D)));
+                        double d11 = EnchantmentProtection.func_92092_a(实体, d10);
+                        实体.通便X += d5 * d11;
+                        实体.motionY += d7 * d11;
+                        实体.通便Z += d9 * d11;
 
-                        if (entity instanceof EntityPlayer && !((EntityPlayer)entity).capabilities.disableDamage)
+                        if (实体 instanceof 实体Player && !((实体Player) 实体).capabilities.disableDamage)
                         {
-                            this.playerKnockbackMap.put((EntityPlayer)entity, new Vec3(d5 * d10, d7 * d10, d9 * d10));
+                            this.playerKnockbackMap.put((实体Player) 实体, new Vec3(d5 * d10, d7 * d10, d9 * d10));
                         }
                     }
                 }
@@ -177,7 +177,7 @@ public class Explosion
 
         if (this.isSmoking)
         {
-            for (BlockPos blockpos : this.affectedBlockPositions)
+            for (阻止位置 blockpos : this.affectedBlockPositions)
             {
                 Block block = this.worldObj.getBlockState(blockpos).getBlock();
 
@@ -217,7 +217,7 @@ public class Explosion
 
         if (this.isFlaming)
         {
-            for (BlockPos blockpos1 : this.affectedBlockPositions)
+            for (阻止位置 blockpos1 : this.affectedBlockPositions)
             {
                 if (this.worldObj.getBlockState(blockpos1).getBlock().getMaterial() == Material.air && this.worldObj.getBlockState(blockpos1.down()).getBlock().isFullBlock() && this.explosionRNG.nextInt(3) == 0)
                 {
@@ -227,14 +227,14 @@ public class Explosion
         }
     }
 
-    public Map<EntityPlayer, Vec3> getPlayerKnockbackMap()
+    public Map<实体Player, Vec3> getPlayerKnockbackMap()
     {
         return this.playerKnockbackMap;
     }
 
-    public EntityLivingBase getExplosivePlacedBy()
+    public 实体LivingBase getExplosivePlacedBy()
     {
-        return this.exploder == null ? null : (this.exploder instanceof EntityTNTPrimed ? ((EntityTNTPrimed)this.exploder).getTntPlacedBy() : (this.exploder instanceof EntityLivingBase ? (EntityLivingBase)this.exploder : null));
+        return this.exploder == null ? null : (this.exploder instanceof 实体TNTPrimed ? ((实体TNTPrimed)this.exploder).getTntPlacedBy() : (this.exploder instanceof 实体LivingBase ? (实体LivingBase)this.exploder : null));
     }
 
     public void clearAffectedBlockPositions()
@@ -242,7 +242,7 @@ public class Explosion
         this.affectedBlockPositions.clear();
     }
 
-    public List<BlockPos> getAffectedBlockPositions()
+    public List<阻止位置> getAffectedBlockPositions()
     {
         return this.affectedBlockPositions;
     }

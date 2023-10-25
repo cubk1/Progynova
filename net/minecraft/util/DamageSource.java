@@ -1,10 +1,10 @@
 package net.minecraft.util;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.projectile.实体Arrow;
+import net.minecraft.entity.projectile.实体Fireball;
 import net.minecraft.world.Explosion;
 
 public class DamageSource
@@ -35,37 +35,37 @@ public class DamageSource
     private boolean explosion;
     public String damageType;
 
-    public static DamageSource causeMobDamage(EntityLivingBase mob)
+    public static DamageSource causeMobDamage(实体LivingBase mob)
     {
         return new EntityDamageSource("mob", mob);
     }
 
-    public static DamageSource causePlayerDamage(EntityPlayer player)
+    public static DamageSource causePlayerDamage(实体Player player)
     {
         return new EntityDamageSource("player", player);
     }
 
-    public static DamageSource causeArrowDamage(EntityArrow arrow, Entity indirectEntityIn)
+    public static DamageSource causeArrowDamage(实体Arrow arrow, 实体 indirect实体In)
     {
-        return (new EntityDamageSourceIndirect("arrow", arrow, indirectEntityIn)).setProjectile();
+        return (new EntityDamageSourceIndirect("arrow", arrow, indirect实体In)).setProjectile();
     }
 
-    public static DamageSource causeFireballDamage(EntityFireball fireball, Entity indirectEntityIn)
+    public static DamageSource causeFireballDamage(实体Fireball fireball, 实体 indirect实体In)
     {
-        return indirectEntityIn == null ? (new EntityDamageSourceIndirect("onFire", fireball, fireball)).setFireDamage().setProjectile() : (new EntityDamageSourceIndirect("fireball", fireball, indirectEntityIn)).setFireDamage().setProjectile();
+        return indirect实体In == null ? (new EntityDamageSourceIndirect("onFire", fireball, fireball)).setFireDamage().setProjectile() : (new EntityDamageSourceIndirect("fireball", fireball, indirect实体In)).setFireDamage().setProjectile();
     }
 
-    public static DamageSource causeThrownDamage(Entity source, Entity indirectEntityIn)
+    public static DamageSource causeThrownDamage(实体 source, 实体 indirect实体In)
     {
-        return (new EntityDamageSourceIndirect("thrown", source, indirectEntityIn)).setProjectile();
+        return (new EntityDamageSourceIndirect("thrown", source, indirect实体In)).setProjectile();
     }
 
-    public static DamageSource causeIndirectMagicDamage(Entity source, Entity indirectEntityIn)
+    public static DamageSource causeIndirectMagicDamage(实体 source, 实体 indirect实体In)
     {
-        return (new EntityDamageSourceIndirect("indirectMagic", source, indirectEntityIn)).setDamageBypassesArmor().setMagicDamage();
+        return (new EntityDamageSourceIndirect("indirectMagic", source, indirect实体In)).setDamageBypassesArmor().setMagicDamage();
     }
 
-    public static DamageSource causeThornsDamage(Entity source)
+    public static DamageSource causeThornsDamage(实体 source)
     {
         return (new EntityDamageSource("thorns", source)).setIsThornsDamage().setMagicDamage();
     }
@@ -122,12 +122,12 @@ public class DamageSource
         this.damageType = damageTypeIn;
     }
 
-    public Entity getSourceOfDamage()
+    public 实体 getSourceOfDamage()
     {
         return this.getEntity();
     }
 
-    public Entity getEntity()
+    public 实体 getEntity()
     {
         return null;
     }
@@ -158,9 +158,9 @@ public class DamageSource
         return this;
     }
 
-    public IChatComponent getDeathMessage(EntityLivingBase entityLivingBaseIn)
+    public IChatComponent getDeathMessage(实体LivingBase entityLivingBaseIn)
     {
-        EntityLivingBase entitylivingbase = entityLivingBaseIn.getAttackingEntity();
+        实体LivingBase entitylivingbase = entityLivingBaseIn.getAttackingEntity();
         String s = "death.attack." + this.damageType;
         String s1 = s + ".player";
         return entitylivingbase != null && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[] {entityLivingBaseIn.getDisplayName(), entitylivingbase.getDisplayName()}): new ChatComponentTranslation(s, new Object[] {entityLivingBaseIn.getDisplayName()});
@@ -200,7 +200,7 @@ public class DamageSource
 
     public boolean isCreativePlayer()
     {
-        Entity entity = this.getEntity();
-        return entity instanceof EntityPlayer && ((EntityPlayer)entity).capabilities.isCreativeMode;
+        实体 实体 = this.getEntity();
+        return 实体 instanceof 实体Player && ((实体Player) 实体).capabilities.isCreativeMode;
     }
 }

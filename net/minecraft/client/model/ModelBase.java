@@ -5,8 +5,8 @@ import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 
 public abstract class ModelBase
 {
@@ -18,15 +18,15 @@ public abstract class ModelBase
     public int textureWidth = 64;
     public int textureHeight = 32;
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
     }
 
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
+    public void setLivingAnimations(实体LivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
     {
     }
 

@@ -20,9 +20,9 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
@@ -36,8 +36,8 @@ public class EffectRenderer
 {
     private static final 图像位置 particleTextures = new 图像位置("textures/particle/particles.png");
     protected World worldObj;
-    private List<EntityFX>[][] fxLayers = new List[4][];
-    private List<EntityParticleEmitter> particleEmitters = Lists.<EntityParticleEmitter>newArrayList();
+    private List<实体FX>[][] fxLayers = new List[4][];
+    private List<实体ParticleEmitter> particleEmitters = Lists.<实体ParticleEmitter>newArrayList();
     private TextureManager renderer;
     private Random rand = new Random();
     private Map<Integer, IParticleFactory> particleTypes = Maps.<Integer, IParticleFactory>newHashMap();
@@ -62,45 +62,45 @@ public class EffectRenderer
 
     private void registerVanillaParticles()
     {
-        this.registerParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleID(), new EntityExplodeFX.Factory());
-        this.registerParticle(EnumParticleTypes.WATER_BUBBLE.getParticleID(), new EntityBubbleFX.Factory());
-        this.registerParticle(EnumParticleTypes.WATER_SPLASH.getParticleID(), new EntitySplashFX.Factory());
-        this.registerParticle(EnumParticleTypes.WATER_WAKE.getParticleID(), new EntityFishWakeFX.Factory());
-        this.registerParticle(EnumParticleTypes.WATER_DROP.getParticleID(), new EntityRainFX.Factory());
-        this.registerParticle(EnumParticleTypes.SUSPENDED.getParticleID(), new EntitySuspendFX.Factory());
-        this.registerParticle(EnumParticleTypes.SUSPENDED_DEPTH.getParticleID(), new EntityAuraFX.Factory());
-        this.registerParticle(EnumParticleTypes.CRIT.getParticleID(), new EntityCrit2FX.Factory());
-        this.registerParticle(EnumParticleTypes.CRIT_MAGIC.getParticleID(), new EntityCrit2FX.MagicFactory());
-        this.registerParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleID(), new EntitySmokeFX.Factory());
-        this.registerParticle(EnumParticleTypes.SMOKE_LARGE.getParticleID(), new EntityCritFX.Factory());
-        this.registerParticle(EnumParticleTypes.SPELL.getParticleID(), new EntitySpellParticleFX.Factory());
-        this.registerParticle(EnumParticleTypes.SPELL_INSTANT.getParticleID(), new EntitySpellParticleFX.InstantFactory());
-        this.registerParticle(EnumParticleTypes.SPELL_MOB.getParticleID(), new EntitySpellParticleFX.MobFactory());
-        this.registerParticle(EnumParticleTypes.SPELL_MOB_AMBIENT.getParticleID(), new EntitySpellParticleFX.AmbientMobFactory());
-        this.registerParticle(EnumParticleTypes.SPELL_WITCH.getParticleID(), new EntitySpellParticleFX.WitchFactory());
-        this.registerParticle(EnumParticleTypes.DRIP_WATER.getParticleID(), new EntityDropParticleFX.WaterFactory());
-        this.registerParticle(EnumParticleTypes.DRIP_LAVA.getParticleID(), new EntityDropParticleFX.LavaFactory());
-        this.registerParticle(EnumParticleTypes.VILLAGER_ANGRY.getParticleID(), new EntityHeartFX.AngryVillagerFactory());
-        this.registerParticle(EnumParticleTypes.VILLAGER_HAPPY.getParticleID(), new EntityAuraFX.HappyVillagerFactory());
-        this.registerParticle(EnumParticleTypes.TOWN_AURA.getParticleID(), new EntityAuraFX.Factory());
-        this.registerParticle(EnumParticleTypes.NOTE.getParticleID(), new EntityNoteFX.Factory());
-        this.registerParticle(EnumParticleTypes.PORTAL.getParticleID(), new EntityPortalFX.Factory());
-        this.registerParticle(EnumParticleTypes.ENCHANTMENT_TABLE.getParticleID(), new EntityEnchantmentTableParticleFX.EnchantmentTable());
-        this.registerParticle(EnumParticleTypes.FLAME.getParticleID(), new EntityFlameFX.Factory());
-        this.registerParticle(EnumParticleTypes.LAVA.getParticleID(), new EntityLavaFX.Factory());
-        this.registerParticle(EnumParticleTypes.FOOTSTEP.getParticleID(), new EntityFootStepFX.Factory());
-        this.registerParticle(EnumParticleTypes.CLOUD.getParticleID(), new EntityCloudFX.Factory());
-        this.registerParticle(EnumParticleTypes.REDSTONE.getParticleID(), new EntityReddustFX.Factory());
-        this.registerParticle(EnumParticleTypes.SNOWBALL.getParticleID(), new EntityBreakingFX.SnowballFactory());
-        this.registerParticle(EnumParticleTypes.SNOW_SHOVEL.getParticleID(), new EntitySnowShovelFX.Factory());
-        this.registerParticle(EnumParticleTypes.SLIME.getParticleID(), new EntityBreakingFX.SlimeFactory());
-        this.registerParticle(EnumParticleTypes.HEART.getParticleID(), new EntityHeartFX.Factory());
+        this.registerParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleID(), new 实体ExplodeFX.Factory());
+        this.registerParticle(EnumParticleTypes.WATER_BUBBLE.getParticleID(), new 实体BubbleFX.Factory());
+        this.registerParticle(EnumParticleTypes.WATER_SPLASH.getParticleID(), new 实体SplashFX.Factory());
+        this.registerParticle(EnumParticleTypes.WATER_WAKE.getParticleID(), new 实体FishWakeFX.Factory());
+        this.registerParticle(EnumParticleTypes.WATER_DROP.getParticleID(), new 实体RainFX.Factory());
+        this.registerParticle(EnumParticleTypes.SUSPENDED.getParticleID(), new 实体SuspendFX.Factory());
+        this.registerParticle(EnumParticleTypes.SUSPENDED_DEPTH.getParticleID(), new 实体AuraFX.Factory());
+        this.registerParticle(EnumParticleTypes.CRIT.getParticleID(), new 实体Crit2FX.Factory());
+        this.registerParticle(EnumParticleTypes.CRIT_MAGIC.getParticleID(), new 实体Crit2FX.MagicFactory());
+        this.registerParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleID(), new 实体SmokeFX.Factory());
+        this.registerParticle(EnumParticleTypes.SMOKE_LARGE.getParticleID(), new 实体CritFX.Factory());
+        this.registerParticle(EnumParticleTypes.SPELL.getParticleID(), new 实体SpellParticleFX.Factory());
+        this.registerParticle(EnumParticleTypes.SPELL_INSTANT.getParticleID(), new 实体SpellParticleFX.InstantFactory());
+        this.registerParticle(EnumParticleTypes.SPELL_MOB.getParticleID(), new 实体SpellParticleFX.MobFactory());
+        this.registerParticle(EnumParticleTypes.SPELL_MOB_AMBIENT.getParticleID(), new 实体SpellParticleFX.AmbientMobFactory());
+        this.registerParticle(EnumParticleTypes.SPELL_WITCH.getParticleID(), new 实体SpellParticleFX.WitchFactory());
+        this.registerParticle(EnumParticleTypes.DRIP_WATER.getParticleID(), new 实体DropParticleFX.WaterFactory());
+        this.registerParticle(EnumParticleTypes.DRIP_LAVA.getParticleID(), new 实体DropParticleFX.LavaFactory());
+        this.registerParticle(EnumParticleTypes.VILLAGER_ANGRY.getParticleID(), new 实体HeartFX.AngryVillagerFactory());
+        this.registerParticle(EnumParticleTypes.VILLAGER_HAPPY.getParticleID(), new 实体AuraFX.HappyVillagerFactory());
+        this.registerParticle(EnumParticleTypes.TOWN_AURA.getParticleID(), new 实体AuraFX.Factory());
+        this.registerParticle(EnumParticleTypes.NOTE.getParticleID(), new 实体NoteFX.Factory());
+        this.registerParticle(EnumParticleTypes.PORTAL.getParticleID(), new 实体PortalFX.Factory());
+        this.registerParticle(EnumParticleTypes.ENCHANTMENT_TABLE.getParticleID(), new 实体EnchantmentTableParticleFX.EnchantmentTable());
+        this.registerParticle(EnumParticleTypes.FLAME.getParticleID(), new 实体FlameFX.Factory());
+        this.registerParticle(EnumParticleTypes.LAVA.getParticleID(), new 实体LavaFX.Factory());
+        this.registerParticle(EnumParticleTypes.FOOTSTEP.getParticleID(), new 实体FootStepFX.Factory());
+        this.registerParticle(EnumParticleTypes.CLOUD.getParticleID(), new 实体CloudFX.Factory());
+        this.registerParticle(EnumParticleTypes.REDSTONE.getParticleID(), new 实体ReddustFX.Factory());
+        this.registerParticle(EnumParticleTypes.SNOWBALL.getParticleID(), new 实体BreakingFX.SnowballFactory());
+        this.registerParticle(EnumParticleTypes.SNOW_SHOVEL.getParticleID(), new 实体SnowShovelFX.Factory());
+        this.registerParticle(EnumParticleTypes.SLIME.getParticleID(), new 实体BreakingFX.SlimeFactory());
+        this.registerParticle(EnumParticleTypes.HEART.getParticleID(), new 实体HeartFX.Factory());
         this.registerParticle(EnumParticleTypes.BARRIER.getParticleID(), new Barrier.Factory());
-        this.registerParticle(EnumParticleTypes.ITEM_CRACK.getParticleID(), new EntityBreakingFX.Factory());
-        this.registerParticle(EnumParticleTypes.BLOCK_CRACK.getParticleID(), new EntityDiggingFX.Factory());
-        this.registerParticle(EnumParticleTypes.BLOCK_DUST.getParticleID(), new EntityBlockDustFX.Factory());
-        this.registerParticle(EnumParticleTypes.EXPLOSION_HUGE.getParticleID(), new EntityHugeExplodeFX.Factory());
-        this.registerParticle(EnumParticleTypes.EXPLOSION_LARGE.getParticleID(), new EntityLargeExplodeFX.Factory());
+        this.registerParticle(EnumParticleTypes.ITEM_CRACK.getParticleID(), new 实体BreakingFX.Factory());
+        this.registerParticle(EnumParticleTypes.BLOCK_CRACK.getParticleID(), new 实体DiggingFX.Factory());
+        this.registerParticle(EnumParticleTypes.BLOCK_DUST.getParticleID(), new 实体BlockDustFX.Factory());
+        this.registerParticle(EnumParticleTypes.EXPLOSION_HUGE.getParticleID(), new 实体HugeExplodeFX.Factory());
+        this.registerParticle(EnumParticleTypes.EXPLOSION_LARGE.getParticleID(), new 实体LargeExplodeFX.Factory());
         this.registerParticle(EnumParticleTypes.FIREWORKS_SPARK.getParticleID(), new EntityFirework.Factory());
         this.registerParticle(EnumParticleTypes.MOB_APPEARANCE.getParticleID(), new MobAppearance.Factory());
     }
@@ -110,18 +110,18 @@ public class EffectRenderer
         this.particleTypes.put(Integer.valueOf(id), particleFactory);
     }
 
-    public void emitParticleAtEntity(Entity entityIn, EnumParticleTypes particleTypes)
+    public void emitParticleAtEntity(实体 实体In, EnumParticleTypes particleTypes)
     {
-        this.particleEmitters.add(new EntityParticleEmitter(this.worldObj, entityIn, particleTypes));
+        this.particleEmitters.add(new 实体ParticleEmitter(this.worldObj, 实体In, particleTypes));
     }
 
-    public EntityFX spawnEffectParticle(int particleId, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed, int... parameters)
+    public 实体FX spawnEffectParticle(int particleId, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed, int... parameters)
     {
         IParticleFactory iparticlefactory = (IParticleFactory)this.particleTypes.get(Integer.valueOf(particleId));
 
         if (iparticlefactory != null)
         {
-            EntityFX entityfx = iparticlefactory.getEntityFX(particleId, this.worldObj, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
+            实体FX entityfx = iparticlefactory.getEntityFX(particleId, this.worldObj, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
 
             if (entityfx != null)
             {
@@ -133,7 +133,7 @@ public class EffectRenderer
         return null;
     }
 
-    public void addEffect(EntityFX effect)
+    public void addEffect(实体FX effect)
     {
         if (effect != null)
         {
@@ -159,9 +159,9 @@ public class EffectRenderer
             this.updateEffectLayer(i);
         }
 
-        List<EntityParticleEmitter> list = Lists.<EntityParticleEmitter>newArrayList();
+        List<实体ParticleEmitter> list = Lists.<实体ParticleEmitter>newArrayList();
 
-        for (EntityParticleEmitter entityparticleemitter : this.particleEmitters)
+        for (实体ParticleEmitter entityparticleemitter : this.particleEmitters)
         {
             entityparticleemitter.onUpdate();
 
@@ -182,15 +182,15 @@ public class EffectRenderer
         }
     }
 
-    private void updateEffectAlphaLayer(List<EntityFX> entitiesFX)
+    private void updateEffectAlphaLayer(List<实体FX> entitiesFX)
     {
-        List<EntityFX> list = Lists.newArrayList();
+        List<实体FX> list = Lists.newArrayList();
         long i = System.currentTimeMillis();
         int j = entitiesFX.size();
 
         for (int k = 0; k < entitiesFX.size(); ++k)
         {
-            EntityFX entityfx = entitiesFX.get(k);
+            实体FX entityfx = entitiesFX.get(k);
             this.tickParticle(entityfx);
 
             if (entityfx.isDead)
@@ -212,7 +212,7 @@ public class EffectRenderer
 
             for (Iterator iterator = entitiesFX.iterator(); iterator.hasNext() && l > 0; --l)
             {
-                EntityFX entityfx1 = (EntityFX)iterator.next();
+                实体FX entityfx1 = (实体FX)iterator.next();
                 entityfx1.setDead();
                 iterator.remove();
             }
@@ -221,7 +221,7 @@ public class EffectRenderer
         entitiesFX.removeAll(list);
     }
 
-    private void tickParticle(final EntityFX particle)
+    private void tickParticle(final 实体FX particle)
     {
         try
         {
@@ -250,20 +250,20 @@ public class EffectRenderer
         }
     }
 
-    public void renderParticles(Entity entityIn, float partialTicks)
+    public void renderParticles(实体 实体In, float partialTicks)
     {
         float f = ActiveRenderInfo.getRotationX();
         float f1 = ActiveRenderInfo.getRotationZ();
         float f2 = ActiveRenderInfo.getRotationYZ();
         float f3 = ActiveRenderInfo.getRotationXY();
         float f4 = ActiveRenderInfo.getRotationXZ();
-        EntityFX.interpPosX = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double)partialTicks;
-        EntityFX.interpPosY = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double)partialTicks;
-        EntityFX.interpPosZ = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * (double)partialTicks;
+        实体FX.interpPosX = 实体In.lastTickPosX + (实体In.X坐标 - 实体In.lastTickPosX) * (double)partialTicks;
+        实体FX.interpPosY = 实体In.lastTickPosY + (实体In.Y坐标 - 实体In.lastTickPosY) * (double)partialTicks;
+        实体FX.interpPosZ = 实体In.lastTickPosZ + (实体In.Z坐标 - 实体In.lastTickPosZ) * (double)partialTicks;
         光照状态经理.启用混合品();
         光照状态经理.正常工作(770, 771);
         光照状态经理.alphaFunc(516, 0.003921569F);
-        Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.worldObj, entityIn, partialTicks);
+        Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.worldObj, 实体In, partialTicks);
         boolean flag = block.getMaterial() == Material.water;
 
         for (int i = 0; i < 3; ++i)
@@ -302,13 +302,13 @@ public class EffectRenderer
 
                     for (int k = 0; k < this.fxLayers[i][j].size(); ++k)
                     {
-                        final EntityFX entityfx = (EntityFX)this.fxLayers[i][j].get(k);
+                        final 实体FX entityfx = (实体FX)this.fxLayers[i][j].get(k);
 
                         try
                         {
-                            if (flag || !(entityfx instanceof EntitySuspendFX))
+                            if (flag || !(entityfx instanceof 实体SuspendFX))
                             {
-                                entityfx.renderParticle(worldrenderer, entityIn, partialTicks, f, f4, f1, f2, f3);
+                                entityfx.renderParticle(worldrenderer, 实体In, partialTicks, f, f4, f1, f2, f3);
                             }
                         }
                         catch (Throwable throwable)
@@ -343,18 +343,18 @@ public class EffectRenderer
         光照状态经理.alphaFunc(516, 0.1F);
     }
 
-    public void renderLitParticles(Entity entityIn, float partialTick)
+    public void renderLitParticles(实体 实体In, float partialTick)
     {
         float f = 0.017453292F;
-        float f1 = MathHelper.cos(entityIn.旋转侧滑 * 0.017453292F);
-        float f2 = MathHelper.sin(entityIn.旋转侧滑 * 0.017453292F);
-        float f3 = -f2 * MathHelper.sin(entityIn.rotationPitch * 0.017453292F);
-        float f4 = f1 * MathHelper.sin(entityIn.rotationPitch * 0.017453292F);
-        float f5 = MathHelper.cos(entityIn.rotationPitch * 0.017453292F);
+        float f1 = MathHelper.cos(实体In.旋转侧滑 * 0.017453292F);
+        float f2 = MathHelper.sin(实体In.旋转侧滑 * 0.017453292F);
+        float f3 = -f2 * MathHelper.sin(实体In.rotationPitch * 0.017453292F);
+        float f4 = f1 * MathHelper.sin(实体In.rotationPitch * 0.017453292F);
+        float f5 = MathHelper.cos(实体In.rotationPitch * 0.017453292F);
 
         for (int i = 0; i < 2; ++i)
         {
-            List<EntityFX> list = this.fxLayers[3][i];
+            List<实体FX> list = this.fxLayers[3][i];
 
             if (!list.isEmpty())
             {
@@ -363,8 +363,8 @@ public class EffectRenderer
 
                 for (int j = 0; j < list.size(); ++j)
                 {
-                    EntityFX entityfx = (EntityFX)list.get(j);
-                    entityfx.renderParticle(worldrenderer, entityIn, partialTick, f1, f5, f2, f3, f4);
+                    实体FX entityfx = (实体FX)list.get(j);
+                    entityfx.renderParticle(worldrenderer, 实体In, partialTick, f1, f5, f2, f3, f4);
                 }
             }
         }
@@ -385,7 +385,7 @@ public class EffectRenderer
         this.particleEmitters.clear();
     }
 
-    public void addBlockDestroyEffects(BlockPos pos, IBlockState state)
+    public void addBlockDestroyEffects(阻止位置 pos, IBlockState state)
     {
         boolean flag;
 
@@ -413,14 +413,14 @@ public class EffectRenderer
                         double d0 = (double)pos.getX() + ((double)i + 0.5D) / (double)l;
                         double d1 = (double)pos.getY() + ((double)j + 0.5D) / (double)l;
                         double d2 = (double)pos.getZ() + ((double)k + 0.5D) / (double)l;
-                        this.addEffect((new EntityDiggingFX(this.worldObj, d0, d1, d2, d0 - (double)pos.getX() - 0.5D, d1 - (double)pos.getY() - 0.5D, d2 - (double)pos.getZ() - 0.5D, state)).setBlockPos(pos));
+                        this.addEffect((new 实体DiggingFX(this.worldObj, d0, d1, d2, d0 - (double)pos.getX() - 0.5D, d1 - (double)pos.getY() - 0.5D, d2 - (double)pos.getZ() - 0.5D, state)).setBlockPos(pos));
                     }
                 }
             }
         }
     }
 
-    public void addBlockHitEffects(BlockPos pos, EnumFacing side)
+    public void addBlockHitEffects(阻止位置 pos, EnumFacing side)
     {
         IBlockState iblockstate = this.worldObj.getBlockState(pos);
         Block block = iblockstate.getBlock();
@@ -465,21 +465,21 @@ public class EffectRenderer
                 d0 = (double)i + block.getBlockBoundsMaxX() + (double)f;
             }
 
-            this.addEffect((new EntityDiggingFX(this.worldObj, d0, d1, d2, 0.0D, 0.0D, 0.0D, iblockstate)).setBlockPos(pos).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+            this.addEffect((new 实体DiggingFX(this.worldObj, d0, d1, d2, 0.0D, 0.0D, 0.0D, iblockstate)).setBlockPos(pos).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
         }
     }
 
-    public void moveToAlphaLayer(EntityFX effect)
+    public void moveToAlphaLayer(实体FX effect)
     {
         this.moveToLayer(effect, 1, 0);
     }
 
-    public void moveToNoAlphaLayer(EntityFX effect)
+    public void moveToNoAlphaLayer(实体FX effect)
     {
         this.moveToLayer(effect, 0, 1);
     }
 
-    private void moveToLayer(EntityFX effect, int layerFrom, int layerTo)
+    private void moveToLayer(实体FX effect, int layerFrom, int layerTo)
     {
         for (int i = 0; i < 4; ++i)
         {
@@ -506,7 +506,7 @@ public class EffectRenderer
         return "" + i;
     }
 
-    public void addBlockHitEffects(BlockPos p_addBlockHitEffects_1_, MovingObjectPosition p_addBlockHitEffects_2_)
+    public void addBlockHitEffects(阻止位置 p_addBlockHitEffects_1_, MovingObjectPosition p_addBlockHitEffects_2_)
     {
         IBlockState iblockstate = this.worldObj.getBlockState(p_addBlockHitEffects_1_);
 

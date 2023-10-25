@@ -29,7 +29,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.stream.TwitchStream;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.network.play.client.C15PacketClientSettings;
 import net.minecraft.src.Config;
@@ -94,7 +94,7 @@ public class GameSettings
     public int ambientOcclusion = 2;
     public List<String> resourcePacks = Lists.<String>newArrayList();
     public List<String> incompatibleResourcePacks = Lists.<String>newArrayList();
-    public EntityPlayer.EnumChatVisibility chatVisibility = EntityPlayer.EnumChatVisibility.FULL;
+    public 实体Player.EnumChatVisibility chatVisibility = 实体Player.EnumChatVisibility.FULL;
     public boolean chatColours = true;
     public boolean chatLinks = true;
     public boolean chatLinksPrompt = true;
@@ -541,7 +541,7 @@ public class GameSettings
 
         if (settingsOption == GameSettings.Options.CHAT_VISIBILITY)
         {
-            this.chatVisibility = EntityPlayer.EnumChatVisibility.getEnumChatVisibility((this.chatVisibility.getChatVisibility() + value) % 3);
+            this.chatVisibility = 实体Player.EnumChatVisibility.getEnumChatVisibility((this.chatVisibility.getChatVisibility() + value) % 3);
         }
 
         if (settingsOption == GameSettings.Options.STREAM_COMPRESSION)
@@ -961,7 +961,7 @@ public class GameSettings
 
                             if (astring[0].equals("chatVisibility"))
                             {
-                                this.chatVisibility = EntityPlayer.EnumChatVisibility.getEnumChatVisibility(Integer.parseInt(astring[1]));
+                                this.chatVisibility = 实体Player.EnumChatVisibility.getEnumChatVisibility(Integer.parseInt(astring[1]));
                             }
 
                             if (astring[0].equals("chatColors"))

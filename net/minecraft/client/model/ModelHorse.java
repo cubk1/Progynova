@@ -1,9 +1,9 @@
 package net.minecraft.client.model;
 
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.passive.实体Horse;
 import net.minecraft.util.MathHelper;
 
 public class ModelHorse extends ModelBase
@@ -190,9 +190,9 @@ public class ModelHorse extends ModelBase
         this.setBoxRotation(this.horseFaceRopes, 0.5235988F, 0.0F, 0.0F);
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        EntityHorse entityhorse = (EntityHorse)entityIn;
+        实体Horse entityhorse = (实体Horse) 实体In;
         int i = entityhorse.getHorseType();
         float f = entityhorse.getGrassEatingAmount(0.0F);
         boolean flag = entityhorse.isAdultHorse();
@@ -200,7 +200,7 @@ public class ModelHorse extends ModelBase
         boolean flag2 = flag && entityhorse.isChested();
         boolean flag3 = i == 1 || i == 2;
         float f1 = entityhorse.getHorseSize();
-        boolean flag4 = entityhorse.riddenByEntity != null;
+        boolean flag4 = entityhorse.riddenBy实体 != null;
 
         if (flag1)
         {
@@ -323,7 +323,7 @@ public class ModelHorse extends ModelBase
         return p_110683_1_ + p_110683_3_ * f;
     }
 
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
+    public void setLivingAnimations(实体LivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
     {
         super.setLivingAnimations(entitylivingbaseIn, p_78086_2_, p_78086_3_, partialTickTime);
         float f = this.updateHorseRotation(entitylivingbaseIn.prevRenderYawOffset, entitylivingbaseIn.renderYawOffset, partialTickTime);
@@ -347,14 +347,14 @@ public class ModelHorse extends ModelBase
             f4 += MathHelper.cos(p_78086_2_ * 0.4F) * 0.15F * p_78086_3_;
         }
 
-        EntityHorse entityhorse = (EntityHorse)entitylivingbaseIn;
+        实体Horse entityhorse = (实体Horse)entitylivingbaseIn;
         float f5 = entityhorse.getGrassEatingAmount(partialTickTime);
         float f6 = entityhorse.getRearingAmount(partialTickTime);
         float f7 = 1.0F - f6;
         float f8 = entityhorse.getMouthOpennessAngle(partialTickTime);
         boolean flag = entityhorse.field_110278_bp != 0;
         boolean flag1 = entityhorse.isHorseSaddled();
-        boolean flag2 = entityhorse.riddenByEntity != null;
+        boolean flag2 = entityhorse.riddenBy实体 != null;
         float f9 = (float)entitylivingbaseIn.已存在的刻度 + partialTickTime;
         float f10 = MathHelper.cos(p_78086_2_ * 0.6662F + (float)Math.PI);
         float f11 = f10 * 0.8F * p_78086_3_;

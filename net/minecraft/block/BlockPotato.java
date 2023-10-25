@@ -4,7 +4,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class BlockPotato extends BlockCrops
@@ -19,7 +19,7 @@ public class BlockPotato extends BlockCrops
         return Items.potato;
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
 

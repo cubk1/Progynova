@@ -5,13 +5,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelEnderman;
 import net.minecraft.client.renderer.entity.RenderEnderman;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.实体Enderman;
 
 public class ModelAdapterEnderman extends ModelAdapterBiped
 {
     public ModelAdapterEnderman()
     {
-        super(EntityEnderman.class, "enderman", 0.5F);
+        super(实体Enderman.class, "enderman", 0.5F);
     }
 
     public ModelBase makeModel()

@@ -12,15 +12,15 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 
 public class 鬼Inventory extends InventoryEffectRenderer
 {
     private float oldMouseX;
     private float oldMouseY;
 
-    public 鬼Inventory(EntityPlayer p_i1094_1_)
+    public 鬼Inventory(实体Player p_i1094_1_)
     {
         super(p_i1094_1_.inventoryContainer);
         this.allowUserInput = true;
@@ -72,7 +72,7 @@ public class 鬼Inventory extends InventoryEffectRenderer
         drawEntityOnScreen(i + 51, j + 75, 30, (float)(i + 51) - this.oldMouseX, (float)(j + 75 - 50) - this.oldMouseY, this.mc.宇轩游玩者);
     }
 
-    public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, EntityLivingBase ent)
+    public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, 实体LivingBase ent)
     {
         光照状态经理.enableColorMaterial();
         光照状态经理.推黑客帝国();

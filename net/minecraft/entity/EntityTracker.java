@@ -7,31 +7,16 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityEnderCrystal;
-import net.minecraft.entity.item.EntityEnderEye;
-import net.minecraft.entity.item.EntityEnderPearl;
-import net.minecraft.entity.item.EntityExpBottle;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.boss.实体Dragon;
+import net.minecraft.entity.boss.实体Wither;
+import net.minecraft.entity.item.*;
+import net.minecraft.entity.item.实体Item;
+import net.minecraft.entity.passive.实体Bat;
+import net.minecraft.entity.passive.实体Squid;
 import net.minecraft.entity.passive.IAnimals;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityEgg;
-import net.minecraft.entity.projectile.EntityFireball;
-import net.minecraft.entity.projectile.EntityFishHook;
-import net.minecraft.entity.projectile.EntityPotion;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.entity.player.实体PlayerMP;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.entity.projectile.实体FishHook;
 import net.minecraft.network.Packet;
 import net.minecraft.util.IntHashMap;
 import net.minecraft.util.ReportedException;
@@ -54,129 +39,129 @@ public class EntityTracker
         this.maxTrackingDistanceThreshold = theWorldIn.getMinecraftServer().getConfigurationManager().getEntityViewDistance();
     }
 
-    public void trackEntity(Entity entityIn)
+    public void trackEntity(实体 实体In)
     {
-        if (entityIn instanceof EntityPlayerMP)
+        if (实体In instanceof 实体PlayerMP)
         {
-            this.trackEntity(entityIn, 512, 2);
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)entityIn;
+            this.trackEntity(实体In, 512, 2);
+            实体PlayerMP entityplayermp = (实体PlayerMP) 实体In;
 
             for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
             {
-                if (entitytrackerentry.trackedEntity != entityplayermp)
+                if (entitytrackerentry.tracked实体 != entityplayermp)
                 {
                     entitytrackerentry.updatePlayerEntity(entityplayermp);
                 }
             }
         }
-        else if (entityIn instanceof EntityFishHook)
+        else if (实体In instanceof 实体FishHook)
         {
-            this.addEntityToTracker(entityIn, 64, 5, true);
+            this.addEntityToTracker(实体In, 64, 5, true);
         }
-        else if (entityIn instanceof EntityArrow)
+        else if (实体In instanceof 实体Arrow)
         {
-            this.addEntityToTracker(entityIn, 64, 20, false);
+            this.addEntityToTracker(实体In, 64, 20, false);
         }
-        else if (entityIn instanceof EntitySmallFireball)
+        else if (实体In instanceof 实体SmallFireball)
         {
-            this.addEntityToTracker(entityIn, 64, 10, false);
+            this.addEntityToTracker(实体In, 64, 10, false);
         }
-        else if (entityIn instanceof EntityFireball)
+        else if (实体In instanceof 实体Fireball)
         {
-            this.addEntityToTracker(entityIn, 64, 10, false);
+            this.addEntityToTracker(实体In, 64, 10, false);
         }
-        else if (entityIn instanceof EntitySnowball)
+        else if (实体In instanceof 实体Snowball)
         {
-            this.addEntityToTracker(entityIn, 64, 10, true);
+            this.addEntityToTracker(实体In, 64, 10, true);
         }
-        else if (entityIn instanceof EntityEnderPearl)
+        else if (实体In instanceof 实体EnderPearl)
         {
-            this.addEntityToTracker(entityIn, 64, 10, true);
+            this.addEntityToTracker(实体In, 64, 10, true);
         }
-        else if (entityIn instanceof EntityEnderEye)
+        else if (实体In instanceof 实体EnderEye)
         {
-            this.addEntityToTracker(entityIn, 64, 4, true);
+            this.addEntityToTracker(实体In, 64, 4, true);
         }
-        else if (entityIn instanceof EntityEgg)
+        else if (实体In instanceof 实体Egg)
         {
-            this.addEntityToTracker(entityIn, 64, 10, true);
+            this.addEntityToTracker(实体In, 64, 10, true);
         }
-        else if (entityIn instanceof EntityPotion)
+        else if (实体In instanceof 实体Potion)
         {
-            this.addEntityToTracker(entityIn, 64, 10, true);
+            this.addEntityToTracker(实体In, 64, 10, true);
         }
-        else if (entityIn instanceof EntityExpBottle)
+        else if (实体In instanceof 实体ExpBottle)
         {
-            this.addEntityToTracker(entityIn, 64, 10, true);
+            this.addEntityToTracker(实体In, 64, 10, true);
         }
-        else if (entityIn instanceof EntityFireworkRocket)
+        else if (实体In instanceof 实体FireworkRocket)
         {
-            this.addEntityToTracker(entityIn, 64, 10, true);
+            this.addEntityToTracker(实体In, 64, 10, true);
         }
-        else if (entityIn instanceof EntityItem)
+        else if (实体In instanceof 实体Item)
         {
-            this.addEntityToTracker(entityIn, 64, 20, true);
+            this.addEntityToTracker(实体In, 64, 20, true);
         }
-        else if (entityIn instanceof EntityMinecart)
+        else if (实体In instanceof 实体Minecart)
         {
-            this.addEntityToTracker(entityIn, 80, 3, true);
+            this.addEntityToTracker(实体In, 80, 3, true);
         }
-        else if (entityIn instanceof EntityBoat)
+        else if (实体In instanceof 实体Boat)
         {
-            this.addEntityToTracker(entityIn, 80, 3, true);
+            this.addEntityToTracker(实体In, 80, 3, true);
         }
-        else if (entityIn instanceof EntitySquid)
+        else if (实体In instanceof 实体Squid)
         {
-            this.addEntityToTracker(entityIn, 64, 3, true);
+            this.addEntityToTracker(实体In, 64, 3, true);
         }
-        else if (entityIn instanceof EntityWither)
+        else if (实体In instanceof 实体Wither)
         {
-            this.addEntityToTracker(entityIn, 80, 3, false);
+            this.addEntityToTracker(实体In, 80, 3, false);
         }
-        else if (entityIn instanceof EntityBat)
+        else if (实体In instanceof 实体Bat)
         {
-            this.addEntityToTracker(entityIn, 80, 3, false);
+            this.addEntityToTracker(实体In, 80, 3, false);
         }
-        else if (entityIn instanceof EntityDragon)
+        else if (实体In instanceof 实体Dragon)
         {
-            this.addEntityToTracker(entityIn, 160, 3, true);
+            this.addEntityToTracker(实体In, 160, 3, true);
         }
-        else if (entityIn instanceof IAnimals)
+        else if (实体In instanceof IAnimals)
         {
-            this.addEntityToTracker(entityIn, 80, 3, true);
+            this.addEntityToTracker(实体In, 80, 3, true);
         }
-        else if (entityIn instanceof EntityTNTPrimed)
+        else if (实体In instanceof 实体TNTPrimed)
         {
-            this.addEntityToTracker(entityIn, 160, 10, true);
+            this.addEntityToTracker(实体In, 160, 10, true);
         }
-        else if (entityIn instanceof EntityFallingBlock)
+        else if (实体In instanceof 实体FallingBlock)
         {
-            this.addEntityToTracker(entityIn, 160, 20, true);
+            this.addEntityToTracker(实体In, 160, 20, true);
         }
-        else if (entityIn instanceof EntityHanging)
+        else if (实体In instanceof 实体Hanging)
         {
-            this.addEntityToTracker(entityIn, 160, Integer.MAX_VALUE, false);
+            this.addEntityToTracker(实体In, 160, Integer.MAX_VALUE, false);
         }
-        else if (entityIn instanceof EntityArmorStand)
+        else if (实体In instanceof 实体ArmorStand)
         {
-            this.addEntityToTracker(entityIn, 160, 3, true);
+            this.addEntityToTracker(实体In, 160, 3, true);
         }
-        else if (entityIn instanceof EntityXPOrb)
+        else if (实体In instanceof 实体XPOrb)
         {
-            this.addEntityToTracker(entityIn, 160, 20, true);
+            this.addEntityToTracker(实体In, 160, 20, true);
         }
-        else if (entityIn instanceof EntityEnderCrystal)
+        else if (实体In instanceof 实体EnderCrystal)
         {
-            this.addEntityToTracker(entityIn, 256, Integer.MAX_VALUE, false);
+            this.addEntityToTracker(实体In, 256, Integer.MAX_VALUE, false);
         }
     }
 
-    public void trackEntity(Entity entityIn, int trackingRange, int updateFrequency)
+    public void trackEntity(实体 实体In, int trackingRange, int updateFrequency)
     {
-        this.addEntityToTracker(entityIn, trackingRange, updateFrequency, false);
+        this.addEntityToTracker(实体In, trackingRange, updateFrequency, false);
     }
 
-    public void addEntityToTracker(Entity entityIn, int trackingRange, final int updateFrequency, boolean sendVelocityUpdates)
+    public void addEntityToTracker(实体 实体In, int trackingRange, final int updateFrequency, boolean sendVelocityUpdates)
     {
         if (trackingRange > this.maxTrackingDistanceThreshold)
         {
@@ -185,14 +170,14 @@ public class EntityTracker
 
         try
         {
-            if (this.trackedEntityHashTable.containsItem(entityIn.getEntityId()))
+            if (this.trackedEntityHashTable.containsItem(实体In.getEntityId()))
             {
                 throw new IllegalStateException("Entity is already tracked!");
             }
 
-            EntityTrackerEntry entitytrackerentry = new EntityTrackerEntry(entityIn, trackingRange, updateFrequency, sendVelocityUpdates);
+            EntityTrackerEntry entitytrackerentry = new EntityTrackerEntry(实体In, trackingRange, updateFrequency, sendVelocityUpdates);
             this.trackedEntities.add(entitytrackerentry);
-            this.trackedEntityHashTable.addKey(entityIn.getEntityId(), entitytrackerentry);
+            this.trackedEntityHashTable.addKey(实体In.getEntityId(), entitytrackerentry);
             entitytrackerentry.updatePlayerEntities(this.theWorld.playerEntities);
         }
         catch (Throwable throwable)
@@ -214,9 +199,9 @@ public class EntityTracker
                     return s;
                 }
             });
-            entityIn.addEntityCrashInfo(crashreportcategory);
+            实体In.addEntityCrashInfo(crashreportcategory);
             CrashReportCategory crashreportcategory1 = crashreport.makeCategory("Entity That Is Already Tracked");
-            ((EntityTrackerEntry)this.trackedEntityHashTable.lookup(entityIn.getEntityId())).trackedEntity.addEntityCrashInfo(crashreportcategory1);
+            ((EntityTrackerEntry)this.trackedEntityHashTable.lookup(实体In.getEntityId())).tracked实体.addEntityCrashInfo(crashreportcategory1);
 
             try
             {
@@ -229,11 +214,11 @@ public class EntityTracker
         }
     }
 
-    public void untrackEntity(Entity entityIn)
+    public void untrackEntity(实体 实体In)
     {
-        if (entityIn instanceof EntityPlayerMP)
+        if (实体In instanceof 实体PlayerMP)
         {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)entityIn;
+            实体PlayerMP entityplayermp = (实体PlayerMP) 实体In;
 
             for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
             {
@@ -241,7 +226,7 @@ public class EntityTracker
             }
         }
 
-        EntityTrackerEntry entitytrackerentry1 = (EntityTrackerEntry)this.trackedEntityHashTable.removeObject(entityIn.getEntityId());
+        EntityTrackerEntry entitytrackerentry1 = (EntityTrackerEntry)this.trackedEntityHashTable.removeObject(实体In.getEntityId());
 
         if (entitytrackerentry1 != null)
         {
@@ -252,25 +237,25 @@ public class EntityTracker
 
     public void updateTrackedEntities()
     {
-        List<EntityPlayerMP> list = Lists.<EntityPlayerMP>newArrayList();
+        List<实体PlayerMP> list = Lists.<实体PlayerMP>newArrayList();
 
         for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
         {
             entitytrackerentry.updatePlayerList(this.theWorld.playerEntities);
 
-            if (entitytrackerentry.playerEntitiesUpdated && entitytrackerentry.trackedEntity instanceof EntityPlayerMP)
+            if (entitytrackerentry.playerEntitiesUpdated && entitytrackerentry.tracked实体 instanceof 实体PlayerMP)
             {
-                list.add((EntityPlayerMP)entitytrackerentry.trackedEntity);
+                list.add((实体PlayerMP)entitytrackerentry.tracked实体);
             }
         }
 
         for (int i = 0; i < ((List)list).size(); ++i)
         {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)list.get(i);
+            实体PlayerMP entityplayermp = (实体PlayerMP)list.get(i);
 
             for (EntityTrackerEntry entitytrackerentry1 : this.trackedEntities)
             {
-                if (entitytrackerentry1.trackedEntity != entityplayermp)
+                if (entitytrackerentry1.tracked实体 != entityplayermp)
                 {
                     entitytrackerentry1.updatePlayerEntity(entityplayermp);
                 }
@@ -278,11 +263,11 @@ public class EntityTracker
         }
     }
 
-    public void func_180245_a(EntityPlayerMP p_180245_1_)
+    public void func_180245_a(实体PlayerMP p_180245_1_)
     {
         for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
         {
-            if (entitytrackerentry.trackedEntity == p_180245_1_)
+            if (entitytrackerentry.tracked实体 == p_180245_1_)
             {
                 entitytrackerentry.updatePlayerEntities(this.theWorld.playerEntities);
             }
@@ -293,9 +278,9 @@ public class EntityTracker
         }
     }
 
-    public void sendToAllTrackingEntity(Entity entityIn, Packet p_151247_2_)
+    public void sendToAllTrackingEntity(实体 实体In, Packet p_151247_2_)
     {
-        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry)this.trackedEntityHashTable.lookup(entityIn.getEntityId());
+        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry)this.trackedEntityHashTable.lookup(实体In.getEntityId());
 
         if (entitytrackerentry != null)
         {
@@ -303,9 +288,9 @@ public class EntityTracker
         }
     }
 
-    public void func_151248_b(Entity entityIn, Packet p_151248_2_)
+    public void func_151248_b(实体 实体In, Packet p_151248_2_)
     {
-        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry)this.trackedEntityHashTable.lookup(entityIn.getEntityId());
+        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry)this.trackedEntityHashTable.lookup(实体In.getEntityId());
 
         if (entitytrackerentry != null)
         {
@@ -313,7 +298,7 @@ public class EntityTracker
         }
     }
 
-    public void removePlayerFromTrackers(EntityPlayerMP p_72787_1_)
+    public void removePlayerFromTrackers(实体PlayerMP p_72787_1_)
     {
         for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
         {
@@ -321,11 +306,11 @@ public class EntityTracker
         }
     }
 
-    public void func_85172_a(EntityPlayerMP p_85172_1_, Chunk p_85172_2_)
+    public void func_85172_a(实体PlayerMP p_85172_1_, Chunk p_85172_2_)
     {
         for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
         {
-            if (entitytrackerentry.trackedEntity != p_85172_1_ && entitytrackerentry.trackedEntity.chunkCoordX == p_85172_2_.xPosition && entitytrackerentry.trackedEntity.chunkCoordZ == p_85172_2_.zPosition)
+            if (entitytrackerentry.tracked实体 != p_85172_1_ && entitytrackerentry.tracked实体.chunkCoordX == p_85172_2_.xPosition && entitytrackerentry.tracked实体.chunkCoordZ == p_85172_2_.zPosition)
             {
                 entitytrackerentry.updatePlayerEntity(p_85172_1_);
             }

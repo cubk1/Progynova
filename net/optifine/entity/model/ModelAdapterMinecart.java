@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelMinecart;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderMinecart;
-import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.item.实体Minecart;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterMinecart extends ModelAdapter
 {
     public ModelAdapterMinecart()
     {
-        super(EntityMinecart.class, "minecart", 0.5F);
+        super(实体Minecart.class, "minecart", 0.5F);
     }
 
     protected ModelAdapterMinecart(Class entityClass, String name, float shadow)

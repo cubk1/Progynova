@@ -3,17 +3,17 @@ package net.minecraft.entity.ai;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体Creature;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.Vec3;
 
-public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
+public class EntityAIAvoidEntity<T extends 实体> extends EntityAIBase
 {
-    private final Predicate<Entity> canBeSeenSelector;
-    protected EntityCreature theEntity;
+    private final Predicate<实体> canBeSeenSelector;
+    protected 实体Creature theEntity;
     private double farSpeed;
     private double nearSpeed;
     protected T closestLivingEntity;
@@ -23,16 +23,16 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
     private Class<T> classToAvoid;
     private Predicate <? super T > avoidTargetSelector;
 
-    public EntityAIAvoidEntity(EntityCreature theEntityIn, Class<T> classToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn)
+    public EntityAIAvoidEntity(实体Creature theEntityIn, Class<T> classToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn)
     {
         this(theEntityIn, classToAvoidIn, Predicates.<T>alwaysTrue(), avoidDistanceIn, farSpeedIn, nearSpeedIn);
     }
 
-    public EntityAIAvoidEntity(EntityCreature theEntityIn, Class<T> classToAvoidIn, Predicate <? super T > avoidTargetSelectorIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn)
+    public EntityAIAvoidEntity(实体Creature theEntityIn, Class<T> classToAvoidIn, Predicate <? super T > avoidTargetSelectorIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn)
     {
-        this.canBeSeenSelector = new Predicate<Entity>()
+        this.canBeSeenSelector = new Predicate<实体>()
         {
-            public boolean apply(Entity p_apply_1_)
+            public boolean apply(实体 p_apply_1_)
             {
                 return p_apply_1_.isEntityAlive() && EntityAIAvoidEntity.this.theEntity.getEntitySenses().canSee(p_apply_1_);
             }
@@ -58,7 +58,7 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
         else
         {
             this.closestLivingEntity = list.get(0);
-            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.theEntity, 16, 7, new Vec3(this.closestLivingEntity.posX, this.closestLivingEntity.posY, this.closestLivingEntity.posZ));
+            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.theEntity, 16, 7, new Vec3(this.closestLivingEntity.X坐标, this.closestLivingEntity.Y坐标, this.closestLivingEntity.Z坐标));
 
             if (vec3 == null)
             {

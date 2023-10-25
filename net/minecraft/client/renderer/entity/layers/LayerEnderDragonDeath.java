@@ -6,11 +6,11 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.实体Dragon;
 
-public class LayerEnderDragonDeath implements LayerRenderer<EntityDragon>
+public class LayerEnderDragonDeath implements LayerRenderer<实体Dragon>
 {
-    public void doRenderLayer(EntityDragon entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体Dragon entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         if (entitylivingbaseIn.deathTicks > 0)
         {

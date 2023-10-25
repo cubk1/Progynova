@@ -3,10 +3,10 @@ package net.minecraft.client.renderer.entity.layers;
 import net.minecraft.client.model.ModelCreeper;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.RenderCreeper;
-import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.实体Creeper;
 import net.minecraft.util.图像位置;
 
-public class LayerCreeperCharge implements LayerRenderer<EntityCreeper>
+public class LayerCreeperCharge implements LayerRenderer<实体Creeper>
 {
     private static final 图像位置 LIGHTNING_TEXTURE = new 图像位置("textures/entity/creeper/creeper_armor.png");
     private final RenderCreeper creeperRenderer;
@@ -17,7 +17,7 @@ public class LayerCreeperCharge implements LayerRenderer<EntityCreeper>
         this.creeperRenderer = creeperRendererIn;
     }
 
-    public void doRenderLayer(EntityCreeper entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体Creeper entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         if (entitylivingbaseIn.getPowered())
         {

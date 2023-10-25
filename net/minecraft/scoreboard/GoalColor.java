@@ -1,7 +1,7 @@
 package net.minecraft.scoreboard;
 
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.util.枚举聊天格式;
 
 public class GoalColor implements IScoreObjectiveCriteria
@@ -19,7 +19,7 @@ public class GoalColor implements IScoreObjectiveCriteria
         return this.goalName;
     }
 
-    public int setScore(List<EntityPlayer> p_96635_1_)
+    public int setScore(List<实体Player> p_96635_1_)
     {
         return 0;
     }

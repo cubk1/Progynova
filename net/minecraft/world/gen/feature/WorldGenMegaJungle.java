@@ -5,7 +5,7 @@ import net.minecraft.block.BlockVine;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -16,7 +16,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
         super(p_i46448_1_, p_i46448_2_, p_i46448_3_, p_i46448_4_, p_i46448_5_);
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         int i = this.func_150533_a(rand);
 
@@ -38,7 +38,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
                 {
                     k = position.getX() + (int)(1.5F + MathHelper.cos(f) * (float)i1);
                     l = position.getZ() + (int)(1.5F + MathHelper.sin(f) * (float)i1);
-                    this.setBlockAndNotifyAdequately(worldIn, new BlockPos(k, j - 3 + i1 / 2, l), this.woodMetadata);
+                    this.setBlockAndNotifyAdequately(worldIn, new 阻止位置(k, j - 3 + i1 / 2, l), this.woodMetadata);
                 }
 
                 int j2 = 1 + rand.nextInt(2);
@@ -47,13 +47,13 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
                 for (int k1 = j - j2; k1 <= j1; ++k1)
                 {
                     int l1 = k1 - j1;
-                    this.func_175928_b(worldIn, new BlockPos(k, k1, l), 1 - l1);
+                    this.func_175928_b(worldIn, new 阻止位置(k, k1, l), 1 - l1);
                 }
             }
 
             for (int i2 = 0; i2 < i; ++i2)
             {
-                BlockPos blockpos = position.up(i2);
+                阻止位置 blockpos = position.up(i2);
 
                 if (this.func_150523_a(worldIn.getBlockState(blockpos).getBlock()))
                 {
@@ -68,7 +68,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
 
                 if (i2 < i - 1)
                 {
-                    BlockPos blockpos1 = blockpos.east();
+                    阻止位置 blockpos1 = blockpos.east();
 
                     if (this.func_150523_a(worldIn.getBlockState(blockpos1).getBlock()))
                     {
@@ -81,7 +81,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
                         }
                     }
 
-                    BlockPos blockpos2 = blockpos.south().east();
+                    阻止位置 blockpos2 = blockpos.south().east();
 
                     if (this.func_150523_a(worldIn.getBlockState(blockpos2).getBlock()))
                     {
@@ -94,7 +94,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
                         }
                     }
 
-                    BlockPos blockpos3 = blockpos.south();
+                    阻止位置 blockpos3 = blockpos.south();
 
                     if (this.func_150523_a(worldIn.getBlockState(blockpos3).getBlock()))
                     {
@@ -113,7 +113,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
         }
     }
 
-    private void func_181632_a(World p_181632_1_, Random p_181632_2_, BlockPos p_181632_3_, PropertyBool p_181632_4_)
+    private void func_181632_a(World p_181632_1_, Random p_181632_2_, 阻止位置 p_181632_3_, PropertyBool p_181632_4_)
     {
         if (p_181632_2_.nextInt(3) > 0 && p_181632_1_.isAirBlock(p_181632_3_))
         {
@@ -121,7 +121,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
         }
     }
 
-    private void func_175930_c(World worldIn, BlockPos p_175930_2_, int p_175930_3_)
+    private void func_175930_c(World worldIn, 阻止位置 p_175930_2_, int p_175930_3_)
     {
         int i = 2;
 

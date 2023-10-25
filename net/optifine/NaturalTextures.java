@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.图像位置;
 import net.optifine.util.TextureUtils;
 
@@ -121,7 +121,7 @@ public class NaturalTextures
         }
     }
 
-    public static BakedQuad getNaturalTexture(BlockPos blockPosIn, BakedQuad quad)
+    public static BakedQuad getNaturalTexture(阻止位置 阻止位置In, BakedQuad quad)
     {
         TextureAtlasSprite textureatlassprite = quad.getSprite();
 
@@ -140,7 +140,7 @@ public class NaturalTextures
             else
             {
                 int i = ConnectedTextures.getSide(quad.getFace());
-                int j = Config.getRandom(blockPosIn, i);
+                int j = Config.getRandom(阻止位置In, i);
                 int k = 0;
                 boolean flag = false;
 

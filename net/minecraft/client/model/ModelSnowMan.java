@@ -1,6 +1,6 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.MathHelper;
 
 public class ModelSnowMan extends ModelBase
@@ -32,9 +32,9 @@ public class ModelSnowMan extends ModelBase
         this.bottomBody.setRotationPoint(0.0F, 0.0F + f + 20.0F, 0.0F);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, 实体In);
         this.head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float)Math.PI);
         this.body.rotateAngleY = netHeadYaw / (180F / (float)Math.PI) * 0.25F;
@@ -50,9 +50,9 @@ public class ModelSnowMan extends ModelBase
         this.leftHand.rotationPointZ = f * 5.0F;
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
         this.body.render(scale);
         this.bottomBody.render(scale);
         this.head.render(scale);

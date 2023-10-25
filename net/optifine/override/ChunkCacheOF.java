@@ -4,7 +4,7 @@ import java.util.Arrays;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
@@ -31,7 +31,7 @@ public class ChunkCacheOF implements IBlockAccess
     private static final ArrayCache cacheCombinedLights = new ArrayCache(Integer.TYPE, 16);
     private static final ArrayCache cacheBlockStates = new ArrayCache(IBlockState.class, 16);
 
-    public ChunkCacheOF(ChunkCache chunkCache, BlockPos posFromIn, BlockPos posToIn, int subIn)
+    public ChunkCacheOF(ChunkCache chunkCache, 阻止位置 posFromIn, 阻止位置 posToIn, int subIn)
     {
         this.chunkCache = chunkCache;
         int i = posFromIn.getX() - subIn >> 4;
@@ -50,7 +50,7 @@ public class ChunkCacheOF implements IBlockAccess
         this.posZ = k << 4;
     }
 
-    private int getPositionIndex(BlockPos pos)
+    private int getPositionIndex(阻止位置 pos)
     {
         int i = pos.getX() - this.posX;
 
@@ -74,7 +74,7 @@ public class ChunkCacheOF implements IBlockAccess
         }
     }
 
-    public int getCombinedLight(BlockPos pos, int lightValue)
+    public int getCombinedLight(阻止位置 pos, int lightValue)
     {
         int i = this.getPositionIndex(pos);
 
@@ -96,7 +96,7 @@ public class ChunkCacheOF implements IBlockAccess
         }
     }
 
-    private int getCombinedLightRaw(BlockPos pos, int lightValue)
+    private int getCombinedLightRaw(阻止位置 pos, int lightValue)
     {
         int i = this.chunkCache.getCombinedLight(pos, lightValue);
 
@@ -108,7 +108,7 @@ public class ChunkCacheOF implements IBlockAccess
         return i;
     }
 
-    public IBlockState getBlockState(BlockPos pos)
+    public IBlockState getBlockState(阻止位置 pos)
     {
         int i = this.getPositionIndex(pos);
 
@@ -160,17 +160,17 @@ public class ChunkCacheOF implements IBlockAccess
         return this.chunkCache.extendedLevelsInChunkCache();
     }
 
-    public BiomeGenBase getBiomeGenForCoords(BlockPos pos)
+    public BiomeGenBase getBiomeGenForCoords(阻止位置 pos)
     {
         return this.chunkCache.getBiomeGenForCoords(pos);
     }
 
-    public int getStrongPower(BlockPos pos, EnumFacing direction)
+    public int getStrongPower(阻止位置 pos, EnumFacing direction)
     {
         return this.chunkCache.getStrongPower(pos, direction);
     }
 
-    public TileEntity getTileEntity(BlockPos pos)
+    public TileEntity getTileEntity(阻止位置 pos)
     {
         return this.chunkCache.getTileEntity(pos);
     }
@@ -180,12 +180,12 @@ public class ChunkCacheOF implements IBlockAccess
         return this.chunkCache.getWorldType();
     }
 
-    public boolean isAirBlock(BlockPos pos)
+    public boolean isAirBlock(阻止位置 pos)
     {
         return this.chunkCache.isAirBlock(pos);
     }
 
-    public boolean isSideSolid(BlockPos pos, EnumFacing side, boolean _default)
+    public boolean isSideSolid(阻止位置 pos, EnumFacing side, boolean _default)
     {
         return Reflector.callBoolean(this.chunkCache, Reflector.ForgeChunkCache_isSideSolid, new Object[] {pos, side, Boolean.valueOf(_default)});
     }

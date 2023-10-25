@@ -1,15 +1,15 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体Living;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.util.MathHelper;
 
 public class EntityAIArrowAttack extends EntityAIBase
 {
-    private final EntityLiving entityHost;
+    private final 实体Living entityHost;
     private final IRangedAttackMob rangedAttackEntityHost;
-    private EntityLivingBase attackTarget;
+    private 实体LivingBase attackTarget;
     private int rangedAttackTime;
     private double entityMoveSpeed;
     private int field_75318_f;
@@ -27,14 +27,14 @@ public class EntityAIArrowAttack extends EntityAIBase
     {
         this.rangedAttackTime = -1;
 
-        if (!(attacker instanceof EntityLivingBase))
+        if (!(attacker instanceof 实体LivingBase))
         {
             throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
         }
         else
         {
             this.rangedAttackEntityHost = attacker;
-            this.entityHost = (EntityLiving)attacker;
+            this.entityHost = (实体Living)attacker;
             this.entityMoveSpeed = movespeed;
             this.field_96561_g = p_i1650_4_;
             this.maxRangedAttackTime = maxAttackTime;
@@ -46,7 +46,7 @@ public class EntityAIArrowAttack extends EntityAIBase
 
     public boolean shouldExecute()
     {
-        EntityLivingBase entitylivingbase = this.entityHost.getAttackTarget();
+        实体LivingBase entitylivingbase = this.entityHost.getAttackTarget();
 
         if (entitylivingbase == null)
         {
@@ -73,7 +73,7 @@ public class EntityAIArrowAttack extends EntityAIBase
 
     public void updateTask()
     {
-        double d0 = this.entityHost.getDistanceSq(this.attackTarget.posX, this.attackTarget.getEntityBoundingBox().minY, this.attackTarget.posZ);
+        double d0 = this.entityHost.getDistanceSq(this.attackTarget.X坐标, this.attackTarget.getEntityBoundingBox().minY, this.attackTarget.Z坐标);
         boolean flag = this.entityHost.getEntitySenses().canSee(this.attackTarget);
 
         if (flag)

@@ -13,10 +13,10 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
@@ -127,7 +127,7 @@ public class 鬼OverlayDebug extends 鬼
     @SuppressWarnings("incomplete-switch")
     protected List<String> call()
     {
-        BlockPos blockpos = new BlockPos(this.mc.getRenderViewEntity().posX, this.mc.getRenderViewEntity().getEntityBoundingBox().minY, this.mc.getRenderViewEntity().posZ);
+        阻止位置 blockpos = new 阻止位置(this.mc.getRenderViewEntity().X坐标, this.mc.getRenderViewEntity().getEntityBoundingBox().minY, this.mc.getRenderViewEntity().Z坐标);
 
         if (this.mc.debug != this.debugOF)
         {
@@ -193,8 +193,8 @@ public class 鬼OverlayDebug extends 鬼
         }
         else
         {
-            Entity entity = this.mc.getRenderViewEntity();
-            EnumFacing enumfacing = entity.getHorizontalFacing();
+            实体 实体 = this.mc.getRenderViewEntity();
+            EnumFacing enumfacing = 实体.getHorizontalFacing();
             String s = "Invalid";
 
             switch (enumfacing)
@@ -215,7 +215,7 @@ public class 鬼OverlayDebug extends 鬼
                     s = "Towards positive X";
             }
 
-            List<String> list = Lists.newArrayList(new String[] {"Minecraft 1.8.9 (" + this.mc.getVersion() + "/" + ClientBrandRetriever.getClientModName() + ")", this.mc.debug, this.mc.renderGlobal.getDebugInfoRenders(), this.mc.renderGlobal.getDebugInfoEntities(), "P: " + this.mc.effectRenderer.getStatistics() + ". T: " + this.mc.宇轩の世界.getDebugLoadedEntities() + s1, this.mc.宇轩の世界.getProviderName(), "", String.format("XYZ: %.3f / %.5f / %.3f", new Object[]{Double.valueOf(this.mc.getRenderViewEntity().posX), Double.valueOf(this.mc.getRenderViewEntity().getEntityBoundingBox().minY), Double.valueOf(this.mc.getRenderViewEntity().posZ)}), String.format("Block: %d %d %d", new Object[]{Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ())}), String.format("Chunk: %d %d %d in %d %d %d", new Object[]{Integer.valueOf(blockpos.getX() & 15), Integer.valueOf(blockpos.getY() & 15), Integer.valueOf(blockpos.getZ() & 15), Integer.valueOf(blockpos.getX() >> 4), Integer.valueOf(blockpos.getY() >> 4), Integer.valueOf(blockpos.getZ() >> 4)}), String.format("Facing: %s (%s) (%.1f / %.1f)", new Object[]{enumfacing, s, Float.valueOf(MathHelper.wrapAngleTo180_float(entity.旋转侧滑)), Float.valueOf(MathHelper.wrapAngleTo180_float(entity.rotationPitch))})});
+            List<String> list = Lists.newArrayList(new String[] {"Minecraft 1.8.9 (" + this.mc.getVersion() + "/" + ClientBrandRetriever.getClientModName() + ")", this.mc.debug, this.mc.renderGlobal.getDebugInfoRenders(), this.mc.renderGlobal.getDebugInfoEntities(), "P: " + this.mc.effectRenderer.getStatistics() + ". T: " + this.mc.宇轩の世界.getDebugLoadedEntities() + s1, this.mc.宇轩の世界.getProviderName(), "", String.format("XYZ: %.3f / %.5f / %.3f", new Object[]{Double.valueOf(this.mc.getRenderViewEntity().X坐标), Double.valueOf(this.mc.getRenderViewEntity().getEntityBoundingBox().minY), Double.valueOf(this.mc.getRenderViewEntity().Z坐标)}), String.format("Block: %d %d %d", new Object[]{Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ())}), String.format("Chunk: %d %d %d in %d %d %d", new Object[]{Integer.valueOf(blockpos.getX() & 15), Integer.valueOf(blockpos.getY() & 15), Integer.valueOf(blockpos.getZ() & 15), Integer.valueOf(blockpos.getX() >> 4), Integer.valueOf(blockpos.getY() >> 4), Integer.valueOf(blockpos.getZ() >> 4)}), String.format("Facing: %s (%s) (%.1f / %.1f)", new Object[]{enumfacing, s, Float.valueOf(MathHelper.wrapAngleTo180_float(实体.旋转侧滑)), Float.valueOf(MathHelper.wrapAngleTo180_float(实体.rotationPitch))})});
 
             if (this.mc.宇轩の世界 != null && this.mc.宇轩の世界.isBlockLoaded(blockpos))
             {
@@ -226,11 +226,11 @@ public class 鬼OverlayDebug extends 鬼
 
                 if (this.mc.isIntegratedServerRunning() && this.mc.getIntegratedServer() != null)
                 {
-                    EntityPlayerMP entityplayermp = this.mc.getIntegratedServer().getConfigurationManager().getPlayerByUUID(this.mc.宇轩游玩者.getUniqueID());
+                    实体PlayerMP entityplayermp = this.mc.getIntegratedServer().getConfigurationManager().getPlayerByUUID(this.mc.宇轩游玩者.getUniqueID());
 
                     if (entityplayermp != null)
                     {
-                        DifficultyInstance difficultyinstance1 = this.mc.getIntegratedServer().getDifficultyAsync(entityplayermp.worldObj, new BlockPos(entityplayermp));
+                        DifficultyInstance difficultyinstance1 = this.mc.getIntegratedServer().getDifficultyAsync(entityplayermp.worldObj, new 阻止位置(entityplayermp));
 
                         if (difficultyinstance1 != null)
                         {
@@ -249,7 +249,7 @@ public class 鬼OverlayDebug extends 鬼
 
             if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && this.mc.objectMouseOver.getBlockPos() != null)
             {
-                BlockPos blockpos1 = this.mc.objectMouseOver.getBlockPos();
+                阻止位置 blockpos1 = this.mc.objectMouseOver.getBlockPos();
                 list.add(String.format("Looking at: %d %d %d", new Object[] {Integer.valueOf(blockpos1.getX()), Integer.valueOf(blockpos1.getY()), Integer.valueOf(blockpos1.getZ())}));
             }
 
@@ -285,7 +285,7 @@ public class 鬼OverlayDebug extends 鬼
         {
             if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && this.mc.objectMouseOver.getBlockPos() != null)
             {
-                BlockPos blockpos = this.mc.objectMouseOver.getBlockPos();
+                阻止位置 blockpos = this.mc.objectMouseOver.getBlockPos();
                 IBlockState iblockstate = this.mc.宇轩の世界.getBlockState(blockpos);
 
                 if (this.mc.宇轩の世界.getWorldType() != WorldType.DEBUG_WORLD)

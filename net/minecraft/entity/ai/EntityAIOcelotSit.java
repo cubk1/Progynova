@@ -3,18 +3,18 @@ package net.minecraft.entity.ai;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.实体Ocelot;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class EntityAIOcelotSit extends EntityAIMoveToBlock
 {
-    private final EntityOcelot ocelot;
+    private final 实体Ocelot ocelot;
 
-    public EntityAIOcelotSit(EntityOcelot ocelotIn, double p_i45315_2_)
+    public EntityAIOcelotSit(实体Ocelot ocelotIn, double p_i45315_2_)
     {
         super(ocelotIn, p_i45315_2_, 8);
         this.ocelot = ocelotIn;
@@ -57,7 +57,7 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
         }
     }
 
-    protected boolean shouldMoveTo(World worldIn, BlockPos pos)
+    protected boolean shouldMoveTo(World worldIn, 阻止位置 pos)
     {
         if (!worldIn.isAirBlock(pos.up()))
         {

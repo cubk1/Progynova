@@ -8,12 +8,12 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.IStringSerializable;
@@ -47,7 +47,7 @@ public class BlockDoor extends Block
         return false;
     }
 
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    public boolean isPassable(IBlockAccess worldIn, 阻止位置 pos)
     {
         return isOpen(combineMetadata(worldIn, pos));
     }
@@ -57,19 +57,19 @@ public class BlockDoor extends Block
         return false;
     }
 
-    public AxisAlignedBB getSelectedBoundingBox(World worldIn, BlockPos pos)
+    public AxisAlignedBB getSelectedBoundingBox(World worldIn, 阻止位置 pos)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.getSelectedBoundingBox(worldIn, pos);
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.getCollisionBoundingBox(worldIn, pos, state);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         this.setBoundBasedOnMeta(combineMetadata(worldIn, pos));
     }
@@ -147,7 +147,7 @@ public class BlockDoor extends Block
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (this.blockMaterial == Material.iron)
         {
@@ -155,7 +155,7 @@ public class BlockDoor extends Block
         }
         else
         {
-            BlockPos blockpos = state.getValue(HALF) == BlockDoor.EnumDoorHalf.LOWER ? pos : pos.down();
+            阻止位置 blockpos = state.getValue(HALF) == BlockDoor.EnumDoorHalf.LOWER ? pos : pos.down();
             IBlockState iblockstate = pos.equals(blockpos) ? state : worldIn.getBlockState(blockpos);
 
             if (iblockstate.getBlock() != this)
@@ -173,29 +173,29 @@ public class BlockDoor extends Block
         }
     }
 
-    public void toggleDoor(World worldIn, BlockPos pos, boolean open)
+    public void toggleDoor(World worldIn, 阻止位置 pos, boolean open)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 
         if (iblockstate.getBlock() == this)
         {
-            BlockPos blockpos = iblockstate.getValue(HALF) == BlockDoor.EnumDoorHalf.LOWER ? pos : pos.down();
+            阻止位置 blockpos = iblockstate.getValue(HALF) == BlockDoor.EnumDoorHalf.LOWER ? pos : pos.down();
             IBlockState iblockstate1 = pos == blockpos ? iblockstate : worldIn.getBlockState(blockpos);
 
             if (iblockstate1.getBlock() == this && ((Boolean)iblockstate1.getValue(OPEN)).booleanValue() != open)
             {
                 worldIn.setBlockState(blockpos, iblockstate1.withProperty(OPEN, Boolean.valueOf(open)), 2);
                 worldIn.markBlockRangeForRenderUpdate(blockpos, pos);
-                worldIn.playAuxSFXAtEntity((EntityPlayer)null, open ? 1003 : 1006, pos, 0);
+                worldIn.playAuxSFXAtEntity((实体Player)null, open ? 1003 : 1006, pos, 0);
             }
         }
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER)
         {
-            BlockPos blockpos = pos.down();
+            阻止位置 blockpos = pos.down();
             IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
             if (iblockstate.getBlock() != this)
@@ -210,7 +210,7 @@ public class BlockDoor extends Block
         else
         {
             boolean flag1 = false;
-            BlockPos blockpos1 = pos.up();
+            阻止位置 blockpos1 = pos.up();
             IBlockState iblockstate1 = worldIn.getBlockState(blockpos1);
 
             if (iblockstate1.getBlock() != this)
@@ -249,7 +249,7 @@ public class BlockDoor extends Block
                     {
                         worldIn.setBlockState(pos, state.withProperty(OPEN, Boolean.valueOf(flag)), 2);
                         worldIn.markBlockRangeForRenderUpdate(pos, pos);
-                        worldIn.playAuxSFXAtEntity((EntityPlayer)null, flag ? 1003 : 1006, pos, 0);
+                        worldIn.playAuxSFXAtEntity((实体Player)null, flag ? 1003 : 1006, pos, 0);
                     }
                 }
             }
@@ -261,13 +261,13 @@ public class BlockDoor extends Block
         return state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER ? null : this.getItem();
     }
 
-    public MovingObjectPosition collisionRayTrace(World worldIn, BlockPos pos, Vec3 start, Vec3 end)
+    public MovingObjectPosition collisionRayTrace(World worldIn, 阻止位置 pos, Vec3 start, Vec3 end)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.collisionRayTrace(worldIn, pos, start, end);
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return pos.getY() >= 255 ? false : World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) && super.canPlaceBlockAt(worldIn, pos) && super.canPlaceBlockAt(worldIn, pos.up());
     }
@@ -277,7 +277,7 @@ public class BlockDoor extends Block
         return 1;
     }
 
-    public static int combineMetadata(IBlockAccess worldIn, BlockPos pos)
+    public static int combineMetadata(IBlockAccess worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         int i = iblockstate.getBlock().getMetaFromState(iblockstate);
@@ -293,7 +293,7 @@ public class BlockDoor extends Block
         return removeHalfBit(k) | (flag ? 8 : 0) | (flag1 ? 16 : 0) | (flag2 ? 32 : 0);
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return this.getItem();
     }
@@ -303,9 +303,9 @@ public class BlockDoor extends Block
         return this == Blocks.iron_door ? Items.iron_door : (this == Blocks.spruce_door ? Items.spruce_door : (this == Blocks.birch_door ? Items.birch_door : (this == Blocks.jungle_door ? Items.jungle_door : (this == Blocks.acacia_door ? Items.acacia_door : (this == Blocks.dark_oak_door ? Items.dark_oak_door : Items.oak_door)))));
     }
 
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    public void onBlockHarvested(World worldIn, 阻止位置 pos, IBlockState state, 实体Player player)
     {
-        BlockPos blockpos = pos.down();
+        阻止位置 blockpos = pos.down();
 
         if (player.capabilities.isCreativeMode && state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER && worldIn.getBlockState(blockpos).getBlock() == this)
         {
@@ -318,7 +318,7 @@ public class BlockDoor extends Block
         return EnumWorldBlockLayer.CUTOUT;
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         if (state.getValue(HALF) == BlockDoor.EnumDoorHalf.LOWER)
         {
@@ -383,12 +383,12 @@ public class BlockDoor extends Block
         return meta & 7;
     }
 
-    public static boolean isOpen(IBlockAccess worldIn, BlockPos pos)
+    public static boolean isOpen(IBlockAccess worldIn, 阻止位置 pos)
     {
         return isOpen(combineMetadata(worldIn, pos));
     }
 
-    public static EnumFacing getFacing(IBlockAccess worldIn, BlockPos pos)
+    public static EnumFacing getFacing(IBlockAccess worldIn, 阻止位置 pos)
     {
         return getFacing(combineMetadata(worldIn, pos));
     }

@@ -12,7 +12,7 @@ import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
@@ -42,14 +42,14 @@ public class BlockModelRenderer
         }
     }
 
-    public boolean renderModel(IBlockAccess blockAccessIn, IBakedModel modelIn, IBlockState blockStateIn, BlockPos blockPosIn, WorldRenderer worldRendererIn)
+    public boolean renderModel(IBlockAccess blockAccessIn, IBakedModel modelIn, IBlockState blockStateIn, 阻止位置 阻止位置In, WorldRenderer worldRendererIn)
     {
         Block block = blockStateIn.getBlock();
-        block.setBlockBoundsBasedOnState(blockAccessIn, blockPosIn);
-        return this.renderModel(blockAccessIn, modelIn, blockStateIn, blockPosIn, worldRendererIn, true);
+        block.setBlockBoundsBasedOnState(blockAccessIn, 阻止位置In);
+        return this.renderModel(blockAccessIn, modelIn, blockStateIn, 阻止位置In, worldRendererIn, true);
     }
 
-    public boolean renderModel(IBlockAccess blockAccessIn, IBakedModel modelIn, IBlockState blockStateIn, BlockPos blockPosIn, WorldRenderer worldRendererIn, boolean checkSides)
+    public boolean renderModel(IBlockAccess blockAccessIn, IBakedModel modelIn, IBlockState blockStateIn, 阻止位置 阻止位置In, WorldRenderer worldRendererIn, boolean checkSides)
     {
         boolean flag = 我的手艺.isAmbientOcclusionEnabled() && blockStateIn.getBlock().getLightValue() == 0 && modelIn.isAmbientOcclusion();
 
@@ -57,16 +57,16 @@ public class BlockModelRenderer
         {
             if (Config.isShaders())
             {
-                SVertexBuilder.pushEntity(blockStateIn, blockPosIn, blockAccessIn, worldRendererIn);
+                SVertexBuilder.pushEntity(blockStateIn, 阻止位置In, blockAccessIn, worldRendererIn);
             }
 
-            RenderEnv renderenv = worldRendererIn.getRenderEnv(blockStateIn, blockPosIn);
+            RenderEnv renderenv = worldRendererIn.getRenderEnv(blockStateIn, 阻止位置In);
             modelIn = BlockModelCustomizer.getRenderModel(modelIn, blockStateIn, renderenv);
-            boolean flag1 = flag ? this.renderModelSmooth(blockAccessIn, modelIn, blockStateIn, blockPosIn, worldRendererIn, checkSides) : this.renderModelFlat(blockAccessIn, modelIn, blockStateIn, blockPosIn, worldRendererIn, checkSides);
+            boolean flag1 = flag ? this.renderModelSmooth(blockAccessIn, modelIn, blockStateIn, 阻止位置In, worldRendererIn, checkSides) : this.renderModelFlat(blockAccessIn, modelIn, blockStateIn, 阻止位置In, worldRendererIn, checkSides);
 
             if (flag1)
             {
-                this.renderOverlayModels(blockAccessIn, modelIn, blockStateIn, blockPosIn, worldRendererIn, checkSides, 0L, renderenv, flag);
+                this.renderOverlayModels(blockAccessIn, modelIn, blockStateIn, 阻止位置In, worldRendererIn, checkSides, 0L, renderenv, flag);
             }
 
             if (Config.isShaders())
@@ -80,19 +80,19 @@ public class BlockModelRenderer
         {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Tesselating block model");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Block model being tesselated");
-            CrashReportCategory.addBlockInfo(crashreportcategory, blockPosIn, blockStateIn);
+            CrashReportCategory.addBlockInfo(crashreportcategory, 阻止位置In, blockStateIn);
             crashreportcategory.addCrashSection("Using AO", Boolean.valueOf(flag));
             throw new ReportedException(crashreport);
         }
     }
 
-    public boolean renderModelAmbientOcclusion(IBlockAccess blockAccessIn, IBakedModel modelIn, Block blockIn, BlockPos blockPosIn, WorldRenderer worldRendererIn, boolean checkSides)
+    public boolean renderModelAmbientOcclusion(IBlockAccess blockAccessIn, IBakedModel modelIn, Block blockIn, 阻止位置 阻止位置In, WorldRenderer worldRendererIn, boolean checkSides)
     {
-        IBlockState iblockstate = blockAccessIn.getBlockState(blockPosIn);
-        return this.renderModelSmooth(blockAccessIn, modelIn, iblockstate, blockPosIn, worldRendererIn, checkSides);
+        IBlockState iblockstate = blockAccessIn.getBlockState(阻止位置In);
+        return this.renderModelSmooth(blockAccessIn, modelIn, iblockstate, 阻止位置In, worldRendererIn, checkSides);
     }
 
-    private boolean renderModelSmooth(IBlockAccess p_renderModelSmooth_1_, IBakedModel p_renderModelSmooth_2_, IBlockState p_renderModelSmooth_3_, BlockPos p_renderModelSmooth_4_, WorldRenderer p_renderModelSmooth_5_, boolean p_renderModelSmooth_6_)
+    private boolean renderModelSmooth(IBlockAccess p_renderModelSmooth_1_, IBakedModel p_renderModelSmooth_2_, IBlockState p_renderModelSmooth_3_, 阻止位置 p_renderModelSmooth_4_, WorldRenderer p_renderModelSmooth_5_, boolean p_renderModelSmooth_6_)
     {
         boolean flag = false;
         Block block = p_renderModelSmooth_3_.getBlock();
@@ -105,7 +105,7 @@ public class BlockModelRenderer
 
             if (!list.isEmpty())
             {
-                BlockPos blockpos = p_renderModelSmooth_4_.offset(enumfacing);
+                阻止位置 blockpos = p_renderModelSmooth_4_.offset(enumfacing);
 
                 if (!p_renderModelSmooth_6_ || block.shouldSideBeRendered(p_renderModelSmooth_1_, blockpos, enumfacing))
                 {
@@ -128,13 +128,13 @@ public class BlockModelRenderer
         return flag;
     }
 
-    public boolean renderModelStandard(IBlockAccess blockAccessIn, IBakedModel modelIn, Block blockIn, BlockPos blockPosIn, WorldRenderer worldRendererIn, boolean checkSides)
+    public boolean renderModelStandard(IBlockAccess blockAccessIn, IBakedModel modelIn, Block blockIn, 阻止位置 阻止位置In, WorldRenderer worldRendererIn, boolean checkSides)
     {
-        IBlockState iblockstate = blockAccessIn.getBlockState(blockPosIn);
-        return this.renderModelFlat(blockAccessIn, modelIn, iblockstate, blockPosIn, worldRendererIn, checkSides);
+        IBlockState iblockstate = blockAccessIn.getBlockState(阻止位置In);
+        return this.renderModelFlat(blockAccessIn, modelIn, iblockstate, 阻止位置In, worldRendererIn, checkSides);
     }
 
-    public boolean renderModelFlat(IBlockAccess p_renderModelFlat_1_, IBakedModel p_renderModelFlat_2_, IBlockState p_renderModelFlat_3_, BlockPos p_renderModelFlat_4_, WorldRenderer p_renderModelFlat_5_, boolean p_renderModelFlat_6_)
+    public boolean renderModelFlat(IBlockAccess p_renderModelFlat_1_, IBakedModel p_renderModelFlat_2_, IBlockState p_renderModelFlat_3_, 阻止位置 p_renderModelFlat_4_, WorldRenderer p_renderModelFlat_5_, boolean p_renderModelFlat_6_)
     {
         boolean flag = false;
         Block block = p_renderModelFlat_3_.getBlock();
@@ -147,7 +147,7 @@ public class BlockModelRenderer
 
             if (!list.isEmpty())
             {
-                BlockPos blockpos = p_renderModelFlat_4_.offset(enumfacing);
+                阻止位置 blockpos = p_renderModelFlat_4_.offset(enumfacing);
 
                 if (!p_renderModelFlat_6_ || block.shouldSideBeRendered(p_renderModelFlat_1_, blockpos, enumfacing))
                 {
@@ -171,7 +171,7 @@ public class BlockModelRenderer
         return flag;
     }
 
-    private void renderQuadsSmooth(IBlockAccess p_renderQuadsSmooth_1_, IBlockState p_renderQuadsSmooth_2_, BlockPos p_renderQuadsSmooth_3_, WorldRenderer p_renderQuadsSmooth_4_, List<BakedQuad> p_renderQuadsSmooth_5_, RenderEnv p_renderQuadsSmooth_6_)
+    private void renderQuadsSmooth(IBlockAccess p_renderQuadsSmooth_1_, IBlockState p_renderQuadsSmooth_2_, 阻止位置 p_renderQuadsSmooth_3_, WorldRenderer p_renderQuadsSmooth_4_, List<BakedQuad> p_renderQuadsSmooth_5_, RenderEnv p_renderQuadsSmooth_6_)
     {
         Block block = p_renderQuadsSmooth_2_.getBlock();
         float[] afloat = p_renderQuadsSmooth_6_.getQuadBounds();
@@ -352,7 +352,7 @@ public class BlockModelRenderer
         }
     }
 
-    private void renderQuadsFlat(IBlockAccess p_renderQuadsFlat_1_, IBlockState p_renderQuadsFlat_2_, BlockPos p_renderQuadsFlat_3_, EnumFacing p_renderQuadsFlat_4_, int p_renderQuadsFlat_5_, boolean p_renderQuadsFlat_6_, WorldRenderer p_renderQuadsFlat_7_, List<BakedQuad> p_renderQuadsFlat_8_, RenderEnv p_renderQuadsFlat_9_)
+    private void renderQuadsFlat(IBlockAccess p_renderQuadsFlat_1_, IBlockState p_renderQuadsFlat_2_, 阻止位置 p_renderQuadsFlat_3_, EnumFacing p_renderQuadsFlat_4_, int p_renderQuadsFlat_5_, boolean p_renderQuadsFlat_6_, WorldRenderer p_renderQuadsFlat_7_, List<BakedQuad> p_renderQuadsFlat_8_, RenderEnv p_renderQuadsFlat_9_)
     {
         Block block = p_renderQuadsFlat_2_.getBlock();
         BitSet bitset = p_renderQuadsFlat_9_.getBoundsFlags();
@@ -504,7 +504,7 @@ public class BlockModelRenderer
         separateAoLightValue = Config.isShaders() && Shaders.isSeparateAo();
     }
 
-    private void renderOverlayModels(IBlockAccess p_renderOverlayModels_1_, IBakedModel p_renderOverlayModels_2_, IBlockState p_renderOverlayModels_3_, BlockPos p_renderOverlayModels_4_, WorldRenderer p_renderOverlayModels_5_, boolean p_renderOverlayModels_6_, long p_renderOverlayModels_7_, RenderEnv p_renderOverlayModels_9_, boolean p_renderOverlayModels_10_)
+    private void renderOverlayModels(IBlockAccess p_renderOverlayModels_1_, IBakedModel p_renderOverlayModels_2_, IBlockState p_renderOverlayModels_3_, 阻止位置 p_renderOverlayModels_4_, WorldRenderer p_renderOverlayModels_5_, boolean p_renderOverlayModels_6_, long p_renderOverlayModels_7_, RenderEnv p_renderOverlayModels_9_, boolean p_renderOverlayModels_10_)
     {
         if (p_renderOverlayModels_9_.isOverlaysRendered())
         {
@@ -594,14 +594,14 @@ public class BlockModelRenderer
             this.vertexColorMultiplier[3] = 1.0F;
         }
 
-        public void updateVertexBrightness(IBlockAccess blockAccessIn, Block blockIn, BlockPos blockPosIn, EnumFacing facingIn, float[] quadBounds, BitSet boundsFlags)
+        public void updateVertexBrightness(IBlockAccess blockAccessIn, Block blockIn, 阻止位置 阻止位置In, EnumFacing facingIn, float[] quadBounds, BitSet boundsFlags)
         {
-            BlockPos blockpos = boundsFlags.get(0) ? blockPosIn.offset(facingIn) : blockPosIn;
+            阻止位置 blockpos = boundsFlags.get(0) ? 阻止位置In.offset(facingIn) : 阻止位置In;
             BlockModelRenderer.EnumNeighborInfo blockmodelrenderer$enumneighborinfo = BlockModelRenderer.EnumNeighborInfo.getNeighbourInfo(facingIn);
-            BlockPos blockpos1 = blockpos.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[0]);
-            BlockPos blockpos2 = blockpos.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[1]);
-            BlockPos blockpos3 = blockpos.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[2]);
-            BlockPos blockpos4 = blockpos.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[3]);
+            阻止位置 blockpos1 = blockpos.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[0]);
+            阻止位置 blockpos2 = blockpos.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[1]);
+            阻止位置 blockpos3 = blockpos.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[2]);
+            阻止位置 blockpos4 = blockpos.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[3]);
             int i = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos1);
             int j = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos2);
             int k = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos3);
@@ -624,7 +624,7 @@ public class BlockModelRenderer
             }
             else
             {
-                BlockPos blockpos5 = blockpos1.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[2]);
+                阻止位置 blockpos5 = blockpos1.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[2]);
                 f4 = BlockModelRenderer.fixAoLightValue(blockAccessIn.getBlockState(blockpos5).getBlock().getAmbientOcclusionLightValue());
                 i1 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos5);
             }
@@ -639,7 +639,7 @@ public class BlockModelRenderer
             }
             else
             {
-                BlockPos blockpos6 = blockpos1.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[3]);
+                阻止位置 blockpos6 = blockpos1.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[3]);
                 f26 = BlockModelRenderer.fixAoLightValue(blockAccessIn.getBlockState(blockpos6).getBlock().getAmbientOcclusionLightValue());
                 j1 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos6);
             }
@@ -654,7 +654,7 @@ public class BlockModelRenderer
             }
             else
             {
-                BlockPos blockpos7 = blockpos2.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[2]);
+                阻止位置 blockpos7 = blockpos2.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[2]);
                 f27 = BlockModelRenderer.fixAoLightValue(blockAccessIn.getBlockState(blockpos7).getBlock().getAmbientOcclusionLightValue());
                 k1 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos7);
             }
@@ -669,19 +669,19 @@ public class BlockModelRenderer
             }
             else
             {
-                BlockPos blockpos8 = blockpos2.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[3]);
+                阻止位置 blockpos8 = blockpos2.offset(blockmodelrenderer$enumneighborinfo.field_178276_g[3]);
                 f28 = BlockModelRenderer.fixAoLightValue(blockAccessIn.getBlockState(blockpos8).getBlock().getAmbientOcclusionLightValue());
                 l1 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos8);
             }
 
-            int i3 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockPosIn);
+            int i3 = blockIn.getMixedBrightnessForBlock(blockAccessIn, 阻止位置In);
 
-            if (boundsFlags.get(0) || !blockAccessIn.getBlockState(blockPosIn.offset(facingIn)).getBlock().isOpaqueCube())
+            if (boundsFlags.get(0) || !blockAccessIn.getBlockState(阻止位置In.offset(facingIn)).getBlock().isOpaqueCube())
             {
-                i3 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockPosIn.offset(facingIn));
+                i3 = blockIn.getMixedBrightnessForBlock(blockAccessIn, 阻止位置In.offset(facingIn));
             }
 
-            float f5 = boundsFlags.get(0) ? blockAccessIn.getBlockState(blockpos).getBlock().getAmbientOcclusionLightValue() : blockAccessIn.getBlockState(blockPosIn).getBlock().getAmbientOcclusionLightValue();
+            float f5 = boundsFlags.get(0) ? blockAccessIn.getBlockState(blockpos).getBlock().getAmbientOcclusionLightValue() : blockAccessIn.getBlockState(阻止位置In).getBlock().getAmbientOcclusionLightValue();
             f5 = BlockModelRenderer.fixAoLightValue(f5);
             BlockModelRenderer.VertexTranslations blockmodelrenderer$vertextranslations = BlockModelRenderer.VertexTranslations.getVertexTranslations(facingIn);
 

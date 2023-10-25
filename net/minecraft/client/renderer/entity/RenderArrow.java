@@ -4,12 +4,12 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.实体Arrow;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 import org.lwjgl.opengl.GL11;
 
-public class RenderArrow extends Render<EntityArrow>
+public class RenderArrow extends Render<实体Arrow>
 {
     private static final 图像位置 arrowTextures = new 图像位置("textures/entity/arrow.png");
 
@@ -18,7 +18,7 @@ public class RenderArrow extends Render<EntityArrow>
         super(renderManagerIn);
     }
 
-    public void doRender(EntityArrow entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体Arrow entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         this.bindEntityTexture(entity);
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
@@ -82,7 +82,7 @@ public class RenderArrow extends Render<EntityArrow>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityArrow entity)
+    protected 图像位置 getEntityTexture(实体Arrow entity)
     {
         return arrowTextures;
     }

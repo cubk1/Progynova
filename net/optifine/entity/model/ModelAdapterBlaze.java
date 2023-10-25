@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelBlaze;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderBlaze;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.monster.实体Blaze;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterBlaze extends ModelAdapter
 {
     public ModelAdapterBlaze()
     {
-        super(EntityBlaze.class, "blaze", 0.5F);
+        super(实体Blaze.class, "blaze", 0.5F);
     }
 
     public ModelBase makeModel()

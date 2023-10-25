@@ -13,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityDispenser;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
@@ -90,9 +90,9 @@ public abstract class StructureComponent
         return null;
     }
 
-    public BlockPos getBoundingBoxCenter()
+    public 阻止位置 getBoundingBoxCenter()
     {
-        return new BlockPos(this.boundingBox.getCenter());
+        return new 阻止位置(this.boundingBox.getCenter());
     }
 
     protected boolean isLiquidInStructureBoundingBox(World worldIn, StructureBoundingBox boundingboxIn)
@@ -103,7 +103,7 @@ public abstract class StructureComponent
         int l = Math.min(this.boundingBox.maxX + 1, boundingboxIn.maxX);
         int i1 = Math.min(this.boundingBox.maxY + 1, boundingboxIn.maxY);
         int j1 = Math.min(this.boundingBox.maxZ + 1, boundingboxIn.maxZ);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int k1 = i; k1 <= l; ++k1)
         {
@@ -550,7 +550,7 @@ public abstract class StructureComponent
 
     protected void setBlockState(World worldIn, IBlockState blockstateIn, int x, int y, int z, StructureBoundingBox boundingboxIn)
     {
-        BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
+        阻止位置 blockpos = new 阻止位置(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
         if (boundingboxIn.isVecInside(blockpos))
         {
@@ -563,7 +563,7 @@ public abstract class StructureComponent
         int i = this.getXWithOffset(x, z);
         int j = this.getYWithOffset(y);
         int k = this.getZWithOffset(x, z);
-        BlockPos blockpos = new BlockPos(i, j, k);
+        阻止位置 blockpos = new 阻止位置(i, j, k);
         return !boundingboxIn.isVecInside(blockpos) ? Blocks.air.getDefaultState() : worldIn.getBlockState(blockpos);
     }
 
@@ -691,7 +691,7 @@ public abstract class StructureComponent
 
     protected void clearCurrentPositionBlocksUpwards(World worldIn, int x, int y, int z, StructureBoundingBox structurebb)
     {
-        BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
+        阻止位置 blockpos = new 阻止位置(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
         if (structurebb.isVecInside(blockpos))
         {
@@ -709,11 +709,11 @@ public abstract class StructureComponent
         int j = this.getYWithOffset(y);
         int k = this.getZWithOffset(x, z);
 
-        if (boundingboxIn.isVecInside(new BlockPos(i, j, k)))
+        if (boundingboxIn.isVecInside(new 阻止位置(i, j, k)))
         {
-            while ((worldIn.isAirBlock(new BlockPos(i, j, k)) || worldIn.getBlockState(new BlockPos(i, j, k)).getBlock().getMaterial().isLiquid()) && j > 1)
+            while ((worldIn.isAirBlock(new 阻止位置(i, j, k)) || worldIn.getBlockState(new 阻止位置(i, j, k)).getBlock().getMaterial().isLiquid()) && j > 1)
             {
-                worldIn.setBlockState(new BlockPos(i, j, k), blockstateIn, 2);
+                worldIn.setBlockState(new 阻止位置(i, j, k), blockstateIn, 2);
                 --j;
             }
         }
@@ -721,7 +721,7 @@ public abstract class StructureComponent
 
     protected boolean generateChestContents(World worldIn, StructureBoundingBox boundingBoxIn, Random rand, int x, int y, int z, List<WeightedRandomChestContent> listIn, int max)
     {
-        BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
+        阻止位置 blockpos = new 阻止位置(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
         if (boundingBoxIn.isVecInside(blockpos) && worldIn.getBlockState(blockpos).getBlock() != Blocks.chest)
         {
@@ -744,7 +744,7 @@ public abstract class StructureComponent
 
     protected boolean generateDispenserContents(World worldIn, StructureBoundingBox boundingBoxIn, Random rand, int x, int y, int z, int meta, List<WeightedRandomChestContent> listIn, int max)
     {
-        BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
+        阻止位置 blockpos = new 阻止位置(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
         if (boundingBoxIn.isVecInside(blockpos) && worldIn.getBlockState(blockpos).getBlock() != Blocks.dispenser)
         {
@@ -766,7 +766,7 @@ public abstract class StructureComponent
 
     protected void placeDoorCurrentPosition(World worldIn, StructureBoundingBox boundingBoxIn, Random rand, int x, int y, int z, EnumFacing facing)
     {
-        BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
+        阻止位置 blockpos = new 阻止位置(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
         if (boundingBoxIn.isVecInside(blockpos))
         {

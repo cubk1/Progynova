@@ -8,9 +8,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.item.实体Minecart;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -26,7 +26,7 @@ public class ItemMinecart extends Item
             double d0 = source.getX() + (double)enumfacing.getFrontOffsetX() * 1.125D;
             double d1 = Math.floor(source.getY()) + (double)enumfacing.getFrontOffsetY();
             double d2 = source.getZ() + (double)enumfacing.getFrontOffsetZ() * 1.125D;
-            BlockPos blockpos = source.getBlockPos().offset(enumfacing);
+            阻止位置 blockpos = source.getBlockPos().offset(enumfacing);
             IBlockState iblockstate = world.getBlockState(blockpos);
             BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = iblockstate.getBlock() instanceof BlockRailBase ? (BlockRailBase.EnumRailDirection)iblockstate.getValue(((BlockRailBase)iblockstate.getBlock()).getShapeProperty()) : BlockRailBase.EnumRailDirection.NORTH_SOUTH;
             double d3;
@@ -62,7 +62,7 @@ public class ItemMinecart extends Item
                 }
             }
 
-            EntityMinecart entityminecart = EntityMinecart.getMinecart(world, d0, d1 + d3, d2, ((ItemMinecart)stack.getItem()).minecartType);
+            实体Minecart entityminecart = 实体Minecart.getMinecart(world, d0, d1 + d3, d2, ((ItemMinecart)stack.getItem()).minecartType);
 
             if (stack.hasDisplayName())
             {
@@ -78,9 +78,9 @@ public class ItemMinecart extends Item
             source.getWorld().playAuxSFX(1000, source.getBlockPos(), 0);
         }
     };
-    private final EntityMinecart.EnumMinecartType minecartType;
+    private final 实体Minecart.EnumMinecartType minecartType;
 
-    public ItemMinecart(EntityMinecart.EnumMinecartType type)
+    public ItemMinecart(实体Minecart.EnumMinecartType type)
     {
         this.maxStackSize = 1;
         this.minecartType = type;
@@ -88,7 +88,7 @@ public class ItemMinecart extends Item
         BlockDispenser.dispenseBehaviorRegistry.putObject(this, dispenserMinecartBehavior);
     }
 
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 
@@ -104,7 +104,7 @@ public class ItemMinecart extends Item
                     d0 = 0.5D;
                 }
 
-                EntityMinecart entityminecart = EntityMinecart.getMinecart(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.0625D + d0, (double)pos.getZ() + 0.5D, this.minecartType);
+                实体Minecart entityminecart = 实体Minecart.getMinecart(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.0625D + d0, (double)pos.getZ() + 0.5D, this.minecartType);
 
                 if (stack.hasDisplayName())
                 {

@@ -1,13 +1,13 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 
 public class EntityJumpHelper
 {
-    private EntityLiving entity;
+    private 实体Living entity;
     protected boolean isJumping;
 
-    public EntityJumpHelper(EntityLiving entityIn)
+    public EntityJumpHelper(实体Living entityIn)
     {
         this.entity = entityIn;
     }

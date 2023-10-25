@@ -2,10 +2,10 @@ package net.minecraft.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -16,10 +16,10 @@ public class ItemRedstone extends Item
         this.setCreativeTab(CreativeTabs.tabRedstone);
     }
 
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         boolean flag = worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos);
-        BlockPos blockpos = flag ? pos : pos.offset(side);
+        阻止位置 blockpos = flag ? pos : pos.offset(side);
 
         if (!playerIn.canPlayerEdit(blockpos, side, stack))
         {
@@ -29,7 +29,7 @@ public class ItemRedstone extends Item
         {
             Block block = worldIn.getBlockState(blockpos).getBlock();
 
-            if (!worldIn.canBlockBePlaced(block, blockpos, false, side, (Entity)null, stack))
+            if (!worldIn.canBlockBePlaced(block, blockpos, false, side, (实体)null, stack))
             {
                 return false;
             }

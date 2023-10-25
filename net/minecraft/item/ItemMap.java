@@ -10,12 +10,12 @@ import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.network.Packet;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -62,15 +62,15 @@ public class ItemMap extends ItemMapBase
         return mapdata;
     }
 
-    public void updateMapData(World worldIn, Entity viewer, MapData data)
+    public void updateMapData(World worldIn, 实体 viewer, MapData data)
     {
-        if (worldIn.provider.getDimensionId() == data.dimension && viewer instanceof EntityPlayer)
+        if (worldIn.provider.getDimensionId() == data.dimension && viewer instanceof 实体Player)
         {
             int i = 1 << data.scale;
             int j = data.xCenter;
             int k = data.zCenter;
-            int l = MathHelper.floor_double(viewer.posX - (double)j) / i + 64;
-            int i1 = MathHelper.floor_double(viewer.posZ - (double)k) / i + 64;
+            int l = MathHelper.floor_double(viewer.X坐标 - (double)j) / i + 64;
+            int i1 = MathHelper.floor_double(viewer.Z坐标 - (double)k) / i + 64;
             int j1 = 128 / i;
 
             if (worldIn.provider.getHasNoSky())
@@ -78,7 +78,7 @@ public class ItemMap extends ItemMapBase
                 j1 /= 2;
             }
 
-            MapData.MapInfo mapdata$mapinfo = data.getMapInfo((EntityPlayer)viewer);
+            MapData.MapInfo mapdata$mapinfo = data.getMapInfo((实体Player)viewer);
             ++mapdata$mapinfo.field_82569_d;
             boolean flag = false;
 
@@ -99,7 +99,7 @@ public class ItemMap extends ItemMapBase
                             int k2 = (j / i + k1 - 64) * i;
                             int l2 = (k / i + l1 - 64) * i;
                             Multiset<MapColor> multiset = HashMultiset.<MapColor>create();
-                            Chunk chunk = worldIn.getChunkFromBlockCoords(new BlockPos(k2, 0, l2));
+                            Chunk chunk = worldIn.getChunkFromBlockCoords(new 阻止位置(k2, 0, l2));
 
                             if (!chunk.isEmpty())
                             {
@@ -126,7 +126,7 @@ public class ItemMap extends ItemMapBase
                                 }
                                 else
                                 {
-                                    BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                                    阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
                                     for (int i4 = 0; i4 < i; ++i4)
                                     {
@@ -228,31 +228,31 @@ public class ItemMap extends ItemMapBase
         }
     }
 
-    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+    public void onUpdate(ItemStack stack, World worldIn, 实体 实体In, int itemSlot, boolean isSelected)
     {
         if (!worldIn.isRemote)
         {
             MapData mapdata = this.getMapData(stack, worldIn);
 
-            if (entityIn instanceof EntityPlayer)
+            if (实体In instanceof 实体Player)
             {
-                EntityPlayer entityplayer = (EntityPlayer)entityIn;
+                实体Player entityplayer = (实体Player) 实体In;
                 mapdata.updateVisiblePlayers(entityplayer, stack);
             }
 
             if (isSelected)
             {
-                this.updateMapData(worldIn, entityIn, mapdata);
+                this.updateMapData(worldIn, 实体In, mapdata);
             }
         }
     }
 
-    public Packet createMapDataPacket(ItemStack stack, World worldIn, EntityPlayer player)
+    public Packet createMapDataPacket(ItemStack stack, World worldIn, 实体Player player)
     {
         return this.getMapData(stack, worldIn).getMapPacket(stack, worldIn, player);
     }
 
-    public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn)
+    public void onCreated(ItemStack stack, World worldIn, 实体Player playerIn)
     {
         if (stack.hasTagCompound() && stack.getTagCompound().getBoolean("map_is_scaling"))
         {
@@ -273,7 +273,7 @@ public class ItemMap extends ItemMapBase
         }
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, 实体Player playerIn, List<String> tooltip, boolean advanced)
     {
         MapData mapdata = this.getMapData(stack, playerIn.worldObj);
 

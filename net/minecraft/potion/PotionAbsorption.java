@@ -1,6 +1,6 @@
 package net.minecraft.potion;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.util.图像位置;
 
@@ -11,13 +11,13 @@ public class PotionAbsorption extends Potion
         super(potionID, location, badEffect, potionColor);
     }
 
-    public void removeAttributesModifiersFromEntity(EntityLivingBase entityLivingBaseIn, BaseAttributeMap p_111187_2_, int amplifier)
+    public void removeAttributesModifiersFromEntity(实体LivingBase entityLivingBaseIn, BaseAttributeMap p_111187_2_, int amplifier)
     {
         entityLivingBaseIn.setAbsorptionAmount(entityLivingBaseIn.getAbsorptionAmount() - (float)(4 * (amplifier + 1)));
         super.removeAttributesModifiersFromEntity(entityLivingBaseIn, p_111187_2_, amplifier);
     }
 
-    public void applyAttributesModifiersToEntity(EntityLivingBase entityLivingBaseIn, BaseAttributeMap p_111185_2_, int amplifier)
+    public void applyAttributesModifiersToEntity(实体LivingBase entityLivingBaseIn, BaseAttributeMap p_111185_2_, int amplifier)
     {
         entityLivingBaseIn.setAbsorptionAmount(entityLivingBaseIn.getAbsorptionAmount() + (float)(4 * (amplifier + 1)));
         super.applyAttributesModifiersToEntity(entityLivingBaseIn, p_111185_2_, amplifier);

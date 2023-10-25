@@ -4,18 +4,18 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.item.EntityMinecartTNT;
+import net.minecraft.entity.item.实体MinecartTNT;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 
-public class RenderTntMinecart extends RenderMinecart<EntityMinecartTNT>
+public class RenderTntMinecart extends RenderMinecart<实体MinecartTNT>
 {
     public RenderTntMinecart(RenderManager renderManagerIn)
     {
         super(renderManagerIn);
     }
 
-    protected void func_180560_a(EntityMinecartTNT minecart, float partialTicks, IBlockState state)
+    protected void func_180560_a(实体MinecartTNT minecart, float partialTicks, IBlockState state)
     {
         int i = minecart.getFuseTicks();
 

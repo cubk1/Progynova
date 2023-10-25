@@ -1,8 +1,8 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.boss.实体Wither;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.util.MathHelper;
 
 public class ModelWither extends ModelBase
@@ -38,9 +38,9 @@ public class ModelWither extends ModelBase
         this.field_82904_b[2].rotationPointY = 4.0F;
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
 
         for (ModelRenderer modelrenderer : this.field_82904_b)
         {
@@ -53,7 +53,7 @@ public class ModelWither extends ModelBase
         }
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
         float f = MathHelper.cos(ageInTicks * 0.1F);
         this.field_82905_a[1].rotateAngleX = (0.065F + 0.05F * f) * (float)Math.PI;
@@ -63,9 +63,9 @@ public class ModelWither extends ModelBase
         this.field_82904_b[0].rotateAngleX = headPitch / (180F / (float)Math.PI);
     }
 
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
+    public void setLivingAnimations(实体LivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
     {
-        EntityWither entitywither = (EntityWither)entitylivingbaseIn;
+        实体Wither entitywither = (实体Wither)entitylivingbaseIn;
 
         for (int i = 1; i < 3; ++i)
         {

@@ -2,10 +2,10 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.passive.实体Squid;
 import net.minecraft.util.图像位置;
 
-public class RenderSquid extends RenderLiving<EntitySquid>
+public class RenderSquid extends RenderLiving<实体Squid>
 {
     private static final 图像位置 squidTextures = new 图像位置("textures/entity/squid.png");
 
@@ -14,12 +14,12 @@ public class RenderSquid extends RenderLiving<EntitySquid>
         super(renderManagerIn, modelBaseIn, shadowSizeIn);
     }
 
-    protected 图像位置 getEntityTexture(EntitySquid entity)
+    protected 图像位置 getEntityTexture(实体Squid entity)
     {
         return squidTextures;
     }
 
-    protected void rotateCorpse(EntitySquid bat, float p_77043_2_, float p_77043_3_, float partialTicks)
+    protected void rotateCorpse(实体Squid bat, float p_77043_2_, float p_77043_3_, float partialTicks)
     {
         float f = bat.prevSquidPitch + (bat.squidPitch - bat.prevSquidPitch) * partialTicks;
         float f1 = bat.prevSquidYaw + (bat.squidYaw - bat.prevSquidYaw) * partialTicks;
@@ -30,7 +30,7 @@ public class RenderSquid extends RenderLiving<EntitySquid>
         光照状态经理.理解(0.0F, -1.2F, 0.0F);
     }
 
-    protected float handleRotationFloat(EntitySquid livingBase, float partialTicks)
+    protected float handleRotationFloat(实体Squid livingBase, float partialTicks)
     {
         return livingBase.lastTentacleAngle + (livingBase.tentacleAngle - livingBase.lastTentacleAngle) * partialTicks;
     }

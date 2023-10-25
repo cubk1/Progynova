@@ -17,18 +17,14 @@ import net.minecraft.dispenser.BehaviorProjectileDispense;
 import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IPosition;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.*;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityExpBottle;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityEgg;
-import net.minecraft.entity.projectile.EntityPotion;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.entity.item.实体Boat;
+import net.minecraft.entity.item.实体TNTPrimed;
+import net.minecraft.entity.projectile.实体Arrow;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
@@ -42,7 +38,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.tileentity.TileEntitySkull;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.LoggingPrintStream;
 import net.minecraft.util.StringUtils;
@@ -67,7 +63,7 @@ public class Bootstrap
         {
             protected IProjectile getProjectileEntity(World worldIn, IPosition position)
             {
-                EntityArrow entityarrow = new EntityArrow(worldIn, position.getX(), position.getY(), position.getZ());
+                实体Arrow entityarrow = new 实体Arrow(worldIn, position.getX(), position.getY(), position.getZ());
                 entityarrow.canBePickedUp = 1;
                 return entityarrow;
             }
@@ -76,21 +72,21 @@ public class Bootstrap
         {
             protected IProjectile getProjectileEntity(World worldIn, IPosition position)
             {
-                return new EntityEgg(worldIn, position.getX(), position.getY(), position.getZ());
+                return new 实体Egg(worldIn, position.getX(), position.getY(), position.getZ());
             }
         });
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.snowball, new BehaviorProjectileDispense()
         {
             protected IProjectile getProjectileEntity(World worldIn, IPosition position)
             {
-                return new EntitySnowball(worldIn, position.getX(), position.getY(), position.getZ());
+                return new 实体Snowball(worldIn, position.getX(), position.getY(), position.getZ());
             }
         });
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.experience_bottle, new BehaviorProjectileDispense()
         {
             protected IProjectile getProjectileEntity(World worldIn, IPosition position)
             {
-                return new EntityExpBottle(worldIn, position.getX(), position.getY(), position.getZ());
+                return new 实体ExpBottle(worldIn, position.getX(), position.getY(), position.getZ());
             }
             protected float func_82498_a()
             {
@@ -110,7 +106,7 @@ public class Bootstrap
                 {
                     protected IProjectile getProjectileEntity(World worldIn, IPosition position)
                     {
-                        return new EntityPotion(worldIn, position.getX(), position.getY(), position.getZ(), stack.copy());
+                        return new 实体Potion(worldIn, position.getX(), position.getY(), position.getZ(), stack.copy());
                     }
                     protected float func_82498_a()
                     {
@@ -131,11 +127,11 @@ public class Bootstrap
                 double d0 = source.getX() + (double)enumfacing.getFrontOffsetX();
                 double d1 = (float)source.getBlockPos().getY() + 0.2F;
                 double d2 = source.getZ() + (double)enumfacing.getFrontOffsetZ();
-                Entity entity = ItemMonsterPlacer.spawnCreature(source.getWorld(), stack.getMetadata(), d0, d1, d2);
+                实体 实体 = ItemMonsterPlacer.spawnCreature(source.getWorld(), stack.getMetadata(), d0, d1, d2);
 
-                if (entity instanceof EntityLivingBase && stack.hasDisplayName())
+                if (实体 instanceof 实体LivingBase && stack.hasDisplayName())
                 {
-                    entity.setCustomNameTag(stack.getDisplayName());
+                    实体.setCustomNameTag(stack.getDisplayName());
                 }
 
                 stack.splitStack(1);
@@ -150,7 +146,7 @@ public class Bootstrap
                 double d0 = source.getX() + (double)enumfacing.getFrontOffsetX();
                 double d1 = (float)source.getBlockPos().getY() + 0.2F;
                 double d2 = source.getZ() + (double)enumfacing.getFrontOffsetZ();
-                EntityFireworkRocket entityfireworkrocket = new EntityFireworkRocket(source.getWorld(), d0, d1, d2, stack);
+                实体FireworkRocket entityfireworkrocket = new 实体FireworkRocket(source.getWorld(), d0, d1, d2, stack);
                 source.getWorld().spawnEntityInWorld(entityfireworkrocket);
                 stack.splitStack(1);
                 return stack;
@@ -174,7 +170,7 @@ public class Bootstrap
                 double d3 = random.nextGaussian() * 0.05D + (double)enumfacing.getFrontOffsetX();
                 double d4 = random.nextGaussian() * 0.05D + (double)enumfacing.getFrontOffsetY();
                 double d5 = random.nextGaussian() * 0.05D + (double)enumfacing.getFrontOffsetZ();
-                world.spawnEntityInWorld(new EntitySmallFireball(world, d0, d1, d2, d3, d4, d5));
+                world.spawnEntityInWorld(new 实体SmallFireball(world, d0, d1, d2, d3, d4, d5));
                 stack.splitStack(1);
                 return stack;
             }
@@ -193,7 +189,7 @@ public class Bootstrap
                 double d0 = source.getX() + (double)((float)enumfacing.getFrontOffsetX() * 1.125F);
                 double d1 = source.getY() + (double)((float)enumfacing.getFrontOffsetY() * 1.125F);
                 double d2 = source.getZ() + (double)((float)enumfacing.getFrontOffsetZ() * 1.125F);
-                BlockPos blockpos = source.getBlockPos().offset(enumfacing);
+                阻止位置 blockpos = source.getBlockPos().offset(enumfacing);
                 Material material = world.getBlockState(blockpos).getBlock().getMaterial();
                 double d3;
 
@@ -211,7 +207,7 @@ public class Bootstrap
                     d3 = 0.0D;
                 }
 
-                EntityBoat entityboat = new EntityBoat(world, d0, d1 + d3, d2);
+                实体Boat entityboat = new 实体Boat(world, d0, d1 + d3, d2);
                 world.spawnEntityInWorld(entityboat);
                 stack.splitStack(1);
                 return stack;
@@ -227,7 +223,7 @@ public class Bootstrap
             public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 ItemBucket itembucket = (ItemBucket)stack.getItem();
-                BlockPos blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
+                阻止位置 blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
 
                 if (itembucket.tryPlaceContainedLiquid(source.getWorld(), blockpos))
                 {
@@ -249,7 +245,7 @@ public class Bootstrap
             public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
-                BlockPos blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
+                阻止位置 blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
                 IBlockState iblockstate = world.getBlockState(blockpos);
                 Block block = iblockstate.getBlock();
                 Material material = block.getMaterial();
@@ -290,7 +286,7 @@ public class Bootstrap
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
-                BlockPos blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
+                阻止位置 blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
 
                 if (world.isAirBlock(blockpos))
                 {
@@ -333,7 +329,7 @@ public class Bootstrap
                 if (EnumDyeColor.WHITE == EnumDyeColor.byDyeDamage(stack.getMetadata()))
                 {
                     World world = source.getWorld();
-                    BlockPos blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
+                    阻止位置 blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
 
                     if (ItemDye.applyBonemeal(stack, world, blockpos))
                     {
@@ -371,8 +367,8 @@ public class Bootstrap
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
-                BlockPos blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
-                EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(world, (double)blockpos.getX() + 0.5D, blockpos.getY(), (double)blockpos.getZ() + 0.5D, null);
+                阻止位置 blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
+                实体TNTPrimed entitytntprimed = new 实体TNTPrimed(world, (double)blockpos.getX() + 0.5D, blockpos.getY(), (double)blockpos.getZ() + 0.5D, null);
                 world.spawnEntityInWorld(entitytntprimed);
                 world.playSoundAtEntity(entitytntprimed, "game.tnt.primed", 1.0F, 1.0F);
                 --stack.stackSize;
@@ -386,7 +382,7 @@ public class Bootstrap
             {
                 World world = source.getWorld();
                 EnumFacing enumfacing = BlockDispenser.getFacing(source.getBlockMetadata());
-                BlockPos blockpos = source.getBlockPos().offset(enumfacing);
+                阻止位置 blockpos = source.getBlockPos().offset(enumfacing);
                 BlockSkull blockskull = Blocks.skull;
 
                 if (world.isAirBlock(blockpos) && blockskull.canDispenserPlace(world, blockpos, stack))
@@ -460,7 +456,7 @@ public class Bootstrap
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
-                BlockPos blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
+                阻止位置 blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
                 BlockPumpkin blockpumpkin = (BlockPumpkin)Blocks.pumpkin;
 
                 if (world.isAirBlock(blockpos) && blockpumpkin.canDispenserPlace(world, blockpos))

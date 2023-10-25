@@ -2,20 +2,20 @@ package net.minecraft.entity.ai;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.实体Tameable;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityAIFollowOwner extends EntityAIBase
 {
-    private EntityTameable thePet;
-    private EntityLivingBase theOwner;
+    private 实体Tameable thePet;
+    private 实体LivingBase theOwner;
     World theWorld;
     private double followSpeed;
     private PathNavigate petPathfinder;
@@ -24,7 +24,7 @@ public class EntityAIFollowOwner extends EntityAIBase
     float minDist;
     private boolean field_75344_i;
 
-    public EntityAIFollowOwner(EntityTameable thePetIn, double followSpeedIn, float minDistIn, float maxDistIn)
+    public EntityAIFollowOwner(实体Tameable thePetIn, double followSpeedIn, float minDistIn, float maxDistIn)
     {
         this.thePet = thePetIn;
         this.theWorld = thePetIn.worldObj;
@@ -42,13 +42,13 @@ public class EntityAIFollowOwner extends EntityAIBase
 
     public boolean shouldExecute()
     {
-        EntityLivingBase entitylivingbase = this.thePet.getOwner();
+        实体LivingBase entitylivingbase = this.thePet.getOwner();
 
         if (entitylivingbase == null)
         {
             return false;
         }
-        else if (entitylivingbase instanceof EntityPlayer && ((EntityPlayer)entitylivingbase).isSpectator())
+        else if (entitylivingbase instanceof 实体Player && ((实体Player)entitylivingbase).isSpectator())
         {
             return false;
         }
@@ -86,7 +86,7 @@ public class EntityAIFollowOwner extends EntityAIBase
         ((PathNavigateGround)this.thePet.getNavigator()).setAvoidsWater(true);
     }
 
-    private boolean func_181065_a(BlockPos p_181065_1_)
+    private boolean func_181065_a(阻止位置 p_181065_1_)
     {
         IBlockState iblockstate = this.theWorld.getBlockState(p_181065_1_);
         Block block = iblockstate.getBlock();
@@ -109,15 +109,15 @@ public class EntityAIFollowOwner extends EntityAIBase
                     {
                         if (this.thePet.getDistanceSqToEntity(this.theOwner) >= 144.0D)
                         {
-                            int i = MathHelper.floor_double(this.theOwner.posX) - 2;
-                            int j = MathHelper.floor_double(this.theOwner.posZ) - 2;
+                            int i = MathHelper.floor_double(this.theOwner.X坐标) - 2;
+                            int j = MathHelper.floor_double(this.theOwner.Z坐标) - 2;
                             int k = MathHelper.floor_double(this.theOwner.getEntityBoundingBox().minY);
 
                             for (int l = 0; l <= 4; ++l)
                             {
                                 for (int i1 = 0; i1 <= 4; ++i1)
                                 {
-                                    if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && World.doesBlockHaveSolidTopSurface(this.theWorld, new BlockPos(i + l, k - 1, j + i1)) && this.func_181065_a(new BlockPos(i + l, k, j + i1)) && this.func_181065_a(new BlockPos(i + l, k + 1, j + i1)))
+                                    if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && World.doesBlockHaveSolidTopSurface(this.theWorld, new 阻止位置(i + l, k - 1, j + i1)) && this.func_181065_a(new 阻止位置(i + l, k, j + i1)) && this.func_181065_a(new 阻止位置(i + l, k + 1, j + i1)))
                                     {
                                         this.thePet.setLocationAndAngles((double)((float)(i + l) + 0.5F), (double)k, (double)((float)(j + i1) + 0.5F), this.thePet.旋转侧滑, this.thePet.rotationPitch);
                                         this.petPathfinder.clearPathEntity();

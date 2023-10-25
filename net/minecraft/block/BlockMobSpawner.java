@@ -6,7 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
 
@@ -32,7 +32,7 @@ public class BlockMobSpawner extends BlockContainer
         return 0;
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
         int i = 15 + worldIn.rand.nextInt(15) + worldIn.rand.nextInt(15);
@@ -54,7 +54,7 @@ public class BlockMobSpawner extends BlockContainer
         return EnumWorldBlockLayer.CUTOUT;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return null;
     }

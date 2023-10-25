@@ -5,13 +5,13 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.item.实体XPOrb;
 import net.minecraft.src.Config;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 import net.optifine.CustomColors;
 
-public class RenderXPOrb extends Render<EntityXPOrb>
+public class RenderXPOrb extends Render<实体XPOrb>
 {
     private static final 图像位置 experienceOrbTextures = new 图像位置("textures/entity/experience_orb.png");
 
@@ -22,7 +22,7 @@ public class RenderXPOrb extends Render<EntityXPOrb>
         this.shadowOpaque = 0.75F;
     }
 
-    public void doRender(EntityXPOrb entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体XPOrb entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         光照状态经理.推黑客帝国();
         光照状态经理.理解((float)x, (float)y, (float)z);
@@ -85,7 +85,7 @@ public class RenderXPOrb extends Render<EntityXPOrb>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityXPOrb entity)
+    protected 图像位置 getEntityTexture(实体XPOrb entity)
     {
         return experienceOrbTextures;
     }

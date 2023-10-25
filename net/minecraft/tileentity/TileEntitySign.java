@@ -4,14 +4,14 @@ import com.google.gson.JsonParseException;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S33PacketUpdateSign;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentProcessor;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatStyle;
@@ -24,7 +24,7 @@ public class TileEntitySign extends TileEntity
     public final IChatComponent[] signText = new IChatComponent[] {new 交流组分文本(""), new 交流组分文本(""), new 交流组分文本(""), new 交流组分文本("")};
     public int lineBeingEdited = -1;
     private boolean isEditable = true;
-    private EntityPlayer player;
+    private 实体Player player;
     private final CommandResultStats stats = new CommandResultStats();
 
     public void writeToNBT(NBTTagCompound compound)
@@ -61,7 +61,7 @@ public class TileEntitySign extends TileEntity
             {
                 return true;
             }
-            public BlockPos getPosition()
+            public 阻止位置 getPosition()
             {
                 return TileEntitySign.this.pos;
             }
@@ -73,7 +73,7 @@ public class TileEntitySign extends TileEntity
             {
                 return TileEntitySign.this.worldObj;
             }
-            public Entity getCommandSenderEntity()
+            public 实体 getCommandSenderEntity()
             {
                 return null;
             }
@@ -96,7 +96,7 @@ public class TileEntitySign extends TileEntity
 
                 try
                 {
-                    this.signText[i] = ChatComponentProcessor.processComponent(icommandsender, ichatcomponent, (Entity)null);
+                    this.signText[i] = ChatComponentProcessor.processComponent(icommandsender, ichatcomponent, (实体)null);
                 }
                 catch (CommandException var7)
                 {
@@ -139,17 +139,17 @@ public class TileEntitySign extends TileEntity
         }
     }
 
-    public void setPlayer(EntityPlayer playerIn)
+    public void setPlayer(实体Player playerIn)
     {
         this.player = playerIn;
     }
 
-    public EntityPlayer getPlayer()
+    public 实体Player getPlayer()
     {
         return this.player;
     }
 
-    public boolean executeCommand(final EntityPlayer playerIn)
+    public boolean executeCommand(final 实体Player playerIn)
     {
         ICommandSender icommandsender = new ICommandSender()
         {
@@ -168,7 +168,7 @@ public class TileEntitySign extends TileEntity
             {
                 return permLevel <= 2;
             }
-            public BlockPos getPosition()
+            public 阻止位置 getPosition()
             {
                 return TileEntitySign.this.pos;
             }
@@ -180,7 +180,7 @@ public class TileEntitySign extends TileEntity
             {
                 return playerIn.getEntityWorld();
             }
-            public Entity getCommandSenderEntity()
+            public 实体 getCommandSenderEntity()
             {
                 return playerIn;
             }

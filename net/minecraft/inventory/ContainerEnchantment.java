@@ -4,21 +4,21 @@ import java.util.List;
 import java.util.Random;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class ContainerEnchantment extends Container
 {
     public IInventory tableInventory;
     private World worldPointer;
-    private BlockPos position;
+    private 阻止位置 position;
     private Random rand;
     public int xpSeed;
     public int[] enchantLevels;
@@ -26,10 +26,10 @@ public class ContainerEnchantment extends Container
 
     public ContainerEnchantment(InventoryPlayer playerInv, World worldIn)
     {
-        this(playerInv, worldIn, BlockPos.ORIGIN);
+        this(playerInv, worldIn, 阻止位置.ORIGIN);
     }
 
-    public ContainerEnchantment(InventoryPlayer playerInv, World worldIn, BlockPos pos)
+    public ContainerEnchantment(InventoryPlayer playerInv, World worldIn, 阻止位置 pos)
     {
         this.tableInventory = new InventoryBasic("Enchant", true, 2)
         {
@@ -226,7 +226,7 @@ public class ContainerEnchantment extends Container
         }
     }
 
-    public boolean enchantItem(EntityPlayer playerIn, int id)
+    public boolean enchantItem(实体Player playerIn, int id)
     {
         ItemStack itemstack = this.tableInventory.getStackInSlot(0);
         ItemStack itemstack1 = this.tableInventory.getStackInSlot(1);
@@ -310,7 +310,7 @@ public class ContainerEnchantment extends Container
         return itemstack == null ? 0 : itemstack.stackSize;
     }
 
-    public void onContainerClosed(EntityPlayer playerIn)
+    public void onContainerClosed(实体Player playerIn)
     {
         super.onContainerClosed(playerIn);
 
@@ -328,12 +328,12 @@ public class ContainerEnchantment extends Container
         }
     }
 
-    public boolean canInteractWith(EntityPlayer playerIn)
+    public boolean canInteractWith(实体Player playerIn)
     {
         return this.worldPointer.getBlockState(this.position).getBlock() != Blocks.enchanting_table ? false : playerIn.getDistanceSq((double)this.position.getX() + 0.5D, (double)this.position.getY() + 0.5D, (double)this.position.getZ() + 0.5D) <= 64.0D;
     }
 
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    public ItemStack transferStackInSlot(实体Player playerIn, int index)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(index);

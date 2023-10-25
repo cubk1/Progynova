@@ -8,11 +8,11 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
@@ -34,7 +34,7 @@ public class BlockPane extends Block
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         return state.withProperty(NORTH, Boolean.valueOf(this.canPaneConnectToBlock(worldIn.getBlockState(pos.north()).getBlock()))).withProperty(SOUTH, Boolean.valueOf(this.canPaneConnectToBlock(worldIn.getBlockState(pos.south()).getBlock()))).withProperty(WEST, Boolean.valueOf(this.canPaneConnectToBlock(worldIn.getBlockState(pos.west()).getBlock()))).withProperty(EAST, Boolean.valueOf(this.canPaneConnectToBlock(worldIn.getBlockState(pos.east()).getBlock())));
     }
@@ -54,12 +54,12 @@ public class BlockPane extends Block
         return false;
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         return worldIn.getBlockState(pos).getBlock() == this ? false : super.shouldSideBeRendered(worldIn, pos, side);
     }
 
-    public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxesToList(World worldIn, 阻止位置 pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, 实体 colliding实体)
     {
         boolean flag = this.canPaneConnectToBlock(worldIn.getBlockState(pos.north()).getBlock());
         boolean flag1 = this.canPaneConnectToBlock(worldIn.getBlockState(pos.south()).getBlock());
@@ -71,18 +71,18 @@ public class BlockPane extends Block
             if (flag2)
             {
                 this.setBlockBounds(0.0F, 0.0F, 0.4375F, 0.5F, 1.0F, 0.5625F);
-                super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+                super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
             }
             else if (flag3)
             {
                 this.setBlockBounds(0.5F, 0.0F, 0.4375F, 1.0F, 1.0F, 0.5625F);
-                super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+                super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
             }
         }
         else
         {
             this.setBlockBounds(0.0F, 0.0F, 0.4375F, 1.0F, 1.0F, 0.5625F);
-            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         }
 
         if ((!flag || !flag1) && (flag2 || flag3 || flag || flag1))
@@ -90,18 +90,18 @@ public class BlockPane extends Block
             if (flag)
             {
                 this.setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.0F, 0.5F);
-                super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+                super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
             }
             else if (flag1)
             {
                 this.setBlockBounds(0.4375F, 0.0F, 0.5F, 0.5625F, 1.0F, 1.0F);
-                super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+                super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
             }
         }
         else
         {
             this.setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.0F, 1.0F);
-            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         }
     }
 
@@ -110,7 +110,7 @@ public class BlockPane extends Block
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         float f = 0.4375F;
         float f1 = 0.5625F;

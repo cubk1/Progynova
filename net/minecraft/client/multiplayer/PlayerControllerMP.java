@@ -3,13 +3,13 @@ package net.minecraft.client.multiplayer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.entity.实体PlayerSP;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.network.NetHandlerPlayClient;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.passive.实体Horse;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -21,7 +21,7 @@ import net.minecraft.network.play.client.C0EPacketClickWindow;
 import net.minecraft.network.play.client.C10PacketCreativeInventoryAction;
 import net.minecraft.network.play.client.C11PacketEnchantItem;
 import net.minecraft.stats.StatFileWriter;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.图像位置;
@@ -33,7 +33,7 @@ public class PlayerControllerMP
 {
     private final 我的手艺 mc;
     private final NetHandlerPlayClient netClientHandler;
-    private BlockPos currentBlock = new BlockPos(-1, -1, -1);
+    private 阻止位置 currentBlock = new 阻止位置(-1, -1, -1);
     private ItemStack currentItemHittingBlock;
     private float curBlockDamageMP;
     private float stepSoundTickCounter;
@@ -48,7 +48,7 @@ public class PlayerControllerMP
         this.netClientHandler = netHandler;
     }
 
-    public static void clickBlockCreative(我的手艺 mcIn, PlayerControllerMP playerController, BlockPos pos, EnumFacing facing)
+    public static void clickBlockCreative(我的手艺 mcIn, PlayerControllerMP playerController, 阻止位置 pos, EnumFacing facing)
     {
         if (!mcIn.宇轩の世界.extinguishFire(mcIn.宇轩游玩者, pos, facing))
         {
@@ -56,7 +56,7 @@ public class PlayerControllerMP
         }
     }
 
-    public void setPlayerCapabilities(EntityPlayer player)
+    public void setPlayerCapabilities(实体Player player)
     {
         this.currentGameType.configurePlayerCapabilities(player.capabilities);
     }
@@ -72,7 +72,7 @@ public class PlayerControllerMP
         this.currentGameType.configurePlayerCapabilities(this.mc.宇轩游玩者.capabilities);
     }
 
-    public void flipPlayer(EntityPlayer playerIn)
+    public void flipPlayer(实体Player playerIn)
     {
         playerIn.旋转侧滑 = -180.0F;
     }
@@ -82,7 +82,7 @@ public class PlayerControllerMP
         return this.currentGameType.isSurvivalOrAdventure();
     }
 
-    public boolean onPlayerDestroyBlock(BlockPos pos, EnumFacing side)
+    public boolean onPlayerDestroyBlock(阻止位置 pos, EnumFacing side)
     {
         if (this.currentGameType.isAdventure())
         {
@@ -132,7 +132,7 @@ public class PlayerControllerMP
                     block1.onBlockDestroyedByPlayer(world, pos, iblockstate);
                 }
 
-                this.currentBlock = new BlockPos(this.currentBlock.getX(), -1, this.currentBlock.getZ());
+                this.currentBlock = new 阻止位置(this.currentBlock.getX(), -1, this.currentBlock.getZ());
 
                 if (!this.currentGameType.isCreative())
                 {
@@ -154,7 +154,7 @@ public class PlayerControllerMP
         }
     }
 
-    public boolean clickBlock(BlockPos loc, EnumFacing face)
+    public boolean clickBlock(阻止位置 loc, EnumFacing face)
     {
         if (this.currentGameType.isAdventure())
         {
@@ -238,7 +238,7 @@ public class PlayerControllerMP
         }
     }
 
-    public boolean onPlayerDamageBlock(BlockPos posBlock, EnumFacing directionFacing)
+    public boolean onPlayerDamageBlock(阻止位置 posBlock, EnumFacing directionFacing)
     {
         this.syncCurrentPlayItem();
 
@@ -313,7 +313,7 @@ public class PlayerControllerMP
         }
     }
 
-    private boolean isHittingPosition(BlockPos pos)
+    private boolean isHittingPosition(阻止位置 pos)
     {
         ItemStack itemstack = this.mc.宇轩游玩者.getHeldItem();
         boolean flag = this.currentItemHittingBlock == null && itemstack == null;
@@ -337,7 +337,7 @@ public class PlayerControllerMP
         }
     }
 
-    public boolean onPlayerRightClick(EntityPlayerSP player, WorldClient worldIn, ItemStack heldStack, BlockPos hitPos, EnumFacing side, Vec3 hitVec)
+    public boolean onPlayerRightClick(实体PlayerSP player, WorldClient worldIn, ItemStack heldStack, 阻止位置 hitPos, EnumFacing side, Vec3 hitVec)
     {
         this.syncCurrentPlayItem();
         float f = (float)(hitVec.xCoord - (double)hitPos.getX());
@@ -400,7 +400,7 @@ public class PlayerControllerMP
         }
     }
 
-    public boolean sendUseItem(EntityPlayer playerIn, World worldIn, ItemStack itemStackIn)
+    public boolean sendUseItem(实体Player playerIn, World worldIn, ItemStack itemStackIn)
     {
         if (this.currentGameType == WorldSettings.GameType.SPECTATOR)
         {
@@ -431,38 +431,38 @@ public class PlayerControllerMP
         }
     }
 
-    public EntityPlayerSP func_178892_a(World worldIn, StatFileWriter statWriter)
+    public 实体PlayerSP func_178892_a(World worldIn, StatFileWriter statWriter)
     {
-        return new EntityPlayerSP(this.mc, worldIn, this.netClientHandler, statWriter);
+        return new 实体PlayerSP(this.mc, worldIn, this.netClientHandler, statWriter);
     }
 
-    public void attackEntity(EntityPlayer playerIn, Entity targetEntity)
+    public void attackEntity(实体Player playerIn, 实体 target实体)
     {
         this.syncCurrentPlayItem();
-        this.netClientHandler.addToSendQueue(new C02PacketUseEntity(targetEntity, C02PacketUseEntity.Action.ATTACK));
+        this.netClientHandler.addToSendQueue(new C02PacketUseEntity(target实体, C02PacketUseEntity.Action.ATTACK));
 
         if (this.currentGameType != WorldSettings.GameType.SPECTATOR)
         {
-            playerIn.attackTargetEntityWithCurrentItem(targetEntity);
+            playerIn.attackTargetEntityWithCurrentItem(target实体);
         }
     }
 
-    public boolean interactWithEntitySendPacket(EntityPlayer playerIn, Entity targetEntity)
+    public boolean interactWithEntitySendPacket(实体Player playerIn, 实体 target实体)
     {
         this.syncCurrentPlayItem();
-        this.netClientHandler.addToSendQueue(new C02PacketUseEntity(targetEntity, C02PacketUseEntity.Action.INTERACT));
-        return this.currentGameType != WorldSettings.GameType.SPECTATOR && playerIn.interactWith(targetEntity);
+        this.netClientHandler.addToSendQueue(new C02PacketUseEntity(target实体, C02PacketUseEntity.Action.INTERACT));
+        return this.currentGameType != WorldSettings.GameType.SPECTATOR && playerIn.interactWith(target实体);
     }
 
-    public boolean isPlayerRightClickingOnEntity(EntityPlayer player, Entity entityIn, MovingObjectPosition movingObject)
+    public boolean isPlayerRightClickingOnEntity(实体Player player, 实体 实体In, MovingObjectPosition movingObject)
     {
         this.syncCurrentPlayItem();
-        Vec3 vec3 = new Vec3(movingObject.hitVec.xCoord - entityIn.posX, movingObject.hitVec.yCoord - entityIn.posY, movingObject.hitVec.zCoord - entityIn.posZ);
-        this.netClientHandler.addToSendQueue(new C02PacketUseEntity(entityIn, vec3));
-        return this.currentGameType != WorldSettings.GameType.SPECTATOR && entityIn.interactAt(player, vec3);
+        Vec3 vec3 = new Vec3(movingObject.hitVec.xCoord - 实体In.X坐标, movingObject.hitVec.yCoord - 实体In.Y坐标, movingObject.hitVec.zCoord - 实体In.Z坐标);
+        this.netClientHandler.addToSendQueue(new C02PacketUseEntity(实体In, vec3));
+        return this.currentGameType != WorldSettings.GameType.SPECTATOR && 实体In.interactAt(player, vec3);
     }
 
-    public ItemStack 视窗点击(int windowId, int slotId, int mouseButtonClicked, int mode, EntityPlayer playerIn)
+    public ItemStack 视窗点击(int windowId, int slotId, int mouseButtonClicked, int mode, 实体Player playerIn)
     {
         short short1 = playerIn.openContainer.getNextTransactionID(playerIn.inventory);
         ItemStack itemstack = playerIn.openContainer.slotClick(slotId, mouseButtonClicked, mode, playerIn);
@@ -491,10 +491,10 @@ public class PlayerControllerMP
         }
     }
 
-    public void onStoppedUsingItem(EntityPlayer playerIn)
+    public void onStoppedUsingItem(实体Player playerIn)
     {
         this.syncCurrentPlayItem();
-        this.netClientHandler.addToSendQueue(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, EnumFacing.DOWN));
+        this.netClientHandler.addToSendQueue(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.RELEASE_USE_ITEM, 阻止位置.ORIGIN, EnumFacing.DOWN));
         playerIn.stopUsingItem();
     }
 
@@ -520,7 +520,7 @@ public class PlayerControllerMP
 
     public boolean isRidingHorse()
     {
-        return this.mc.宇轩游玩者.isRiding() && this.mc.宇轩游玩者.ridingEntity instanceof EntityHorse;
+        return this.mc.宇轩游玩者.isRiding() && this.mc.宇轩游玩者.riding实体 instanceof 实体Horse;
     }
 
     public boolean isSpectatorMode()

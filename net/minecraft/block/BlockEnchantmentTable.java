@@ -5,13 +5,13 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -31,7 +31,7 @@ public class BlockEnchantmentTable extends BlockContainer
         return false;
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         super.randomDisplayTick(worldIn, pos, state, rand);
 
@@ -48,7 +48,7 @@ public class BlockEnchantmentTable extends BlockContainer
                 {
                     for (int k = 0; k <= 1; ++k)
                     {
-                        BlockPos blockpos = pos.add(i, k, j);
+                        阻止位置 blockpos = pos.add(i, k, j);
 
                         if (worldIn.getBlockState(blockpos).getBlock() == Blocks.bookshelf)
                         {
@@ -80,7 +80,7 @@ public class BlockEnchantmentTable extends BlockContainer
         return new TileEntityEnchantmentTable();
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -99,7 +99,7 @@ public class BlockEnchantmentTable extends BlockContainer
         }
     }
 
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase placer, ItemStack stack)
     {
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 

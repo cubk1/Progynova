@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -16,10 +16,10 @@ public class S1BPacketEntityAttach implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S1BPacketEntityAttach(int leashIn, Entity entityIn, Entity vehicle)
+    public S1BPacketEntityAttach(int leashIn, 实体 实体In, 实体 vehicle)
     {
         this.leash = leashIn;
-        this.entityId = entityIn.getEntityId();
+        this.entityId = 实体In.getEntityId();
         this.vehicleEntityId = vehicle != null ? vehicle.getEntityId() : -1;
     }
 

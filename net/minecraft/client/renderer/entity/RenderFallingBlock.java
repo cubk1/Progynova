@@ -10,12 +10,12 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.item.实体FallingBlock;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.World;
 
-public class RenderFallingBlock extends Render<EntityFallingBlock>
+public class RenderFallingBlock extends Render<实体FallingBlock>
 {
     public RenderFallingBlock(RenderManager renderManagerIn)
     {
@@ -23,14 +23,14 @@ public class RenderFallingBlock extends Render<EntityFallingBlock>
         this.shadowSize = 0.5F;
     }
 
-    public void doRender(EntityFallingBlock entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体FallingBlock entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         if (entity.getBlock() != null)
         {
             this.bindTexture(TextureMap.locationBlocksTexture);
             IBlockState iblockstate = entity.getBlock();
             Block block = iblockstate.getBlock();
-            BlockPos blockpos = new BlockPos(entity);
+            阻止位置 blockpos = new 阻止位置(entity);
             World world = entity.getWorldObj();
 
             if (iblockstate != world.getBlockState(blockpos) && block.getRenderType() != -1)
@@ -48,7 +48,7 @@ public class RenderFallingBlock extends Render<EntityFallingBlock>
                     int k = blockpos.getZ();
                     worldrenderer.setTranslation((double)((float)(-i) - 0.5F), (double)(-j), (double)((float)(-k) - 0.5F));
                     BlockRendererDispatcher blockrendererdispatcher = 我的手艺.得到我的手艺().getBlockRendererDispatcher();
-                    IBakedModel ibakedmodel = blockrendererdispatcher.getModelFromBlockState(iblockstate, world, (BlockPos)null);
+                    IBakedModel ibakedmodel = blockrendererdispatcher.getModelFromBlockState(iblockstate, world, (阻止位置)null);
                     blockrendererdispatcher.getBlockModelRenderer().renderModel(world, ibakedmodel, iblockstate, blockpos, worldrenderer, false);
                     worldrenderer.setTranslation(0.0D, 0.0D, 0.0D);
                     tessellator.draw();
@@ -60,7 +60,7 @@ public class RenderFallingBlock extends Render<EntityFallingBlock>
         }
     }
 
-    protected 图像位置 getEntityTexture(EntityFallingBlock entity)
+    protected 图像位置 getEntityTexture(实体FallingBlock entity)
     {
         return TextureMap.locationBlocksTexture;
     }

@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -15,7 +15,7 @@ public class S0BPacketAnimation implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S0BPacketAnimation(Entity ent, int animationType)
+    public S0BPacketAnimation(实体 ent, int animationType)
     {
         this.entityId = ent.getEntityId();
         this.type = animationType;

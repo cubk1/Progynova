@@ -7,13 +7,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体Living;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.world.World;
 
@@ -25,25 +25,25 @@ public class ItemArmor extends Item
     {
         protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
         {
-            BlockPos blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
+            阻止位置 blockpos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
             int i = blockpos.getX();
             int j = blockpos.getY();
             int k = blockpos.getZ();
             AxisAlignedBB axisalignedbb = new AxisAlignedBB((double)i, (double)j, (double)k, (double)(i + 1), (double)(j + 1), (double)(k + 1));
-            List<EntityLivingBase> list = source.getWorld().<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, Predicates.<EntityLivingBase> and (EntitySelectors.NOT_SPECTATING, new EntitySelectors.ArmoredMob(stack)));
+            List<实体LivingBase> list = source.getWorld().<实体LivingBase>getEntitiesWithinAABB(实体LivingBase.class, axisalignedbb, Predicates.<实体LivingBase> and (EntitySelectors.NOT_SPECTATING, new EntitySelectors.ArmoredMob(stack)));
 
             if (list.size() > 0)
             {
-                EntityLivingBase entitylivingbase = (EntityLivingBase)list.get(0);
-                int l = entitylivingbase instanceof EntityPlayer ? 1 : 0;
-                int i1 = EntityLiving.getArmorPosition(stack);
+                实体LivingBase entitylivingbase = (实体LivingBase)list.get(0);
+                int l = entitylivingbase instanceof 实体Player ? 1 : 0;
+                int i1 = 实体Living.getArmorPosition(stack);
                 ItemStack itemstack = stack.copy();
                 itemstack.stackSize = 1;
                 entitylivingbase.setCurrentItemOrArmor(i1 - l, itemstack);
 
-                if (entitylivingbase instanceof EntityLiving)
+                if (entitylivingbase instanceof 实体Living)
                 {
-                    ((EntityLiving)entitylivingbase).setEquipmentDropChance(i1, 2.0F);
+                    ((实体Living)entitylivingbase).setEquipmentDropChance(i1, 2.0F);
                 }
 
                 --stack.stackSize;
@@ -180,9 +180,9 @@ public class ItemArmor extends Item
         return this.material.getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
-        int i = EntityLiving.getArmorPosition(itemStackIn) - 1;
+        int i = 实体Living.getArmorPosition(itemStackIn) - 1;
         ItemStack itemstack = playerIn.getCurrentArmor(i);
 
         if (itemstack == null)

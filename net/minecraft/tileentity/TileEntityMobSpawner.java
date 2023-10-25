@@ -4,7 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 
@@ -20,7 +20,7 @@ public class TileEntityMobSpawner extends TileEntity implements ITickable
         {
             return TileEntityMobSpawner.this.worldObj;
         }
-        public BlockPos getSpawnerPosition()
+        public 阻止位置 getSpawnerPosition()
         {
             return TileEntityMobSpawner.this.pos;
         }

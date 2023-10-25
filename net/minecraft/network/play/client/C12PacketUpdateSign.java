@@ -4,19 +4,19 @@ import java.io.IOException;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IChatComponent;
 
 public class C12PacketUpdateSign implements Packet<INetHandlerPlayServer>
 {
-    private BlockPos pos;
+    private 阻止位置 pos;
     private IChatComponent[] lines;
 
     public C12PacketUpdateSign()
     {
     }
 
-    public C12PacketUpdateSign(BlockPos pos, IChatComponent[] lines)
+    public C12PacketUpdateSign(阻止位置 pos, IChatComponent[] lines)
     {
         this.pos = pos;
         this.lines = new IChatComponent[] {lines[0], lines[1], lines[2], lines[3]};
@@ -52,7 +52,7 @@ public class C12PacketUpdateSign implements Packet<INetHandlerPlayServer>
         handler.processUpdateSign(this);
     }
 
-    public BlockPos getPosition()
+    public 阻止位置 getPosition()
     {
         return this.pos;
     }

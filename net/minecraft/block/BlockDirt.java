@@ -12,7 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -34,7 +34,7 @@ public class BlockDirt extends Block
         return ((BlockDirt.DirtType)state.getValue(VARIANT)).func_181066_d();
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         if (state.getValue(VARIANT) == BlockDirt.DirtType.PODZOL)
         {
@@ -52,7 +52,7 @@ public class BlockDirt extends Block
         list.add(new ItemStack(this, 1, BlockDirt.DirtType.PODZOL.getMetadata()));
     }
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         return iblockstate.getBlock() != this ? 0 : ((BlockDirt.DirtType)iblockstate.getValue(VARIANT)).getMetadata();

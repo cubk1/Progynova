@@ -12,7 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -39,7 +39,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
         this.vinesGrow = p_i46446_5_;
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         int i = rand.nextInt(3) + this.minTreeHeight;
         boolean flag = true;
@@ -60,7 +60,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
                     k = 2;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
                 for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
                 {
@@ -110,7 +110,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                                 if (Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0)
                                 {
-                                    BlockPos blockpos = new BlockPos(k1, i3, i2);
+                                    阻止位置 blockpos = new 阻止位置(k1, i3, i2);
                                     Block block = worldIn.getBlockState(blockpos).getBlock();
 
                                     if (block.getMaterial() == Material.air || block.getMaterial() == Material.leaves || block.getMaterial() == Material.vine)
@@ -161,7 +161,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
                         {
                             int j4 = k3 - (position.getY() + i);
                             int k4 = 2 - j4 / 2;
-                            BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
+                            阻止位置.Mutable阻止位置 blockpos$mutableblockpos1 = new 阻止位置.Mutable阻止位置();
 
                             for (int l4 = position.getX() - k4; l4 <= position.getX() + k4; ++l4)
                             {
@@ -171,10 +171,10 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                                     if (worldIn.getBlockState(blockpos$mutableblockpos1).getBlock().getMaterial() == Material.leaves)
                                     {
-                                        BlockPos blockpos2 = blockpos$mutableblockpos1.west();
-                                        BlockPos blockpos3 = blockpos$mutableblockpos1.east();
-                                        BlockPos blockpos4 = blockpos$mutableblockpos1.north();
-                                        BlockPos blockpos1 = blockpos$mutableblockpos1.south();
+                                        阻止位置 blockpos2 = blockpos$mutableblockpos1.west();
+                                        阻止位置 blockpos3 = blockpos$mutableblockpos1.east();
+                                        阻止位置 blockpos4 = blockpos$mutableblockpos1.north();
+                                        阻止位置 blockpos1 = blockpos$mutableblockpos1.south();
 
                                         if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos2).getBlock().getMaterial() == Material.air)
                                         {
@@ -230,17 +230,17 @@ public class WorldGenTrees extends WorldGenAbstractTree
         }
     }
 
-    private void func_181652_a(World p_181652_1_, int p_181652_2_, BlockPos p_181652_3_, EnumFacing p_181652_4_)
+    private void func_181652_a(World p_181652_1_, int p_181652_2_, 阻止位置 p_181652_3_, EnumFacing p_181652_4_)
     {
         this.setBlockAndNotifyAdequately(p_181652_1_, p_181652_3_, Blocks.cocoa.getDefaultState().withProperty(BlockCocoa.AGE, Integer.valueOf(p_181652_2_)).withProperty(BlockCocoa.FACING, p_181652_4_));
     }
 
-    private void func_181651_a(World p_181651_1_, BlockPos p_181651_2_, PropertyBool p_181651_3_)
+    private void func_181651_a(World p_181651_1_, 阻止位置 p_181651_2_, PropertyBool p_181651_3_)
     {
         this.setBlockAndNotifyAdequately(p_181651_1_, p_181651_2_, Blocks.vine.getDefaultState().withProperty(p_181651_3_, Boolean.valueOf(true)));
     }
 
-    private void func_181650_b(World p_181650_1_, BlockPos p_181650_2_, PropertyBool p_181650_3_)
+    private void func_181650_b(World p_181650_1_, 阻止位置 p_181650_2_, PropertyBool p_181650_3_)
     {
         this.func_181651_a(p_181650_1_, p_181650_2_, p_181650_3_);
         int i = 4;

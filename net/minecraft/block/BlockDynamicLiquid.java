@@ -6,7 +6,7 @@ import java.util.Set;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -19,12 +19,12 @@ public class BlockDynamicLiquid extends BlockLiquid
         super(materialIn);
     }
 
-    private void placeStaticBlock(World worldIn, BlockPos pos, IBlockState currentState)
+    private void placeStaticBlock(World worldIn, 阻止位置 pos, IBlockState currentState)
     {
         worldIn.setBlockState(pos, getStaticBlock(this.blockMaterial).getDefaultState().withProperty(LEVEL, currentState.getValue(LEVEL)), 2);
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         int i = ((Integer)state.getValue(LEVEL)).intValue();
         int j = 1;
@@ -154,7 +154,7 @@ public class BlockDynamicLiquid extends BlockLiquid
         }
     }
 
-    private void tryFlowInto(World worldIn, BlockPos pos, IBlockState state, int level)
+    private void tryFlowInto(World worldIn, 阻止位置 pos, IBlockState state, int level)
     {
         if (this.canFlowInto(worldIn, pos, state))
         {
@@ -174,7 +174,7 @@ public class BlockDynamicLiquid extends BlockLiquid
         }
     }
 
-    private int func_176374_a(World worldIn, BlockPos pos, int distance, EnumFacing calculateFlowCost)
+    private int func_176374_a(World worldIn, 阻止位置 pos, int distance, EnumFacing calculateFlowCost)
     {
         int i = 1000;
 
@@ -182,7 +182,7 @@ public class BlockDynamicLiquid extends BlockLiquid
         {
             if (enumfacing != calculateFlowCost)
             {
-                BlockPos blockpos = pos.offset(enumfacing);
+                阻止位置 blockpos = pos.offset(enumfacing);
                 IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
                 if (!this.isBlocked(worldIn, blockpos, iblockstate) && (iblockstate.getBlock().getMaterial() != this.blockMaterial || ((Integer)iblockstate.getValue(LEVEL)).intValue() > 0))
@@ -208,14 +208,14 @@ public class BlockDynamicLiquid extends BlockLiquid
         return i;
     }
 
-    private Set<EnumFacing> getPossibleFlowDirections(World worldIn, BlockPos pos)
+    private Set<EnumFacing> getPossibleFlowDirections(World worldIn, 阻止位置 pos)
     {
         int i = 1000;
         Set<EnumFacing> set = EnumSet.<EnumFacing>noneOf(EnumFacing.class);
 
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
         {
-            BlockPos blockpos = pos.offset(enumfacing);
+            阻止位置 blockpos = pos.offset(enumfacing);
             IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
             if (!this.isBlocked(worldIn, blockpos, iblockstate) && (iblockstate.getBlock().getMaterial() != this.blockMaterial || ((Integer)iblockstate.getValue(LEVEL)).intValue() > 0))
@@ -247,13 +247,13 @@ public class BlockDynamicLiquid extends BlockLiquid
         return set;
     }
 
-    private boolean isBlocked(World worldIn, BlockPos pos, IBlockState state)
+    private boolean isBlocked(World worldIn, 阻止位置 pos, IBlockState state)
     {
         Block block = worldIn.getBlockState(pos).getBlock();
         return !(block instanceof BlockDoor) && block != Blocks.standing_sign && block != Blocks.ladder && block != Blocks.reeds ? (block.blockMaterial == Material.portal ? true : block.blockMaterial.blocksMovement()) : true;
     }
 
-    protected int checkAdjacentBlock(World worldIn, BlockPos pos, int currentMinLevel)
+    protected int checkAdjacentBlock(World worldIn, 阻止位置 pos, int currentMinLevel)
     {
         int i = this.getLevel(worldIn, pos);
 
@@ -277,13 +277,13 @@ public class BlockDynamicLiquid extends BlockLiquid
         }
     }
 
-    private boolean canFlowInto(World worldIn, BlockPos pos, IBlockState state)
+    private boolean canFlowInto(World worldIn, 阻止位置 pos, IBlockState state)
     {
         Material material = state.getBlock().getMaterial();
         return material != this.blockMaterial && material != Material.lava && !this.isBlocked(worldIn, pos, state);
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!this.checkForMixing(worldIn, pos, state))
         {

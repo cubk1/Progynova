@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Map;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ClassInheritanceMultiMap;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
@@ -26,11 +26,11 @@ public class ChunkVisibility
     private static int pcxLast = Integer.MIN_VALUE;
     private static int pczLast = Integer.MIN_VALUE;
 
-    public static int getMaxChunkY(World world, Entity viewEntity, int renderDistanceChunks)
+    public static int getMaxChunkY(World world, 实体 view实体, int renderDistanceChunks)
     {
-        int i = MathHelper.floor_double(viewEntity.posX) >> 4;
-        int j = MathHelper.floor_double(viewEntity.posY) >> 4;
-        int k = MathHelper.floor_double(viewEntity.posZ) >> 4;
+        int i = MathHelper.floor_double(view实体.X坐标) >> 4;
+        int j = MathHelper.floor_double(view实体.Y坐标) >> 4;
+        int k = MathHelper.floor_double(view实体.Z坐标) >> 4;
         Chunk chunk = world.getChunkFromChunkCoords(i, k);
         int l = i - renderDistanceChunks;
         int i1 = i + renderDistanceChunks;
@@ -102,11 +102,11 @@ public class ChunkVisibility
 
                     try
                     {
-                        Map<BlockPos, TileEntity> map = chunk1.getTileEntityMap();
+                        Map<阻止位置, TileEntity> map = chunk1.getTileEntityMap();
 
                         if (!map.isEmpty())
                         {
-                            for (BlockPos blockpos : map.keySet())
+                            for (阻止位置 blockpos : map.keySet())
                             {
                                 int l2 = blockpos.getY() >> 4;
 
@@ -122,11 +122,11 @@ public class ChunkVisibility
                         ;
                     }
 
-                    ClassInheritanceMultiMap<Entity>[] classinheritancemultimap = chunk1.getEntityLists();
+                    ClassInheritanceMultiMap<实体>[] classinheritancemultimap = chunk1.getEntityLists();
 
                     for (int i3 = classinheritancemultimap.length - 1; i3 > l1; --i3)
                     {
-                        ClassInheritanceMultiMap<Entity> classinheritancemultimap1 = classinheritancemultimap[i3];
+                        ClassInheritanceMultiMap<实体> classinheritancemultimap1 = classinheritancemultimap[i3];
 
                         if (!classinheritancemultimap1.isEmpty() && (chunk1 != chunk || i3 != j || classinheritancemultimap1.size() != 1))
                         {

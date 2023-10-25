@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -25,27 +25,27 @@ public class S0EPacketSpawnObject implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S0EPacketSpawnObject(Entity entityIn, int typeIn)
+    public S0EPacketSpawnObject(实体 实体In, int typeIn)
     {
-        this(entityIn, typeIn, 0);
+        this(实体In, typeIn, 0);
     }
 
-    public S0EPacketSpawnObject(Entity entityIn, int typeIn, int p_i45166_3_)
+    public S0EPacketSpawnObject(实体 实体In, int typeIn, int p_i45166_3_)
     {
-        this.entityId = entityIn.getEntityId();
-        this.x = MathHelper.floor_double(entityIn.posX * 32.0D);
-        this.y = MathHelper.floor_double(entityIn.posY * 32.0D);
-        this.z = MathHelper.floor_double(entityIn.posZ * 32.0D);
-        this.pitch = MathHelper.floor_float(entityIn.rotationPitch * 256.0F / 360.0F);
-        this.yaw = MathHelper.floor_float(entityIn.旋转侧滑 * 256.0F / 360.0F);
+        this.entityId = 实体In.getEntityId();
+        this.x = MathHelper.floor_double(实体In.X坐标 * 32.0D);
+        this.y = MathHelper.floor_double(实体In.Y坐标 * 32.0D);
+        this.z = MathHelper.floor_double(实体In.Z坐标 * 32.0D);
+        this.pitch = MathHelper.floor_float(实体In.rotationPitch * 256.0F / 360.0F);
+        this.yaw = MathHelper.floor_float(实体In.旋转侧滑 * 256.0F / 360.0F);
         this.type = typeIn;
         this.field_149020_k = p_i45166_3_;
 
         if (p_i45166_3_ > 0)
         {
-            double d0 = entityIn.通便X;
-            double d1 = entityIn.motionY;
-            double d2 = entityIn.通便Z;
+            double d0 = 实体In.通便X;
+            double d1 = 实体In.motionY;
+            double d2 = 实体In.通便Z;
             double d3 = 3.9D;
 
             if (d0 < -d3)

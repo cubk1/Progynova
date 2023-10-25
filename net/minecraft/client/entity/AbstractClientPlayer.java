@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.src.Config;
 import net.minecraft.util.图像位置;
@@ -24,7 +24,7 @@ import net.optifine.player.CapeUtils;
 import net.optifine.player.PlayerConfigurations;
 import net.optifine.reflect.Reflector;
 
-public abstract class AbstractClientPlayer extends EntityPlayer
+public abstract class AbstractClientPlayer extends 实体Player
 {
     private NetworkPlayerInfo playerInfo;
     private 图像位置 locationOfCape = null;

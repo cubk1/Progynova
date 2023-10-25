@@ -1,8 +1,8 @@
 package net.minecraft.item;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityEnderPearl;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体EnderPearl;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 
@@ -14,7 +14,7 @@ public class ItemEnderPearl extends Item
         this.setCreativeTab(CreativeTabs.tabMisc);
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         if (playerIn.capabilities.isCreativeMode)
         {
@@ -27,7 +27,7 @@ public class ItemEnderPearl extends Item
 
             if (!worldIn.isRemote)
             {
-                worldIn.spawnEntityInWorld(new EntityEnderPearl(worldIn, playerIn));
+                worldIn.spawnEntityInWorld(new 实体EnderPearl(worldIn, playerIn));
             }
 
             playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);

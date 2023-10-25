@@ -39,9 +39,9 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.crash.CrashReport;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.player.实体PlayerMP;
+import net.minecraft.entity.实体;
 import net.minecraft.network.NetworkSystem;
 import net.minecraft.network.ServerStatusResponse;
 import net.minecraft.network.play.server.S03PacketTimeUpdate;
@@ -50,7 +50,7 @@ import net.minecraft.profiler.PlayerUsageSnooper;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.server.management.PlayerProfileCache;
 import net.minecraft.server.management.ServerConfigurationManager;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IProgressUpdate;
@@ -303,7 +303,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         int j1 = 0;
         logger.info("Preparing start region for level " + j1);
         WorldServer worldserver = this.worldServers[j1];
-        BlockPos blockpos = worldserver.getSpawnPoint();
+        阻止位置 blockpos = worldserver.getSpawnPoint();
         long k1 = getCurrentTimeMillis();
 
         for (int l1 = -192; l1 <= 192 && this.isServerRunning(); l1 += 16)
@@ -607,7 +607,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
 
             for (int k = 0; k < agameprofile.length; ++k)
             {
-                agameprofile[k] = ((EntityPlayerMP)this.serverConfigManager.getPlayerList().get(j + k)).getGameProfile();
+                agameprofile[k] = ((实体PlayerMP)this.serverConfigManager.getPlayerList().get(j + k)).getGameProfile();
             }
 
             Collections.shuffle(Arrays.asList(agameprofile));
@@ -799,7 +799,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         return report;
     }
 
-    public List<String> getTabCompletions(ICommandSender sender, String input, BlockPos pos)
+    public List<String> getTabCompletions(ICommandSender sender, String input, 阻止位置 pos)
     {
         List<String> list = Lists.<String>newArrayList();
 
@@ -1191,9 +1191,9 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         return this.usageSnooper;
     }
 
-    public BlockPos getPosition()
+    public 阻止位置 getPosition()
     {
-        return BlockPos.ORIGIN;
+        return 阻止位置.ORIGIN;
     }
 
     public Vec3 getPositionVector()
@@ -1206,7 +1206,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         return this.worldServers[0];
     }
 
-    public Entity getCommandSenderEntity()
+    public 实体 getCommandSenderEntity()
     {
         return null;
     }
@@ -1216,7 +1216,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         return 16;
     }
 
-    public boolean isBlockProtected(World worldIn, BlockPos pos, EntityPlayer playerIn)
+    public boolean isBlockProtected(World worldIn, 阻止位置 pos, 实体Player playerIn)
     {
         return false;
     }
@@ -1281,17 +1281,17 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         this.nanoTimeSinceStatusRefresh = 0L;
     }
 
-    public Entity getEntityFromUuid(UUID uuid)
+    public 实体 getEntityFromUuid(UUID uuid)
     {
         for (WorldServer worldserver : this.worldServers)
         {
             if (worldserver != null)
             {
-                Entity entity = worldserver.getEntityFromUuid(uuid);
+                实体 实体 = worldserver.getEntityFromUuid(uuid);
 
-                if (entity != null)
+                if (实体 != null)
                 {
-                    return entity;
+                    return 实体;
                 }
             }
         }

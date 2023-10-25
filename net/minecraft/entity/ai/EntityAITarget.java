@@ -1,34 +1,31 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityOwnable;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.scoreboard.Team;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import org.apache.commons.lang3.StringUtils;
 
 public abstract class EntityAITarget extends EntityAIBase
 {
-    protected final EntityCreature taskOwner;
+    protected final 实体Creature taskOwner;
     protected boolean shouldCheckSight;
     private boolean nearbyOnly;
     private int targetSearchStatus;
     private int targetSearchDelay;
     private int targetUnseenTicks;
 
-    public EntityAITarget(EntityCreature creature, boolean checkSight)
+    public EntityAITarget(实体Creature creature, boolean checkSight)
     {
         this(creature, checkSight, false);
     }
 
-    public EntityAITarget(EntityCreature creature, boolean checkSight, boolean onlyNearby)
+    public EntityAITarget(实体Creature creature, boolean checkSight, boolean onlyNearby)
     {
         this.taskOwner = creature;
         this.shouldCheckSight = checkSight;
@@ -37,7 +34,7 @@ public abstract class EntityAITarget extends EntityAIBase
 
     public boolean continueExecuting()
     {
-        EntityLivingBase entitylivingbase = this.taskOwner.getAttackTarget();
+        实体LivingBase entitylivingbase = this.taskOwner.getAttackTarget();
 
         if (entitylivingbase == null)
         {
@@ -78,7 +75,7 @@ public abstract class EntityAITarget extends EntityAIBase
                         }
                     }
 
-                    return !(entitylivingbase instanceof EntityPlayer) || !((EntityPlayer)entitylivingbase).capabilities.disableDamage;
+                    return !(entitylivingbase instanceof 实体Player) || !((实体Player)entitylivingbase).capabilities.disableDamage;
                 }
             }
         }
@@ -99,10 +96,10 @@ public abstract class EntityAITarget extends EntityAIBase
 
     public void resetTask()
     {
-        this.taskOwner.setAttackTarget((EntityLivingBase)null);
+        this.taskOwner.setAttackTarget((实体LivingBase)null);
     }
 
-    public static boolean isSuitableTarget(EntityLiving attacker, EntityLivingBase target, boolean includeInvincibles, boolean checkSight)
+    public static boolean isSuitableTarget(实体Living attacker, 实体LivingBase target, boolean includeInvincibles, boolean checkSight)
     {
         if (target == null)
         {
@@ -143,7 +140,7 @@ public abstract class EntityAITarget extends EntityAIBase
                         return false;
                     }
                 }
-                else if (target instanceof EntityPlayer && !includeInvincibles && ((EntityPlayer)target).capabilities.disableDamage)
+                else if (target instanceof 实体Player && !includeInvincibles && ((实体Player)target).capabilities.disableDamage)
                 {
                     return false;
                 }
@@ -153,13 +150,13 @@ public abstract class EntityAITarget extends EntityAIBase
         }
     }
 
-    protected boolean isSuitableTarget(EntityLivingBase target, boolean includeInvincibles)
+    protected boolean isSuitableTarget(实体LivingBase target, boolean includeInvincibles)
     {
         if (!isSuitableTarget(this.taskOwner, target, includeInvincibles, this.shouldCheckSight))
         {
             return false;
         }
-        else if (!this.taskOwner.isWithinHomeDistanceFromPosition(new BlockPos(target)))
+        else if (!this.taskOwner.isWithinHomeDistanceFromPosition(new 阻止位置(target)))
         {
             return false;
         }
@@ -187,7 +184,7 @@ public abstract class EntityAITarget extends EntityAIBase
         }
     }
 
-    private boolean canEasilyReach(EntityLivingBase target)
+    private boolean canEasilyReach(实体LivingBase target)
     {
         this.targetSearchDelay = 10 + this.taskOwner.getRNG().nextInt(5);
         PathEntity pathentity = this.taskOwner.getNavigator().getPathToEntityLiving(target);
@@ -206,8 +203,8 @@ public abstract class EntityAITarget extends EntityAIBase
             }
             else
             {
-                int i = pathpoint.xCoord - MathHelper.floor_double(target.posX);
-                int j = pathpoint.zCoord - MathHelper.floor_double(target.posZ);
+                int i = pathpoint.xCoord - MathHelper.floor_double(target.X坐标);
+                int j = pathpoint.zCoord - MathHelper.floor_double(target.Z坐标);
                 return (double)(i * i + j * j) <= 2.25D;
             }
         }

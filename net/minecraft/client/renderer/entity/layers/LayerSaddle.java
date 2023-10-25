@@ -2,10 +2,10 @@ package net.minecraft.client.renderer.entity.layers;
 
 import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.renderer.entity.RenderPig;
-import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.实体Pig;
 import net.minecraft.util.图像位置;
 
-public class LayerSaddle implements LayerRenderer<EntityPig>
+public class LayerSaddle implements LayerRenderer<实体Pig>
 {
     private static final 图像位置 TEXTURE = new 图像位置("textures/entity/pig/pig_saddle.png");
     private final RenderPig pigRenderer;
@@ -16,7 +16,7 @@ public class LayerSaddle implements LayerRenderer<EntityPig>
         this.pigRenderer = pigRendererIn;
     }
 
-    public void doRenderLayer(EntityPig entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体Pig entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         if (entitylivingbaseIn.getSaddled())
         {

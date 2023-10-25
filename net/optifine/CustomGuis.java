@@ -14,9 +14,9 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.gui.鬼Enchantment;
 import net.minecraft.client.gui.inventory.鬼Container;
 import net.minecraft.client.resources.IResourcePack;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.IBlockAccess;
 import net.optifine.override.PlayerControllerOF;
@@ -68,7 +68,7 @@ public class CustomGuis
                     }
                     else
                     {
-                        BlockPos blockpos = playerControllerOF.getLastClickBlockPos();
+                        阻止位置 blockpos = playerControllerOF.getLastClickBlockPos();
 
                         if (blockpos != null)
                         {
@@ -118,18 +118,18 @@ public class CustomGuis
                             }
                         }
 
-                        Entity entity = playerControllerOF.getLastClickEntity();
+                        实体 实体 = playerControllerOF.getLastClickEntity();
 
-                        if (entity != null)
+                        if (实体 != null)
                         {
                             if (guiscreen instanceof 鬼ScreenHorseInventory)
                             {
-                                return getTextureEntity(CustomGuiProperties.EnumContainer.HORSE, entity, iblockaccess, loc);
+                                return getTextureEntity(CustomGuiProperties.EnumContainer.HORSE, 实体, iblockaccess, loc);
                             }
 
                             if (guiscreen instanceof 鬼Merchant)
                             {
-                                return getTextureEntity(CustomGuiProperties.EnumContainer.VILLAGER, entity, iblockaccess, loc);
+                                return getTextureEntity(CustomGuiProperties.EnumContainer.VILLAGER, 实体, iblockaccess, loc);
                             }
                         }
 
@@ -144,7 +144,7 @@ public class CustomGuis
         }
     }
 
-    private static 图像位置 getTexturePos(CustomGuiProperties.EnumContainer container, BlockPos pos, IBlockAccess blockAccess, 图像位置 loc, 鬼Screen screen)
+    private static 图像位置 getTexturePos(CustomGuiProperties.EnumContainer container, 阻止位置 pos, IBlockAccess blockAccess, 图像位置 loc, 鬼Screen screen)
     {
         CustomGuiProperties[] acustomguiproperties = guiProperties[container.ordinal()];
 
@@ -168,7 +168,7 @@ public class CustomGuis
         }
     }
 
-    private static 图像位置 getTextureEntity(CustomGuiProperties.EnumContainer container, Entity entity, IBlockAccess blockAccess, 图像位置 loc)
+    private static 图像位置 getTextureEntity(CustomGuiProperties.EnumContainer container, 实体 实体, IBlockAccess blockAccess, 图像位置 loc)
     {
         CustomGuiProperties[] acustomguiproperties = guiProperties[container.ordinal()];
 
@@ -182,7 +182,7 @@ public class CustomGuis
             {
                 CustomGuiProperties customguiproperties = acustomguiproperties[i];
 
-                if (customguiproperties.matchesEntity(container, entity, blockAccess))
+                if (customguiproperties.matchesEntity(container, 实体, blockAccess))
                 {
                     return customguiproperties.getTextureLocation(loc);
                 }

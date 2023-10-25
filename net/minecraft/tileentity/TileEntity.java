@@ -10,7 +10,7 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +21,7 @@ public abstract class TileEntity
     private static Map < String, Class <? extends TileEntity >> nameToClassMap = Maps. < String, Class <? extends TileEntity >> newHashMap();
     private static Map < Class <? extends TileEntity > , String > classToNameMap = Maps. < Class <? extends TileEntity > , String > newHashMap();
     protected World worldObj;
-    protected BlockPos pos = BlockPos.ORIGIN;
+    protected 阻止位置 pos = 阻止位置.ORIGIN;
     protected boolean tileEntityInvalid;
     private int blockMetadata = -1;
     protected Block blockType;
@@ -56,7 +56,7 @@ public abstract class TileEntity
 
     public void readFromNBT(NBTTagCompound compound)
     {
-        this.pos = new BlockPos(compound.getInteger("x"), compound.getInteger("y"), compound.getInteger("z"));
+        this.pos = new 阻止位置(compound.getInteger("x"), compound.getInteger("y"), compound.getInteger("z"));
     }
 
     public void writeToNBT(NBTTagCompound compound)
@@ -145,7 +145,7 @@ public abstract class TileEntity
         return 4096.0D;
     }
 
-    public BlockPos getPos()
+    public 阻止位置 getPos()
     {
         return this.pos;
     }
@@ -241,7 +241,7 @@ public abstract class TileEntity
         }
     }
 
-    public void setPos(BlockPos posIn)
+    public void setPos(阻止位置 posIn)
     {
         this.pos = posIn;
     }

@@ -5,11 +5,11 @@ import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityNote;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -24,7 +24,7 @@ public class BlockNote extends BlockContainer
         this.setCreativeTab(CreativeTabs.tabRedstone);
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         boolean flag = worldIn.isBlockPowered(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -45,7 +45,7 @@ public class BlockNote extends BlockContainer
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -67,7 +67,7 @@ public class BlockNote extends BlockContainer
         }
     }
 
-    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
+    public void onBlockClicked(World worldIn, 阻止位置 pos, 实体Player playerIn)
     {
         if (!worldIn.isRemote)
         {
@@ -96,7 +96,7 @@ public class BlockNote extends BlockContainer
         return (String)INSTRUMENTS.get(id);
     }
 
-    public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam)
+    public boolean onBlockEventReceived(World worldIn, 阻止位置 pos, IBlockState state, int eventID, int eventParam)
     {
         float f = (float)Math.pow(2.0D, (double)(eventParam - 12) / 12.0D);
         worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "note." + this.getInstrument(eventID), 3.0F, f);

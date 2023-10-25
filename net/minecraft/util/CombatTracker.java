@@ -3,16 +3,16 @@ package net.minecraft.util;
 import com.google.common.collect.Lists;
 import java.util.List;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 public class CombatTracker
 {
     private final List<CombatEntry> combatEntries = Lists.<CombatEntry>newArrayList();
-    private final EntityLivingBase fighter;
+    private final 实体LivingBase fighter;
     private int field_94555_c;
     private int field_152775_d;
     private int field_152776_e;
@@ -20,7 +20,7 @@ public class CombatTracker
     private boolean field_94553_e;
     private String field_94551_f;
 
-    public CombatTracker(EntityLivingBase fighterIn)
+    public CombatTracker(实体LivingBase fighterIn)
     {
         this.fighter = fighterIn;
     }
@@ -31,7 +31,7 @@ public class CombatTracker
 
         if (this.fighter.isOnLadder())
         {
-            Block block = this.fighter.worldObj.getBlockState(new BlockPos(this.fighter.posX, this.fighter.getEntityBoundingBox().minY, this.fighter.posZ)).getBlock();
+            Block block = this.fighter.worldObj.getBlockState(new 阻止位置(this.fighter.X坐标, this.fighter.getEntityBoundingBox().minY, this.fighter.Z坐标)).getBlock();
 
             if (block == Blocks.ladder)
             {
@@ -77,7 +77,7 @@ public class CombatTracker
             CombatEntry combatentry = this.func_94544_f();
             CombatEntry combatentry1 = (CombatEntry)this.combatEntries.get(this.combatEntries.size() - 1);
             IChatComponent ichatcomponent1 = combatentry1.getDamageSrcDisplayName();
-            Entity entity = combatentry1.getDamageSrc().getEntity();
+            实体 实体 = combatentry1.getDamageSrc().getEntity();
             IChatComponent ichatcomponent;
 
             if (combatentry != null && combatentry1.getDamageSrc() == DamageSource.fall)
@@ -88,8 +88,8 @@ public class CombatTracker
                 {
                     if (ichatcomponent2 != null && (ichatcomponent1 == null || !ichatcomponent2.equals(ichatcomponent1)))
                     {
-                        Entity entity1 = combatentry.getDamageSrc().getEntity();
-                        ItemStack itemstack1 = entity1 instanceof EntityLivingBase ? ((EntityLivingBase)entity1).getHeldItem() : null;
+                        实体 实体1 = combatentry.getDamageSrc().getEntity();
+                        ItemStack itemstack1 = 实体1 instanceof 实体LivingBase ? ((实体LivingBase) 实体1).getHeldItem() : null;
 
                         if (itemstack1 != null && itemstack1.hasDisplayName())
                         {
@@ -102,7 +102,7 @@ public class CombatTracker
                     }
                     else if (ichatcomponent1 != null)
                     {
-                        ItemStack itemstack = entity instanceof EntityLivingBase ? ((EntityLivingBase)entity).getHeldItem() : null;
+                        ItemStack itemstack = 实体 instanceof 实体LivingBase ? ((实体LivingBase) 实体).getHeldItem() : null;
 
                         if (itemstack != null && itemstack.hasDisplayName())
                         {
@@ -132,25 +132,25 @@ public class CombatTracker
         }
     }
 
-    public EntityLivingBase func_94550_c()
+    public 实体LivingBase func_94550_c()
     {
-        EntityLivingBase entitylivingbase = null;
-        EntityPlayer entityplayer = null;
+        实体LivingBase entitylivingbase = null;
+        实体Player entityplayer = null;
         float f = 0.0F;
         float f1 = 0.0F;
 
         for (CombatEntry combatentry : this.combatEntries)
         {
-            if (combatentry.getDamageSrc().getEntity() instanceof EntityPlayer && (entityplayer == null || combatentry.func_94563_c() > f1))
+            if (combatentry.getDamageSrc().getEntity() instanceof 实体Player && (entityplayer == null || combatentry.func_94563_c() > f1))
             {
                 f1 = combatentry.func_94563_c();
-                entityplayer = (EntityPlayer)combatentry.getDamageSrc().getEntity();
+                entityplayer = (实体Player)combatentry.getDamageSrc().getEntity();
             }
 
-            if (combatentry.getDamageSrc().getEntity() instanceof EntityLivingBase && (entitylivingbase == null || combatentry.func_94563_c() > f))
+            if (combatentry.getDamageSrc().getEntity() instanceof 实体LivingBase && (entitylivingbase == null || combatentry.func_94563_c() > f))
             {
                 f = combatentry.func_94563_c();
-                entitylivingbase = (EntityLivingBase)combatentry.getDamageSrc().getEntity();
+                entitylivingbase = (实体LivingBase)combatentry.getDamageSrc().getEntity();
             }
         }
 
@@ -245,7 +245,7 @@ public class CombatTracker
         }
     }
 
-    public EntityLivingBase getFighter()
+    public 实体LivingBase getFighter()
     {
         return this.fighter;
     }

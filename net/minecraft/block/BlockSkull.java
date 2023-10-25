@@ -12,9 +12,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.block.state.pattern.BlockStateHelper;
 import net.minecraft.block.state.pattern.FactoryBlockPattern;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.boss.实体Wither;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -25,7 +25,7 @@ import net.minecraft.stats.AchievementList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.StatCollector;
@@ -69,7 +69,7 @@ public class BlockSkull extends BlockContainer
         return false;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         switch ((EnumFacing)worldIn.getBlockState(pos).getValue(FACING))
         {
@@ -95,13 +95,13 @@ public class BlockSkull extends BlockContainer
         }
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.getCollisionBoundingBox(worldIn, pos, state);
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing()).withProperty(NODROP, Boolean.valueOf(false));
     }
@@ -111,22 +111,22 @@ public class BlockSkull extends BlockContainer
         return new TileEntitySkull();
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Items.skull;
     }
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         return tileentity instanceof TileEntitySkull ? ((TileEntitySkull)tileentity).getSkullType() : super.getDamageValue(worldIn, pos);
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
     }
 
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    public void onBlockHarvested(World worldIn, 阻止位置 pos, IBlockState state, 实体Player player)
     {
         if (player.capabilities.isCreativeMode)
         {
@@ -137,7 +137,7 @@ public class BlockSkull extends BlockContainer
         super.onBlockHarvested(worldIn, pos, state, player);
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!worldIn.isRemote)
         {
@@ -171,12 +171,12 @@ public class BlockSkull extends BlockContainer
         return Items.skull;
     }
 
-    public boolean canDispenserPlace(World worldIn, BlockPos pos, ItemStack stack)
+    public boolean canDispenserPlace(World worldIn, 阻止位置 pos, ItemStack stack)
     {
         return stack.getMetadata() == 1 && pos.getY() >= 2 && worldIn.getDifficulty() != EnumDifficulty.PEACEFUL && !worldIn.isRemote ? this.getWitherBasePattern().match(worldIn, pos) != null : false;
     }
 
-    public void checkWitherSpawn(World worldIn, BlockPos pos, TileEntitySkull te)
+    public void checkWitherSpawn(World worldIn, 阻止位置 pos, TileEntitySkull te)
     {
         if (te.getSkullType() == 1 && pos.getY() >= 2 && worldIn.getDifficulty() != EnumDifficulty.PEACEFUL && !worldIn.isRemote)
         {
@@ -200,14 +200,14 @@ public class BlockSkull extends BlockContainer
                     }
                 }
 
-                BlockPos blockpos = blockpattern$patternhelper.translateOffset(1, 0, 0).getPos();
-                EntityWither entitywither = new EntityWither(worldIn);
-                BlockPos blockpos1 = blockpattern$patternhelper.translateOffset(1, 2, 0).getPos();
+                阻止位置 blockpos = blockpattern$patternhelper.translateOffset(1, 0, 0).getPos();
+                实体Wither entitywither = new 实体Wither(worldIn);
+                阻止位置 blockpos1 = blockpattern$patternhelper.translateOffset(1, 2, 0).getPos();
                 entitywither.setLocationAndAngles((double)blockpos1.getX() + 0.5D, (double)blockpos1.getY() + 0.55D, (double)blockpos1.getZ() + 0.5D, blockpattern$patternhelper.getFinger().getAxis() == EnumFacing.Axis.X ? 0.0F : 90.0F, 0.0F);
                 entitywither.renderYawOffset = blockpattern$patternhelper.getFinger().getAxis() == EnumFacing.Axis.X ? 0.0F : 90.0F;
                 entitywither.func_82206_m();
 
-                for (EntityPlayer entityplayer : worldIn.getEntitiesWithinAABB(EntityPlayer.class, entitywither.getEntityBoundingBox().expand(50.0D, 50.0D, 50.0D)))
+                for (实体Player entityplayer : worldIn.getEntitiesWithinAABB(实体Player.class, entitywither.getEntityBoundingBox().expand(50.0D, 50.0D, 50.0D)))
                 {
                     entityplayer.triggerAchievement(AchievementList.spawnWither);
                 }

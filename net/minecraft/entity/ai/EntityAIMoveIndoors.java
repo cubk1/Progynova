@@ -1,19 +1,19 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体Creature;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.Vec3;
 import net.minecraft.village.Village;
 import net.minecraft.village.VillageDoorInfo;
 
 public class EntityAIMoveIndoors extends EntityAIBase
 {
-    private EntityCreature entityObj;
+    private 实体Creature entityObj;
     private VillageDoorInfo doorInfo;
     private int insidePosX = -1;
     private int insidePosZ = -1;
 
-    public EntityAIMoveIndoors(EntityCreature entityObjIn)
+    public EntityAIMoveIndoors(实体Creature entityObjIn)
     {
         this.entityObj = entityObjIn;
         this.setMutexBits(1);
@@ -21,7 +21,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
 
     public boolean shouldExecute()
     {
-        BlockPos blockpos = new BlockPos(this.entityObj);
+        阻止位置 blockpos = new 阻止位置(this.entityObj);
 
         if ((!this.entityObj.worldObj.isDaytime() || this.entityObj.worldObj.isRaining() && !this.entityObj.worldObj.getBiomeGenForCoords(blockpos).canRain()) && !this.entityObj.worldObj.provider.getHasNoSky())
         {
@@ -29,7 +29,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
             {
                 return false;
             }
-            else if (this.insidePosX != -1 && this.entityObj.getDistanceSq((double)this.insidePosX, this.entityObj.posY, (double)this.insidePosZ) < 4.0D)
+            else if (this.insidePosX != -1 && this.entityObj.getDistanceSq((double)this.insidePosX, this.entityObj.Y坐标, (double)this.insidePosZ) < 4.0D)
             {
                 return false;
             }
@@ -62,7 +62,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
     public void startExecuting()
     {
         this.insidePosX = -1;
-        BlockPos blockpos = this.doorInfo.getInsideBlockPos();
+        阻止位置 blockpos = this.doorInfo.getInsideBlockPos();
         int i = blockpos.getX();
         int j = blockpos.getY();
         int k = blockpos.getZ();

@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -14,10 +14,10 @@ import net.minecraft.stats.AchievementList;
 public class SlotCrafting extends Slot
 {
     private final InventoryCrafting craftMatrix;
-    private final EntityPlayer thePlayer;
+    private final 实体Player thePlayer;
     private int amountCrafted;
 
-    public SlotCrafting(EntityPlayer player, InventoryCrafting craftingInventory, IInventory p_i45790_3_, int slotIndex, int xPosition, int yPosition)
+    public SlotCrafting(实体Player player, InventoryCrafting craftingInventory, IInventory p_i45790_3_, int slotIndex, int xPosition, int yPosition)
     {
         super(p_i45790_3_, slotIndex, xPosition, yPosition);
         this.thePlayer = player;
@@ -110,7 +110,7 @@ public class SlotCrafting extends Slot
         }
     }
 
-    public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
+    public void onPickupFromSlot(实体Player playerIn, ItemStack stack)
     {
         this.onCrafting(stack);
         ItemStack[] aitemstack = CraftingManager.getInstance().func_180303_b(this.craftMatrix, playerIn.worldObj);

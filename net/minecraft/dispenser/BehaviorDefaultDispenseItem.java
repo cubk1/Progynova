@@ -1,7 +1,7 @@
 package net.minecraft.dispenser;
 
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.实体Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -40,7 +40,7 @@ public class BehaviorDefaultDispenseItem implements IBehaviorDispenseItem
             d1 = d1 - 0.15625D;
         }
 
-        EntityItem entityitem = new EntityItem(worldIn, d0, d1, d2, stack);
+        实体Item entityitem = new 实体Item(worldIn, d0, d1, d2, stack);
         double d3 = worldIn.rand.nextDouble() * 0.1D + 0.2D;
         entityitem.通便X = (double)facing.getFrontOffsetX() * d3;
         entityitem.motionY = 0.20000000298023224D;

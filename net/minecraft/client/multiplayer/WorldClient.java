@@ -13,15 +13,15 @@ import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.particle.EntityFirework;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.item.实体Minecart;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.图像位置;
@@ -44,8 +44,8 @@ public class WorldClient extends World
 {
     private NetHandlerPlayClient sendQueue;
     private ChunkProviderClient clientChunkProvider;
-    private final Set<Entity> entityList = Sets.<Entity>newHashSet();
-    private final Set<Entity> entitySpawnQueue = Sets.<Entity>newHashSet();
+    private final Set<实体> 实体List = Sets.<实体>newHashSet();
+    private final Set<实体> 实体SpawnQueue = Sets.<实体>newHashSet();
     private final 我的手艺 mc = 我的手艺.得到我的手艺();
     private final Set<ChunkCoordIntPair> previousActiveChunkSet = Sets.<ChunkCoordIntPair>newHashSet();
     private boolean playerUpdate = false;
@@ -56,7 +56,7 @@ public class WorldClient extends World
         this.sendQueue = netHandler;
         this.getWorldInfo().setDifficulty(difficulty);
         this.provider.registerWorld(this);
-        this.setSpawnPoint(new BlockPos(8, 64, 8));
+        this.setSpawnPoint(new 阻止位置(8, 64, 8));
         this.chunkProvider = this.createChunkProvider();
         this.mapStorage = new SaveDataMemoryStorage();
         this.calculateInitialSkylight();
@@ -82,14 +82,14 @@ public class WorldClient extends World
 
         this.theProfiler.startSection("reEntryProcessing");
 
-        for (int i = 0; i < 10 && !this.entitySpawnQueue.isEmpty(); ++i)
+        for (int i = 0; i < 10 && !this.实体SpawnQueue.isEmpty(); ++i)
         {
-            Entity entity = (Entity)this.entitySpawnQueue.iterator().next();
-            this.entitySpawnQueue.remove(entity);
+            实体 实体 = (实体)this.实体SpawnQueue.iterator().next();
+            this.实体SpawnQueue.remove(实体);
 
-            if (!this.loadedEntityList.contains(entity))
+            if (!this.loaded实体List.contains(实体))
             {
-                this.spawnEntityInWorld(entity);
+                this.spawnEntityInWorld(实体);
             }
         }
 
@@ -160,97 +160,97 @@ public class WorldClient extends World
         }
     }
 
-    public boolean spawnEntityInWorld(Entity entityIn)
+    public boolean spawnEntityInWorld(实体 实体In)
     {
-        boolean flag = super.spawnEntityInWorld(entityIn);
-        this.entityList.add(entityIn);
+        boolean flag = super.spawnEntityInWorld(实体In);
+        this.实体List.add(实体In);
 
         if (!flag)
         {
-            this.entitySpawnQueue.add(entityIn);
+            this.实体SpawnQueue.add(实体In);
         }
-        else if (entityIn instanceof EntityMinecart)
+        else if (实体In instanceof 实体Minecart)
         {
-            this.mc.getSoundHandler().playSound(new MovingSoundMinecart((EntityMinecart)entityIn));
+            this.mc.getSoundHandler().playSound(new MovingSoundMinecart((实体Minecart) 实体In));
         }
 
         return flag;
     }
 
-    public void removeEntity(Entity entityIn)
+    public void removeEntity(实体 实体In)
     {
-        super.removeEntity(entityIn);
-        this.entityList.remove(entityIn);
+        super.removeEntity(实体In);
+        this.实体List.remove(实体In);
     }
 
-    protected void onEntityAdded(Entity entityIn)
+    protected void onEntityAdded(实体 实体In)
     {
-        super.onEntityAdded(entityIn);
+        super.onEntityAdded(实体In);
 
-        if (this.entitySpawnQueue.contains(entityIn))
+        if (this.实体SpawnQueue.contains(实体In))
         {
-            this.entitySpawnQueue.remove(entityIn);
+            this.实体SpawnQueue.remove(实体In);
         }
     }
 
-    protected void onEntityRemoved(Entity entityIn)
+    protected void onEntityRemoved(实体 实体In)
     {
-        super.onEntityRemoved(entityIn);
+        super.onEntityRemoved(实体In);
         boolean flag = false;
 
-        if (this.entityList.contains(entityIn))
+        if (this.实体List.contains(实体In))
         {
-            if (entityIn.isEntityAlive())
+            if (实体In.isEntityAlive())
             {
-                this.entitySpawnQueue.add(entityIn);
+                this.实体SpawnQueue.add(实体In);
                 flag = true;
             }
             else
             {
-                this.entityList.remove(entityIn);
+                this.实体List.remove(实体In);
             }
         }
     }
 
-    public void addEntityToWorld(int entityID, Entity entityToSpawn)
+    public void addEntityToWorld(int entityID, 实体 实体ToSpawn)
     {
-        Entity entity = this.getEntityByID(entityID);
+        实体 实体 = this.getEntityByID(entityID);
 
-        if (entity != null)
+        if (实体 != null)
         {
-            this.removeEntity(entity);
+            this.removeEntity(实体);
         }
 
-        this.entityList.add(entityToSpawn);
-        entityToSpawn.setEntityId(entityID);
+        this.实体List.add(实体ToSpawn);
+        实体ToSpawn.setEntityId(entityID);
 
-        if (!this.spawnEntityInWorld(entityToSpawn))
+        if (!this.spawnEntityInWorld(实体ToSpawn))
         {
-            this.entitySpawnQueue.add(entityToSpawn);
+            this.实体SpawnQueue.add(实体ToSpawn);
         }
 
-        this.entitiesById.addKey(entityID, entityToSpawn);
+        this.entitiesById.addKey(entityID, 实体ToSpawn);
     }
 
-    public Entity getEntityByID(int id)
+    public 实体 getEntityByID(int id)
     {
-        return (Entity)(id == this.mc.宇轩游玩者.getEntityId() ? this.mc.宇轩游玩者 : super.getEntityByID(id));
+        return (实体)(id == this.mc.宇轩游玩者.getEntityId() ? this.mc.宇轩游玩者 : super.getEntityByID(id));
     }
 
-    public Entity removeEntityFromWorld(int entityID)
+    public 实体 removeEntityFromWorld(int entityID)
     {
-        Entity entity = (Entity)this.entitiesById.removeObject(entityID);
+        实体 实体 = (实体)this.entitiesById.removeObject(entityID);
 
-        if (entity != null)
+        if (实体 != null)
         {
-            this.entityList.remove(entity);
-            this.removeEntity(entity);
+            this.实体List.remove(实体);
+            this.removeEntity(实体);
         }
 
-        return entity;
+        return 实体;
     }
 
-    public boolean invalidateRegionAndSetBlock(BlockPos pos, IBlockState state)
+    public boolean invalidateRegionAndSetBlock(阻止位置 pos, IBlockState state)
     {
         int i = pos.getX();
         int j = pos.getY();
@@ -279,7 +279,7 @@ public class WorldClient extends World
         Random random = new Random();
         ItemStack itemstack = this.mc.宇轩游玩者.getHeldItem();
         boolean flag = this.mc.玩家控制者.getCurrentGameType() == WorldSettings.GameType.CREATIVE && itemstack != null && Block.getBlockFromItem(itemstack.getItem()) == Blocks.barrier;
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int j = 0; j < 1000; ++j)
         {
@@ -299,54 +299,54 @@ public class WorldClient extends World
 
     public void removeAllEntities()
     {
-        this.loadedEntityList.removeAll(this.unloadedEntityList);
+        this.loaded实体List.removeAll(this.unloaded实体List);
 
-        for (int i = 0; i < this.unloadedEntityList.size(); ++i)
+        for (int i = 0; i < this.unloaded实体List.size(); ++i)
         {
-            Entity entity = (Entity)this.unloadedEntityList.get(i);
-            int j = entity.chunkCoordX;
-            int k = entity.chunkCoordZ;
+            实体 实体 = (实体)this.unloaded实体List.get(i);
+            int j = 实体.chunkCoordX;
+            int k = 实体.chunkCoordZ;
 
-            if (entity.addedToChunk && this.isChunkLoaded(j, k, true))
+            if (实体.addedToChunk && this.isChunkLoaded(j, k, true))
             {
-                this.getChunkFromChunkCoords(j, k).removeEntity(entity);
+                this.getChunkFromChunkCoords(j, k).removeEntity(实体);
             }
         }
 
-        for (int l = 0; l < this.unloadedEntityList.size(); ++l)
+        for (int l = 0; l < this.unloaded实体List.size(); ++l)
         {
-            this.onEntityRemoved((Entity)this.unloadedEntityList.get(l));
+            this.onEntityRemoved((实体)this.unloaded实体List.get(l));
         }
 
-        this.unloadedEntityList.clear();
+        this.unloaded实体List.clear();
 
-        for (int i1 = 0; i1 < this.loadedEntityList.size(); ++i1)
+        for (int i1 = 0; i1 < this.loaded实体List.size(); ++i1)
         {
-            Entity entity1 = (Entity)this.loadedEntityList.get(i1);
+            实体 实体1 = (实体)this.loaded实体List.get(i1);
 
-            if (entity1.ridingEntity != null)
+            if (实体1.riding实体 != null)
             {
-                if (!entity1.ridingEntity.isDead && entity1.ridingEntity.riddenByEntity == entity1)
+                if (!实体1.riding实体.isDead && 实体1.riding实体.riddenBy实体 == 实体1)
                 {
                     continue;
                 }
 
-                entity1.ridingEntity.riddenByEntity = null;
-                entity1.ridingEntity = null;
+                实体1.riding实体.riddenBy实体 = null;
+                实体1.riding实体 = null;
             }
 
-            if (entity1.isDead)
+            if (实体1.isDead)
             {
-                int j1 = entity1.chunkCoordX;
-                int k1 = entity1.chunkCoordZ;
+                int j1 = 实体1.chunkCoordX;
+                int k1 = 实体1.chunkCoordZ;
 
-                if (entity1.addedToChunk && this.isChunkLoaded(j1, k1, true))
+                if (实体1.addedToChunk && this.isChunkLoaded(j1, k1, true))
                 {
-                    this.getChunkFromChunkCoords(j1, k1).removeEntity(entity1);
+                    this.getChunkFromChunkCoords(j1, k1).removeEntity(实体1);
                 }
 
-                this.loadedEntityList.remove(i1--);
-                this.onEntityRemoved(entity1);
+                this.loaded实体List.remove(i1--);
+                this.onEntityRemoved(实体1);
             }
         }
     }
@@ -358,14 +358,14 @@ public class WorldClient extends World
         {
             public String call()
             {
-                return WorldClient.this.entityList.size() + " total; " + WorldClient.this.entityList.toString();
+                return WorldClient.this.实体List.size() + " total; " + WorldClient.this.实体List.toString();
             }
         });
         crashreportcategory.addCrashSectionCallable("Retry entities", new Callable<String>()
         {
             public String call()
             {
-                return WorldClient.this.entitySpawnQueue.size() + " total; " + WorldClient.this.entitySpawnQueue.toString();
+                return WorldClient.this.实体SpawnQueue.size() + " total; " + WorldClient.this.实体SpawnQueue.toString();
             }
         });
         crashreportcategory.addCrashSectionCallable("Server brand", new Callable<String>()
@@ -385,7 +385,7 @@ public class WorldClient extends World
         return crashreportcategory;
     }
 
-    public void playSoundAtPos(BlockPos pos, String soundName, float volume, float pitch, boolean distanceDelay)
+    public void playSoundAtPos(阻止位置 pos, String soundName, float volume, float pitch, boolean distanceDelay)
     {
         this.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, soundName, volume, pitch, distanceDelay);
     }
@@ -431,7 +431,7 @@ public class WorldClient extends World
         super.setWorldTime(time);
     }
 
-    public int getCombinedLight(BlockPos pos, int lightValue)
+    public int getCombinedLight(阻止位置 pos, int lightValue)
     {
         int i = super.getCombinedLight(pos, lightValue);
 
@@ -443,7 +443,7 @@ public class WorldClient extends World
         return i;
     }
 
-    public boolean setBlockState(BlockPos pos, IBlockState newState, int flags)
+    public boolean setBlockState(阻止位置 pos, IBlockState newState, int flags)
     {
         this.playerUpdate = this.isPlayerActing();
         boolean flag = super.setBlockState(pos, newState, flags);

@@ -33,70 +33,25 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLeashKnot;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityMinecartMobSpawner;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityEnderCrystal;
-import net.minecraft.entity.item.EntityEnderEye;
-import net.minecraft.entity.item.EntityEnderPearl;
-import net.minecraft.entity.item.EntityExpBottle;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.item.EntityMinecartTNT;
-import net.minecraft.entity.item.EntityPainting;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityCaveSpider;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityEndermite;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityGiantZombie;
-import net.minecraft.entity.monster.EntityGuardian;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntitySilverfish;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.monster.EntitySnowman;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityMooshroom;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityEgg;
-import net.minecraft.entity.projectile.EntityFishHook;
-import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.entity.projectile.EntityPotion;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.entity.ai.实体MinecartMobSpawner;
+import net.minecraft.entity.boss.实体Dragon;
+import net.minecraft.entity.item.*;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.*;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.entity.实体LeashKnot;
+import net.minecraft.entity.boss.实体Wither;
+import net.minecraft.entity.effect.实体LightningBolt;
+import net.minecraft.entity.item.实体TNTPrimed;
+import net.minecraft.entity.monster.实体Ghast;
+import net.minecraft.entity.passive.实体Bat;
+import net.minecraft.entity.projectile.实体Snowball;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.Vec3;
@@ -117,8 +72,8 @@ public class RenderManager
     private double renderPosZ;
     public TextureManager renderEngine;
     public World worldObj;
-    public Entity livingPlayer;
-    public Entity pointedEntity;
+    public 实体 livingPlayer;
+    public 实体 pointed实体;
     public float playerViewY;
     public float playerViewX;
     public GameSettings options;
@@ -133,65 +88,65 @@ public class RenderManager
     public RenderManager(TextureManager renderEngineIn, RenderItem itemRendererIn)
     {
         this.renderEngine = renderEngineIn;
-        this.entityRenderMap.put(EntityCaveSpider.class, new RenderCaveSpider(this));
-        this.entityRenderMap.put(EntitySpider.class, new RenderSpider(this));
-        this.entityRenderMap.put(EntityPig.class, new RenderPig(this, new ModelPig(), 0.7F));
-        this.entityRenderMap.put(EntitySheep.class, new RenderSheep(this, new ModelSheep2(), 0.7F));
-        this.entityRenderMap.put(EntityCow.class, new RenderCow(this, new ModelCow(), 0.7F));
-        this.entityRenderMap.put(EntityMooshroom.class, new RenderMooshroom(this, new ModelCow(), 0.7F));
-        this.entityRenderMap.put(EntityWolf.class, new RenderWolf(this, new ModelWolf(), 0.5F));
-        this.entityRenderMap.put(EntityChicken.class, new RenderChicken(this, new ModelChicken(), 0.3F));
-        this.entityRenderMap.put(EntityOcelot.class, new RenderOcelot(this, new ModelOcelot(), 0.4F));
-        this.entityRenderMap.put(EntityRabbit.class, new RenderRabbit(this, new ModelRabbit(), 0.3F));
-        this.entityRenderMap.put(EntitySilverfish.class, new RenderSilverfish(this));
-        this.entityRenderMap.put(EntityEndermite.class, new RenderEndermite(this));
-        this.entityRenderMap.put(EntityCreeper.class, new RenderCreeper(this));
-        this.entityRenderMap.put(EntityEnderman.class, new RenderEnderman(this));
-        this.entityRenderMap.put(EntitySnowman.class, new RenderSnowMan(this));
-        this.entityRenderMap.put(EntitySkeleton.class, new RenderSkeleton(this));
-        this.entityRenderMap.put(EntityWitch.class, new RenderWitch(this));
-        this.entityRenderMap.put(EntityBlaze.class, new RenderBlaze(this));
-        this.entityRenderMap.put(EntityPigZombie.class, new RenderPigZombie(this));
-        this.entityRenderMap.put(EntityZombie.class, new RenderZombie(this));
-        this.entityRenderMap.put(EntitySlime.class, new RenderSlime(this, new ModelSlime(16), 0.25F));
-        this.entityRenderMap.put(EntityMagmaCube.class, new RenderMagmaCube(this));
-        this.entityRenderMap.put(EntityGiantZombie.class, new RenderGiantZombie(this, new ModelZombie(), 0.5F, 6.0F));
-        this.entityRenderMap.put(EntityGhast.class, new RenderGhast(this));
-        this.entityRenderMap.put(EntitySquid.class, new RenderSquid(this, new ModelSquid(), 0.7F));
-        this.entityRenderMap.put(EntityVillager.class, new RenderVillager(this));
-        this.entityRenderMap.put(EntityIronGolem.class, new RenderIronGolem(this));
-        this.entityRenderMap.put(EntityBat.class, new RenderBat(this));
-        this.entityRenderMap.put(EntityGuardian.class, new RenderGuardian(this));
-        this.entityRenderMap.put(EntityDragon.class, new RenderDragon(this));
-        this.entityRenderMap.put(EntityEnderCrystal.class, new RenderEnderCrystal(this));
-        this.entityRenderMap.put(EntityWither.class, new RenderWither(this));
-        this.entityRenderMap.put(Entity.class, new RenderEntity(this));
-        this.entityRenderMap.put(EntityPainting.class, new RenderPainting(this));
-        this.entityRenderMap.put(EntityItemFrame.class, new RenderItemFrame(this, itemRendererIn));
-        this.entityRenderMap.put(EntityLeashKnot.class, new RenderLeashKnot(this));
-        this.entityRenderMap.put(EntityArrow.class, new RenderArrow(this));
-        this.entityRenderMap.put(EntitySnowball.class, new RenderSnowball(this, Items.snowball, itemRendererIn));
-        this.entityRenderMap.put(EntityEnderPearl.class, new RenderSnowball(this, Items.ender_pearl, itemRendererIn));
-        this.entityRenderMap.put(EntityEnderEye.class, new RenderSnowball(this, Items.ender_eye, itemRendererIn));
-        this.entityRenderMap.put(EntityEgg.class, new RenderSnowball(this, Items.egg, itemRendererIn));
-        this.entityRenderMap.put(EntityPotion.class, new RenderPotion(this, itemRendererIn));
-        this.entityRenderMap.put(EntityExpBottle.class, new RenderSnowball(this, Items.experience_bottle, itemRendererIn));
-        this.entityRenderMap.put(EntityFireworkRocket.class, new RenderSnowball(this, Items.fireworks, itemRendererIn));
-        this.entityRenderMap.put(EntityLargeFireball.class, new RenderFireball(this, 2.0F));
-        this.entityRenderMap.put(EntitySmallFireball.class, new RenderFireball(this, 0.5F));
-        this.entityRenderMap.put(EntityWitherSkull.class, new RenderWitherSkull(this));
-        this.entityRenderMap.put(EntityItem.class, new RenderEntityItem(this, itemRendererIn));
-        this.entityRenderMap.put(EntityXPOrb.class, new RenderXPOrb(this));
-        this.entityRenderMap.put(EntityTNTPrimed.class, new RenderTNTPrimed(this));
-        this.entityRenderMap.put(EntityFallingBlock.class, new RenderFallingBlock(this));
-        this.entityRenderMap.put(EntityArmorStand.class, new ArmorStandRenderer(this));
-        this.entityRenderMap.put(EntityMinecartTNT.class, new RenderTntMinecart(this));
-        this.entityRenderMap.put(EntityMinecartMobSpawner.class, new RenderMinecartMobSpawner(this));
-        this.entityRenderMap.put(EntityMinecart.class, new RenderMinecart(this));
-        this.entityRenderMap.put(EntityBoat.class, new RenderBoat(this));
-        this.entityRenderMap.put(EntityFishHook.class, new RenderFish(this));
-        this.entityRenderMap.put(EntityHorse.class, new RenderHorse(this, new ModelHorse(), 0.75F));
-        this.entityRenderMap.put(EntityLightningBolt.class, new RenderLightningBolt(this));
+        this.entityRenderMap.put(实体CaveSpider.class, new RenderCaveSpider(this));
+        this.entityRenderMap.put(实体Spider.class, new RenderSpider(this));
+        this.entityRenderMap.put(实体Pig.class, new RenderPig(this, new ModelPig(), 0.7F));
+        this.entityRenderMap.put(实体Sheep.class, new RenderSheep(this, new ModelSheep2(), 0.7F));
+        this.entityRenderMap.put(实体Cow.class, new RenderCow(this, new ModelCow(), 0.7F));
+        this.entityRenderMap.put(实体Mooshroom.class, new RenderMooshroom(this, new ModelCow(), 0.7F));
+        this.entityRenderMap.put(实体Wolf.class, new RenderWolf(this, new ModelWolf(), 0.5F));
+        this.entityRenderMap.put(实体Chicken.class, new RenderChicken(this, new ModelChicken(), 0.3F));
+        this.entityRenderMap.put(实体Ocelot.class, new RenderOcelot(this, new ModelOcelot(), 0.4F));
+        this.entityRenderMap.put(实体Rabbit.class, new RenderRabbit(this, new ModelRabbit(), 0.3F));
+        this.entityRenderMap.put(实体Silverfish.class, new RenderSilverfish(this));
+        this.entityRenderMap.put(实体Endermite.class, new RenderEndermite(this));
+        this.entityRenderMap.put(实体Creeper.class, new RenderCreeper(this));
+        this.entityRenderMap.put(实体Enderman.class, new RenderEnderman(this));
+        this.entityRenderMap.put(实体Snowman.class, new RenderSnowMan(this));
+        this.entityRenderMap.put(实体Skeleton.class, new RenderSkeleton(this));
+        this.entityRenderMap.put(实体Witch.class, new RenderWitch(this));
+        this.entityRenderMap.put(实体Blaze.class, new RenderBlaze(this));
+        this.entityRenderMap.put(实体PigZombie.class, new RenderPigZombie(this));
+        this.entityRenderMap.put(实体Zombie.class, new RenderZombie(this));
+        this.entityRenderMap.put(实体Slime.class, new RenderSlime(this, new ModelSlime(16), 0.25F));
+        this.entityRenderMap.put(实体MagmaCube.class, new RenderMagmaCube(this));
+        this.entityRenderMap.put(实体GiantZombie.class, new RenderGiantZombie(this, new ModelZombie(), 0.5F, 6.0F));
+        this.entityRenderMap.put(实体Ghast.class, new RenderGhast(this));
+        this.entityRenderMap.put(实体Squid.class, new RenderSquid(this, new ModelSquid(), 0.7F));
+        this.entityRenderMap.put(实体Villager.class, new RenderVillager(this));
+        this.entityRenderMap.put(实体IronGolem.class, new RenderIronGolem(this));
+        this.entityRenderMap.put(实体Bat.class, new RenderBat(this));
+        this.entityRenderMap.put(实体Guardian.class, new RenderGuardian(this));
+        this.entityRenderMap.put(实体Dragon.class, new RenderDragon(this));
+        this.entityRenderMap.put(实体EnderCrystal.class, new RenderEnderCrystal(this));
+        this.entityRenderMap.put(实体Wither.class, new RenderWither(this));
+        this.entityRenderMap.put(实体.class, new RenderEntity(this));
+        this.entityRenderMap.put(实体Painting.class, new RenderPainting(this));
+        this.entityRenderMap.put(实体ItemFrame.class, new RenderItemFrame(this, itemRendererIn));
+        this.entityRenderMap.put(实体LeashKnot.class, new RenderLeashKnot(this));
+        this.entityRenderMap.put(实体Arrow.class, new RenderArrow(this));
+        this.entityRenderMap.put(实体Snowball.class, new RenderSnowball(this, Items.snowball, itemRendererIn));
+        this.entityRenderMap.put(实体EnderPearl.class, new RenderSnowball(this, Items.ender_pearl, itemRendererIn));
+        this.entityRenderMap.put(实体EnderEye.class, new RenderSnowball(this, Items.ender_eye, itemRendererIn));
+        this.entityRenderMap.put(实体Egg.class, new RenderSnowball(this, Items.egg, itemRendererIn));
+        this.entityRenderMap.put(实体Potion.class, new RenderPotion(this, itemRendererIn));
+        this.entityRenderMap.put(实体ExpBottle.class, new RenderSnowball(this, Items.experience_bottle, itemRendererIn));
+        this.entityRenderMap.put(实体FireworkRocket.class, new RenderSnowball(this, Items.fireworks, itemRendererIn));
+        this.entityRenderMap.put(实体LargeFireball.class, new RenderFireball(this, 2.0F));
+        this.entityRenderMap.put(实体SmallFireball.class, new RenderFireball(this, 0.5F));
+        this.entityRenderMap.put(实体WitherSkull.class, new RenderWitherSkull(this));
+        this.entityRenderMap.put(实体Item.class, new RenderEntityItem(this, itemRendererIn));
+        this.entityRenderMap.put(实体XPOrb.class, new RenderXPOrb(this));
+        this.entityRenderMap.put(实体TNTPrimed.class, new RenderTNTPrimed(this));
+        this.entityRenderMap.put(实体FallingBlock.class, new RenderFallingBlock(this));
+        this.entityRenderMap.put(实体ArmorStand.class, new ArmorStandRenderer(this));
+        this.entityRenderMap.put(实体MinecartTNT.class, new RenderTntMinecart(this));
+        this.entityRenderMap.put(实体MinecartMobSpawner.class, new RenderMinecartMobSpawner(this));
+        this.entityRenderMap.put(实体Minecart.class, new RenderMinecart(this));
+        this.entityRenderMap.put(实体Boat.class, new RenderBoat(this));
+        this.entityRenderMap.put(实体FishHook.class, new RenderFish(this));
+        this.entityRenderMap.put(实体Horse.class, new RenderHorse(this, new ModelHorse(), 0.75F));
+        this.entityRenderMap.put(实体LightningBolt.class, new RenderLightningBolt(this));
         this.playerRenderer = new RenderPlayer(this);
         this.skinMap.put("default", this.playerRenderer);
         this.skinMap.put("slim", new RenderPlayer(this, true));
@@ -210,49 +165,49 @@ public class RenderManager
         this.renderPosZ = renderPosZIn;
     }
 
-    public <T extends Entity> Render<T> getEntityClassRenderObject(Class <? extends Entity > entityClass)
+    public <T extends 实体> Render<T> getEntityClassRenderObject(Class <? extends 实体> entityClass)
     {
-        Render <? extends Entity > render = (Render)this.entityRenderMap.get(entityClass);
+        Render <? extends 实体> render = (Render)this.entityRenderMap.get(entityClass);
 
-        if (render == null && entityClass != Entity.class)
+        if (render == null && entityClass != 实体.class)
         {
-            render = this.<Entity>getEntityClassRenderObject((Class <? extends Entity >)entityClass.getSuperclass());
+            render = this.<实体>getEntityClassRenderObject((Class <? extends 实体>)entityClass.getSuperclass());
             this.entityRenderMap.put(entityClass, render);
         }
 
         return (Render<T>)render;
     }
 
-    public <T extends Entity> Render<T> getEntityRenderObject(Entity entityIn)
+    public <T extends 实体> Render<T> getEntityRenderObject(实体 实体In)
     {
-        if (entityIn instanceof AbstractClientPlayer)
+        if (实体In instanceof AbstractClientPlayer)
         {
-            String s = ((AbstractClientPlayer)entityIn).getSkinType();
+            String s = ((AbstractClientPlayer) 实体In).getSkinType();
             RenderPlayer renderplayer = (RenderPlayer)this.skinMap.get(s);
             return (Render<T>)(renderplayer != null ? renderplayer : this.playerRenderer);
         }
         else
         {
-            return this.<T>getEntityClassRenderObject(entityIn.getClass());
+            return this.<T>getEntityClassRenderObject(实体In.getClass());
         }
     }
 
-    public void cacheActiveRenderInfo(World worldIn, FontRenderer textRendererIn, Entity livingPlayerIn, Entity pointedEntityIn, GameSettings optionsIn, float partialTicks)
+    public void cacheActiveRenderInfo(World worldIn, FontRenderer textRendererIn, 实体 livingPlayerIn, 实体 pointed实体In, GameSettings optionsIn, float partialTicks)
     {
         this.worldObj = worldIn;
         this.options = optionsIn;
         this.livingPlayer = livingPlayerIn;
-        this.pointedEntity = pointedEntityIn;
+        this.pointed实体 = pointed实体In;
         this.textRenderer = textRendererIn;
 
-        if (livingPlayerIn instanceof EntityLivingBase && ((EntityLivingBase)livingPlayerIn).isPlayerSleeping())
+        if (livingPlayerIn instanceof 实体LivingBase && ((实体LivingBase)livingPlayerIn).isPlayerSleeping())
         {
-            IBlockState iblockstate = worldIn.getBlockState(new BlockPos(livingPlayerIn));
+            IBlockState iblockstate = worldIn.getBlockState(new 阻止位置(livingPlayerIn));
             Block block = iblockstate.getBlock();
 
-            if (Reflector.callBoolean(block, Reflector.ForgeBlock_isBed, new Object[] {iblockstate, worldIn, new BlockPos(livingPlayerIn), (EntityLivingBase)livingPlayerIn}))
+            if (Reflector.callBoolean(block, Reflector.ForgeBlock_isBed, new Object[] {iblockstate, worldIn, new 阻止位置(livingPlayerIn), (实体LivingBase)livingPlayerIn}))
             {
-                EnumFacing enumfacing = (EnumFacing)Reflector.call(block, Reflector.ForgeBlock_getBedDirection, new Object[] {iblockstate, worldIn, new BlockPos(livingPlayerIn)});
+                EnumFacing enumfacing = (EnumFacing)Reflector.call(block, Reflector.ForgeBlock_getBedDirection, new Object[] {iblockstate, worldIn, new 阻止位置(livingPlayerIn)});
                 int i = enumfacing.getHorizontalIndex();
                 this.playerViewY = (float)(i * 90 + 180);
                 this.playerViewX = 0.0F;
@@ -275,9 +230,9 @@ public class RenderManager
             this.playerViewY += 180.0F;
         }
 
-        this.viewerPosX = livingPlayerIn.lastTickPosX + (livingPlayerIn.posX - livingPlayerIn.lastTickPosX) * (double)partialTicks;
-        this.viewerPosY = livingPlayerIn.lastTickPosY + (livingPlayerIn.posY - livingPlayerIn.lastTickPosY) * (double)partialTicks;
-        this.viewerPosZ = livingPlayerIn.lastTickPosZ + (livingPlayerIn.posZ - livingPlayerIn.lastTickPosZ) * (double)partialTicks;
+        this.viewerPosX = livingPlayerIn.lastTickPosX + (livingPlayerIn.X坐标 - livingPlayerIn.lastTickPosX) * (double)partialTicks;
+        this.viewerPosY = livingPlayerIn.lastTickPosY + (livingPlayerIn.Y坐标 - livingPlayerIn.lastTickPosY) * (double)partialTicks;
+        this.viewerPosZ = livingPlayerIn.lastTickPosZ + (livingPlayerIn.Z坐标 - livingPlayerIn.lastTickPosZ) * (double)partialTicks;
     }
 
     public void setPlayerViewY(float playerViewYIn)
@@ -305,33 +260,33 @@ public class RenderManager
         return this.debugBoundingBox;
     }
 
-    public boolean renderEntitySimple(Entity entityIn, float partialTicks)
+    public boolean renderEntitySimple(实体 实体In, float partialTicks)
     {
-        return this.renderEntityStatic(entityIn, partialTicks, false);
+        return this.renderEntityStatic(实体In, partialTicks, false);
     }
 
-    public boolean shouldRender(Entity entityIn, ICamera camera, double camX, double camY, double camZ)
+    public boolean shouldRender(实体 实体In, ICamera camera, double camX, double camY, double camZ)
     {
-        Render<Entity> render = this.<Entity>getEntityRenderObject(entityIn);
-        return render != null && render.shouldRender(entityIn, camera, camX, camY, camZ);
+        Render<实体> render = this.<实体>getEntityRenderObject(实体In);
+        return render != null && render.shouldRender(实体In, camera, camX, camY, camZ);
     }
 
-    public boolean renderEntityStatic(Entity entity, float partialTicks, boolean hideDebugBox)
+    public boolean renderEntityStatic(实体 实体, float partialTicks, boolean hideDebugBox)
     {
-        if (entity.已存在的刻度 == 0)
+        if (实体.已存在的刻度 == 0)
         {
-            entity.lastTickPosX = entity.posX;
-            entity.lastTickPosY = entity.posY;
-            entity.lastTickPosZ = entity.posZ;
+            实体.lastTickPosX = 实体.X坐标;
+            实体.lastTickPosY = 实体.Y坐标;
+            实体.lastTickPosZ = 实体.Z坐标;
         }
 
-        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
-        double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
-        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
-        float f = entity.prevRotationYaw + (entity.旋转侧滑 - entity.prevRotationYaw) * partialTicks;
-        int i = entity.getBrightnessForRender(partialTicks);
+        double d0 = 实体.lastTickPosX + (实体.X坐标 - 实体.lastTickPosX) * (double)partialTicks;
+        double d1 = 实体.lastTickPosY + (实体.Y坐标 - 实体.lastTickPosY) * (double)partialTicks;
+        double d2 = 实体.lastTickPosZ + (实体.Z坐标 - 实体.lastTickPosZ) * (double)partialTicks;
+        float f = 实体.prevRotationYaw + (实体.旋转侧滑 - 实体.prevRotationYaw) * partialTicks;
+        int i = 实体.getBrightnessForRender(partialTicks);
 
-        if (entity.isBurning())
+        if (实体.isBurning())
         {
             i = 15728880;
         }
@@ -340,39 +295,39 @@ public class RenderManager
         int k = i / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j / 1.0F, (float)k / 1.0F);
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
-        return this.doRenderEntity(entity, d0 - this.renderPosX, d1 - this.renderPosY, d2 - this.renderPosZ, f, partialTicks, hideDebugBox);
+        return this.doRenderEntity(实体, d0 - this.renderPosX, d1 - this.renderPosY, d2 - this.renderPosZ, f, partialTicks, hideDebugBox);
     }
 
-    public void renderWitherSkull(Entity entityIn, float partialTicks)
+    public void renderWitherSkull(实体 实体In, float partialTicks)
     {
-        double d0 = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double)partialTicks;
-        double d1 = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double)partialTicks;
-        double d2 = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * (double)partialTicks;
-        Render<Entity> render = this.<Entity>getEntityRenderObject(entityIn);
+        double d0 = 实体In.lastTickPosX + (实体In.X坐标 - 实体In.lastTickPosX) * (double)partialTicks;
+        double d1 = 实体In.lastTickPosY + (实体In.Y坐标 - 实体In.lastTickPosY) * (double)partialTicks;
+        double d2 = 实体In.lastTickPosZ + (实体In.Z坐标 - 实体In.lastTickPosZ) * (double)partialTicks;
+        Render<实体> render = this.<实体>getEntityRenderObject(实体In);
 
         if (render != null && this.renderEngine != null)
         {
-            int i = entityIn.getBrightnessForRender(partialTicks);
+            int i = 实体In.getBrightnessForRender(partialTicks);
             int j = i % 65536;
             int k = i / 65536;
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j / 1.0F, (float)k / 1.0F);
             光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
-            render.renderName(entityIn, d0 - this.renderPosX, d1 - this.renderPosY, d2 - this.renderPosZ);
+            render.renderName(实体In, d0 - this.renderPosX, d1 - this.renderPosY, d2 - this.renderPosZ);
         }
     }
 
-    public boolean renderEntityWithPosYaw(Entity entityIn, double x, double y, double z, float entityYaw, float partialTicks)
+    public boolean renderEntityWithPosYaw(实体 实体In, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        return this.doRenderEntity(entityIn, x, y, z, entityYaw, partialTicks, false);
+        return this.doRenderEntity(实体In, x, y, z, entityYaw, partialTicks, false);
     }
 
-    public boolean doRenderEntity(Entity entity, double x, double y, double z, float entityYaw, float partialTicks, boolean hideDebugBox)
+    public boolean doRenderEntity(实体 实体, double x, double y, double z, float entityYaw, float partialTicks, boolean hideDebugBox)
     {
-        Render<Entity> render = null;
+        Render<实体> render = null;
 
         try
         {
-            render = this.<Entity>getEntityRenderObject(entity);
+            render = this.<实体>getEntityRenderObject(实体);
 
             if (render != null && this.renderEngine != null)
             {
@@ -388,7 +343,7 @@ public class RenderManager
                         this.renderRender = render;
                     }
 
-                    render.doRender(entity, x, y, z, entityYaw, partialTicks);
+                    render.doRender(实体, x, y, z, entityYaw, partialTicks);
                 }
                 catch (Throwable throwable2)
                 {
@@ -399,7 +354,7 @@ public class RenderManager
                 {
                     if (!this.renderOutlines)
                     {
-                        render.doRenderShadowAndFire(entity, x, y, z, entityYaw, partialTicks);
+                        render.doRenderShadowAndFire(实体, x, y, z, entityYaw, partialTicks);
                     }
                 }
                 catch (Throwable throwable1)
@@ -407,11 +362,11 @@ public class RenderManager
                     throw new ReportedException(CrashReport.makeCrashReport(throwable1, "Post-rendering entity in world"));
                 }
 
-                if (this.debugBoundingBox && !entity.isInvisible() && !hideDebugBox)
+                if (this.debugBoundingBox && !实体.isInvisible() && !hideDebugBox)
                 {
                     try
                     {
-                        this.renderDebugBoundingBox(entity, x, y, z, entityYaw, partialTicks);
+                        this.renderDebugBoundingBox(实体, x, y, z, entityYaw, partialTicks);
                     }
                     catch (Throwable throwable)
                     {
@@ -430,7 +385,7 @@ public class RenderManager
         {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable3, "Rendering entity in world");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Entity being rendered");
-            entity.addEntityCrashInfo(crashreportcategory);
+            实体.addEntityCrashInfo(crashreportcategory);
             CrashReportCategory crashreportcategory1 = crashreport.makeCategory("Renderer details");
             crashreportcategory1.addCrashSection("Assigned renderer", render);
             crashreportcategory1.addCrashSection("Location", CrashReportCategory.getCoordinateInfo(x, y, z));
@@ -440,7 +395,7 @@ public class RenderManager
         }
     }
 
-    private void renderDebugBoundingBox(Entity entityIn, double x, double y, double z, float entityYaw, float partialTicks)
+    private void renderDebugBoundingBox(实体 实体In, double x, double y, double z, float entityYaw, float partialTicks)
     {
         if (!Shaders.isShadowPass)
         {
@@ -449,23 +404,23 @@ public class RenderManager
             光照状态经理.disableLighting();
             光照状态经理.disableCull();
             光照状态经理.禁用混合品();
-            float f = entityIn.width / 2.0F;
-            AxisAlignedBB axisalignedbb = entityIn.getEntityBoundingBox();
-            AxisAlignedBB axisalignedbb1 = new AxisAlignedBB(axisalignedbb.minX - entityIn.posX + x, axisalignedbb.minY - entityIn.posY + y, axisalignedbb.minZ - entityIn.posZ + z, axisalignedbb.maxX - entityIn.posX + x, axisalignedbb.maxY - entityIn.posY + y, axisalignedbb.maxZ - entityIn.posZ + z);
+            float f = 实体In.width / 2.0F;
+            AxisAlignedBB axisalignedbb = 实体In.getEntityBoundingBox();
+            AxisAlignedBB axisalignedbb1 = new AxisAlignedBB(axisalignedbb.minX - 实体In.X坐标 + x, axisalignedbb.minY - 实体In.Y坐标 + y, axisalignedbb.minZ - 实体In.Z坐标 + z, axisalignedbb.maxX - 实体In.X坐标 + x, axisalignedbb.maxY - 实体In.Y坐标 + y, axisalignedbb.maxZ - 实体In.Z坐标 + z);
             RenderGlobal.drawOutlinedBoundingBox(axisalignedbb1, 255, 255, 255, 255);
 
-            if (entityIn instanceof EntityLivingBase)
+            if (实体In instanceof 实体LivingBase)
             {
                 float f1 = 0.01F;
-                RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(x - (double)f, y + (double)entityIn.getEyeHeight() - 0.009999999776482582D, z - (double)f, x + (double)f, y + (double)entityIn.getEyeHeight() + 0.009999999776482582D, z + (double)f), 255, 0, 0, 255);
+                RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(x - (double)f, y + (double) 实体In.getEyeHeight() - 0.009999999776482582D, z - (double)f, x + (double)f, y + (double) 实体In.getEyeHeight() + 0.009999999776482582D, z + (double)f), 255, 0, 0, 255);
             }
 
             Tessellator tessellator = Tessellator.getInstance();
             WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-            Vec3 vec3 = entityIn.getLook(partialTicks);
+            Vec3 vec3 = 实体In.getLook(partialTicks);
             worldrenderer.begin(3, DefaultVertexFormats.POSITION_COLOR);
-            worldrenderer.pos(x, y + (double)entityIn.getEyeHeight(), z).color(0, 0, 255, 255).endVertex();
-            worldrenderer.pos(x + vec3.xCoord * 2.0D, y + (double)entityIn.getEyeHeight() + vec3.yCoord * 2.0D, z + vec3.zCoord * 2.0D).color(0, 0, 255, 255).endVertex();
+            worldrenderer.pos(x, y + (double) 实体In.getEyeHeight(), z).color(0, 0, 255, 255).endVertex();
+            worldrenderer.pos(x + vec3.xCoord * 2.0D, y + (double) 实体In.getEyeHeight() + vec3.yCoord * 2.0D, z + vec3.zCoord * 2.0D).color(0, 0, 255, 255).endVertex();
             tessellator.draw();
             光照状态经理.启用手感();
             光照状态经理.enableLighting();

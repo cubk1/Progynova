@@ -3,7 +3,7 @@ package net.minecraft.world.gen;
 import java.util.Random;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -144,7 +144,7 @@ public class MapGenRavine extends MapGenBase
 
                     if (!flag2)
                     {
-                        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
                         for (int j3 = k2; j3 < k; ++j3)
                         {

@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -13,7 +13,7 @@ import net.minecraft.network.play.server.S23PacketBlockChange;
 import net.minecraft.network.play.server.S38PacketPlayerListItem;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
@@ -23,14 +23,14 @@ import net.minecraft.world.WorldSettings;
 public class ItemInWorldManager
 {
     public World theWorld;
-    public EntityPlayerMP thisPlayerMP;
+    public 实体PlayerMP thisPlayerMP;
     private WorldSettings.GameType gameType = WorldSettings.GameType.NOT_SET;
     private boolean isDestroyingBlock;
     private int initialDamage;
-    private BlockPos field_180240_f = BlockPos.ORIGIN;
+    private 阻止位置 field_180240_f = 阻止位置.ORIGIN;
     private int curblockDamage;
     private boolean receivedFinishDiggingPacket;
-    private BlockPos field_180241_i = BlockPos.ORIGIN;
+    private 阻止位置 field_180241_i = 阻止位置.ORIGIN;
     private int initialBlockDamage;
     private int durabilityRemainingOnBlock = -1;
 
@@ -44,7 +44,7 @@ public class ItemInWorldManager
         this.gameType = type;
         type.configurePlayerCapabilities(this.thisPlayerMP.capabilities);
         this.thisPlayerMP.sendPlayerAbilities();
-        this.thisPlayerMP.mcServer.getConfigurationManager().sendPacketToAllPlayers(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.UPDATE_GAME_MODE, new EntityPlayerMP[] {this.thisPlayerMP}));
+        this.thisPlayerMP.mcServer.getConfigurationManager().sendPacketToAllPlayers(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.UPDATE_GAME_MODE, new 实体PlayerMP[] {this.thisPlayerMP}));
     }
 
     public WorldSettings.GameType getGameType()
@@ -128,11 +128,11 @@ public class ItemInWorldManager
         }
     }
 
-    public void onBlockClicked(BlockPos pos, EnumFacing side)
+    public void onBlockClicked(阻止位置 pos, EnumFacing side)
     {
         if (this.isCreative())
         {
-            if (!this.theWorld.extinguishFire((EntityPlayer)null, pos, side))
+            if (!this.theWorld.extinguishFire((实体Player)null, pos, side))
             {
                 this.tryHarvestBlock(pos);
             }
@@ -164,7 +164,7 @@ public class ItemInWorldManager
                 }
             }
 
-            this.theWorld.extinguishFire((EntityPlayer)null, pos, side);
+            this.theWorld.extinguishFire((实体Player)null, pos, side);
             this.initialDamage = this.curblockDamage;
             float f = 1.0F;
 
@@ -189,7 +189,7 @@ public class ItemInWorldManager
         }
     }
 
-    public void blockRemoving(BlockPos pos)
+    public void blockRemoving(阻止位置 pos)
     {
         if (pos.equals(this.field_180240_f))
         {
@@ -223,7 +223,7 @@ public class ItemInWorldManager
         this.theWorld.sendBlockBreakProgress(this.thisPlayerMP.getEntityId(), this.field_180240_f, -1);
     }
 
-    private boolean removeBlock(BlockPos pos)
+    private boolean removeBlock(阻止位置 pos)
     {
         IBlockState iblockstate = this.theWorld.getBlockState(pos);
         iblockstate.getBlock().onBlockHarvested(this.theWorld, pos, iblockstate, this.thisPlayerMP);
@@ -237,7 +237,7 @@ public class ItemInWorldManager
         return flag;
     }
 
-    public boolean tryHarvestBlock(BlockPos pos)
+    public boolean tryHarvestBlock(阻止位置 pos)
     {
         if (this.gameType.isCreative() && this.thisPlayerMP.getHeldItem() != null && this.thisPlayerMP.getHeldItem().getItem() instanceof ItemSword)
         {
@@ -303,7 +303,7 @@ public class ItemInWorldManager
         }
     }
 
-    public boolean tryUseItem(EntityPlayer player, World worldIn, ItemStack stack)
+    public boolean tryUseItem(实体Player player, World worldIn, ItemStack stack)
     {
         if (this.gameType == WorldSettings.GameType.SPECTATOR)
         {
@@ -336,7 +336,7 @@ public class ItemInWorldManager
 
                 if (!player.isUsingItem())
                 {
-                    ((EntityPlayerMP)player).sendContainerToPlayer(player.inventoryContainer);
+                    ((实体PlayerMP)player).sendContainerToPlayer(player.inventoryContainer);
                 }
 
                 return true;
@@ -348,7 +348,7 @@ public class ItemInWorldManager
         }
     }
 
-    public boolean activateBlockOrUseItem(EntityPlayer player, World worldIn, ItemStack stack, BlockPos pos, EnumFacing side, float offsetX, float offsetY, float offsetZ)
+    public boolean activateBlockOrUseItem(实体Player player, World worldIn, ItemStack stack, 阻止位置 pos, EnumFacing side, float offsetX, float offsetY, float offsetZ)
     {
         if (this.gameType == WorldSettings.GameType.SPECTATOR)
         {

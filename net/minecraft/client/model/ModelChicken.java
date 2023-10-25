@@ -1,7 +1,7 @@
 package net.minecraft.client.model;
 
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.MathHelper;
 
 public class ModelChicken extends ModelBase
@@ -44,9 +44,9 @@ public class ModelChicken extends ModelBase
         this.leftWing.setRotationPoint(4.0F, (float)(-3 + i), 0.0F);
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
 
         if (this.isChild)
         {
@@ -80,7 +80,7 @@ public class ModelChicken extends ModelBase
         }
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
         this.head.rotateAngleX = headPitch / (180F / (float)Math.PI);
         this.head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);

@@ -21,9 +21,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体Living;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,7 +32,7 @@ import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
@@ -57,15 +57,15 @@ public abstract class World implements IBlockAccess
 {
     private int seaLevel = 63;
     protected boolean scheduledUpdatesAreImmediate;
-    public final List<Entity> loadedEntityList = Lists.<Entity>newArrayList();
-    protected final List<Entity> unloadedEntityList = Lists.<Entity>newArrayList();
+    public final List<实体> loaded实体List = Lists.<实体>newArrayList();
+    protected final List<实体> unloaded实体List = Lists.<实体>newArrayList();
     public final List<TileEntity> loadedTileEntityList = Lists.<TileEntity>newArrayList();
     public final List<TileEntity> tickableTileEntities = Lists.<TileEntity>newArrayList();
     private final List<TileEntity> addedTileEntityList = Lists.<TileEntity>newArrayList();
     private final List<TileEntity> tileEntitiesToBeRemoved = Lists.<TileEntity>newArrayList();
-    public final List<EntityPlayer> playerEntities = Lists.<EntityPlayer>newArrayList();
-    public final List<Entity> weatherEffects = Lists.<Entity>newArrayList();
-    protected final IntHashMap<Entity> entitiesById = new IntHashMap();
+    public final List<实体Player> playerEntities = Lists.<实体Player>newArrayList();
+    public final List<实体> weatherEffects = Lists.<实体>newArrayList();
+    protected final IntHashMap<实体> entitiesById = new IntHashMap();
     private long cloudColour = 16777215L;
     private int skylightSubtracted;
     protected int updateLCG = (new Random()).nextInt();
@@ -115,7 +115,7 @@ public abstract class World implements IBlockAccess
         return this;
     }
 
-    public BiomeGenBase getBiomeGenForCoords(final BlockPos pos)
+    public BiomeGenBase getBiomeGenForCoords(final 阻止位置 pos)
     {
         if (this.isBlockLoaded(pos))
         {
@@ -159,14 +159,14 @@ public abstract class World implements IBlockAccess
 
     public void setInitialSpawnLocation()
     {
-        this.setSpawnPoint(new BlockPos(8, 64, 8));
+        this.setSpawnPoint(new 阻止位置(8, 64, 8));
     }
 
-    public Block getGroundAboveSeaLevel(BlockPos pos)
+    public Block getGroundAboveSeaLevel(阻止位置 pos)
     {
-        BlockPos blockpos;
+        阻止位置 blockpos;
 
-        for (blockpos = new BlockPos(pos.getX(), this.getSeaLevel(), pos.getZ()); !this.isAirBlock(blockpos.up()); blockpos = blockpos.up())
+        for (blockpos = new 阻止位置(pos.getX(), this.getSeaLevel(), pos.getZ()); !this.isAirBlock(blockpos.up()); blockpos = blockpos.up())
         {
             ;
         }
@@ -174,42 +174,42 @@ public abstract class World implements IBlockAccess
         return this.getBlockState(blockpos).getBlock();
     }
 
-    private boolean isValid(BlockPos pos)
+    private boolean isValid(阻止位置 pos)
     {
         return pos.getX() >= -30000000 && pos.getZ() >= -30000000 && pos.getX() < 30000000 && pos.getZ() < 30000000 && pos.getY() >= 0 && pos.getY() < 256;
     }
 
-    public boolean isAirBlock(BlockPos pos)
+    public boolean isAirBlock(阻止位置 pos)
     {
         return this.getBlockState(pos).getBlock().getMaterial() == Material.air;
     }
 
-    public boolean isBlockLoaded(BlockPos pos)
+    public boolean isBlockLoaded(阻止位置 pos)
     {
         return this.isBlockLoaded(pos, true);
     }
 
-    public boolean isBlockLoaded(BlockPos pos, boolean allowEmpty)
+    public boolean isBlockLoaded(阻止位置 pos, boolean allowEmpty)
     {
         return !this.isValid(pos) ? false : this.isChunkLoaded(pos.getX() >> 4, pos.getZ() >> 4, allowEmpty);
     }
 
-    public boolean isAreaLoaded(BlockPos center, int radius)
+    public boolean isAreaLoaded(阻止位置 center, int radius)
     {
         return this.isAreaLoaded(center, radius, true);
     }
 
-    public boolean isAreaLoaded(BlockPos center, int radius, boolean allowEmpty)
+    public boolean isAreaLoaded(阻止位置 center, int radius, boolean allowEmpty)
     {
         return this.isAreaLoaded(center.getX() - radius, center.getY() - radius, center.getZ() - radius, center.getX() + radius, center.getY() + radius, center.getZ() + radius, allowEmpty);
     }
 
-    public boolean isAreaLoaded(BlockPos from, BlockPos to)
+    public boolean isAreaLoaded(阻止位置 from, 阻止位置 to)
     {
         return this.isAreaLoaded(from, to, true);
     }
 
-    public boolean isAreaLoaded(BlockPos from, BlockPos to, boolean allowEmpty)
+    public boolean isAreaLoaded(阻止位置 from, 阻止位置 to, boolean allowEmpty)
     {
         return this.isAreaLoaded(from.getX(), from.getY(), from.getZ(), to.getX(), to.getY(), to.getZ(), allowEmpty);
     }
@@ -257,7 +257,7 @@ public abstract class World implements IBlockAccess
         return this.chunkProvider.chunkExists(x, z) && (allowEmpty || !this.chunkProvider.provideChunk(x, z).isEmpty());
     }
 
-    public Chunk getChunkFromBlockCoords(BlockPos pos)
+    public Chunk getChunkFromBlockCoords(阻止位置 pos)
     {
         return this.getChunkFromChunkCoords(pos.getX() >> 4, pos.getZ() >> 4);
     }
@@ -267,7 +267,7 @@ public abstract class World implements IBlockAccess
         return this.chunkProvider.provideChunk(chunkX, chunkZ);
     }
 
-    public boolean setBlockState(BlockPos pos, IBlockState newState, int flags)
+    public boolean setBlockState(阻止位置 pos, IBlockState newState, int flags)
     {
         if (!this.isValid(pos))
         {
@@ -318,12 +318,12 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public boolean setBlockToAir(BlockPos pos)
+    public boolean setBlockToAir(阻止位置 pos)
     {
         return this.setBlockState(pos, Blocks.air.getDefaultState(), 3);
     }
 
-    public boolean destroyBlock(BlockPos pos, boolean dropBlock)
+    public boolean destroyBlock(阻止位置 pos, boolean dropBlock)
     {
         IBlockState iblockstate = this.getBlockState(pos);
         Block block = iblockstate.getBlock();
@@ -345,12 +345,12 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public boolean setBlockState(BlockPos pos, IBlockState state)
+    public boolean setBlockState(阻止位置 pos, IBlockState state)
     {
         return this.setBlockState(pos, state, 3);
     }
 
-    public void markBlockForUpdate(BlockPos pos)
+    public void markBlockForUpdate(阻止位置 pos)
     {
         for (int i = 0; i < this.worldAccesses.size(); ++i)
         {
@@ -358,7 +358,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void notifyNeighborsRespectDebug(BlockPos pos, Block blockType)
+    public void notifyNeighborsRespectDebug(阻止位置 pos, Block blockType)
     {
         if (this.worldInfo.getTerrainType() != WorldType.DEBUG_WORLD)
         {
@@ -379,14 +379,14 @@ public abstract class World implements IBlockAccess
         {
             for (int j = x2; j <= z2; ++j)
             {
-                this.checkLightFor(EnumSkyBlock.SKY, new BlockPos(x1, j, z1));
+                this.checkLightFor(EnumSkyBlock.SKY, new 阻止位置(x1, j, z1));
             }
         }
 
         this.markBlockRangeForRenderUpdate(x1, x2, z1, x1, z2, z1);
     }
 
-    public void markBlockRangeForRenderUpdate(BlockPos rangeMin, BlockPos rangeMax)
+    public void markBlockRangeForRenderUpdate(阻止位置 rangeMin, 阻止位置 rangeMax)
     {
         this.markBlockRangeForRenderUpdate(rangeMin.getX(), rangeMin.getY(), rangeMin.getZ(), rangeMax.getX(), rangeMax.getY(), rangeMax.getZ());
     }
@@ -399,7 +399,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void notifyNeighborsOfStateChange(BlockPos pos, Block blockType)
+    public void notifyNeighborsOfStateChange(阻止位置 pos, Block blockType)
     {
         this.notifyBlockOfStateChange(pos.west(), blockType);
         this.notifyBlockOfStateChange(pos.east(), blockType);
@@ -409,7 +409,7 @@ public abstract class World implements IBlockAccess
         this.notifyBlockOfStateChange(pos.south(), blockType);
     }
 
-    public void notifyNeighborsOfStateExcept(BlockPos pos, Block blockType, EnumFacing skipSide)
+    public void notifyNeighborsOfStateExcept(阻止位置 pos, Block blockType, EnumFacing skipSide)
     {
         if (skipSide != EnumFacing.WEST)
         {
@@ -442,7 +442,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void notifyBlockOfStateChange(BlockPos pos, final Block blockIn)
+    public void notifyBlockOfStateChange(阻止位置 pos, final Block blockIn)
     {
         if (!this.isRemote)
         {
@@ -476,17 +476,17 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public boolean isBlockTickPending(BlockPos pos, Block blockType)
+    public boolean isBlockTickPending(阻止位置 pos, Block blockType)
     {
         return false;
     }
 
-    public boolean canSeeSky(BlockPos pos)
+    public boolean canSeeSky(阻止位置 pos)
     {
         return this.getChunkFromBlockCoords(pos).canSeeSky(pos);
     }
 
-    public boolean canBlockSeeSky(BlockPos pos)
+    public boolean canBlockSeeSky(阻止位置 pos)
     {
         if (pos.getY() >= this.getSeaLevel())
         {
@@ -494,7 +494,7 @@ public abstract class World implements IBlockAccess
         }
         else
         {
-            BlockPos blockpos = new BlockPos(pos.getX(), this.getSeaLevel(), pos.getZ());
+            阻止位置 blockpos = new 阻止位置(pos.getX(), this.getSeaLevel(), pos.getZ());
 
             if (!this.canSeeSky(blockpos))
             {
@@ -517,7 +517,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public int getLight(BlockPos pos)
+    public int getLight(阻止位置 pos)
     {
         if (pos.getY() < 0)
         {
@@ -527,19 +527,19 @@ public abstract class World implements IBlockAccess
         {
             if (pos.getY() >= 256)
             {
-                pos = new BlockPos(pos.getX(), 255, pos.getZ());
+                pos = new 阻止位置(pos.getX(), 255, pos.getZ());
             }
 
             return this.getChunkFromBlockCoords(pos).getLightSubtracted(pos, 0);
         }
     }
 
-    public int getLightFromNeighbors(BlockPos pos)
+    public int getLightFromNeighbors(阻止位置 pos)
     {
         return this.getLight(pos, true);
     }
 
-    public int getLight(BlockPos pos, boolean checkNeighbors)
+    public int getLight(阻止位置 pos, boolean checkNeighbors)
     {
         if (pos.getX() >= -30000000 && pos.getZ() >= -30000000 && pos.getX() < 30000000 && pos.getZ() < 30000000)
         {
@@ -581,7 +581,7 @@ public abstract class World implements IBlockAccess
             {
                 if (pos.getY() >= 256)
                 {
-                    pos = new BlockPos(pos.getX(), 255, pos.getZ());
+                    pos = new 阻止位置(pos.getX(), 255, pos.getZ());
                 }
 
                 Chunk chunk = this.getChunkFromBlockCoords(pos);
@@ -594,7 +594,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public BlockPos getHeight(BlockPos pos)
+    public 阻止位置 getHeight(阻止位置 pos)
     {
         int i;
 
@@ -614,7 +614,7 @@ public abstract class World implements IBlockAccess
             i = this.getSeaLevel() + 1;
         }
 
-        return new BlockPos(pos.getX(), i, pos.getZ());
+        return new 阻止位置(pos.getX(), i, pos.getZ());
     }
 
     public int getChunksLowestHorizon(int x, int z)
@@ -637,7 +637,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public int getLightFromNeighborsFor(EnumSkyBlock type, BlockPos pos)
+    public int getLightFromNeighborsFor(EnumSkyBlock type, 阻止位置 pos)
     {
         if (this.provider.getHasNoSky() && type == EnumSkyBlock.SKY)
         {
@@ -647,7 +647,7 @@ public abstract class World implements IBlockAccess
         {
             if (pos.getY() < 0)
             {
-                pos = new BlockPos(pos.getX(), 0, pos.getZ());
+                pos = new 阻止位置(pos.getX(), 0, pos.getZ());
             }
 
             if (!this.isValid(pos))
@@ -696,11 +696,11 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public int getLightFor(EnumSkyBlock type, BlockPos pos)
+    public int getLightFor(EnumSkyBlock type, 阻止位置 pos)
     {
         if (pos.getY() < 0)
         {
-            pos = new BlockPos(pos.getX(), 0, pos.getZ());
+            pos = new 阻止位置(pos.getX(), 0, pos.getZ());
         }
 
         if (!this.isValid(pos))
@@ -718,7 +718,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void setLightFor(EnumSkyBlock type, BlockPos pos, int lightValue)
+    public void setLightFor(EnumSkyBlock type, 阻止位置 pos, int lightValue)
     {
         if (this.isValid(pos))
         {
@@ -731,7 +731,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void notifyLightSet(BlockPos pos)
+    public void notifyLightSet(阻止位置 pos)
     {
         for (int i = 0; i < this.worldAccesses.size(); ++i)
         {
@@ -739,7 +739,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public int getCombinedLight(BlockPos pos, int lightValue)
+    public int getCombinedLight(阻止位置 pos, int lightValue)
     {
         int i = this.getLightFromNeighborsFor(EnumSkyBlock.SKY, pos);
         int j = this.getLightFromNeighborsFor(EnumSkyBlock.BLOCK, pos);
@@ -752,12 +752,12 @@ public abstract class World implements IBlockAccess
         return i << 20 | j << 4;
     }
 
-    public float getLightBrightness(BlockPos pos)
+    public float getLightBrightness(阻止位置 pos)
     {
         return this.provider.getLightBrightnessTable()[this.getLightFromNeighbors(pos)];
     }
 
-    public IBlockState getBlockState(BlockPos pos)
+    public IBlockState getBlockState(阻止位置 pos)
     {
         if (!this.isValid(pos))
         {
@@ -797,7 +797,7 @@ public abstract class World implements IBlockAccess
                 int l = MathHelper.floor_double(vec31.xCoord);
                 int i1 = MathHelper.floor_double(vec31.yCoord);
                 int j1 = MathHelper.floor_double(vec31.zCoord);
-                BlockPos blockpos = new BlockPos(l, i1, j1);
+                阻止位置 blockpos = new 阻止位置(l, i1, j1);
                 IBlockState iblockstate = this.getBlockState(blockpos);
                 Block block = iblockstate.getBlock();
 
@@ -930,7 +930,7 @@ public abstract class World implements IBlockAccess
                     l = MathHelper.floor_double(vec31.xCoord) - (enumfacing == EnumFacing.EAST ? 1 : 0);
                     i1 = MathHelper.floor_double(vec31.yCoord) - (enumfacing == EnumFacing.UP ? 1 : 0);
                     j1 = MathHelper.floor_double(vec31.zCoord) - (enumfacing == EnumFacing.SOUTH ? 1 : 0);
-                    blockpos = new BlockPos(l, i1, j1);
+                    blockpos = new 阻止位置(l, i1, j1);
                     IBlockState iblockstate1 = this.getBlockState(blockpos);
                     Block block1 = iblockstate1.getBlock();
 
@@ -965,19 +965,19 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void playSoundAtEntity(Entity entityIn, String name, float volume, float pitch)
+    public void playSoundAtEntity(实体 实体In, String name, float volume, float pitch)
     {
         for (int i = 0; i < this.worldAccesses.size(); ++i)
         {
-            ((IWorldAccess)this.worldAccesses.get(i)).playSound(name, entityIn.posX, entityIn.posY, entityIn.posZ, volume, pitch);
+            ((IWorldAccess)this.worldAccesses.get(i)).playSound(name, 实体In.X坐标, 实体In.Y坐标, 实体In.Z坐标, volume, pitch);
         }
     }
 
-    public void playSoundToNearExcept(EntityPlayer player, String name, float volume, float pitch)
+    public void playSoundToNearExcept(实体Player player, String name, float volume, float pitch)
     {
         for (int i = 0; i < this.worldAccesses.size(); ++i)
         {
-            ((IWorldAccess)this.worldAccesses.get(i)).playSoundToNearExcept(player, name, player.posX, player.posY, player.posZ, volume, pitch);
+            ((IWorldAccess)this.worldAccesses.get(i)).playSoundToNearExcept(player, name, player.X坐标, player.Y坐标, player.Z坐标, volume, pitch);
         }
     }
 
@@ -993,7 +993,7 @@ public abstract class World implements IBlockAccess
     {
     }
 
-    public void playRecord(BlockPos pos, String name)
+    public void playRecord(阻止位置 pos, String name)
     {
         for (int i = 0; i < this.worldAccesses.size(); ++i)
         {
@@ -1019,19 +1019,19 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public boolean addWeatherEffect(Entity entityIn)
+    public boolean addWeatherEffect(实体 实体In)
     {
-        this.weatherEffects.add(entityIn);
+        this.weatherEffects.add(实体In);
         return true;
     }
 
-    public boolean spawnEntityInWorld(Entity entityIn)
+    public boolean spawnEntityInWorld(实体 实体In)
     {
-        int i = MathHelper.floor_double(entityIn.posX / 16.0D);
-        int j = MathHelper.floor_double(entityIn.posZ / 16.0D);
-        boolean flag = entityIn.forceSpawn;
+        int i = MathHelper.floor_double(实体In.X坐标 / 16.0D);
+        int j = MathHelper.floor_double(实体In.Z坐标 / 16.0D);
+        boolean flag = 实体In.forceSpawn;
 
-        if (entityIn instanceof EntityPlayer)
+        if (实体In instanceof 实体Player)
         {
             flag = true;
         }
@@ -1042,78 +1042,78 @@ public abstract class World implements IBlockAccess
         }
         else
         {
-            if (entityIn instanceof EntityPlayer)
+            if (实体In instanceof 实体Player)
             {
-                EntityPlayer entityplayer = (EntityPlayer)entityIn;
+                实体Player entityplayer = (实体Player) 实体In;
                 this.playerEntities.add(entityplayer);
                 this.updateAllPlayersSleepingFlag();
             }
 
-            this.getChunkFromChunkCoords(i, j).addEntity(entityIn);
-            this.loadedEntityList.add(entityIn);
-            this.onEntityAdded(entityIn);
+            this.getChunkFromChunkCoords(i, j).addEntity(实体In);
+            this.loaded实体List.add(实体In);
+            this.onEntityAdded(实体In);
             return true;
         }
     }
 
-    protected void onEntityAdded(Entity entityIn)
+    protected void onEntityAdded(实体 实体In)
     {
         for (int i = 0; i < this.worldAccesses.size(); ++i)
         {
-            ((IWorldAccess)this.worldAccesses.get(i)).onEntityAdded(entityIn);
+            ((IWorldAccess)this.worldAccesses.get(i)).onEntityAdded(实体In);
         }
     }
 
-    protected void onEntityRemoved(Entity entityIn)
+    protected void onEntityRemoved(实体 实体In)
     {
         for (int i = 0; i < this.worldAccesses.size(); ++i)
         {
-            ((IWorldAccess)this.worldAccesses.get(i)).onEntityRemoved(entityIn);
+            ((IWorldAccess)this.worldAccesses.get(i)).onEntityRemoved(实体In);
         }
     }
 
-    public void removeEntity(Entity entityIn)
+    public void removeEntity(实体 实体In)
     {
-        if (entityIn.riddenByEntity != null)
+        if (实体In.riddenBy实体 != null)
         {
-            entityIn.riddenByEntity.mountEntity((Entity)null);
+            实体In.riddenBy实体.mountEntity((实体)null);
         }
 
-        if (entityIn.ridingEntity != null)
+        if (实体In.riding实体 != null)
         {
-            entityIn.mountEntity((Entity)null);
+            实体In.mountEntity((实体)null);
         }
 
-        entityIn.setDead();
+        实体In.setDead();
 
-        if (entityIn instanceof EntityPlayer)
+        if (实体In instanceof 实体Player)
         {
-            this.playerEntities.remove(entityIn);
+            this.playerEntities.remove(实体In);
             this.updateAllPlayersSleepingFlag();
-            this.onEntityRemoved(entityIn);
+            this.onEntityRemoved(实体In);
         }
     }
 
-    public void removePlayerEntityDangerously(Entity entityIn)
+    public void removePlayerEntityDangerously(实体 实体In)
     {
-        entityIn.setDead();
+        实体In.setDead();
 
-        if (entityIn instanceof EntityPlayer)
+        if (实体In instanceof 实体Player)
         {
-            this.playerEntities.remove(entityIn);
+            this.playerEntities.remove(实体In);
             this.updateAllPlayersSleepingFlag();
         }
 
-        int i = entityIn.chunkCoordX;
-        int j = entityIn.chunkCoordZ;
+        int i = 实体In.chunkCoordX;
+        int j = 实体In.chunkCoordZ;
 
-        if (entityIn.addedToChunk && this.isChunkLoaded(i, j, true))
+        if (实体In.addedToChunk && this.isChunkLoaded(i, j, true))
         {
-            this.getChunkFromChunkCoords(i, j).removeEntity(entityIn);
+            this.getChunkFromChunkCoords(i, j).removeEntity(实体In);
         }
 
-        this.loadedEntityList.remove(entityIn);
-        this.onEntityRemoved(entityIn);
+        this.loaded实体List.remove(实体In);
+        this.onEntityRemoved(实体In);
     }
 
     public void addWorldAccess(IWorldAccess worldAccess)
@@ -1126,7 +1126,7 @@ public abstract class World implements IBlockAccess
         this.worldAccesses.remove(worldAccess);
     }
 
-    public List<AxisAlignedBB> getCollidingBoundingBoxes(Entity entityIn, AxisAlignedBB bb)
+    public List<AxisAlignedBB> getCollidingBoundingBoxes(实体 实体In, AxisAlignedBB bb)
     {
         List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
         int i = MathHelper.floor_double(bb.minX);
@@ -1136,10 +1136,10 @@ public abstract class World implements IBlockAccess
         int i1 = MathHelper.floor_double(bb.minZ);
         int j1 = MathHelper.floor_double(bb.maxZ + 1.0D);
         WorldBorder worldborder = this.getWorldBorder();
-        boolean flag = entityIn.isOutsideBorder();
-        boolean flag1 = this.isInsideBorder(worldborder, entityIn);
+        boolean flag = 实体In.isOutsideBorder();
+        boolean flag1 = this.isInsideBorder(worldborder, 实体In);
         IBlockState iblockstate = Blocks.stone.getDefaultState();
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int k1 = i; k1 < j; ++k1)
         {
@@ -1153,11 +1153,11 @@ public abstract class World implements IBlockAccess
 
                         if (flag && flag1)
                         {
-                            entityIn.setOutsideBorder(false);
+                            实体In.setOutsideBorder(false);
                         }
                         else if (!flag && !flag1)
                         {
-                            entityIn.setOutsideBorder(true);
+                            实体In.setOutsideBorder(true);
                         }
 
                         IBlockState iblockstate1 = iblockstate;
@@ -1167,27 +1167,27 @@ public abstract class World implements IBlockAccess
                             iblockstate1 = this.getBlockState(blockpos$mutableblockpos);
                         }
 
-                        iblockstate1.getBlock().addCollisionBoxesToList(this, blockpos$mutableblockpos, iblockstate1, bb, list, entityIn);
+                        iblockstate1.getBlock().addCollisionBoxesToList(this, blockpos$mutableblockpos, iblockstate1, bb, list, 实体In);
                     }
                 }
             }
         }
 
         double d0 = 0.25D;
-        List<Entity> list1 = this.getEntitiesWithinAABBExcludingEntity(entityIn, bb.expand(d0, d0, d0));
+        List<实体> list1 = this.getEntitiesWithinAABBExcludingEntity(实体In, bb.expand(d0, d0, d0));
 
         for (int j2 = 0; j2 < list1.size(); ++j2)
         {
-            if (entityIn.riddenByEntity != list1 && entityIn.ridingEntity != list1)
+            if (实体In.riddenBy实体 != list1 && 实体In.riding实体 != list1)
             {
-                AxisAlignedBB axisalignedbb = ((Entity)list1.get(j2)).getCollisionBoundingBox();
+                AxisAlignedBB axisalignedbb = ((实体)list1.get(j2)).getCollisionBoundingBox();
 
                 if (axisalignedbb != null && axisalignedbb.intersectsWith(bb))
                 {
                     list.add(axisalignedbb);
                 }
 
-                axisalignedbb = entityIn.getCollisionBox((Entity)list1.get(j2));
+                axisalignedbb = 实体In.getCollisionBox((实体)list1.get(j2));
 
                 if (axisalignedbb != null && axisalignedbb.intersectsWith(bb))
                 {
@@ -1199,14 +1199,14 @@ public abstract class World implements IBlockAccess
         return list;
     }
 
-    public boolean isInsideBorder(WorldBorder worldBorderIn, Entity entityIn)
+    public boolean isInsideBorder(WorldBorder worldBorderIn, 实体 实体In)
     {
         double d0 = worldBorderIn.minX();
         double d1 = worldBorderIn.minZ();
         double d2 = worldBorderIn.maxX();
         double d3 = worldBorderIn.maxZ();
 
-        if (entityIn.isOutsideBorder())
+        if (实体In.isOutsideBorder())
         {
             ++d0;
             ++d1;
@@ -1221,7 +1221,7 @@ public abstract class World implements IBlockAccess
             ++d3;
         }
 
-        return entityIn.posX > d0 && entityIn.posX < d2 && entityIn.posZ > d1 && entityIn.posZ < d3;
+        return 实体In.X坐标 > d0 && 实体In.X坐标 < d2 && 实体In.Z坐标 > d1 && 实体In.Z坐标 < d3;
     }
 
     public List<AxisAlignedBB> getCollisionBoxes(AxisAlignedBB bb)
@@ -1233,7 +1233,7 @@ public abstract class World implements IBlockAccess
         int l = MathHelper.floor_double(bb.maxY + 1.0D);
         int i1 = MathHelper.floor_double(bb.minZ);
         int j1 = MathHelper.floor_double(bb.maxZ + 1.0D);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int k1 = i; k1 < j; ++k1)
         {
@@ -1255,7 +1255,7 @@ public abstract class World implements IBlockAccess
                             iblockstate = Blocks.bedrock.getDefaultState();
                         }
 
-                        iblockstate.getBlock().addCollisionBoxesToList(this, blockpos$mutableblockpos, iblockstate, bb, list, (Entity)null);
+                        iblockstate.getBlock().addCollisionBoxesToList(this, blockpos$mutableblockpos, iblockstate, bb, list, (实体)null);
                     }
                 }
             }
@@ -1287,15 +1287,15 @@ public abstract class World implements IBlockAccess
         return f1 * 0.8F + 0.2F;
     }
 
-    public Vec3 getSkyColor(Entity entityIn, float partialTicks)
+    public Vec3 getSkyColor(实体 实体In, float partialTicks)
     {
         float f = this.getCelestialAngle(partialTicks);
         float f1 = MathHelper.cos(f * (float)Math.PI * 2.0F) * 2.0F + 0.5F;
         f1 = MathHelper.clamp_float(f1, 0.0F, 1.0F);
-        int i = MathHelper.floor_double(entityIn.posX);
-        int j = MathHelper.floor_double(entityIn.posY);
-        int k = MathHelper.floor_double(entityIn.posZ);
-        BlockPos blockpos = new BlockPos(i, j, k);
+        int i = MathHelper.floor_double(实体In.X坐标);
+        int j = MathHelper.floor_double(实体In.Y坐标);
+        int k = MathHelper.floor_double(实体In.Z坐标);
+        阻止位置 blockpos = new 阻止位置(i, j, k);
         BiomeGenBase biomegenbase = this.getBiomeGenForCoords(blockpos);
         float f2 = biomegenbase.getFloatTemperature(blockpos);
         int l = biomegenbase.getSkyColorByTemp(f2);
@@ -1408,18 +1408,18 @@ public abstract class World implements IBlockAccess
         return this.provider.getFogColor(f, partialTicks);
     }
 
-    public BlockPos getPrecipitationHeight(BlockPos pos)
+    public 阻止位置 getPrecipitationHeight(阻止位置 pos)
     {
         return this.getChunkFromBlockCoords(pos).getPrecipitationHeight(pos);
     }
 
-    public BlockPos getTopSolidOrLiquidBlock(BlockPos pos)
+    public 阻止位置 getTopSolidOrLiquidBlock(阻止位置 pos)
     {
         Chunk chunk = this.getChunkFromBlockCoords(pos);
-        BlockPos blockpos;
-        BlockPos blockpos1;
+        阻止位置 blockpos;
+        阻止位置 blockpos1;
 
-        for (blockpos = new BlockPos(pos.getX(), chunk.getTopFilledSegment() + 16, pos.getZ()); blockpos.getY() >= 0; blockpos = blockpos1)
+        for (blockpos = new 阻止位置(pos.getX(), chunk.getTopFilledSegment() + 16, pos.getZ()); blockpos.getY() >= 0; blockpos = blockpos1)
         {
             blockpos1 = blockpos.down();
             Material material = chunk.getBlock(blockpos1).getMaterial();
@@ -1441,15 +1441,15 @@ public abstract class World implements IBlockAccess
         return f1 * f1 * 0.5F;
     }
 
-    public void scheduleUpdate(BlockPos pos, Block blockIn, int delay)
+    public void scheduleUpdate(阻止位置 pos, Block blockIn, int delay)
     {
     }
 
-    public void updateBlockTick(BlockPos pos, Block blockIn, int delay, int priority)
+    public void updateBlockTick(阻止位置 pos, Block blockIn, int delay, int priority)
     {
     }
 
-    public void scheduleBlockUpdate(BlockPos pos, Block blockIn, int delay, int priority)
+    public void scheduleBlockUpdate(阻止位置 pos, Block blockIn, int delay, int priority)
     {
     }
 
@@ -1460,87 +1460,87 @@ public abstract class World implements IBlockAccess
 
         for (int i = 0; i < this.weatherEffects.size(); ++i)
         {
-            Entity entity = (Entity)this.weatherEffects.get(i);
+            实体 实体 = (实体)this.weatherEffects.get(i);
 
             try
             {
-                ++entity.已存在的刻度;
-                entity.onUpdate();
+                ++实体.已存在的刻度;
+                实体.onUpdate();
             }
             catch (Throwable throwable2)
             {
                 CrashReport crashreport = CrashReport.makeCrashReport(throwable2, "Ticking entity");
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Entity being ticked");
 
-                if (entity == null)
+                if (实体 == null)
                 {
                     crashreportcategory.addCrashSection("Entity", "~~NULL~~");
                 }
                 else
                 {
-                    entity.addEntityCrashInfo(crashreportcategory);
+                    实体.addEntityCrashInfo(crashreportcategory);
                 }
 
                 throw new ReportedException(crashreport);
             }
 
-            if (entity.isDead)
+            if (实体.isDead)
             {
                 this.weatherEffects.remove(i--);
             }
         }
 
         this.theProfiler.endStartSection("remove");
-        this.loadedEntityList.removeAll(this.unloadedEntityList);
+        this.loaded实体List.removeAll(this.unloaded实体List);
 
-        for (int k = 0; k < this.unloadedEntityList.size(); ++k)
+        for (int k = 0; k < this.unloaded实体List.size(); ++k)
         {
-            Entity entity1 = (Entity)this.unloadedEntityList.get(k);
-            int j = entity1.chunkCoordX;
-            int l1 = entity1.chunkCoordZ;
+            实体 实体1 = (实体)this.unloaded实体List.get(k);
+            int j = 实体1.chunkCoordX;
+            int l1 = 实体1.chunkCoordZ;
 
-            if (entity1.addedToChunk && this.isChunkLoaded(j, l1, true))
+            if (实体1.addedToChunk && this.isChunkLoaded(j, l1, true))
             {
-                this.getChunkFromChunkCoords(j, l1).removeEntity(entity1);
+                this.getChunkFromChunkCoords(j, l1).removeEntity(实体1);
             }
         }
 
-        for (int l = 0; l < this.unloadedEntityList.size(); ++l)
+        for (int l = 0; l < this.unloaded实体List.size(); ++l)
         {
-            this.onEntityRemoved((Entity)this.unloadedEntityList.get(l));
+            this.onEntityRemoved((实体)this.unloaded实体List.get(l));
         }
 
-        this.unloadedEntityList.clear();
+        this.unloaded实体List.clear();
         this.theProfiler.endStartSection("regular");
 
-        for (int i1 = 0; i1 < this.loadedEntityList.size(); ++i1)
+        for (int i1 = 0; i1 < this.loaded实体List.size(); ++i1)
         {
-            Entity entity2 = (Entity)this.loadedEntityList.get(i1);
+            实体 实体2 = (实体)this.loaded实体List.get(i1);
 
-            if (entity2.ridingEntity != null)
+            if (实体2.riding实体 != null)
             {
-                if (!entity2.ridingEntity.isDead && entity2.ridingEntity.riddenByEntity == entity2)
+                if (!实体2.riding实体.isDead && 实体2.riding实体.riddenBy实体 == 实体2)
                 {
                     continue;
                 }
 
-                entity2.ridingEntity.riddenByEntity = null;
-                entity2.ridingEntity = null;
+                实体2.riding实体.riddenBy实体 = null;
+                实体2.riding实体 = null;
             }
 
             this.theProfiler.startSection("tick");
 
-            if (!entity2.isDead)
+            if (!实体2.isDead)
             {
                 try
                 {
-                    this.updateEntity(entity2);
+                    this.updateEntity(实体2);
                 }
                 catch (Throwable throwable1)
                 {
                     CrashReport crashreport1 = CrashReport.makeCrashReport(throwable1, "Ticking entity");
                     CrashReportCategory crashreportcategory2 = crashreport1.makeCategory("Entity being ticked");
-                    entity2.addEntityCrashInfo(crashreportcategory2);
+                    实体2.addEntityCrashInfo(crashreportcategory2);
                     throw new ReportedException(crashreport1);
                 }
             }
@@ -1548,18 +1548,18 @@ public abstract class World implements IBlockAccess
             this.theProfiler.endSection();
             this.theProfiler.startSection("remove");
 
-            if (entity2.isDead)
+            if (实体2.isDead)
             {
-                int k1 = entity2.chunkCoordX;
-                int i2 = entity2.chunkCoordZ;
+                int k1 = 实体2.chunkCoordX;
+                int i2 = 实体2.chunkCoordZ;
 
-                if (entity2.addedToChunk && this.isChunkLoaded(k1, i2, true))
+                if (实体2.addedToChunk && this.isChunkLoaded(k1, i2, true))
                 {
-                    this.getChunkFromChunkCoords(k1, i2).removeEntity(entity2);
+                    this.getChunkFromChunkCoords(k1, i2).removeEntity(实体2);
                 }
 
-                this.loadedEntityList.remove(i1--);
-                this.onEntityRemoved(entity2);
+                this.loaded实体List.remove(i1--);
+                this.onEntityRemoved(实体2);
             }
 
             this.theProfiler.endSection();
@@ -1575,7 +1575,7 @@ public abstract class World implements IBlockAccess
 
             if (!tileentity.isInvalid() && tileentity.hasWorldObj())
             {
-                BlockPos blockpos = tileentity.getPos();
+                阻止位置 blockpos = tileentity.getPos();
 
                 if (this.isBlockLoaded(blockpos) && this.worldBorder.contains(blockpos))
                 {
@@ -1677,100 +1677,100 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void updateEntity(Entity ent)
+    public void updateEntity(实体 ent)
     {
         this.updateEntityWithOptionalForce(ent, true);
     }
 
-    public void updateEntityWithOptionalForce(Entity entityIn, boolean forceUpdate)
+    public void updateEntityWithOptionalForce(实体 实体In, boolean forceUpdate)
     {
-        int i = MathHelper.floor_double(entityIn.posX);
-        int j = MathHelper.floor_double(entityIn.posZ);
+        int i = MathHelper.floor_double(实体In.X坐标);
+        int j = MathHelper.floor_double(实体In.Z坐标);
         int k = 32;
 
         if (!forceUpdate || this.isAreaLoaded(i - k, 0, j - k, i + k, 0, j + k, true))
         {
-            entityIn.lastTickPosX = entityIn.posX;
-            entityIn.lastTickPosY = entityIn.posY;
-            entityIn.lastTickPosZ = entityIn.posZ;
-            entityIn.prevRotationYaw = entityIn.旋转侧滑;
-            entityIn.prevRotationPitch = entityIn.rotationPitch;
+            实体In.lastTickPosX = 实体In.X坐标;
+            实体In.lastTickPosY = 实体In.Y坐标;
+            实体In.lastTickPosZ = 实体In.Z坐标;
+            实体In.prevRotationYaw = 实体In.旋转侧滑;
+            实体In.prevRotationPitch = 实体In.rotationPitch;
 
-            if (forceUpdate && entityIn.addedToChunk)
+            if (forceUpdate && 实体In.addedToChunk)
             {
-                ++entityIn.已存在的刻度;
+                ++实体In.已存在的刻度;
 
-                if (entityIn.ridingEntity != null)
+                if (实体In.riding实体 != null)
                 {
-                    entityIn.updateRidden();
+                    实体In.updateRidden();
                 }
                 else
                 {
-                    entityIn.onUpdate();
+                    实体In.onUpdate();
                 }
             }
 
             this.theProfiler.startSection("chunkCheck");
 
-            if (Double.isNaN(entityIn.posX) || Double.isInfinite(entityIn.posX))
+            if (Double.isNaN(实体In.X坐标) || Double.isInfinite(实体In.X坐标))
             {
-                entityIn.posX = entityIn.lastTickPosX;
+                实体In.X坐标 = 实体In.lastTickPosX;
             }
 
-            if (Double.isNaN(entityIn.posY) || Double.isInfinite(entityIn.posY))
+            if (Double.isNaN(实体In.Y坐标) || Double.isInfinite(实体In.Y坐标))
             {
-                entityIn.posY = entityIn.lastTickPosY;
+                实体In.Y坐标 = 实体In.lastTickPosY;
             }
 
-            if (Double.isNaN(entityIn.posZ) || Double.isInfinite(entityIn.posZ))
+            if (Double.isNaN(实体In.Z坐标) || Double.isInfinite(实体In.Z坐标))
             {
-                entityIn.posZ = entityIn.lastTickPosZ;
+                实体In.Z坐标 = 实体In.lastTickPosZ;
             }
 
-            if (Double.isNaN((double)entityIn.rotationPitch) || Double.isInfinite((double)entityIn.rotationPitch))
+            if (Double.isNaN((double) 实体In.rotationPitch) || Double.isInfinite((double) 实体In.rotationPitch))
             {
-                entityIn.rotationPitch = entityIn.prevRotationPitch;
+                实体In.rotationPitch = 实体In.prevRotationPitch;
             }
 
-            if (Double.isNaN((double)entityIn.旋转侧滑) || Double.isInfinite((double)entityIn.旋转侧滑))
+            if (Double.isNaN((double) 实体In.旋转侧滑) || Double.isInfinite((double) 实体In.旋转侧滑))
             {
-                entityIn.旋转侧滑 = entityIn.prevRotationYaw;
+                实体In.旋转侧滑 = 实体In.prevRotationYaw;
             }
 
-            int l = MathHelper.floor_double(entityIn.posX / 16.0D);
-            int i1 = MathHelper.floor_double(entityIn.posY / 16.0D);
-            int j1 = MathHelper.floor_double(entityIn.posZ / 16.0D);
+            int l = MathHelper.floor_double(实体In.X坐标 / 16.0D);
+            int i1 = MathHelper.floor_double(实体In.Y坐标 / 16.0D);
+            int j1 = MathHelper.floor_double(实体In.Z坐标 / 16.0D);
 
-            if (!entityIn.addedToChunk || entityIn.chunkCoordX != l || entityIn.chunkCoordY != i1 || entityIn.chunkCoordZ != j1)
+            if (!实体In.addedToChunk || 实体In.chunkCoordX != l || 实体In.chunkCoordY != i1 || 实体In.chunkCoordZ != j1)
             {
-                if (entityIn.addedToChunk && this.isChunkLoaded(entityIn.chunkCoordX, entityIn.chunkCoordZ, true))
+                if (实体In.addedToChunk && this.isChunkLoaded(实体In.chunkCoordX, 实体In.chunkCoordZ, true))
                 {
-                    this.getChunkFromChunkCoords(entityIn.chunkCoordX, entityIn.chunkCoordZ).removeEntityAtIndex(entityIn, entityIn.chunkCoordY);
+                    this.getChunkFromChunkCoords(实体In.chunkCoordX, 实体In.chunkCoordZ).removeEntityAtIndex(实体In, 实体In.chunkCoordY);
                 }
 
                 if (this.isChunkLoaded(l, j1, true))
                 {
-                    entityIn.addedToChunk = true;
-                    this.getChunkFromChunkCoords(l, j1).addEntity(entityIn);
+                    实体In.addedToChunk = true;
+                    this.getChunkFromChunkCoords(l, j1).addEntity(实体In);
                 }
                 else
                 {
-                    entityIn.addedToChunk = false;
+                    实体In.addedToChunk = false;
                 }
             }
 
             this.theProfiler.endSection();
 
-            if (forceUpdate && entityIn.addedToChunk && entityIn.riddenByEntity != null)
+            if (forceUpdate && 实体In.addedToChunk && 实体In.riddenBy实体 != null)
             {
-                if (!entityIn.riddenByEntity.isDead && entityIn.riddenByEntity.ridingEntity == entityIn)
+                if (!实体In.riddenBy实体.isDead && 实体In.riddenBy实体.riding实体 == 实体In)
                 {
-                    this.updateEntity(entityIn.riddenByEntity);
+                    this.updateEntity(实体In.riddenBy实体);
                 }
                 else
                 {
-                    entityIn.riddenByEntity.ridingEntity = null;
-                    entityIn.riddenByEntity = null;
+                    实体In.riddenBy实体.riding实体 = null;
+                    实体In.riddenBy实体 = null;
                 }
             }
         }
@@ -1778,18 +1778,18 @@ public abstract class World implements IBlockAccess
 
     public boolean checkNoEntityCollision(AxisAlignedBB bb)
     {
-        return this.checkNoEntityCollision(bb, (Entity)null);
+        return this.checkNoEntityCollision(bb, (实体)null);
     }
 
-    public boolean checkNoEntityCollision(AxisAlignedBB bb, Entity entityIn)
+    public boolean checkNoEntityCollision(AxisAlignedBB bb, 实体 实体In)
     {
-        List<Entity> list = this.getEntitiesWithinAABBExcludingEntity((Entity)null, bb);
+        List<实体> list = this.getEntitiesWithinAABBExcludingEntity((实体)null, bb);
 
         for (int i = 0; i < list.size(); ++i)
         {
-            Entity entity = (Entity)list.get(i);
+            实体 实体 = (实体)list.get(i);
 
-            if (!entity.isDead && entity.preventEntitySpawning && entity != entityIn && (entityIn == null || entityIn.ridingEntity != entity && entityIn.riddenByEntity != entity))
+            if (!实体.isDead && 实体.preventEntitySpawning && 实体 != 实体In && (实体In == null || 实体In.riding实体 != 实体 && 实体In.riddenBy实体 != 实体))
             {
                 return false;
             }
@@ -1806,7 +1806,7 @@ public abstract class World implements IBlockAccess
         int l = MathHelper.floor_double(bb.maxY);
         int i1 = MathHelper.floor_double(bb.minZ);
         int j1 = MathHelper.floor_double(bb.maxZ);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int k1 = i; k1 <= j; ++k1)
         {
@@ -1835,7 +1835,7 @@ public abstract class World implements IBlockAccess
         int l = MathHelper.floor_double(bb.maxY);
         int i1 = MathHelper.floor_double(bb.minZ);
         int j1 = MathHelper.floor_double(bb.maxZ);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int k1 = i; k1 <= j; ++k1)
         {
@@ -1867,7 +1867,7 @@ public abstract class World implements IBlockAccess
 
         if (this.isAreaLoaded(i, k, i1, j, l, j1, true))
         {
-            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+            阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
             for (int k1 = i; k1 < j; ++k1)
             {
@@ -1889,7 +1889,7 @@ public abstract class World implements IBlockAccess
         return false;
     }
 
-    public boolean handleMaterialAcceleration(AxisAlignedBB bb, Material materialIn, Entity entityIn)
+    public boolean handleMaterialAcceleration(AxisAlignedBB bb, Material materialIn, 实体 实体In)
     {
         int i = MathHelper.floor_double(bb.minX);
         int j = MathHelper.floor_double(bb.maxX + 1.0D);
@@ -1906,7 +1906,7 @@ public abstract class World implements IBlockAccess
         {
             boolean flag = false;
             Vec3 vec3 = new Vec3(0.0D, 0.0D, 0.0D);
-            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+            阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
             for (int k1 = i; k1 < j; ++k1)
             {
@@ -1925,20 +1925,20 @@ public abstract class World implements IBlockAccess
                             if ((double)l >= d0)
                             {
                                 flag = true;
-                                vec3 = block.modifyAcceleration(this, blockpos$mutableblockpos, entityIn, vec3);
+                                vec3 = block.modifyAcceleration(this, blockpos$mutableblockpos, 实体In, vec3);
                             }
                         }
                     }
                 }
             }
 
-            if (vec3.lengthVector() > 0.0D && entityIn.isPushedByWater())
+            if (vec3.lengthVector() > 0.0D && 实体In.isPushedByWater())
             {
                 vec3 = vec3.normalize();
                 double d1 = 0.014D;
-                entityIn.通便X += vec3.xCoord * d1;
-                entityIn.motionY += vec3.yCoord * d1;
-                entityIn.通便Z += vec3.zCoord * d1;
+                实体In.通便X += vec3.xCoord * d1;
+                实体In.motionY += vec3.yCoord * d1;
+                实体In.通便Z += vec3.zCoord * d1;
             }
 
             return flag;
@@ -1953,7 +1953,7 @@ public abstract class World implements IBlockAccess
         int l = MathHelper.floor_double(bb.maxY + 1.0D);
         int i1 = MathHelper.floor_double(bb.minZ);
         int j1 = MathHelper.floor_double(bb.maxZ + 1.0D);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int k1 = i; k1 < j; ++k1)
         {
@@ -1980,7 +1980,7 @@ public abstract class World implements IBlockAccess
         int l = MathHelper.floor_double(bb.maxY + 1.0D);
         int i1 = MathHelper.floor_double(bb.minZ);
         int j1 = MathHelper.floor_double(bb.maxZ + 1.0D);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int k1 = i; k1 < j; ++k1)
         {
@@ -2013,14 +2013,14 @@ public abstract class World implements IBlockAccess
         return false;
     }
 
-    public Explosion createExplosion(Entity entityIn, double x, double y, double z, float strength, boolean isSmoking)
+    public Explosion createExplosion(实体 实体In, double x, double y, double z, float strength, boolean isSmoking)
     {
-        return this.newExplosion(entityIn, x, y, z, strength, false, isSmoking);
+        return this.newExplosion(实体In, x, y, z, strength, false, isSmoking);
     }
 
-    public Explosion newExplosion(Entity entityIn, double x, double y, double z, float strength, boolean isFlaming, boolean isSmoking)
+    public Explosion newExplosion(实体 实体In, double x, double y, double z, float strength, boolean isFlaming, boolean isSmoking)
     {
-        Explosion explosion = new Explosion(this, entityIn, x, y, z, strength, isFlaming, isSmoking);
+        Explosion explosion = new Explosion(this, 实体In, x, y, z, strength, isFlaming, isSmoking);
         explosion.doExplosionA();
         explosion.doExplosionB(true);
         return explosion;
@@ -2067,7 +2067,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public boolean extinguishFire(EntityPlayer player, BlockPos pos, EnumFacing side)
+    public boolean extinguishFire(实体Player player, 阻止位置 pos, EnumFacing side)
     {
         pos = pos.offset(side);
 
@@ -2085,7 +2085,7 @@ public abstract class World implements IBlockAccess
 
     public String getDebugLoadedEntities()
     {
-        return "All: " + this.loadedEntityList.size();
+        return "All: " + this.loaded实体List.size();
     }
 
     public String getProviderName()
@@ -2093,7 +2093,7 @@ public abstract class World implements IBlockAccess
         return this.chunkProvider.makeString();
     }
 
-    public TileEntity getTileEntity(BlockPos pos)
+    public TileEntity getTileEntity(阻止位置 pos)
     {
         if (!this.isValid(pos))
         {
@@ -2140,7 +2140,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void setTileEntity(BlockPos pos, TileEntity tileEntityIn)
+    public void setTileEntity(阻止位置 pos, TileEntity tileEntityIn)
     {
         if (tileEntityIn != null && !tileEntityIn.isInvalid())
         {
@@ -2170,7 +2170,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void removeTileEntity(BlockPos pos)
+    public void removeTileEntity(阻止位置 pos)
     {
         TileEntity tileentity = this.getTileEntity(pos);
 
@@ -2197,21 +2197,21 @@ public abstract class World implements IBlockAccess
         this.tileEntitiesToBeRemoved.add(tileEntityIn);
     }
 
-    public boolean isBlockFullCube(BlockPos pos)
+    public boolean isBlockFullCube(阻止位置 pos)
     {
         IBlockState iblockstate = this.getBlockState(pos);
         AxisAlignedBB axisalignedbb = iblockstate.getBlock().getCollisionBoundingBox(this, pos, iblockstate);
         return axisalignedbb != null && axisalignedbb.getAverageEdgeLength() >= 1.0D;
     }
 
-    public static boolean doesBlockHaveSolidTopSurface(IBlockAccess blockAccess, BlockPos pos)
+    public static boolean doesBlockHaveSolidTopSurface(IBlockAccess blockAccess, 阻止位置 pos)
     {
         IBlockState iblockstate = blockAccess.getBlockState(pos);
         Block block = iblockstate.getBlock();
         return block.getMaterial().isOpaque() && block.isFullCube() ? true : (block instanceof BlockStairs ? iblockstate.getValue(BlockStairs.HALF) == BlockStairs.EnumHalf.TOP : (block instanceof BlockSlab ? iblockstate.getValue(BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP : (block instanceof BlockHopper ? true : (block instanceof BlockSnow ? ((Integer)iblockstate.getValue(BlockSnow.LAYERS)).intValue() == 7 : false))));
     }
 
-    public boolean isBlockNormalCube(BlockPos pos, boolean _default)
+    public boolean isBlockNormalCube(阻止位置 pos, boolean _default)
     {
         if (!this.isValid(pos))
         {
@@ -2366,9 +2366,9 @@ public abstract class World implements IBlockAccess
 
         for (int i = 0; i < this.playerEntities.size(); ++i)
         {
-            EntityPlayer entityplayer = (EntityPlayer)this.playerEntities.get(i);
-            int j = MathHelper.floor_double(entityplayer.posX / 16.0D);
-            int k = MathHelper.floor_double(entityplayer.posZ / 16.0D);
+            实体Player entityplayer = (实体Player)this.playerEntities.get(i);
+            int j = MathHelper.floor_double(entityplayer.X坐标 / 16.0D);
+            int k = MathHelper.floor_double(entityplayer.Z坐标 / 16.0D);
             int l = this.getRenderDistanceChunks();
 
             for (int i1 = -l; i1 <= l; ++i1)
@@ -2392,11 +2392,11 @@ public abstract class World implements IBlockAccess
         if (!this.playerEntities.isEmpty())
         {
             int k1 = this.rand.nextInt(this.playerEntities.size());
-            EntityPlayer entityplayer1 = (EntityPlayer)this.playerEntities.get(k1);
-            int l1 = MathHelper.floor_double(entityplayer1.posX) + this.rand.nextInt(11) - 5;
-            int i2 = MathHelper.floor_double(entityplayer1.posY) + this.rand.nextInt(11) - 5;
-            int j2 = MathHelper.floor_double(entityplayer1.posZ) + this.rand.nextInt(11) - 5;
-            this.checkLight(new BlockPos(l1, i2, j2));
+            实体Player entityplayer1 = (实体Player)this.playerEntities.get(k1);
+            int l1 = MathHelper.floor_double(entityplayer1.X坐标) + this.rand.nextInt(11) - 5;
+            int i2 = MathHelper.floor_double(entityplayer1.Y坐标) + this.rand.nextInt(11) - 5;
+            int j2 = MathHelper.floor_double(entityplayer1.Z坐标) + this.rand.nextInt(11) - 5;
+            this.checkLight(new 阻止位置(l1, i2, j2));
         }
 
         this.theProfiler.endSection();
@@ -2415,14 +2415,14 @@ public abstract class World implements IBlockAccess
             int j = i & 15;
             int k = i >> 8 & 15;
             int l = i >> 16 & 255;
-            BlockPos blockpos = new BlockPos(j, l, k);
+            阻止位置 blockpos = new 阻止位置(j, l, k);
             Block block = chunkIn.getBlock(blockpos);
             j = j + p_147467_1_;
             k = k + p_147467_2_;
 
             if (block.getMaterial() == Material.air && this.getLight(blockpos) <= this.rand.nextInt(8) && this.getLightFor(EnumSkyBlock.SKY, blockpos) <= 0)
             {
-                EntityPlayer entityplayer = this.getClosestPlayer((double)j + 0.5D, (double)l + 0.5D, (double)k + 0.5D, 8.0D);
+                实体Player entityplayer = this.getClosestPlayer((double)j + 0.5D, (double)l + 0.5D, (double)k + 0.5D, 8.0D);
 
                 if (entityplayer != null && entityplayer.getDistanceSq((double)j + 0.5D, (double)l + 0.5D, (double)k + 0.5D) > 4.0D)
                 {
@@ -2441,24 +2441,24 @@ public abstract class World implements IBlockAccess
         this.setActivePlayerChunksAndCheckLight();
     }
 
-    public void forceBlockUpdateTick(Block blockType, BlockPos pos, Random random)
+    public void forceBlockUpdateTick(Block blockType, 阻止位置 pos, Random random)
     {
         this.scheduledUpdatesAreImmediate = true;
         blockType.updateTick(this, pos, this.getBlockState(pos), random);
         this.scheduledUpdatesAreImmediate = false;
     }
 
-    public boolean canBlockFreezeWater(BlockPos pos)
+    public boolean canBlockFreezeWater(阻止位置 pos)
     {
         return this.canBlockFreeze(pos, false);
     }
 
-    public boolean canBlockFreezeNoWater(BlockPos pos)
+    public boolean canBlockFreezeNoWater(阻止位置 pos)
     {
         return this.canBlockFreeze(pos, true);
     }
 
-    public boolean canBlockFreeze(BlockPos pos, boolean noWaterAdj)
+    public boolean canBlockFreeze(阻止位置 pos, boolean noWaterAdj)
     {
         BiomeGenBase biomegenbase = this.getBiomeGenForCoords(pos);
         float f = biomegenbase.getFloatTemperature(pos);
@@ -2494,12 +2494,12 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    private boolean isWater(BlockPos pos)
+    private boolean isWater(阻止位置 pos)
     {
         return this.getBlockState(pos).getBlock().getMaterial() == Material.water;
     }
 
-    public boolean canSnowAt(BlockPos pos, boolean checkLight)
+    public boolean canSnowAt(阻止位置 pos, boolean checkLight)
     {
         BiomeGenBase biomegenbase = this.getBiomeGenForCoords(pos);
         float f = biomegenbase.getFloatTemperature(pos);
@@ -2528,7 +2528,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public boolean checkLight(BlockPos pos)
+    public boolean checkLight(阻止位置 pos)
     {
         boolean flag = false;
 
@@ -2541,7 +2541,7 @@ public abstract class World implements IBlockAccess
         return flag;
     }
 
-    private int getRawLight(BlockPos pos, EnumSkyBlock lightType)
+    private int getRawLight(阻止位置 pos, EnumSkyBlock lightType)
     {
         if (lightType == EnumSkyBlock.SKY && this.canSeeSky(pos))
         {
@@ -2575,7 +2575,7 @@ public abstract class World implements IBlockAccess
             {
                 for (EnumFacing enumfacing : EnumFacing.values())
                 {
-                    BlockPos blockpos = pos.offset(enumfacing);
+                    阻止位置 blockpos = pos.offset(enumfacing);
                     int k = this.getLightFor(lightType, blockpos) - j;
 
                     if (k > i)
@@ -2594,7 +2594,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public boolean checkLightFor(EnumSkyBlock lightType, BlockPos pos)
+    public boolean checkLightFor(EnumSkyBlock lightType, 阻止位置 pos)
     {
         if (!this.isAreaLoaded(pos, 17, false))
         {
@@ -2626,7 +2626,7 @@ public abstract class World implements IBlockAccess
                     int j2 = (l1 >> 6 & 63) - 32 + j1;
                     int k2 = (l1 >> 12 & 63) - 32 + k1;
                     int l2 = l1 >> 18 & 15;
-                    BlockPos blockpos = new BlockPos(i2, j2, k2);
+                    阻止位置 blockpos = new 阻止位置(i2, j2, k2);
                     int i3 = this.getLightFor(lightType, blockpos);
 
                     if (i3 == l2)
@@ -2641,7 +2641,7 @@ public abstract class World implements IBlockAccess
 
                             if (j3 + k3 + l3 < 17)
                             {
-                                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                                阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
                                 for (EnumFacing enumfacing : EnumFacing.values())
                                 {
@@ -2674,7 +2674,7 @@ public abstract class World implements IBlockAccess
                 int j5 = (i5 & 63) - 32 + i1;
                 int k5 = (i5 >> 6 & 63) - 32 + j1;
                 int l5 = (i5 >> 12 & 63) - 32 + k1;
-                BlockPos blockpos1 = new BlockPos(j5, k5, l5);
+                阻止位置 blockpos1 = new 阻止位置(j5, k5, l5);
                 int i6 = this.getLightFor(lightType, blockpos1);
                 int j6 = this.getRawLight(blockpos1, lightType);
 
@@ -2745,14 +2745,14 @@ public abstract class World implements IBlockAccess
         return null;
     }
 
-    public List<Entity> getEntitiesWithinAABBExcludingEntity(Entity entityIn, AxisAlignedBB bb)
+    public List<实体> getEntitiesWithinAABBExcludingEntity(实体 实体In, AxisAlignedBB bb)
     {
-        return this.getEntitiesInAABBexcluding(entityIn, bb, EntitySelectors.NOT_SPECTATING);
+        return this.getEntitiesInAABBexcluding(实体In, bb, EntitySelectors.NOT_SPECTATING);
     }
 
-    public List<Entity> getEntitiesInAABBexcluding(Entity entityIn, AxisAlignedBB boundingBox, Predicate <? super Entity > predicate)
+    public List<实体> getEntitiesInAABBexcluding(实体 实体In, AxisAlignedBB boundingBox, Predicate <? super 实体> predicate)
     {
-        List<Entity> list = Lists.<Entity>newArrayList();
+        List<实体> list = Lists.<实体>newArrayList();
         int i = MathHelper.floor_double((boundingBox.minX - 2.0D) / 16.0D);
         int j = MathHelper.floor_double((boundingBox.maxX + 2.0D) / 16.0D);
         int k = MathHelper.floor_double((boundingBox.minZ - 2.0D) / 16.0D);
@@ -2764,7 +2764,7 @@ public abstract class World implements IBlockAccess
             {
                 if (this.isChunkLoaded(i1, j1, true))
                 {
-                    this.getChunkFromChunkCoords(i1, j1).getEntitiesWithinAABBForEntity(entityIn, boundingBox, list, predicate);
+                    this.getChunkFromChunkCoords(i1, j1).getEntitiesWithinAABBForEntity(实体In, boundingBox, list, predicate);
                 }
             }
         }
@@ -2772,42 +2772,42 @@ public abstract class World implements IBlockAccess
         return list;
     }
 
-    public <T extends Entity> List<T> getEntities(Class <? extends T > entityType, Predicate <? super T > filter)
+    public <T extends 实体> List<T> getEntities(Class <? extends T > entityType, Predicate <? super T > filter)
     {
         List<T> list = Lists.<T>newArrayList();
 
-        for (Entity entity : this.loadedEntityList)
+        for (实体 实体 : this.loaded实体List)
         {
-            if (entityType.isAssignableFrom(entity.getClass()) && filter.apply((T)entity))
+            if (entityType.isAssignableFrom(实体.getClass()) && filter.apply((T) 实体))
             {
-                list.add((T)entity);
+                list.add((T) 实体);
             }
         }
 
         return list;
     }
 
-    public <T extends Entity> List<T> getPlayers(Class <? extends T > playerType, Predicate <? super T > filter)
+    public <T extends 实体> List<T> getPlayers(Class <? extends T > playerType, Predicate <? super T > filter)
     {
         List<T> list = Lists.<T>newArrayList();
 
-        for (Entity entity : this.playerEntities)
+        for (实体 实体 : this.playerEntities)
         {
-            if (playerType.isAssignableFrom(entity.getClass()) && filter.apply((T)entity))
+            if (playerType.isAssignableFrom(实体.getClass()) && filter.apply((T) 实体))
             {
-                list.add((T)entity);
+                list.add((T) 实体);
             }
         }
 
         return list;
     }
 
-    public <T extends Entity> List<T> getEntitiesWithinAABB(Class <? extends T > classEntity, AxisAlignedBB bb)
+    public <T extends 实体> List<T> getEntitiesWithinAABB(Class <? extends T > classEntity, AxisAlignedBB bb)
     {
         return this.<T>getEntitiesWithinAABB(classEntity, bb, EntitySelectors.NOT_SPECTATING);
     }
 
-    public <T extends Entity> List<T> getEntitiesWithinAABB(Class <? extends T > clazz, AxisAlignedBB aabb, Predicate <? super T > filter)
+    public <T extends 实体> List<T> getEntitiesWithinAABB(Class <? extends T > clazz, AxisAlignedBB aabb, Predicate <? super T > filter)
     {
         int i = MathHelper.floor_double((aabb.minX - 2.0D) / 16.0D);
         int j = MathHelper.floor_double((aabb.maxX + 2.0D) / 16.0D);
@@ -2829,7 +2829,7 @@ public abstract class World implements IBlockAccess
         return list;
     }
 
-    public <T extends Entity> T findNearestEntityWithinAABB(Class <? extends T > entityType, AxisAlignedBB aabb, T closestTo)
+    public <T extends 实体> T findNearestEntityWithinAABB(Class <? extends T > entityType, AxisAlignedBB aabb, T closestTo)
     {
         List<T> list = this.<T>getEntitiesWithinAABB(entityType, aabb);
         T t = null;
@@ -2854,17 +2854,17 @@ public abstract class World implements IBlockAccess
         return t;
     }
 
-    public Entity getEntityByID(int id)
+    public 实体 getEntityByID(int id)
     {
-        return (Entity)this.entitiesById.lookup(id);
+        return (实体)this.entitiesById.lookup(id);
     }
 
-    public List<Entity> getLoadedEntityList()
+    public List<实体> getLoadedEntityList()
     {
-        return this.loadedEntityList;
+        return this.loaded实体List;
     }
 
-    public void markChunkDirty(BlockPos pos, TileEntity unusedTileEntity)
+    public void markChunkDirty(阻止位置 pos, TileEntity unusedTileEntity)
     {
         if (this.isBlockLoaded(pos))
         {
@@ -2876,9 +2876,9 @@ public abstract class World implements IBlockAccess
     {
         int i = 0;
 
-        for (Entity entity : this.loadedEntityList)
+        for (实体 实体 : this.loaded实体List)
         {
-            if ((!(entity instanceof EntityLiving) || !((EntityLiving)entity).isNoDespawnRequired()) && entityType.isAssignableFrom(entity.getClass()))
+            if ((!(实体 instanceof 实体Living) || !((实体Living) 实体).isNoDespawnRequired()) && entityType.isAssignableFrom(实体.getClass()))
             {
                 ++i;
             }
@@ -2887,26 +2887,26 @@ public abstract class World implements IBlockAccess
         return i;
     }
 
-    public void loadEntities(Collection<Entity> entityCollection)
+    public void loadEntities(Collection<实体> 实体Collection)
     {
-        this.loadedEntityList.addAll(entityCollection);
+        this.loaded实体List.addAll(实体Collection);
 
-        for (Entity entity : entityCollection)
+        for (实体 实体 : 实体Collection)
         {
-            this.onEntityAdded(entity);
+            this.onEntityAdded(实体);
         }
     }
 
-    public void unloadEntities(Collection<Entity> entityCollection)
+    public void unloadEntities(Collection<实体> 实体Collection)
     {
-        this.unloadedEntityList.addAll(entityCollection);
+        this.unloaded实体List.addAll(实体Collection);
     }
 
-    public boolean canBlockBePlaced(Block blockIn, BlockPos pos, boolean p_175716_3_, EnumFacing side, Entity entityIn, ItemStack itemStackIn)
+    public boolean canBlockBePlaced(Block blockIn, 阻止位置 pos, boolean p_175716_3_, EnumFacing side, 实体 实体In, ItemStack itemStackIn)
     {
         Block block = this.getBlockState(pos).getBlock();
         AxisAlignedBB axisalignedbb = p_175716_3_ ? null : blockIn.getCollisionBoundingBox(this, pos, blockIn.getDefaultState());
-        return axisalignedbb != null && !this.checkNoEntityCollision(axisalignedbb, entityIn) ? false : (block.getMaterial() == Material.circuits && blockIn == Blocks.anvil ? true : block.getMaterial().isReplaceable() && blockIn.canReplace(this, pos, side, itemStackIn));
+        return axisalignedbb != null && !this.checkNoEntityCollision(axisalignedbb, 实体In) ? false : (block.getMaterial() == Material.circuits && blockIn == Blocks.anvil ? true : block.getMaterial().isReplaceable() && blockIn.canReplace(this, pos, side, itemStackIn));
     }
 
     public int getSeaLevel()
@@ -2919,7 +2919,7 @@ public abstract class World implements IBlockAccess
         this.seaLevel = p_181544_1_;
     }
 
-    public int getStrongPower(BlockPos pos, EnumFacing direction)
+    public int getStrongPower(阻止位置 pos, EnumFacing direction)
     {
         IBlockState iblockstate = this.getBlockState(pos);
         return iblockstate.getBlock().getStrongPower(this, pos, iblockstate, direction);
@@ -2930,7 +2930,7 @@ public abstract class World implements IBlockAccess
         return this.worldInfo.getTerrainType();
     }
 
-    public int getStrongPower(BlockPos pos)
+    public int getStrongPower(阻止位置 pos)
     {
         int i = 0;
         i = Math.max(i, this.getStrongPower(pos.down(), EnumFacing.DOWN));
@@ -2982,24 +2982,24 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public boolean isSidePowered(BlockPos pos, EnumFacing side)
+    public boolean isSidePowered(阻止位置 pos, EnumFacing side)
     {
         return this.getRedstonePower(pos, side) > 0;
     }
 
-    public int getRedstonePower(BlockPos pos, EnumFacing facing)
+    public int getRedstonePower(阻止位置 pos, EnumFacing facing)
     {
         IBlockState iblockstate = this.getBlockState(pos);
         Block block = iblockstate.getBlock();
         return block.isNormalCube() ? this.getStrongPower(pos) : block.getWeakPower(this, pos, iblockstate, facing);
     }
 
-    public boolean isBlockPowered(BlockPos pos)
+    public boolean isBlockPowered(阻止位置 pos)
     {
         return this.getRedstonePower(pos.down(), EnumFacing.DOWN) > 0 ? true : (this.getRedstonePower(pos.up(), EnumFacing.UP) > 0 ? true : (this.getRedstonePower(pos.north(), EnumFacing.NORTH) > 0 ? true : (this.getRedstonePower(pos.south(), EnumFacing.SOUTH) > 0 ? true : (this.getRedstonePower(pos.west(), EnumFacing.WEST) > 0 ? true : this.getRedstonePower(pos.east(), EnumFacing.EAST) > 0))));
     }
 
-    public int isBlockIndirectlyGettingPowered(BlockPos pos)
+    public int isBlockIndirectlyGettingPowered(阻止位置 pos)
     {
         int i = 0;
 
@@ -3021,19 +3021,19 @@ public abstract class World implements IBlockAccess
         return i;
     }
 
-    public EntityPlayer getClosestPlayerToEntity(Entity entityIn, double distance)
+    public 实体Player getClosestPlayerToEntity(实体 实体In, double distance)
     {
-        return this.getClosestPlayer(entityIn.posX, entityIn.posY, entityIn.posZ, distance);
+        return this.getClosestPlayer(实体In.X坐标, 实体In.Y坐标, 实体In.Z坐标, distance);
     }
 
-    public EntityPlayer getClosestPlayer(double x, double y, double z, double distance)
+    public 实体Player getClosestPlayer(double x, double y, double z, double distance)
     {
         double d0 = -1.0D;
-        EntityPlayer entityplayer = null;
+        实体Player entityplayer = null;
 
         for (int i = 0; i < this.playerEntities.size(); ++i)
         {
-            EntityPlayer entityplayer1 = (EntityPlayer)this.playerEntities.get(i);
+            实体Player entityplayer1 = (实体Player)this.playerEntities.get(i);
 
             if (EntitySelectors.NOT_SPECTATING.apply(entityplayer1))
             {
@@ -3054,7 +3054,7 @@ public abstract class World implements IBlockAccess
     {
         for (int i = 0; i < this.playerEntities.size(); ++i)
         {
-            EntityPlayer entityplayer = (EntityPlayer)this.playerEntities.get(i);
+            实体Player entityplayer = (实体Player)this.playerEntities.get(i);
 
             if (EntitySelectors.NOT_SPECTATING.apply(entityplayer))
             {
@@ -3070,11 +3070,11 @@ public abstract class World implements IBlockAccess
         return false;
     }
 
-    public EntityPlayer getPlayerEntityByName(String name)
+    public 实体Player getPlayerEntityByName(String name)
     {
         for (int i = 0; i < this.playerEntities.size(); ++i)
         {
-            EntityPlayer entityplayer = (EntityPlayer)this.playerEntities.get(i);
+            实体Player entityplayer = (实体Player)this.playerEntities.get(i);
 
             if (name.equals(entityplayer.getName()))
             {
@@ -3085,11 +3085,11 @@ public abstract class World implements IBlockAccess
         return null;
     }
 
-    public EntityPlayer getPlayerEntityByUUID(UUID uuid)
+    public 实体Player getPlayerEntityByUUID(UUID uuid)
     {
         for (int i = 0; i < this.playerEntities.size(); ++i)
         {
-            EntityPlayer entityplayer = (EntityPlayer)this.playerEntities.get(i);
+            实体Player entityplayer = (实体Player)this.playerEntities.get(i);
 
             if (uuid.equals(entityplayer.getUniqueID()))
             {
@@ -3134,27 +3134,27 @@ public abstract class World implements IBlockAccess
         this.worldInfo.setWorldTime(time);
     }
 
-    public BlockPos getSpawnPoint()
+    public 阻止位置 getSpawnPoint()
     {
-        BlockPos blockpos = new BlockPos(this.worldInfo.getSpawnX(), this.worldInfo.getSpawnY(), this.worldInfo.getSpawnZ());
+        阻止位置 blockpos = new 阻止位置(this.worldInfo.getSpawnX(), this.worldInfo.getSpawnY(), this.worldInfo.getSpawnZ());
 
         if (!this.getWorldBorder().contains(blockpos))
         {
-            blockpos = this.getHeight(new BlockPos(this.getWorldBorder().getCenterX(), 0.0D, this.getWorldBorder().getCenterZ()));
+            blockpos = this.getHeight(new 阻止位置(this.getWorldBorder().getCenterX(), 0.0D, this.getWorldBorder().getCenterZ()));
         }
 
         return blockpos;
     }
 
-    public void setSpawnPoint(BlockPos pos)
+    public void setSpawnPoint(阻止位置 pos)
     {
         this.worldInfo.setSpawn(pos);
     }
 
-    public void joinEntityInSurroundings(Entity entityIn)
+    public void joinEntityInSurroundings(实体 实体In)
     {
-        int i = MathHelper.floor_double(entityIn.posX / 16.0D);
-        int j = MathHelper.floor_double(entityIn.posZ / 16.0D);
+        int i = MathHelper.floor_double(实体In.X坐标 / 16.0D);
+        int j = MathHelper.floor_double(实体In.Z坐标 / 16.0D);
         int k = 2;
 
         for (int l = i - k; l <= i + k; ++l)
@@ -3165,18 +3165,18 @@ public abstract class World implements IBlockAccess
             }
         }
 
-        if (!this.loadedEntityList.contains(entityIn))
+        if (!this.loaded实体List.contains(实体In))
         {
-            this.loadedEntityList.add(entityIn);
+            this.loaded实体List.add(实体In);
         }
     }
 
-    public boolean isBlockModifiable(EntityPlayer player, BlockPos pos)
+    public boolean isBlockModifiable(实体Player player, 阻止位置 pos)
     {
         return true;
     }
 
-    public void setEntityState(Entity entityIn, byte state)
+    public void setEntityState(实体 实体In, byte state)
     {
     }
 
@@ -3185,7 +3185,7 @@ public abstract class World implements IBlockAccess
         return this.chunkProvider;
     }
 
-    public void addBlockEvent(BlockPos pos, Block blockIn, int eventID, int eventParam)
+    public void addBlockEvent(阻止位置 pos, Block blockIn, int eventID, int eventParam)
     {
         blockIn.onBlockEventReceived(this, pos, this.getBlockState(pos), eventID, eventParam);
     }
@@ -3241,7 +3241,7 @@ public abstract class World implements IBlockAccess
         return (double)this.getRainStrength(1.0F) > 0.2D;
     }
 
-    public boolean isRainingAt(BlockPos strikePosition)
+    public boolean isRainingAt(阻止位置 strikePosition)
     {
         if (!this.isRaining())
         {
@@ -3262,7 +3262,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public boolean isBlockinHighHumidity(BlockPos pos)
+    public boolean isBlockinHighHumidity(阻止位置 pos)
     {
         BiomeGenBase biomegenbase = this.getBiomeGenForCoords(pos);
         return biomegenbase.isHighHumidity();
@@ -3288,7 +3288,7 @@ public abstract class World implements IBlockAccess
         return this.mapStorage.getUniqueDataId(key);
     }
 
-    public void playBroadcastSound(int p_175669_1_, BlockPos pos, int p_175669_3_)
+    public void playBroadcastSound(int p_175669_1_, 阻止位置 pos, int p_175669_3_)
     {
         for (int i = 0; i < this.worldAccesses.size(); ++i)
         {
@@ -3296,12 +3296,12 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public void playAuxSFX(int p_175718_1_, BlockPos pos, int p_175718_3_)
+    public void playAuxSFX(int p_175718_1_, 阻止位置 pos, int p_175718_3_)
     {
-        this.playAuxSFXAtEntity((EntityPlayer)null, p_175718_1_, pos, p_175718_3_);
+        this.playAuxSFXAtEntity((实体Player)null, p_175718_1_, pos, p_175718_3_);
     }
 
-    public void playAuxSFXAtEntity(EntityPlayer player, int sfxType, BlockPos pos, int p_180498_4_)
+    public void playAuxSFXAtEntity(实体Player player, int sfxType, 阻止位置 pos, int p_180498_4_)
     {
         try
         {
@@ -3339,7 +3339,7 @@ public abstract class World implements IBlockAccess
         return this.rand;
     }
 
-    public BlockPos getStrongholdPos(String name, BlockPos pos)
+    public 阻止位置 getStrongholdPos(String name, 阻止位置 pos)
     {
         return this.getChunkProvider().getStrongholdGen(this, name, pos);
     }
@@ -3385,7 +3385,7 @@ public abstract class World implements IBlockAccess
         return crashreportcategory;
     }
 
-    public void sendBlockBreakProgress(int breakerId, BlockPos pos, int progress)
+    public void sendBlockBreakProgress(int breakerId, 阻止位置 pos, int progress)
     {
         for (int i = 0; i < this.worldAccesses.size(); ++i)
         {
@@ -3413,11 +3413,11 @@ public abstract class World implements IBlockAccess
         return this.worldScoreboard;
     }
 
-    public void updateComparatorOutputLevel(BlockPos pos, Block blockIn)
+    public void updateComparatorOutputLevel(阻止位置 pos, Block blockIn)
     {
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
         {
-            BlockPos blockpos = pos.offset(enumfacing);
+            阻止位置 blockpos = pos.offset(enumfacing);
 
             if (this.isBlockLoaded(blockpos))
             {
@@ -3441,7 +3441,7 @@ public abstract class World implements IBlockAccess
         }
     }
 
-    public DifficultyInstance getDifficultyForLocation(BlockPos pos)
+    public DifficultyInstance getDifficultyForLocation(阻止位置 pos)
     {
         long i = 0L;
         float f = 0.0F;
@@ -3497,7 +3497,7 @@ public abstract class World implements IBlockAccess
 
     public boolean isSpawnChunk(int x, int z)
     {
-        BlockPos blockpos = this.getSpawnPoint();
+        阻止位置 blockpos = this.getSpawnPoint();
         int i = x * 16 + 8 - blockpos.getX();
         int j = z * 16 + 8 - blockpos.getZ();
         int k = 128;

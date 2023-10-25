@@ -3,12 +3,12 @@ package net.minecraft.client.renderer.entity.layers;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderDragon;
-import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.实体Dragon;
 import net.minecraft.src.Config;
 import net.minecraft.util.图像位置;
 import net.optifine.shaders.Shaders;
 
-public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
+public class LayerEnderDragonEyes implements LayerRenderer<实体Dragon>
 {
     private static final 图像位置 TEXTURE = new 图像位置("textures/entity/enderdragon/dragon_eyes.png");
     private final RenderDragon dragonRenderer;
@@ -18,7 +18,7 @@ public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
         this.dragonRenderer = dragonRendererIn;
     }
 
-    public void doRenderLayer(EntityDragon entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体Dragon entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         this.dragonRenderer.bindTexture(TEXTURE);
         光照状态经理.启用混合品();

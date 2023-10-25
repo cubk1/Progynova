@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.concurrent.Callable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class CrashReportCategory
 {
@@ -23,10 +23,10 @@ public class CrashReportCategory
 
     public static String getCoordinateInfo(double x, double y, double z)
     {
-        return String.format("%.2f,%.2f,%.2f - %s", x, y, z, getCoordinateInfo(new BlockPos(x, y, z)));
+        return String.format("%.2f,%.2f,%.2f - %s", x, y, z, getCoordinateInfo(new 阻止位置(x, y, z)));
     }
 
-    public static String getCoordinateInfo(BlockPos pos)
+    public static String getCoordinateInfo(阻止位置 pos)
     {
         int i = pos.getX();
         int j = pos.getY();
@@ -194,7 +194,7 @@ public class CrashReportCategory
         return this.stackTrace;
     }
 
-    public static void addBlockInfo(CrashReportCategory category, final BlockPos pos, final Block blockIn, final int blockData)
+    public static void addBlockInfo(CrashReportCategory category, final 阻止位置 pos, final Block blockIn, final int blockData)
     {
         final int i = Block.getIdFromBlock(blockIn);
         category.addCrashSectionCallable("Block type", () -> {
@@ -221,7 +221,7 @@ public class CrashReportCategory
         category.addCrashSectionCallable("Block location", () -> CrashReportCategory.getCoordinateInfo(pos));
     }
 
-    public static void addBlockInfo(CrashReportCategory category, final BlockPos pos, final IBlockState state)
+    public static void addBlockInfo(CrashReportCategory category, final 阻止位置 pos, final IBlockState state)
     {
         category.addCrashSectionCallable("Block", state::toString);
         category.addCrashSectionCallable("Block location", () -> CrashReportCategory.getCoordinateInfo(pos));

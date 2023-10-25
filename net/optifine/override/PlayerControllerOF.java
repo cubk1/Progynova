@@ -1,14 +1,14 @@
 package net.optifine.override;
 
+import net.minecraft.client.entity.实体PlayerSP;
 import net.minecraft.client.我的手艺;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.network.NetHandlerPlayClient;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -17,33 +17,33 @@ import net.minecraft.world.World;
 public class PlayerControllerOF extends PlayerControllerMP
 {
     private boolean acting = false;
-    private BlockPos lastClickBlockPos = null;
-    private Entity lastClickEntity = null;
+    private 阻止位置 lastClick阻止位置 = null;
+    private 实体 lastClick实体 = null;
 
     public PlayerControllerOF(我的手艺 mcIn, NetHandlerPlayClient netHandler)
     {
         super(mcIn, netHandler);
     }
 
-    public boolean clickBlock(BlockPos loc, EnumFacing face)
+    public boolean clickBlock(阻止位置 loc, EnumFacing face)
     {
         this.acting = true;
-        this.lastClickBlockPos = loc;
+        this.lastClick阻止位置 = loc;
         boolean flag = super.clickBlock(loc, face);
         this.acting = false;
         return flag;
     }
 
-    public boolean onPlayerDamageBlock(BlockPos posBlock, EnumFacing directionFacing)
+    public boolean onPlayerDamageBlock(阻止位置 posBlock, EnumFacing directionFacing)
     {
         this.acting = true;
-        this.lastClickBlockPos = posBlock;
+        this.lastClick阻止位置 = posBlock;
         boolean flag = super.onPlayerDamageBlock(posBlock, directionFacing);
         this.acting = false;
         return flag;
     }
 
-    public boolean sendUseItem(EntityPlayer player, World worldIn, ItemStack stack)
+    public boolean sendUseItem(实体Player player, World worldIn, ItemStack stack)
     {
         this.acting = true;
         boolean flag = super.sendUseItem(player, worldIn, stack);
@@ -51,24 +51,24 @@ public class PlayerControllerOF extends PlayerControllerMP
         return flag;
     }
 
-    public boolean onPlayerRightClick(EntityPlayerSP p_178890_1, WorldClient p_178890_2, ItemStack p_178890_3, BlockPos p_178890_4, EnumFacing p_178890_5, Vec3 p_178890_6)
+    public boolean onPlayerRightClick(实体PlayerSP p_178890_1, WorldClient p_178890_2, ItemStack p_178890_3, 阻止位置 p_178890_4, EnumFacing p_178890_5, Vec3 p_178890_6)
     {
         this.acting = true;
-        this.lastClickBlockPos = p_178890_4;
+        this.lastClick阻止位置 = p_178890_4;
         boolean flag = super.onPlayerRightClick(p_178890_1, p_178890_2, p_178890_3, p_178890_4, p_178890_5, p_178890_6);
         this.acting = false;
         return flag;
     }
 
-    public boolean interactWithEntitySendPacket(EntityPlayer player, Entity target)
+    public boolean interactWithEntitySendPacket(实体Player player, 实体 target)
     {
-        this.lastClickEntity = target;
+        this.lastClick实体 = target;
         return super.interactWithEntitySendPacket(player, target);
     }
 
-    public boolean isPlayerRightClickingOnEntity(EntityPlayer player, Entity target, MovingObjectPosition ray)
+    public boolean isPlayerRightClickingOnEntity(实体Player player, 实体 target, MovingObjectPosition ray)
     {
-        this.lastClickEntity = target;
+        this.lastClick实体 = target;
         return super.isPlayerRightClickingOnEntity(player, target, ray);
     }
 
@@ -77,13 +77,13 @@ public class PlayerControllerOF extends PlayerControllerMP
         return this.acting;
     }
 
-    public BlockPos getLastClickBlockPos()
+    public 阻止位置 getLastClickBlockPos()
     {
-        return this.lastClickBlockPos;
+        return this.lastClick阻止位置;
     }
 
-    public Entity getLastClickEntity()
+    public 实体 getLastClickEntity()
     {
-        return this.lastClickEntity;
+        return this.lastClick实体;
     }
 }

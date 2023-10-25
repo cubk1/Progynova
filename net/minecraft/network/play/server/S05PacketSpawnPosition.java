@@ -4,29 +4,29 @@ import java.io.IOException;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class S05PacketSpawnPosition implements Packet<INetHandlerPlayClient>
 {
-    private BlockPos spawnBlockPos;
+    private 阻止位置 spawn阻止位置;
 
     public S05PacketSpawnPosition()
     {
     }
 
-    public S05PacketSpawnPosition(BlockPos spawnBlockPosIn)
+    public S05PacketSpawnPosition(阻止位置 spawn阻止位置In)
     {
-        this.spawnBlockPos = spawnBlockPosIn;
+        this.spawn阻止位置 = spawn阻止位置In;
     }
 
     public void readPacketData(PacketBuffer buf) throws IOException
     {
-        this.spawnBlockPos = buf.readBlockPos();
+        this.spawn阻止位置 = buf.readBlockPos();
     }
 
     public void writePacketData(PacketBuffer buf) throws IOException
     {
-        buf.writeBlockPos(this.spawnBlockPos);
+        buf.writeBlockPos(this.spawn阻止位置);
     }
 
     public void processPacket(INetHandlerPlayClient handler)
@@ -34,8 +34,8 @@ public class S05PacketSpawnPosition implements Packet<INetHandlerPlayClient>
         handler.handleSpawnPosition(this);
     }
 
-    public BlockPos getSpawnPos()
+    public 阻止位置 getSpawnPos()
     {
-        return this.spawnBlockPos;
+        return this.spawn阻止位置;
     }
 }

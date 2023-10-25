@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -33,7 +33,7 @@ public class ItemSlab extends ItemBlock
         return this.singleSlab.getUnlocalizedName(stack.getMetadata());
     }
 
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (stack.stackSize == 0)
         {
@@ -72,9 +72,9 @@ public class ItemSlab extends ItemBlock
         }
     }
 
-    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack)
+    public boolean canPlaceBlockOnSide(World worldIn, 阻止位置 pos, EnumFacing side, 实体Player player, ItemStack stack)
     {
-        BlockPos blockpos = pos;
+        阻止位置 blockpos = pos;
         IProperty iproperty = this.singleSlab.getVariantProperty();
         Object object = this.singleSlab.getVariant(stack);
         IBlockState iblockstate = worldIn.getBlockState(pos);
@@ -94,7 +94,7 @@ public class ItemSlab extends ItemBlock
         return iblockstate1.getBlock() == this.singleSlab && object == iblockstate1.getValue(iproperty) ? true : super.canPlaceBlockOnSide(worldIn, blockpos, side, player, stack);
     }
 
-    private boolean tryPlace(ItemStack stack, World worldIn, BlockPos pos, Object variantInStack)
+    private boolean tryPlace(ItemStack stack, World worldIn, 阻止位置 pos, Object variantInStack)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 

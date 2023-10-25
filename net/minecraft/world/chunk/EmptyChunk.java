@@ -4,11 +4,11 @@ import com.google.common.base.Predicate;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
@@ -37,53 +37,53 @@ public class EmptyChunk extends Chunk
     {
     }
 
-    public Block getBlock(BlockPos pos)
+    public Block getBlock(阻止位置 pos)
     {
         return Blocks.air;
     }
 
-    public int getBlockLightOpacity(BlockPos pos)
+    public int getBlockLightOpacity(阻止位置 pos)
     {
         return 255;
     }
 
-    public int getBlockMetadata(BlockPos pos)
+    public int getBlockMetadata(阻止位置 pos)
     {
         return 0;
     }
 
-    public int getLightFor(EnumSkyBlock p_177413_1_, BlockPos pos)
+    public int getLightFor(EnumSkyBlock p_177413_1_, 阻止位置 pos)
     {
         return p_177413_1_.defaultLightValue;
     }
 
-    public void setLightFor(EnumSkyBlock p_177431_1_, BlockPos pos, int value)
+    public void setLightFor(EnumSkyBlock p_177431_1_, 阻止位置 pos, int value)
     {
     }
 
-    public int getLightSubtracted(BlockPos pos, int amount)
+    public int getLightSubtracted(阻止位置 pos, int amount)
     {
         return 0;
     }
 
-    public void addEntity(Entity entityIn)
+    public void addEntity(实体 实体In)
     {
     }
 
-    public void removeEntity(Entity entityIn)
+    public void removeEntity(实体 实体In)
     {
     }
 
-    public void removeEntityAtIndex(Entity entityIn, int p_76608_2_)
+    public void removeEntityAtIndex(实体 实体In, int p_76608_2_)
     {
     }
 
-    public boolean canSeeSky(BlockPos pos)
+    public boolean canSeeSky(阻止位置 pos)
     {
         return false;
     }
 
-    public TileEntity getTileEntity(BlockPos pos, Chunk.EnumCreateEntityType p_177424_2_)
+    public TileEntity getTileEntity(阻止位置 pos, Chunk.EnumCreateEntityType p_177424_2_)
     {
         return null;
     }
@@ -92,11 +92,11 @@ public class EmptyChunk extends Chunk
     {
     }
 
-    public void addTileEntity(BlockPos pos, TileEntity tileEntityIn)
+    public void addTileEntity(阻止位置 pos, TileEntity tileEntityIn)
     {
     }
 
-    public void removeTileEntity(BlockPos pos)
+    public void removeTileEntity(阻止位置 pos)
     {
     }
 
@@ -112,11 +112,11 @@ public class EmptyChunk extends Chunk
     {
     }
 
-    public void getEntitiesWithinAABBForEntity(Entity entityIn, AxisAlignedBB aabb, List<Entity> listToFill, Predicate <? super Entity > p_177414_4_)
+    public void getEntitiesWithinAABBForEntity(实体 实体In, AxisAlignedBB aabb, List<实体> listToFill, Predicate <? super 实体> p_177414_4_)
     {
     }
 
-    public <T extends Entity> void getEntitiesOfTypeWithinAAAB(Class <? extends T > entityClass, AxisAlignedBB aabb, List<T> listToFill, Predicate <? super T > p_177430_4_)
+    public <T extends 实体> void getEntitiesOfTypeWithinAAAB(Class <? extends T > entityClass, AxisAlignedBB aabb, List<T> listToFill, Predicate <? super T > p_177430_4_)
     {
     }
 

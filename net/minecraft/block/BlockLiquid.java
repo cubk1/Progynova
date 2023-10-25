@@ -6,11 +6,11 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -32,12 +32,12 @@ public abstract class BlockLiquid extends Block
         this.setTickRandomly(true);
     }
 
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    public boolean isPassable(IBlockAccess worldIn, 阻止位置 pos)
     {
         return this.blockMaterial != Material.lava;
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         return this.blockMaterial == Material.water ? BiomeColorHelper.getWaterColorAtPos(worldIn, pos) : 16777215;
     }
@@ -52,12 +52,12 @@ public abstract class BlockLiquid extends Block
         return (float)(meta + 1) / 9.0F;
     }
 
-    protected int getLevel(IBlockAccess worldIn, BlockPos pos)
+    protected int getLevel(IBlockAccess worldIn, 阻止位置 pos)
     {
         return worldIn.getBlockState(pos).getBlock().getMaterial() == this.blockMaterial ? ((Integer)worldIn.getBlockState(pos).getValue(LEVEL)).intValue() : -1;
     }
 
-    protected int getEffectiveFlowDecay(IBlockAccess worldIn, BlockPos pos)
+    protected int getEffectiveFlowDecay(IBlockAccess worldIn, 阻止位置 pos)
     {
         int i = this.getLevel(worldIn, pos);
         return i >= 8 ? 0 : i;
@@ -78,18 +78,18 @@ public abstract class BlockLiquid extends Block
         return hitIfLiquid && ((Integer)state.getValue(LEVEL)).intValue() == 0;
     }
 
-    public boolean isBlockSolid(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean isBlockSolid(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         Material material = worldIn.getBlockState(pos).getBlock().getMaterial();
         return material == this.blockMaterial ? false : (side == EnumFacing.UP ? true : (material == Material.ice ? false : super.isBlockSolid(worldIn, pos, side)));
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         return worldIn.getBlockState(pos).getBlock().getMaterial() == this.blockMaterial ? false : (side == EnumFacing.UP ? true : super.shouldSideBeRendered(worldIn, pos, side));
     }
 
-    public boolean shouldRenderSides(IBlockAccess blockAccess, BlockPos pos)
+    public boolean shouldRenderSides(IBlockAccess blockAccess, 阻止位置 pos)
     {
         for (int i = -1; i <= 1; ++i)
         {
@@ -109,7 +109,7 @@ public abstract class BlockLiquid extends Block
         return false;
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return null;
     }
@@ -129,14 +129,14 @@ public abstract class BlockLiquid extends Block
         return 0;
     }
 
-    protected Vec3 getFlowVector(IBlockAccess worldIn, BlockPos pos)
+    protected Vec3 getFlowVector(IBlockAccess worldIn, 阻止位置 pos)
     {
         Vec3 vec3 = new Vec3(0.0D, 0.0D, 0.0D);
         int i = this.getEffectiveFlowDecay(worldIn, pos);
 
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
         {
-            BlockPos blockpos = pos.offset(enumfacing);
+            阻止位置 blockpos = pos.offset(enumfacing);
             int j = this.getEffectiveFlowDecay(worldIn, blockpos);
 
             if (j < 0)
@@ -163,7 +163,7 @@ public abstract class BlockLiquid extends Block
         {
             for (EnumFacing enumfacing1 : EnumFacing.Plane.HORIZONTAL)
             {
-                BlockPos blockpos1 = pos.offset(enumfacing1);
+                阻止位置 blockpos1 = pos.offset(enumfacing1);
 
                 if (this.isBlockSolid(worldIn, blockpos1, enumfacing1) || this.isBlockSolid(worldIn, blockpos1.up(), enumfacing1))
                 {
@@ -176,7 +176,7 @@ public abstract class BlockLiquid extends Block
         return vec3.normalize();
     }
 
-    public Vec3 modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3 motion)
+    public Vec3 modifyAcceleration(World worldIn, 阻止位置 pos, 实体 实体In, Vec3 motion)
     {
         return motion.add(this.getFlowVector(worldIn, pos));
     }
@@ -186,7 +186,7 @@ public abstract class BlockLiquid extends Block
         return this.blockMaterial == Material.water ? 5 : (this.blockMaterial == Material.lava ? (worldIn.provider.getHasNoSky() ? 10 : 30) : 0);
     }
 
-    public int getMixedBrightnessForBlock(IBlockAccess worldIn, BlockPos pos)
+    public int getMixedBrightnessForBlock(IBlockAccess worldIn, 阻止位置 pos)
     {
         int i = worldIn.getCombinedLight(pos, 0);
         int j = worldIn.getCombinedLight(pos.up(), 0);
@@ -202,7 +202,7 @@ public abstract class BlockLiquid extends Block
         return this.blockMaterial == Material.water ? EnumWorldBlockLayer.TRANSLUCENT : EnumWorldBlockLayer.SOLID;
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         double d0 = (double)pos.getX();
         double d1 = (double)pos.getY();
@@ -264,23 +264,23 @@ public abstract class BlockLiquid extends Block
         }
     }
 
-    public static double getFlowDirection(IBlockAccess worldIn, BlockPos pos, Material materialIn)
+    public static double getFlowDirection(IBlockAccess worldIn, 阻止位置 pos, Material materialIn)
     {
         Vec3 vec3 = getFlowingBlock(materialIn).getFlowVector(worldIn, pos);
         return vec3.xCoord == 0.0D && vec3.zCoord == 0.0D ? -1000.0D : MathHelper.atan2(vec3.zCoord, vec3.xCoord) - (Math.PI / 2D);
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.checkForMixing(worldIn, pos, state);
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         this.checkForMixing(worldIn, pos, state);
     }
 
-    public boolean checkForMixing(World worldIn, BlockPos pos, IBlockState state)
+    public boolean checkForMixing(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (this.blockMaterial == Material.lava)
         {
@@ -318,7 +318,7 @@ public abstract class BlockLiquid extends Block
         return false;
     }
 
-    protected void triggerMixEffects(World worldIn, BlockPos pos)
+    protected void triggerMixEffects(World worldIn, 阻止位置 pos)
     {
         double d0 = (double)pos.getX();
         double d1 = (double)pos.getY();

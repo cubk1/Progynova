@@ -4,9 +4,9 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockHopper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体Item;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerHopper;
@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -166,16 +166,16 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         return 64;
     }
 
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUseableByPlayer(实体Player player)
     {
         return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
-    public void openInventory(EntityPlayer player)
+    public void openInventory(实体Player player)
     {
     }
 
-    public void closeInventory(EntityPlayer player)
+    public void closeInventory(实体Player player)
     {
     }
 
@@ -405,7 +405,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         }
         else
         {
-            for (EntityItem entityitem : func_181556_a(p_145891_0_.getWorld(), p_145891_0_.getXPos(), p_145891_0_.getYPos() + 1.0D, p_145891_0_.getZPos()))
+            for (实体Item entityitem : func_181556_a(p_145891_0_.getWorld(), p_145891_0_.getXPos(), p_145891_0_.getYPos() + 1.0D, p_145891_0_.getZPos()))
             {
                 if (putDropInInventoryAllSlots(p_145891_0_, entityitem))
                 {
@@ -438,7 +438,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         return false;
     }
 
-    public static boolean putDropInInventoryAllSlots(IInventory p_145898_0_, EntityItem itemIn)
+    public static boolean putDropInInventoryAllSlots(IInventory p_145898_0_, 实体Item itemIn)
     {
         boolean flag = false;
 
@@ -560,9 +560,9 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         return getInventoryAtPosition(hopper.getWorld(), hopper.getXPos(), hopper.getYPos() + 1.0D, hopper.getZPos());
     }
 
-    public static List<EntityItem> func_181556_a(World p_181556_0_, double p_181556_1_, double p_181556_3_, double p_181556_5_)
+    public static List<实体Item> func_181556_a(World p_181556_0_, double p_181556_1_, double p_181556_3_, double p_181556_5_)
     {
-        return p_181556_0_.<EntityItem>getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(p_181556_1_ - 0.5D, p_181556_3_ - 0.5D, p_181556_5_ - 0.5D, p_181556_1_ + 0.5D, p_181556_3_ + 0.5D, p_181556_5_ + 0.5D), EntitySelectors.selectAnything);
+        return p_181556_0_.<实体Item>getEntitiesWithinAABB(实体Item.class, new AxisAlignedBB(p_181556_1_ - 0.5D, p_181556_3_ - 0.5D, p_181556_5_ - 0.5D, p_181556_1_ + 0.5D, p_181556_3_ + 0.5D, p_181556_5_ + 0.5D), EntitySelectors.selectAnything);
     }
 
     public static IInventory getInventoryAtPosition(World worldIn, double x, double y, double z)
@@ -571,7 +571,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         int i = MathHelper.floor_double(x);
         int j = MathHelper.floor_double(y);
         int k = MathHelper.floor_double(z);
-        BlockPos blockpos = new BlockPos(i, j, k);
+        阻止位置 blockpos = new 阻止位置(i, j, k);
         Block block = worldIn.getBlockState(blockpos).getBlock();
 
         if (block.hasTileEntity())
@@ -591,7 +591,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 
         if (iinventory == null)
         {
-            List<Entity> list = worldIn.getEntitiesInAABBexcluding((Entity)null, new AxisAlignedBB(x - 0.5D, y - 0.5D, z - 0.5D, x + 0.5D, y + 0.5D, z + 0.5D), EntitySelectors.selectInventories);
+            List<实体> list = worldIn.getEntitiesInAABBexcluding((实体)null, new AxisAlignedBB(x - 0.5D, y - 0.5D, z - 0.5D, x + 0.5D, y + 0.5D, z + 0.5D), EntitySelectors.selectInventories);
 
             if (list.size() > 0)
             {
@@ -642,7 +642,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         return "minecraft:hopper";
     }
 
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    public Container createContainer(InventoryPlayer playerInventory, 实体Player playerIn)
     {
         return new ContainerHopper(playerInventory, this, playerIn);
     }

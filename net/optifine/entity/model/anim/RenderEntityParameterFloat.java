@@ -4,7 +4,7 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.optifine.expr.ExpressionType;
 import net.optifine.expr.IExpressionFloat;
 
@@ -84,7 +84,7 @@ public enum RenderEntityParameterFloat implements IExpressionFloat
                         return rendererlivingentity.renderScaleFactor;
 
                     default:
-                        EntityLivingBase entitylivingbase = rendererlivingentity.renderEntity;
+                        实体LivingBase entitylivingbase = rendererlivingentity.renderEntity;
 
                         if (entitylivingbase == null)
                         {
@@ -112,13 +112,13 @@ public enum RenderEntityParameterFloat implements IExpressionFloat
                                 return entitylivingbase.moveStrafing;
 
                             case POS_X:
-                                return (float)entitylivingbase.posX;
+                                return (float)entitylivingbase.X坐标;
 
                             case POS_Y:
-                                return (float)entitylivingbase.posY;
+                                return (float)entitylivingbase.Y坐标;
 
                             case POS_Z:
-                                return (float)entitylivingbase.posZ;
+                                return (float)entitylivingbase.Z坐标;
 
                             case REVENGE_TIME:
                                 return (float)entitylivingbase.getRevengeTimer();

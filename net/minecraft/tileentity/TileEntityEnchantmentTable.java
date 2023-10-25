@@ -1,7 +1,7 @@
 package net.minecraft.tileentity;
 
 import java.util.Random;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerEnchantment;
@@ -52,12 +52,12 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
     {
         this.bookSpreadPrev = this.bookSpread;
         this.bookRotationPrev = this.bookRotation;
-        EntityPlayer entityplayer = this.worldObj.getClosestPlayer((double)((float)this.pos.getX() + 0.5F), (double)((float)this.pos.getY() + 0.5F), (double)((float)this.pos.getZ() + 0.5F), 3.0D);
+        实体Player entityplayer = this.worldObj.getClosestPlayer((double)((float)this.pos.getX() + 0.5F), (double)((float)this.pos.getY() + 0.5F), (double)((float)this.pos.getZ() + 0.5F), 3.0D);
 
         if (entityplayer != null)
         {
-            double d0 = entityplayer.posX - (double)((float)this.pos.getX() + 0.5F);
-            double d1 = entityplayer.posZ - (double)((float)this.pos.getZ() + 0.5F);
+            double d0 = entityplayer.X坐标 - (double)((float)this.pos.getX() + 0.5F);
+            double d1 = entityplayer.Z坐标 - (double)((float)this.pos.getZ() + 0.5F);
             this.field_145924_q = (float)MathHelper.atan2(d1, d0);
             this.bookSpread += 0.1F;
 
@@ -145,7 +145,7 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
         return (IChatComponent)(this.hasCustomName() ? new 交流组分文本(this.getName()) : new ChatComponentTranslation(this.getName(), new Object[0]));
     }
 
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    public Container createContainer(InventoryPlayer playerInventory, 实体Player playerIn)
     {
         return new ContainerEnchantment(playerInventory, this.worldObj, this.pos);
     }

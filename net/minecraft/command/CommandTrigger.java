@@ -2,14 +2,14 @@ package net.minecraft.command;
 
 import com.google.common.collect.Lists;
 import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.scoreboard.IScoreObjectiveCriteria;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class CommandTrigger extends CommandBase
 {
@@ -36,22 +36,22 @@ public class CommandTrigger extends CommandBase
         }
         else
         {
-            EntityPlayerMP entityplayermp;
+            实体PlayerMP entityplayermp;
 
-            if (sender instanceof EntityPlayerMP)
+            if (sender instanceof 实体PlayerMP)
             {
-                entityplayermp = (EntityPlayerMP)sender;
+                entityplayermp = (实体PlayerMP)sender;
             }
             else
             {
-                Entity entity = sender.getCommandSenderEntity();
+                实体 实体 = sender.getCommandSenderEntity();
 
-                if (!(entity instanceof EntityPlayerMP))
+                if (!(实体 instanceof 实体PlayerMP))
                 {
                     throw new CommandException("commands.trigger.invalidPlayer", new Object[0]);
                 }
 
-                entityplayermp = (EntityPlayerMP)entity;
+                entityplayermp = (实体PlayerMP) 实体;
             }
 
             Scoreboard scoreboard = MinecraftServer.getServer().worldServerForDimension(0).getScoreboard();
@@ -105,7 +105,7 @@ public class CommandTrigger extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         if (args.length == 1)
         {

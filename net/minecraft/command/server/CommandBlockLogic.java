@@ -9,7 +9,7 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.交流组分文本;
@@ -192,7 +192,7 @@ public abstract class CommandBlockLogic implements ICommandSender
         return this.trackOutput;
     }
 
-    public boolean tryOpenEditCommandBlock(EntityPlayer playerIn)
+    public boolean tryOpenEditCommandBlock(实体Player playerIn)
     {
         if (!playerIn.capabilities.isCreativeMode)
         {

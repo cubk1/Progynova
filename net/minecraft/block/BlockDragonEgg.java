@@ -4,10 +4,10 @@ import java.util.Random;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体FallingBlock;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.IBlockAccess;
@@ -21,22 +21,22 @@ public class BlockDragonEgg extends Block
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 1.0F, 0.9375F);
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         this.checkFall(worldIn, pos);
     }
 
-    private void checkFall(World worldIn, BlockPos pos)
+    private void checkFall(World worldIn, 阻止位置 pos)
     {
         if (BlockFalling.canFallInto(worldIn, pos.down()) && pos.getY() >= 0)
         {
@@ -44,12 +44,12 @@ public class BlockDragonEgg extends Block
 
             if (!BlockFalling.fallInstantly && worldIn.isAreaLoaded(pos.add(-i, -i, -i), pos.add(i, i, i)))
             {
-                worldIn.spawnEntityInWorld(new EntityFallingBlock(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), this.getDefaultState()));
+                worldIn.spawnEntityInWorld(new 实体FallingBlock(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), this.getDefaultState()));
             }
             else
             {
                 worldIn.setBlockToAir(pos);
-                BlockPos blockpos;
+                阻止位置 blockpos;
 
                 for (blockpos = pos; BlockFalling.canFallInto(worldIn, blockpos) && blockpos.getY() > 0; blockpos = blockpos.down())
                 {
@@ -64,18 +64,18 @@ public class BlockDragonEgg extends Block
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         this.teleport(worldIn, pos);
         return true;
     }
 
-    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
+    public void onBlockClicked(World worldIn, 阻止位置 pos, 实体Player playerIn)
     {
         this.teleport(worldIn, pos);
     }
 
-    private void teleport(World worldIn, BlockPos pos)
+    private void teleport(World worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 
@@ -83,7 +83,7 @@ public class BlockDragonEgg extends Block
         {
             for (int i = 0; i < 1000; ++i)
             {
-                BlockPos blockpos = pos.add(worldIn.rand.nextInt(16) - worldIn.rand.nextInt(16), worldIn.rand.nextInt(8) - worldIn.rand.nextInt(8), worldIn.rand.nextInt(16) - worldIn.rand.nextInt(16));
+                阻止位置 blockpos = pos.add(worldIn.rand.nextInt(16) - worldIn.rand.nextInt(16), worldIn.rand.nextInt(8) - worldIn.rand.nextInt(8), worldIn.rand.nextInt(16) - worldIn.rand.nextInt(16));
 
                 if (worldIn.getBlockState(blockpos).getBlock().blockMaterial == Material.air)
                 {
@@ -128,12 +128,12 @@ public class BlockDragonEgg extends Block
         return false;
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         return true;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return null;
     }

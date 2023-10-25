@@ -8,7 +8,7 @@ import net.minecraft.client.model.ModelRabbit;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderRabbit;
-import net.minecraft.entity.passive.EntityRabbit;
+import net.minecraft.entity.passive.实体Rabbit;
 import net.optifine.reflect.Reflector;
 
 public class ModelAdapterRabbit extends ModelAdapter
@@ -17,7 +17,7 @@ public class ModelAdapterRabbit extends ModelAdapter
 
     public ModelAdapterRabbit()
     {
-        super(EntityRabbit.class, "rabbit", 0.3F);
+        super(实体Rabbit.class, "rabbit", 0.3F);
     }
 
     public ModelBase makeModel()

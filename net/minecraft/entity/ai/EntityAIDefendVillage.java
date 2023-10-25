@@ -1,16 +1,16 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.monster.实体Creeper;
+import net.minecraft.entity.monster.实体IronGolem;
 import net.minecraft.village.Village;
 
 public class EntityAIDefendVillage extends EntityAITarget
 {
-    EntityIronGolem irongolem;
-    EntityLivingBase villageAgressorTarget;
+    实体IronGolem irongolem;
+    实体LivingBase villageAgressorTarget;
 
-    public EntityAIDefendVillage(EntityIronGolem ironGolemIn)
+    public EntityAIDefendVillage(实体IronGolem ironGolemIn)
     {
         super(ironGolemIn, false, true);
         this.irongolem = ironGolemIn;
@@ -29,7 +29,7 @@ public class EntityAIDefendVillage extends EntityAITarget
         {
             this.villageAgressorTarget = village.findNearestVillageAggressor(this.irongolem);
 
-            if (this.villageAgressorTarget instanceof EntityCreeper)
+            if (this.villageAgressorTarget instanceof 实体Creeper)
             {
                 return false;
             }

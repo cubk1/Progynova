@@ -12,7 +12,7 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -33,7 +33,7 @@ public class BlockFire extends Block
     private final Map<Block, Integer> encouragements = Maps.<Block, Integer>newIdentityHashMap();
     private final Map<Block, Integer> flammabilities = Maps.<Block, Integer>newIdentityHashMap();
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         int i = pos.getX();
         int j = pos.getY();
@@ -110,7 +110,7 @@ public class BlockFire extends Block
         this.flammabilities.put(blockIn, Integer.valueOf(flammability));
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return null;
     }
@@ -135,7 +135,7 @@ public class BlockFire extends Block
         return 30;
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (worldIn.getGameRules().getBoolean("doFireTick"))
         {
@@ -217,7 +217,7 @@ public class BlockFire extends Block
                                     j1 += (i1 - 1) * 100;
                                 }
 
-                                BlockPos blockpos = pos.add(k, i1, l);
+                                阻止位置 blockpos = pos.add(k, i1, l);
                                 int k1 = this.getNeighborEncouragement(worldIn, blockpos);
 
                                 if (k1 > 0)
@@ -249,7 +249,7 @@ public class BlockFire extends Block
         }
     }
 
-    protected boolean canDie(World worldIn, BlockPos pos)
+    protected boolean canDie(World worldIn, 阻止位置 pos)
     {
         return worldIn.isRainingAt(pos) || worldIn.isRainingAt(pos.west()) || worldIn.isRainingAt(pos.east()) || worldIn.isRainingAt(pos.north()) || worldIn.isRainingAt(pos.south());
     }
@@ -271,7 +271,7 @@ public class BlockFire extends Block
         return integer == null ? 0 : integer.intValue();
     }
 
-    private void catchOnFire(World worldIn, BlockPos pos, int chance, Random random, int age)
+    private void catchOnFire(World worldIn, 阻止位置 pos, int chance, Random random, int age)
     {
         int i = this.getFlammability(worldIn.getBlockState(pos).getBlock());
 
@@ -302,7 +302,7 @@ public class BlockFire extends Block
         }
     }
 
-    private boolean canNeighborCatchFire(World worldIn, BlockPos pos)
+    private boolean canNeighborCatchFire(World worldIn, 阻止位置 pos)
     {
         for (EnumFacing enumfacing : EnumFacing.values())
         {
@@ -315,7 +315,7 @@ public class BlockFire extends Block
         return false;
     }
 
-    private int getNeighborEncouragement(World worldIn, BlockPos pos)
+    private int getNeighborEncouragement(World worldIn, 阻止位置 pos)
     {
         if (!worldIn.isAirBlock(pos))
         {
@@ -339,17 +339,17 @@ public class BlockFire extends Block
         return false;
     }
 
-    public boolean canCatchFire(IBlockAccess worldIn, BlockPos pos)
+    public boolean canCatchFire(IBlockAccess worldIn, 阻止位置 pos)
     {
         return this.getEncouragement(worldIn.getBlockState(pos).getBlock()) > 0;
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) || this.canNeighborCatchFire(worldIn, pos);
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (!World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) && !this.canNeighborCatchFire(worldIn, pos))
         {
@@ -357,7 +357,7 @@ public class BlockFire extends Block
         }
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (worldIn.provider.getDimensionId() > 0 || !Blocks.portal.func_176548_d(worldIn, pos))
         {
@@ -372,7 +372,7 @@ public class BlockFire extends Block
         }
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (rand.nextInt(24) == 0)
         {

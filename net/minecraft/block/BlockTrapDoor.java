@@ -8,11 +8,11 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.IStringSerializable;
@@ -47,24 +47,24 @@ public class BlockTrapDoor extends Block
         return false;
     }
 
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    public boolean isPassable(IBlockAccess worldIn, 阻止位置 pos)
     {
         return !((Boolean)worldIn.getBlockState(pos).getValue(OPEN)).booleanValue();
     }
 
-    public AxisAlignedBB getSelectedBoundingBox(World worldIn, BlockPos pos)
+    public AxisAlignedBB getSelectedBoundingBox(World worldIn, 阻止位置 pos)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.getSelectedBoundingBox(worldIn, pos);
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.getCollisionBoundingBox(worldIn, pos, state);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         this.setBounds(worldIn.getBlockState(pos));
     }
@@ -118,7 +118,7 @@ public class BlockTrapDoor extends Block
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (this.blockMaterial == Material.iron)
         {
@@ -133,11 +133,11 @@ public class BlockTrapDoor extends Block
         }
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (!worldIn.isRemote)
         {
-            BlockPos blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
+            阻止位置 blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
 
             if (!isValidSupportBlock(worldIn.getBlockState(blockpos).getBlock()))
             {
@@ -155,20 +155,20 @@ public class BlockTrapDoor extends Block
                     if (flag1 != flag)
                     {
                         worldIn.setBlockState(pos, state.withProperty(OPEN, Boolean.valueOf(flag)), 2);
-                        worldIn.playAuxSFXAtEntity((EntityPlayer)null, flag ? 1003 : 1006, pos, 0);
+                        worldIn.playAuxSFXAtEntity((实体Player)null, flag ? 1003 : 1006, pos, 0);
                     }
                 }
             }
         }
     }
 
-    public MovingObjectPosition collisionRayTrace(World worldIn, BlockPos pos, Vec3 start, Vec3 end)
+    public MovingObjectPosition collisionRayTrace(World worldIn, 阻止位置 pos, Vec3 start, Vec3 end)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.collisionRayTrace(worldIn, pos, start, end);
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         IBlockState iblockstate = this.getDefaultState();
 
@@ -181,7 +181,7 @@ public class BlockTrapDoor extends Block
         return iblockstate;
     }
 
-    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
+    public boolean canPlaceBlockOnSide(World worldIn, 阻止位置 pos, EnumFacing side)
     {
         return !side.getAxis().isVertical() && isValidSupportBlock(worldIn.getBlockState(pos.offset(side.getOpposite())).getBlock());
     }

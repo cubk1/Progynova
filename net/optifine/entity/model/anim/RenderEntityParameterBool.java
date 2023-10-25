@@ -4,7 +4,7 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.optifine.expr.ExpressionType;
 import net.optifine.expr.IExpressionBool;
 
@@ -58,7 +58,7 @@ public enum RenderEntityParameterBool implements IExpressionBool
             if (render instanceof RendererLivingEntity)
             {
                 RendererLivingEntity rendererlivingentity = (RendererLivingEntity)render;
-                EntityLivingBase entitylivingbase = rendererlivingentity.renderEntity;
+                实体LivingBase entitylivingbase = rendererlivingentity.renderEntity;
 
                 if (entitylivingbase == null)
                 {
@@ -92,7 +92,7 @@ public enum RenderEntityParameterBool implements IExpressionBool
                         return entitylivingbase.onGround;
 
                     case IS_RIDDEN:
-                        return entitylivingbase.riddenByEntity != null;
+                        return entitylivingbase.riddenBy实体 != null;
 
                     case IS_RIDING:
                         return entitylivingbase.isRiding();

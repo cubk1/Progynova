@@ -6,19 +6,19 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateHelper;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class EntityAIEatGrass extends EntityAIBase
 {
     private static final Predicate<IBlockState> field_179505_b = BlockStateHelper.forBlock(Blocks.tallgrass).where(BlockTallGrass.TYPE, Predicates.equalTo(BlockTallGrass.EnumType.GRASS));
-    private EntityLiving grassEaterEntity;
+    private 实体Living grassEaterEntity;
     private World entityWorld;
     int eatingGrassTimer;
 
-    public EntityAIEatGrass(EntityLiving grassEaterEntityIn)
+    public EntityAIEatGrass(实体Living grassEaterEntityIn)
     {
         this.grassEaterEntity = grassEaterEntityIn;
         this.entityWorld = grassEaterEntityIn.worldObj;
@@ -33,7 +33,7 @@ public class EntityAIEatGrass extends EntityAIBase
         }
         else
         {
-            BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
+            阻止位置 blockpos = new 阻止位置(this.grassEaterEntity.X坐标, this.grassEaterEntity.Y坐标, this.grassEaterEntity.Z坐标);
             return field_179505_b.apply(this.entityWorld.getBlockState(blockpos)) ? true : this.entityWorld.getBlockState(blockpos.down()).getBlock() == Blocks.grass;
         }
     }
@@ -66,7 +66,7 @@ public class EntityAIEatGrass extends EntityAIBase
 
         if (this.eatingGrassTimer == 4)
         {
-            BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
+            阻止位置 blockpos = new 阻止位置(this.grassEaterEntity.X坐标, this.grassEaterEntity.Y坐标, this.grassEaterEntity.Z坐标);
 
             if (field_179505_b.apply(this.entityWorld.getBlockState(blockpos)))
             {
@@ -79,7 +79,7 @@ public class EntityAIEatGrass extends EntityAIBase
             }
             else
             {
-                BlockPos blockpos1 = blockpos.down();
+                阻止位置 blockpos1 = blockpos.down();
 
                 if (this.entityWorld.getBlockState(blockpos1).getBlock() == Blocks.grass)
                 {

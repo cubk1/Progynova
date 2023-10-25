@@ -9,10 +9,10 @@ import net.minecraft.block.BlockPrismarine;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.monster.EntityGuardian;
+import net.minecraft.entity.monster.实体Guardian;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -1648,13 +1648,13 @@ public class StructureOceanMonumentPieces
             int j = this.getYWithOffset(p_175817_4_);
             int k = this.getZWithOffset(p_175817_3_, p_175817_5_);
 
-            if (p_175817_2_.isVecInside(new BlockPos(i, j, k)))
+            if (p_175817_2_.isVecInside(new 阻止位置(i, j, k)))
             {
-                EntityGuardian entityguardian = new EntityGuardian(worldIn);
+                实体Guardian entityguardian = new 实体Guardian(worldIn);
                 entityguardian.setElder(true);
                 entityguardian.heal(entityguardian.getMaxHealth());
                 entityguardian.setLocationAndAngles((double)i + 0.5D, (double)j, (double)k + 0.5D, 0.0F, 0.0F);
-                entityguardian.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityguardian)), (IEntityLivingData)null);
+                entityguardian.onInitialSpawn(worldIn.getDifficultyForLocation(new 阻止位置(entityguardian)), (IEntityLivingData)null);
                 worldIn.spawnEntityInWorld(entityguardian);
                 return true;
             }

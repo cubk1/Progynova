@@ -9,9 +9,9 @@ import net.minecraft.client.gui.inventory.*;
 import net.minecraft.client.gui.鬼Enchantment;
 import net.minecraft.client.gui.inventory.鬼BrewingStand;
 import net.minecraft.client.gui.鬼Screen;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.实体Horse;
+import net.minecraft.entity.passive.实体Villager;
+import net.minecraft.entity.实体;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.src.Config;
@@ -21,7 +21,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.tileentity.TileEntityDropper;
 import net.minecraft.tileentity.TileEntityEnderChest;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.IWorldNameable;
@@ -322,7 +322,7 @@ public class CustomGuiProperties
         Config.warn("[CustomGuis] " + str);
     }
 
-    private boolean matchesGeneral(CustomGuiProperties.EnumContainer ec, BlockPos pos, IBlockAccess blockAccess)
+    private boolean matchesGeneral(CustomGuiProperties.EnumContainer ec, 阻止位置 pos, IBlockAccess blockAccess)
     {
         if (this.container != ec)
         {
@@ -344,7 +344,7 @@ public class CustomGuiProperties
         }
     }
 
-    public boolean matchesPos(CustomGuiProperties.EnumContainer ec, BlockPos pos, IBlockAccess blockAccess, 鬼Screen screen)
+    public boolean matchesPos(CustomGuiProperties.EnumContainer ec, 阻止位置 pos, IBlockAccess blockAccess, 鬼Screen screen)
     {
         if (!this.matchesGeneral(ec, pos, blockAccess))
         {
@@ -396,7 +396,7 @@ public class CustomGuiProperties
         return !(object instanceof IWorldNameable) ? null : (IWorldNameable)object;
     }
 
-    private boolean matchesBeacon(BlockPos pos, IBlockAccess blockAccess)
+    private boolean matchesBeacon(阻止位置 pos, IBlockAccess blockAccess)
     {
         TileEntity tileentity = blockAccess.getTileEntity(pos);
 
@@ -424,7 +424,7 @@ public class CustomGuiProperties
         }
     }
 
-    private boolean matchesChest(BlockPos pos, IBlockAccess blockAccess)
+    private boolean matchesChest(阻止位置 pos, IBlockAccess blockAccess)
     {
         TileEntity tileentity = blockAccess.getTileEntity(pos);
 
@@ -444,7 +444,7 @@ public class CustomGuiProperties
         }
     }
 
-    private boolean matchesChest(TileEntityChest tec, BlockPos pos, IBlockAccess blockAccess)
+    private boolean matchesChest(TileEntityChest tec, 阻止位置 pos, IBlockAccess blockAccess)
     {
         boolean flag = tec.adjacentChestXNeg != null || tec.adjacentChestXPos != null || tec.adjacentChestZNeg != null || tec.adjacentChestZPos != null;
         boolean flag1 = tec.getChestType() == 1;
@@ -453,7 +453,7 @@ public class CustomGuiProperties
         return this.matchesChest(flag, flag1, flag2, flag3);
     }
 
-    private boolean matchesEnderChest(TileEntityEnderChest teec, BlockPos pos, IBlockAccess blockAccess)
+    private boolean matchesEnderChest(TileEntityEnderChest teec, 阻止位置 pos, IBlockAccess blockAccess)
     {
         return this.matchesChest(false, false, false, true);
     }
@@ -463,7 +463,7 @@ public class CustomGuiProperties
         return this.large != null && this.large.booleanValue() != isLarge ? false : (this.trapped != null && this.trapped.booleanValue() != isTrapped ? false : (this.christmas != null && this.christmas.booleanValue() != isChristmas ? false : this.ender == null || this.ender.booleanValue() == isEnder));
     }
 
-    private boolean matchesDispenser(BlockPos pos, IBlockAccess blockAccess)
+    private boolean matchesDispenser(阻止位置 pos, IBlockAccess blockAccess)
     {
         TileEntity tileentity = blockAccess.getTileEntity(pos);
 
@@ -494,9 +494,9 @@ public class CustomGuiProperties
         return ted instanceof TileEntityDropper ? CustomGuiProperties.EnumVariant.DROPPER : CustomGuiProperties.EnumVariant.DISPENSER;
     }
 
-    public boolean matchesEntity(CustomGuiProperties.EnumContainer ec, Entity entity, IBlockAccess blockAccess)
+    public boolean matchesEntity(CustomGuiProperties.EnumContainer ec, 实体 实体, IBlockAccess blockAccess)
     {
-        if (!this.matchesGeneral(ec, entity.getPosition(), blockAccess))
+        if (!this.matchesGeneral(ec, 实体.getPosition(), blockAccess))
         {
             return false;
         }
@@ -504,7 +504,7 @@ public class CustomGuiProperties
         {
             if (this.nbtName != null)
             {
-                String s = entity.getName();
+                String s = 实体.getName();
 
                 if (!this.nbtName.matchesValue(s))
                 {
@@ -515,10 +515,10 @@ public class CustomGuiProperties
             switch (ec)
             {
                 case HORSE:
-                    return this.matchesHorse(entity, blockAccess);
+                    return this.matchesHorse(实体, blockAccess);
 
                 case VILLAGER:
-                    return this.matchesVillager(entity, blockAccess);
+                    return this.matchesVillager(实体, blockAccess);
 
                 default:
                     return true;
@@ -526,15 +526,15 @@ public class CustomGuiProperties
         }
     }
 
-    private boolean matchesVillager(Entity entity, IBlockAccess blockAccess)
+    private boolean matchesVillager(实体 实体, IBlockAccess blockAccess)
     {
-        if (!(entity instanceof EntityVillager))
+        if (!(实体 instanceof 实体Villager))
         {
             return false;
         }
         else
         {
-            EntityVillager entityvillager = (EntityVillager)entity;
+            实体Villager entityvillager = (实体Villager) 实体;
 
             if (this.professions != null)
             {
@@ -569,15 +569,15 @@ public class CustomGuiProperties
         }
     }
 
-    private boolean matchesHorse(Entity entity, IBlockAccess blockAccess)
+    private boolean matchesHorse(实体 实体, IBlockAccess blockAccess)
     {
-        if (!(entity instanceof EntityHorse))
+        if (!(实体 instanceof 实体Horse))
         {
             return false;
         }
         else
         {
-            EntityHorse entityhorse = (EntityHorse)entity;
+            实体Horse entityhorse = (实体Horse) 实体;
 
             if (this.variants != null)
             {
@@ -593,7 +593,7 @@ public class CustomGuiProperties
         }
     }
 
-    private CustomGuiProperties.EnumVariant getHorseVariant(EntityHorse entity)
+    private CustomGuiProperties.EnumVariant getHorseVariant(实体Horse entity)
     {
         int i = entity.getHorseType();
 

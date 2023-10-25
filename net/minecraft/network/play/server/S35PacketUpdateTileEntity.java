@@ -5,11 +5,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class S35PacketUpdateTileEntity implements Packet<INetHandlerPlayClient>
 {
-    private BlockPos blockPos;
+    private 阻止位置 阻止位置;
     private int metadata;
     private NBTTagCompound nbt;
 
@@ -17,23 +17,23 @@ public class S35PacketUpdateTileEntity implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S35PacketUpdateTileEntity(BlockPos blockPosIn, int metadataIn, NBTTagCompound nbtIn)
+    public S35PacketUpdateTileEntity(阻止位置 阻止位置In, int metadataIn, NBTTagCompound nbtIn)
     {
-        this.blockPos = blockPosIn;
+        this.阻止位置 = 阻止位置In;
         this.metadata = metadataIn;
         this.nbt = nbtIn;
     }
 
     public void readPacketData(PacketBuffer buf) throws IOException
     {
-        this.blockPos = buf.readBlockPos();
+        this.阻止位置 = buf.readBlockPos();
         this.metadata = buf.readUnsignedByte();
         this.nbt = buf.readNBTTagCompoundFromBuffer();
     }
 
     public void writePacketData(PacketBuffer buf) throws IOException
     {
-        buf.writeBlockPos(this.blockPos);
+        buf.writeBlockPos(this.阻止位置);
         buf.writeByte((byte)this.metadata);
         buf.writeNBTTagCompoundToBuffer(this.nbt);
     }
@@ -43,9 +43,9 @@ public class S35PacketUpdateTileEntity implements Packet<INetHandlerPlayClient>
         handler.handleUpdateTileEntity(this);
     }
 
-    public BlockPos getPos()
+    public 阻止位置 getPos()
     {
-        return this.blockPos;
+        return this.阻止位置;
     }
 
     public int getTileEntityType()

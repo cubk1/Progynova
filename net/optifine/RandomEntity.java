@@ -1,71 +1,71 @@
 package net.optifine;
 
 import java.util.UUID;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体Living;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class RandomEntity implements IRandomEntity
 {
-    private Entity entity;
+    private 实体 实体;
 
     public int getId()
     {
-        UUID uuid = this.entity.getUniqueID();
+        UUID uuid = this.实体.getUniqueID();
         long i = uuid.getLeastSignificantBits();
         int j = (int)(i & 2147483647L);
         return j;
     }
 
-    public BlockPos getSpawnPosition()
+    public 阻止位置 getSpawnPosition()
     {
-        return this.entity.getDataWatcher().spawnPosition;
+        return this.实体.getDataWatcher().spawnPosition;
     }
 
     public BiomeGenBase getSpawnBiome()
     {
-        return this.entity.getDataWatcher().spawnBiome;
+        return this.实体.getDataWatcher().spawnBiome;
     }
 
     public String getName()
     {
-        return this.entity.hasCustomName() ? this.entity.getCustomNameTag() : null;
+        return this.实体.hasCustomName() ? this.实体.getCustomNameTag() : null;
     }
 
     public int getHealth()
     {
-        if (!(this.entity instanceof EntityLiving))
+        if (!(this.实体 instanceof 实体Living))
         {
             return 0;
         }
         else
         {
-            EntityLiving entityliving = (EntityLiving)this.entity;
+            实体Living entityliving = (实体Living)this.实体;
             return (int)entityliving.getHealth();
         }
     }
 
     public int getMaxHealth()
     {
-        if (!(this.entity instanceof EntityLiving))
+        if (!(this.实体 instanceof 实体Living))
         {
             return 0;
         }
         else
         {
-            EntityLiving entityliving = (EntityLiving)this.entity;
+            实体Living entityliving = (实体Living)this.实体;
             return (int)entityliving.getMaxHealth();
         }
     }
 
-    public Entity getEntity()
+    public 实体 getEntity()
     {
-        return this.entity;
+        return this.实体;
     }
 
-    public void setEntity(Entity entity)
+    public void setEntity(实体 实体)
     {
-        this.entity = entity;
+        this.实体 = 实体;
     }
 }

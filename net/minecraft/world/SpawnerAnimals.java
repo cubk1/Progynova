@@ -12,18 +12,18 @@ import java.util.Random;
 import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体Living;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
-import net.optifine.BlockPosM;
+import net.optifine.阻止位置M;
 import net.optifine.reflect.Reflector;
 import net.optifine.reflect.ReflectorForge;
 
@@ -31,7 +31,7 @@ public final class SpawnerAnimals
 {
     private static final int MOB_COUNT_DIV = (int)Math.pow(17.0D, 2.0D);
     private final Set<ChunkCoordIntPair> eligibleChunksForSpawning = Sets.<ChunkCoordIntPair>newHashSet();
-    private Map<Class, EntityLiving> mapSampleEntitiesByClass = new HashMap();
+    private Map<Class, 实体Living> mapSampleEntitiesByClass = new HashMap();
     private int lastPlayerChunkX = Integer.MAX_VALUE;
     private int lastPlayerChunkZ = Integer.MAX_VALUE;
     private int countChunkPos;
@@ -45,11 +45,11 @@ public final class SpawnerAnimals
         else
         {
             boolean flag = true;
-            EntityPlayer entityplayer = null;
+            实体Player entityplayer = null;
 
             if (worldServerIn.playerEntities.size() == 1)
             {
-                entityplayer = (EntityPlayer)worldServerIn.playerEntities.get(0);
+                entityplayer = (实体Player)worldServerIn.playerEntities.get(0);
 
                 if (this.eligibleChunksForSpawning.size() > 0 && entityplayer != null && entityplayer.chunkCoordX == this.lastPlayerChunkX && entityplayer.chunkCoordZ == this.lastPlayerChunkZ)
                 {
@@ -62,12 +62,12 @@ public final class SpawnerAnimals
                 this.eligibleChunksForSpawning.clear();
                 int i = 0;
 
-                for (EntityPlayer entityplayer1 : worldServerIn.playerEntities)
+                for (实体Player entityplayer1 : worldServerIn.playerEntities)
                 {
                     if (!entityplayer1.isSpectator())
                     {
-                        int j = MathHelper.floor_double(entityplayer1.posX / 16.0D);
-                        int k = MathHelper.floor_double(entityplayer1.posZ / 16.0D);
+                        int j = MathHelper.floor_double(entityplayer1.X坐标 / 16.0D);
+                        int k = MathHelper.floor_double(entityplayer1.Z坐标 / 16.0D);
                         int l = 8;
 
                         for (int i1 = -l; i1 <= l; ++i1)
@@ -101,9 +101,9 @@ public final class SpawnerAnimals
             }
 
             int j4 = 0;
-            BlockPos blockpos2 = worldServerIn.getSpawnPoint();
-            BlockPosM blockposm = new BlockPosM(0, 0, 0);
-            new BlockPos.MutableBlockPos();
+            阻止位置 blockpos2 = worldServerIn.getSpawnPoint();
+            阻止位置M blockposm = new 阻止位置M(0, 0, 0);
+            new 阻止位置.Mutable阻止位置();
 
             for (EnumCreatureType enumcreaturetype : EnumCreatureType.values())
             {
@@ -127,7 +127,7 @@ public final class SpawnerAnimals
 
                         for (ChunkCoordIntPair chunkcoordintpair1 : collection)
                         {
-                            BlockPos blockpos = getRandomChunkPosition(worldServerIn, chunkcoordintpair1.chunkXPos, chunkcoordintpair1.chunkZPos, blockposm);
+                            阻止位置 blockpos = getRandomChunkPosition(worldServerIn, chunkcoordintpair1.chunkXPos, chunkcoordintpair1.chunkZPos, blockposm);
                             int k1 = blockpos.getX();
                             int l1 = blockpos.getY();
                             int i2 = blockpos.getZ();
@@ -151,7 +151,7 @@ public final class SpawnerAnimals
                                         l2 += worldServerIn.rand.nextInt(k3) - worldServerIn.rand.nextInt(k3);
                                         i3 += worldServerIn.rand.nextInt(1) - worldServerIn.rand.nextInt(1);
                                         j3 += worldServerIn.rand.nextInt(k3) - worldServerIn.rand.nextInt(k3);
-                                        BlockPos blockpos1 = new BlockPos(l2, i3, j3);
+                                        阻止位置 blockpos1 = new 阻止位置(l2, i3, j3);
                                         float f = (float)l2 + 0.5F;
                                         float f1 = (float)j3 + 0.5F;
 
@@ -169,15 +169,15 @@ public final class SpawnerAnimals
 
                                             if (worldServerIn.canCreatureTypeSpawnHere(enumcreaturetype, biomegenbase$spawnlistentry, blockpos1) && canCreatureTypeSpawnAtLocation(EntitySpawnPlacementRegistry.getPlacementForEntity(biomegenbase$spawnlistentry.entityClass), worldServerIn, blockpos1))
                                             {
-                                                EntityLiving entityliving;
+                                                实体Living entityliving;
 
                                                 try
                                                 {
-                                                    entityliving = (EntityLiving)this.mapSampleEntitiesByClass.get(biomegenbase$spawnlistentry.entityClass);
+                                                    entityliving = (实体Living)this.mapSampleEntitiesByClass.get(biomegenbase$spawnlistentry.entityClass);
 
                                                     if (entityliving == null)
                                                     {
-                                                        entityliving = (EntityLiving)biomegenbase$spawnlistentry.entityClass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldServerIn});
+                                                        entityliving = (实体Living)biomegenbase$spawnlistentry.entityClass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldServerIn});
                                                         this.mapSampleEntitiesByClass.put(biomegenbase$spawnlistentry.entityClass, entityliving);
                                                     }
                                                 }
@@ -196,7 +196,7 @@ public final class SpawnerAnimals
 
                                                     if (!ReflectorForge.doSpecialSpawn(entityliving, worldServerIn, f, i3, f1))
                                                     {
-                                                        ientitylivingdata = entityliving.onInitialSpawn(worldServerIn.getDifficultyForLocation(new BlockPos(entityliving)), ientitylivingdata);
+                                                        ientitylivingdata = entityliving.onInitialSpawn(worldServerIn.getDifficultyForLocation(new 阻止位置(entityliving)), ientitylivingdata);
                                                     }
 
                                                     if (entityliving.isNotColliding())
@@ -228,17 +228,17 @@ public final class SpawnerAnimals
         }
     }
 
-    protected static BlockPos getRandomChunkPosition(World worldIn, int x, int z)
+    protected static 阻止位置 getRandomChunkPosition(World worldIn, int x, int z)
     {
         Chunk chunk = worldIn.getChunkFromChunkCoords(x, z);
         int i = x * 16 + worldIn.rand.nextInt(16);
         int j = z * 16 + worldIn.rand.nextInt(16);
-        int k = MathHelper.roundUp(chunk.getHeight(new BlockPos(i, 0, j)) + 1, 16);
+        int k = MathHelper.roundUp(chunk.getHeight(new 阻止位置(i, 0, j)) + 1, 16);
         int l = worldIn.rand.nextInt(k > 0 ? k : chunk.getTopFilledSegment() + 16 - 1);
-        return new BlockPos(i, l, j);
+        return new 阻止位置(i, l, j);
     }
 
-    private static BlockPosM getRandomChunkPosition(World p_getRandomChunkPosition_0_, int p_getRandomChunkPosition_1_, int p_getRandomChunkPosition_2_, BlockPosM p_getRandomChunkPosition_3_)
+    private static 阻止位置M getRandomChunkPosition(World p_getRandomChunkPosition_0_, int p_getRandomChunkPosition_1_, int p_getRandomChunkPosition_2_, 阻止位置M p_getRandomChunkPosition_3_)
     {
         Chunk chunk = p_getRandomChunkPosition_0_.getChunkFromChunkCoords(p_getRandomChunkPosition_1_, p_getRandomChunkPosition_2_);
         int i = p_getRandomChunkPosition_1_ * 16 + p_getRandomChunkPosition_0_.rand.nextInt(16);
@@ -249,7 +249,7 @@ public final class SpawnerAnimals
         return p_getRandomChunkPosition_3_;
     }
 
-    public static boolean canCreatureTypeSpawnAtLocation(EntityLiving.SpawnPlacementType spawnPlacementTypeIn, World worldIn, BlockPos pos)
+    public static boolean canCreatureTypeSpawnAtLocation(实体Living.SpawnPlacementType spawnPlacementTypeIn, World worldIn, 阻止位置 pos)
     {
         if (!worldIn.getWorldBorder().contains(pos))
         {
@@ -263,13 +263,13 @@ public final class SpawnerAnimals
         {
             Block block = worldIn.getBlockState(pos).getBlock();
 
-            if (spawnPlacementTypeIn == EntityLiving.SpawnPlacementType.IN_WATER)
+            if (spawnPlacementTypeIn == 实体Living.SpawnPlacementType.IN_WATER)
             {
                 return block.getMaterial().isLiquid() && worldIn.getBlockState(pos.down()).getBlock().getMaterial().isLiquid() && !worldIn.getBlockState(pos.up()).getBlock().isNormalCube();
             }
             else
             {
-                BlockPos blockpos = pos.down();
+                阻止位置 blockpos = pos.down();
                 IBlockState iblockstate = worldIn.getBlockState(blockpos);
                 boolean flag = Reflector.ForgeBlock_canCreatureSpawn.exists() ? Reflector.callBoolean(iblockstate.getBlock(), Reflector.ForgeBlock_canCreatureSpawn, new Object[] {worldIn, blockpos, spawnPlacementTypeIn}): World.doesBlockHaveSolidTopSurface(worldIn, blockpos);
 
@@ -309,15 +309,15 @@ public final class SpawnerAnimals
 
                     for (int k1 = 0; !flag && k1 < 4; ++k1)
                     {
-                        BlockPos blockpos = worldIn.getTopSolidOrLiquidBlock(new BlockPos(j, 0, k));
+                        阻止位置 blockpos = worldIn.getTopSolidOrLiquidBlock(new 阻止位置(j, 0, k));
 
-                        if (canCreatureTypeSpawnAtLocation(EntityLiving.SpawnPlacementType.ON_GROUND, worldIn, blockpos))
+                        if (canCreatureTypeSpawnAtLocation(实体Living.SpawnPlacementType.ON_GROUND, worldIn, blockpos))
                         {
-                            EntityLiving entityliving;
+                            实体Living entityliving;
 
                             try
                             {
-                                entityliving = (EntityLiving)biomegenbase$spawnlistentry.entityClass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
+                                entityliving = (实体Living)biomegenbase$spawnlistentry.entityClass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
                             }
                             catch (Exception exception1)
                             {
@@ -337,7 +337,7 @@ public final class SpawnerAnimals
 
                             entityliving.setLocationAndAngles((double)((float)j + 0.5F), (double)blockpos.getY(), (double)((float)k + 0.5F), randomIn.nextFloat() * 360.0F, 0.0F);
                             worldIn.spawnEntityInWorld(entityliving);
-                            ientitylivingdata = entityliving.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityliving)), ientitylivingdata);
+                            ientitylivingdata = entityliving.onInitialSpawn(worldIn.getDifficultyForLocation(new 阻止位置(entityliving)), ientitylivingdata);
                             flag = true;
                         }
 

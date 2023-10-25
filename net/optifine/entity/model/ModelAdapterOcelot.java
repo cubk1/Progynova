@@ -9,7 +9,7 @@ import net.minecraft.client.model.ModelOcelot;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderOcelot;
-import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.实体Ocelot;
 import net.optifine.reflect.Reflector;
 
 public class ModelAdapterOcelot extends ModelAdapter
@@ -18,7 +18,7 @@ public class ModelAdapterOcelot extends ModelAdapter
 
     public ModelAdapterOcelot()
     {
-        super(EntityOcelot.class, "ocelot", 0.4F);
+        super(实体Ocelot.class, "ocelot", 0.4F);
     }
 
     public ModelBase makeModel()

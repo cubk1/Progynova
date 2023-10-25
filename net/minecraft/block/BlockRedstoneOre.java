@@ -3,13 +3,13 @@ package net.minecraft.block;
 import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -35,25 +35,25 @@ public class BlockRedstoneOre extends Block
         return 30;
     }
 
-    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
+    public void onBlockClicked(World worldIn, 阻止位置 pos, 实体Player playerIn)
     {
         this.activate(worldIn, pos);
         super.onBlockClicked(worldIn, pos, playerIn);
     }
 
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn)
+    public void onEntityCollidedWithBlock(World worldIn, 阻止位置 pos, 实体 实体In)
     {
         this.activate(worldIn, pos);
-        super.onEntityCollidedWithBlock(worldIn, pos, entityIn);
+        super.onEntityCollidedWithBlock(worldIn, pos, 实体In);
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         this.activate(worldIn, pos);
         return super.onBlockActivated(worldIn, pos, state, playerIn, side, hitX, hitY, hitZ);
     }
 
-    private void activate(World worldIn, BlockPos pos)
+    private void activate(World worldIn, 阻止位置 pos)
     {
         this.spawnParticles(worldIn, pos);
 
@@ -63,7 +63,7 @@ public class BlockRedstoneOre extends Block
         }
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (this == Blocks.lit_redstone_ore)
         {
@@ -86,7 +86,7 @@ public class BlockRedstoneOre extends Block
         return 4 + random.nextInt(2);
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
 
@@ -97,7 +97,7 @@ public class BlockRedstoneOre extends Block
         }
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (this.isOn)
         {
@@ -105,7 +105,7 @@ public class BlockRedstoneOre extends Block
         }
     }
 
-    private void spawnParticles(World worldIn, BlockPos pos)
+    private void spawnParticles(World worldIn, 阻止位置 pos)
     {
         Random random = worldIn.rand;
         double d0 = 0.0625D;

@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IWorldNameable;
 
@@ -20,11 +20,11 @@ public interface IInventory extends IWorldNameable
 
     void markDirty();
 
-    boolean isUseableByPlayer(EntityPlayer player);
+    boolean isUseableByPlayer(实体Player player);
 
-    void openInventory(EntityPlayer player);
+    void openInventory(实体Player player);
 
-    void closeInventory(EntityPlayer player);
+    void closeInventory(实体Player player);
 
     boolean isItemValidForSlot(int index, ItemStack stack);
 

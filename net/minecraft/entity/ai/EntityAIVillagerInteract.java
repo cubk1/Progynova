@@ -1,7 +1,7 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.item.实体Item;
+import net.minecraft.entity.passive.实体Villager;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.Item;
@@ -11,11 +11,11 @@ import net.minecraft.util.MathHelper;
 public class EntityAIVillagerInteract extends EntityAIWatchClosest2
 {
     private int interactionDelay;
-    private EntityVillager villager;
+    private 实体Villager villager;
 
-    public EntityAIVillagerInteract(EntityVillager villagerIn)
+    public EntityAIVillagerInteract(实体Villager villagerIn)
     {
-        super(villagerIn, EntityVillager.class, 3.0F, 0.02F);
+        super(villagerIn, 实体Villager.class, 3.0F, 0.02F);
         this.villager = villagerIn;
     }
 
@@ -23,7 +23,7 @@ public class EntityAIVillagerInteract extends EntityAIWatchClosest2
     {
         super.startExecuting();
 
-        if (this.villager.canAbondonItems() && this.closestEntity instanceof EntityVillager && ((EntityVillager)this.closestEntity).func_175557_cr())
+        if (this.villager.canAbondonItems() && this.closest实体 instanceof 实体Villager && ((实体Villager)this.closest实体).func_175557_cr())
         {
             this.interactionDelay = 10;
         }
@@ -76,8 +76,8 @@ public class EntityAIVillagerInteract extends EntityAIWatchClosest2
 
                     if (itemstack1 != null)
                     {
-                        double d0 = this.villager.posY - 0.30000001192092896D + (double)this.villager.getEyeHeight();
-                        EntityItem entityitem = new EntityItem(this.villager.worldObj, this.villager.posX, d0, this.villager.posZ, itemstack1);
+                        double d0 = this.villager.Y坐标 - 0.30000001192092896D + (double)this.villager.getEyeHeight();
+                        实体Item entityitem = new 实体Item(this.villager.worldObj, this.villager.X坐标, d0, this.villager.Z坐标, itemstack1);
                         float f = 0.3F;
                         float f1 = this.villager.rotationYawHead;
                         float f2 = this.villager.rotationPitch;

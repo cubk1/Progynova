@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.交流组分文本;
@@ -105,18 +105,18 @@ public class InventoryLargeChest implements ILockableContainer
         this.lowerChest.markDirty();
     }
 
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUseableByPlayer(实体Player player)
     {
         return this.upperChest.isUseableByPlayer(player) && this.lowerChest.isUseableByPlayer(player);
     }
 
-    public void openInventory(EntityPlayer player)
+    public void openInventory(实体Player player)
     {
         this.upperChest.openInventory(player);
         this.lowerChest.openInventory(player);
     }
 
-    public void closeInventory(EntityPlayer player)
+    public void closeInventory(实体Player player)
     {
         this.upperChest.closeInventory(player);
         this.lowerChest.closeInventory(player);
@@ -162,7 +162,7 @@ public class InventoryLargeChest implements ILockableContainer
         return this.upperChest.getGuiID();
     }
 
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    public Container createContainer(InventoryPlayer playerInventory, 实体Player playerIn)
     {
         return new ContainerChest(playerInventory, this, playerIn);
     }

@@ -1,7 +1,7 @@
 package net.minecraft.inventory;
 
 import net.minecraft.entity.IMerchant;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatComponentTranslation;
@@ -13,11 +13,11 @@ public class InventoryMerchant implements IInventory
 {
     private final IMerchant theMerchant;
     private ItemStack[] theInventory = new ItemStack[3];
-    private final EntityPlayer thePlayer;
+    private final 实体Player thePlayer;
     private MerchantRecipe currentRecipe;
     private int currentRecipeIndex;
 
-    public InventoryMerchant(EntityPlayer thePlayerIn, IMerchant theMerchantIn)
+    public InventoryMerchant(实体Player thePlayerIn, IMerchant theMerchantIn)
     {
         this.thePlayer = thePlayerIn;
         this.theMerchant = theMerchantIn;
@@ -132,16 +132,16 @@ public class InventoryMerchant implements IInventory
         return 64;
     }
 
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUseableByPlayer(实体Player player)
     {
         return this.theMerchant.getCustomer() == player;
     }
 
-    public void openInventory(EntityPlayer player)
+    public void openInventory(实体Player player)
     {
     }
 
-    public void closeInventory(EntityPlayer player)
+    public void closeInventory(实体Player player)
     {
     }
 

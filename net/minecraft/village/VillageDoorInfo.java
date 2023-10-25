@@ -1,18 +1,18 @@
 package net.minecraft.village;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 
 public class VillageDoorInfo
 {
-    private final BlockPos doorBlockPos;
-    private final BlockPos insideBlock;
+    private final 阻止位置 door阻止位置;
+    private final 阻止位置 insideBlock;
     private final EnumFacing insideDirection;
     private int lastActivityTimestamp;
     private boolean isDetachedFromVillageFlag;
     private int doorOpeningRestrictionCounter;
 
-    public VillageDoorInfo(BlockPos pos, int p_i45871_2_, int p_i45871_3_, int p_i45871_4_)
+    public VillageDoorInfo(阻止位置 pos, int p_i45871_2_, int p_i45871_3_, int p_i45871_4_)
     {
         this(pos, getFaceDirection(p_i45871_2_, p_i45871_3_), p_i45871_4_);
     }
@@ -22,9 +22,9 @@ public class VillageDoorInfo
         return deltaX < 0 ? EnumFacing.WEST : (deltaX > 0 ? EnumFacing.EAST : (deltaZ < 0 ? EnumFacing.NORTH : EnumFacing.SOUTH));
     }
 
-    public VillageDoorInfo(BlockPos pos, EnumFacing facing, int timestamp)
+    public VillageDoorInfo(阻止位置 pos, EnumFacing facing, int timestamp)
     {
-        this.doorBlockPos = pos;
+        this.door阻止位置 = pos;
         this.insideDirection = facing;
         this.insideBlock = pos.offset(facing, 2);
         this.lastActivityTimestamp = timestamp;
@@ -32,23 +32,23 @@ public class VillageDoorInfo
 
     public int getDistanceSquared(int x, int y, int z)
     {
-        return (int)this.doorBlockPos.distanceSq((double)x, (double)y, (double)z);
+        return (int)this.door阻止位置.distanceSq((double)x, (double)y, (double)z);
     }
 
-    public int getDistanceToDoorBlockSq(BlockPos pos)
+    public int getDistanceToDoorBlockSq(阻止位置 pos)
     {
         return (int)pos.distanceSq(this.getDoorBlockPos());
     }
 
-    public int getDistanceToInsideBlockSq(BlockPos pos)
+    public int getDistanceToInsideBlockSq(阻止位置 pos)
     {
         return (int)this.insideBlock.distanceSq(pos);
     }
 
-    public boolean func_179850_c(BlockPos pos)
+    public boolean func_179850_c(阻止位置 pos)
     {
-        int i = pos.getX() - this.doorBlockPos.getX();
-        int j = pos.getZ() - this.doorBlockPos.getY();
+        int i = pos.getX() - this.door阻止位置.getX();
+        int j = pos.getZ() - this.door阻止位置.getY();
         return i * this.insideDirection.getFrontOffsetX() + j * this.insideDirection.getFrontOffsetZ() >= 0;
     }
 
@@ -67,12 +67,12 @@ public class VillageDoorInfo
         return this.doorOpeningRestrictionCounter;
     }
 
-    public BlockPos getDoorBlockPos()
+    public 阻止位置 getDoorBlockPos()
     {
-        return this.doorBlockPos;
+        return this.door阻止位置;
     }
 
-    public BlockPos getInsideBlockPos()
+    public 阻止位置 getInsideBlockPos()
     {
         return this.insideBlock;
     }

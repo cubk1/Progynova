@@ -1,6 +1,6 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 
 public class ModelEnderman extends ModelBiped
 {
@@ -33,9 +33,9 @@ public class ModelEnderman extends ModelBiped
         this.bipedLeftLeg.setRotationPoint(2.0F, 12.0F + f, 0.0F);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, 实体In);
         this.bipedHead.showModel = true;
         float f = -14.0F;
         this.bipedBody.rotateAngleX = 0.0F;

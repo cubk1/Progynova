@@ -2,22 +2,22 @@ package net.minecraft.item;
 
 import com.google.common.collect.Lists;
 import java.util.List;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体FireworkRocket;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemFirework extends Item
 {
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (!worldIn.isRemote)
         {
-            EntityFireworkRocket entityfireworkrocket = new EntityFireworkRocket(worldIn, (double)((float)pos.getX() + hitX), (double)((float)pos.getY() + hitY), (double)((float)pos.getZ() + hitZ), stack);
+            实体FireworkRocket entityfireworkrocket = new 实体FireworkRocket(worldIn, (double)((float)pos.getX() + hitX), (double)((float)pos.getY() + hitY), (double)((float)pos.getZ() + hitZ), stack);
             worldIn.spawnEntityInWorld(entityfireworkrocket);
 
             if (!playerIn.capabilities.isCreativeMode)
@@ -33,7 +33,7 @@ public class ItemFirework extends Item
         }
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, 实体Player playerIn, List<String> tooltip, boolean advanced)
     {
         if (stack.hasTagCompound())
         {

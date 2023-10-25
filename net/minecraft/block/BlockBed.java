@@ -7,11 +7,11 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -32,7 +32,7 @@ public class BlockBed extends BlockDirectional
         this.setBedBounds();
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -55,7 +55,7 @@ public class BlockBed extends BlockDirectional
             {
                 if (((Boolean)state.getValue(OCCUPIED)).booleanValue())
                 {
-                    EntityPlayer entityplayer = this.getPlayerInBed(worldIn, pos);
+                    实体Player entityplayer = this.getPlayerInBed(worldIn, pos);
 
                     if (entityplayer != null)
                     {
@@ -67,9 +67,9 @@ public class BlockBed extends BlockDirectional
                     worldIn.setBlockState(pos, state, 4);
                 }
 
-                EntityPlayer.EnumStatus entityplayer$enumstatus = playerIn.trySleep(pos);
+                实体Player.EnumStatus entityplayer$enumstatus = playerIn.trySleep(pos);
 
-                if (entityplayer$enumstatus == EntityPlayer.EnumStatus.OK)
+                if (entityplayer$enumstatus == 实体Player.EnumStatus.OK)
                 {
                     state = state.withProperty(OCCUPIED, Boolean.valueOf(true));
                     worldIn.setBlockState(pos, state, 4);
@@ -77,11 +77,11 @@ public class BlockBed extends BlockDirectional
                 }
                 else
                 {
-                    if (entityplayer$enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
+                    if (entityplayer$enumstatus == 实体Player.EnumStatus.NOT_POSSIBLE_NOW)
                     {
                         playerIn.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
                     }
-                    else if (entityplayer$enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
+                    else if (entityplayer$enumstatus == 实体Player.EnumStatus.NOT_SAFE)
                     {
                         playerIn.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
                     }
@@ -92,22 +92,22 @@ public class BlockBed extends BlockDirectional
             else
             {
                 worldIn.setBlockToAir(pos);
-                BlockPos blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
+                阻止位置 blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
 
                 if (worldIn.getBlockState(blockpos).getBlock() == this)
                 {
                     worldIn.setBlockToAir(blockpos);
                 }
 
-                worldIn.newExplosion((Entity)null, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, 5.0F, true, true);
+                worldIn.newExplosion((实体)null, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, 5.0F, true, true);
                 return true;
             }
         }
     }
 
-    private EntityPlayer getPlayerInBed(World worldIn, BlockPos pos)
+    private 实体Player getPlayerInBed(World worldIn, 阻止位置 pos)
     {
-        for (EntityPlayer entityplayer : worldIn.playerEntities)
+        for (实体Player entityplayer : worldIn.playerEntities)
         {
             if (entityplayer.isPlayerSleeping() && entityplayer.playerLocation.equals(pos))
             {
@@ -128,12 +128,12 @@ public class BlockBed extends BlockDirectional
         return false;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         this.setBedBounds();
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
 
@@ -165,7 +165,7 @@ public class BlockBed extends BlockDirectional
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5625F, 1.0F);
     }
 
-    public static BlockPos getSafeExitLocation(World worldIn, BlockPos pos, int tries)
+    public static 阻止位置 getSafeExitLocation(World worldIn, 阻止位置 pos, int tries)
     {
         EnumFacing enumfacing = (EnumFacing)worldIn.getBlockState(pos).getValue(FACING);
         int i = pos.getX();
@@ -183,7 +183,7 @@ public class BlockBed extends BlockDirectional
             {
                 for (int j2 = j1; j2 <= l1; ++j2)
                 {
-                    BlockPos blockpos = new BlockPos(i2, j, j2);
+                    阻止位置 blockpos = new 阻止位置(i2, j, j2);
 
                     if (hasRoomForPlayer(worldIn, blockpos))
                     {
@@ -201,12 +201,12 @@ public class BlockBed extends BlockDirectional
         return null;
     }
 
-    protected static boolean hasRoomForPlayer(World worldIn, BlockPos pos)
+    protected static boolean hasRoomForPlayer(World worldIn, 阻止位置 pos)
     {
         return World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) && !worldIn.getBlockState(pos).getBlock().getMaterial().isSolid() && !worldIn.getBlockState(pos.up()).getBlock().getMaterial().isSolid();
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         if (state.getValue(PART) == BlockBed.EnumPartType.FOOT)
         {
@@ -224,16 +224,16 @@ public class BlockBed extends BlockDirectional
         return EnumWorldBlockLayer.CUTOUT;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Items.bed;
     }
 
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    public void onBlockHarvested(World worldIn, 阻止位置 pos, IBlockState state, 实体Player player)
     {
         if (player.capabilities.isCreativeMode && state.getValue(PART) == BlockBed.EnumPartType.HEAD)
         {
-            BlockPos blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
+            阻止位置 blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
 
             if (worldIn.getBlockState(blockpos).getBlock() == this)
             {
@@ -248,7 +248,7 @@ public class BlockBed extends BlockDirectional
         return (meta & 8) > 0 ? this.getDefaultState().withProperty(PART, BlockBed.EnumPartType.HEAD).withProperty(FACING, enumfacing).withProperty(OCCUPIED, Boolean.valueOf((meta & 4) > 0)) : this.getDefaultState().withProperty(PART, BlockBed.EnumPartType.FOOT).withProperty(FACING, enumfacing);
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         if (state.getValue(PART) == BlockBed.EnumPartType.FOOT)
         {

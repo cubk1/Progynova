@@ -9,7 +9,7 @@ import java.util.List;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemEditableBook;
@@ -32,7 +32,7 @@ public class 鬼ScreenBook extends 鬼Screen
 {
     private static final Logger logger = LogManager.getLogger();
     private static final 图像位置 bookGuiTextures = new 图像位置("textures/gui/book.png");
-    private final EntityPlayer editingPlayer;
+    private final 实体Player editingPlayer;
     private final ItemStack bookObj;
     private final boolean bookIsUnsigned;
     private boolean bookIsModified;
@@ -53,7 +53,7 @@ public class 鬼ScreenBook extends 鬼Screen
     private 鬼Button buttonFinalize;
     private 鬼Button buttonCancel;
 
-    public 鬼ScreenBook(EntityPlayer player, ItemStack book, boolean isUnsigned)
+    public 鬼ScreenBook(实体Player player, ItemStack book, boolean isUnsigned)
     {
         this.editingPlayer = player;
         this.bookObj = book;

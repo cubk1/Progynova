@@ -9,12 +9,12 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
@@ -34,7 +34,7 @@ public class BlockPistonExtension extends Block
         this.setHardness(0.5F);
     }
 
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    public void onBlockHarvested(World worldIn, 阻止位置 pos, IBlockState state, 实体Player player)
     {
         if (player.capabilities.isCreativeMode)
         {
@@ -42,7 +42,7 @@ public class BlockPistonExtension extends Block
 
             if (enumfacing != null)
             {
-                BlockPos blockpos = pos.offset(enumfacing.getOpposite());
+                阻止位置 blockpos = pos.offset(enumfacing.getOpposite());
                 Block block = worldIn.getBlockState(blockpos).getBlock();
 
                 if (block == Blocks.piston || block == Blocks.sticky_piston)
@@ -55,7 +55,7 @@ public class BlockPistonExtension extends Block
         super.onBlockHarvested(worldIn, pos, state, player);
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         super.breakBlock(worldIn, pos, state);
         EnumFacing enumfacing = ((EnumFacing)state.getValue(FACING)).getOpposite();
@@ -79,12 +79,12 @@ public class BlockPistonExtension extends Block
         return false;
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return false;
     }
 
-    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
+    public boolean canPlaceBlockOnSide(World worldIn, 阻止位置 pos, EnumFacing side)
     {
         return false;
     }
@@ -94,12 +94,12 @@ public class BlockPistonExtension extends Block
         return 0;
     }
 
-    public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxesToList(World worldIn, 阻止位置 pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, 实体 colliding实体)
     {
         this.applyHeadBounds(state);
-        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         this.applyCoreBounds(state);
-        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
@@ -138,7 +138,7 @@ public class BlockPistonExtension extends Block
         }
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         this.applyHeadBounds(worldIn.getBlockState(pos));
     }
@@ -178,10 +178,10 @@ public class BlockPistonExtension extends Block
         }
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
-        BlockPos blockpos = pos.offset(enumfacing.getOpposite());
+        阻止位置 blockpos = pos.offset(enumfacing.getOpposite());
         IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
         if (iblockstate.getBlock() != Blocks.piston && iblockstate.getBlock() != Blocks.sticky_piston)
@@ -194,7 +194,7 @@ public class BlockPistonExtension extends Block
         }
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         return true;
     }
@@ -205,7 +205,7 @@ public class BlockPistonExtension extends Block
         return i > 5 ? null : EnumFacing.getFront(i);
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return worldIn.getBlockState(pos).getValue(TYPE) == BlockPistonExtension.EnumPistonType.STICKY ? Item.getItemFromBlock(Blocks.sticky_piston) : Item.getItemFromBlock(Blocks.piston);
     }

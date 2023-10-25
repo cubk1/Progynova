@@ -6,13 +6,13 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelSpider;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSpider;
-import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.monster.实体Spider;
 
 public class ModelAdapterSpider extends ModelAdapter
 {
     public ModelAdapterSpider()
     {
-        super(EntitySpider.class, "spider", 1.0F);
+        super(实体Spider.class, "spider", 1.0F);
     }
 
     protected ModelAdapterSpider(Class entityClass, String name, float shadowSize)

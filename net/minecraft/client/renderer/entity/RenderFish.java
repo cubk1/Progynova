@@ -5,12 +5,12 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.projectile.EntityFishHook;
+import net.minecraft.entity.projectile.实体FishHook;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 
-public class RenderFish extends Render<EntityFishHook>
+public class RenderFish extends Render<实体FishHook>
 {
     private static final 图像位置 FISH_PARTICLES = new 图像位置("textures/particle/particles.png");
 
@@ -19,7 +19,7 @@ public class RenderFish extends Render<EntityFishHook>
         super(renderManagerIn);
     }
 
-    public void doRender(EntityFishHook entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体FishHook entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         光照状态经理.推黑客帝国();
         光照状态经理.理解((float)x, (float)y, (float)z);
@@ -57,9 +57,9 @@ public class RenderFish extends Render<EntityFishHook>
             vec3 = vec3.rotateYaw(-(entity.angler.prevRotationYaw + (entity.angler.旋转侧滑 - entity.angler.prevRotationYaw) * partialTicks) * (float)Math.PI / 180.0F);
             vec3 = vec3.rotateYaw(f8 * 0.5F);
             vec3 = vec3.rotatePitch(-f8 * 0.7F);
-            double d0 = entity.angler.prevPosX + (entity.angler.posX - entity.angler.prevPosX) * (double)partialTicks + vec3.xCoord;
-            double d1 = entity.angler.prevPosY + (entity.angler.posY - entity.angler.prevPosY) * (double)partialTicks + vec3.yCoord;
-            double d2 = entity.angler.prevPosZ + (entity.angler.posZ - entity.angler.prevPosZ) * (double)partialTicks + vec3.zCoord;
+            double d0 = entity.angler.prevPosX + (entity.angler.X坐标 - entity.angler.prevPosX) * (double)partialTicks + vec3.xCoord;
+            double d1 = entity.angler.prevPosY + (entity.angler.Y坐标 - entity.angler.prevPosY) * (double)partialTicks + vec3.yCoord;
+            double d2 = entity.angler.prevPosZ + (entity.angler.Z坐标 - entity.angler.prevPosZ) * (double)partialTicks + vec3.zCoord;
             double d3 = (double)entity.angler.getEyeHeight();
 
             if (this.renderManager.options != null && this.renderManager.options.thirdPersonView > 0 || entity.angler != 我的手艺.得到我的手艺().宇轩游玩者)
@@ -69,15 +69,15 @@ public class RenderFish extends Render<EntityFishHook>
                 double d6 = (double)MathHelper.cos(f9);
                 double d8 = 0.35D;
                 double d10 = 0.8D;
-                d0 = entity.angler.prevPosX + (entity.angler.posX - entity.angler.prevPosX) * (double)partialTicks - d6 * 0.35D - d4 * 0.8D;
-                d1 = entity.angler.prevPosY + d3 + (entity.angler.posY - entity.angler.prevPosY) * (double)partialTicks - 0.45D;
-                d2 = entity.angler.prevPosZ + (entity.angler.posZ - entity.angler.prevPosZ) * (double)partialTicks - d4 * 0.35D + d6 * 0.8D;
+                d0 = entity.angler.prevPosX + (entity.angler.X坐标 - entity.angler.prevPosX) * (double)partialTicks - d6 * 0.35D - d4 * 0.8D;
+                d1 = entity.angler.prevPosY + d3 + (entity.angler.Y坐标 - entity.angler.prevPosY) * (double)partialTicks - 0.45D;
+                d2 = entity.angler.prevPosZ + (entity.angler.Z坐标 - entity.angler.prevPosZ) * (double)partialTicks - d4 * 0.35D + d6 * 0.8D;
                 d3 = entity.angler.正在下蹲() ? -0.1875D : 0.0D;
             }
 
-            double d13 = entity.prevPosX + (entity.posX - entity.prevPosX) * (double)partialTicks;
-            double d5 = entity.prevPosY + (entity.posY - entity.prevPosY) * (double)partialTicks + 0.25D;
-            double d7 = entity.prevPosZ + (entity.posZ - entity.prevPosZ) * (double)partialTicks;
+            double d13 = entity.prevPosX + (entity.X坐标 - entity.prevPosX) * (double)partialTicks;
+            double d5 = entity.prevPosY + (entity.Y坐标 - entity.prevPosY) * (double)partialTicks + 0.25D;
+            double d7 = entity.prevPosZ + (entity.Z坐标 - entity.prevPosZ) * (double)partialTicks;
             double d9 = (double)((float)(d0 - d13));
             double d11 = (double)((float)(d1 - d5)) + d3;
             double d12 = (double)((float)(d2 - d7));
@@ -99,7 +99,7 @@ public class RenderFish extends Render<EntityFishHook>
         }
     }
 
-    protected 图像位置 getEntityTexture(EntityFishHook entity)
+    protected 图像位置 getEntityTexture(实体FishHook entity)
     {
         return FISH_PARTICLES;
     }

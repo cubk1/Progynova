@@ -8,7 +8,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.ColorizerFoliage;
@@ -44,12 +44,12 @@ public abstract class BlockLeaves extends BlockLeavesBase
         return ColorizerFoliage.getFoliageColorBasic();
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         int i = 1;
         int j = i + 1;
@@ -57,7 +57,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
         int l = pos.getY();
         int i1 = pos.getZ();
 
-        if (worldIn.isAreaLoaded(new BlockPos(k - j, l - j, i1 - j), new BlockPos(k + j, l + j, i1 + j)))
+        if (worldIn.isAreaLoaded(new 阻止位置(k - j, l - j, i1 - j), new 阻止位置(k + j, l + j, i1 + j)))
         {
             for (int j1 = -i; j1 <= i; ++j1)
             {
@@ -65,7 +65,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
                 {
                     for (int l1 = -i; l1 <= i; ++l1)
                     {
-                        BlockPos blockpos = pos.add(j1, k1, l1);
+                        阻止位置 blockpos = pos.add(j1, k1, l1);
                         IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
                         if (iblockstate.getBlock().getMaterial() == Material.leaves && !((Boolean)iblockstate.getValue(CHECK_DECAY)).booleanValue())
@@ -78,7 +78,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
         }
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (!worldIn.isRemote)
         {
@@ -98,9 +98,9 @@ public abstract class BlockLeaves extends BlockLeavesBase
                     this.surroundings = new int[j1 * j1 * j1];
                 }
 
-                if (worldIn.isAreaLoaded(new BlockPos(k - j, l - j, i1 - j), new BlockPos(k + j, l + j, i1 + j)))
+                if (worldIn.isAreaLoaded(new 阻止位置(k - j, l - j, i1 - j), new 阻止位置(k + j, l + j, i1 + j)))
                 {
-                    BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                    阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
                     for (int i2 = -i; i2 <= i; ++i2)
                     {
@@ -189,7 +189,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
         }
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (worldIn.isRainingAt(pos.up()) && !World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) && rand.nextInt(15) == 1)
         {
@@ -200,7 +200,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
         }
     }
 
-    private void destroy(World worldIn, BlockPos pos)
+    private void destroy(World worldIn, 阻止位置 pos)
     {
         this.dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
         worldIn.setBlockToAir(pos);
@@ -216,7 +216,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
         return Item.getItemFromBlock(Blocks.sapling);
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         if (!worldIn.isRemote)
         {
@@ -254,7 +254,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
         }
     }
 
-    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
+    protected void dropApple(World worldIn, 阻止位置 pos, IBlockState state, int chance)
     {
     }
 

@@ -22,19 +22,19 @@ import net.minecraft.block.BlockStone;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.block.BlockWall;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.实体Minecart;
+import net.minecraft.entity.item.实体Painting;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.item.EntityPainting;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体ItemFrame;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionHelper;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -104,7 +104,7 @@ public class Item
         return this;
     }
 
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         return false;
     }
@@ -114,12 +114,12 @@ public class Item
         return 1.0F;
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         return itemStackIn;
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, 实体Player playerIn)
     {
         return stack;
     }
@@ -161,12 +161,12 @@ public class Item
         return this.maxDamage > 0 && !this.hasSubtypes;
     }
 
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
+    public boolean hitEntity(ItemStack stack, 实体LivingBase target, 实体LivingBase attacker)
     {
         return false;
     }
 
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, Block blockIn, BlockPos pos, EntityLivingBase playerIn)
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, Block blockIn, 阻止位置 pos, 实体LivingBase playerIn)
     {
         return false;
     }
@@ -176,7 +176,7 @@ public class Item
         return false;
     }
 
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target)
+    public boolean itemInteractionForEntity(ItemStack stack, 实体Player playerIn, 实体LivingBase target)
     {
         return false;
     }
@@ -245,11 +245,11 @@ public class Item
         return 16777215;
     }
 
-    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+    public void onUpdate(ItemStack stack, World worldIn, 实体 实体In, int itemSlot, boolean isSelected)
     {
     }
 
-    public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn)
+    public void onCreated(ItemStack stack, World worldIn, 实体Player playerIn)
     {
     }
 
@@ -268,7 +268,7 @@ public class Item
         return 0;
     }
 
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft)
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, 实体Player playerIn, int timeLeft)
     {
     }
 
@@ -288,7 +288,7 @@ public class Item
         return this.getPotionEffect(stack) != null;
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, 实体Player playerIn, List<String> tooltip, boolean advanced)
     {
     }
 
@@ -312,13 +312,13 @@ public class Item
         return this.getItemStackLimit() == 1 && this.isDamageable();
     }
 
-    protected MovingObjectPosition getMovingObjectPositionFromPlayer(World worldIn, EntityPlayer playerIn, boolean useLiquids)
+    protected MovingObjectPosition getMovingObjectPositionFromPlayer(World worldIn, 实体Player playerIn, boolean useLiquids)
     {
         float f = playerIn.rotationPitch;
         float f1 = playerIn.旋转侧滑;
-        double d0 = playerIn.posX;
-        double d1 = playerIn.posY + (double)playerIn.getEyeHeight();
-        double d2 = playerIn.posZ;
+        double d0 = playerIn.X坐标;
+        double d1 = playerIn.Y坐标 + (double)playerIn.getEyeHeight();
+        double d2 = playerIn.Z坐标;
         Vec3 vec3 = new Vec3(d0, d1, d2);
         float f2 = MathHelper.cos(-f1 * 0.017453292F - (float)Math.PI);
         float f3 = MathHelper.sin(-f1 * 0.017453292F - (float)Math.PI);
@@ -686,7 +686,7 @@ public class Item
         registerItem(318, "flint", (new Item()).setUnlocalizedName("flint").setCreativeTab(CreativeTabs.tabMaterials));
         registerItem(319, "porkchop", (new ItemFood(3, 0.3F, true)).setUnlocalizedName("porkchopRaw"));
         registerItem(320, "cooked_porkchop", (new ItemFood(8, 0.8F, true)).setUnlocalizedName("porkchopCooked"));
-        registerItem(321, "painting", (new ItemHangingEntity(EntityPainting.class)).setUnlocalizedName("painting"));
+        registerItem(321, "painting", (new ItemHangingEntity(实体Painting.class)).setUnlocalizedName("painting"));
         registerItem(322, "golden_apple", (new ItemAppleGold(4, 1.2F, false)).setAlwaysEdible().setPotionEffect(Potion.regeneration.id, 5, 1, 1.0F).setUnlocalizedName("appleGold"));
         registerItem(323, "sign", (new ItemSign()).setUnlocalizedName("sign"));
         registerItem(324, "wooden_door", (new ItemDoor(Blocks.oak_door)).setUnlocalizedName("doorOak"));
@@ -694,7 +694,7 @@ public class Item
         registerItem(325, "bucket", item);
         registerItem(326, "water_bucket", (new ItemBucket(Blocks.flowing_water)).setUnlocalizedName("bucketWater").setContainerItem(item));
         registerItem(327, "lava_bucket", (new ItemBucket(Blocks.flowing_lava)).setUnlocalizedName("bucketLava").setContainerItem(item));
-        registerItem(328, "minecart", (new ItemMinecart(EntityMinecart.EnumMinecartType.RIDEABLE)).setUnlocalizedName("minecart"));
+        registerItem(328, "minecart", (new ItemMinecart(实体Minecart.EnumMinecartType.RIDEABLE)).setUnlocalizedName("minecart"));
         registerItem(329, "saddle", (new ItemSaddle()).setUnlocalizedName("saddle"));
         registerItem(330, "iron_door", (new ItemDoor(Blocks.iron_door)).setUnlocalizedName("doorIron"));
         registerItem(331, "redstone", (new ItemRedstone()).setUnlocalizedName("redstone").setPotionEffect(PotionHelper.redstoneEffect));
@@ -708,8 +708,8 @@ public class Item
         registerItem(339, "paper", (new Item()).setUnlocalizedName("paper").setCreativeTab(CreativeTabs.tabMisc));
         registerItem(340, "book", (new ItemBook()).setUnlocalizedName("book").setCreativeTab(CreativeTabs.tabMisc));
         registerItem(341, "slime_ball", (new Item()).setUnlocalizedName("slimeball").setCreativeTab(CreativeTabs.tabMisc));
-        registerItem(342, "chest_minecart", (new ItemMinecart(EntityMinecart.EnumMinecartType.CHEST)).setUnlocalizedName("minecartChest"));
-        registerItem(343, "furnace_minecart", (new ItemMinecart(EntityMinecart.EnumMinecartType.FURNACE)).setUnlocalizedName("minecartFurnace"));
+        registerItem(342, "chest_minecart", (new ItemMinecart(实体Minecart.EnumMinecartType.CHEST)).setUnlocalizedName("minecartChest"));
+        registerItem(343, "furnace_minecart", (new ItemMinecart(实体Minecart.EnumMinecartType.FURNACE)).setUnlocalizedName("minecartFurnace"));
         registerItem(344, "egg", (new ItemEgg()).setUnlocalizedName("egg"));
         registerItem(345, "compass", (new Item()).setUnlocalizedName("compass").setCreativeTab(CreativeTabs.tabTools));
         registerItem(346, "fishing_rod", (new ItemFishingRod()).setUnlocalizedName("fishingRod"));
@@ -755,7 +755,7 @@ public class Item
         registerItem(386, "writable_book", (new ItemWritableBook()).setUnlocalizedName("writingBook").setCreativeTab(CreativeTabs.tabMisc));
         registerItem(387, "written_book", (new ItemEditableBook()).setUnlocalizedName("writtenBook").setMaxStackSize(16));
         registerItem(388, "emerald", (new Item()).setUnlocalizedName("emerald").setCreativeTab(CreativeTabs.tabMaterials));
-        registerItem(389, "item_frame", (new ItemHangingEntity(EntityItemFrame.class)).setUnlocalizedName("frame"));
+        registerItem(389, "item_frame", (new ItemHangingEntity(实体ItemFrame.class)).setUnlocalizedName("frame"));
         registerItem(390, "flower_pot", (new ItemReed(Blocks.flower_pot)).setUnlocalizedName("flowerPot").setCreativeTab(CreativeTabs.tabDecorations));
         registerItem(391, "carrot", (new ItemSeedFood(3, 0.6F, Blocks.carrots, Blocks.farmland)).setUnlocalizedName("carrots"));
         registerItem(392, "potato", (new ItemSeedFood(1, 0.3F, Blocks.potatoes, Blocks.farmland)).setUnlocalizedName("potato"));
@@ -773,8 +773,8 @@ public class Item
         registerItem(404, "comparator", (new ItemReed(Blocks.unpowered_comparator)).setUnlocalizedName("comparator").setCreativeTab(CreativeTabs.tabRedstone));
         registerItem(405, "netherbrick", (new Item()).setUnlocalizedName("netherbrick").setCreativeTab(CreativeTabs.tabMaterials));
         registerItem(406, "quartz", (new Item()).setUnlocalizedName("netherquartz").setCreativeTab(CreativeTabs.tabMaterials));
-        registerItem(407, "tnt_minecart", (new ItemMinecart(EntityMinecart.EnumMinecartType.TNT)).setUnlocalizedName("minecartTnt"));
-        registerItem(408, "hopper_minecart", (new ItemMinecart(EntityMinecart.EnumMinecartType.HOPPER)).setUnlocalizedName("minecartHopper"));
+        registerItem(407, "tnt_minecart", (new ItemMinecart(实体Minecart.EnumMinecartType.TNT)).setUnlocalizedName("minecartTnt"));
+        registerItem(408, "hopper_minecart", (new ItemMinecart(实体Minecart.EnumMinecartType.HOPPER)).setUnlocalizedName("minecartHopper"));
         registerItem(409, "prismarine_shard", (new Item()).setUnlocalizedName("prismarineShard").setCreativeTab(CreativeTabs.tabMaterials));
         registerItem(410, "prismarine_crystals", (new Item()).setUnlocalizedName("prismarineCrystals").setCreativeTab(CreativeTabs.tabMaterials));
         registerItem(411, "rabbit", (new ItemFood(3, 0.3F, true)).setUnlocalizedName("rabbitRaw"));
@@ -788,7 +788,7 @@ public class Item
         registerItem(419, "diamond_horse_armor", (new Item()).setUnlocalizedName("horsearmordiamond").setMaxStackSize(1).setCreativeTab(CreativeTabs.tabMisc));
         registerItem(420, "lead", (new ItemLead()).setUnlocalizedName("leash"));
         registerItem(421, "name_tag", (new ItemNameTag()).setUnlocalizedName("nameTag"));
-        registerItem(422, "command_block_minecart", (new ItemMinecart(EntityMinecart.EnumMinecartType.COMMAND_BLOCK)).setUnlocalizedName("minecartCommandBlock").setCreativeTab((CreativeTabs)null));
+        registerItem(422, "command_block_minecart", (new ItemMinecart(实体Minecart.EnumMinecartType.COMMAND_BLOCK)).setUnlocalizedName("minecartCommandBlock").setCreativeTab((CreativeTabs)null));
         registerItem(423, "mutton", (new ItemFood(2, 0.3F, true)).setUnlocalizedName("muttonRaw"));
         registerItem(424, "cooked_mutton", (new ItemFood(6, 0.8F, true)).setUnlocalizedName("muttonCooked"));
         registerItem(425, "banner", (new ItemBanner()).setUnlocalizedName("banner"));

@@ -1,10 +1,10 @@
 package net.minecraft.command;
 
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.network.play.server.S19PacketEntityStatus;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.world.GameRules;
 
@@ -66,14 +66,14 @@ public class CommandGameRule extends CommandBase
         {
             byte b0 = (byte)(rules.getBoolean(p_175773_1_) ? 22 : 23);
 
-            for (EntityPlayerMP entityplayermp : MinecraftServer.getServer().getConfigurationManager().getPlayerList())
+            for (实体PlayerMP entityplayermp : MinecraftServer.getServer().getConfigurationManager().getPlayerList())
             {
                 entityplayermp.playerNetServerHandler.sendPacket(new S19PacketEntityStatus(entityplayermp, b0));
             }
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         if (args.length == 1)
         {

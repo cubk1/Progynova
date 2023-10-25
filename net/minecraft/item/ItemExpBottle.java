@@ -1,8 +1,8 @@
 package net.minecraft.item;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityExpBottle;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体ExpBottle;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 
@@ -18,7 +18,7 @@ public class ItemExpBottle extends Item
         return true;
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         if (!playerIn.capabilities.isCreativeMode)
         {
@@ -29,7 +29,7 @@ public class ItemExpBottle extends Item
 
         if (!worldIn.isRemote)
         {
-            worldIn.spawnEntityInWorld(new EntityExpBottle(worldIn, playerIn));
+            worldIn.spawnEntityInWorld(new 实体ExpBottle(worldIn, playerIn));
         }
 
         playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);

@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerEnchantment;
 import net.minecraft.item.ItemStack;
@@ -134,7 +134,7 @@ public class 鬼Enchantment extends 鬼Container
         }
 
         光照状态经理.enableRescaleNormal();
-        MODEL_BOOK.render((Entity)null, 0.0F, f3, f4, f2, 0.0F, 0.0625F);
+        MODEL_BOOK.render((实体)null, 0.0F, f3, f4, f2, 0.0F, 0.0625F);
         光照状态经理.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
         光照状态经理.matrixMode(5889);

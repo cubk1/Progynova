@@ -2,7 +2,7 @@ package net.minecraft.client.model;
 
 import java.util.Random;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.MathHelper;
 
 public class ModelGhast extends ModelBase
@@ -31,7 +31,7 @@ public class ModelGhast extends ModelBase
         }
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
         for (int i = 0; i < this.tentacles.length; ++i)
         {
@@ -39,9 +39,9 @@ public class ModelGhast extends ModelBase
         }
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
         光照状态经理.推黑客帝国();
         光照状态经理.理解(0.0F, 0.6F, 0.0F);
         this.body.render(scale);

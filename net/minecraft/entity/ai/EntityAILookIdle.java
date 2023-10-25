@@ -1,15 +1,15 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 
 public class EntityAILookIdle extends EntityAIBase
 {
-    private EntityLiving idleEntity;
+    private 实体Living idleEntity;
     private double lookX;
     private double lookZ;
     private int idleTime;
 
-    public EntityAILookIdle(EntityLiving entitylivingIn)
+    public EntityAILookIdle(实体Living entitylivingIn)
     {
         this.idleEntity = entitylivingIn;
         this.setMutexBits(3);
@@ -36,6 +36,6 @@ public class EntityAILookIdle extends EntityAIBase
     public void updateTask()
     {
         --this.idleTime;
-        this.idleEntity.getLookHelper().setLookPosition(this.idleEntity.posX + this.lookX, this.idleEntity.posY + (double)this.idleEntity.getEyeHeight(), this.idleEntity.posZ + this.lookZ, 10.0F, (float)this.idleEntity.getVerticalFaceSpeed());
+        this.idleEntity.getLookHelper().setLookPosition(this.idleEntity.X坐标 + this.lookX, this.idleEntity.Y坐标 + (double)this.idleEntity.getEyeHeight(), this.idleEntity.Z坐标 + this.lookZ, 10.0F, (float)this.idleEntity.getVerticalFaceSpeed());
     }
 }

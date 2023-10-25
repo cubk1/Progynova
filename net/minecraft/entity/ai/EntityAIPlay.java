@@ -1,18 +1,18 @@
 package net.minecraft.entity.ai;
 
 import java.util.List;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.passive.实体Villager;
 import net.minecraft.util.Vec3;
 
 public class EntityAIPlay extends EntityAIBase
 {
-    private EntityVillager villagerObj;
-    private EntityLivingBase targetVillager;
+    private 实体Villager villagerObj;
+    private 实体LivingBase targetVillager;
     private double speed;
     private int playTime;
 
-    public EntityAIPlay(EntityVillager villagerObjIn, double speedIn)
+    public EntityAIPlay(实体Villager villagerObjIn, double speedIn)
     {
         this.villagerObj = villagerObjIn;
         this.speed = speedIn;
@@ -31,10 +31,10 @@ public class EntityAIPlay extends EntityAIBase
         }
         else
         {
-            List<EntityVillager> list = this.villagerObj.worldObj.<EntityVillager>getEntitiesWithinAABB(EntityVillager.class, this.villagerObj.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
+            List<实体Villager> list = this.villagerObj.worldObj.<实体Villager>getEntitiesWithinAABB(实体Villager.class, this.villagerObj.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
             double d0 = Double.MAX_VALUE;
 
-            for (EntityVillager entityvillager : list)
+            for (实体Villager entityvillager : list)
             {
                 if (entityvillager != this.villagerObj && !entityvillager.isPlaying() && entityvillager.getGrowingAge() < 0)
                 {

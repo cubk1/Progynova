@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.tileentity.TileEntityBeacon;
@@ -26,7 +26,7 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.tileentity.TileEntityPiston;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.tileentity.TileEntitySkull;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.World;
 import net.optifine.EmissiveTextures;
@@ -42,7 +42,7 @@ public class TileEntityRendererDispatcher
     public static double staticPlayerZ;
     public TextureManager renderEngine;
     public World worldObj;
-    public Entity entity;
+    public 实体 实体;
     public float entityYaw;
     public float entityPitch;
     public double entityX;
@@ -89,7 +89,7 @@ public class TileEntityRendererDispatcher
         return tileEntityIn != null && !tileEntityIn.isInvalid() ? this.getSpecialRendererByClass(tileEntityIn.getClass()) : null;
     }
 
-    public void cacheActiveRenderInfo(World worldIn, TextureManager textureManagerIn, FontRenderer fontrendererIn, Entity entityIn, float partialTicks)
+    public void cacheActiveRenderInfo(World worldIn, TextureManager textureManagerIn, FontRenderer fontrendererIn, 实体 实体In, float partialTicks)
     {
         if (this.worldObj != worldIn)
         {
@@ -97,13 +97,13 @@ public class TileEntityRendererDispatcher
         }
 
         this.renderEngine = textureManagerIn;
-        this.entity = entityIn;
+        this.实体 = 实体In;
         this.fontRenderer = fontrendererIn;
-        this.entityYaw = entityIn.prevRotationYaw + (entityIn.旋转侧滑 - entityIn.prevRotationYaw) * partialTicks;
-        this.entityPitch = entityIn.prevRotationPitch + (entityIn.rotationPitch - entityIn.prevRotationPitch) * partialTicks;
-        this.entityX = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double)partialTicks;
-        this.entityY = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double)partialTicks;
-        this.entityZ = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * (double)partialTicks;
+        this.entityYaw = 实体In.prevRotationYaw + (实体In.旋转侧滑 - 实体In.prevRotationYaw) * partialTicks;
+        this.entityPitch = 实体In.prevRotationPitch + (实体In.rotationPitch - 实体In.prevRotationPitch) * partialTicks;
+        this.entityX = 实体In.lastTickPosX + (实体In.X坐标 - 实体In.lastTickPosX) * (double)partialTicks;
+        this.entityY = 实体In.lastTickPosY + (实体In.Y坐标 - 实体In.lastTickPosY) * (double)partialTicks;
+        this.entityZ = 实体In.lastTickPosZ + (实体In.Z坐标 - 实体In.lastTickPosZ) * (double)partialTicks;
     }
 
     public void renderTileEntity(TileEntity tileentityIn, float partialTicks, int destroyStage)
@@ -127,7 +127,7 @@ public class TileEntityRendererDispatcher
                 光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
             }
 
-            BlockPos blockpos = tileentityIn.getPos();
+            阻止位置 blockpos = tileentityIn.getPos();
 
             if (!this.worldObj.isBlockLoaded(blockpos, false))
             {

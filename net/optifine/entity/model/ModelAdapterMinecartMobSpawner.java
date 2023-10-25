@@ -4,7 +4,7 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderMinecartMobSpawner;
-import net.minecraft.entity.ai.EntityMinecartMobSpawner;
+import net.minecraft.entity.ai.实体MinecartMobSpawner;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -12,7 +12,7 @@ public class ModelAdapterMinecartMobSpawner extends ModelAdapterMinecart
 {
     public ModelAdapterMinecartMobSpawner()
     {
-        super(EntityMinecartMobSpawner.class, "spawner_minecart", 0.5F);
+        super(实体MinecartMobSpawner.class, "spawner_minecart", 0.5F);
     }
 
     public IEntityRenderer makeEntityRender(ModelBase modelBase, float shadowSize)

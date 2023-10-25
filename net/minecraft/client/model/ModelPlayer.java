@@ -1,7 +1,7 @@
 package net.minecraft.client.model;
 
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 
 public class ModelPlayer extends ModelBiped
 {
@@ -66,9 +66,9 @@ public class ModelPlayer extends ModelBiped
         this.bipedBodyWear.setRotationPoint(0.0F, 0.0F, 0.0F);
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        super.render(entityIn, p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale);
+        super.render(实体In, p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale);
         光照状态经理.推黑客帝国();
 
         if (this.isChild)
@@ -84,7 +84,7 @@ public class ModelPlayer extends ModelBiped
         }
         else
         {
-            if (entityIn.正在下蹲())
+            if (实体In.正在下蹲())
             {
                 光照状态经理.理解(0.0F, 0.2F, 0.0F);
             }
@@ -112,9 +112,9 @@ public class ModelPlayer extends ModelBiped
         this.bipedCape.render(p_178728_1_);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, 实体In);
         copyModelAngles(this.bipedLeftLeg, this.bipedLeftLegwear);
         copyModelAngles(this.bipedRightLeg, this.bipedRightLegwear);
         copyModelAngles(this.bipedLeftArm, this.bipedLeftArmwear);

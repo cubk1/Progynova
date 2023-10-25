@@ -1,13 +1,13 @@
 package net.optifine;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public interface IRandomEntity
 {
     int getId();
 
-    BlockPos getSpawnPosition();
+    阻止位置 getSpawnPosition();
 
     BiomeGenBase getSpawnBiome();
 

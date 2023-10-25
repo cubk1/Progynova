@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.monster.实体Witch;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -24,7 +24,7 @@ public class MapGenScatteredFeature extends MapGenStructure
         this.scatteredFeatureSpawnList = Lists.<BiomeGenBase.SpawnListEntry>newArrayList();
         this.maxDistanceBetweenScatteredFeatures = 32;
         this.minDistanceBetweenScatteredFeatures = 8;
-        this.scatteredFeatureSpawnList.add(new BiomeGenBase.SpawnListEntry(EntityWitch.class, 1, 1, 1));
+        this.scatteredFeatureSpawnList.add(new BiomeGenBase.SpawnListEntry(实体Witch.class, 1, 1, 1));
     }
 
     public MapGenScatteredFeature(Map<String, String> p_i2061_1_)
@@ -70,7 +70,7 @@ public class MapGenScatteredFeature extends MapGenStructure
 
         if (i == k && j == l)
         {
-            BiomeGenBase biomegenbase = this.worldObj.getWorldChunkManager().getBiomeGenerator(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
+            BiomeGenBase biomegenbase = this.worldObj.getWorldChunkManager().getBiomeGenerator(new 阻止位置(i * 16 + 8, 0, j * 16 + 8));
 
             if (biomegenbase == null)
             {
@@ -94,7 +94,7 @@ public class MapGenScatteredFeature extends MapGenStructure
         return new MapGenScatteredFeature.Start(this.worldObj, this.rand, chunkX, chunkZ);
     }
 
-    public boolean func_175798_a(BlockPos p_175798_1_)
+    public boolean func_175798_a(阻止位置 p_175798_1_)
     {
         StructureStart structurestart = this.func_175797_c(p_175798_1_);
 
@@ -123,7 +123,7 @@ public class MapGenScatteredFeature extends MapGenStructure
         public Start(World worldIn, Random p_i2060_2_, int p_i2060_3_, int p_i2060_4_)
         {
             super(p_i2060_3_, p_i2060_4_);
-            BiomeGenBase biomegenbase = worldIn.getBiomeGenForCoords(new BlockPos(p_i2060_3_ * 16 + 8, 0, p_i2060_4_ * 16 + 8));
+            BiomeGenBase biomegenbase = worldIn.getBiomeGenForCoords(new 阻止位置(p_i2060_3_ * 16 + 8, 0, p_i2060_4_ * 16 + 8));
 
             if (biomegenbase != BiomeGenBase.jungle && biomegenbase != BiomeGenBase.jungleHills)
             {

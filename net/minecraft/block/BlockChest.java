@@ -6,10 +6,10 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.实体Ocelot;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -19,7 +19,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -55,7 +55,7 @@ public class BlockChest extends BlockContainer
         return 2;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         if (worldIn.getBlockState(pos.north()).getBlock() == this)
         {
@@ -79,13 +79,13 @@ public class BlockChest extends BlockContainer
         }
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.checkForSurroundingChests(worldIn, pos, state);
 
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
         {
-            BlockPos blockpos = pos.offset(enumfacing);
+            阻止位置 blockpos = pos.offset(enumfacing);
             IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
             if (iblockstate.getBlock() == this)
@@ -95,19 +95,19 @@ public class BlockChest extends BlockContainer
         }
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
     }
 
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase placer, ItemStack stack)
     {
         EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor_double((double)(placer.旋转侧滑 * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
         state = state.withProperty(FACING, enumfacing);
-        BlockPos blockpos = pos.north();
-        BlockPos blockpos1 = pos.south();
-        BlockPos blockpos2 = pos.west();
-        BlockPos blockpos3 = pos.east();
+        阻止位置 blockpos = pos.north();
+        阻止位置 blockpos1 = pos.south();
+        阻止位置 blockpos2 = pos.west();
+        阻止位置 blockpos3 = pos.east();
         boolean flag = this == worldIn.getBlockState(blockpos).getBlock();
         boolean flag1 = this == worldIn.getBlockState(blockpos1).getBlock();
         boolean flag2 = this == worldIn.getBlockState(blockpos2).getBlock();
@@ -158,7 +158,7 @@ public class BlockChest extends BlockContainer
         }
     }
 
-    public IBlockState checkForSurroundingChests(World worldIn, BlockPos pos, IBlockState state)
+    public IBlockState checkForSurroundingChests(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (worldIn.isRemote)
         {
@@ -183,7 +183,7 @@ public class BlockChest extends BlockContainer
 
                 if (block2 == this || block3 == this)
                 {
-                    BlockPos blockpos1 = block2 == this ? pos.west() : pos.east();
+                    阻止位置 blockpos1 = block2 == this ? pos.west() : pos.east();
                     IBlockState iblockstate6 = worldIn.getBlockState(blockpos1.north());
                     IBlockState iblockstate7 = worldIn.getBlockState(blockpos1.south());
                     enumfacing = EnumFacing.SOUTH;
@@ -219,7 +219,7 @@ public class BlockChest extends BlockContainer
             }
             else
             {
-                BlockPos blockpos = block == this ? pos.north() : pos.south();
+                阻止位置 blockpos = block == this ? pos.north() : pos.south();
                 IBlockState iblockstate4 = worldIn.getBlockState(blockpos.west());
                 IBlockState iblockstate5 = worldIn.getBlockState(blockpos.east());
                 enumfacing = EnumFacing.EAST;
@@ -259,7 +259,7 @@ public class BlockChest extends BlockContainer
         }
     }
 
-    public IBlockState correctFacing(World worldIn, BlockPos pos, IBlockState state)
+    public IBlockState correctFacing(World worldIn, 阻止位置 pos, IBlockState state)
     {
         EnumFacing enumfacing = null;
 
@@ -311,13 +311,13 @@ public class BlockChest extends BlockContainer
         }
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         int i = 0;
-        BlockPos blockpos = pos.west();
-        BlockPos blockpos1 = pos.east();
-        BlockPos blockpos2 = pos.north();
-        BlockPos blockpos3 = pos.south();
+        阻止位置 blockpos = pos.west();
+        阻止位置 blockpos1 = pos.east();
+        阻止位置 blockpos2 = pos.north();
+        阻止位置 blockpos3 = pos.south();
 
         if (worldIn.getBlockState(blockpos).getBlock() == this)
         {
@@ -362,7 +362,7 @@ public class BlockChest extends BlockContainer
         return i <= 1;
     }
 
-    private boolean isDoubleChest(World worldIn, BlockPos pos)
+    private boolean isDoubleChest(World worldIn, 阻止位置 pos)
     {
         if (worldIn.getBlockState(pos).getBlock() != this)
         {
@@ -382,7 +382,7 @@ public class BlockChest extends BlockContainer
         }
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
         TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -393,7 +393,7 @@ public class BlockChest extends BlockContainer
         }
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -406,7 +406,7 @@ public class BlockChest extends BlockContainer
         super.breakBlock(worldIn, pos, state);
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -434,7 +434,7 @@ public class BlockChest extends BlockContainer
         }
     }
 
-    public ILockableContainer getLockableContainer(World worldIn, BlockPos pos)
+    public ILockableContainer getLockableContainer(World worldIn, 阻止位置 pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -454,7 +454,7 @@ public class BlockChest extends BlockContainer
             {
                 for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
                 {
-                    BlockPos blockpos = pos.offset(enumfacing);
+                    阻止位置 blockpos = pos.offset(enumfacing);
                     Block block = worldIn.getBlockState(blockpos).getBlock();
 
                     if (block == this)
@@ -495,7 +495,7 @@ public class BlockChest extends BlockContainer
         return this.chestType == 1;
     }
 
-    public int getWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
+    public int getWeakPower(IBlockAccess worldIn, 阻止位置 pos, IBlockState state, EnumFacing side)
     {
         if (!this.canProvidePower())
         {
@@ -515,26 +515,26 @@ public class BlockChest extends BlockContainer
         }
     }
 
-    public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
+    public int getStrongPower(IBlockAccess worldIn, 阻止位置 pos, IBlockState state, EnumFacing side)
     {
         return side == EnumFacing.UP ? this.getWeakPower(worldIn, pos, state, side) : 0;
     }
 
-    private boolean isBlocked(World worldIn, BlockPos pos)
+    private boolean isBlocked(World worldIn, 阻止位置 pos)
     {
         return this.isBelowSolidBlock(worldIn, pos) || this.isOcelotSittingOnChest(worldIn, pos);
     }
 
-    private boolean isBelowSolidBlock(World worldIn, BlockPos pos)
+    private boolean isBelowSolidBlock(World worldIn, 阻止位置 pos)
     {
         return worldIn.getBlockState(pos.up()).getBlock().isNormalCube();
     }
 
-    private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos)
+    private boolean isOcelotSittingOnChest(World worldIn, 阻止位置 pos)
     {
-        for (Entity entity : worldIn.getEntitiesWithinAABB(EntityOcelot.class, new AxisAlignedBB((double)pos.getX(), (double)(pos.getY() + 1), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 2), (double)(pos.getZ() + 1))))
+        for (实体 实体 : worldIn.getEntitiesWithinAABB(实体Ocelot.class, new AxisAlignedBB((double)pos.getX(), (double)(pos.getY() + 1), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 2), (double)(pos.getZ() + 1))))
         {
-            EntityOcelot entityocelot = (EntityOcelot)entity;
+            实体Ocelot entityocelot = (实体Ocelot) 实体;
 
             if (entityocelot.isSitting())
             {
@@ -550,7 +550,7 @@ public class BlockChest extends BlockContainer
         return true;
     }
 
-    public int getComparatorInputOverride(World worldIn, BlockPos pos)
+    public int getComparatorInputOverride(World worldIn, 阻止位置 pos)
     {
         return Container.calcRedstoneFromInventory(this.getLockableContainer(worldIn, pos));
     }

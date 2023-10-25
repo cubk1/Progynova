@@ -1,8 +1,8 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.实体Sheep;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 
 public class ModelSheep1 extends ModelQuadruped
 {
@@ -32,16 +32,16 @@ public class ModelSheep1 extends ModelQuadruped
         this.leg4.setRotationPoint(3.0F, 12.0F, -5.0F);
     }
 
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
+    public void setLivingAnimations(实体LivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
     {
         super.setLivingAnimations(entitylivingbaseIn, p_78086_2_, p_78086_3_, partialTickTime);
-        this.head.rotationPointY = 6.0F + ((EntitySheep)entitylivingbaseIn).getHeadRotationPointY(partialTickTime) * 9.0F;
-        this.headRotationAngleX = ((EntitySheep)entitylivingbaseIn).getHeadRotationAngleX(partialTickTime);
+        this.head.rotationPointY = 6.0F + ((实体Sheep)entitylivingbaseIn).getHeadRotationPointY(partialTickTime) * 9.0F;
+        this.headRotationAngleX = ((实体Sheep)entitylivingbaseIn).getHeadRotationAngleX(partialTickTime);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, 实体In);
         this.head.rotateAngleX = this.headRotationAngleX;
     }
 }

@@ -1,33 +1,33 @@
 package net.minecraft.util;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.item.ItemStack;
 
 public class EntityDamageSourceIndirect extends EntityDamageSource
 {
-    private Entity indirectEntity;
+    private 实体 indirect实体;
 
-    public EntityDamageSourceIndirect(String damageTypeIn, Entity source, Entity indirectEntityIn)
+    public EntityDamageSourceIndirect(String damageTypeIn, 实体 source, 实体 indirect实体In)
     {
         super(damageTypeIn, source);
-        this.indirectEntity = indirectEntityIn;
+        this.indirect实体 = indirect实体In;
     }
 
-    public Entity getSourceOfDamage()
+    public 实体 getSourceOfDamage()
     {
-        return this.damageSourceEntity;
+        return this.damageSource实体;
     }
 
-    public Entity getEntity()
+    public 实体 getEntity()
     {
-        return this.indirectEntity;
+        return this.indirect实体;
     }
 
-    public IChatComponent getDeathMessage(EntityLivingBase entityLivingBaseIn)
+    public IChatComponent getDeathMessage(实体LivingBase entityLivingBaseIn)
     {
-        IChatComponent ichatcomponent = this.indirectEntity == null ? this.damageSourceEntity.getDisplayName() : this.indirectEntity.getDisplayName();
-        ItemStack itemstack = this.indirectEntity instanceof EntityLivingBase ? ((EntityLivingBase)this.indirectEntity).getHeldItem() : null;
+        IChatComponent ichatcomponent = this.indirect实体 == null ? this.damageSource实体.getDisplayName() : this.indirect实体.getDisplayName();
+        ItemStack itemstack = this.indirect实体 instanceof 实体LivingBase ? ((实体LivingBase)this.indirect实体).getHeldItem() : null;
         String s = "death.attack." + this.damageType;
         String s1 = s + ".item";
         return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[] {entityLivingBaseIn.getDisplayName(), ichatcomponent, itemstack.getChatComponent()}): new ChatComponentTranslation(s, new Object[] {entityLivingBaseIn.getDisplayName(), ichatcomponent});

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
@@ -29,7 +29,7 @@ public class 鬼NewChat extends 鬼
 
     public void drawChat(int updateCounter)
     {
-        if (this.mc.游戏一窝.chatVisibility != EntityPlayer.EnumChatVisibility.HIDDEN)
+        if (this.mc.游戏一窝.chatVisibility != 实体Player.EnumChatVisibility.HIDDEN)
         {
             int i = this.getLineCount();
             boolean flag = false;

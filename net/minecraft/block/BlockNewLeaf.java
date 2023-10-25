@@ -7,13 +7,13 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class BlockNewLeaf extends BlockLeaves
@@ -31,7 +31,7 @@ public class BlockNewLeaf extends BlockLeaves
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockPlanks.EnumType.ACACIA).withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
     }
 
-    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
+    protected void dropApple(World worldIn, 阻止位置 pos, IBlockState state, int chance)
     {
         if (state.getValue(VARIANT) == BlockPlanks.EnumType.DARK_OAK && worldIn.rand.nextInt(chance) == 0)
         {
@@ -44,7 +44,7 @@ public class BlockNewLeaf extends BlockLeaves
         return ((BlockPlanks.EnumType)state.getValue(VARIANT)).getMetadata();
     }
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         return iblockstate.getBlock().getMetaFromState(iblockstate) & 3;
@@ -94,7 +94,7 @@ public class BlockNewLeaf extends BlockLeaves
         return new BlockState(this, new IProperty[] {VARIANT, CHECK_DECAY, DECAYABLE});
     }
 
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World worldIn, 实体Player player, 阻止位置 pos, IBlockState state, TileEntity te)
     {
         if (!worldIn.isRemote && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.shears)
         {

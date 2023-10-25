@@ -9,17 +9,17 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体ItemFrame;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityComparator;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.StatCollector;
@@ -48,7 +48,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         return Items.comparator;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Items.comparator;
     }
@@ -79,18 +79,18 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         return this.isRepeaterPowered || ((Boolean)state.getValue(POWERED)).booleanValue();
     }
 
-    protected int getActiveSignal(IBlockAccess worldIn, BlockPos pos, IBlockState state)
+    protected int getActiveSignal(IBlockAccess worldIn, 阻止位置 pos, IBlockState state)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         return tileentity instanceof TileEntityComparator ? ((TileEntityComparator)tileentity).getOutputSignal() : 0;
     }
 
-    private int calculateOutput(World worldIn, BlockPos pos, IBlockState state)
+    private int calculateOutput(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return state.getValue(MODE) == BlockRedstoneComparator.Mode.SUBTRACT ? Math.max(this.calculateInputStrength(worldIn, pos, state) - this.getPowerOnSides(worldIn, pos, state), 0) : this.calculateInputStrength(worldIn, pos, state);
     }
 
-    protected boolean shouldBePowered(World worldIn, BlockPos pos, IBlockState state)
+    protected boolean shouldBePowered(World worldIn, 阻止位置 pos, IBlockState state)
     {
         int i = this.calculateInputStrength(worldIn, pos, state);
 
@@ -109,11 +109,11 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         }
     }
 
-    protected int calculateInputStrength(World worldIn, BlockPos pos, IBlockState state)
+    protected int calculateInputStrength(World worldIn, 阻止位置 pos, IBlockState state)
     {
         int i = super.calculateInputStrength(worldIn, pos, state);
         EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
-        BlockPos blockpos = pos.offset(enumfacing);
+        阻止位置 blockpos = pos.offset(enumfacing);
         Block block = worldIn.getBlockState(blockpos).getBlock();
 
         if (block.hasComparatorInputOverride())
@@ -131,7 +131,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
             }
             else if (block.getMaterial() == Material.air)
             {
-                EntityItemFrame entityitemframe = this.findItemFrame(worldIn, enumfacing, blockpos);
+                实体ItemFrame entityitemframe = this.findItemFrame(worldIn, enumfacing, blockpos);
 
                 if (entityitemframe != null)
                 {
@@ -143,19 +143,19 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         return i;
     }
 
-    private EntityItemFrame findItemFrame(World worldIn, final EnumFacing facing, BlockPos pos)
+    private 实体ItemFrame findItemFrame(World worldIn, final EnumFacing facing, 阻止位置 pos)
     {
-        List<EntityItemFrame> list = worldIn.<EntityItemFrame>getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 1), (double)(pos.getZ() + 1)), new Predicate<Entity>()
+        List<实体ItemFrame> list = worldIn.<实体ItemFrame>getEntitiesWithinAABB(实体ItemFrame.class, new AxisAlignedBB((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 1), (double)(pos.getZ() + 1)), new Predicate<实体>()
         {
-            public boolean apply(Entity p_apply_1_)
+            public boolean apply(实体 p_apply_1_)
             {
                 return p_apply_1_ != null && p_apply_1_.getHorizontalFacing() == facing;
             }
         });
-        return list.size() == 1 ? (EntityItemFrame)list.get(0) : null;
+        return list.size() == 1 ? (实体ItemFrame)list.get(0) : null;
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (!playerIn.capabilities.allowEdit)
         {
@@ -171,7 +171,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         }
     }
 
-    protected void updateState(World worldIn, BlockPos pos, IBlockState state)
+    protected void updateState(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!worldIn.isBlockTickPending(pos, this))
         {
@@ -193,7 +193,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         }
     }
 
-    private void onStateChange(World worldIn, BlockPos pos, IBlockState state)
+    private void onStateChange(World worldIn, 阻止位置 pos, IBlockState state)
     {
         int i = this.calculateOutput(worldIn, pos, state);
         TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -224,7 +224,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         }
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (this.isRepeaterPowered)
         {
@@ -234,20 +234,20 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         this.onStateChange(worldIn, pos, state);
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         super.onBlockAdded(worldIn, pos, state);
         worldIn.setTileEntity(pos, this.createNewTileEntity(worldIn, 0));
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         super.breakBlock(worldIn, pos, state);
         worldIn.removeTileEntity(pos);
         this.notifyNeighbors(worldIn, pos, state);
     }
 
-    public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam)
+    public boolean onBlockEventReceived(World worldIn, 阻止位置 pos, IBlockState state, int eventID, int eventParam)
     {
         super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
         TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -287,7 +287,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         return new BlockState(this, new IProperty[] {FACING, MODE, POWERED});
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(POWERED, Boolean.valueOf(false)).withProperty(MODE, BlockRedstoneComparator.Mode.COMPARE);
     }

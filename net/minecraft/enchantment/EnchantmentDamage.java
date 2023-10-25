@@ -1,7 +1,7 @@
 package net.minecraft.enchantment;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
@@ -58,11 +58,11 @@ public class EnchantmentDamage extends Enchantment
         return stack.getItem() instanceof ItemAxe ? true : super.canApply(stack);
     }
 
-    public void onEntityDamaged(EntityLivingBase user, Entity target, int level)
+    public void onEntityDamaged(实体LivingBase user, 实体 target, int level)
     {
-        if (target instanceof EntityLivingBase)
+        if (target instanceof 实体LivingBase)
         {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)target;
+            实体LivingBase entitylivingbase = (实体LivingBase)target;
 
             if (this.damageType == 2 && entitylivingbase.getCreatureAttribute() == EnumCreatureAttribute.ARTHROPOD)
             {

@@ -11,11 +11,11 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.图像位置;
@@ -39,7 +39,7 @@ public abstract class CommandBase implements ICommand
         return sender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return null;
     }
@@ -109,10 +109,10 @@ public abstract class CommandBase implements ICommand
         }
     }
 
-    public static BlockPos parseBlockPos(ICommandSender sender, String[] args, int startIndex, boolean centerBlock) throws NumberInvalidException
+    public static 阻止位置 parseBlockPos(ICommandSender sender, String[] args, int startIndex, boolean centerBlock) throws NumberInvalidException
     {
-        BlockPos blockpos = sender.getPosition();
-        return new BlockPos(parseDouble(blockpos.getX(), args[startIndex], -30000000, 30000000, centerBlock), parseDouble(blockpos.getY(), args[startIndex + 1], 0, 256, false), parseDouble(blockpos.getZ(), args[startIndex + 2], -30000000, 30000000, centerBlock));
+        阻止位置 blockpos = sender.getPosition();
+        return new 阻止位置(parseDouble(blockpos.getX(), args[startIndex], -30000000, 30000000, centerBlock), parseDouble(blockpos.getY(), args[startIndex + 1], 0, 256, false), parseDouble(blockpos.getZ(), args[startIndex + 2], -30000000, 30000000, centerBlock));
     }
 
     public static double parseDouble(String input) throws NumberInvalidException
@@ -178,11 +178,11 @@ public abstract class CommandBase implements ICommand
         }
     }
 
-    public static EntityPlayerMP getCommandSenderAsPlayer(ICommandSender sender) throws PlayerNotFoundException
+    public static 实体PlayerMP getCommandSenderAsPlayer(ICommandSender sender) throws PlayerNotFoundException
     {
-        if (sender instanceof EntityPlayerMP)
+        if (sender instanceof 实体PlayerMP)
         {
-            return (EntityPlayerMP)sender;
+            return (实体PlayerMP)sender;
         }
         else
         {
@@ -190,9 +190,9 @@ public abstract class CommandBase implements ICommand
         }
     }
 
-    public static EntityPlayerMP getPlayer(ICommandSender sender, String username) throws PlayerNotFoundException
+    public static 实体PlayerMP getPlayer(ICommandSender sender, String username) throws PlayerNotFoundException
     {
-        EntityPlayerMP entityplayermp = PlayerSelector.matchOnePlayer(sender, username);
+        实体PlayerMP entityplayermp = PlayerSelector.matchOnePlayer(sender, username);
 
         if (entityplayermp == null)
         {
@@ -220,31 +220,31 @@ public abstract class CommandBase implements ICommand
         }
     }
 
-    public static Entity getEntity(ICommandSender p_175768_0_, String p_175768_1_) throws EntityNotFoundException
+    public static 实体 getEntity(ICommandSender p_175768_0_, String p_175768_1_) throws EntityNotFoundException
     {
-        return getEntity(p_175768_0_, p_175768_1_, Entity.class);
+        return getEntity(p_175768_0_, p_175768_1_, 实体.class);
     }
 
-    public static <T extends Entity> T getEntity(ICommandSender commandSender, String p_175759_1_, Class <? extends T > p_175759_2_) throws EntityNotFoundException
+    public static <T extends 实体> T getEntity(ICommandSender commandSender, String p_175759_1_, Class <? extends T > p_175759_2_) throws EntityNotFoundException
     {
-        Entity entity = PlayerSelector.matchOneEntity(commandSender, p_175759_1_, p_175759_2_);
+        实体 实体 = PlayerSelector.matchOneEntity(commandSender, p_175759_1_, p_175759_2_);
         MinecraftServer minecraftserver = MinecraftServer.getServer();
 
-        if (entity == null)
+        if (实体 == null)
         {
-            entity = minecraftserver.getConfigurationManager().getPlayerByUsername(p_175759_1_);
+            实体 = minecraftserver.getConfigurationManager().getPlayerByUsername(p_175759_1_);
         }
 
-        if (entity == null)
+        if (实体 == null)
         {
             try
             {
                 UUID uuid = UUID.fromString(p_175759_1_);
-                entity = minecraftserver.getEntityFromUuid(uuid);
+                实体 = minecraftserver.getEntityFromUuid(uuid);
 
-                if (entity == null)
+                if (实体 == null)
                 {
-                    entity = minecraftserver.getConfigurationManager().getPlayerByUUID(uuid);
+                    实体 = minecraftserver.getConfigurationManager().getPlayerByUUID(uuid);
                 }
             }
             catch (IllegalArgumentException var6)
@@ -253,9 +253,9 @@ public abstract class CommandBase implements ICommand
             }
         }
 
-        if (entity != null && p_175759_2_.isAssignableFrom(entity.getClass()))
+        if (实体 != null && p_175759_2_.isAssignableFrom(实体.getClass()))
         {
-            return (T)entity;
+            return (T) 实体;
         }
         else
         {
@@ -263,9 +263,9 @@ public abstract class CommandBase implements ICommand
         }
     }
 
-    public static List<Entity> func_175763_c(ICommandSender p_175763_0_, String p_175763_1_) throws EntityNotFoundException
+    public static List<实体> func_175763_c(ICommandSender p_175763_0_, String p_175763_1_) throws EntityNotFoundException
     {
-        return PlayerSelector.hasArguments(p_175763_1_) ? PlayerSelector.matchEntities(p_175763_0_, p_175763_1_, Entity.class) : Lists.newArrayList(getEntity(p_175763_0_, p_175763_1_));
+        return PlayerSelector.hasArguments(p_175763_1_) ? PlayerSelector.matchEntities(p_175763_0_, p_175763_1_, 实体.class) : Lists.newArrayList(getEntity(p_175763_0_, p_175763_1_));
     }
 
     public static String getPlayerName(ICommandSender sender, String query) throws PlayerNotFoundException
@@ -565,7 +565,7 @@ public abstract class CommandBase implements ICommand
         return joinNiceString(strings.toArray(new String[0]));
     }
 
-    public static List<String> func_175771_a(String[] p_175771_0_, int p_175771_1_, BlockPos p_175771_2_)
+    public static List<String> func_175771_a(String[] p_175771_0_, int p_175771_1_, 阻止位置 p_175771_2_)
     {
         if (p_175771_2_ == null)
         {
@@ -598,7 +598,7 @@ public abstract class CommandBase implements ICommand
         }
     }
 
-    public static List<String> func_181043_b(String[] p_181043_0_, int p_181043_1_, BlockPos p_181043_2_)
+    public static List<String> func_181043_b(String[] p_181043_0_, int p_181043_1_, 阻止位置 p_181043_2_)
     {
         if (p_181043_2_ == null)
         {

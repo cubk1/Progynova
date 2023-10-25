@@ -1,11 +1,11 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.实体Creature;
 import net.minecraft.util.Vec3;
 
 public class EntityAIWander extends EntityAIBase
 {
-    private EntityCreature entity;
+    private 实体Creature entity;
     private double xPosition;
     private double yPosition;
     private double zPosition;
@@ -13,12 +13,12 @@ public class EntityAIWander extends EntityAIBase
     private int executionChance;
     private boolean mustUpdate;
 
-    public EntityAIWander(EntityCreature creatureIn, double speedIn)
+    public EntityAIWander(实体Creature creatureIn, double speedIn)
     {
         this(creatureIn, speedIn, 120);
     }
 
-    public EntityAIWander(EntityCreature creatureIn, double speedIn, int chance)
+    public EntityAIWander(实体Creature creatureIn, double speedIn, int chance)
     {
         this.entity = creatureIn;
         this.speed = speedIn;

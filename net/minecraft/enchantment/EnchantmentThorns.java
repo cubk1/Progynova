@@ -1,8 +1,8 @@
 package net.minecraft.enchantment;
 
 import java.util.Random;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -36,7 +36,7 @@ public class EnchantmentThorns extends Enchantment
         return stack.getItem() instanceof ItemArmor ? true : super.canApply(stack);
     }
 
-    public void onUserHurt(EntityLivingBase user, Entity attacker, int level)
+    public void onUserHurt(实体LivingBase user, 实体 attacker, int level)
     {
         Random random = user.getRNG();
         ItemStack itemstack = EnchantmentHelper.getEnchantedItem(Enchantment.thorns, user);

@@ -3,11 +3,11 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.item.EntityBoat;
+import net.minecraft.entity.item.实体Boat;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
-public class RenderBoat extends Render<EntityBoat>
+public class RenderBoat extends Render<实体Boat>
 {
     private static final 图像位置 boatTextures = new 图像位置("textures/entity/boat.png");
     protected ModelBase modelBoat = new ModelBoat();
@@ -18,7 +18,7 @@ public class RenderBoat extends Render<EntityBoat>
         this.shadowSize = 0.5F;
     }
 
-    public void doRender(EntityBoat entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体Boat entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         光照状态经理.推黑客帝国();
         光照状态经理.理解((float)x, (float)y + 0.25F, (float)z);
@@ -46,7 +46,7 @@ public class RenderBoat extends Render<EntityBoat>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityBoat entity)
+    protected 图像位置 getEntityTexture(实体Boat entity)
     {
         return boatTextures;
     }

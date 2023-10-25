@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.MathHelper;
@@ -77,7 +77,7 @@ public class CommandHelp extends CommandBase
             sender.增添聊天讯息(chatcomponenttranslation);
         }
 
-        if (k == 0 && sender instanceof EntityPlayer)
+        if (k == 0 && sender instanceof 实体Player)
         {
             ChatComponentTranslation chatcomponenttranslation2 = new ChatComponentTranslation("commands.help.footer", new Object[0]);
             chatcomponenttranslation2.getChatStyle().setColor(枚举聊天格式.GREEN);
@@ -97,7 +97,7 @@ public class CommandHelp extends CommandBase
         return MinecraftServer.getServer().getCommandManager().getCommands();
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         if (args.length == 1)
         {

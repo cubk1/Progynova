@@ -5,13 +5,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderMooshroom;
-import net.minecraft.entity.passive.EntityMooshroom;
+import net.minecraft.entity.passive.实体Mooshroom;
 
 public class ModelAdapterMooshroom extends ModelAdapterQuadruped
 {
     public ModelAdapterMooshroom()
     {
-        super(EntityMooshroom.class, "mooshroom", 0.7F);
+        super(实体Mooshroom.class, "mooshroom", 0.7F);
     }
 
     public ModelBase makeModel()

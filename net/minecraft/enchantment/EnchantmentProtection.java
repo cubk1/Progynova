@@ -1,6 +1,6 @@
 package net.minecraft.enchantment;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
@@ -70,7 +70,7 @@ public class EnchantmentProtection extends Enchantment
         }
     }
 
-    public static int getFireTimeForEntity(Entity p_92093_0_, int p_92093_1_)
+    public static int getFireTimeForEntity(实体 p_92093_0_, int p_92093_1_)
     {
         int i = EnchantmentHelper.getMaxEnchantmentLevel(Enchantment.fireProtection.effectId, p_92093_0_.getInventory());
 
@@ -82,7 +82,7 @@ public class EnchantmentProtection extends Enchantment
         return p_92093_1_;
     }
 
-    public static double func_92092_a(Entity p_92092_0_, double p_92092_1_)
+    public static double func_92092_a(实体 p_92092_0_, double p_92092_1_)
     {
         int i = EnchantmentHelper.getMaxEnchantmentLevel(Enchantment.blastProtection.effectId, p_92092_0_.getInventory());
 

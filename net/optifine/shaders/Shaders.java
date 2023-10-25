@@ -47,15 +47,15 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.data.TextureMetadataSection;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.图像位置;
@@ -4033,18 +4033,18 @@ public class Shaders
         float f = (float)diffSystemTime * 0.01F;
         float f1 = (float)Math.exp(Math.log(0.5D) * (double)f / (double)(wetness < rainStrength ? drynessHalfLife : wetnessHalfLife));
         wetness = wetness * f1 + rainStrength * (1.0F - f1);
-        Entity entity = mc.getRenderViewEntity();
+        实体 实体 = mc.getRenderViewEntity();
 
-        if (entity != null)
+        if (实体 != null)
         {
-            isSleeping = entity instanceof EntityLivingBase && ((EntityLivingBase)entity).isPlayerSleeping();
-            eyePosY = (float)entity.posY * partialTicks + (float)entity.lastTickPosY * (1.0F - partialTicks);
-            eyeBrightness = entity.getBrightnessForRender(partialTicks);
+            isSleeping = 实体 instanceof 实体LivingBase && ((实体LivingBase) 实体).isPlayerSleeping();
+            eyePosY = (float) 实体.Y坐标 * partialTicks + (float) 实体.lastTickPosY * (1.0F - partialTicks);
+            eyeBrightness = 实体.getBrightnessForRender(partialTicks);
             f1 = (float)diffSystemTime * 0.01F;
             float f2 = (float)Math.exp(Math.log(0.5D) * (double)f1 / (double)eyeBrightnessHalflife);
             eyeBrightnessFadeX = eyeBrightnessFadeX * f2 + (float)(eyeBrightness & 65535) * (1.0F - f2);
             eyeBrightnessFadeY = eyeBrightnessFadeY * f2 + (float)(eyeBrightness >> 16) * (1.0F - f2);
-            Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(mc.宇轩の世界, entity, partialTicks);
+            Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(mc.宇轩の世界, 实体, partialTicks);
             Material material = block.getMaterial();
 
             if (material == Material.water)
@@ -4078,8 +4078,8 @@ public class Shaders
                 }
             }
 
-            Vec3 vec3 = mc.宇轩の世界.getSkyColor(entity, partialTicks);
-            vec3 = CustomColors.getWorldSkyColor(vec3, currentWorld, entity, partialTicks);
+            Vec3 vec3 = mc.宇轩の世界.getSkyColor(实体, partialTicks);
+            vec3 = CustomColors.getWorldSkyColor(vec3, currentWorld, 实体, partialTicks);
             skyColorR = (float)vec3.xCoord;
             skyColorG = (float)vec3.yCoord;
             skyColorB = (float)vec3.zCoord;
@@ -4366,11 +4366,11 @@ public class Shaders
 
     public static void setCamera(float partialTicks)
     {
-        Entity entity = mc.getRenderViewEntity();
-        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
-        double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
-        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
-        updateCameraOffset(entity);
+        实体 实体 = mc.getRenderViewEntity();
+        double d0 = 实体.lastTickPosX + (实体.X坐标 - 实体.lastTickPosX) * (double)partialTicks;
+        double d1 = 实体.lastTickPosY + (实体.Y坐标 - 实体.lastTickPosY) * (double)partialTicks;
+        double d2 = 实体.lastTickPosZ + (实体.Z坐标 - 实体.lastTickPosZ) * (double)partialTicks;
+        updateCameraOffset(实体);
         cameraPositionX = d0 - (double)cameraOffsetX;
         cameraPositionY = d1;
         cameraPositionZ = d2 - (double)cameraOffsetZ;
@@ -4385,7 +4385,7 @@ public class Shaders
         checkGLError("setCamera");
     }
 
-    private static void updateCameraOffset(Entity viewEntity)
+    private static void updateCameraOffset(实体 view实体)
     {
         double d0 = Math.abs(cameraPositionX - previousCameraPositionX);
         double d1 = Math.abs(cameraPositionZ - previousCameraPositionZ);
@@ -4394,31 +4394,31 @@ public class Shaders
 
         if (d0 > 1000.0D || d1 > 1000.0D || d2 > 1000000.0D || d3 > 1000000.0D)
         {
-            setCameraOffset(viewEntity);
+            setCameraOffset(view实体);
         }
     }
 
-    private static void setCameraOffset(Entity viewEntity)
+    private static void setCameraOffset(实体 view实体)
     {
-        if (viewEntity == null)
+        if (view实体 == null)
         {
             cameraOffsetX = 0;
             cameraOffsetZ = 0;
         }
         else
         {
-            cameraOffsetX = (int)viewEntity.posX / 1000 * 1000;
-            cameraOffsetZ = (int)viewEntity.posZ / 1000 * 1000;
+            cameraOffsetX = (int) view实体.X坐标 / 1000 * 1000;
+            cameraOffsetZ = (int) view实体.Z坐标 / 1000 * 1000;
         }
     }
 
     public static void setCameraShadow(float partialTicks)
     {
-        Entity entity = mc.getRenderViewEntity();
-        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
-        double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
-        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
-        updateCameraOffset(entity);
+        实体 实体 = mc.getRenderViewEntity();
+        double d0 = 实体.lastTickPosX + (实体.X坐标 - 实体.lastTickPosX) * (double)partialTicks;
+        double d1 = 实体.lastTickPosY + (实体.Y坐标 - 实体.lastTickPosY) * (double)partialTicks;
+        double d2 = 实体.lastTickPosZ + (实体.Z坐标 - 实体.lastTickPosZ) * (double)partialTicks;
+        updateCameraOffset(实体);
         cameraPositionX = d0 - (double)cameraOffsetX;
         cameraPositionY = d1;
         cameraPositionZ = d2 - (double)cameraOffsetZ;
@@ -5050,20 +5050,20 @@ public class Shaders
         }
     }
 
-    public static void nextEntity(Entity entity)
+    public static void nextEntity(实体 实体)
     {
         if (isRenderingWorld)
         {
             useProgram(ProgramEntities);
-            setEntityId(entity);
+            setEntityId(实体);
         }
     }
 
-    public static void setEntityId(Entity entity)
+    public static void setEntityId(实体 实体)
     {
         if (uniform_entityId.isDefined())
         {
-            int i = EntityUtils.getEntityIdByClass(entity);
+            int i = EntityUtils.getEntityIdByClass(实体);
             int j = EntityAliases.getEntityAliasId(i);
 
             if (j >= 0)
@@ -5099,7 +5099,7 @@ public class Shaders
     {
         if (isRenderingWorld)
         {
-            setEntityId((Entity)null);
+            setEntityId((实体)null);
             useProgram(lightmapEnabled ? ProgramTexturedLit : ProgramTextured);
         }
     }
@@ -5849,9 +5849,9 @@ public class Shaders
         return currentWorld;
     }
 
-    public static BlockPos getCameraPosition()
+    public static 阻止位置 getCameraPosition()
     {
-        return new BlockPos(cameraPositionX, cameraPositionY, cameraPositionZ);
+        return new 阻止位置(cameraPositionX, cameraPositionY, cameraPositionZ);
     }
 
     public static boolean isCustomUniforms()

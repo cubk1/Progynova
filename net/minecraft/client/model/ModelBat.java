@@ -1,7 +1,7 @@
 package net.minecraft.client.model;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.passive.实体Bat;
 import net.minecraft.util.MathHelper;
 
 public class ModelBat extends ModelBase
@@ -47,16 +47,16 @@ public class ModelBat extends ModelBase
         this.batLeftWing.addChild(this.batOuterLeftWing);
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
         this.batHead.render(scale);
         this.batBody.render(scale);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        if (((EntityBat)entityIn).getIsBatHanging())
+        if (((实体Bat) 实体In).getIsBatHanging())
         {
             float f = (180F / (float)Math.PI);
             this.batHead.rotateAngleX = headPitch / (180F / (float)Math.PI);

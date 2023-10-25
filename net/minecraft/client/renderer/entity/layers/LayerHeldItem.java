@@ -6,14 +6,14 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class LayerHeldItem implements LayerRenderer<EntityLivingBase>
+public class LayerHeldItem implements LayerRenderer<实体LivingBase>
 {
     private final RendererLivingEntity<?> livingEntityRenderer;
 
@@ -22,7 +22,7 @@ public class LayerHeldItem implements LayerRenderer<EntityLivingBase>
         this.livingEntityRenderer = livingEntityRendererIn;
     }
 
-    public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体LivingBase entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         ItemStack itemstack = entitylivingbaseIn.getHeldItem();
 
@@ -41,7 +41,7 @@ public class LayerHeldItem implements LayerRenderer<EntityLivingBase>
             ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.0625F);
             光照状态经理.理解(-0.0625F, 0.4375F, 0.0625F);
 
-            if (entitylivingbaseIn instanceof EntityPlayer && ((EntityPlayer)entitylivingbaseIn).fishEntity != null)
+            if (entitylivingbaseIn instanceof 实体Player && ((实体Player)entitylivingbaseIn).fishEntity != null)
             {
                 itemstack = new ItemStack(Items.fishing_rod, 0);
             }

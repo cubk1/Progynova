@@ -2,7 +2,7 @@ package net.minecraft.client.gui.inventory;
 
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.实体Horse;
 import net.minecraft.inventory.ContainerHorseInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.图像位置;
@@ -12,11 +12,11 @@ public class 鬼ScreenHorseInventory extends 鬼Container
     private static final 图像位置 horseGuiTextures = new 图像位置("textures/gui/container/horse.png");
     private IInventory playerInventory;
     private IInventory horseInventory;
-    private EntityHorse horseEntity;
+    private 实体Horse horseEntity;
     private float mousePosx;
     private float mousePosY;
 
-    public 鬼ScreenHorseInventory(IInventory playerInv, IInventory horseInv, EntityHorse horse)
+    public 鬼ScreenHorseInventory(IInventory playerInv, IInventory horseInv, 实体Horse horse)
     {
         super(new ContainerHorseInventory(playerInv, horseInv, horse, 我的手艺.得到我的手艺().宇轩游玩者));
         this.playerInventory = playerInv;

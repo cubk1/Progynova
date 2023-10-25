@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -17,9 +17,9 @@ public class S12PacketEntityVelocity implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S12PacketEntityVelocity(Entity entityIn)
+    public S12PacketEntityVelocity(实体 实体In)
     {
-        this(entityIn.getEntityId(), entityIn.通便X, entityIn.motionY, entityIn.通便Z);
+        this(实体In.getEntityId(), 实体In.通便X, 实体In.motionY, 实体In.通便Z);
     }
 
     public S12PacketEntityVelocity(int entityIDIn, double motionXIn, double motionYIn, double motionZIn)

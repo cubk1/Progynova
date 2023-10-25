@@ -4,7 +4,7 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderTntMinecart;
-import net.minecraft.entity.item.EntityMinecartTNT;
+import net.minecraft.entity.item.实体MinecartTNT;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -12,7 +12,7 @@ public class ModelAdapterMinecartTnt extends ModelAdapterMinecart
 {
     public ModelAdapterMinecartTnt()
     {
-        super(EntityMinecartTNT.class, "tnt_minecart", 0.5F);
+        super(实体MinecartTNT.class, "tnt_minecart", 0.5F);
     }
 
     public IEntityRenderer makeEntityRender(ModelBase modelBase, float shadowSize)

@@ -7,13 +7,13 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityHanging;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体Hanging;
+import net.minecraft.entity.实体Living;
 import net.minecraft.src.Config;
 import net.optifine.shaders.Shaders;
 
-public abstract class RenderLiving<T extends EntityLiving> extends RendererLivingEntity<T>
+public abstract class RenderLiving<T extends 实体Living> extends RendererLivingEntity<T>
 {
     public RenderLiving(RenderManager rendermanagerIn, ModelBase modelbaseIn, float shadowsizeIn)
     {
@@ -22,7 +22,7 @@ public abstract class RenderLiving<T extends EntityLiving> extends RendererLivin
 
     protected boolean canRenderName(T entity)
     {
-        return super.canRenderName(entity) && (entity.getAlwaysRenderNameTagForRender() || entity.hasCustomName() && entity == this.renderManager.pointedEntity);
+        return super.canRenderName(entity) && (entity.getAlwaysRenderNameTagForRender() || entity.hasCustomName() && entity == this.renderManager.pointed实体);
     }
 
     public boolean shouldRender(T livingEntity, ICamera camera, double camX, double camY, double camZ)
@@ -33,8 +33,8 @@ public abstract class RenderLiving<T extends EntityLiving> extends RendererLivin
         }
         else if (livingEntity.getLeashed() && livingEntity.getLeashedToEntity() != null)
         {
-            Entity entity = livingEntity.getLeashedToEntity();
-            return camera.isBoundingBoxInFrustum(entity.getEntityBoundingBox());
+            实体 实体 = livingEntity.getLeashedToEntity();
+            return camera.isBoundingBoxInFrustum(实体.getEntityBoundingBox());
         }
         else
         {
@@ -65,20 +65,20 @@ public abstract class RenderLiving<T extends EntityLiving> extends RendererLivin
     {
         if (!Config.isShaders() || !Shaders.isShadowPass)
         {
-            Entity entity = entityLivingIn.getLeashedToEntity();
+            实体 实体 = entityLivingIn.getLeashedToEntity();
 
-            if (entity != null)
+            if (实体 != null)
             {
                 y = y - (1.6D - (double)entityLivingIn.height) * 0.5D;
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-                double d0 = this.interpolateValue((double)entity.prevRotationYaw, (double)entity.旋转侧滑, (double)(partialTicks * 0.5F)) * 0.01745329238474369D;
-                double d1 = this.interpolateValue((double)entity.prevRotationPitch, (double)entity.rotationPitch, (double)(partialTicks * 0.5F)) * 0.01745329238474369D;
+                double d0 = this.interpolateValue((double) 实体.prevRotationYaw, (double) 实体.旋转侧滑, (double)(partialTicks * 0.5F)) * 0.01745329238474369D;
+                double d1 = this.interpolateValue((double) 实体.prevRotationPitch, (double) 实体.rotationPitch, (double)(partialTicks * 0.5F)) * 0.01745329238474369D;
                 double d2 = Math.cos(d0);
                 double d3 = Math.sin(d0);
                 double d4 = Math.sin(d1);
 
-                if (entity instanceof EntityHanging)
+                if (实体 instanceof 实体Hanging)
                 {
                     d2 = 0.0D;
                     d3 = 0.0D;
@@ -86,15 +86,15 @@ public abstract class RenderLiving<T extends EntityLiving> extends RendererLivin
                 }
 
                 double d5 = Math.cos(d1);
-                double d6 = this.interpolateValue(entity.prevPosX, entity.posX, (double)partialTicks) - d2 * 0.7D - d3 * 0.5D * d5;
-                double d7 = this.interpolateValue(entity.prevPosY + (double)entity.getEyeHeight() * 0.7D, entity.posY + (double)entity.getEyeHeight() * 0.7D, (double)partialTicks) - d4 * 0.5D - 0.25D;
-                double d8 = this.interpolateValue(entity.prevPosZ, entity.posZ, (double)partialTicks) - d3 * 0.7D + d2 * 0.5D * d5;
+                double d6 = this.interpolateValue(实体.prevPosX, 实体.X坐标, (double)partialTicks) - d2 * 0.7D - d3 * 0.5D * d5;
+                double d7 = this.interpolateValue(实体.prevPosY + (double) 实体.getEyeHeight() * 0.7D, 实体.Y坐标 + (double) 实体.getEyeHeight() * 0.7D, (double)partialTicks) - d4 * 0.5D - 0.25D;
+                double d8 = this.interpolateValue(实体.prevPosZ, 实体.Z坐标, (double)partialTicks) - d3 * 0.7D + d2 * 0.5D * d5;
                 double d9 = this.interpolateValue((double)entityLivingIn.prevRenderYawOffset, (double)entityLivingIn.renderYawOffset, (double)partialTicks) * 0.01745329238474369D + (Math.PI / 2D);
                 d2 = Math.cos(d9) * (double)entityLivingIn.width * 0.4D;
                 d3 = Math.sin(d9) * (double)entityLivingIn.width * 0.4D;
-                double d10 = this.interpolateValue(entityLivingIn.prevPosX, entityLivingIn.posX, (double)partialTicks) + d2;
-                double d11 = this.interpolateValue(entityLivingIn.prevPosY, entityLivingIn.posY, (double)partialTicks);
-                double d12 = this.interpolateValue(entityLivingIn.prevPosZ, entityLivingIn.posZ, (double)partialTicks) + d3;
+                double d10 = this.interpolateValue(entityLivingIn.prevPosX, entityLivingIn.X坐标, (double)partialTicks) + d2;
+                double d11 = this.interpolateValue(entityLivingIn.prevPosY, entityLivingIn.Y坐标, (double)partialTicks);
+                double d12 = this.interpolateValue(entityLivingIn.prevPosZ, entityLivingIn.Z坐标, (double)partialTicks) + d3;
                 x = x + d2;
                 z = z + d3;
                 double d13 = (double)((float)(d6 - d10));

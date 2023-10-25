@@ -8,14 +8,14 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
@@ -38,12 +38,12 @@ public class BlockTallGrass extends BlockBush implements IGrowable
         return ColorizerGrass.getGrassColor(0.5D, 1.0D);
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    public boolean canBlockStay(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return this.canPlaceBlockOn(worldIn.getBlockState(pos.down()).getBlock());
     }
 
-    public boolean isReplaceable(World worldIn, BlockPos pos)
+    public boolean isReplaceable(World worldIn, 阻止位置 pos)
     {
         return true;
     }
@@ -61,7 +61,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
         }
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         return worldIn.getBiomeGenForCoords(pos).getGrassColorAtPos(pos);
     }
@@ -76,7 +76,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
         return 1 + random.nextInt(fortune * 2 + 1);
     }
 
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World worldIn, 实体Player player, 阻止位置 pos, IBlockState state, TileEntity te)
     {
         if (!worldIn.isRemote && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.shears)
         {
@@ -89,7 +89,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
         }
     }
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         return iblockstate.getBlock().getMetaFromState(iblockstate);
@@ -103,17 +103,17 @@ public class BlockTallGrass extends BlockBush implements IGrowable
         }
     }
 
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
+    public boolean canGrow(World worldIn, 阻止位置 pos, IBlockState state, boolean isClient)
     {
         return state.getValue(TYPE) != BlockTallGrass.EnumType.DEAD_BUSH;
     }
 
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    public boolean canUseBonemeal(World worldIn, Random rand, 阻止位置 pos, IBlockState state)
     {
         return true;
     }
 
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    public void grow(World worldIn, Random rand, 阻止位置 pos, IBlockState state)
     {
         BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = BlockDoublePlant.EnumPlantType.GRASS;
 

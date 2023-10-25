@@ -1,8 +1,8 @@
 package net.minecraft.item;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityFishHook;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.projectile.实体FishHook;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 
@@ -25,7 +25,7 @@ public class ItemFishingRod extends Item
         return true;
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         if (playerIn.fishEntity != null)
         {
@@ -39,7 +39,7 @@ public class ItemFishingRod extends Item
 
             if (!worldIn.isRemote)
             {
-                worldIn.spawnEntityInWorld(new EntityFishHook(worldIn, playerIn));
+                worldIn.spawnEntityInWorld(new 实体FishHook(worldIn, playerIn));
             }
 
             playerIn.swingItem();

@@ -1,17 +1,17 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.item.EntityPainting;
+import net.minecraft.entity.item.实体Painting;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 
 public class S10PacketSpawnPainting implements Packet<INetHandlerPlayClient>
 {
     private int entityID;
-    private BlockPos position;
+    private 阻止位置 position;
     private EnumFacing facing;
     private String title;
 
@@ -19,7 +19,7 @@ public class S10PacketSpawnPainting implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S10PacketSpawnPainting(EntityPainting painting)
+    public S10PacketSpawnPainting(实体Painting painting)
     {
         this.entityID = painting.getEntityId();
         this.position = painting.getHangingPosition();
@@ -30,7 +30,7 @@ public class S10PacketSpawnPainting implements Packet<INetHandlerPlayClient>
     public void readPacketData(PacketBuffer buf) throws IOException
     {
         this.entityID = buf.readVarIntFromBuffer();
-        this.title = buf.readStringFromBuffer(EntityPainting.EnumArt.field_180001_A);
+        this.title = buf.readStringFromBuffer(实体Painting.EnumArt.field_180001_A);
         this.position = buf.readBlockPos();
         this.facing = EnumFacing.getHorizontal(buf.readUnsignedByte());
     }
@@ -53,7 +53,7 @@ public class S10PacketSpawnPainting implements Packet<INetHandlerPlayClient>
         return this.entityID;
     }
 
-    public BlockPos getPosition()
+    public 阻止位置 getPosition()
     {
         return this.position;
     }

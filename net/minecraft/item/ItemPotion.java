@@ -11,8 +11,8 @@ import java.util.Map.Entry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityPotion;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.projectile.实体Potion;
 import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -84,7 +84,7 @@ public class ItemPotion extends Item
         return list;
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, 实体Player playerIn)
     {
         if (!playerIn.capabilities.isCreativeMode)
         {
@@ -129,7 +129,7 @@ public class ItemPotion extends Item
         return EnumAction.DRINK;
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         if (isSplash(itemStackIn.getMetadata()))
         {
@@ -142,7 +142,7 @@ public class ItemPotion extends Item
 
             if (!worldIn.isRemote)
             {
-                worldIn.spawnEntityInWorld(new EntityPotion(worldIn, playerIn, itemStackIn));
+                worldIn.spawnEntityInWorld(new 实体Potion(worldIn, playerIn, itemStackIn));
             }
 
             playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);
@@ -223,7 +223,7 @@ public class ItemPotion extends Item
         }
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, 实体Player playerIn, List<String> tooltip, boolean advanced)
     {
         if (stack.getMetadata() != 0)
         {

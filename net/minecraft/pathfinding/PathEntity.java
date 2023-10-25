@@ -1,6 +1,6 @@
 package net.minecraft.pathfinding;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.util.Vec3;
 
 public class PathEntity
@@ -55,17 +55,17 @@ public class PathEntity
         this.currentPathIndex = currentPathIndexIn;
     }
 
-    public Vec3 getVectorFromIndex(Entity entityIn, int index)
+    public Vec3 getVectorFromIndex(实体 实体In, int index)
     {
-        double d0 = (double)this.points[index].xCoord + (double)((int)(entityIn.width + 1.0F)) * 0.5D;
+        double d0 = (double)this.points[index].xCoord + (double)((int)(实体In.width + 1.0F)) * 0.5D;
         double d1 = (double)this.points[index].yCoord;
-        double d2 = (double)this.points[index].zCoord + (double)((int)(entityIn.width + 1.0F)) * 0.5D;
+        double d2 = (double)this.points[index].zCoord + (double)((int)(实体In.width + 1.0F)) * 0.5D;
         return new Vec3(d0, d1, d2);
     }
 
-    public Vec3 getPosition(Entity entityIn)
+    public Vec3 getPosition(实体 实体In)
     {
-        return this.getVectorFromIndex(entityIn, this.currentPathIndex);
+        return this.getVectorFromIndex(实体In, this.currentPathIndex);
     }
 
     public boolean isSamePath(PathEntity pathentityIn)

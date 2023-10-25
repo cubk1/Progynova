@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -42,7 +42,7 @@ public class PreYggdrasilConverter
         {
             for (String s : astring)
             {
-                UUID uuid = EntityPlayer.getUUID(new GameProfile((UUID)null, s));
+                UUID uuid = 实体Player.getUUID(new GameProfile((UUID)null, s));
                 GameProfile gameprofile = new GameProfile(uuid, s);
                 callback.onProfileLookupSucceeded(gameprofile);
             }
@@ -80,7 +80,7 @@ public class PreYggdrasilConverter
             }
             else
             {
-                return EntityPlayer.getUUID(new GameProfile((UUID)null, p_152719_0_)).toString();
+                return 实体Player.getUUID(new GameProfile((UUID)null, p_152719_0_)).toString();
             }
         }
         else

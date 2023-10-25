@@ -11,13 +11,13 @@ import net.minecraft.block.BlockTorch;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.实体Villager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -912,7 +912,7 @@ public class StructureVillagePieces
             this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(this.getMetadataWithOffset(Blocks.oak_stairs, 3)), 2, 1, 5, structureBoundingBoxIn);
             this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(this.getMetadataWithOffset(Blocks.oak_stairs, 1)), 1, 1, 4, structureBoundingBoxIn);
 
-            if (!this.hasMadeChest && structureBoundingBoxIn.isVecInside(new BlockPos(this.getXWithOffset(5, 5), this.getYWithOffset(1), this.getZWithOffset(5, 5))))
+            if (!this.hasMadeChest && structureBoundingBoxIn.isVecInside(new 阻止位置(this.getXWithOffset(5, 5), this.getYWithOffset(1), this.getZWithOffset(5, 5))))
             {
                 this.hasMadeChest = true;
                 this.generateChestContents(worldIn, structureBoundingBoxIn, randomIn, 5, 1, 5, villageBlacksmithChestContents, 3 + randomIn.nextInt(6));
@@ -1352,7 +1352,7 @@ public class StructureVillagePieces
             {
                 for (int j = this.boundingBox.minZ; j <= this.boundingBox.maxZ; ++j)
                 {
-                    BlockPos blockpos = new BlockPos(i, 64, j);
+                    阻止位置 blockpos = new 阻止位置(i, 64, j);
 
                     if (structureBoundingBoxIn.isVecInside(blockpos))
                     {
@@ -1424,7 +1424,7 @@ public class StructureVillagePieces
             this.worldChunkMngr = chunkManagerIn;
             this.structureVillageWeightedPieceList = p_i2104_6_;
             this.terrainType = p_i2104_7_;
-            BiomeGenBase biomegenbase = chunkManagerIn.getBiomeGenerator(new BlockPos(p_i2104_4_, 0, p_i2104_5_), BiomeGenBase.field_180279_ad);
+            BiomeGenBase biomegenbase = chunkManagerIn.getBiomeGenerator(new 阻止位置(p_i2104_4_, 0, p_i2104_5_), BiomeGenBase.field_180279_ad);
             this.inDesert = biomegenbase == BiomeGenBase.desert || biomegenbase == BiomeGenBase.desertHills;
             this.func_175846_a(this.inDesert);
         }
@@ -1566,7 +1566,7 @@ public class StructureVillagePieces
         {
             int i = 0;
             int j = 0;
-            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+            阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
             for (int k = this.boundingBox.minZ; k <= this.boundingBox.maxZ; ++k)
             {
@@ -1607,15 +1607,15 @@ public class StructureVillagePieces
                     int k = this.getYWithOffset(p_74893_4_);
                     int l = this.getZWithOffset(p_74893_3_ + i, p_74893_5_);
 
-                    if (!p_74893_2_.isVecInside(new BlockPos(j, k, l)))
+                    if (!p_74893_2_.isVecInside(new 阻止位置(j, k, l)))
                     {
                         break;
                     }
 
                     ++this.villagersSpawned;
-                    EntityVillager entityvillager = new EntityVillager(worldIn);
+                    实体Villager entityvillager = new 实体Villager(worldIn);
                     entityvillager.setLocationAndAngles((double)j + 0.5D, (double)k, (double)l + 0.5D, 0.0F, 0.0F);
-                    entityvillager.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
+                    entityvillager.onInitialSpawn(worldIn.getDifficultyForLocation(new 阻止位置(entityvillager)), (IEntityLivingData)null);
                     entityvillager.setProfession(this.func_180779_c(i, entityvillager.getProfession()));
                     worldIn.spawnEntityInWorld(entityvillager);
                 }

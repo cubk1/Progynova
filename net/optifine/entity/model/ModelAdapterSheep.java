@@ -5,13 +5,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelSheep2;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSheep;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.实体Sheep;
 
 public class ModelAdapterSheep extends ModelAdapterQuadruped
 {
     public ModelAdapterSheep()
     {
-        super(EntitySheep.class, "sheep", 0.7F);
+        super(实体Sheep.class, "sheep", 0.7F);
     }
 
     public ModelBase makeModel()

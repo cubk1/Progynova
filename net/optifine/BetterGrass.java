@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.IBlockAccess;
@@ -160,7 +160,7 @@ public class BetterGrass
         return textureatlassprite;
     }
 
-    public static List getFaceQuads(IBlockAccess blockAccess, IBlockState blockState, BlockPos blockPos, EnumFacing facing, List quads)
+    public static List getFaceQuads(IBlockAccess blockAccess, IBlockState blockState, 阻止位置 阻止位置, EnumFacing facing, List quads)
     {
         if (facing != EnumFacing.UP && facing != EnumFacing.DOWN)
         {
@@ -171,7 +171,7 @@ public class BetterGrass
             else
             {
                 Block block = blockState.getBlock();
-                return block instanceof BlockMycelium ? getFaceQuadsMycelium(blockAccess, blockState, blockPos, facing, quads) : (block instanceof BlockDirt ? getFaceQuadsDirt(blockAccess, blockState, blockPos, facing, quads) : (block instanceof BlockGrass ? getFaceQuadsGrass(blockAccess, blockState, blockPos, facing, quads) : quads));
+                return block instanceof BlockMycelium ? getFaceQuadsMycelium(blockAccess, blockState, 阻止位置, facing, quads) : (block instanceof BlockDirt ? getFaceQuadsDirt(blockAccess, blockState, 阻止位置, facing, quads) : (block instanceof BlockGrass ? getFaceQuadsGrass(blockAccess, blockState, 阻止位置, facing, quads) : quads));
             }
         }
         else
@@ -180,21 +180,21 @@ public class BetterGrass
         }
     }
 
-    private static List getFaceQuadsMycelium(IBlockAccess blockAccess, IBlockState blockState, BlockPos blockPos, EnumFacing facing, List quads)
+    private static List getFaceQuadsMycelium(IBlockAccess blockAccess, IBlockState blockState, 阻止位置 阻止位置, EnumFacing facing, List quads)
     {
-        Block block = blockAccess.getBlockState(blockPos.up()).getBlock();
+        Block block = blockAccess.getBlockState(阻止位置.up()).getBlock();
         boolean flag = block == Blocks.snow || block == Blocks.snow_layer;
 
         if (Config.isBetterGrassFancy())
         {
             if (flag)
             {
-                if (betterMyceliumSnow && getBlockAt(blockPos, facing, blockAccess) == Blocks.snow_layer)
+                if (betterMyceliumSnow && getBlockAt(阻止位置, facing, blockAccess) == Blocks.snow_layer)
                 {
                     return modelCubeSnow.getFaceQuads(facing);
                 }
             }
-            else if (betterMycelium && getBlockAt(blockPos.down(), facing, blockAccess) == Blocks.mycelium)
+            else if (betterMycelium && getBlockAt(阻止位置.down(), facing, blockAccess) == Blocks.mycelium)
             {
                 return modelCubeMycelium.getFaceQuads(facing);
             }
@@ -214,9 +214,9 @@ public class BetterGrass
         return quads;
     }
 
-    private static List getFaceQuadsDirt(IBlockAccess blockAccess, IBlockState blockState, BlockPos blockPos, EnumFacing facing, List quads)
+    private static List getFaceQuadsDirt(IBlockAccess blockAccess, IBlockState blockState, 阻止位置 阻止位置, EnumFacing facing, List quads)
     {
-        Block block = getBlockAt(blockPos, EnumFacing.UP, blockAccess);
+        Block block = getBlockAt(阻止位置, EnumFacing.UP, blockAccess);
 
         if (blockState.getValue(BlockDirt.VARIANT) != BlockDirt.DirtType.PODZOL)
         {
@@ -230,14 +230,14 @@ public class BetterGrass
             {
                 if (flag)
                 {
-                    if (betterPodzolSnow && getBlockAt(blockPos, facing, blockAccess) == Blocks.snow_layer)
+                    if (betterPodzolSnow && getBlockAt(阻止位置, facing, blockAccess) == Blocks.snow_layer)
                     {
                         return modelCubeSnow.getFaceQuads(facing);
                     }
                 }
                 else if (betterPodzol)
                 {
-                    BlockPos blockpos = blockPos.down().offset(facing);
+                    阻止位置 blockpos = 阻止位置.down().offset(facing);
                     IBlockState iblockstate = blockAccess.getBlockState(blockpos);
 
                     if (iblockstate.getBlock() == Blocks.dirt && iblockstate.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.PODZOL)
@@ -262,21 +262,21 @@ public class BetterGrass
         }
     }
 
-    private static List getFaceQuadsGrass(IBlockAccess blockAccess, IBlockState blockState, BlockPos blockPos, EnumFacing facing, List quads)
+    private static List getFaceQuadsGrass(IBlockAccess blockAccess, IBlockState blockState, 阻止位置 阻止位置, EnumFacing facing, List quads)
     {
-        Block block = blockAccess.getBlockState(blockPos.up()).getBlock();
+        Block block = blockAccess.getBlockState(阻止位置.up()).getBlock();
         boolean flag = block == Blocks.snow || block == Blocks.snow_layer;
 
         if (Config.isBetterGrassFancy())
         {
             if (flag)
             {
-                if (betterGrassSnow && getBlockAt(blockPos, facing, blockAccess) == Blocks.snow_layer)
+                if (betterGrassSnow && getBlockAt(阻止位置, facing, blockAccess) == Blocks.snow_layer)
                 {
                     return modelCubeSnow.getFaceQuads(facing);
                 }
             }
-            else if (betterGrass && getBlockAt(blockPos.down(), facing, blockAccess) == Blocks.grass)
+            else if (betterGrass && getBlockAt(阻止位置.down(), facing, blockAccess) == Blocks.grass)
             {
                 return modelCubeGrass.getFaceQuads(facing);
             }
@@ -296,9 +296,9 @@ public class BetterGrass
         return quads;
     }
 
-    private static Block getBlockAt(BlockPos blockPos, EnumFacing facing, IBlockAccess blockAccess)
+    private static Block getBlockAt(阻止位置 阻止位置, EnumFacing facing, IBlockAccess blockAccess)
     {
-        BlockPos blockpos = blockPos.offset(facing);
+        阻止位置 blockpos = 阻止位置.offset(facing);
         Block block = blockAccess.getBlockState(blockpos).getBlock();
         return block;
     }

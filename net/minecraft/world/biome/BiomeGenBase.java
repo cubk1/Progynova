@@ -13,24 +13,14 @@ import net.minecraft.block.BlockSand;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.*;
+import net.minecraft.entity.实体Living;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.monster.实体Slime;
+import net.minecraft.entity.passive.实体Bat;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.ColorizerFoliage;
@@ -152,20 +142,20 @@ public abstract class BiomeGenBase
         this.biomeID = id;
         biomeList[id] = this;
         this.theBiomeDecorator = this.createBiomeDecorator();
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySheep.class, 12, 4, 4));
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityRabbit.class, 10, 3, 3));
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityPig.class, 10, 4, 4));
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityChicken.class, 10, 4, 4));
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityCow.class, 8, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySpider.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityZombie.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCreeper.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySlime.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityWitch.class, 5, 1, 1));
-        this.spawnableWaterCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySquid.class, 10, 4, 4));
-        this.spawnableCaveCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 10, 8, 8));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Sheep.class, 12, 4, 4));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Rabbit.class, 10, 3, 3));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Pig.class, 10, 4, 4));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Chicken.class, 10, 4, 4));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Cow.class, 8, 4, 4));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(实体Spider.class, 100, 4, 4));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(实体Zombie.class, 100, 4, 4));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(实体Skeleton.class, 100, 4, 4));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(实体Creeper.class, 100, 4, 4));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(实体Slime.class, 100, 4, 4));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(实体Enderman.class, 10, 1, 4));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(实体Witch.class, 5, 1, 1));
+        this.spawnableWaterCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Squid.class, 10, 4, 4));
+        this.spawnableCaveCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Bat.class, 10, 8, 8));
     }
 
     protected BiomeDecorator createBiomeDecorator()
@@ -210,7 +200,7 @@ public abstract class BiomeGenBase
         return new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
     }
 
-    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos)
+    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, 阻止位置 pos)
     {
         return rand.nextInt(3) > 0 ? BlockFlower.EnumFlowerType.DANDELION : BlockFlower.EnumFlowerType.POPPY;
     }
@@ -319,7 +309,7 @@ public abstract class BiomeGenBase
         return this.rainfall;
     }
 
-    public final float getFloatTemperature(BlockPos pos)
+    public final float getFloatTemperature(阻止位置 pos)
     {
         if (pos.getY() > 64)
         {
@@ -332,19 +322,19 @@ public abstract class BiomeGenBase
         }
     }
 
-    public void decorate(World worldIn, Random rand, BlockPos pos)
+    public void decorate(World worldIn, Random rand, 阻止位置 pos)
     {
         this.theBiomeDecorator.decorate(worldIn, rand, this, pos);
     }
 
-    public int getGrassColorAtPos(BlockPos pos)
+    public int getGrassColorAtPos(阻止位置 pos)
     {
         double d0 = (double)MathHelper.clamp_float(this.getFloatTemperature(pos), 0.0F, 1.0F);
         double d1 = (double)MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
         return ColorizerGrass.getGrassColor(d0, d1);
     }
 
-    public int getFoliageColorAtPos(BlockPos pos)
+    public int getFoliageColorAtPos(阻止位置 pos)
     {
         double d0 = (double)MathHelper.clamp_float(this.getFloatTemperature(pos), 0.0F, 1.0F);
         double d1 = (double)MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
@@ -370,7 +360,7 @@ public abstract class BiomeGenBase
         int k = (int)(noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
         int l = x & 15;
         int i1 = z & 15;
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int j1 = 255; j1 >= 0; --j1)
         {
@@ -565,11 +555,11 @@ public abstract class BiomeGenBase
 
     public static class SpawnListEntry extends WeightedRandom.Item
     {
-        public Class <? extends EntityLiving > entityClass;
+        public Class <? extends 实体Living> entityClass;
         public int minGroupCount;
         public int maxGroupCount;
 
-        public SpawnListEntry(Class <? extends EntityLiving > entityclassIn, int weight, int groupCountMin, int groupCountMax)
+        public SpawnListEntry(Class <? extends 实体Living> entityclassIn, int weight, int groupCountMin, int groupCountMax)
         {
             super(weight);
             this.entityClass = entityclassIn;

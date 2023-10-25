@@ -19,7 +19,7 @@ import net.minecraft.client.resources.model.ModelRotation;
 import net.minecraft.client.resources.model.SimpleBakedModel;
 import net.minecraft.src.Config;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -172,7 +172,7 @@ public class BlockModelUtils
         return x > -1.0E-6F && x < 1.0E-6F ? 0.0F : (x > 0.999999F && x < 1.000001F ? 1.0F : x);
     }
 
-    public static AxisAlignedBB getOffsetBoundingBox(AxisAlignedBB aabb, Block.EnumOffsetType offsetType, BlockPos pos)
+    public static AxisAlignedBB getOffsetBoundingBox(AxisAlignedBB aabb, Block.EnumOffsetType offsetType, 阻止位置 pos)
     {
         int i = pos.getX();
         int j = pos.getZ();

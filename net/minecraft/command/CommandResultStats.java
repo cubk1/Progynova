@@ -1,11 +1,11 @@
 package net.minecraft.command;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -47,7 +47,7 @@ public class CommandResultStats
                 {
                     return true;
                 }
-                public BlockPos getPosition()
+                public 阻止位置 getPosition()
                 {
                     return sender.getPosition();
                 }
@@ -59,7 +59,7 @@ public class CommandResultStats
                 {
                     return sender.getEntityWorld();
                 }
-                public Entity getCommandSenderEntity()
+                public 实体 getCommandSenderEntity()
                 {
                     return sender.getCommandSenderEntity();
                 }

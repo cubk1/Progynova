@@ -7,10 +7,10 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.UserListBansEntry;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class CommandBanPlayer extends CommandBase
 {
@@ -56,7 +56,7 @@ public class CommandBanPlayer extends CommandBase
 
                 UserListBansEntry userlistbansentry = new UserListBansEntry(gameprofile, (Date)null, sender.getName(), (Date)null, s);
                 minecraftserver.getConfigurationManager().getBannedPlayers().addEntry(userlistbansentry);
-                EntityPlayerMP entityplayermp = minecraftserver.getConfigurationManager().getPlayerByUsername(args[0]);
+                实体PlayerMP entityplayermp = minecraftserver.getConfigurationManager().getPlayerByUsername(args[0]);
 
                 if (entityplayermp != null)
                 {
@@ -72,7 +72,7 @@ public class CommandBanPlayer extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length >= 1 ? getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames()) : null;
     }

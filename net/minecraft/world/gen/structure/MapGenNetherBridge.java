@@ -3,10 +3,10 @@ package net.minecraft.world.gen.structure;
 import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Random;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntitySkeleton;
+
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.monster.实体Skeleton;
+import net.minecraft.entity.monster.实体MagmaCube;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
@@ -16,10 +16,10 @@ public class MapGenNetherBridge extends MapGenStructure
 
     public MapGenNetherBridge()
     {
-        this.spawnList.add(new BiomeGenBase.SpawnListEntry(EntityBlaze.class, 10, 2, 3));
-        this.spawnList.add(new BiomeGenBase.SpawnListEntry(EntityPigZombie.class, 5, 4, 4));
-        this.spawnList.add(new BiomeGenBase.SpawnListEntry(EntitySkeleton.class, 10, 4, 4));
-        this.spawnList.add(new BiomeGenBase.SpawnListEntry(EntityMagmaCube.class, 3, 4, 4));
+        this.spawnList.add(new BiomeGenBase.SpawnListEntry(实体Blaze.class, 10, 2, 3));
+        this.spawnList.add(new BiomeGenBase.SpawnListEntry(实体PigZombie.class, 5, 4, 4));
+        this.spawnList.add(new BiomeGenBase.SpawnListEntry(实体Skeleton.class, 10, 4, 4));
+        this.spawnList.add(new BiomeGenBase.SpawnListEntry(实体MagmaCube.class, 3, 4, 4));
     }
 
     public String getStructureName()

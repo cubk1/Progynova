@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelWither;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderWither;
-import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.boss.实体Wither;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterWither extends ModelAdapter
 {
     public ModelAdapterWither()
     {
-        super(EntityWither.class, "wither", 0.5F);
+        super(实体Wither.class, "wither", 0.5F);
     }
 
     public ModelBase makeModel()

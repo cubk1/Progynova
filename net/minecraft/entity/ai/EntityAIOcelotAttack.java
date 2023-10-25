@@ -1,17 +1,17 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体Living;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.world.World;
 
 public class EntityAIOcelotAttack extends EntityAIBase
 {
     World theWorld;
-    EntityLiving theEntity;
-    EntityLivingBase theVictim;
+    实体Living theEntity;
+    实体LivingBase theVictim;
     int attackCountdown;
 
-    public EntityAIOcelotAttack(EntityLiving theEntityIn)
+    public EntityAIOcelotAttack(实体Living theEntityIn)
     {
         this.theEntity = theEntityIn;
         this.theWorld = theEntityIn.worldObj;
@@ -20,7 +20,7 @@ public class EntityAIOcelotAttack extends EntityAIBase
 
     public boolean shouldExecute()
     {
-        EntityLivingBase entitylivingbase = this.theEntity.getAttackTarget();
+        实体LivingBase entitylivingbase = this.theEntity.getAttackTarget();
 
         if (entitylivingbase == null)
         {
@@ -48,7 +48,7 @@ public class EntityAIOcelotAttack extends EntityAIBase
     {
         this.theEntity.getLookHelper().setLookPositionWithEntity(this.theVictim, 30.0F, 30.0F);
         double d0 = (double)(this.theEntity.width * 2.0F * this.theEntity.width * 2.0F);
-        double d1 = this.theEntity.getDistanceSq(this.theVictim.posX, this.theVictim.getEntityBoundingBox().minY, this.theVictim.posZ);
+        double d1 = this.theEntity.getDistanceSq(this.theVictim.X坐标, this.theVictim.getEntityBoundingBox().minY, this.theVictim.Z坐标);
         double d2 = 0.8D;
 
         if (d1 > d0 && d1 < 16.0D)

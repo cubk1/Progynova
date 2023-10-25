@@ -10,17 +10,17 @@ import net.minecraft.client.renderer.entity.layers.LayerCustomHead;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerVillagerArmor;
-import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.实体Zombie;
 import net.minecraft.util.图像位置;
 
-public class RenderZombie extends RenderBiped<EntityZombie>
+public class RenderZombie extends RenderBiped<实体Zombie>
 {
     private static final 图像位置 zombieTextures = new 图像位置("textures/entity/zombie/zombie.png");
     private static final 图像位置 zombieVillagerTextures = new 图像位置("textures/entity/zombie/zombie_villager.png");
     private final ModelBiped field_82434_o;
     private final ModelZombieVillager zombieVillagerModel;
-    private final List<LayerRenderer<EntityZombie>> field_177121_n;
-    private final List<LayerRenderer<EntityZombie>> field_177122_o;
+    private final List<LayerRenderer<实体Zombie>> field_177121_n;
+    private final List<LayerRenderer<实体Zombie>> field_177122_o;
 
     public RenderZombie(RenderManager renderManagerIn)
     {
@@ -51,18 +51,18 @@ public class RenderZombie extends RenderBiped<EntityZombie>
         this.field_177121_n = Lists.newArrayList(this.layerRenderers);
     }
 
-    public void doRender(EntityZombie entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体Zombie entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         this.func_82427_a(entity);
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityZombie entity)
+    protected 图像位置 getEntityTexture(实体Zombie entity)
     {
         return entity.isVillager() ? zombieVillagerTextures : zombieTextures;
     }
 
-    private void func_82427_a(EntityZombie zombie)
+    private void func_82427_a(实体Zombie zombie)
     {
         if (zombie.isVillager())
         {
@@ -78,7 +78,7 @@ public class RenderZombie extends RenderBiped<EntityZombie>
         this.modelBipedMain = (ModelBiped)this.mainModel;
     }
 
-    protected void rotateCorpse(EntityZombie bat, float p_77043_2_, float p_77043_3_, float partialTicks)
+    protected void rotateCorpse(实体Zombie bat, float p_77043_2_, float p_77043_3_, float partialTicks)
     {
         if (bat.isConverting())
         {

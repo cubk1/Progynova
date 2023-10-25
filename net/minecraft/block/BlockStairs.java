@@ -10,12 +10,12 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.IStringSerializable;
@@ -49,7 +49,7 @@ public class BlockStairs extends Block
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         if (this.hasRaytraced)
         {
@@ -71,7 +71,7 @@ public class BlockStairs extends Block
         return false;
     }
 
-    public void setBaseCollisionBounds(IBlockAccess worldIn, BlockPos pos)
+    public void setBaseCollisionBounds(IBlockAccess worldIn, 阻止位置 pos)
     {
         if (worldIn.getBlockState(pos).getValue(HALF) == BlockStairs.EnumHalf.TOP)
         {
@@ -88,14 +88,14 @@ public class BlockStairs extends Block
         return blockIn instanceof BlockStairs;
     }
 
-    public static boolean isSameStair(IBlockAccess worldIn, BlockPos pos, IBlockState state)
+    public static boolean isSameStair(IBlockAccess worldIn, 阻止位置 pos, IBlockState state)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         Block block = iblockstate.getBlock();
         return isBlockStairs(block) && iblockstate.getValue(HALF) == state.getValue(HALF) && iblockstate.getValue(FACING) == state.getValue(FACING);
     }
 
-    public int func_176307_f(IBlockAccess blockAccess, BlockPos pos)
+    public int func_176307_f(IBlockAccess blockAccess, 阻止位置 pos)
     {
         IBlockState iblockstate = blockAccess.getBlockState(pos);
         EnumFacing enumfacing = (EnumFacing)iblockstate.getValue(FACING);
@@ -186,7 +186,7 @@ public class BlockStairs extends Block
         return 0;
     }
 
-    public int func_176305_g(IBlockAccess blockAccess, BlockPos pos)
+    public int func_176305_g(IBlockAccess blockAccess, 阻止位置 pos)
     {
         IBlockState iblockstate = blockAccess.getBlockState(pos);
         EnumFacing enumfacing = (EnumFacing)iblockstate.getValue(FACING);
@@ -277,7 +277,7 @@ public class BlockStairs extends Block
         return 0;
     }
 
-    public boolean func_176306_h(IBlockAccess blockAccess, BlockPos pos)
+    public boolean func_176306_h(IBlockAccess blockAccess, 阻止位置 pos)
     {
         IBlockState iblockstate = blockAccess.getBlockState(pos);
         EnumFacing enumfacing = (EnumFacing)iblockstate.getValue(FACING);
@@ -393,7 +393,7 @@ public class BlockStairs extends Block
         return flag1;
     }
 
-    public boolean func_176304_i(IBlockAccess blockAccess, BlockPos pos)
+    public boolean func_176304_i(IBlockAccess blockAccess, 阻止位置 pos)
     {
         IBlockState iblockstate = blockAccess.getBlockState(pos);
         EnumFacing enumfacing = (EnumFacing)iblockstate.getValue(FACING);
@@ -515,42 +515,42 @@ public class BlockStairs extends Block
         return flag1;
     }
 
-    public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxesToList(World worldIn, 阻止位置 pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, 实体 colliding实体)
     {
         this.setBaseCollisionBounds(worldIn, pos);
-        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         boolean flag = this.func_176306_h(worldIn, pos);
-        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
 
         if (flag && this.func_176304_i(worldIn, pos))
         {
-            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         }
 
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         this.modelBlock.randomDisplayTick(worldIn, pos, state, rand);
     }
 
-    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
+    public void onBlockClicked(World worldIn, 阻止位置 pos, 实体Player playerIn)
     {
         this.modelBlock.onBlockClicked(worldIn, pos, playerIn);
     }
 
-    public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockDestroyedByPlayer(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.modelBlock.onBlockDestroyedByPlayer(worldIn, pos, state);
     }
 
-    public int getMixedBrightnessForBlock(IBlockAccess worldIn, BlockPos pos)
+    public int getMixedBrightnessForBlock(IBlockAccess worldIn, 阻止位置 pos)
     {
         return this.modelBlock.getMixedBrightnessForBlock(worldIn, pos);
     }
 
-    public float getExplosionResistance(Entity exploder)
+    public float getExplosionResistance(实体 exploder)
     {
         return this.modelBlock.getExplosionResistance(exploder);
     }
@@ -565,14 +565,14 @@ public class BlockStairs extends Block
         return this.modelBlock.tickRate(worldIn);
     }
 
-    public AxisAlignedBB getSelectedBoundingBox(World worldIn, BlockPos pos)
+    public AxisAlignedBB getSelectedBoundingBox(World worldIn, 阻止位置 pos)
     {
         return this.modelBlock.getSelectedBoundingBox(worldIn, pos);
     }
 
-    public Vec3 modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3 motion)
+    public Vec3 modifyAcceleration(World worldIn, 阻止位置 pos, 实体 实体In, Vec3 motion)
     {
-        return this.modelBlock.modifyAcceleration(worldIn, pos, entityIn, motion);
+        return this.modelBlock.modifyAcceleration(worldIn, pos, 实体In, motion);
     }
 
     public boolean isCollidable()
@@ -585,38 +585,38 @@ public class BlockStairs extends Block
         return this.modelBlock.canCollideCheck(state, hitIfLiquid);
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return this.modelBlock.canPlaceBlockAt(worldIn, pos);
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.onNeighborBlockChange(worldIn, pos, this.modelState, Blocks.air);
         this.modelBlock.onBlockAdded(worldIn, pos, this.modelState);
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.modelBlock.breakBlock(worldIn, pos, this.modelState);
     }
 
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn)
+    public void onEntityCollidedWithBlock(World worldIn, 阻止位置 pos, 实体 实体In)
     {
-        this.modelBlock.onEntityCollidedWithBlock(worldIn, pos, entityIn);
+        this.modelBlock.onEntityCollidedWithBlock(worldIn, pos, 实体In);
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         this.modelBlock.updateTick(worldIn, pos, state, rand);
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         return this.modelBlock.onBlockActivated(worldIn, pos, this.modelState, playerIn, EnumFacing.DOWN, 0.0F, 0.0F, 0.0F);
     }
 
-    public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
+    public void onBlockDestroyedByExplosion(World worldIn, 阻止位置 pos, Explosion explosionIn)
     {
         this.modelBlock.onBlockDestroyedByExplosion(worldIn, pos, explosionIn);
     }
@@ -626,14 +626,14 @@ public class BlockStairs extends Block
         return this.modelBlock.getMapColor(this.modelState);
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         IBlockState iblockstate = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
         iblockstate = iblockstate.withProperty(FACING, placer.getHorizontalFacing()).withProperty(SHAPE, BlockStairs.EnumShape.STRAIGHT);
         return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double)hitY <= 0.5D) ? iblockstate.withProperty(HALF, BlockStairs.EnumHalf.BOTTOM) : iblockstate.withProperty(HALF, BlockStairs.EnumHalf.TOP);
     }
 
-    public MovingObjectPosition collisionRayTrace(World worldIn, BlockPos pos, Vec3 start, Vec3 end)
+    public MovingObjectPosition collisionRayTrace(World worldIn, 阻止位置 pos, Vec3 start, Vec3 end)
     {
         MovingObjectPosition[] amovingobjectposition = new MovingObjectPosition[8];
         IBlockState iblockstate = worldIn.getBlockState(pos);
@@ -697,7 +697,7 @@ public class BlockStairs extends Block
         return i;
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         if (this.func_176306_h(worldIn, pos))
         {

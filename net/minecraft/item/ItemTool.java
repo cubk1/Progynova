@@ -4,10 +4,10 @@ import com.google.common.collect.Multimap;
 import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class ItemTool extends Item
@@ -33,13 +33,13 @@ public class ItemTool extends Item
         return this.effectiveBlocks.contains(state) ? this.efficiencyOnProperMaterial : 1.0F;
     }
 
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
+    public boolean hitEntity(ItemStack stack, 实体LivingBase target, 实体LivingBase attacker)
     {
         stack.damageItem(2, attacker);
         return true;
     }
 
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, Block blockIn, BlockPos pos, EntityLivingBase playerIn)
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, Block blockIn, 阻止位置 pos, 实体LivingBase playerIn)
     {
         if ((double)blockIn.getBlockHardness(worldIn, pos) != 0.0D)
         {

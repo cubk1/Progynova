@@ -161,7 +161,7 @@ uniform mat4 shadowProjectionInverse;           inverse shadowProjection
 uniform mat4 shadowModelView;                   modelview matrix when the shadow map was generated
 uniform mat4 shadowModelViewInverse;            inverse shadowModelView
 uniform float wetness;                          rainStrength smoothed with wetnessHalfLife or drynessHalfLife
-uniform float eyeAltitude;                      view entity Y position
+uniform float eyeAltitude;                      view 实体 Y position
 uniform ivec2 eyeBrightness;                    x = block brightness, y = sky brightness, light 0-15 = brightness 0-240 
 uniform ivec2 eyeBrightnessSmooth;              eyeBrightness smoothed with eyeBrightnessHalflife
 uniform ivec2 terrainTextureSize;               not used
@@ -173,9 +173,9 @@ uniform float screenBrightness;                 screen brightness (0.0-1.0)
 uniform int hideGUI;                            GUI is hidden
 uniform float centerDepthSmooth;                centerDepth smoothed with centerDepthSmoothHalflife
 uniform ivec2 atlasSize;                        texture atlas size (only set when the atlas texture is bound)
-uniform vec4 entityColor;                       entity color multiplier (entity hurt, creeper flashing when exploding)
-uniform int entityId;                           entity ID
-uniform int blockEntityId;                      block entity ID (block ID for the tile entity) 
+uniform vec4 entityColor;                       实体 color multiplier (实体 hurt, creeper flashing when exploding)
+uniform int entityId;                           实体 ID
+uniform int blockEntityId;                      block 实体 ID (block ID for the tile 实体)
 uniform ivec4 blendFunc;                        blend function (srcRGB, dstRGB, srcAlpha, dstAlpha)
 uniform int instanceId;                         instance ID when instancing is enabled (countInstances > 1), 0 = original, 1-N = copies
 
@@ -588,16 +588,16 @@ Only one line per item ID is allowed.
 
 Entity ID mapping
 =================
-The entity ID mapping is defined in "shaders/entity.properties" included in the shader pack.
-Forge mods may add custom entity mapping as "assets/<modid>/shaders/entity.properties" in the mod JAR file.
-The "entity.properties" file can use conditional preprocessor directives (#ifdef, #if, etc.)
+The 实体 ID mapping is defined in "shaders/实体.properties" included in the shader pack.
+Forge mods may add custom 实体 mapping as "assets/<modid>/shaders/实体.properties" in the mod JAR file.
+The "实体.properties" file can use conditional preprocessor directives (#ifdef, #if, etc.)
 For more details see section "Standard Macros" A to G. Option macros are not available.
-Format "entity.<id>=<entity1> <entity2> ..."
-The key is the substitute entity ID, the values are the entities which are to be replaced.
-Only one line per entity ID is allowed.
+Format "实体.<id>=<实体1> <实体2> ..."
+The key is the substitute 实体 ID, the values are the entities which are to be replaced.
+Only one line per 实体 ID is allowed.
 
   # Short format
-  entity.2000=Sheep Cow
+  实体.2000=Sheep Cow
 
 Standard Macros
 ===============

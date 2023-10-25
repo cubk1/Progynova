@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -59,12 +59,12 @@ public class InventoryEnderChest extends InventoryBasic
         return nbttaglist;
     }
 
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUseableByPlayer(实体Player player)
     {
         return this.associatedChest != null && !this.associatedChest.canBeUsed(player) ? false : super.isUseableByPlayer(player);
     }
 
-    public void openInventory(EntityPlayer player)
+    public void openInventory(实体Player player)
     {
         if (this.associatedChest != null)
         {
@@ -74,7 +74,7 @@ public class InventoryEnderChest extends InventoryBasic
         super.openInventory(player);
     }
 
-    public void closeInventory(EntityPlayer player)
+    public void closeInventory(实体Player player)
     {
         if (this.associatedChest != null)
         {

@@ -7,13 +7,13 @@ import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.RenderMooshroom;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.passive.EntityMooshroom;
+import net.minecraft.entity.passive.实体Mooshroom;
 import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
-public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
+public class LayerMooshroomMushroom implements LayerRenderer<实体Mooshroom>
 {
     private final RenderMooshroom mooshroomRenderer;
     private ModelRenderer modelRendererMushroom;
@@ -39,7 +39,7 @@ public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
         this.modelRendererMushroom.addBox(aint1, 10.0F, 0.0F, 0.0F, 0.0F, 16.0F, 20.0F, 0.0F);
     }
 
-    public void doRenderLayer(EntityMooshroom entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体Mooshroom entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         if (!entitylivingbaseIn.isChild() && !entitylivingbaseIn.isInvisible())
         {

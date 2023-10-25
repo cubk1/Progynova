@@ -7,9 +7,9 @@ import java.util.Random;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.LongHashMap;
 import net.minecraft.util.MathHelper;
@@ -27,21 +27,21 @@ public class Teleporter
         this.random = new Random(worldIn.getSeed());
     }
 
-    public void placeInPortal(Entity entityIn, float rotationYaw)
+    public void placeInPortal(实体 实体In, float rotationYaw)
     {
         if (this.worldServerInstance.provider.getDimensionId() != 1)
         {
-            if (!this.placeInExistingPortal(entityIn, rotationYaw))
+            if (!this.placeInExistingPortal(实体In, rotationYaw))
             {
-                this.makePortal(entityIn);
-                this.placeInExistingPortal(entityIn, rotationYaw);
+                this.makePortal(实体In);
+                this.placeInExistingPortal(实体In, rotationYaw);
             }
         }
         else
         {
-            int i = MathHelper.floor_double(entityIn.posX);
-            int j = MathHelper.floor_double(entityIn.posY) - 1;
-            int k = MathHelper.floor_double(entityIn.posZ);
+            int i = MathHelper.floor_double(实体In.X坐标);
+            int j = MathHelper.floor_double(实体In.Y坐标) - 1;
+            int k = MathHelper.floor_double(实体In.Z坐标);
             int l = 1;
             int i1 = 0;
 
@@ -55,24 +55,24 @@ public class Teleporter
                         int j2 = j + l1;
                         int k2 = k + k1 * i1 - j1 * l;
                         boolean flag = l1 < 0;
-                        this.worldServerInstance.setBlockState(new BlockPos(i2, j2, k2), flag ? Blocks.obsidian.getDefaultState() : Blocks.air.getDefaultState());
+                        this.worldServerInstance.setBlockState(new 阻止位置(i2, j2, k2), flag ? Blocks.obsidian.getDefaultState() : Blocks.air.getDefaultState());
                     }
                 }
             }
 
-            entityIn.setLocationAndAngles((double)i, (double)j, (double)k, entityIn.旋转侧滑, 0.0F);
-            entityIn.通便X = entityIn.motionY = entityIn.通便Z = 0.0D;
+            实体In.setLocationAndAngles((double)i, (double)j, (double)k, 实体In.旋转侧滑, 0.0F);
+            实体In.通便X = 实体In.motionY = 实体In.通便Z = 0.0D;
         }
     }
 
-    public boolean placeInExistingPortal(Entity entityIn, float rotationYaw)
+    public boolean placeInExistingPortal(实体 实体In, float rotationYaw)
     {
         int i = 128;
         double d0 = -1.0D;
-        int j = MathHelper.floor_double(entityIn.posX);
-        int k = MathHelper.floor_double(entityIn.posZ);
+        int j = MathHelper.floor_double(实体In.X坐标);
+        int k = MathHelper.floor_double(实体In.Z坐标);
         boolean flag = true;
-        BlockPos blockpos = BlockPos.ORIGIN;
+        阻止位置 blockpos = 阻止位置.ORIGIN;
         long l = ChunkCoordIntPair.chunkXZ2Int(j, k);
 
         if (this.destinationCoordinateCache.containsItem(l))
@@ -85,15 +85,15 @@ public class Teleporter
         }
         else
         {
-            BlockPos blockpos3 = new BlockPos(entityIn);
+            阻止位置 blockpos3 = new 阻止位置(实体In);
 
             for (int i1 = -128; i1 <= 128; ++i1)
             {
-                BlockPos blockpos2;
+                阻止位置 blockpos2;
 
                 for (int j1 = -128; j1 <= 128; ++j1)
                 {
-                    for (BlockPos blockpos1 = blockpos3.add(i1, this.worldServerInstance.getActualHeight() - 1 - blockpos3.getY(), j1); blockpos1.getY() >= 0; blockpos1 = blockpos2)
+                    for (阻止位置 blockpos1 = blockpos3.add(i1, this.worldServerInstance.getActualHeight() - 1 - blockpos3.getY(), j1); blockpos1.getY() >= 0; blockpos1 = blockpos2)
                     {
                         blockpos2 = blockpos1.down();
 
@@ -131,7 +131,7 @@ public class Teleporter
             BlockPattern.PatternHelper blockpattern$patternhelper = Blocks.portal.func_181089_f(this.worldServerInstance, blockpos);
             boolean flag1 = blockpattern$patternhelper.getFinger().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE;
             double d2 = blockpattern$patternhelper.getFinger().getAxis() == EnumFacing.Axis.X ? (double)blockpattern$patternhelper.getPos().getZ() : (double)blockpattern$patternhelper.getPos().getX();
-            d6 = (double)(blockpattern$patternhelper.getPos().getY() + 1) - entityIn.func_181014_aG().yCoord * (double)blockpattern$patternhelper.func_181119_e();
+            d6 = (double)(blockpattern$patternhelper.getPos().getY() + 1) - 实体In.func_181014_aG().yCoord * (double)blockpattern$patternhelper.func_181119_e();
 
             if (flag1)
             {
@@ -140,11 +140,11 @@ public class Teleporter
 
             if (blockpattern$patternhelper.getFinger().getAxis() == EnumFacing.Axis.X)
             {
-                d7 = d2 + (1.0D - entityIn.func_181014_aG().xCoord) * (double)blockpattern$patternhelper.func_181118_d() * (double)blockpattern$patternhelper.getFinger().rotateY().getAxisDirection().getOffset();
+                d7 = d2 + (1.0D - 实体In.func_181014_aG().xCoord) * (double)blockpattern$patternhelper.func_181118_d() * (double)blockpattern$patternhelper.getFinger().rotateY().getAxisDirection().getOffset();
             }
             else
             {
-                d5 = d2 + (1.0D - entityIn.func_181014_aG().xCoord) * (double)blockpattern$patternhelper.func_181118_d() * (double)blockpattern$patternhelper.getFinger().rotateY().getAxisDirection().getOffset();
+                d5 = d2 + (1.0D - 实体In.func_181014_aG().xCoord) * (double)blockpattern$patternhelper.func_181118_d() * (double)blockpattern$patternhelper.getFinger().rotateY().getAxisDirection().getOffset();
             }
 
             float f = 0.0F;
@@ -152,17 +152,17 @@ public class Teleporter
             float f2 = 0.0F;
             float f3 = 0.0F;
 
-            if (blockpattern$patternhelper.getFinger().getOpposite() == entityIn.getTeleportDirection())
+            if (blockpattern$patternhelper.getFinger().getOpposite() == 实体In.getTeleportDirection())
             {
                 f = 1.0F;
                 f1 = 1.0F;
             }
-            else if (blockpattern$patternhelper.getFinger().getOpposite() == entityIn.getTeleportDirection().getOpposite())
+            else if (blockpattern$patternhelper.getFinger().getOpposite() == 实体In.getTeleportDirection().getOpposite())
             {
                 f = -1.0F;
                 f1 = -1.0F;
             }
-            else if (blockpattern$patternhelper.getFinger().getOpposite() == entityIn.getTeleportDirection().rotateY())
+            else if (blockpattern$patternhelper.getFinger().getOpposite() == 实体In.getTeleportDirection().rotateY())
             {
                 f2 = 1.0F;
                 f3 = -1.0F;
@@ -173,12 +173,12 @@ public class Teleporter
                 f3 = 1.0F;
             }
 
-            double d3 = entityIn.通便X;
-            double d4 = entityIn.通便Z;
-            entityIn.通便X = d3 * (double)f + d4 * (double)f3;
-            entityIn.通便Z = d3 * (double)f2 + d4 * (double)f1;
-            entityIn.旋转侧滑 = rotationYaw - (float)(entityIn.getTeleportDirection().getOpposite().getHorizontalIndex() * 90) + (float)(blockpattern$patternhelper.getFinger().getHorizontalIndex() * 90);
-            entityIn.setLocationAndAngles(d5, d6, d7, entityIn.旋转侧滑, entityIn.rotationPitch);
+            double d3 = 实体In.通便X;
+            double d4 = 实体In.通便Z;
+            实体In.通便X = d3 * (double)f + d4 * (double)f3;
+            实体In.通便Z = d3 * (double)f2 + d4 * (double)f1;
+            实体In.旋转侧滑 = rotationYaw - (float)(实体In.getTeleportDirection().getOpposite().getHorizontalIndex() * 90) + (float)(blockpattern$patternhelper.getFinger().getHorizontalIndex() * 90);
+            实体In.setLocationAndAngles(d5, d6, d7, 实体In.旋转侧滑, 实体In.rotationPitch);
             return true;
         }
         else
@@ -187,27 +187,27 @@ public class Teleporter
         }
     }
 
-    public boolean makePortal(Entity entityIn)
+    public boolean makePortal(实体 实体In)
     {
         int i = 16;
         double d0 = -1.0D;
-        int j = MathHelper.floor_double(entityIn.posX);
-        int k = MathHelper.floor_double(entityIn.posY);
-        int l = MathHelper.floor_double(entityIn.posZ);
+        int j = MathHelper.floor_double(实体In.X坐标);
+        int k = MathHelper.floor_double(实体In.Y坐标);
+        int l = MathHelper.floor_double(实体In.Z坐标);
         int i1 = j;
         int j1 = k;
         int k1 = l;
         int l1 = 0;
         int i2 = this.random.nextInt(4);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int j2 = j - i; j2 <= j + i; ++j2)
         {
-            double d1 = (double)j2 + 0.5D - entityIn.posX;
+            double d1 = (double)j2 + 0.5D - 实体In.X坐标;
 
             for (int l2 = l - i; l2 <= l + i; ++l2)
             {
-                double d2 = (double)l2 + 0.5D - entityIn.posZ;
+                double d2 = (double)l2 + 0.5D - 实体In.Z坐标;
                 label142:
 
                 for (int j3 = this.worldServerInstance.getActualHeight() - 1; j3 >= 0; --j3)
@@ -249,7 +249,7 @@ public class Teleporter
                                 }
                             }
 
-                            double d5 = (double)j3 + 0.5D - entityIn.posY;
+                            double d5 = (double)j3 + 0.5D - 实体In.Y坐标;
                             double d7 = d1 * d1 + d5 * d5 + d2 * d2;
 
                             if (d0 < 0.0D || d7 < d0)
@@ -270,11 +270,11 @@ public class Teleporter
         {
             for (int l5 = j - i; l5 <= j + i; ++l5)
             {
-                double d3 = (double)l5 + 0.5D - entityIn.posX;
+                double d3 = (double)l5 + 0.5D - 实体In.X坐标;
 
                 for (int j6 = l - i; j6 <= l + i; ++j6)
                 {
-                    double d4 = (double)j6 + 0.5D - entityIn.posZ;
+                    double d4 = (double)j6 + 0.5D - 实体In.Z坐标;
                     label562:
 
                     for (int i7 = this.worldServerInstance.getActualHeight() - 1; i7 >= 0; --i7)
@@ -307,7 +307,7 @@ public class Teleporter
                                     }
                                 }
 
-                                double d6 = (double)i7 + 0.5D - entityIn.posY;
+                                double d6 = (double)i7 + 0.5D - 实体In.Y坐标;
                                 double d8 = d3 * d3 + d6 * d6 + d4 * d4;
 
                                 if (d0 < 0.0D || d8 < d0)
@@ -352,7 +352,7 @@ public class Teleporter
                         int k10 = k2 + k8;
                         int k11 = k6 + (l7 - 1) * i3 - j7 * l6;
                         boolean flag = k8 < 0;
-                        this.worldServerInstance.setBlockState(new BlockPos(k9, k10, k11), flag ? Blocks.obsidian.getDefaultState() : Blocks.air.getDefaultState());
+                        this.worldServerInstance.setBlockState(new 阻止位置(k9, k10, k11), flag ? Blocks.obsidian.getDefaultState() : Blocks.air.getDefaultState());
                     }
                 }
             }
@@ -370,7 +370,7 @@ public class Teleporter
                     int l11 = k2 + l9;
                     int k12 = k6 + (l8 - 1) * i3;
                     boolean flag1 = l8 == 0 || l8 == 3 || l9 == -1 || l9 == 3;
-                    this.worldServerInstance.setBlockState(new BlockPos(l10, l11, k12), flag1 ? Blocks.obsidian.getDefaultState() : iblockstate, 2);
+                    this.worldServerInstance.setBlockState(new 阻止位置(l10, l11, k12), flag1 ? Blocks.obsidian.getDefaultState() : iblockstate, 2);
                 }
             }
 
@@ -381,7 +381,7 @@ public class Teleporter
                     int i11 = i6 + (i9 - 1) * l6;
                     int i12 = k2 + i10;
                     int l12 = k6 + (i9 - 1) * i3;
-                    BlockPos blockpos = new BlockPos(i11, i12, l12);
+                    阻止位置 blockpos = new 阻止位置(i11, i12, l12);
                     this.worldServerInstance.notifyNeighborsOfStateChange(blockpos, this.worldServerInstance.getBlockState(blockpos).getBlock());
                 }
             }
@@ -411,11 +411,11 @@ public class Teleporter
         }
     }
 
-    public class PortalPosition extends BlockPos
+    public class PortalPosition extends 阻止位置
     {
         public long lastUpdateTime;
 
-        public PortalPosition(BlockPos pos, long lastUpdate)
+        public PortalPosition(阻止位置 pos, long lastUpdate)
         {
             super(pos.getX(), pos.getY(), pos.getZ());
             this.lastUpdateTime = lastUpdate;

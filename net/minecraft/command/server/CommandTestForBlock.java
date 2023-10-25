@@ -14,7 +14,7 @@ import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class CommandTestForBlock extends CommandBase
@@ -43,7 +43,7 @@ public class CommandTestForBlock extends CommandBase
         else
         {
             sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, 0);
-            BlockPos blockpos = parseBlockPos(sender, args, 0, false);
+            阻止位置 blockpos = parseBlockPos(sender, args, 0, false);
             Block block = Block.getBlockFromName(args[3]);
 
             if (block == null)
@@ -130,7 +130,7 @@ public class CommandTestForBlock extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length == 4 ? getListOfStringsMatchingLastWord(args, Block.blockRegistry.getKeys()) : null);
     }

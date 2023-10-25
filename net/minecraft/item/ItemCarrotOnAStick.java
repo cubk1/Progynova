@@ -1,8 +1,8 @@
 package net.minecraft.item;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.实体Pig;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
@@ -26,11 +26,11 @@ public class ItemCarrotOnAStick extends Item
         return true;
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
-        if (playerIn.isRiding() && playerIn.ridingEntity instanceof EntityPig)
+        if (playerIn.isRiding() && playerIn.riding实体 instanceof 实体Pig)
         {
-            EntityPig entitypig = (EntityPig)playerIn.ridingEntity;
+            实体Pig entitypig = (实体Pig)playerIn.riding实体;
 
             if (entitypig.getAIControlledByPlayer().isControlledByPlayer() && itemStackIn.getMaxDamage() - itemStackIn.getMetadata() >= 7)
             {

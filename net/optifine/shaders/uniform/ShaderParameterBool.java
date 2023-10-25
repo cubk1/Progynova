@@ -2,8 +2,8 @@ package net.optifine.shaders.uniform;
 
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.optifine.expr.ExpressionType;
 import net.optifine.expr.IExpressionBool;
 
@@ -46,11 +46,11 @@ public enum ShaderParameterBool implements IExpressionBool
 
     public boolean eval()
     {
-        Entity entity = 我的手艺.得到我的手艺().getRenderViewEntity();
+        实体 实体 = 我的手艺.得到我的手艺().getRenderViewEntity();
 
-        if (entity instanceof EntityLivingBase)
+        if (实体 instanceof 实体LivingBase)
         {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)entity;
+            实体LivingBase entitylivingbase = (实体LivingBase) 实体;
 
             switch (this)
             {
@@ -79,7 +79,7 @@ public enum ShaderParameterBool implements IExpressionBool
                     return entitylivingbase.onGround;
 
                 case IS_RIDDEN:
-                    return entitylivingbase.riddenByEntity != null;
+                    return entitylivingbase.riddenBy实体 != null;
 
                 case IS_RIDING:
                     return entitylivingbase.isRiding();

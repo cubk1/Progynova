@@ -44,8 +44,8 @@ import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.Model图像位置;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
@@ -370,15 +370,15 @@ public class RenderItem implements IResourceManagerReloadListener
         }
     }
 
-    public void renderItemModelForEntity(ItemStack stack, EntityLivingBase entityToRenderFor, ItemCameraTransforms.TransformType cameraTransformType)
+    public void renderItemModelForEntity(ItemStack stack, 实体LivingBase entityToRenderFor, ItemCameraTransforms.TransformType cameraTransformType)
     {
         if (stack != null && entityToRenderFor != null)
         {
             IBakedModel ibakedmodel = this.itemModelMesher.getItemModel(stack);
 
-            if (entityToRenderFor instanceof EntityPlayer)
+            if (entityToRenderFor instanceof 实体Player)
             {
-                EntityPlayer entityplayer = (EntityPlayer)entityToRenderFor;
+                实体Player entityplayer = (实体Player)entityToRenderFor;
                 Item item = stack.getItem();
                 Model图像位置 modelresourcelocation = null;
 

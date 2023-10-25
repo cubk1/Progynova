@@ -7,7 +7,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.RenderEnderCrystal;
-import net.minecraft.entity.item.EntityEnderCrystal;
+import net.minecraft.entity.item.实体EnderCrystal;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -20,7 +20,7 @@ public class ModelAdapterEnderCrystal extends ModelAdapter
 
     protected ModelAdapterEnderCrystal(String name)
     {
-        super(EntityEnderCrystal.class, name, 0.5F);
+        super(实体EnderCrystal.class, name, 0.5F);
     }
 
     public ModelBase makeModel()
@@ -49,7 +49,7 @@ public class ModelAdapterEnderCrystal extends ModelAdapter
     public IEntityRenderer makeEntityRender(ModelBase modelBase, float shadowSize)
     {
         RenderManager rendermanager = 我的手艺.得到我的手艺().getRenderManager();
-        Render render = (Render)rendermanager.getEntityRenderMap().get(EntityEnderCrystal.class);
+        Render render = (Render)rendermanager.getEntityRenderMap().get(实体EnderCrystal.class);
 
         if (!(render instanceof RenderEnderCrystal))
         {

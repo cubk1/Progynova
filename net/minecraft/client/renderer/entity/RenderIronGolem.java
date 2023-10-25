@@ -3,10 +3,10 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelIronGolem;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerIronGolemFlower;
-import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.实体IronGolem;
 import net.minecraft.util.图像位置;
 
-public class RenderIronGolem extends RenderLiving<EntityIronGolem>
+public class RenderIronGolem extends RenderLiving<实体IronGolem>
 {
     private static final 图像位置 ironGolemTextures = new 图像位置("textures/entity/iron_golem.png");
 
@@ -16,12 +16,12 @@ public class RenderIronGolem extends RenderLiving<EntityIronGolem>
         this.addLayer(new LayerIronGolemFlower(this));
     }
 
-    protected 图像位置 getEntityTexture(EntityIronGolem entity)
+    protected 图像位置 getEntityTexture(实体IronGolem entity)
     {
         return ironGolemTextures;
     }
 
-    protected void rotateCorpse(EntityIronGolem bat, float p_77043_2_, float p_77043_3_, float partialTicks)
+    protected void rotateCorpse(实体IronGolem bat, float p_77043_2_, float p_77043_3_, float partialTicks)
     {
         super.rotateCorpse(bat, p_77043_2_, p_77043_3_, partialTicks);
 

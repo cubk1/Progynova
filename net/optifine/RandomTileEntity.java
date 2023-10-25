@@ -2,7 +2,7 @@ package net.optifine;
 
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.optifine.util.TileEntityUtils;
 
@@ -15,7 +15,7 @@ public class RandomTileEntity implements IRandomEntity
         return Config.getRandom(this.tileEntity.getPos(), this.tileEntity.getBlockMetadata());
     }
 
-    public BlockPos getSpawnPosition()
+    public 阻止位置 getSpawnPosition()
     {
         return this.tileEntity.getPos();
     }

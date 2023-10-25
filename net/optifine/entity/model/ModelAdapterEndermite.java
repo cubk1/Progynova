@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelEnderMite;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderEndermite;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityEndermite;
+import net.minecraft.entity.monster.实体Endermite;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterEndermite extends ModelAdapter
 {
     public ModelAdapterEndermite()
     {
-        super(EntityEndermite.class, "endermite", 0.3F);
+        super(实体Endermite.class, "endermite", 0.3F);
     }
 
     public ModelBase makeModel()

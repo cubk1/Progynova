@@ -4,13 +4,13 @@ import java.io.IOException;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import org.apache.commons.lang3.StringUtils;
 
 public class C14PacketTabComplete implements Packet<INetHandlerPlayServer>
 {
     private String message;
-    private BlockPos targetBlock;
+    private 阻止位置 targetBlock;
 
     public C14PacketTabComplete()
     {
@@ -18,10 +18,10 @@ public class C14PacketTabComplete implements Packet<INetHandlerPlayServer>
 
     public C14PacketTabComplete(String msg)
     {
-        this(msg, (BlockPos)null);
+        this(msg, (阻止位置)null);
     }
 
-    public C14PacketTabComplete(String msg, BlockPos target)
+    public C14PacketTabComplete(String msg, 阻止位置 target)
     {
         this.message = msg;
         this.targetBlock = target;
@@ -60,7 +60,7 @@ public class C14PacketTabComplete implements Packet<INetHandlerPlayServer>
         return this.message;
     }
 
-    public BlockPos getTargetBlock()
+    public 阻止位置 getTargetBlock()
     {
         return this.targetBlock;
     }

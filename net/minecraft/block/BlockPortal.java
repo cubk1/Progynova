@@ -9,12 +9,12 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -32,14 +32,14 @@ public class BlockPortal extends BlockBreakable
         this.setTickRandomly(true);
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         super.updateTick(worldIn, pos, state, rand);
 
         if (worldIn.provider.isSurfaceWorld() && worldIn.getGameRules().getBoolean("doMobSpawning") && rand.nextInt(2000) < worldIn.getDifficulty().getDifficultyId())
         {
             int i = pos.getY();
-            BlockPos blockpos;
+            阻止位置 blockpos;
 
             for (blockpos = pos; !World.doesBlockHaveSolidTopSurface(worldIn, blockpos) && blockpos.getY() > 0; blockpos = blockpos.down())
             {
@@ -48,22 +48,22 @@ public class BlockPortal extends BlockBreakable
 
             if (i > 0 && !worldIn.getBlockState(blockpos.up()).getBlock().isNormalCube())
             {
-                Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, 57, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 1.1D, (double)blockpos.getZ() + 0.5D);
+                实体 实体 = ItemMonsterPlacer.spawnCreature(worldIn, 57, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 1.1D, (double)blockpos.getZ() + 0.5D);
 
-                if (entity != null)
+                if (实体 != null)
                 {
-                    entity.timeUntilPortal = entity.getPortalCooldown();
+                    实体.timeUntilPortal = 实体.getPortalCooldown();
                 }
             }
         }
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return null;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis)worldIn.getBlockState(pos).getValue(AXIS);
         float f = 0.125F;
@@ -92,7 +92,7 @@ public class BlockPortal extends BlockBreakable
         return false;
     }
 
-    public boolean func_176548_d(World worldIn, BlockPos p_176548_2_)
+    public boolean func_176548_d(World worldIn, 阻止位置 p_176548_2_)
     {
         BlockPortal.Size blockportal$size = new BlockPortal.Size(worldIn, p_176548_2_, EnumFacing.Axis.X);
 
@@ -117,7 +117,7 @@ public class BlockPortal extends BlockBreakable
         }
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis)state.getValue(AXIS);
 
@@ -141,7 +141,7 @@ public class BlockPortal extends BlockBreakable
         }
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         EnumFacing.Axis enumfacing$axis = null;
         IBlockState iblockstate = worldIn.getBlockState(pos);
@@ -185,15 +185,15 @@ public class BlockPortal extends BlockBreakable
         return EnumWorldBlockLayer.TRANSLUCENT;
     }
 
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollidedWithBlock(World worldIn, 阻止位置 pos, IBlockState state, 实体 实体In)
     {
-        if (entityIn.ridingEntity == null && entityIn.riddenByEntity == null)
+        if (实体In.riding实体 == null && 实体In.riddenBy实体 == null)
         {
-            entityIn.setPortal(pos);
+            实体In.setPortal(pos);
         }
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (rand.nextInt(100) == 0)
         {
@@ -225,7 +225,7 @@ public class BlockPortal extends BlockBreakable
         }
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return null;
     }
@@ -245,11 +245,11 @@ public class BlockPortal extends BlockBreakable
         return new BlockState(this, new IProperty[] {AXIS});
     }
 
-    public BlockPattern.PatternHelper func_181089_f(World p_181089_1_, BlockPos p_181089_2_)
+    public BlockPattern.PatternHelper func_181089_f(World p_181089_1_, 阻止位置 p_181089_2_)
     {
         EnumFacing.Axis enumfacing$axis = EnumFacing.Axis.Z;
         BlockPortal.Size blockportal$size = new BlockPortal.Size(p_181089_1_, p_181089_2_, EnumFacing.Axis.X);
-        LoadingCache<BlockPos, BlockWorldState> loadingcache = BlockPattern.func_181627_a(p_181089_1_, true);
+        LoadingCache<阻止位置, BlockWorldState> loadingcache = BlockPattern.func_181627_a(p_181089_1_, true);
 
         if (!blockportal$size.func_150860_b())
         {
@@ -265,7 +265,7 @@ public class BlockPortal extends BlockBreakable
         {
             int[] aint = new int[EnumFacing.AxisDirection.values().length];
             EnumFacing enumfacing = blockportal$size.field_150866_c.rotateYCCW();
-            BlockPos blockpos = blockportal$size.field_150861_f.up(blockportal$size.func_181100_a() - 1);
+            阻止位置 blockpos = blockportal$size.field_150861_f.up(blockportal$size.func_181100_a() - 1);
 
             for (EnumFacing.AxisDirection enumfacing$axisdirection : EnumFacing.AxisDirection.values())
             {
@@ -306,11 +306,11 @@ public class BlockPortal extends BlockBreakable
         private final EnumFacing field_150866_c;
         private final EnumFacing field_150863_d;
         private int field_150864_e = 0;
-        private BlockPos field_150861_f;
+        private 阻止位置 field_150861_f;
         private int field_150862_g;
         private int field_150868_h;
 
-        public Size(World worldIn, BlockPos p_i45694_2_, EnumFacing.Axis p_i45694_3_)
+        public Size(World worldIn, 阻止位置 p_i45694_2_, EnumFacing.Axis p_i45694_3_)
         {
             this.world = worldIn;
             this.axis = p_i45694_3_;
@@ -326,7 +326,7 @@ public class BlockPortal extends BlockBreakable
                 this.field_150866_c = EnumFacing.SOUTH;
             }
 
-            for (BlockPos blockpos = p_i45694_2_; p_i45694_2_.getY() > blockpos.getY() - 21 && p_i45694_2_.getY() > 0 && this.func_150857_a(worldIn.getBlockState(p_i45694_2_.down()).getBlock()); p_i45694_2_ = p_i45694_2_.down())
+            for (阻止位置 blockpos = p_i45694_2_; p_i45694_2_.getY() > blockpos.getY() - 21 && p_i45694_2_.getY() > 0 && this.func_150857_a(worldIn.getBlockState(p_i45694_2_.down()).getBlock()); p_i45694_2_ = p_i45694_2_.down())
             {
                 ;
             }
@@ -351,13 +351,13 @@ public class BlockPortal extends BlockBreakable
             }
         }
 
-        protected int func_180120_a(BlockPos p_180120_1_, EnumFacing p_180120_2_)
+        protected int func_180120_a(阻止位置 p_180120_1_, EnumFacing p_180120_2_)
         {
             int i;
 
             for (i = 0; i < 22; ++i)
             {
-                BlockPos blockpos = p_180120_1_.offset(p_180120_2_, i);
+                阻止位置 blockpos = p_180120_1_.offset(p_180120_2_, i);
 
                 if (!this.func_150857_a(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != Blocks.obsidian)
                 {
@@ -387,7 +387,7 @@ public class BlockPortal extends BlockBreakable
             {
                 for (int i = 0; i < this.field_150868_h; ++i)
                 {
-                    BlockPos blockpos = this.field_150861_f.offset(this.field_150866_c, i).up(this.field_150862_g);
+                    阻止位置 blockpos = this.field_150861_f.offset(this.field_150866_c, i).up(this.field_150862_g);
                     Block block = this.world.getBlockState(blockpos).getBlock();
 
                     if (!this.func_150857_a(block))
@@ -457,7 +457,7 @@ public class BlockPortal extends BlockBreakable
         {
             for (int i = 0; i < this.field_150868_h; ++i)
             {
-                BlockPos blockpos = this.field_150861_f.offset(this.field_150866_c, i);
+                阻止位置 blockpos = this.field_150861_f.offset(this.field_150866_c, i);
 
                 for (int j = 0; j < this.field_150862_g; ++j)
                 {

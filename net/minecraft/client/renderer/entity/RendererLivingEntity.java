@@ -4,8 +4,8 @@ import com.google.common.collect.Lists;
 import java.nio.FloatBuffer;
 import java.util.List;
 
+import net.minecraft.client.entity.实体PlayerSP;
 import net.minecraft.client.我的手艺;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelSpider;
@@ -17,8 +17,8 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
@@ -33,7 +33,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
 
-public abstract class RendererLivingEntity<T extends EntityLivingBase> extends Render<T>
+public abstract class RendererLivingEntity<T extends 实体LivingBase> extends Render<T>
 {
     private static final Logger logger = LogManager.getLogger();
     private static final DynamicTexture textureBrightness = new DynamicTexture(16, 16);
@@ -43,7 +43,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
     protected boolean renderOutlines = false;
     public static float NAME_TAG_RANGE = 64.0F;
     public static float NAME_TAG_RANGE_SNEAK = 32.0F;
-    public EntityLivingBase renderEntity;
+    public 实体LivingBase renderEntity;
     public float renderLimbSwing;
     public float renderLimbSwingAmount;
     public float renderAgeInTicks;
@@ -63,12 +63,12 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
         this.renderModelPushMatrix = this.mainModel instanceof ModelSpider;
     }
 
-    public <V extends EntityLivingBase, U extends LayerRenderer<V>> boolean addLayer(U layer)
+    public <V extends 实体LivingBase, U extends LayerRenderer<V>> boolean addLayer(U layer)
     {
         return this.layerRenderers.add((LayerRenderer<T>) layer);
     }
 
-    protected <V extends EntityLivingBase, U extends LayerRenderer<V>> boolean removeLayer(U layer)
+    protected <V extends 实体LivingBase, U extends LayerRenderer<V>> boolean removeLayer(U layer)
     {
         return this.layerRenderers.remove(layer);
     }
@@ -115,7 +115,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
             if (Reflector.ForgeEntity_shouldRiderSit.exists())
             {
-                this.mainModel.isRiding = entity.isRiding() && entity.ridingEntity != null && Reflector.callBoolean(entity.ridingEntity, Reflector.ForgeEntity_shouldRiderSit, new Object[0]);
+                this.mainModel.isRiding = entity.isRiding() && entity.riding实体 != null && Reflector.callBoolean(entity.riding实体, Reflector.ForgeEntity_shouldRiderSit, new Object[0]);
             }
 
             this.mainModel.isChild = entity.isChild();
@@ -126,9 +126,9 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                 float f1 = this.interpolateRotation(entity.prevRotationYawHead, entity.rotationYawHead, partialTicks);
                 float f2 = f1 - f;
 
-                if (this.mainModel.isRiding && entity.ridingEntity instanceof EntityLivingBase)
+                if (this.mainModel.isRiding && entity.riding实体 instanceof 实体LivingBase)
                 {
-                    EntityLivingBase entitylivingbase = (EntityLivingBase)entity.ridingEntity;
+                    实体LivingBase entitylivingbase = (实体LivingBase)entity.riding实体;
                     f = this.interpolateRotation(entitylivingbase.prevRenderYawOffset, entitylivingbase.renderYawOffset, partialTicks);
                     f2 = f1 - f;
                     float f3 = MathHelper.wrapAngleTo180_float(f2);
@@ -244,7 +244,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
                     光照状态经理.depthMask(true);
 
-                    if (!(entity instanceof EntityPlayer) || !((EntityPlayer)entity).isSpectator())
+                    if (!(entity instanceof 实体Player) || !((实体Player)entity).isSpectator())
                     {
                         this.renderLayers(entity, f6, f5, partialTicks, f8, f2, f7, 0.0625F);
                     }
@@ -284,7 +284,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
     {
         int i = 16777215;
 
-        if (entityLivingBaseIn instanceof EntityPlayer)
+        if (entityLivingBaseIn instanceof 实体Player)
         {
             ScorePlayerTeam scoreplayerteam = (ScorePlayerTeam)entityLivingBaseIn.getTeam();
 
@@ -523,7 +523,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
         {
             String s = 枚举聊天格式.getTextWithoutFormattingCodes(bat.getName());
 
-            if (s != null && (s.equals("Dinnerbone") || s.equals("Grumm")) && (!(bat instanceof EntityPlayer) || ((EntityPlayer)bat).isWearing(EnumPlayerModelParts.CAPE)))
+            if (s != null && (s.equals("Dinnerbone") || s.equals("Grumm")) && (!(bat instanceof 实体Player) || ((实体Player)bat).isWearing(EnumPlayerModelParts.CAPE)))
             {
                 光照状态经理.理解(0.0F, bat.height + 0.1F, 0.0F);
                 光照状态经理.辐射(180.0F, 0.0F, 0.0F, 1.0F);
@@ -663,9 +663,9 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
     protected boolean canRenderName(T entity)
     {
-        EntityPlayerSP entityplayersp = 我的手艺.得到我的手艺().宇轩游玩者;
+        实体PlayerSP entityplayersp = 我的手艺.得到我的手艺().宇轩游玩者;
 
-        if (entity instanceof EntityPlayer && entity != entityplayersp)
+        if (entity instanceof 实体Player && entity != entityplayersp)
         {
             Team team = entity.getTeam();
             Team team1 = entityplayersp.getTeam();
@@ -694,7 +694,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
             }
         }
 
-        return 我的手艺.isGuiEnabled() && entity != this.renderManager.livingPlayer && !entity.isInvisibleToPlayer(entityplayersp) && entity.riddenByEntity == null;
+        return 我的手艺.isGuiEnabled() && entity != this.renderManager.livingPlayer && !entity.isInvisibleToPlayer(entityplayersp) && entity.riddenBy实体 == null;
     }
 
     public void setRenderOutlines(boolean renderOutlinesIn)

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
@@ -53,12 +53,12 @@ public class WorldChunkManager
         return this.biomesToSpawnIn;
     }
 
-    public BiomeGenBase getBiomeGenerator(BlockPos pos)
+    public BiomeGenBase getBiomeGenerator(阻止位置 pos)
     {
         return this.getBiomeGenerator(pos, (BiomeGenBase)null);
     }
 
-    public BiomeGenBase getBiomeGenerator(BlockPos pos, BiomeGenBase biomeGenBaseIn)
+    public BiomeGenBase getBiomeGenerator(阻止位置 pos, BiomeGenBase biomeGenBaseIn)
     {
         return this.biomeCache.func_180284_a(pos.getX(), pos.getZ(), biomeGenBaseIn);
     }
@@ -213,7 +213,7 @@ public class WorldChunkManager
         }
     }
 
-    public BlockPos findBiomePosition(int x, int z, int range, List<BiomeGenBase> biomes, Random random)
+    public 阻止位置 findBiomePosition(int x, int z, int range, List<BiomeGenBase> biomes, Random random)
     {
         IntCache.resetIntCache();
         int i = x - range >> 2;
@@ -223,7 +223,7 @@ public class WorldChunkManager
         int i1 = k - i + 1;
         int j1 = l - j + 1;
         int[] aint = this.genBiomes.getInts(i, j, i1, j1);
-        BlockPos blockpos = null;
+        阻止位置 blockpos = null;
         int k1 = 0;
 
         for (int l1 = 0; l1 < i1 * j1; ++l1)
@@ -234,7 +234,7 @@ public class WorldChunkManager
 
             if (biomes.contains(biomegenbase) && (blockpos == null || random.nextInt(k1 + 1) == 0))
             {
-                blockpos = new BlockPos(i2, 0, j2);
+                blockpos = new 阻止位置(i2, 0, j2);
                 ++k1;
             }
         }

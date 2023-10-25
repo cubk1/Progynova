@@ -7,10 +7,10 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderIronGolem;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.实体IronGolem;
 import net.minecraft.init.Blocks;
 
-public class LayerIronGolemFlower implements LayerRenderer<EntityIronGolem>
+public class LayerIronGolemFlower implements LayerRenderer<实体IronGolem>
 {
     private final RenderIronGolem ironGolemRenderer;
 
@@ -19,7 +19,7 @@ public class LayerIronGolemFlower implements LayerRenderer<EntityIronGolem>
         this.ironGolemRenderer = ironGolemRendererIn;
     }
 
-    public void doRenderLayer(EntityIronGolem entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体IronGolem entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         if (entitylivingbaseIn.getHoldRoseTick() != 0)
         {

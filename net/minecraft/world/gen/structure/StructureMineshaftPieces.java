@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityMinecartChest;
+import net.minecraft.entity.item.实体MinecartChest;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
@@ -14,7 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
@@ -288,13 +288,13 @@ public class StructureMineshaftPieces
 
         protected boolean generateChestContents(World worldIn, StructureBoundingBox boundingBoxIn, Random rand, int x, int y, int z, List<WeightedRandomChestContent> listIn, int max)
         {
-            BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
+            阻止位置 blockpos = new 阻止位置(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
             if (boundingBoxIn.isVecInside(blockpos) && worldIn.getBlockState(blockpos).getBlock().getMaterial() == Material.air)
             {
                 int i = rand.nextBoolean() ? 1 : 0;
                 worldIn.setBlockState(blockpos, Blocks.rail.getStateFromMeta(this.getMetadataWithOffset(Blocks.rail, i)), 2);
-                EntityMinecartChest entityminecartchest = new EntityMinecartChest(worldIn, (double)((float)blockpos.getX() + 0.5F), (double)((float)blockpos.getY() + 0.5F), (double)((float)blockpos.getZ() + 0.5F));
+                实体MinecartChest entityminecartchest = new 实体MinecartChest(worldIn, (double)((float)blockpos.getX() + 0.5F), (double)((float)blockpos.getY() + 0.5F), (double)((float)blockpos.getZ() + 0.5F));
                 WeightedRandomChestContent.generateChestContents(rand, listIn, entityminecartchest, max);
                 worldIn.spawnEntityInWorld(entityminecartchest);
                 return true;
@@ -369,7 +369,7 @@ public class StructureMineshaftPieces
                         int i2 = k1 - 1 + randomIn.nextInt(3);
                         int j2 = this.getXWithOffset(1, i2);
                         i2 = this.getZWithOffset(1, i2);
-                        BlockPos blockpos = new BlockPos(j2, l1, i2);
+                        阻止位置 blockpos = new 阻止位置(j2, l1, i2);
 
                         if (structureBoundingBoxIn.isVecInside(blockpos))
                         {

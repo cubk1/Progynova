@@ -3,13 +3,13 @@ package net.minecraft.client.renderer.entity.layers;
 import net.minecraft.client.model.ModelSheep1;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.RenderSheep;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.实体Sheep;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.src.Config;
 import net.minecraft.util.图像位置;
 import net.optifine.CustomColors;
 
-public class LayerSheepWool implements LayerRenderer<EntitySheep>
+public class LayerSheepWool implements LayerRenderer<实体Sheep>
 {
     private static final 图像位置 TEXTURE = new 图像位置("textures/entity/sheep/sheep_fur.png");
     private final RenderSheep sheepRenderer;
@@ -20,7 +20,7 @@ public class LayerSheepWool implements LayerRenderer<EntitySheep>
         this.sheepRenderer = sheepRendererIn;
     }
 
-    public void doRenderLayer(EntitySheep entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体Sheep entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         if (!entitylivingbaseIn.getSheared() && !entitylivingbaseIn.isInvisible())
         {
@@ -34,8 +34,8 @@ public class LayerSheepWool implements LayerRenderer<EntitySheep>
                 int k = i % j;
                 int l = (i + 1) % j;
                 float f = ((float)(entitylivingbaseIn.已存在的刻度 % 25) + partialTicks) / 25.0F;
-                float[] afloat1 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(k));
-                float[] afloat2 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(l));
+                float[] afloat1 = 实体Sheep.getDyeRgb(EnumDyeColor.byMetadata(k));
+                float[] afloat2 = 实体Sheep.getDyeRgb(EnumDyeColor.byMetadata(l));
 
                 if (Config.isCustomColors())
                 {
@@ -47,7 +47,7 @@ public class LayerSheepWool implements LayerRenderer<EntitySheep>
             }
             else
             {
-                float[] afloat = EntitySheep.getDyeRgb(entitylivingbaseIn.getFleeceColor());
+                float[] afloat = 实体Sheep.getDyeRgb(entitylivingbaseIn.getFleeceColor());
 
                 if (Config.isCustomColors())
                 {

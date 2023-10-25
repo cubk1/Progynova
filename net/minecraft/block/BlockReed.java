@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
@@ -29,7 +29,7 @@ public class BlockReed extends Block
         this.setTickRandomly(true);
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (worldIn.getBlockState(pos.down()).getBlock() == Blocks.reeds || this.checkForDrop(worldIn, pos, state))
         {
@@ -60,7 +60,7 @@ public class BlockReed extends Block
         }
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         Block block = worldIn.getBlockState(pos.down()).getBlock();
 
@@ -86,12 +86,12 @@ public class BlockReed extends Block
         }
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         this.checkForDrop(worldIn, pos, state);
     }
 
-    protected final boolean checkForDrop(World worldIn, BlockPos pos, IBlockState state)
+    protected final boolean checkForDrop(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (this.canBlockStay(worldIn, pos))
         {
@@ -105,12 +105,12 @@ public class BlockReed extends Block
         }
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos)
+    public boolean canBlockStay(World worldIn, 阻止位置 pos)
     {
         return this.canPlaceBlockAt(worldIn, pos);
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return null;
     }
@@ -130,12 +130,12 @@ public class BlockReed extends Block
         return false;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Items.reeds;
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         return worldIn.getBiomeGenForCoords(pos).getGrassColorAtPos(pos);
     }

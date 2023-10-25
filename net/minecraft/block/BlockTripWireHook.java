@@ -9,11 +9,11 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
@@ -34,12 +34,12 @@ public class BlockTripWireHook extends Block
         this.setTickRandomly(true);
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         return state.withProperty(SUSPENDED, Boolean.valueOf(!World.doesBlockHaveSolidTopSurface(worldIn, pos.down())));
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return null;
     }
@@ -54,12 +54,12 @@ public class BlockTripWireHook extends Block
         return false;
     }
 
-    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
+    public boolean canPlaceBlockOnSide(World worldIn, 阻止位置 pos, EnumFacing side)
     {
         return side.getAxis().isHorizontal() && worldIn.getBlockState(pos.offset(side.getOpposite())).getBlock().isNormalCube();
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
         {
@@ -72,7 +72,7 @@ public class BlockTripWireHook extends Block
         return false;
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         IBlockState iblockstate = this.getDefaultState().withProperty(POWERED, Boolean.valueOf(false)).withProperty(ATTACHED, Boolean.valueOf(false)).withProperty(SUSPENDED, Boolean.valueOf(false));
 
@@ -84,12 +84,12 @@ public class BlockTripWireHook extends Block
         return iblockstate;
     }
 
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase placer, ItemStack stack)
     {
         this.func_176260_a(worldIn, pos, state, false, false, -1, (IBlockState)null);
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         if (neighborBlock != this)
         {
@@ -106,7 +106,7 @@ public class BlockTripWireHook extends Block
         }
     }
 
-    public void func_176260_a(World worldIn, BlockPos pos, IBlockState hookState, boolean p_176260_4_, boolean p_176260_5_, int p_176260_6_, IBlockState p_176260_7_)
+    public void func_176260_a(World worldIn, 阻止位置 pos, IBlockState hookState, boolean p_176260_4_, boolean p_176260_5_, int p_176260_6_, IBlockState p_176260_7_)
     {
         EnumFacing enumfacing = (EnumFacing)hookState.getValue(FACING);
         boolean flag = ((Boolean)hookState.getValue(ATTACHED)).booleanValue();
@@ -119,7 +119,7 @@ public class BlockTripWireHook extends Block
 
         for (int j = 1; j < 42; ++j)
         {
-            BlockPos blockpos = pos.offset(enumfacing, j);
+            阻止位置 blockpos = pos.offset(enumfacing, j);
             IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
             if (iblockstate.getBlock() == Blocks.tripwire_hook)
@@ -165,7 +165,7 @@ public class BlockTripWireHook extends Block
 
         if (i > 0)
         {
-            BlockPos blockpos1 = pos.offset(enumfacing, i);
+            阻止位置 blockpos1 = pos.offset(enumfacing, i);
             EnumFacing enumfacing1 = enumfacing.getOpposite();
             worldIn.setBlockState(blockpos1, iblockstate1.withProperty(FACING, enumfacing1), 3);
             this.func_176262_b(worldIn, blockpos1, enumfacing1);
@@ -188,7 +188,7 @@ public class BlockTripWireHook extends Block
         {
             for (int k = 1; k < i; ++k)
             {
-                BlockPos blockpos2 = pos.offset(enumfacing, k);
+                阻止位置 blockpos2 = pos.offset(enumfacing, k);
                 IBlockState iblockstate2 = aiblockstate[k];
 
                 if (iblockstate2 != null && worldIn.getBlockState(blockpos2).getBlock() != Blocks.air)
@@ -199,16 +199,16 @@ public class BlockTripWireHook extends Block
         }
     }
 
-    public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
+    public void randomTick(World worldIn, 阻止位置 pos, IBlockState state, Random random)
     {
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         this.func_176260_a(worldIn, pos, state, false, true, -1, (IBlockState)null);
     }
 
-    private void func_180694_a(World worldIn, BlockPos pos, boolean p_180694_3_, boolean p_180694_4_, boolean p_180694_5_, boolean p_180694_6_)
+    private void func_180694_a(World worldIn, 阻止位置 pos, boolean p_180694_3_, boolean p_180694_4_, boolean p_180694_5_, boolean p_180694_6_)
     {
         if (p_180694_4_ && !p_180694_6_)
         {
@@ -228,13 +228,13 @@ public class BlockTripWireHook extends Block
         }
     }
 
-    private void func_176262_b(World worldIn, BlockPos p_176262_2_, EnumFacing p_176262_3_)
+    private void func_176262_b(World worldIn, 阻止位置 p_176262_2_, EnumFacing p_176262_3_)
     {
         worldIn.notifyNeighborsOfStateChange(p_176262_2_, this);
         worldIn.notifyNeighborsOfStateChange(p_176262_2_.offset(p_176262_3_.getOpposite()), this);
     }
 
-    private boolean checkForDrop(World worldIn, BlockPos pos, IBlockState state)
+    private boolean checkForDrop(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!this.canPlaceBlockAt(worldIn, pos))
         {
@@ -249,7 +249,7 @@ public class BlockTripWireHook extends Block
     }
 
     @SuppressWarnings("incomplete-switch")
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         float f = 0.1875F;
 
@@ -272,7 +272,7 @@ public class BlockTripWireHook extends Block
         }
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         boolean flag = ((Boolean)state.getValue(ATTACHED)).booleanValue();
         boolean flag1 = ((Boolean)state.getValue(POWERED)).booleanValue();
@@ -291,12 +291,12 @@ public class BlockTripWireHook extends Block
         super.breakBlock(worldIn, pos, state);
     }
 
-    public int getWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
+    public int getWeakPower(IBlockAccess worldIn, 阻止位置 pos, IBlockState state, EnumFacing side)
     {
         return ((Boolean)state.getValue(POWERED)).booleanValue() ? 15 : 0;
     }
 
-    public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
+    public int getStrongPower(IBlockAccess worldIn, 阻止位置 pos, IBlockState state, EnumFacing side)
     {
         return !((Boolean)state.getValue(POWERED)).booleanValue() ? 0 : (state.getValue(FACING) == side ? 15 : 0);
     }

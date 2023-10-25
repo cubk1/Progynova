@@ -1,7 +1,7 @@
 package net.minecraft.inventory;
 
 import net.minecraft.entity.IMerchant;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -65,12 +65,12 @@ public class ContainerMerchant extends Container
     {
     }
 
-    public boolean canInteractWith(EntityPlayer playerIn)
+    public boolean canInteractWith(实体Player playerIn)
     {
         return this.theMerchant.getCustomer() == playerIn;
     }
 
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    public ItemStack transferStackInSlot(实体Player playerIn, int index)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(index);
@@ -128,10 +128,10 @@ public class ContainerMerchant extends Container
         return itemstack;
     }
 
-    public void onContainerClosed(EntityPlayer playerIn)
+    public void onContainerClosed(实体Player playerIn)
     {
         super.onContainerClosed(playerIn);
-        this.theMerchant.setCustomer((EntityPlayer)null);
+        this.theMerchant.setCustomer((实体Player)null);
         super.onContainerClosed(playerIn);
 
         if (!this.theWorld.isRemote)

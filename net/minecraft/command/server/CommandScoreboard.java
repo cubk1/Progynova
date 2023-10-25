@@ -13,8 +13,8 @@ import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.SyntaxErrorException;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,7 +26,7 @@ import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.枚举聊天格式;
@@ -237,7 +237,7 @@ public class CommandScoreboard extends CommandBase
                     }
                     else if (args[1].equalsIgnoreCase("join"))
                     {
-                        if (args.length < 4 && (args.length != 3 || !(sender instanceof EntityPlayer)))
+                        if (args.length < 4 && (args.length != 3 || !(sender instanceof 实体Player)))
                         {
                             throw new WrongUsageException("commands.scoreboard.teams.join.usage", new Object[0]);
                         }
@@ -246,7 +246,7 @@ public class CommandScoreboard extends CommandBase
                     }
                     else if (args[1].equalsIgnoreCase("leave"))
                     {
-                        if (args.length < 3 && !(sender instanceof EntityPlayer))
+                        if (args.length < 3 && !(sender instanceof 实体Player))
                         {
                             throw new WrongUsageException("commands.scoreboard.teams.leave.usage", new Object[0]);
                         }
@@ -630,7 +630,7 @@ public class CommandScoreboard extends CommandBase
         Set<String> set = Sets.<String>newHashSet();
         Set<String> set1 = Sets.<String>newHashSet();
 
-        if (p_147190_1_ instanceof EntityPlayer && p_147190_3_ == p_147190_2_.length)
+        if (p_147190_1_ instanceof 实体Player && p_147190_3_ == p_147190_2_.length)
         {
             String s4 = getCommandSenderAsPlayer(p_147190_1_).getName();
 
@@ -651,9 +651,9 @@ public class CommandScoreboard extends CommandBase
 
                 if (s1.startsWith("@"))
                 {
-                    for (Entity entity : func_175763_c(p_147190_1_, s1))
+                    for (实体 实体 : func_175763_c(p_147190_1_, s1))
                     {
-                        String s3 = getEntityName(p_147190_1_, entity.getUniqueID().toString());
+                        String s3 = getEntityName(p_147190_1_, 实体.getUniqueID().toString());
 
                         if (scoreboard.addPlayerToTeam(s3, s))
                         {
@@ -699,7 +699,7 @@ public class CommandScoreboard extends CommandBase
         Set<String> set = Sets.<String>newHashSet();
         Set<String> set1 = Sets.<String>newHashSet();
 
-        if (p_147199_1_ instanceof EntityPlayer && p_147199_3_ == p_147199_2_.length)
+        if (p_147199_1_ instanceof 实体Player && p_147199_3_ == p_147199_2_.length)
         {
             String s3 = getCommandSenderAsPlayer(p_147199_1_).getName();
 
@@ -720,9 +720,9 @@ public class CommandScoreboard extends CommandBase
 
                 if (s.startsWith("@"))
                 {
-                    for (Entity entity : func_175763_c(p_147199_1_, s))
+                    for (实体 实体 : func_175763_c(p_147199_1_, s))
                     {
-                        String s2 = getEntityName(p_147199_1_, entity.getUniqueID().toString());
+                        String s2 = getEntityName(p_147199_1_, 实体.getUniqueID().toString());
 
                         if (scoreboard.removePlayerFromTeams(s2))
                         {
@@ -907,13 +907,13 @@ public class CommandScoreboard extends CommandBase
 
             if (p_147197_2_.length > p_147197_3_)
             {
-                Entity entity = getEntity(p_147197_1_, p_147197_2_[i]);
+                实体 实体 = getEntity(p_147197_1_, p_147197_2_[i]);
 
                 try
                 {
                     NBTTagCompound nbttagcompound = JsonToNBT.getTagFromJson(buildString(p_147197_2_, p_147197_3_));
                     NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                    entity.writeToNBT(nbttagcompound1);
+                    实体.writeToNBT(nbttagcompound1);
 
                     if (!NBTUtil.func_181123_a(nbttagcompound, nbttagcompound1, true))
                     {
@@ -1110,7 +1110,7 @@ public class CommandScoreboard extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         if (args.length == 1)
         {

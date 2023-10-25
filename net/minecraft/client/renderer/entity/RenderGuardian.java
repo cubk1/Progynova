@@ -7,14 +7,14 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityGuardian;
+import net.minecraft.entity.monster.实体Guardian;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
-public class RenderGuardian extends RenderLiving<EntityGuardian>
+public class RenderGuardian extends RenderLiving<实体Guardian>
 {
     private static final 图像位置 GUARDIAN_TEXTURE = new 图像位置("textures/entity/guardian.png");
     private static final 图像位置 GUARDIAN_ELDER_TEXTURE = new 图像位置("textures/entity/guardian_elder.png");
@@ -27,7 +27,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
         this.field_177115_a = ((ModelGuardian)this.mainModel).func_178706_a();
     }
 
-    public boolean shouldRender(EntityGuardian livingEntity, ICamera camera, double camX, double camY, double camZ)
+    public boolean shouldRender(实体Guardian livingEntity, ICamera camera, double camX, double camY, double camZ)
     {
         if (super.shouldRender(livingEntity, camera, camX, camY, camZ))
         {
@@ -37,7 +37,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
         {
             if (livingEntity.hasTargetedEntity())
             {
-                EntityLivingBase entitylivingbase = livingEntity.getTargetedEntity();
+                实体LivingBase entitylivingbase = livingEntity.getTargetedEntity();
 
                 if (entitylivingbase != null)
                 {
@@ -55,15 +55,15 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
         }
     }
 
-    private Vec3 func_177110_a(EntityLivingBase entityLivingBaseIn, double p_177110_2_, float p_177110_4_)
+    private Vec3 func_177110_a(实体LivingBase entityLivingBaseIn, double p_177110_2_, float p_177110_4_)
     {
-        double d0 = entityLivingBaseIn.lastTickPosX + (entityLivingBaseIn.posX - entityLivingBaseIn.lastTickPosX) * (double)p_177110_4_;
-        double d1 = p_177110_2_ + entityLivingBaseIn.lastTickPosY + (entityLivingBaseIn.posY - entityLivingBaseIn.lastTickPosY) * (double)p_177110_4_;
-        double d2 = entityLivingBaseIn.lastTickPosZ + (entityLivingBaseIn.posZ - entityLivingBaseIn.lastTickPosZ) * (double)p_177110_4_;
+        double d0 = entityLivingBaseIn.lastTickPosX + (entityLivingBaseIn.X坐标 - entityLivingBaseIn.lastTickPosX) * (double)p_177110_4_;
+        double d1 = p_177110_2_ + entityLivingBaseIn.lastTickPosY + (entityLivingBaseIn.Y坐标 - entityLivingBaseIn.lastTickPosY) * (double)p_177110_4_;
+        double d2 = entityLivingBaseIn.lastTickPosZ + (entityLivingBaseIn.Z坐标 - entityLivingBaseIn.lastTickPosZ) * (double)p_177110_4_;
         return new Vec3(d0, d1, d2);
     }
 
-    public void doRender(EntityGuardian entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体Guardian entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         if (this.field_177115_a != ((ModelGuardian)this.mainModel).func_178706_a())
         {
@@ -72,7 +72,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
         }
 
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
-        EntityLivingBase entitylivingbase = entity.getTargetedEntity();
+        实体LivingBase entitylivingbase = entity.getTargetedEntity();
 
         if (entitylivingbase != null)
         {
@@ -156,7 +156,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
         }
     }
 
-    protected void preRenderCallback(EntityGuardian entitylivingbaseIn, float partialTickTime)
+    protected void preRenderCallback(实体Guardian entitylivingbaseIn, float partialTickTime)
     {
         if (entitylivingbaseIn.isElder())
         {
@@ -164,7 +164,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
         }
     }
 
-    protected 图像位置 getEntityTexture(EntityGuardian entity)
+    protected 图像位置 getEntityTexture(实体Guardian entity)
     {
         return entity.isElder() ? GUARDIAN_ELDER_TEXTURE : GUARDIAN_TEXTURE;
     }

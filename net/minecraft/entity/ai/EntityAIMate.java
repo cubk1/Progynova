@@ -2,11 +2,12 @@ package net.minecraft.entity.ai;
 
 import java.util.List;
 import java.util.Random;
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.player.EntityPlayer;
+
+import net.minecraft.entity.passive.实体Animal;
+import net.minecraft.entity.实体Ageable;
+import net.minecraft.entity.item.实体XPOrb;
+import net.minecraft.entity.passive.实体Cow;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumParticleTypes;
@@ -14,13 +15,13 @@ import net.minecraft.world.World;
 
 public class EntityAIMate extends EntityAIBase
 {
-    private EntityAnimal theAnimal;
+    private 实体Animal theAnimal;
     World theWorld;
-    private EntityAnimal targetMate;
+    private 实体Animal targetMate;
     int spawnBabyDelay;
     double moveSpeed;
 
-    public EntityAIMate(EntityAnimal animal, double speedIn)
+    public EntityAIMate(实体Animal animal, double speedIn)
     {
         this.theAnimal = animal;
         this.theWorld = animal.worldObj;
@@ -64,14 +65,14 @@ public class EntityAIMate extends EntityAIBase
         }
     }
 
-    private EntityAnimal getNearbyMate()
+    private 实体Animal getNearbyMate()
     {
         float f = 8.0F;
-        List<EntityAnimal> list = this.theWorld.<EntityAnimal>getEntitiesWithinAABB(this.theAnimal.getClass(), this.theAnimal.getEntityBoundingBox().expand((double)f, (double)f, (double)f));
+        List<实体Animal> list = this.theWorld.<实体Animal>getEntitiesWithinAABB(this.theAnimal.getClass(), this.theAnimal.getEntityBoundingBox().expand((double)f, (double)f, (double)f));
         double d0 = Double.MAX_VALUE;
-        EntityAnimal entityanimal = null;
+        实体Animal entityanimal = null;
 
-        for (EntityAnimal entityanimal1 : list)
+        for (实体Animal entityanimal1 : list)
         {
             if (this.theAnimal.canMateWith(entityanimal1) && this.theAnimal.getDistanceSqToEntity(entityanimal1) < d0)
             {
@@ -85,11 +86,11 @@ public class EntityAIMate extends EntityAIBase
 
     private void spawnBaby()
     {
-        EntityAgeable entityageable = this.theAnimal.createChild(this.targetMate);
+        实体Ageable entityageable = this.theAnimal.createChild(this.targetMate);
 
         if (entityageable != null)
         {
-            EntityPlayer entityplayer = this.theAnimal.getPlayerInLove();
+            实体Player entityplayer = this.theAnimal.getPlayerInLove();
 
             if (entityplayer == null && this.targetMate.getPlayerInLove() != null)
             {
@@ -100,7 +101,7 @@ public class EntityAIMate extends EntityAIBase
             {
                 entityplayer.triggerAchievement(StatList.animalsBredStat);
 
-                if (this.theAnimal instanceof EntityCow)
+                if (this.theAnimal instanceof 实体Cow)
                 {
                     entityplayer.triggerAchievement(AchievementList.breedCow);
                 }
@@ -111,7 +112,7 @@ public class EntityAIMate extends EntityAIBase
             this.theAnimal.resetInLove();
             this.targetMate.resetInLove();
             entityageable.setGrowingAge(-24000);
-            entityageable.setLocationAndAngles(this.theAnimal.posX, this.theAnimal.posY, this.theAnimal.posZ, 0.0F, 0.0F);
+            entityageable.setLocationAndAngles(this.theAnimal.X坐标, this.theAnimal.Y坐标, this.theAnimal.Z坐标, 0.0F, 0.0F);
             this.theWorld.spawnEntityInWorld(entityageable);
             Random random = this.theAnimal.getRNG();
 
@@ -123,12 +124,12 @@ public class EntityAIMate extends EntityAIBase
                 double d3 = random.nextDouble() * (double)this.theAnimal.width * 2.0D - (double)this.theAnimal.width;
                 double d4 = 0.5D + random.nextDouble() * (double)this.theAnimal.height;
                 double d5 = random.nextDouble() * (double)this.theAnimal.width * 2.0D - (double)this.theAnimal.width;
-                this.theWorld.spawnParticle(EnumParticleTypes.HEART, this.theAnimal.posX + d3, this.theAnimal.posY + d4, this.theAnimal.posZ + d5, d0, d1, d2, new int[0]);
+                this.theWorld.spawnParticle(EnumParticleTypes.HEART, this.theAnimal.X坐标 + d3, this.theAnimal.Y坐标 + d4, this.theAnimal.Z坐标 + d5, d0, d1, d2, new int[0]);
             }
 
             if (this.theWorld.getGameRules().getBoolean("doMobLoot"))
             {
-                this.theWorld.spawnEntityInWorld(new EntityXPOrb(this.theWorld, this.theAnimal.posX, this.theAnimal.posY, this.theAnimal.posZ, random.nextInt(7) + 1));
+                this.theWorld.spawnEntityInWorld(new 实体XPOrb(this.theWorld, this.theAnimal.X坐标, this.theAnimal.Y坐标, this.theAnimal.Z坐标, random.nextInt(7) + 1));
             }
         }
     }

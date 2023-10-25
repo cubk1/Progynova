@@ -3,7 +3,7 @@ package net.minecraft.scoreboard;
 import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.util.枚举聊天格式;
 
 public interface IScoreObjectiveCriteria
@@ -20,7 +20,7 @@ public interface IScoreObjectiveCriteria
 
     String getName();
 
-    int setScore(List<EntityPlayer> p_96635_1_);
+    int setScore(List<实体Player> p_96635_1_);
 
     boolean isReadOnly();
 

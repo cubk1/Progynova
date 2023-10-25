@@ -1,15 +1,15 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.passive.实体Tameable;
 
 public class EntityAIOwnerHurtByTarget extends EntityAITarget
 {
-    EntityTameable theDefendingTameable;
-    EntityLivingBase theOwnerAttacker;
+    实体Tameable theDefendingTameable;
+    实体LivingBase theOwnerAttacker;
     private int field_142051_e;
 
-    public EntityAIOwnerHurtByTarget(EntityTameable theDefendingTameableIn)
+    public EntityAIOwnerHurtByTarget(实体Tameable theDefendingTameableIn)
     {
         super(theDefendingTameableIn, false);
         this.theDefendingTameable = theDefendingTameableIn;
@@ -24,7 +24,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
         }
         else
         {
-            EntityLivingBase entitylivingbase = this.theDefendingTameable.getOwner();
+            实体LivingBase entitylivingbase = this.theDefendingTameable.getOwner();
 
             if (entitylivingbase == null)
             {
@@ -42,7 +42,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
     public void startExecuting()
     {
         this.taskOwner.setAttackTarget(this.theOwnerAttacker);
-        EntityLivingBase entitylivingbase = this.theDefendingTameable.getOwner();
+        实体LivingBase entitylivingbase = this.theDefendingTameable.getOwner();
 
         if (entitylivingbase != null)
         {

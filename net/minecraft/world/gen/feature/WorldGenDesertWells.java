@@ -8,7 +8,7 @@ import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateHelper;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -19,7 +19,7 @@ public class WorldGenDesertWells extends WorldGenerator
     private final IBlockState field_175912_c = Blocks.sandstone.getDefaultState();
     private final IBlockState field_175910_d = Blocks.flowing_water.getDefaultState();
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         while (worldIn.isAirBlock(position) && position.getY() > 2)
         {

@@ -1,9 +1,9 @@
 package net.minecraft.client.model;
 
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.passive.实体Wolf;
 import net.minecraft.util.MathHelper;
 
 public class ModelWolf extends ModelBase
@@ -50,10 +50,10 @@ public class ModelWolf extends ModelBase
         this.wolfHeadMain.setTextureOffset(0, 10).addBox(-1.5F, 0.0F, -5.0F, 3, 3, 4, f);
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        super.render(entityIn, p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale);
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        super.render(实体In, p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
 
         if (this.isChild)
         {
@@ -87,9 +87,9 @@ public class ModelWolf extends ModelBase
         }
     }
 
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
+    public void setLivingAnimations(实体LivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
     {
-        EntityWolf entitywolf = (EntityWolf)entitylivingbaseIn;
+        实体Wolf entitywolf = (实体Wolf)entitylivingbaseIn;
 
         if (entitywolf.isAngry())
         {
@@ -140,9 +140,9 @@ public class ModelWolf extends ModelBase
         this.wolfTail.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.2F);
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, 实体In);
         this.wolfHeadMain.rotateAngleX = headPitch / (180F / (float)Math.PI);
         this.wolfHeadMain.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
         this.wolfTail.rotateAngleX = ageInTicks;

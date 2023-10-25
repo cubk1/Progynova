@@ -27,7 +27,7 @@ import net.minecraft.command.server.CommandTeleport;
 import net.minecraft.command.server.CommandTestFor;
 import net.minecraft.command.server.CommandTestForBlock;
 import net.minecraft.command.server.CommandWhitelist;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.network.rcon.RConConsoleSource;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentTranslation;
@@ -124,7 +124,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
 
         if (flag)
         {
-            for (EntityPlayer entityplayer : minecraftserver.getConfigurationManager().getPlayerList())
+            for (实体Player entityplayer : minecraftserver.getConfigurationManager().getPlayerList())
             {
                 if (entityplayer != sender && minecraftserver.getConfigurationManager().canSendCommands(entityplayer.getGameProfile()) && command.canCommandSenderUseCommand(sender))
                 {

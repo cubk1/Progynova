@@ -1,6 +1,6 @@
 package net.minecraft.command;
 
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.WorldSettings;
@@ -38,7 +38,7 @@ public class CommandDefaultGameMode extends CommandGameMode
 
         if (minecraftserver.getForceGamemode())
         {
-            for (EntityPlayerMP entityplayermp : MinecraftServer.getServer().getConfigurationManager().getPlayerList())
+            for (实体PlayerMP entityplayermp : MinecraftServer.getServer().getConfigurationManager().getPlayerList())
             {
                 entityplayermp.setGameType(gameMode);
                 entityplayermp.fallDistance = 0.0F;

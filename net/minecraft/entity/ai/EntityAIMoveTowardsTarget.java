@@ -1,20 +1,20 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体Creature;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.util.Vec3;
 
 public class EntityAIMoveTowardsTarget extends EntityAIBase
 {
-    private EntityCreature theEntity;
-    private EntityLivingBase targetEntity;
+    private 实体Creature theEntity;
+    private 实体LivingBase targetEntity;
     private double movePosX;
     private double movePosY;
     private double movePosZ;
     private double speed;
     private float maxTargetDistance;
 
-    public EntityAIMoveTowardsTarget(EntityCreature creature, double speedIn, float targetMaxDistance)
+    public EntityAIMoveTowardsTarget(实体Creature creature, double speedIn, float targetMaxDistance)
     {
         this.theEntity = creature;
         this.speed = speedIn;
@@ -36,7 +36,7 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
         }
         else
         {
-            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, new Vec3(this.targetEntity.posX, this.targetEntity.posY, this.targetEntity.posZ));
+            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, new Vec3(this.targetEntity.X坐标, this.targetEntity.Y坐标, this.targetEntity.Z坐标));
 
             if (vec3 == null)
             {

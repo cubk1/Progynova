@@ -4,9 +4,9 @@ import java.util.Random;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockTallGrass;
-import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.实体Wolf;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -30,7 +30,7 @@ public class BiomeGenTaiga extends BiomeGenBase
     {
         super(id);
         this.field_150644_aH = p_i45385_2_;
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWolf.class, 8, 4, 4));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Wolf.class, 8, 4, 4));
         this.theBiomeDecorator.treesPerChunk = 10;
 
         if (p_i45385_2_ != 1 && p_i45385_2_ != 2)
@@ -56,7 +56,7 @@ public class BiomeGenTaiga extends BiomeGenBase
         return rand.nextInt(5) > 0 ? new WorldGenTallGrass(BlockTallGrass.EnumType.FERN) : new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
     }
 
-    public void decorate(World worldIn, Random rand, BlockPos pos)
+    public void decorate(World worldIn, Random rand, 阻止位置 pos)
     {
         if (this.field_150644_aH == 1 || this.field_150644_aH == 2)
         {
@@ -66,7 +66,7 @@ public class BiomeGenTaiga extends BiomeGenBase
             {
                 int k = rand.nextInt(16) + 8;
                 int l = rand.nextInt(16) + 8;
-                BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
+                阻止位置 blockpos = worldIn.getHeight(pos.add(k, 0, l));
                 field_150643_aG.generate(worldIn, rand, blockpos);
             }
         }

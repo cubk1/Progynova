@@ -1,7 +1,7 @@
 package net.minecraft.network.play.client;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
@@ -18,15 +18,15 @@ public class C02PacketUseEntity implements Packet<INetHandlerPlayServer>
     {
     }
 
-    public C02PacketUseEntity(Entity entity, C02PacketUseEntity.Action action)
+    public C02PacketUseEntity(实体 实体, C02PacketUseEntity.Action action)
     {
-        this.entityId = entity.getEntityId();
+        this.entityId = 实体.getEntityId();
         this.action = action;
     }
 
-    public C02PacketUseEntity(Entity entity, Vec3 hitVec)
+    public C02PacketUseEntity(实体 实体, Vec3 hitVec)
     {
-        this(entity, C02PacketUseEntity.Action.INTERACT_AT);
+        this(实体, C02PacketUseEntity.Action.INTERACT_AT);
         this.hitVec = hitVec;
     }
 
@@ -59,7 +59,7 @@ public class C02PacketUseEntity implements Packet<INetHandlerPlayServer>
         handler.processUseEntity(this);
     }
 
-    public Entity getEntityFromWorld(World worldIn)
+    public 实体 getEntityFromWorld(World worldIn)
     {
         return worldIn.getEntityByID(this.entityId);
     }

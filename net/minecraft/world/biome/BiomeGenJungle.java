@@ -7,10 +7,10 @@ import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.实体Chicken;
+import net.minecraft.entity.passive.实体Ocelot;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
@@ -47,10 +47,10 @@ public class BiomeGenJungle extends BiomeGenBase
 
         if (!p_i45379_2_)
         {
-            this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityOcelot.class, 2, 1, 1));
+            this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(实体Ocelot.class, 2, 1, 1));
         }
 
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityChicken.class, 10, 4, 4));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Chicken.class, 10, 4, 4));
     }
 
     public WorldGenAbstractTree genBigTreeChance(Random rand)
@@ -63,7 +63,7 @@ public class BiomeGenJungle extends BiomeGenBase
         return rand.nextInt(4) == 0 ? new WorldGenTallGrass(BlockTallGrass.EnumType.FERN) : new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
     }
 
-    public void decorate(World worldIn, Random rand, BlockPos pos)
+    public void decorate(World worldIn, Random rand, 阻止位置 pos)
     {
         super.decorate(worldIn, rand, pos);
         int i = rand.nextInt(16) + 8;

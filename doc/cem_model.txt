@@ -2,10 +2,10 @@
 # Json Entity Model
 # Reference configuration for OptiFine's feature Custom Entity Models
 ######################################################################
-# For each entity model or tile entity model that you wish to override
+# For each 实体 model or tile 实体 model that you wish to override
 # use this template and create a "<entity_name>.jem" file in the 
 # "assets/宇轩的世界/optifine/cem" folder of your resource pack.
-# The entity model contains a list of entity part models.
+# The 实体 model contains a list of 实体 part models.
 # The part models can be specified inline or loaded from external ".jpm" files.
 #
 # Entity name          Part name
@@ -70,7 +70,7 @@
 # Note: This is not a valid JSON format and it should only be used as a reference  
 ######################################################################
 {
-  "texture": <texture.png>                                              - Texture used by the entity model
+  "texture": <texture.png>                                              - Texture used by the 实体 model
   "textureSize": [<width>, <height>],                                   - Texture size in pixels
   "shadowSize": <shadow_size>,                                          - Model shadow size (0.0 - 1.0)
   models                                                                - List of models
@@ -80,7 +80,7 @@
       "model": <model.jpm>,                                             - Part model file, from which to load the part model definition
       "id": <id>,                                                       - Model ID, can be used to reference the model as parent
       "part": <part>,                                                   - Entity part to which the part model is atached 
-      "attach": <true|false>,                                           - True: attach to the entity part, False: replace it
+      "attach": <true|false>,                                           - True: attach to the 实体 part, False: replace it
       "scale": <scale>,                                                 - Render scale, default is 1.0
       # Part Model definition, see "cem_part.txt" for details           - Part model definition (inline)
       "animations":

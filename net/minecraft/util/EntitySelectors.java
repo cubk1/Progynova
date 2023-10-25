@@ -1,46 +1,46 @@
 package net.minecraft.util;
 
 import com.google.common.base.Predicate;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体Living;
+import net.minecraft.entity.item.实体ArmorStand;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
 public final class EntitySelectors
 {
-    public static final Predicate<Entity> selectAnything = new Predicate<Entity>()
+    public static final Predicate<实体> selectAnything = new Predicate<实体>()
     {
-        public boolean apply(Entity p_apply_1_)
+        public boolean apply(实体 p_apply_1_)
         {
             return p_apply_1_.isEntityAlive();
         }
     };
-    public static final Predicate<Entity> IS_STANDALONE = new Predicate<Entity>()
+    public static final Predicate<实体> IS_STANDALONE = new Predicate<实体>()
     {
-        public boolean apply(Entity p_apply_1_)
+        public boolean apply(实体 p_apply_1_)
         {
-            return p_apply_1_.isEntityAlive() && p_apply_1_.riddenByEntity == null && p_apply_1_.ridingEntity == null;
+            return p_apply_1_.isEntityAlive() && p_apply_1_.riddenBy实体 == null && p_apply_1_.riding实体 == null;
         }
     };
-    public static final Predicate<Entity> selectInventories = new Predicate<Entity>()
+    public static final Predicate<实体> selectInventories = new Predicate<实体>()
     {
-        public boolean apply(Entity p_apply_1_)
+        public boolean apply(实体 p_apply_1_)
         {
             return p_apply_1_ instanceof IInventory && p_apply_1_.isEntityAlive();
         }
     };
-    public static final Predicate<Entity> NOT_SPECTATING = new Predicate<Entity>()
+    public static final Predicate<实体> NOT_SPECTATING = new Predicate<实体>()
     {
-        public boolean apply(Entity p_apply_1_)
+        public boolean apply(实体 p_apply_1_)
         {
-            return !(p_apply_1_ instanceof EntityPlayer) || !((EntityPlayer)p_apply_1_).isSpectator();
+            return !(p_apply_1_ instanceof 实体Player) || !((实体Player)p_apply_1_).isSpectator();
         }
     };
 
-    public static class ArmoredMob implements Predicate<Entity>
+    public static class ArmoredMob implements Predicate<实体>
     {
         private final ItemStack armor;
 
@@ -49,20 +49,20 @@ public final class EntitySelectors
             this.armor = armor;
         }
 
-        public boolean apply(Entity p_apply_1_)
+        public boolean apply(实体 p_apply_1_)
         {
             if (!p_apply_1_.isEntityAlive())
             {
                 return false;
             }
-            else if (!(p_apply_1_ instanceof EntityLivingBase))
+            else if (!(p_apply_1_ instanceof 实体LivingBase))
             {
                 return false;
             }
             else
             {
-                EntityLivingBase entitylivingbase = (EntityLivingBase)p_apply_1_;
-                return entitylivingbase.getEquipmentInSlot(EntityLiving.getArmorPosition(this.armor)) != null ? false : (entitylivingbase instanceof EntityLiving ? ((EntityLiving)entitylivingbase).canPickUpLoot() : (entitylivingbase instanceof EntityArmorStand ? true : entitylivingbase instanceof EntityPlayer));
+                实体LivingBase entitylivingbase = (实体LivingBase)p_apply_1_;
+                return entitylivingbase.getEquipmentInSlot(实体Living.getArmorPosition(this.armor)) != null ? false : (entitylivingbase instanceof 实体Living ? ((实体Living)entitylivingbase).canPickUpLoot() : (entitylivingbase instanceof 实体ArmorStand ? true : entitylivingbase instanceof 实体Player));
             }
         }
     }

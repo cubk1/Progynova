@@ -6,7 +6,7 @@ import java.util.List;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.Vec3;
 
 public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
@@ -15,7 +15,7 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
     private double posY;
     private double posZ;
     private float strength;
-    private List<BlockPos> affectedBlockPositions;
+    private List<阻止位置> affectedBlockPositions;
     private float field_149152_f;
     private float field_149153_g;
     private float field_149159_h;
@@ -24,7 +24,7 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S27PacketExplosion(double p_i45193_1_, double y, double z, float strengthIn, List<BlockPos> affectedBlocksIn, Vec3 p_i45193_9_)
+    public S27PacketExplosion(double p_i45193_1_, double y, double z, float strengthIn, List<阻止位置> affectedBlocksIn, Vec3 p_i45193_9_)
     {
         this.posX = p_i45193_1_;
         this.posY = y;
@@ -47,7 +47,7 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
         this.posZ = (double)buf.readFloat();
         this.strength = buf.readFloat();
         int i = buf.readInt();
-        this.affectedBlockPositions = Lists.<BlockPos>newArrayListWithCapacity(i);
+        this.affectedBlockPositions = Lists.<阻止位置>newArrayListWithCapacity(i);
         int j = (int)this.posX;
         int k = (int)this.posY;
         int l = (int)this.posZ;
@@ -57,7 +57,7 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
             int j1 = buf.readByte() + j;
             int k1 = buf.readByte() + k;
             int l1 = buf.readByte() + l;
-            this.affectedBlockPositions.add(new BlockPos(j1, k1, l1));
+            this.affectedBlockPositions.add(new 阻止位置(j1, k1, l1));
         }
 
         this.field_149152_f = buf.readFloat();
@@ -76,7 +76,7 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
         int j = (int)this.posY;
         int k = (int)this.posZ;
 
-        for (BlockPos blockpos : this.affectedBlockPositions)
+        for (阻止位置 blockpos : this.affectedBlockPositions)
         {
             int l = blockpos.getX() - i;
             int i1 = blockpos.getY() - j;
@@ -131,7 +131,7 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
         return this.strength;
     }
 
-    public List<BlockPos> getAffectedBlockPositions()
+    public List<阻止位置> getAffectedBlockPositions()
     {
         return this.affectedBlockPositions;
     }

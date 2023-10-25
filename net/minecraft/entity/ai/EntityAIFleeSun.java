@@ -1,21 +1,21 @@
 package net.minecraft.entity.ai;
 
 import java.util.Random;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体Creature;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class EntityAIFleeSun extends EntityAIBase
 {
-    private EntityCreature theCreature;
+    private 实体Creature theCreature;
     private double shelterX;
     private double shelterY;
     private double shelterZ;
     private double movementSpeed;
     private World theWorld;
 
-    public EntityAIFleeSun(EntityCreature theCreatureIn, double movementSpeedIn)
+    public EntityAIFleeSun(实体Creature theCreatureIn, double movementSpeedIn)
     {
         this.theCreature = theCreatureIn;
         this.movementSpeed = movementSpeedIn;
@@ -33,7 +33,7 @@ public class EntityAIFleeSun extends EntityAIBase
         {
             return false;
         }
-        else if (!this.theWorld.canSeeSky(new BlockPos(this.theCreature.posX, this.theCreature.getEntityBoundingBox().minY, this.theCreature.posZ)))
+        else if (!this.theWorld.canSeeSky(new 阻止位置(this.theCreature.X坐标, this.theCreature.getEntityBoundingBox().minY, this.theCreature.Z坐标)))
         {
             return false;
         }
@@ -68,11 +68,11 @@ public class EntityAIFleeSun extends EntityAIBase
     private Vec3 findPossibleShelter()
     {
         Random random = this.theCreature.getRNG();
-        BlockPos blockpos = new BlockPos(this.theCreature.posX, this.theCreature.getEntityBoundingBox().minY, this.theCreature.posZ);
+        阻止位置 blockpos = new 阻止位置(this.theCreature.X坐标, this.theCreature.getEntityBoundingBox().minY, this.theCreature.Z坐标);
 
         for (int i = 0; i < 10; ++i)
         {
-            BlockPos blockpos1 = blockpos.add(random.nextInt(20) - 10, random.nextInt(6) - 3, random.nextInt(20) - 10);
+            阻止位置 blockpos1 = blockpos.add(random.nextInt(20) - 10, random.nextInt(6) - 3, random.nextInt(20) - 10);
 
             if (!this.theWorld.canSeeSky(blockpos1) && this.theCreature.getBlockPathWeight(blockpos1) < 0.0F)
             {

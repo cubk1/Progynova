@@ -1,6 +1,6 @@
 package net.minecraft.potion;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -98,7 +98,7 @@ public class PotionEffect
         return this.showParticles;
     }
 
-    public boolean onUpdate(EntityLivingBase entityIn)
+    public boolean onUpdate(实体LivingBase entityIn)
     {
         if (this.duration > 0)
         {
@@ -118,7 +118,7 @@ public class PotionEffect
         return --this.duration;
     }
 
-    public void performEffect(EntityLivingBase entityIn)
+    public void performEffect(实体LivingBase entityIn)
     {
         if (this.duration > 0)
         {

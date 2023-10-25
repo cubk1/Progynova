@@ -4,8 +4,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
@@ -22,14 +22,14 @@ public abstract class BlockLog extends BlockRotatedPillar
         this.setStepSound(soundTypeWood);
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         int i = 4;
         int j = i + 1;
 
         if (worldIn.isAreaLoaded(pos.add(-j, -j, -j), pos.add(j, j, j)))
         {
-            for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-i, -i, -i), pos.add(i, i, i)))
+            for (阻止位置 blockpos : 阻止位置.getAllInBox(pos.add(-i, -i, -i), pos.add(i, i, i)))
             {
                 IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
@@ -41,7 +41,7 @@ public abstract class BlockLog extends BlockRotatedPillar
         }
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis()));
     }

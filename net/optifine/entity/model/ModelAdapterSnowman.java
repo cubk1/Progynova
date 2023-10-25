@@ -6,13 +6,13 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelSnowMan;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowMan;
-import net.minecraft.entity.monster.EntitySnowman;
+import net.minecraft.entity.monster.实体Snowman;
 
 public class ModelAdapterSnowman extends ModelAdapter
 {
     public ModelAdapterSnowman()
     {
-        super(EntitySnowman.class, "snow_golem", 0.5F);
+        super(实体Snowman.class, "snow_golem", 0.5F);
     }
 
     public ModelBase makeModel()

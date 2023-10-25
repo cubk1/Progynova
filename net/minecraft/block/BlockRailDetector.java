@@ -8,13 +8,13 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityMinecartCommandBlock;
-import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.item.实体Minecart;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体MinecartCommandBlock;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
@@ -48,7 +48,7 @@ public class BlockRailDetector extends BlockRailBase
         return true;
     }
 
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollidedWithBlock(World worldIn, 阻止位置 pos, IBlockState state, 实体 实体In)
     {
         if (!worldIn.isRemote)
         {
@@ -59,11 +59,11 @@ public class BlockRailDetector extends BlockRailBase
         }
     }
 
-    public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
+    public void randomTick(World worldIn, 阻止位置 pos, IBlockState state, Random random)
     {
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         if (!worldIn.isRemote && ((Boolean)state.getValue(POWERED)).booleanValue())
         {
@@ -71,21 +71,21 @@ public class BlockRailDetector extends BlockRailBase
         }
     }
 
-    public int getWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
+    public int getWeakPower(IBlockAccess worldIn, 阻止位置 pos, IBlockState state, EnumFacing side)
     {
         return ((Boolean)state.getValue(POWERED)).booleanValue() ? 15 : 0;
     }
 
-    public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
+    public int getStrongPower(IBlockAccess worldIn, 阻止位置 pos, IBlockState state, EnumFacing side)
     {
         return !((Boolean)state.getValue(POWERED)).booleanValue() ? 0 : (side == EnumFacing.UP ? 15 : 0);
     }
 
-    private void updatePoweredState(World worldIn, BlockPos pos, IBlockState state)
+    private void updatePoweredState(World worldIn, 阻止位置 pos, IBlockState state)
     {
         boolean flag = ((Boolean)state.getValue(POWERED)).booleanValue();
         boolean flag1 = false;
-        List<EntityMinecart> list = this.<EntityMinecart>findMinecarts(worldIn, pos, EntityMinecart.class, new Predicate[0]);
+        List<实体Minecart> list = this.<实体Minecart>findMinecarts(worldIn, pos, 实体Minecart.class, new Predicate[0]);
 
         if (!list.isEmpty())
         {
@@ -116,7 +116,7 @@ public class BlockRailDetector extends BlockRailBase
         worldIn.updateComparatorOutputLevel(pos, this);
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         super.onBlockAdded(worldIn, pos, state);
         this.updatePoweredState(worldIn, pos, state);
@@ -132,18 +132,18 @@ public class BlockRailDetector extends BlockRailBase
         return true;
     }
 
-    public int getComparatorInputOverride(World worldIn, BlockPos pos)
+    public int getComparatorInputOverride(World worldIn, 阻止位置 pos)
     {
         if (((Boolean)worldIn.getBlockState(pos).getValue(POWERED)).booleanValue())
         {
-            List<EntityMinecartCommandBlock> list = this.<EntityMinecartCommandBlock>findMinecarts(worldIn, pos, EntityMinecartCommandBlock.class, new Predicate[0]);
+            List<实体MinecartCommandBlock> list = this.<实体MinecartCommandBlock>findMinecarts(worldIn, pos, 实体MinecartCommandBlock.class, new Predicate[0]);
 
             if (!list.isEmpty())
             {
-                return ((EntityMinecartCommandBlock)list.get(0)).getCommandBlockLogic().getSuccessCount();
+                return ((实体MinecartCommandBlock)list.get(0)).getCommandBlockLogic().getSuccessCount();
             }
 
-            List<EntityMinecart> list1 = this.<EntityMinecart>findMinecarts(worldIn, pos, EntityMinecart.class, new Predicate[] {EntitySelectors.selectInventories});
+            List<实体Minecart> list1 = this.<实体Minecart>findMinecarts(worldIn, pos, 实体Minecart.class, new Predicate[] {EntitySelectors.selectInventories});
 
             if (!list1.isEmpty())
             {
@@ -154,13 +154,13 @@ public class BlockRailDetector extends BlockRailBase
         return 0;
     }
 
-    protected <T extends EntityMinecart> List<T> findMinecarts(World worldIn, BlockPos pos, Class<T> clazz, Predicate<Entity>... filter)
+    protected <T extends 实体Minecart> List<T> findMinecarts(World worldIn, 阻止位置 pos, Class<T> clazz, Predicate<实体>... filter)
     {
         AxisAlignedBB axisalignedbb = this.getDectectionBox(pos);
         return filter.length != 1 ? worldIn.getEntitiesWithinAABB(clazz, axisalignedbb) : worldIn.getEntitiesWithinAABB(clazz, axisalignedbb, filter[0]);
     }
 
-    private AxisAlignedBB getDectectionBox(BlockPos pos)
+    private AxisAlignedBB getDectectionBox(阻止位置 pos)
     {
         float f = 0.2F;
         return new AxisAlignedBB((double)((float)pos.getX() + 0.2F), (double)pos.getY(), (double)((float)pos.getZ() + 0.2F), (double)((float)(pos.getX() + 1) - 0.2F), (double)((float)(pos.getY() + 1) - 0.2F), (double)((float)(pos.getZ() + 1) - 0.2F));

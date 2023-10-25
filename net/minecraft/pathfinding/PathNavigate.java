@@ -1,12 +1,12 @@
 package net.minecraft.pathfinding;
 
 import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体Living;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkCache;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public abstract class PathNavigate
 {
-    protected EntityLiving theEntity;
+    protected 实体Living theEntity;
     protected World worldObj;
     protected PathEntity currentPath;
     protected double speed;
@@ -25,7 +25,7 @@ public abstract class PathNavigate
     private float heightRequirement = 1.0F;
     private final PathFinder pathFinder;
 
-    public PathNavigate(EntityLiving entitylivingIn, World worldIn)
+    public PathNavigate(实体Living entitylivingIn, World worldIn)
     {
         this.theEntity = entitylivingIn;
         this.worldObj = worldIn;
@@ -47,10 +47,10 @@ public abstract class PathNavigate
 
     public final PathEntity getPathToXYZ(double x, double y, double z)
     {
-        return this.getPathToPos(new BlockPos(MathHelper.floor_double(x), (int)y, MathHelper.floor_double(z)));
+        return this.getPathToPos(new 阻止位置(MathHelper.floor_double(x), (int)y, MathHelper.floor_double(z)));
     }
 
-    public PathEntity getPathToPos(BlockPos pos)
+    public PathEntity getPathToPos(阻止位置 pos)
     {
         if (!this.canNavigate())
         {
@@ -60,7 +60,7 @@ public abstract class PathNavigate
         {
             float f = this.getPathSearchRange();
             this.worldObj.theProfiler.startSection("pathfind");
-            BlockPos blockpos = new BlockPos(this.theEntity);
+            阻止位置 blockpos = new 阻止位置(this.theEntity);
             int i = (int)(f + 8.0F);
             ChunkCache chunkcache = new ChunkCache(this.worldObj, blockpos.add(-i, -i, -i), blockpos.add(i, i, i), 0);
             PathEntity pathentity = this.pathFinder.createEntityPathTo(chunkcache, this.theEntity, pos, f);
@@ -80,7 +80,7 @@ public abstract class PathNavigate
         this.heightRequirement = jumpHeight;
     }
 
-    public PathEntity getPathToEntityLiving(Entity entityIn)
+    public PathEntity getPathToEntityLiving(实体 实体In)
     {
         if (!this.canNavigate())
         {
@@ -90,18 +90,18 @@ public abstract class PathNavigate
         {
             float f = this.getPathSearchRange();
             this.worldObj.theProfiler.startSection("pathfind");
-            BlockPos blockpos = (new BlockPos(this.theEntity)).up();
+            阻止位置 blockpos = (new 阻止位置(this.theEntity)).up();
             int i = (int)(f + 16.0F);
             ChunkCache chunkcache = new ChunkCache(this.worldObj, blockpos.add(-i, -i, -i), blockpos.add(i, i, i), 0);
-            PathEntity pathentity = this.pathFinder.createEntityPathTo(chunkcache, this.theEntity, entityIn, f);
+            PathEntity pathentity = this.pathFinder.createEntityPathTo(chunkcache, this.theEntity, 实体In, f);
             this.worldObj.theProfiler.endSection();
             return pathentity;
         }
     }
 
-    public boolean tryMoveToEntityLiving(Entity entityIn, double speedIn)
+    public boolean tryMoveToEntityLiving(实体 实体In, double speedIn)
     {
-        PathEntity pathentity = this.getPathToEntityLiving(entityIn);
+        PathEntity pathentity = this.getPathToEntityLiving(实体In);
         return pathentity != null ? this.setPath(pathentity, speedIn) : false;
     }
 

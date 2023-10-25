@@ -9,7 +9,7 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class WorldGenTaiga2 extends WorldGenAbstractTree
@@ -22,7 +22,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
         super(p_i2025_1_);
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         int i = rand.nextInt(4) + 6;
         int j = 1 + rand.nextInt(2);
@@ -45,7 +45,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
                     j1 = l;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
                 for (int k1 = position.getX() - j1; k1 <= position.getX() + j1 && flag; ++k1)
                 {
@@ -97,7 +97,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
                                 if (Math.abs(j2) != i3 || Math.abs(l2) != i3 || i3 <= 0)
                                 {
-                                    BlockPos blockpos = new BlockPos(i2, j4, k2);
+                                    阻止位置 blockpos = new 阻止位置(i2, j4, k2);
 
                                     if (!worldIn.getBlockState(blockpos).getBlock().isFullBlock())
                                     {

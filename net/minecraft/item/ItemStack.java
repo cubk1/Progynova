@@ -11,20 +11,19 @@ import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentDurability;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
+import net.minecraft.entity.item.实体ItemFrame;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体;
 import net.minecraft.event.HoverEvent;
 import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.EnumFacing;
@@ -41,7 +40,7 @@ public final class ItemStack
     private Item item;
     private NBTTagCompound stackTagCompound;
     private int itemDamage;
-    private EntityItemFrame itemFrame;
+    private 实体ItemFrame itemFrame;
     private Block canDestroyCacheBlock;
     private boolean canDestroyCacheResult;
     private Block canPlaceOnCacheBlock;
@@ -121,7 +120,7 @@ public final class ItemStack
         return this.item;
     }
 
-    public boolean onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         boolean flag = this.getItem().onItemUse(this, playerIn, worldIn, pos, side, hitX, hitY, hitZ);
 
@@ -138,12 +137,12 @@ public final class ItemStack
         return this.getItem().getStrVsBlock(this, blockIn);
     }
 
-    public ItemStack useItemRightClick(World worldIn, EntityPlayer playerIn)
+    public ItemStack useItemRightClick(World worldIn, 实体Player playerIn)
     {
         return this.getItem().onItemRightClick(this, worldIn, playerIn);
     }
 
-    public ItemStack onItemUseFinish(World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemUseFinish(World worldIn, 实体Player playerIn)
     {
         return this.getItem().onItemUseFinish(this, worldIn, playerIn);
     }
@@ -277,9 +276,9 @@ public final class ItemStack
         }
     }
 
-    public void damageItem(int amount, EntityLivingBase entityIn)
+    public void damageItem(int amount, 实体LivingBase entityIn)
     {
-        if (!(entityIn instanceof EntityPlayer) || !((EntityPlayer)entityIn).capabilities.isCreativeMode)
+        if (!(entityIn instanceof 实体Player) || !((实体Player)entityIn).capabilities.isCreativeMode)
         {
             if (this.isItemStackDamageable())
             {
@@ -288,9 +287,9 @@ public final class ItemStack
                     entityIn.renderBrokenItemStack(this);
                     --this.stackSize;
 
-                    if (entityIn instanceof EntityPlayer)
+                    if (entityIn instanceof 实体Player)
                     {
-                        EntityPlayer entityplayer = (EntityPlayer)entityIn;
+                        实体Player entityplayer = (实体Player)entityIn;
                         entityplayer.triggerAchievement(StatList.objectBreakStats[Item.getIdFromItem(this.item)]);
 
                         if (this.stackSize == 0 && this.getItem() instanceof ItemBow)
@@ -310,7 +309,7 @@ public final class ItemStack
         }
     }
 
-    public void hitEntity(EntityLivingBase entityIn, EntityPlayer playerIn)
+    public void hitEntity(实体LivingBase entityIn, 实体Player playerIn)
     {
         boolean flag = this.item.hitEntity(this, entityIn, playerIn);
 
@@ -320,7 +319,7 @@ public final class ItemStack
         }
     }
 
-    public void onBlockDestroyed(World worldIn, Block blockIn, BlockPos pos, EntityPlayer playerIn)
+    public void onBlockDestroyed(World worldIn, Block blockIn, 阻止位置 pos, 实体Player playerIn)
     {
         boolean flag = this.item.onBlockDestroyed(this, worldIn, blockIn, pos, playerIn);
 
@@ -335,7 +334,7 @@ public final class ItemStack
         return this.item.canHarvestBlock(blockIn);
     }
 
-    public boolean interactWithEntity(EntityPlayer playerIn, EntityLivingBase entityIn)
+    public boolean interactWithEntity(实体Player playerIn, 实体LivingBase entityIn)
     {
         return this.item.itemInteractionForEntity(this, playerIn, entityIn);
     }
@@ -392,17 +391,17 @@ public final class ItemStack
         return this.stackSize + "x" + this.item.getUnlocalizedName() + "@" + this.itemDamage;
     }
 
-    public void updateAnimation(World worldIn, Entity entityIn, int inventorySlot, boolean isCurrentItem)
+    public void updateAnimation(World worldIn, 实体 实体In, int inventorySlot, boolean isCurrentItem)
     {
         if (this.animationsToGo > 0)
         {
             --this.animationsToGo;
         }
 
-        this.item.onUpdate(this, worldIn, entityIn, inventorySlot, isCurrentItem);
+        this.item.onUpdate(this, worldIn, 实体In, inventorySlot, isCurrentItem);
     }
 
-    public void onCrafting(World worldIn, EntityPlayer playerIn, int amount)
+    public void onCrafting(World worldIn, 实体Player playerIn, int amount)
     {
         playerIn.addStat(StatList.objectCraftStats[Item.getIdFromItem(this.item)], amount);
         this.item.onCreated(this, worldIn, playerIn);
@@ -423,7 +422,7 @@ public final class ItemStack
         return this.getItem().getItemUseAction(this);
     }
 
-    public void onPlayerStoppedUsing(World worldIn, EntityPlayer playerIn, int timeLeft)
+    public void onPlayerStoppedUsing(World worldIn, 实体Player playerIn, int timeLeft)
     {
         this.getItem().onPlayerStoppedUsing(this, worldIn, playerIn, timeLeft);
     }
@@ -526,7 +525,7 @@ public final class ItemStack
         return this.stackTagCompound == null ? false : (!this.stackTagCompound.hasKey("display", 10) ? false : this.stackTagCompound.getCompoundTag("display").hasKey("Name", 8));
     }
 
-    public List<String> getTooltip(EntityPlayer playerIn, boolean advanced)
+    public List<String> getTooltip(实体Player playerIn, boolean advanced)
     {
         List<String> list = Lists.<String>newArrayList();
         String s = this.getDisplayName();
@@ -800,12 +799,12 @@ public final class ItemStack
         return this.itemFrame != null;
     }
 
-    public void setItemFrame(EntityItemFrame frame)
+    public void setItemFrame(实体ItemFrame frame)
     {
         this.itemFrame = frame;
     }
 
-    public EntityItemFrame getItemFrame()
+    public 实体ItemFrame getItemFrame()
     {
         return this.itemFrame;
     }

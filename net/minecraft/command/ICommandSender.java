@@ -1,7 +1,7 @@
 package net.minecraft.command;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -16,13 +16,13 @@ public interface ICommandSender
 
     boolean canCommandSenderUseCommand(int permLevel, String commandName);
 
-    BlockPos getPosition();
+    阻止位置 getPosition();
 
     Vec3 getPositionVector();
 
     World getEntityWorld();
 
-    Entity getCommandSenderEntity();
+    实体 getCommandSenderEntity();
 
     boolean sendCommandFeedback();
 

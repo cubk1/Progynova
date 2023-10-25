@@ -1,14 +1,14 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.passive.实体Tameable;
+import net.minecraft.entity.实体LivingBase;
 
 public class EntityAISit extends EntityAIBase
 {
-    private EntityTameable theEntity;
+    private 实体Tameable theEntity;
     private boolean isSitting;
 
-    public EntityAISit(EntityTameable entityIn)
+    public EntityAISit(实体Tameable entityIn)
     {
         this.theEntity = entityIn;
         this.setMutexBits(5);
@@ -30,7 +30,7 @@ public class EntityAISit extends EntityAIBase
         }
         else
         {
-            EntityLivingBase entitylivingbase = this.theEntity.getOwner();
+            实体LivingBase entitylivingbase = this.theEntity.getOwner();
             return entitylivingbase == null ? true : (this.theEntity.getDistanceSqToEntity(entitylivingbase) < 144.0D && entitylivingbase.getAITarget() != null ? false : this.isSitting);
         }
     }

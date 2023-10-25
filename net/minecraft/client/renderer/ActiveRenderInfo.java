@@ -5,9 +5,9 @@ import java.nio.IntBuffer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -27,7 +27,7 @@ public class ActiveRenderInfo
     private static float rotationYZ;
     private static float rotationXY;
 
-    public static void updateRenderInfo(EntityPlayer entityplayerIn, boolean p_74583_1_)
+    public static void updateRenderInfo(实体Player entityplayerIn, boolean p_74583_1_)
     {
         光照状态经理.getFloat(2982, MODELVIEW);
         光照状态经理.getFloat(2983, PROJECTION);
@@ -46,21 +46,21 @@ public class ActiveRenderInfo
         rotationXZ = MathHelper.cos(f2 * (float)Math.PI / 180.0F);
     }
 
-    public static Vec3 projectViewFromEntity(Entity p_178806_0_, double p_178806_1_)
+    public static Vec3 projectViewFromEntity(实体 p_178806_0_, double p_178806_1_)
     {
-        double d0 = p_178806_0_.prevPosX + (p_178806_0_.posX - p_178806_0_.prevPosX) * p_178806_1_;
-        double d1 = p_178806_0_.prevPosY + (p_178806_0_.posY - p_178806_0_.prevPosY) * p_178806_1_;
-        double d2 = p_178806_0_.prevPosZ + (p_178806_0_.posZ - p_178806_0_.prevPosZ) * p_178806_1_;
+        double d0 = p_178806_0_.prevPosX + (p_178806_0_.X坐标 - p_178806_0_.prevPosX) * p_178806_1_;
+        double d1 = p_178806_0_.prevPosY + (p_178806_0_.Y坐标 - p_178806_0_.prevPosY) * p_178806_1_;
+        double d2 = p_178806_0_.prevPosZ + (p_178806_0_.Z坐标 - p_178806_0_.prevPosZ) * p_178806_1_;
         double d3 = d0 + position.xCoord;
         double d4 = d1 + position.yCoord;
         double d5 = d2 + position.zCoord;
         return new Vec3(d3, d4, d5);
     }
 
-    public static Block getBlockAtEntityViewpoint(World worldIn, Entity p_180786_1_, float p_180786_2_)
+    public static Block getBlockAtEntityViewpoint(World worldIn, 实体 p_180786_1_, float p_180786_2_)
     {
         Vec3 vec3 = projectViewFromEntity(p_180786_1_, (double)p_180786_2_);
-        BlockPos blockpos = new BlockPos(vec3);
+        阻止位置 blockpos = new 阻止位置(vec3);
         IBlockState iblockstate = worldIn.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
 

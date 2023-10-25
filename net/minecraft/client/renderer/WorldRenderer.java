@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
 import net.optifine.SmartAnimations;
@@ -922,7 +922,7 @@ public class WorldRenderer
         return i;
     }
 
-    public RenderEnv getRenderEnv(IBlockState p_getRenderEnv_1_, BlockPos p_getRenderEnv_2_)
+    public RenderEnv getRenderEnv(IBlockState p_getRenderEnv_1_, 阻止位置 p_getRenderEnv_2_)
     {
         if (this.renderEnv == null)
         {

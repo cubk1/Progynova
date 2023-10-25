@@ -4,17 +4,17 @@ import java.io.IOException;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class S36PacketSignEditorOpen implements Packet<INetHandlerPlayClient>
 {
-    private BlockPos signPosition;
+    private 阻止位置 signPosition;
 
     public S36PacketSignEditorOpen()
     {
     }
 
-    public S36PacketSignEditorOpen(BlockPos signPositionIn)
+    public S36PacketSignEditorOpen(阻止位置 signPositionIn)
     {
         this.signPosition = signPositionIn;
     }
@@ -34,7 +34,7 @@ public class S36PacketSignEditorOpen implements Packet<INetHandlerPlayClient>
         buf.writeBlockPos(this.signPosition);
     }
 
-    public BlockPos getSignPosition()
+    public 阻止位置 getSignPosition()
     {
         return this.signPosition;
     }

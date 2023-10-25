@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -16,9 +16,9 @@ public class S19PacketEntityHeadLook implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S19PacketEntityHeadLook(Entity entityIn, byte p_i45214_2_)
+    public S19PacketEntityHeadLook(实体 实体In, byte p_i45214_2_)
     {
-        this.entityId = entityIn.getEntityId();
+        this.entityId = 实体In.getEntityId();
         this.yaw = p_i45214_2_;
     }
 
@@ -39,7 +39,7 @@ public class S19PacketEntityHeadLook implements Packet<INetHandlerPlayClient>
         handler.handleEntityHeadLook(this);
     }
 
-    public Entity getEntity(World worldIn)
+    public 实体 getEntity(World worldIn)
     {
         return worldIn.getEntityByID(this.entityId);
     }

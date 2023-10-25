@@ -21,11 +21,11 @@ public class InventoryPlayer implements IInventory
     public ItemStack[] mainInventory = new ItemStack[36];
     public ItemStack[] armorInventory = new ItemStack[4];
     public int currentItem;
-    public EntityPlayer player;
+    public 实体Player player;
     private ItemStack itemStack;
     public boolean inventoryChanged;
 
-    public InventoryPlayer(EntityPlayer playerIn)
+    public InventoryPlayer(实体Player playerIn)
     {
         this.player = playerIn;
     }
@@ -679,7 +679,7 @@ public class InventoryPlayer implements IInventory
         return this.itemStack;
     }
 
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUseableByPlayer(实体Player player)
     {
         return this.player.isDead ? false : player.getDistanceSqToEntity(this.player) <= 64.0D;
     }
@@ -705,11 +705,11 @@ public class InventoryPlayer implements IInventory
         return false;
     }
 
-    public void openInventory(EntityPlayer player)
+    public void openInventory(实体Player player)
     {
     }
 
-    public void closeInventory(EntityPlayer player)
+    public void closeInventory(实体Player player)
     {
     }
 

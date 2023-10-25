@@ -8,11 +8,11 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.monster.EntitySilverfish;
+import net.minecraft.entity.monster.实体Silverfish;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
 
@@ -63,18 +63,18 @@ public class BlockSilverfish extends Block
         }
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         if (!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops"))
         {
-            EntitySilverfish entitysilverfish = new EntitySilverfish(worldIn);
+            实体Silverfish entitysilverfish = new 实体Silverfish(worldIn);
             entitysilverfish.setLocationAndAngles((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, 0.0F, 0.0F);
             worldIn.spawnEntityInWorld(entitysilverfish);
             entitysilverfish.spawnExplosionParticle();
         }
     }
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         return iblockstate.getBlock().getMetaFromState(iblockstate);

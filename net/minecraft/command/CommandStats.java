@@ -3,13 +3,13 @@ package net.minecraft.command;
 import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.List;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityCommandBlock;
 import net.minecraft.tileentity.TileEntitySign;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class CommandStats extends CommandBase
@@ -119,7 +119,7 @@ public class CommandStats extends CommandBase
 
                 if (flag)
                 {
-                    BlockPos blockpos = parseBlockPos(sender, args, 1, false);
+                    阻止位置 blockpos = parseBlockPos(sender, args, 1, false);
                     TileEntity tileentity = world.getTileEntity(blockpos);
 
                     if (tileentity == null)
@@ -143,8 +143,8 @@ public class CommandStats extends CommandBase
                 }
                 else
                 {
-                    Entity entity = getEntity(sender, args[1]);
-                    commandresultstats = entity.getCommandStats();
+                    实体 实体 = getEntity(sender, args[1]);
+                    commandresultstats = 实体.getCommandStats();
                 }
 
                 if ("set".equals(s))
@@ -168,7 +168,7 @@ public class CommandStats extends CommandBase
 
                 if (flag)
                 {
-                    BlockPos blockpos1 = parseBlockPos(sender, args, 1, false);
+                    阻止位置 blockpos1 = parseBlockPos(sender, args, 1, false);
                     TileEntity tileentity1 = world.getTileEntity(blockpos1);
                     tileentity1.markDirty();
                 }
@@ -176,7 +176,7 @@ public class CommandStats extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[] {"entity", "block"}): (args.length == 2 && args[0].equals("entity") ? getListOfStringsMatchingLastWord(args, this.func_175776_d()) : (args.length >= 2 && args.length <= 4 && args[0].equals("block") ? func_175771_a(args, 1, pos) : ((args.length != 3 || !args[0].equals("entity")) && (args.length != 5 || !args[0].equals("block")) ? ((args.length != 4 || !args[0].equals("entity")) && (args.length != 6 || !args[0].equals("block")) ? ((args.length != 6 || !args[0].equals("entity")) && (args.length != 8 || !args[0].equals("block")) ? null : getListOfStringsMatchingLastWord(args, this.func_175777_e())) : getListOfStringsMatchingLastWord(args, CommandResultStats.Type.getTypeNames())) : getListOfStringsMatchingLastWord(args, new String[] {"set", "clear"}))));
     }

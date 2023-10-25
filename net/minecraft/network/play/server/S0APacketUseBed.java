@@ -1,23 +1,23 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class S0APacketUseBed implements Packet<INetHandlerPlayClient>
 {
     private int playerID;
-    private BlockPos bedPos;
+    private 阻止位置 bedPos;
 
     public S0APacketUseBed()
     {
     }
 
-    public S0APacketUseBed(EntityPlayer player, BlockPos bedPosIn)
+    public S0APacketUseBed(实体Player player, 阻止位置 bedPosIn)
     {
         this.playerID = player.getEntityId();
         this.bedPos = bedPosIn;
@@ -40,12 +40,12 @@ public class S0APacketUseBed implements Packet<INetHandlerPlayClient>
         handler.handleUseBed(this);
     }
 
-    public EntityPlayer getPlayer(World worldIn)
+    public 实体Player getPlayer(World worldIn)
     {
-        return (EntityPlayer)worldIn.getEntityByID(this.playerID);
+        return (实体Player)worldIn.getEntityByID(this.playerID);
     }
 
-    public BlockPos getBedPosition()
+    public 阻止位置 getBedPosition()
     {
         return this.bedPos;
     }

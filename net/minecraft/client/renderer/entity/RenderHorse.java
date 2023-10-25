@@ -6,10 +6,10 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.model.ModelHorse;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.texture.LayeredTexture;
-import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.实体Horse;
 import net.minecraft.util.图像位置;
 
-public class RenderHorse extends RenderLiving<EntityHorse>
+public class RenderHorse extends RenderLiving<实体Horse>
 {
     private static final Map<String, 图像位置> field_110852_a = Maps.<String, 图像位置>newHashMap();
     private static final 图像位置 whiteHorseTextures = new 图像位置("textures/entity/horse/horse_white.png");
@@ -23,7 +23,7 @@ public class RenderHorse extends RenderLiving<EntityHorse>
         super(rendermanagerIn, model, shadowSizeIn);
     }
 
-    protected void preRenderCallback(EntityHorse entitylivingbaseIn, float partialTickTime)
+    protected void preRenderCallback(实体Horse entitylivingbaseIn, float partialTickTime)
     {
         float f = 1.0F;
         int i = entitylivingbaseIn.getHorseType();
@@ -41,7 +41,7 @@ public class RenderHorse extends RenderLiving<EntityHorse>
         super.preRenderCallback(entitylivingbaseIn, partialTickTime);
     }
 
-    protected 图像位置 getEntityTexture(EntityHorse entity)
+    protected 图像位置 getEntityTexture(实体Horse entity)
     {
         if (!entity.func_110239_cn())
         {
@@ -70,7 +70,7 @@ public class RenderHorse extends RenderLiving<EntityHorse>
         }
     }
 
-    private 图像位置 func_110848_b(EntityHorse horse)
+    private 图像位置 func_110848_b(实体Horse horse)
     {
         String s = horse.getHorseTexture();
 

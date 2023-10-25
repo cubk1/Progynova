@@ -8,10 +8,10 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -37,7 +37,7 @@ public class BlockTorch extends Block
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return null;
     }
@@ -52,7 +52,7 @@ public class BlockTorch extends Block
         return false;
     }
 
-    private boolean canPlaceOn(World worldIn, BlockPos pos)
+    private boolean canPlaceOn(World worldIn, 阻止位置 pos)
     {
         if (World.doesBlockHaveSolidTopSurface(worldIn, pos))
         {
@@ -65,7 +65,7 @@ public class BlockTorch extends Block
         }
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         for (EnumFacing enumfacing : FACING.getAllowedValues())
         {
@@ -78,14 +78,14 @@ public class BlockTorch extends Block
         return false;
     }
 
-    private boolean canPlaceAt(World worldIn, BlockPos pos, EnumFacing facing)
+    private boolean canPlaceAt(World worldIn, 阻止位置 pos, EnumFacing facing)
     {
-        BlockPos blockpos = pos.offset(facing.getOpposite());
+        阻止位置 blockpos = pos.offset(facing.getOpposite());
         boolean flag = facing.getAxis().isHorizontal();
         return flag && worldIn.isBlockNormalCube(blockpos, true) || facing.equals(EnumFacing.UP) && this.canPlaceOn(worldIn, blockpos);
     }
 
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, 阻止位置 pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, 实体LivingBase placer)
     {
         if (this.canPlaceAt(worldIn, pos, facing))
         {
@@ -105,17 +105,17 @@ public class BlockTorch extends Block
         }
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.checkForDrop(worldIn, pos, state);
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         this.onNeighborChangeInternal(worldIn, pos, state);
     }
 
-    protected boolean onNeighborChangeInternal(World worldIn, BlockPos pos, IBlockState state)
+    protected boolean onNeighborChangeInternal(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!this.checkForDrop(worldIn, pos, state))
         {
@@ -150,7 +150,7 @@ public class BlockTorch extends Block
         }
     }
 
-    protected boolean checkForDrop(World worldIn, BlockPos pos, IBlockState state)
+    protected boolean checkForDrop(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (state.getBlock() == this && this.canPlaceAt(worldIn, pos, (EnumFacing)state.getValue(FACING)))
         {
@@ -168,7 +168,7 @@ public class BlockTorch extends Block
         }
     }
 
-    public MovingObjectPosition collisionRayTrace(World worldIn, BlockPos pos, Vec3 start, Vec3 end)
+    public MovingObjectPosition collisionRayTrace(World worldIn, 阻止位置 pos, Vec3 start, Vec3 end)
     {
         EnumFacing enumfacing = (EnumFacing)worldIn.getBlockState(pos).getValue(FACING);
         float f = 0.15F;
@@ -198,7 +198,7 @@ public class BlockTorch extends Block
         return super.collisionRayTrace(worldIn, pos, start, end);
     }
 
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
         double d0 = (double)pos.getX() + 0.5D;

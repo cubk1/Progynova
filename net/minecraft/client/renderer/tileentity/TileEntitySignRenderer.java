@@ -8,7 +8,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiUtilRenderComponents;
 import net.minecraft.client.model.ModelSign;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntitySign;
@@ -148,8 +148,8 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
         {
             if (!Config.zoomMode && p_isRenderText_0_.lineBeingEdited < 0)
             {
-                Entity entity = Config.getMinecraft().getRenderViewEntity();
-                double d0 = p_isRenderText_0_.getDistanceSq(entity.posX, entity.posY, entity.posZ);
+                实体 实体 = Config.getMinecraft().getRenderViewEntity();
+                double d0 = p_isRenderText_0_.getDistanceSq(实体.X坐标, 实体.Y坐标, 实体.Z坐标);
 
                 if (d0 > textRenderDistanceSq)
                 {

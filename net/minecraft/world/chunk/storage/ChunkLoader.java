@@ -2,7 +2,7 @@ package net.minecraft.world.chunk.storage;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.NibbleArray;
@@ -109,7 +109,7 @@ public class ChunkLoader
 
         compound.setTag("Sections", nbttaglist);
         byte[] abyte = new byte[256];
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
         for (int l2 = 0; l2 < 16; ++l2)
         {

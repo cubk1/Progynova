@@ -2,10 +2,10 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelLeashKnot;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.EntityLeashKnot;
+import net.minecraft.entity.实体LeashKnot;
 import net.minecraft.util.图像位置;
 
-public class RenderLeashKnot extends Render<EntityLeashKnot>
+public class RenderLeashKnot extends Render<实体LeashKnot>
 {
     private static final 图像位置 leashKnotTextures = new 图像位置("textures/entity/lead_knot.png");
     private ModelLeashKnot leashKnotModel = new ModelLeashKnot();
@@ -15,7 +15,7 @@ public class RenderLeashKnot extends Render<EntityLeashKnot>
         super(renderManagerIn);
     }
 
-    public void doRender(EntityLeashKnot entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体LeashKnot entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         光照状态经理.推黑客帝国();
         光照状态经理.disableCull();
@@ -30,7 +30,7 @@ public class RenderLeashKnot extends Render<EntityLeashKnot>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityLeashKnot entity)
+    protected 图像位置 getEntityTexture(实体LeashKnot entity)
     {
         return leashKnotTextures;
     }

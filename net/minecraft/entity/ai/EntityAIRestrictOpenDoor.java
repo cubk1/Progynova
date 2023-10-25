@@ -1,17 +1,17 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.实体Creature;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.village.Village;
 import net.minecraft.village.VillageDoorInfo;
 
 public class EntityAIRestrictOpenDoor extends EntityAIBase
 {
-    private EntityCreature entityObj;
+    private 实体Creature entityObj;
     private VillageDoorInfo frontDoor;
 
-    public EntityAIRestrictOpenDoor(EntityCreature creatureIn)
+    public EntityAIRestrictOpenDoor(实体Creature creatureIn)
     {
         this.entityObj = creatureIn;
 
@@ -29,7 +29,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
         }
         else
         {
-            BlockPos blockpos = new BlockPos(this.entityObj);
+            阻止位置 blockpos = new 阻止位置(this.entityObj);
             Village village = this.entityObj.worldObj.getVillageCollection().getNearestVillage(blockpos, 16);
 
             if (village == null)
@@ -46,7 +46,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
 
     public boolean continueExecuting()
     {
-        return this.entityObj.worldObj.isDaytime() ? false : !this.frontDoor.getIsDetachedFromVillageFlag() && this.frontDoor.func_179850_c(new BlockPos(this.entityObj));
+        return this.entityObj.worldObj.isDaytime() ? false : !this.frontDoor.getIsDetachedFromVillageFlag() && this.frontDoor.func_179850_c(new 阻止位置(this.entityObj));
     }
 
     public void startExecuting()

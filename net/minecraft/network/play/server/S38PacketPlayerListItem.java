@@ -6,7 +6,7 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import java.io.IOException;
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -22,21 +22,21 @@ public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S38PacketPlayerListItem(S38PacketPlayerListItem.Action actionIn, EntityPlayerMP... players)
+    public S38PacketPlayerListItem(S38PacketPlayerListItem.Action actionIn, 实体PlayerMP... players)
     {
         this.action = actionIn;
 
-        for (EntityPlayerMP entityplayermp : players)
+        for (实体PlayerMP entityplayermp : players)
         {
             this.players.add(new S38PacketPlayerListItem.AddPlayerData(entityplayermp.getGameProfile(), entityplayermp.ping, entityplayermp.theItemInWorldManager.getGameType(), entityplayermp.getTabListDisplayName()));
         }
     }
 
-    public S38PacketPlayerListItem(S38PacketPlayerListItem.Action actionIn, Iterable<EntityPlayerMP> players)
+    public S38PacketPlayerListItem(S38PacketPlayerListItem.Action actionIn, Iterable<实体PlayerMP> players)
     {
         this.action = actionIn;
 
-        for (EntityPlayerMP entityplayermp : players)
+        for (实体PlayerMP entityplayermp : players)
         {
             this.players.add(new S38PacketPlayerListItem.AddPlayerData(entityplayermp.getGameProfile(), entityplayermp.ping, entityplayermp.theItemInWorldManager.getGameType(), entityplayermp.getTabListDisplayName()));
         }

@@ -12,7 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.StatCollector;
@@ -48,7 +48,7 @@ public class BlockWall extends Block
         return false;
     }
 
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    public boolean isPassable(IBlockAccess worldIn, 阻止位置 pos)
     {
         return false;
     }
@@ -58,7 +58,7 @@ public class BlockWall extends Block
         return false;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         boolean flag = this.canConnectTo(worldIn, pos.north());
         boolean flag1 = this.canConnectTo(worldIn, pos.south());
@@ -106,14 +106,14 @@ public class BlockWall extends Block
         this.setBlockBounds(f, 0.0F, f2, f1, f4, f3);
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         this.maxY = 1.5D;
         return super.getCollisionBoundingBox(worldIn, pos, state);
     }
 
-    public boolean canConnectTo(IBlockAccess worldIn, BlockPos pos)
+    public boolean canConnectTo(IBlockAccess worldIn, 阻止位置 pos)
     {
         Block block = worldIn.getBlockState(pos).getBlock();
         return block == Blocks.barrier ? false : (block != this && !(block instanceof BlockFenceGate) ? (block.blockMaterial.isOpaque() && block.isFullCube() ? block.blockMaterial != Material.gourd : false) : true);
@@ -132,7 +132,7 @@ public class BlockWall extends Block
         return ((BlockWall.EnumType)state.getValue(VARIANT)).getMetadata();
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         return side == EnumFacing.DOWN ? super.shouldSideBeRendered(worldIn, pos, side) : true;
     }
@@ -147,7 +147,7 @@ public class BlockWall extends Block
         return ((BlockWall.EnumType)state.getValue(VARIANT)).getMetadata();
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         return state.withProperty(UP, Boolean.valueOf(!worldIn.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(this.canConnectTo(worldIn, pos.north()))).withProperty(EAST, Boolean.valueOf(this.canConnectTo(worldIn, pos.east()))).withProperty(SOUTH, Boolean.valueOf(this.canConnectTo(worldIn, pos.south()))).withProperty(WEST, Boolean.valueOf(this.canConnectTo(worldIn, pos.west())));
     }

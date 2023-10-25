@@ -5,7 +5,7 @@ import java.util.Map;
 import net.minecraft.client.renderer.chunk.IRenderChunkFactory;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
@@ -44,7 +44,7 @@ public class ViewFrustum
                 for (int i1 = 0; i1 < this.countChunksZ; ++i1)
                 {
                     int j1 = (i1 * this.countChunksY + l) * this.countChunksX + k;
-                    BlockPos blockpos = new BlockPos(k * 16, l * 16, i1 * 16);
+                    阻止位置 blockpos = new 阻止位置(k * 16, l * 16, i1 * 16);
                     this.renderChunks[j1] = renderChunkFactory.makeRenderChunk(this.world, this.renderGlobal, blockpos, j++);
 
                     if (Config.isVbo() && Config.isRenderRegions())
@@ -62,7 +62,7 @@ public class ViewFrustum
             for (int l1 = 0; l1 < EnumFacing.VALUES.length; ++l1)
             {
                 EnumFacing enumfacing = EnumFacing.VALUES[l1];
-                BlockPos blockpos1 = renderchunk1.getBlockPosOffset16(enumfacing);
+                阻止位置 blockpos1 = renderchunk1.getBlockPosOffset16(enumfacing);
                 RenderChunk renderchunk = this.getRenderChunk(blockpos1);
                 renderchunk1.setRenderChunkNeighbour(enumfacing, renderchunk);
             }
@@ -105,11 +105,11 @@ public class ViewFrustum
                 {
                     int i2 = l1 * 16;
                     RenderChunk renderchunk = this.renderChunks[(j1 * this.countChunksY + l1) * this.countChunksX + l];
-                    BlockPos blockpos = renderchunk.getPosition();
+                    阻止位置 blockpos = renderchunk.getPosition();
 
                     if (blockpos.getX() != i1 || blockpos.getY() != i2 || blockpos.getZ() != k1)
                     {
-                        BlockPos blockpos1 = new BlockPos(i1, i2, k1);
+                        阻止位置 blockpos1 = new 阻止位置(i1, i2, k1);
 
                         if (!blockpos1.equals(renderchunk.getPosition()))
                         {
@@ -178,7 +178,7 @@ public class ViewFrustum
         }
     }
 
-    public RenderChunk getRenderChunk(BlockPos pos)
+    public RenderChunk getRenderChunk(阻止位置 pos)
     {
         int i = pos.getX() >> 4;
         int j = pos.getY() >> 4;
@@ -211,7 +211,7 @@ public class ViewFrustum
 
     private void updateVboRegion(RenderChunk p_updateVboRegion_1_)
     {
-        BlockPos blockpos = p_updateVboRegion_1_.getPosition();
+        阻止位置 blockpos = p_updateVboRegion_1_.getPosition();
         int i = blockpos.getX() >> 8 << 8;
         int j = blockpos.getZ() >> 8 << 8;
         ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(i, j);

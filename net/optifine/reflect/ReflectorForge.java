@@ -8,7 +8,7 @@ import java.util.Map;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
@@ -151,13 +151,13 @@ public class ReflectorForge
         }
     }
 
-    public static boolean canEntitySpawn(EntityLiving entityliving, World world, float x, float y, float z)
+    public static boolean canEntitySpawn(实体Living entityliving, World world, float x, float y, float z)
     {
         Object object = Reflector.call(Reflector.ForgeEventFactory_canEntitySpawn, new Object[] {entityliving, world, Float.valueOf(x), Float.valueOf(y), Float.valueOf(z)});
         return object == EVENT_RESULT_ALLOW || object == EVENT_RESULT_DEFAULT && entityliving.getCanSpawnHere() && entityliving.isNotColliding();
     }
 
-    public static boolean doSpecialSpawn(EntityLiving entityliving, World world, float x, int y, float z)
+    public static boolean doSpecialSpawn(实体Living entityliving, World world, float x, int y, float z)
     {
         return Reflector.ForgeEventFactory_doSpecialSpawn.exists() ? Reflector.callBoolean(Reflector.ForgeEventFactory_doSpecialSpawn, new Object[] {entityliving, world, Float.valueOf(x), Integer.valueOf(y), Float.valueOf(z)}): false;
     }

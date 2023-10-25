@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,7 +25,7 @@ public class FoodStats
         this.addStats(foodItem.getHealAmount(p_151686_2_), foodItem.getSaturationModifier(p_151686_2_));
     }
 
-    public void onUpdate(EntityPlayer player)
+    public void onUpdate(实体Player player)
     {
         EnumDifficulty enumdifficulty = player.worldObj.getDifficulty();
         this.prevFoodLevel = this.foodLevel;

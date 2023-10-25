@@ -3,8 +3,8 @@ package net.minecraft.item;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.projectile.实体Arrow;
 import net.minecraft.init.Items;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
@@ -20,7 +20,7 @@ public class ItemBow extends Item
         this.setCreativeTab(CreativeTabs.tabCombat);
     }
 
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft)
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, 实体Player playerIn, int timeLeft)
     {
         boolean flag = playerIn.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0;
 
@@ -40,7 +40,7 @@ public class ItemBow extends Item
                 f = 1.0F;
             }
 
-            EntityArrow entityarrow = new EntityArrow(worldIn, playerIn, f * 2.0F);
+            实体Arrow entityarrow = new 实体Arrow(worldIn, playerIn, f * 2.0F);
 
             if (f == 1.0F)
             {
@@ -87,7 +87,7 @@ public class ItemBow extends Item
         }
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, 实体Player playerIn)
     {
         return stack;
     }
@@ -102,7 +102,7 @@ public class ItemBow extends Item
         return EnumAction.BOW;
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         if (playerIn.capabilities.isCreativeMode || playerIn.inventory.hasItem(Items.arrow))
         {

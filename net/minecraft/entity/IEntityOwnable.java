@@ -4,5 +4,5 @@ public interface IEntityOwnable
 {
     String getOwnerId();
 
-    Entity getOwner();
+    实体 getOwner();
 }

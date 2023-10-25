@@ -7,7 +7,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,7 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
@@ -39,12 +39,12 @@ public class BlockBanner extends BlockContainer
         return StatCollector.translateToLocal("item.banner.white.name");
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return null;
     }
 
-    public AxisAlignedBB getSelectedBoundingBox(World worldIn, BlockPos pos)
+    public AxisAlignedBB getSelectedBoundingBox(World worldIn, 阻止位置 pos)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);
         return super.getSelectedBoundingBox(worldIn, pos);
@@ -55,7 +55,7 @@ public class BlockBanner extends BlockContainer
         return false;
     }
 
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    public boolean isPassable(IBlockAccess worldIn, 阻止位置 pos)
     {
         return true;
     }
@@ -80,12 +80,12 @@ public class BlockBanner extends BlockContainer
         return Items.banner;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Items.banner;
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -107,12 +107,12 @@ public class BlockBanner extends BlockContainer
         }
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return !this.hasInvalidNeighbor(worldIn, pos) && super.canPlaceBlockAt(worldIn, pos);
     }
 
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World worldIn, 实体Player player, 阻止位置 pos, IBlockState state, TileEntity te)
     {
         if (te instanceof TileEntityBanner)
         {
@@ -136,7 +136,7 @@ public class BlockBanner extends BlockContainer
             this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         }
 
-        public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+        public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
         {
             EnumFacing enumfacing = (EnumFacing)worldIn.getBlockState(pos).getValue(FACING);
             float f = 0.0F;
@@ -166,7 +166,7 @@ public class BlockBanner extends BlockContainer
             }
         }
 
-        public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+        public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
         {
             EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
 
@@ -209,7 +209,7 @@ public class BlockBanner extends BlockContainer
             this.setDefaultState(this.blockState.getBaseState().withProperty(ROTATION, Integer.valueOf(0)));
         }
 
-        public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+        public void onNeighborBlockChange(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
         {
             if (!worldIn.getBlockState(pos.down()).getBlock().getMaterial().isSolid())
             {

@@ -2,17 +2,17 @@ package net.minecraft.entity;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.EntityAmbientCreature;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityWaterMob;
+import net.minecraft.entity.passive.实体AmbientCreature;
+import net.minecraft.entity.passive.实体Animal;
+import net.minecraft.entity.passive.实体WaterMob;
 import net.minecraft.entity.passive.IAnimals;
 
 public enum EnumCreatureType
 {
     MONSTER(IMob.class, 70, Material.air, false, false),
-    CREATURE(EntityAnimal.class, 10, Material.air, true, true),
-    AMBIENT(EntityAmbientCreature.class, 15, Material.air, true, false),
-    WATER_CREATURE(EntityWaterMob.class, 5, Material.water, true, false);
+    CREATURE(实体Animal.class, 10, Material.air, true, true),
+    AMBIENT(实体AmbientCreature.class, 15, Material.air, true, false),
+    WATER_CREATURE(实体WaterMob.class, 5, Material.water, true, false);
 
     private final Class <? extends IAnimals > creatureClass;
     private final int maxNumberOfCreature;

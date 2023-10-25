@@ -13,15 +13,15 @@ import net.minecraft.block.material.Material;
 import net.minecraft.command.server.CommandBlockLogic;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityMinecartCommandBlock;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.passive.实体Horse;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体MinecartCommandBlock;
+import net.minecraft.entity.item.实体Item;
+import net.minecraft.entity.item.实体XPOrb;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.实体Arrow;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerBeacon;
@@ -38,7 +38,7 @@ import net.minecraft.network.play.INetHandlerPlayServer;
 import net.minecraft.network.play.client.C00PacketKeepAlive;
 import net.minecraft.network.play.client.C01PacketChatMessage;
 import net.minecraft.network.play.client.C02PacketUseEntity;
-import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.network.play.client.客户端数据包3玩家;
 import net.minecraft.network.play.client.C07PacketPlayerDigging;
 import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement;
 import net.minecraft.network.play.client.C09PacketHeldItemChange;
@@ -75,7 +75,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityCommandBlock;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatComponentTranslation;
@@ -95,7 +95,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
     private static final Logger logger = LogManager.getLogger();
     public final NetworkManager netManager;
     private final MinecraftServer serverController;
-    public EntityPlayerMP playerEntity;
+    public 实体PlayerMP playerEntity;
     private int networkTickCount;
     private int field_175090_f;
     private int floatingTickCount;
@@ -110,7 +110,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
     private double lastPosZ;
     private boolean hasMoved = true;
 
-    public NetHandlerPlayServer(MinecraftServer server, NetworkManager networkManagerIn, EntityPlayerMP playerIn)
+    public NetHandlerPlayServer(MinecraftServer server, NetworkManager networkManagerIn, 实体PlayerMP playerIn)
     {
         this.serverController = server;
         this.netManager = networkManagerIn;
@@ -170,12 +170,12 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
         this.playerEntity.setEntityActionState(packetIn.getStrafeSpeed(), packetIn.getForwardSpeed(), packetIn.isJumping(), packetIn.isSneaking());
     }
 
-    private boolean func_183006_b(C03PacketPlayer p_183006_1_)
+    private boolean func_183006_b(客户端数据包3玩家 p_183006_1_)
     {
-        return !Doubles.isFinite(p_183006_1_.getPositionX()) || !Doubles.isFinite(p_183006_1_.getPositionY()) || !Doubles.isFinite(p_183006_1_.getPositionZ()) || !Floats.isFinite(p_183006_1_.getPitch()) || !Floats.isFinite(p_183006_1_.getYaw());
+        return !Doubles.isFinite(p_183006_1_.获取X坐标()) || !Doubles.isFinite(p_183006_1_.获取Y坐标()) || !Doubles.isFinite(p_183006_1_.获取Z坐标()) || !Floats.isFinite(p_183006_1_.getPitch()) || !Floats.isFinite(p_183006_1_.getYaw());
     }
 
-    public void processPlayer(C03PacketPlayer packetIn)
+    public void processPlayer(客户端数据包3玩家 packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
 
@@ -189,13 +189,13 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
             if (!this.playerEntity.playerConqueredTheEnd)
             {
-                double d0 = this.playerEntity.posX;
-                double d1 = this.playerEntity.posY;
-                double d2 = this.playerEntity.posZ;
+                double d0 = this.playerEntity.X坐标;
+                double d1 = this.playerEntity.Y坐标;
+                double d2 = this.playerEntity.Z坐标;
                 double d3 = 0.0D;
-                double d4 = packetIn.getPositionX() - this.lastPosX;
-                double d5 = packetIn.getPositionY() - this.lastPosY;
-                double d6 = packetIn.getPositionZ() - this.lastPosZ;
+                double d4 = packetIn.获取X坐标() - this.lastPosX;
+                double d5 = packetIn.获取Y坐标() - this.lastPosY;
+                double d6 = packetIn.获取Z坐标() - this.lastPosZ;
 
                 if (packetIn.isMoving())
                 {
@@ -211,14 +211,14 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 {
                     this.field_175090_f = this.networkTickCount;
 
-                    if (this.playerEntity.ridingEntity != null)
+                    if (this.playerEntity.riding实体 != null)
                     {
                         float f4 = this.playerEntity.旋转侧滑;
                         float f = this.playerEntity.rotationPitch;
-                        this.playerEntity.ridingEntity.updateRiderPosition();
-                        double d16 = this.playerEntity.posX;
-                        double d17 = this.playerEntity.posY;
-                        double d18 = this.playerEntity.posZ;
+                        this.playerEntity.riding实体.updateRiderPosition();
+                        double d16 = this.playerEntity.X坐标;
+                        double d17 = this.playerEntity.Y坐标;
+                        double d18 = this.playerEntity.Z坐标;
 
                         if (packetIn.getRotating())
                         {
@@ -230,30 +230,30 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                         this.playerEntity.onUpdateEntity();
                         this.playerEntity.setPositionAndRotation(d16, d17, d18, f4, f);
 
-                        if (this.playerEntity.ridingEntity != null)
+                        if (this.playerEntity.riding实体 != null)
                         {
-                            this.playerEntity.ridingEntity.updateRiderPosition();
+                            this.playerEntity.riding实体.updateRiderPosition();
                         }
 
                         this.serverController.getConfigurationManager().serverUpdateMountedMovingPlayer(this.playerEntity);
 
-                        if (this.playerEntity.ridingEntity != null)
+                        if (this.playerEntity.riding实体 != null)
                         {
                             if (d3 > 4.0D)
                             {
-                                Entity entity = this.playerEntity.ridingEntity;
-                                this.playerEntity.playerNetServerHandler.sendPacket(new S18PacketEntityTeleport(entity));
-                                this.setPlayerLocation(this.playerEntity.posX, this.playerEntity.posY, this.playerEntity.posZ, this.playerEntity.旋转侧滑, this.playerEntity.rotationPitch);
+                                实体 实体 = this.playerEntity.riding实体;
+                                this.playerEntity.playerNetServerHandler.sendPacket(new S18PacketEntityTeleport(实体));
+                                this.setPlayerLocation(this.playerEntity.X坐标, this.playerEntity.Y坐标, this.playerEntity.Z坐标, this.playerEntity.旋转侧滑, this.playerEntity.rotationPitch);
                             }
 
-                            this.playerEntity.ridingEntity.isAirBorne = true;
+                            this.playerEntity.riding实体.isAirBorne = true;
                         }
 
                         if (this.hasMoved)
                         {
-                            this.lastPosX = this.playerEntity.posX;
-                            this.lastPosY = this.playerEntity.posY;
-                            this.lastPosZ = this.playerEntity.posZ;
+                            this.lastPosX = this.playerEntity.X坐标;
+                            this.lastPosY = this.playerEntity.Y坐标;
+                            this.lastPosZ = this.playerEntity.Z坐标;
                         }
 
                         worldserver.updateEntity(this.playerEntity);
@@ -268,28 +268,28 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                         return;
                     }
 
-                    double d7 = this.playerEntity.posY;
-                    this.lastPosX = this.playerEntity.posX;
-                    this.lastPosY = this.playerEntity.posY;
-                    this.lastPosZ = this.playerEntity.posZ;
-                    double d8 = this.playerEntity.posX;
-                    double d9 = this.playerEntity.posY;
-                    double d10 = this.playerEntity.posZ;
+                    double d7 = this.playerEntity.Y坐标;
+                    this.lastPosX = this.playerEntity.X坐标;
+                    this.lastPosY = this.playerEntity.Y坐标;
+                    this.lastPosZ = this.playerEntity.Z坐标;
+                    double d8 = this.playerEntity.X坐标;
+                    double d9 = this.playerEntity.Y坐标;
+                    double d10 = this.playerEntity.Z坐标;
                     float f1 = this.playerEntity.旋转侧滑;
                     float f2 = this.playerEntity.rotationPitch;
 
-                    if (packetIn.isMoving() && packetIn.getPositionY() == -999.0D)
+                    if (packetIn.isMoving() && packetIn.获取Y坐标() == -999.0D)
                     {
                         packetIn.setMoving(false);
                     }
 
                     if (packetIn.isMoving())
                     {
-                        d8 = packetIn.getPositionX();
-                        d9 = packetIn.getPositionY();
-                        d10 = packetIn.getPositionZ();
+                        d8 = packetIn.获取X坐标();
+                        d9 = packetIn.获取Y坐标();
+                        d10 = packetIn.获取Z坐标();
 
-                        if (Math.abs(packetIn.getPositionX()) > 3.0E7D || Math.abs(packetIn.getPositionZ()) > 3.0E7D)
+                        if (Math.abs(packetIn.获取X坐标()) > 3.0E7D || Math.abs(packetIn.获取Z坐标()) > 3.0E7D)
                         {
                             this.kickPlayerFromServer("Illegal position");
                             return;
@@ -310,9 +310,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                         return;
                     }
 
-                    double d11 = d8 - this.playerEntity.posX;
-                    double d12 = d9 - this.playerEntity.posY;
-                    double d13 = d10 - this.playerEntity.posZ;
+                    double d11 = d8 - this.playerEntity.X坐标;
+                    double d12 = d9 - this.playerEntity.Y坐标;
+                    double d13 = d10 - this.playerEntity.Z坐标;
                     double d14 = this.playerEntity.通便X * this.playerEntity.通便X + this.playerEntity.motionY * this.playerEntity.motionY + this.playerEntity.通便Z * this.playerEntity.通便Z;
                     double d15 = d11 * d11 + d12 * d12 + d13 * d13;
 
@@ -333,15 +333,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
                     this.playerEntity.moveEntity(d11, d12, d13);
                     this.playerEntity.onGround = packetIn.isOnGround();
-                    d11 = d8 - this.playerEntity.posX;
-                    d12 = d9 - this.playerEntity.posY;
+                    d11 = d8 - this.playerEntity.X坐标;
+                    d12 = d9 - this.playerEntity.Y坐标;
 
                     if (d12 > -0.5D || d12 < 0.5D)
                     {
                         d12 = 0.0D;
                     }
 
-                    d13 = d10 - this.playerEntity.posZ;
+                    d13 = d10 - this.playerEntity.Z坐标;
                     d15 = d11 * d11 + d12 * d12 + d13 * d13;
                     boolean flag1 = false;
 
@@ -352,7 +352,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                     }
 
                     this.playerEntity.setPositionAndRotation(d8, d9, d10, f1, f2);
-                    this.playerEntity.addMovementStat(this.playerEntity.posX - d0, this.playerEntity.posY - d1, this.playerEntity.posZ - d2);
+                    this.playerEntity.addMovementStat(this.playerEntity.X坐标 - d0, this.playerEntity.Y坐标 - d1, this.playerEntity.Z坐标 - d2);
 
                     if (!this.playerEntity.noClip)
                     {
@@ -388,7 +388,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
                     this.playerEntity.onGround = packetIn.isOnGround();
                     this.serverController.getConfigurationManager().serverUpdateMountedMovingPlayer(this.playerEntity);
-                    this.playerEntity.handleFalling(this.playerEntity.posY - d7, packetIn.isOnGround());
+                    this.playerEntity.handleFalling(this.playerEntity.Y坐标 - d7, packetIn.isOnGround());
                 }
                 else if (this.networkTickCount - this.field_175090_f > 20)
                 {
@@ -412,17 +412,17 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
         if (relativeSet.contains(S08PacketPlayerPosLook.EnumFlags.X))
         {
-            this.lastPosX += this.playerEntity.posX;
+            this.lastPosX += this.playerEntity.X坐标;
         }
 
         if (relativeSet.contains(S08PacketPlayerPosLook.EnumFlags.Y))
         {
-            this.lastPosY += this.playerEntity.posY;
+            this.lastPosY += this.playerEntity.Y坐标;
         }
 
         if (relativeSet.contains(S08PacketPlayerPosLook.EnumFlags.Z))
         {
-            this.lastPosZ += this.playerEntity.posZ;
+            this.lastPosZ += this.playerEntity.Z坐标;
         }
 
         float f = yaw;
@@ -446,7 +446,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
         WorldServer worldserver = this.serverController.worldServerForDimension(this.playerEntity.dimension);
-        BlockPos blockpos = packetIn.getPosition();
+        阻止位置 blockpos = packetIn.getPosition();
         this.playerEntity.markPlayerActive();
 
         switch (packetIn.getStatus())
@@ -474,9 +474,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
             case START_DESTROY_BLOCK:
             case ABORT_DESTROY_BLOCK:
             case STOP_DESTROY_BLOCK:
-                double d0 = this.playerEntity.posX - ((double)blockpos.getX() + 0.5D);
-                double d1 = this.playerEntity.posY - ((double)blockpos.getY() + 0.5D) + 1.5D;
-                double d2 = this.playerEntity.posZ - ((double)blockpos.getZ() + 0.5D);
+                double d0 = this.playerEntity.X坐标 - ((double)blockpos.getX() + 0.5D);
+                double d1 = this.playerEntity.Y坐标 - ((double)blockpos.getY() + 0.5D) + 1.5D;
+                double d2 = this.playerEntity.Z坐标 - ((double)blockpos.getZ() + 0.5D);
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 
                 if (d3 > 36.0D)
@@ -531,7 +531,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
         WorldServer worldserver = this.serverController.worldServerForDimension(this.playerEntity.dimension);
         ItemStack itemstack = this.playerEntity.inventory.getCurrentItem();
         boolean flag = false;
-        BlockPos blockpos = packetIn.getPosition();
+        阻止位置 blockpos = packetIn.getPosition();
         EnumFacing enumfacing = EnumFacing.getFront(packetIn.getPlacedBlockDirection());
         this.playerEntity.markPlayerActive();
 
@@ -596,35 +596,35 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
         if (this.playerEntity.isSpectator())
         {
-            Entity entity = null;
+            实体 实体 = null;
 
             for (WorldServer worldserver : this.serverController.worldServers)
             {
                 if (worldserver != null)
                 {
-                    entity = packetIn.getEntity(worldserver);
+                    实体 = packetIn.getEntity(worldserver);
 
-                    if (entity != null)
+                    if (实体 != null)
                     {
                         break;
                     }
                 }
             }
 
-            if (entity != null)
+            if (实体 != null)
             {
                 this.playerEntity.setSpectatingEntity(this.playerEntity);
                 this.playerEntity.mountEntity(null);
 
-                if (entity.worldObj != this.playerEntity.worldObj)
+                if (实体.worldObj != this.playerEntity.worldObj)
                 {
                     WorldServer worldserver1 = this.playerEntity.getServerForPlayer();
-                    WorldServer worldserver2 = (WorldServer)entity.worldObj;
-                    this.playerEntity.dimension = entity.dimension;
+                    WorldServer worldserver2 = (WorldServer) 实体.worldObj;
+                    this.playerEntity.dimension = 实体.dimension;
                     this.sendPacket(new S07PacketRespawn(this.playerEntity.dimension, worldserver1.getDifficulty(), worldserver1.getWorldInfo().getTerrainType(), this.playerEntity.theItemInWorldManager.getGameType()));
                     worldserver1.removePlayerEntityDangerously(this.playerEntity);
                     this.playerEntity.isDead = false;
-                    this.playerEntity.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.旋转侧滑, entity.rotationPitch);
+                    this.playerEntity.setLocationAndAngles(实体.X坐标, 实体.Y坐标, 实体.Z坐标, 实体.旋转侧滑, 实体.rotationPitch);
 
                     if (this.playerEntity.isEntityAlive())
                     {
@@ -635,14 +635,14 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
                     this.playerEntity.setWorld(worldserver2);
                     this.serverController.getConfigurationManager().preparePlayer(this.playerEntity, worldserver1);
-                    this.playerEntity.setPositionAndUpdate(entity.posX, entity.posY, entity.posZ);
+                    this.playerEntity.setPositionAndUpdate(实体.X坐标, 实体.Y坐标, 实体.Z坐标);
                     this.playerEntity.theItemInWorldManager.setWorld(worldserver2);
                     this.serverController.getConfigurationManager().updateTimeAndWeatherForPlayer(this.playerEntity, worldserver2);
                     this.serverController.getConfigurationManager().syncPlayerInventory(this.playerEntity);
                 }
                 else
                 {
-                    this.playerEntity.setPositionAndUpdate(entity.posX, entity.posY, entity.posZ);
+                    this.playerEntity.setPositionAndUpdate(实体.X坐标, 实体.Y坐标, 实体.Z坐标);
                 }
             }
         }
@@ -674,14 +674,14 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
         if (packetIn instanceof S02PacketChat)
         {
             S02PacketChat s02packetchat = (S02PacketChat)packetIn;
-            EntityPlayer.EnumChatVisibility entityplayer$enumchatvisibility = this.playerEntity.getChatVisibility();
+            实体Player.EnumChatVisibility entityplayer$enumchatvisibility = this.playerEntity.getChatVisibility();
 
-            if (entityplayer$enumchatvisibility == EntityPlayer.EnumChatVisibility.HIDDEN)
+            if (entityplayer$enumchatvisibility == 实体Player.EnumChatVisibility.HIDDEN)
             {
                 return;
             }
 
-            if (entityplayer$enumchatvisibility == EntityPlayer.EnumChatVisibility.SYSTEM && !s02packetchat.isChat())
+            if (entityplayer$enumchatvisibility == 实体Player.EnumChatVisibility.SYSTEM && !s02packetchat.isChat())
             {
                 return;
             }
@@ -719,7 +719,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
 
-        if (this.playerEntity.getChatVisibility() == EntityPlayer.EnumChatVisibility.HIDDEN)
+        if (this.playerEntity.getChatVisibility() == 实体Player.EnumChatVisibility.HIDDEN)
         {
             ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation("chat.cannotSend");
             chatcomponenttranslation.getChatStyle().setColor(枚举聊天格式.RED);
@@ -800,17 +800,17 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 break;
 
             case RIDING_JUMP:
-                if (this.playerEntity.ridingEntity instanceof EntityHorse)
+                if (this.playerEntity.riding实体 instanceof 实体Horse)
                 {
-                    ((EntityHorse)this.playerEntity.ridingEntity).setJumpPower(packetIn.getAuxData());
+                    ((实体Horse)this.playerEntity.riding实体).setJumpPower(packetIn.getAuxData());
                 }
 
                 break;
 
             case OPEN_INVENTORY:
-                if (this.playerEntity.ridingEntity instanceof EntityHorse)
+                if (this.playerEntity.riding实体 instanceof 实体Horse)
                 {
-                    ((EntityHorse)this.playerEntity.ridingEntity).openGUI(this.playerEntity);
+                    ((实体Horse)this.playerEntity.riding实体).openGUI(this.playerEntity);
                 }
 
                 break;
@@ -824,12 +824,12 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
         WorldServer worldserver = this.serverController.worldServerForDimension(this.playerEntity.dimension);
-        Entity entity = packetIn.getEntityFromWorld(worldserver);
+        实体 实体 = packetIn.getEntityFromWorld(worldserver);
         this.playerEntity.markPlayerActive();
 
-        if (entity != null)
+        if (实体 != null)
         {
-            boolean flag = this.playerEntity.canEntityBeSeen(entity);
+            boolean flag = this.playerEntity.canEntityBeSeen(实体);
             double d0 = 36.0D;
 
             if (!flag)
@@ -837,26 +837,26 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 d0 = 9.0D;
             }
 
-            if (this.playerEntity.getDistanceSqToEntity(entity) < d0)
+            if (this.playerEntity.getDistanceSqToEntity(实体) < d0)
             {
                 if (packetIn.getAction() == C02PacketUseEntity.Action.INTERACT)
                 {
-                    this.playerEntity.interactWith(entity);
+                    this.playerEntity.interactWith(实体);
                 }
                 else if (packetIn.getAction() == C02PacketUseEntity.Action.INTERACT_AT)
                 {
-                    entity.interactAt(this.playerEntity, packetIn.getHitVec());
+                    实体.interactAt(this.playerEntity, packetIn.getHitVec());
                 }
                 else if (packetIn.getAction() == C02PacketUseEntity.Action.ATTACK)
                 {
-                    if (entity instanceof EntityItem || entity instanceof EntityXPOrb || entity instanceof EntityArrow || entity == this.playerEntity)
+                    if (实体 instanceof 实体Item || 实体 instanceof 实体XPOrb || 实体 instanceof 实体Arrow || 实体 == this.playerEntity)
                     {
                         this.kickPlayerFromServer("Attempting to attack an invalid entity");
                         this.serverController.logWarning("Player " + this.playerEntity.getName() + " tried to attack an invalid entity");
                         return;
                     }
 
-                    this.playerEntity.attackTargetEntityWithCurrentItem(entity);
+                    this.playerEntity.attackTargetEntityWithCurrentItem(实体);
                 }
             }
         }
@@ -991,7 +991,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
                 if (nbttagcompound.hasKey("x") && nbttagcompound.hasKey("y") && nbttagcompound.hasKey("z"))
                 {
-                    BlockPos blockpos = new BlockPos(nbttagcompound.getInteger("x"), nbttagcompound.getInteger("y"), nbttagcompound.getInteger("z"));
+                    阻止位置 blockpos = new 阻止位置(nbttagcompound.getInteger("x"), nbttagcompound.getInteger("y"), nbttagcompound.getInteger("z"));
                     TileEntity tileentity = this.playerEntity.worldObj.getTileEntity(blockpos);
 
                     if (tileentity != null)
@@ -1019,7 +1019,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
             else if (flag && flag2 && flag3 && this.itemDropThreshold < 200)
             {
                 this.itemDropThreshold += 20;
-                EntityItem entityitem = this.playerEntity.dropPlayerItemWithRandomChoice(itemstack);
+                实体Item entityitem = this.playerEntity.dropPlayerItemWithRandomChoice(itemstack);
 
                 if (entityitem != null)
                 {
@@ -1045,7 +1045,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
         this.playerEntity.markPlayerActive();
         WorldServer worldserver = this.serverController.worldServerForDimension(this.playerEntity.dimension);
-        BlockPos blockpos = packetIn.getPosition();
+        阻止位置 blockpos = packetIn.getPosition();
 
         if (worldserver.isBlockLoaded(blockpos))
         {
@@ -1235,7 +1235,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
                     if (j == 0)
                     {
-                        TileEntity tileentity = this.playerEntity.worldObj.getTileEntity(new BlockPos(packetbuffer.readInt(), packetbuffer.readInt(), packetbuffer.readInt()));
+                        TileEntity tileentity = this.playerEntity.worldObj.getTileEntity(new 阻止位置(packetbuffer.readInt(), packetbuffer.readInt(), packetbuffer.readInt()));
 
                         if (tileentity instanceof TileEntityCommandBlock)
                         {
@@ -1244,11 +1244,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                     }
                     else if (j == 1)
                     {
-                        Entity entity = this.playerEntity.worldObj.getEntityByID(packetbuffer.readInt());
+                        实体 实体 = this.playerEntity.worldObj.getEntityByID(packetbuffer.readInt());
 
-                        if (entity instanceof EntityMinecartCommandBlock)
+                        if (实体 instanceof 实体MinecartCommandBlock)
                         {
-                            commandblocklogic = ((EntityMinecartCommandBlock)entity).getCommandBlockLogic();
+                            commandblocklogic = ((实体MinecartCommandBlock) 实体).getCommandBlockLogic();
                         }
                     }
 

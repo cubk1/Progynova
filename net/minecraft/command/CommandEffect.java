@@ -1,11 +1,11 @@
 package net.minecraft.command;
 
 import java.util.List;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 
 public class CommandEffect extends CommandBase
@@ -33,7 +33,7 @@ public class CommandEffect extends CommandBase
         }
         else
         {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)getEntity(sender, args[0], EntityLivingBase.class);
+            实体LivingBase entitylivingbase = (实体LivingBase)getEntity(sender, args[0], 实体LivingBase.class);
 
             if (args[1].equals("clear"))
             {
@@ -129,7 +129,7 @@ public class CommandEffect extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, this.getAllUsernames()) : (args.length == 2 ? getListOfStringsMatchingLastWord(args, Potion.getPotionLocations()) : (args.length == 5 ? getListOfStringsMatchingLastWord(args, new String[] {"true", "false"}): null));
     }

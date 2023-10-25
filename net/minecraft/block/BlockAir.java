@@ -5,7 +5,7 @@ import java.util.Map;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class BlockAir extends Block
@@ -22,7 +22,7 @@ public class BlockAir extends Block
         return -1;
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return null;
     }
@@ -37,11 +37,11 @@ public class BlockAir extends Block
         return false;
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
     }
 
-    public boolean isReplaceable(World worldIn, BlockPos pos)
+    public boolean isReplaceable(World worldIn, 阻止位置 pos)
     {
         return true;
     }

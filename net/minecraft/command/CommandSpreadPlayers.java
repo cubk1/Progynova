@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -43,13 +43,13 @@ public class CommandSpreadPlayers extends CommandBase
         else
         {
             int i = 0;
-            BlockPos blockpos = sender.getPosition();
+            阻止位置 blockpos = sender.getPosition();
             double d0 = parseDouble((double)blockpos.getX(), args[i++], true);
             double d1 = parseDouble((double)blockpos.getZ(), args[i++], true);
             double d2 = parseDouble(args[i++], 0.0D);
             double d3 = parseDouble(args[i++], d2 + 1.0D);
             boolean flag = parseBoolean(args[i++]);
-            List<Entity> list = Lists.<Entity>newArrayList();
+            List<实体> list = Lists.<实体>newArrayList();
 
             while (i < args.length)
             {
@@ -57,7 +57,7 @@ public class CommandSpreadPlayers extends CommandBase
 
                 if (PlayerSelector.hasArguments(s))
                 {
-                    List<Entity> list1 = PlayerSelector.<Entity>matchEntities(sender, s, Entity.class);
+                    List<实体> list1 = PlayerSelector.<实体>matchEntities(sender, s, 实体.class);
 
                     if (list1.size() == 0)
                     {
@@ -68,7 +68,7 @@ public class CommandSpreadPlayers extends CommandBase
                 }
                 else
                 {
-                    EntityPlayer entityplayer = MinecraftServer.getServer().getConfigurationManager().getPlayerByUsername(s);
+                    实体Player entityplayer = MinecraftServer.getServer().getConfigurationManager().getPlayerByUsername(s);
 
                     if (entityplayer == null)
                     {
@@ -88,12 +88,12 @@ public class CommandSpreadPlayers extends CommandBase
             else
             {
                 sender.增添聊天讯息(new ChatComponentTranslation("commands.spreadplayers.spreading." + (flag ? "teams" : "players"), new Object[] {Integer.valueOf(list.size()), Double.valueOf(d3), Double.valueOf(d0), Double.valueOf(d1), Double.valueOf(d2)}));
-                this.func_110669_a(sender, list, new CommandSpreadPlayers.Position(d0, d1), d2, d3, ((Entity)list.get(0)).worldObj, flag);
+                this.func_110669_a(sender, list, new CommandSpreadPlayers.Position(d0, d1), d2, d3, ((实体)list.get(0)).worldObj, flag);
             }
         }
     }
 
-    private void func_110669_a(ICommandSender p_110669_1_, List<Entity> p_110669_2_, CommandSpreadPlayers.Position p_110669_3_, double p_110669_4_, double p_110669_6_, World worldIn, boolean p_110669_9_) throws CommandException
+    private void func_110669_a(ICommandSender p_110669_1_, List<实体> p_110669_2_, CommandSpreadPlayers.Position p_110669_3_, double p_110669_4_, double p_110669_6_, World worldIn, boolean p_110669_9_) throws CommandException
     {
         Random random = new Random();
         double d0 = p_110669_3_.field_111101_a - p_110669_6_;
@@ -111,15 +111,15 @@ public class CommandSpreadPlayers extends CommandBase
         }
     }
 
-    private int func_110667_a(List<Entity> p_110667_1_)
+    private int func_110667_a(List<实体> p_110667_1_)
     {
         Set<Team> set = Sets.<Team>newHashSet();
 
-        for (Entity entity : p_110667_1_)
+        for (实体 实体 : p_110667_1_)
         {
-            if (entity instanceof EntityPlayer)
+            if (实体 instanceof 实体Player)
             {
-                set.add(((EntityPlayer)entity).getTeam());
+                set.add(((实体Player) 实体).getTeam());
             }
             else
             {
@@ -212,7 +212,7 @@ public class CommandSpreadPlayers extends CommandBase
         }
     }
 
-    private double func_110671_a(List<Entity> p_110671_1_, World worldIn, CommandSpreadPlayers.Position[] p_110671_3_, boolean p_110671_4_)
+    private double func_110671_a(List<实体> p_110671_1_, World worldIn, CommandSpreadPlayers.Position[] p_110671_3_, boolean p_110671_4_)
     {
         double d0 = 0.0D;
         int i = 0;
@@ -220,12 +220,12 @@ public class CommandSpreadPlayers extends CommandBase
 
         for (int j = 0; j < p_110671_1_.size(); ++j)
         {
-            Entity entity = (Entity)p_110671_1_.get(j);
+            实体 实体 = (实体)p_110671_1_.get(j);
             CommandSpreadPlayers.Position commandspreadplayers$position;
 
             if (p_110671_4_)
             {
-                Team team = entity instanceof EntityPlayer ? ((EntityPlayer)entity).getTeam() : null;
+                Team team = 实体 instanceof 实体Player ? ((实体Player) 实体).getTeam() : null;
 
                 if (!map.containsKey(team))
                 {
@@ -239,7 +239,7 @@ public class CommandSpreadPlayers extends CommandBase
                 commandspreadplayers$position = p_110671_3_[i++];
             }
 
-            entity.setPositionAndUpdate((double)((float)MathHelper.floor_double(commandspreadplayers$position.field_111101_a) + 0.5F), (double)commandspreadplayers$position.func_111092_a(worldIn), (double)MathHelper.floor_double(commandspreadplayers$position.field_111100_b) + 0.5D);
+            实体.setPositionAndUpdate((double)((float)MathHelper.floor_double(commandspreadplayers$position.field_111101_a) + 0.5F), (double)commandspreadplayers$position.func_111092_a(worldIn), (double)MathHelper.floor_double(commandspreadplayers$position.field_111100_b) + 0.5D);
             double d2 = Double.MAX_VALUE;
 
             for (int k = 0; k < p_110671_3_.length; ++k)
@@ -272,7 +272,7 @@ public class CommandSpreadPlayers extends CommandBase
         return acommandspreadplayers$position;
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length >= 1 && args.length <= 2 ? func_181043_b(args, 0, pos) : null;
     }
@@ -348,7 +348,7 @@ public class CommandSpreadPlayers extends CommandBase
 
         public int func_111092_a(World worldIn)
         {
-            BlockPos blockpos = new BlockPos(this.field_111101_a, 256.0D, this.field_111100_b);
+            阻止位置 blockpos = new 阻止位置(this.field_111101_a, 256.0D, this.field_111100_b);
 
             while (blockpos.getY() > 0)
             {
@@ -365,7 +365,7 @@ public class CommandSpreadPlayers extends CommandBase
 
         public boolean func_111098_b(World worldIn)
         {
-            BlockPos blockpos = new BlockPos(this.field_111101_a, 256.0D, this.field_111100_b);
+            阻止位置 blockpos = new 阻止位置(this.field_111101_a, 256.0D, this.field_111100_b);
 
             while (blockpos.getY() > 0)
             {

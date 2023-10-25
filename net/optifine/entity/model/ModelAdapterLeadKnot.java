@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelLeashKnot;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderLeashKnot;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.EntityLeashKnot;
+import net.minecraft.entity.实体LeashKnot;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterLeadKnot extends ModelAdapter
 {
     public ModelAdapterLeadKnot()
     {
-        super(EntityLeashKnot.class, "lead_knot", 0.0F);
+        super(实体LeashKnot.class, "lead_knot", 0.0F);
     }
 
     public ModelBase makeModel()

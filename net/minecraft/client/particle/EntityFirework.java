@@ -2,7 +2,7 @@ package net.minecraft.client.particle;
 
 import net.minecraft.client.我的手艺;
 import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.item.ItemDye;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -14,7 +14,7 @@ public class EntityFirework
 {
     public static class Factory implements IParticleFactory
     {
-        public EntityFX getEntityFX(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
+        public 实体FX getEntityFX(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
         {
             EntityFirework.SparkFX entityfirework$sparkfx = new EntityFirework.SparkFX(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn, 我的手艺.得到我的手艺().effectRenderer);
             entityfirework$sparkfx.setAlphaF(0.99F);
@@ -22,7 +22,7 @@ public class EntityFirework
         }
     }
 
-    public static class OverlayFX extends EntityFX
+    public static class OverlayFX extends 实体FX
     {
         protected OverlayFX(World p_i46466_1_, double p_i46466_2_, double p_i46466_4_, double p_i46466_6_)
         {
@@ -30,7 +30,7 @@ public class EntityFirework
             this.particleMaxAge = 4;
         }
 
-        public void renderParticle(WorldRenderer worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+        public void renderParticle(WorldRenderer worldRendererIn, 实体 实体In, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
         {
             float f = 0.25F;
             float f1 = 0.5F;
@@ -38,9 +38,9 @@ public class EntityFirework
             float f3 = 0.375F;
             float f4 = 7.1F * MathHelper.sin(((float)this.particleAge + partialTicks - 1.0F) * 0.25F * (float)Math.PI);
             this.particleAlpha = 0.6F - ((float)this.particleAge + partialTicks - 1.0F) * 0.25F * 0.5F;
-            float f5 = (float)(this.prevPosX + (this.posX - this.prevPosX) * (double)partialTicks - interpPosX);
-            float f6 = (float)(this.prevPosY + (this.posY - this.prevPosY) * (double)partialTicks - interpPosY);
-            float f7 = (float)(this.prevPosZ + (this.posZ - this.prevPosZ) * (double)partialTicks - interpPosZ);
+            float f5 = (float)(this.prevPosX + (this.X坐标 - this.prevPosX) * (double)partialTicks - interpPosX);
+            float f6 = (float)(this.prevPosY + (this.Y坐标 - this.prevPosY) * (double)partialTicks - interpPosY);
+            float f7 = (float)(this.prevPosZ + (this.Z坐标 - this.prevPosZ) * (double)partialTicks - interpPosZ);
             int i = this.getBrightnessForRender(partialTicks);
             int j = i >> 16 & 65535;
             int k = i & 65535;
@@ -51,7 +51,7 @@ public class EntityFirework
         }
     }
 
-    public static class SparkFX extends EntityFX
+    public static class SparkFX extends 实体FX
     {
         private int baseTextureIndex = 160;
         private boolean trail;
@@ -111,19 +111,19 @@ public class EntityFirework
             return false;
         }
 
-        public void renderParticle(WorldRenderer worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+        public void renderParticle(WorldRenderer worldRendererIn, 实体 实体In, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
         {
             if (!this.twinkle || this.particleAge < this.particleMaxAge / 3 || (this.particleAge + this.particleMaxAge) / 3 % 2 == 0)
             {
-                super.renderParticle(worldRendererIn, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
+                super.renderParticle(worldRendererIn, 实体In, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
             }
         }
 
         public void onUpdate()
         {
-            this.prevPosX = this.posX;
-            this.prevPosY = this.posY;
-            this.prevPosZ = this.posZ;
+            this.prevPosX = this.X坐标;
+            this.prevPosY = this.Y坐标;
+            this.prevPosZ = this.Z坐标;
 
             if (this.particleAge++ >= this.particleMaxAge)
             {
@@ -157,7 +157,7 @@ public class EntityFirework
 
             if (this.trail && this.particleAge < this.particleMaxAge / 2 && (this.particleAge + this.particleMaxAge) % 2 == 0)
             {
-                EntityFirework.SparkFX entityfirework$sparkfx = new EntityFirework.SparkFX(this.worldObj, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, this.field_92047_az);
+                EntityFirework.SparkFX entityfirework$sparkfx = new EntityFirework.SparkFX(this.worldObj, this.X坐标, this.Y坐标, this.Z坐标, 0.0D, 0.0D, 0.0D, this.field_92047_az);
                 entityfirework$sparkfx.setAlphaF(0.99F);
                 entityfirework$sparkfx.setRBGColorF(this.particleRed, this.particleGreen, this.particleBlue);
                 entityfirework$sparkfx.particleAge = entityfirework$sparkfx.particleMaxAge / 2;
@@ -186,7 +186,7 @@ public class EntityFirework
         }
     }
 
-    public static class StarterFX extends EntityFX
+    public static class StarterFX extends 实体FX
     {
         private int fireworkAge;
         private final EffectRenderer theEffectRenderer;
@@ -229,7 +229,7 @@ public class EntityFirework
             }
         }
 
-        public void renderParticle(WorldRenderer worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+        public void renderParticle(WorldRenderer worldRendererIn, 实体 实体In, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
         {
         }
 
@@ -259,7 +259,7 @@ public class EntityFirework
                 }
 
                 String s1 = "fireworks." + (flag1 ? "largeBlast" : "blast") + (flag ? "_far" : "");
-                this.worldObj.playSound(this.posX, this.posY, this.posZ, s1, 20.0F, 0.95F + this.rand.nextFloat() * 0.1F, true);
+                this.worldObj.playSound(this.X坐标, this.Y坐标, this.Z坐标, s1, 20.0F, 0.95F + this.rand.nextFloat() * 0.1F, true);
             }
 
             if (this.fireworkAge % 2 == 0 && this.fireworkExplosions != null && this.fireworkAge / 2 < this.fireworkExplosions.tagCount())
@@ -302,7 +302,7 @@ public class EntityFirework
                 float f = (float)((j & 16711680) >> 16) / 255.0F;
                 float f1 = (float)((j & 65280) >> 8) / 255.0F;
                 float f2 = (float)((j & 255) >> 0) / 255.0F;
-                EntityFirework.OverlayFX entityfirework$overlayfx = new EntityFirework.OverlayFX(this.worldObj, this.posX, this.posY, this.posZ);
+                EntityFirework.OverlayFX entityfirework$overlayfx = new EntityFirework.OverlayFX(this.worldObj, this.X坐标, this.Y坐标, this.Z坐标);
                 entityfirework$overlayfx.setRBGColorF(f, f1, f2);
                 this.theEffectRenderer.addEffect(entityfirework$overlayfx);
             }
@@ -315,7 +315,7 @@ public class EntityFirework
                 {
                     boolean flag3 = this.func_92037_i();
                     String s = "fireworks." + (flag3 ? "twinkle_far" : "twinkle");
-                    this.worldObj.playSound(this.posX, this.posY, this.posZ, s, 20.0F, 0.9F + this.rand.nextFloat() * 0.15F, true);
+                    this.worldObj.playSound(this.X坐标, this.Y坐标, this.Z坐标, s, 20.0F, 0.9F + this.rand.nextFloat() * 0.15F, true);
                 }
 
                 this.setDead();
@@ -325,7 +325,7 @@ public class EntityFirework
         private boolean func_92037_i()
         {
             我的手艺 宇轩的世界 = 我的手艺.得到我的手艺();
-            return 宇轩的世界 == null || 宇轩的世界.getRenderViewEntity() == null || 宇轩的世界.getRenderViewEntity().getDistanceSq(this.posX, this.posY, this.posZ) >= 256.0D;
+            return 宇轩的世界 == null || 宇轩的世界.getRenderViewEntity() == null || 宇轩的世界.getRenderViewEntity().getDistanceSq(this.X坐标, this.Y坐标, this.Z坐标) >= 256.0D;
         }
 
         private void createParticle(double p_92034_1_, double p_92034_3_, double p_92034_5_, double p_92034_7_, double p_92034_9_, double p_92034_11_, int[] p_92034_13_, int[] p_92034_14_, boolean p_92034_15_, boolean p_92034_16_)
@@ -347,9 +347,9 @@ public class EntityFirework
 
         private void createBall(double speed, int size, int[] colours, int[] fadeColours, boolean trail, boolean twinkleIn)
         {
-            double d0 = this.posX;
-            double d1 = this.posY;
-            double d2 = this.posZ;
+            double d0 = this.X坐标;
+            double d1 = this.Y坐标;
+            double d2 = this.Z坐标;
 
             for (int i = -size; i <= size; ++i)
             {
@@ -376,7 +376,7 @@ public class EntityFirework
         {
             double d0 = shape[0][0];
             double d1 = shape[0][1];
-            this.createParticle(this.posX, this.posY, this.posZ, d0 * speed, d1 * speed, 0.0D, colours, fadeColours, trail, twinkleIn);
+            this.createParticle(this.X坐标, this.Y坐标, this.Z坐标, d0 * speed, d1 * speed, 0.0D, colours, fadeColours, trail, twinkleIn);
             float f = this.rand.nextFloat() * (float)Math.PI;
             double d2 = p_92038_8_ ? 0.034D : 0.34D;
 
@@ -400,7 +400,7 @@ public class EntityFirework
 
                         for (double d12 = -1.0D; d12 <= 1.0D; d12 += 2.0D)
                         {
-                            this.createParticle(this.posX, this.posY, this.posZ, d9 * d12, d10, d11 * d12, colours, fadeColours, trail, twinkleIn);
+                            this.createParticle(this.X坐标, this.Y坐标, this.Z坐标, d9 * d12, d10, d11 * d12, colours, fadeColours, trail, twinkleIn);
                         }
                     }
 
@@ -420,7 +420,7 @@ public class EntityFirework
                 double d2 = this.通便X * 0.5D + this.rand.nextGaussian() * 0.15D + d0;
                 double d3 = this.通便Z * 0.5D + this.rand.nextGaussian() * 0.15D + d1;
                 double d4 = this.motionY * 0.5D + this.rand.nextDouble() * 0.5D;
-                this.createParticle(this.posX, this.posY, this.posZ, d2, d4, d3, colours, fadeColours, trail, twinkleIn);
+                this.createParticle(this.X坐标, this.Y坐标, this.Z坐标, d2, d4, d3, colours, fadeColours, trail, twinkleIn);
             }
         }
 

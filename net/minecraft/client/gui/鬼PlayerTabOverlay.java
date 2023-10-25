@@ -10,7 +10,7 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.scoreboard.IScoreObjectiveCriteria;
 import net.minecraft.scoreboard.ScoreObjective;
@@ -163,7 +163,7 @@ public class 鬼PlayerTabOverlay extends 鬼
 
                 if (flag)
                 {
-                    EntityPlayer entityplayer = this.mc.宇轩の世界.getPlayerEntityByUUID(gameprofile.getId());
+                    实体Player entityplayer = this.mc.宇轩の世界.getPlayerEntityByUUID(gameprofile.getId());
                     boolean flag1 = entityplayer != null && entityplayer.isWearing(EnumPlayerModelParts.CAPE) && (gameprofile.getName().equals("Dinnerbone") || gameprofile.getName().equals("Grumm"));
                     this.mc.得到手感经理().绑定手感(networkplayerinfo1.getLocationSkin());
                     int l2 = 8 + (flag1 ? 8 : 0);

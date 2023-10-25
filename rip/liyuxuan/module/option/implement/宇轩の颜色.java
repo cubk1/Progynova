@@ -62,7 +62,7 @@ public class 宇轩の颜色 extends 宇轩の选项<HSB数据> {
     }
 
     public Integer getRGB(){
-        return 获取设置().getAsColor().getRGB();
+        return 获取设置().得到颜色().getRGB();
     }
 
     public void setRGB(Integer rgb){
@@ -76,7 +76,7 @@ public class 宇轩の颜色 extends 宇轩の选项<HSB数据> {
     @李宇轩1337
     public void 宇轩循环(宇轩の循环事件 事件) {
         if (是可变化彩虹的吗() && 我的手艺.得到我的手艺().宇轩の世界 != null) {
-            获取设置().setHue(获取彩虹色度());
+            获取设置().设置色调(获取彩虹色度());
         }
     }
 

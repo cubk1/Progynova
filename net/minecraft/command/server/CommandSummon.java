@@ -5,15 +5,15 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.effect.实体LightningBolt;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -44,7 +44,7 @@ public class CommandSummon extends CommandBase
         else
         {
             String s = args[0];
-            BlockPos blockpos = sender.getPosition();
+            阻止位置 blockpos = sender.getPosition();
             Vec3 vec3 = sender.getPositionVector();
             double d0 = vec3.xCoord;
             double d1 = vec3.yCoord;
@@ -55,7 +55,7 @@ public class CommandSummon extends CommandBase
                 d0 = parseDouble(d0, args[1], true);
                 d1 = parseDouble(d1, args[2], false);
                 d2 = parseDouble(d2, args[3], true);
-                blockpos = new BlockPos(d0, d1, d2);
+                blockpos = new 阻止位置(d0, d1, d2);
             }
 
             World world = sender.getEntityWorld();
@@ -66,7 +66,7 @@ public class CommandSummon extends CommandBase
             }
             else if ("LightningBolt".equals(s))
             {
-                world.addWeatherEffect(new EntityLightningBolt(world, d0, d1, d2));
+                world.addWeatherEffect(new 实体LightningBolt(world, d0, d1, d2));
                 notifyOperators(sender, this, "commands.summon.success", new Object[0]);
             }
             else
@@ -90,45 +90,45 @@ public class CommandSummon extends CommandBase
                 }
 
                 nbttagcompound.setString("id", s);
-                Entity entity2;
+                实体 实体2;
 
                 try
                 {
-                    entity2 = EntityList.createEntityFromNBT(nbttagcompound, world);
+                    实体2 = EntityList.createEntityFromNBT(nbttagcompound, world);
                 }
                 catch (RuntimeException var19)
                 {
                     throw new CommandException("commands.summon.failed", new Object[0]);
                 }
 
-                if (entity2 == null)
+                if (实体2 == null)
                 {
                     throw new CommandException("commands.summon.failed", new Object[0]);
                 }
                 else
                 {
-                    entity2.setLocationAndAngles(d0, d1, d2, entity2.旋转侧滑, entity2.rotationPitch);
+                    实体2.setLocationAndAngles(d0, d1, d2, 实体2.旋转侧滑, 实体2.rotationPitch);
 
-                    if (!flag && entity2 instanceof EntityLiving)
+                    if (!flag && 实体2 instanceof 实体Living)
                     {
-                        ((EntityLiving)entity2).onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entity2)), (IEntityLivingData)null);
+                        ((实体Living) 实体2).onInitialSpawn(world.getDifficultyForLocation(new 阻止位置(实体2)), (IEntityLivingData)null);
                     }
 
-                    world.spawnEntityInWorld(entity2);
-                    Entity entity = entity2;
+                    world.spawnEntityInWorld(实体2);
+                    实体 实体 = 实体2;
 
-                    for (NBTTagCompound nbttagcompound1 = nbttagcompound; entity != null && nbttagcompound1.hasKey("Riding", 10); nbttagcompound1 = nbttagcompound1.getCompoundTag("Riding"))
+                    for (NBTTagCompound nbttagcompound1 = nbttagcompound; 实体 != null && nbttagcompound1.hasKey("Riding", 10); nbttagcompound1 = nbttagcompound1.getCompoundTag("Riding"))
                     {
-                        Entity entity1 = EntityList.createEntityFromNBT(nbttagcompound1.getCompoundTag("Riding"), world);
+                        实体 实体1 = EntityList.createEntityFromNBT(nbttagcompound1.getCompoundTag("Riding"), world);
 
-                        if (entity1 != null)
+                        if (实体1 != null)
                         {
-                            entity1.setLocationAndAngles(d0, d1, d2, entity1.旋转侧滑, entity1.rotationPitch);
-                            world.spawnEntityInWorld(entity1);
-                            entity.mountEntity(entity1);
+                            实体1.setLocationAndAngles(d0, d1, d2, 实体1.旋转侧滑, 实体1.rotationPitch);
+                            world.spawnEntityInWorld(实体1);
+                            实体.mountEntity(实体1);
                         }
 
-                        entity = entity1;
+                        实体 = 实体1;
                     }
 
                     notifyOperators(sender, this, "commands.summon.success", new Object[0]);
@@ -137,7 +137,7 @@ public class CommandSummon extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, EntityList.getEntityNameList()) : (args.length > 1 && args.length <= 4 ? func_175771_a(args, 1, pos) : null);
     }

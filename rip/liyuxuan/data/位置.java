@@ -1,68 +1,68 @@
 package rip.liyuxuan.data;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.network.play.client.C03PacketPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体;
+import net.minecraft.network.play.client.客户端数据包3玩家;
+import net.minecraft.util.阻止位置;
 
 public class 位置 {
 
-    private double x, y, z;
+    private double 英语字母表的第24个字母, 英语字母表的第25个字母, 英语字母表的第26个字母;
 
-    public 位置(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public 位置(double 英语字母表的第24个字母, double 英语字母表的第25个字母, double 英语字母表的第26个字母) {
+        this.英语字母表的第24个字母 = 英语字母表的第24个字母;
+        this.英语字母表的第25个字母 = 英语字母表的第25个字母;
+        this.英语字母表的第26个字母 = 英语字母表的第26个字母;
     }
 
-    public 位置(C03PacketPlayer packet) {
-        this.x = packet.getPositionX();
-        this.y = packet.getPositionY();
-        this.z = packet.getPositionZ();
+    public 位置(客户端数据包3玩家 数据包) {
+        this.英语字母表的第24个字母 = 数据包.获取X坐标();
+        this.英语字母表的第25个字母 = 数据包.获取Y坐标();
+        this.英语字母表的第26个字母 = 数据包.获取Z坐标();
     }
 
-    public 位置(Entity entity) {
-        this.x = entity.posX;
-        this.y = entity.posY;
-        this.z = entity.posZ;
+    public 位置(实体 实体) {
+        this.英语字母表的第24个字母 = 实体.X坐标;
+        this.英语字母表的第25个字母 = 实体.Y坐标;
+        this.英语字母表的第26个字母 = 实体.Z坐标;
     }
 
-    public void 加(double x, double y, double z) {
-        this.x += x;
-        this.y += y;
-        this.z += z;
+    public void 加(double 英语字母表的第24个字母, double 英语字母表的第25个字母, double 英语字母表的第26个字母) {
+        this.英语字母表的第24个字母 += 英语字母表的第24个字母;
+        this.英语字母表的第25个字母 += 英语字母表的第25个字母;
+        this.英语字母表的第26个字母 += 英语字母表的第26个字母;
     }
 
     public void 加(位置 位置) {
-        this.x += 位置.getX();
-        this.y += 位置.getY();
-        this.z += 位置.getZ();
+        this.英语字母表的第24个字母 += 位置.获取英语字母表的第24个字母();
+        this.英语字母表的第25个字母 += 位置.获取英语字母表的第25个字母();
+        this.英语字母表的第26个字母 += 位置.获取英语字母表的第26个字母();
     }
 
-    public double getX() {
-        return x;
+    public double 获取英语字母表的第24个字母() {
+        return 英语字母表的第24个字母;
     }
 
-    public double getY() {
-        return y;
+    public double 获取英语字母表的第25个字母() {
+        return 英语字母表的第25个字母;
     }
 
-    public double getZ() {
-        return z;
+    public double 获取英语字母表的第26个字母() {
+        return 英语字母表的第26个字母;
     }
 
-    public void setX(double x) {
-        this.x = x;
+    public void 设置英语字母表的第24个字母(double 英语字母表的第24个字母) {
+        this.英语字母表的第24个字母 = 英语字母表的第24个字母;
     }
 
-    public void setY(double y) {
-        this.y = y;
+    public void 设置英语字母表的第25个字母(double 英语字母表的第25个字母) {
+        this.英语字母表的第25个字母 = 英语字母表的第25个字母;
     }
 
-    public void setZ(double z) {
-        this.z = z;
+    public void 设置英语字母表的第26个字母(double 英语字母表的第26个字母) {
+        this.英语字母表的第26个字母 = 英语字母表的第26个字母;
     }
 
-    public BlockPos getAsBlockPos() {
-        return new BlockPos(x, y, z);
+    public 阻止位置 得到以阻止位置() {
+        return new 阻止位置(英语字母表的第24个字母, 英语字母表的第25个字母, 英语字母表的第26个字母);
     }
 }

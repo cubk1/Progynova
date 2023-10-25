@@ -1,6 +1,6 @@
 package net.minecraft.pathfinding;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -8,7 +8,7 @@ import net.minecraft.world.pathfinder.SwimNodeProcessor;
 
 public class PathNavigateSwimmer extends PathNavigate
 {
-    public PathNavigateSwimmer(EntityLiving entitylivingIn, World worldIn)
+    public PathNavigateSwimmer(实体Living entitylivingIn, World worldIn)
     {
         super(entitylivingIn, worldIn);
     }
@@ -25,7 +25,7 @@ public class PathNavigateSwimmer extends PathNavigate
 
     protected Vec3 getEntityPosition()
     {
-        return new Vec3(this.theEntity.posX, this.theEntity.posY + (double)this.theEntity.height * 0.5D, this.theEntity.posZ);
+        return new Vec3(this.theEntity.X坐标, this.theEntity.Y坐标 + (double)this.theEntity.height * 0.5D, this.theEntity.Z坐标);
     }
 
     protected void pathFollow()

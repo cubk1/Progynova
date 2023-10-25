@@ -6,12 +6,12 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelMinecart;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.item.实体Minecart;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 import net.minecraft.util.Vec3;
 
-public class RenderMinecart<T extends EntityMinecart> extends Render<T>
+public class RenderMinecart<T extends 实体Minecart> extends Render<T>
 {
     private static final 图像位置 minecartTextures = new 图像位置("textures/entity/minecart.png");
     protected ModelBase modelMinecart = new ModelMinecart();
@@ -32,9 +32,9 @@ public class RenderMinecart<T extends EntityMinecart> extends Render<T>
         float f1 = (((float)(i >> 20 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
         float f2 = (((float)(i >> 24 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
         光照状态经理.理解(f, f1, f2);
-        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
-        double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
-        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
+        double d0 = entity.lastTickPosX + (entity.X坐标 - entity.lastTickPosX) * (double)partialTicks;
+        double d1 = entity.lastTickPosY + (entity.Y坐标 - entity.lastTickPosY) * (double)partialTicks;
+        double d2 = entity.lastTickPosZ + (entity.Z坐标 - entity.lastTickPosZ) * (double)partialTicks;
         double d3 = 0.30000001192092896D;
         Vec3 vec3 = entity.func_70489_a(d0, d1, d2);
         float f3 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;

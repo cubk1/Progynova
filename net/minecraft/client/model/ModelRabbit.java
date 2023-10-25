@@ -1,9 +1,9 @@
 package net.minecraft.client.model;
 
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityRabbit;
+import net.minecraft.entity.passive.实体Rabbit;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.util.MathHelper;
 
 public class ModelRabbit extends ModelBase
@@ -98,9 +98,9 @@ public class ModelRabbit extends ModelBase
         p_178691_1_.rotateAngleZ = p_178691_4_;
     }
 
-    public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
+    public void render(实体 实体In, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale)
     {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, 实体In);
 
         if (this.isChild)
         {
@@ -142,10 +142,10 @@ public class ModelRabbit extends ModelBase
         }
     }
 
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, 实体 实体In)
     {
-        float f = ageInTicks - (float)entityIn.已存在的刻度;
-        EntityRabbit entityrabbit = (EntityRabbit)entityIn;
+        float f = ageInTicks - (float) 实体In.已存在的刻度;
+        实体Rabbit entityrabbit = (实体Rabbit) 实体In;
         this.rabbitNose.rotateAngleX = this.rabbitHead.rotateAngleX = this.rabbitRightEar.rotateAngleX = this.rabbitLeftEar.rotateAngleX = headPitch * 0.017453292F;
         this.rabbitNose.rotateAngleY = this.rabbitHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.rabbitRightEar.rotateAngleY = this.rabbitNose.rotateAngleY - 0.2617994F;
@@ -156,7 +156,7 @@ public class ModelRabbit extends ModelBase
         this.rabbitLeftArm.rotateAngleX = this.rabbitRightArm.rotateAngleX = (this.field_178701_m * -40.0F - 11.0F) * 0.017453292F;
     }
 
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
+    public void setLivingAnimations(实体LivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
     {
     }
 }

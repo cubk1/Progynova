@@ -5,10 +5,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.model.ModelEnderman;
 import net.minecraft.client.renderer.entity.layers.LayerEndermanEyes;
 import net.minecraft.client.renderer.entity.layers.LayerHeldBlock;
-import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.实体Enderman;
 import net.minecraft.util.图像位置;
 
-public class RenderEnderman extends RenderLiving<EntityEnderman>
+public class RenderEnderman extends RenderLiving<实体Enderman>
 {
     private static final 图像位置 endermanTextures = new 图像位置("textures/entity/enderman/enderman.png");
     private ModelEnderman endermanModel;
@@ -22,7 +22,7 @@ public class RenderEnderman extends RenderLiving<EntityEnderman>
         this.addLayer(new LayerHeldBlock(this));
     }
 
-    public void doRender(EntityEnderman entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体Enderman entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         this.endermanModel.isCarrying = entity.getHeldBlockState().getBlock().getMaterial() != Material.air;
         this.endermanModel.isAttacking = entity.isScreaming();
@@ -37,7 +37,7 @@ public class RenderEnderman extends RenderLiving<EntityEnderman>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected 图像位置 getEntityTexture(EntityEnderman entity)
+    protected 图像位置 getEntityTexture(实体Enderman entity)
     {
         return endermanTextures;
     }

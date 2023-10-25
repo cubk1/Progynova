@@ -4,10 +4,10 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerCustomHead;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 import net.minecraft.util.图像位置;
 
-public class RenderBiped<T extends EntityLiving> extends RenderLiving<T>
+public class RenderBiped<T extends 实体Living> extends RenderLiving<T>
 {
     private static final 图像位置 DEFAULT_RES_LOC = new 图像位置("textures/entity/steve.png");
     protected ModelBiped modelBipedMain;

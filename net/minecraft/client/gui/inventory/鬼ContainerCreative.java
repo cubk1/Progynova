@@ -18,7 +18,7 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
@@ -47,7 +47,7 @@ public class 鬼ContainerCreative extends InventoryEffectRenderer
     private boolean field_147057_D;
     private CreativeCrafting field_147059_E;
 
-    public 鬼ContainerCreative(EntityPlayer p_i1088_1_)
+    public 鬼ContainerCreative(实体Player p_i1088_1_)
     {
         super(new 鬼ContainerCreative.ContainerCreative(p_i1088_1_));
         p_i1088_1_.openContainer = this.inventorySlots;
@@ -798,7 +798,7 @@ public class 鬼ContainerCreative extends InventoryEffectRenderer
     {
         public List<ItemStack> itemList = Lists.<ItemStack>newArrayList();
 
-        public ContainerCreative(EntityPlayer p_i1086_1_)
+        public ContainerCreative(实体Player p_i1086_1_)
         {
             InventoryPlayer inventoryplayer = p_i1086_1_.inventory;
 
@@ -818,7 +818,7 @@ public class 鬼ContainerCreative extends InventoryEffectRenderer
             this.scrollTo(0.0F);
         }
 
-        public boolean canInteractWith(EntityPlayer playerIn)
+        public boolean canInteractWith(实体Player playerIn)
         {
             return true;
         }
@@ -856,11 +856,11 @@ public class 鬼ContainerCreative extends InventoryEffectRenderer
             return this.itemList.size() > 45;
         }
 
-        protected void retrySlotClick(int slotId, int clickedButton, boolean mode, EntityPlayer playerIn)
+        protected void retrySlotClick(int slotId, int clickedButton, boolean mode, 实体Player playerIn)
         {
         }
 
-        public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+        public ItemStack transferStackInSlot(实体Player playerIn, int index)
         {
             if (index >= this.inventorySlots.size() - 9 && index < this.inventorySlots.size())
             {
@@ -896,7 +896,7 @@ public class 鬼ContainerCreative extends InventoryEffectRenderer
             this.slot = p_i46313_2_;
         }
 
-        public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
+        public void onPickupFromSlot(实体Player playerIn, ItemStack stack)
         {
             this.slot.onPickupFromSlot(playerIn, stack);
         }

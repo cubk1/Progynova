@@ -38,7 +38,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.entity.实体PlayerSP;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.鬼Screen;
 import net.minecraft.client.gui.achievement.鬼Achievement;
@@ -99,16 +99,13 @@ import net.minecraft.client.stream.NullStream;
 import net.minecraft.client.stream.TwitchStream;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLeashKnot;
+import net.minecraft.entity.item.*;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LeashKnot;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.boss.BossStatus;
-import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.item.EntityPainting;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体Minecart;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Bootstrap;
 import net.minecraft.init.Items;
@@ -131,7 +128,7 @@ import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.StatFileWriter;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.FrameTimer;
 import net.minecraft.util.IThreadListener;
@@ -204,9 +201,9 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
     private RenderManager renderManager;
     private RenderItem renderItem;
     private ItemRenderer itemRenderer;
-    public EntityPlayerSP 宇轩游玩者;
-    private Entity renderViewEntity;
-    public Entity pointedEntity;
+    public 实体PlayerSP 宇轩游玩者;
+    private 实体 renderView实体;
+    public 实体 pointed实体;
     public EffectRenderer effectRenderer;
     private final Session session;
     private boolean isGamePaused;
@@ -1349,7 +1346,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
         {
             if (leftClick && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
             {
-                BlockPos blockpos = this.objectMouseOver.getBlockPos();
+                阻止位置 blockpos = this.objectMouseOver.getBlockPos();
 
                 if (this.宇轩の世界.getBlockState(blockpos).getBlock().getMaterial() != Material.air && this.玩家控制者.onPlayerDamageBlock(blockpos, this.objectMouseOver.sideHit))
                 {
@@ -1384,11 +1381,11 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
                 switch (this.objectMouseOver.typeOfHit)
                 {
                     case ENTITY:
-                        this.玩家控制者.attackEntity(this.宇轩游玩者, this.objectMouseOver.entityHit);
+                        this.玩家控制者.attackEntity(this.宇轩游玩者, this.objectMouseOver.实体Hit);
                         break;
 
                     case BLOCK:
-                        BlockPos blockpos = this.objectMouseOver.getBlockPos();
+                        阻止位置 blockpos = this.objectMouseOver.getBlockPos();
 
                         if (this.宇轩の世界.getBlockState(blockpos).getBlock().getMaterial() != Material.air)
                         {
@@ -1425,11 +1422,11 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
                 switch (this.objectMouseOver.typeOfHit)
                 {
                     case ENTITY:
-                        if (this.玩家控制者.isPlayerRightClickingOnEntity(this.宇轩游玩者, this.objectMouseOver.entityHit, this.objectMouseOver))
+                        if (this.玩家控制者.isPlayerRightClickingOnEntity(this.宇轩游玩者, this.objectMouseOver.实体Hit, this.objectMouseOver))
                         {
                             flag = false;
                         }
-                        else if (this.玩家控制者.interactWithEntitySendPacket(this.宇轩游玩者, this.objectMouseOver.entityHit))
+                        else if (this.玩家控制者.interactWithEntitySendPacket(this.宇轩游玩者, this.objectMouseOver.实体Hit))
                         {
                             flag = false;
                         }
@@ -1437,7 +1434,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
                         break;
 
                     case BLOCK:
-                        BlockPos blockpos = this.objectMouseOver.getBlockPos();
+                        阻止位置 blockpos = this.objectMouseOver.getBlockPos();
 
                         if (this.宇轩の世界.getBlockState(blockpos).getBlock().getMaterial() != Material.air)
                         {
@@ -1895,7 +1892,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
                 }
             }
 
-            boolean flag = this.游戏一窝.chatVisibility != EntityPlayer.EnumChatVisibility.HIDDEN;
+            boolean flag = this.游戏一窝.chatVisibility != 实体Player.EnumChatVisibility.HIDDEN;
 
             while (this.游戏一窝.keyBindInventory.isPressed())
             {
@@ -2058,7 +2055,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
 
             if (!this.isGamePaused && this.宇轩の世界 != null)
             {
-                this.宇轩の世界.doVoidFogParticles(MathHelper.floor_double(this.宇轩游玩者.posX), MathHelper.floor_double(this.宇轩游玩者.posY), MathHelper.floor_double(this.宇轩游玩者.posZ));
+                this.宇轩の世界.doVoidFogParticles(MathHelper.floor_double(this.宇轩游玩者.X坐标), MathHelper.floor_double(this.宇轩游玩者.Y坐标), MathHelper.floor_double(this.宇轩游玩者.Z坐标));
             }
 
             this.mcProfiler.endStartSection("particles");
@@ -2172,7 +2169,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
             this.entityRenderer.getMapItemRenderer().clearLoadedMaps();
         }
 
-        this.renderViewEntity = null;
+        this.renderView实体 = null;
         this.myNetworkManager = null;
 
         if (this.loadingScreen != null)
@@ -2214,7 +2211,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
             worldClientIn.spawnEntityInWorld(this.宇轩游玩者);
             this.宇轩游玩者.移动输入 = new MovementInputFromOptions(this.游戏一窝);
             this.玩家控制者.setPlayerCapabilities(this.宇轩游玩者);
-            this.renderViewEntity = this.宇轩游玩者;
+            this.renderView实体 = this.宇轩游玩者;
         }
         else
         {
@@ -2240,13 +2237,13 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
             s = this.宇轩游玩者.getClientBrand();
         }
 
-        this.renderViewEntity = null;
-        EntityPlayerSP entityplayersp = this.宇轩游玩者;
+        this.renderView实体 = null;
+        实体PlayerSP entityplayersp = this.宇轩游玩者;
         this.宇轩游玩者 = this.玩家控制者.func_178892_a(this.宇轩の世界, this.宇轩游玩者 == null ? new StatFileWriter() : this.宇轩游玩者.getStatFileWriter());
         assert entityplayersp != null;
         this.宇轩游玩者.getDataWatcher().updateWatchedObjectsFromList(entityplayersp.getDataWatcher().getAllWatched());
         this.宇轩游玩者.dimension = dimension;
-        this.renderViewEntity = this.宇轩游玩者;
+        this.renderView实体 = this.宇轩游玩者;
         this.宇轩游玩者.preparePlayerToSpawn();
         this.宇轩游玩者.setClientBrand(s);
         this.宇轩の世界.spawnEntityInWorld(this.宇轩游玩者);
@@ -2294,7 +2291,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
 
             if (this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
             {
-                BlockPos blockpos = this.objectMouseOver.getBlockPos();
+                阻止位置 blockpos = this.objectMouseOver.getBlockPos();
                 Block block = this.宇轩の世界.getBlockState(blockpos).getBlock();
 
                 if (block.getMaterial() == Material.air)
@@ -2320,22 +2317,22 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
             }
             else
             {
-                if (this.objectMouseOver.typeOfHit != MovingObjectPosition.MovingObjectType.ENTITY || this.objectMouseOver.entityHit == null || !flag)
+                if (this.objectMouseOver.typeOfHit != MovingObjectPosition.MovingObjectType.ENTITY || this.objectMouseOver.实体Hit == null || !flag)
                 {
                     return;
                 }
 
-                if (this.objectMouseOver.entityHit instanceof EntityPainting)
+                if (this.objectMouseOver.实体Hit instanceof 实体Painting)
                 {
                     item = Items.painting;
                 }
-                else if (this.objectMouseOver.entityHit instanceof EntityLeashKnot)
+                else if (this.objectMouseOver.实体Hit instanceof 实体LeashKnot)
                 {
                     item = Items.lead;
                 }
-                else if (this.objectMouseOver.entityHit instanceof EntityItemFrame)
+                else if (this.objectMouseOver.实体Hit instanceof 实体ItemFrame)
                 {
-                    EntityItemFrame entityitemframe = (EntityItemFrame)this.objectMouseOver.entityHit;
+                    实体ItemFrame entityitemframe = (实体ItemFrame)this.objectMouseOver.实体Hit;
                     ItemStack itemstack = entityitemframe.getDisplayedItem();
 
                     if (itemstack == null)
@@ -2349,9 +2346,9 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
                         flag1 = true;
                     }
                 }
-                else if (this.objectMouseOver.entityHit instanceof EntityMinecart)
+                else if (this.objectMouseOver.实体Hit instanceof 实体Minecart)
                 {
-                    EntityMinecart entityminecart = (EntityMinecart)this.objectMouseOver.entityHit;
+                    实体Minecart entityminecart = (实体Minecart)this.objectMouseOver.实体Hit;
 
                     switch (entityminecart.getMinecartType())
                     {
@@ -2379,18 +2376,18 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
                             item = Items.minecart;
                     }
                 }
-                else if (this.objectMouseOver.entityHit instanceof EntityBoat)
+                else if (this.objectMouseOver.实体Hit instanceof 实体Boat)
                 {
                     item = Items.boat;
                 }
-                else if (this.objectMouseOver.entityHit instanceof EntityArmorStand)
+                else if (this.objectMouseOver.实体Hit instanceof 实体ArmorStand)
                 {
                     item = Items.armor_stand;
                 }
                 else
                 {
                     item = Items.spawn_egg;
-                    i = EntityList.getEntityID(this.objectMouseOver.entityHit);
+                    i = EntityList.getEntityID(this.objectMouseOver.实体Hit);
                     flag1 = true;
 
                     if (!EntityList.entityEggs.containsKey(i))
@@ -2882,15 +2879,15 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
         return this.skinManager;
     }
 
-    public Entity getRenderViewEntity()
+    public 实体 getRenderViewEntity()
     {
-        return this.renderViewEntity;
+        return this.renderView实体;
     }
 
-    public void setRenderViewEntity(Entity viewingEntity)
+    public void setRenderViewEntity(实体 viewing实体)
     {
-        this.renderViewEntity = viewingEntity;
-        this.entityRenderer.loadEntityShader(viewingEntity);
+        this.renderView实体 = viewing实体;
+        this.entityRenderer.loadEntityShader(viewing实体);
     }
 
     public <V> ListenableFuture<V> addScheduledTask(Callable<V> callableToSchedule)

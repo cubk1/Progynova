@@ -6,13 +6,13 @@ import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderChicken;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.实体Chicken;
 
 public class ModelAdapterChicken extends ModelAdapter
 {
     public ModelAdapterChicken()
     {
-        super(EntityChicken.class, "chicken", 0.3F);
+        super(实体Chicken.class, "chicken", 0.3F);
     }
 
     public ModelBase makeModel()

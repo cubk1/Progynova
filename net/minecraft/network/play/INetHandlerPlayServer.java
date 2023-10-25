@@ -4,7 +4,7 @@ import net.minecraft.network.INetHandler;
 import net.minecraft.network.play.client.C00PacketKeepAlive;
 import net.minecraft.network.play.client.C01PacketChatMessage;
 import net.minecraft.network.play.client.C02PacketUseEntity;
-import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.network.play.client.客户端数据包3玩家;
 import net.minecraft.network.play.client.C07PacketPlayerDigging;
 import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement;
 import net.minecraft.network.play.client.C09PacketHeldItemChange;
@@ -51,7 +51,7 @@ public interface INetHandlerPlayServer extends INetHandler
 
     void processKeepAlive(C00PacketKeepAlive packetIn);
 
-    void processPlayer(C03PacketPlayer packetIn);
+    void processPlayer(客户端数据包3玩家 packetIn);
 
     void processPlayerAbilities(C13PacketPlayerAbilities packetIn);
 

@@ -9,7 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
@@ -53,17 +53,17 @@ public class BiomeGenMesa extends BiomeGenBase
         return this.worldGeneratorTrees;
     }
 
-    public int getFoliageColorAtPos(BlockPos pos)
+    public int getFoliageColorAtPos(阻止位置 pos)
     {
         return 10387789;
     }
 
-    public int getGrassColorAtPos(BlockPos pos)
+    public int getGrassColorAtPos(阻止位置 pos)
     {
         return 9470285;
     }
 
-    public void decorate(World worldIn, Random rand, BlockPos pos)
+    public void decorate(World worldIn, Random rand, 阻止位置 pos)
     {
         super.decorate(worldIn, rand, pos);
     }

@@ -3,11 +3,11 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelCreeper;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerCreeperCharge;
-import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.实体Creeper;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
-public class RenderCreeper extends RenderLiving<EntityCreeper>
+public class RenderCreeper extends RenderLiving<实体Creeper>
 {
     private static final 图像位置 creeperTextures = new 图像位置("textures/entity/creeper/creeper.png");
 
@@ -17,7 +17,7 @@ public class RenderCreeper extends RenderLiving<EntityCreeper>
         this.addLayer(new LayerCreeperCharge(this));
     }
 
-    protected void preRenderCallback(EntityCreeper entitylivingbaseIn, float partialTickTime)
+    protected void preRenderCallback(实体Creeper entitylivingbaseIn, float partialTickTime)
     {
         float f = entitylivingbaseIn.getCreeperFlashIntensity(partialTickTime);
         float f1 = 1.0F + MathHelper.sin(f * 100.0F) * f * 0.01F;
@@ -29,7 +29,7 @@ public class RenderCreeper extends RenderLiving<EntityCreeper>
         光照状态经理.障眼物(f2, f3, f2);
     }
 
-    protected int getColorMultiplier(EntityCreeper entitylivingbaseIn, float lightBrightness, float partialTickTime)
+    protected int getColorMultiplier(实体Creeper entitylivingbaseIn, float lightBrightness, float partialTickTime)
     {
         float f = entitylivingbaseIn.getCreeperFlashIntensity(partialTickTime);
 
@@ -45,7 +45,7 @@ public class RenderCreeper extends RenderLiving<EntityCreeper>
         }
     }
 
-    protected 图像位置 getEntityTexture(EntityCreeper entity)
+    protected 图像位置 getEntityTexture(实体Creeper entity)
     {
         return creeperTextures;
     }

@@ -2,9 +2,9 @@ package net.minecraft.network.rcon;
 
 import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.Vec3;
@@ -35,9 +35,9 @@ public class RConConsoleSource implements ICommandSender
         return true;
     }
 
-    public BlockPos getPosition()
+    public 阻止位置 getPosition()
     {
-        return new BlockPos(0, 0, 0);
+        return new 阻止位置(0, 0, 0);
     }
 
     public Vec3 getPositionVector()
@@ -50,7 +50,7 @@ public class RConConsoleSource implements ICommandSender
         return MinecraftServer.getServer().getEntityWorld();
     }
 
-    public Entity getCommandSenderEntity()
+    public 实体 getCommandSenderEntity()
     {
         return null;
     }

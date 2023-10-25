@@ -5,18 +5,15 @@ import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.*;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -50,7 +47,7 @@ public class ItemMonsterPlacer extends Item
         return entitylist$entityegginfo != null ? (renderPass == 0 ? entitylist$entityegginfo.primaryColor : entitylist$entityegginfo.secondaryColor) : 16777215;
     }
 
-    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, 实体Player playerIn, World worldIn, 阻止位置 pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -92,13 +89,13 @@ public class ItemMonsterPlacer extends Item
                 d0 = 0.5D;
             }
 
-            Entity entity = spawnCreature(worldIn, stack.getMetadata(), (double)pos.getX() + 0.5D, (double)pos.getY() + d0, (double)pos.getZ() + 0.5D);
+            实体 实体 = spawnCreature(worldIn, stack.getMetadata(), (double)pos.getX() + 0.5D, (double)pos.getY() + d0, (double)pos.getZ() + 0.5D);
 
-            if (entity != null)
+            if (实体 != null)
             {
-                if (entity instanceof EntityLivingBase && stack.hasDisplayName())
+                if (实体 instanceof 实体LivingBase && stack.hasDisplayName())
                 {
-                    entity.setCustomNameTag(stack.getDisplayName());
+                    实体.setCustomNameTag(stack.getDisplayName());
                 }
 
                 if (!playerIn.capabilities.isCreativeMode)
@@ -111,7 +108,7 @@ public class ItemMonsterPlacer extends Item
         }
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         if (worldIn.isRemote)
         {
@@ -129,7 +126,7 @@ public class ItemMonsterPlacer extends Item
             {
                 if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
                 {
-                    BlockPos blockpos = movingobjectposition.getBlockPos();
+                    阻止位置 blockpos = movingobjectposition.getBlockPos();
 
                     if (!worldIn.isBlockModifiable(playerIn, blockpos))
                     {
@@ -143,13 +140,13 @@ public class ItemMonsterPlacer extends Item
 
                     if (worldIn.getBlockState(blockpos).getBlock() instanceof BlockLiquid)
                     {
-                        Entity entity = spawnCreature(worldIn, itemStackIn.getMetadata(), (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.5D, (double)blockpos.getZ() + 0.5D);
+                        实体 实体 = spawnCreature(worldIn, itemStackIn.getMetadata(), (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.5D, (double)blockpos.getZ() + 0.5D);
 
-                        if (entity != null)
+                        if (实体 != null)
                         {
-                            if (entity instanceof EntityLivingBase && itemStackIn.hasDisplayName())
+                            if (实体 instanceof 实体LivingBase && itemStackIn.hasDisplayName())
                             {
-                                ((EntityLiving)entity).setCustomNameTag(itemStackIn.getDisplayName());
+                                ((实体Living) 实体).setCustomNameTag(itemStackIn.getDisplayName());
                             }
 
                             if (!playerIn.capabilities.isCreativeMode)
@@ -167,7 +164,7 @@ public class ItemMonsterPlacer extends Item
         }
     }
 
-    public static Entity spawnCreature(World worldIn, int entityID, double x, double y, double z)
+    public static 实体 spawnCreature(World worldIn, int entityID, double x, double y, double z)
     {
         if (!EntityList.entityEggs.containsKey(Integer.valueOf(entityID)))
         {
@@ -175,25 +172,25 @@ public class ItemMonsterPlacer extends Item
         }
         else
         {
-            Entity entity = null;
+            实体 实体 = null;
 
             for (int i = 0; i < 1; ++i)
             {
-                entity = EntityList.createEntityByID(entityID, worldIn);
+                实体 = EntityList.createEntityByID(entityID, worldIn);
 
-                if (entity instanceof EntityLivingBase)
+                if (实体 instanceof 实体LivingBase)
                 {
-                    EntityLiving entityliving = (EntityLiving)entity;
-                    entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(worldIn.rand.nextFloat() * 360.0F), 0.0F);
+                    实体Living entityliving = (实体Living) 实体;
+                    实体.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(worldIn.rand.nextFloat() * 360.0F), 0.0F);
                     entityliving.rotationYawHead = entityliving.旋转侧滑;
                     entityliving.renderYawOffset = entityliving.旋转侧滑;
-                    entityliving.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityliving)), (IEntityLivingData)null);
-                    worldIn.spawnEntityInWorld(entity);
+                    entityliving.onInitialSpawn(worldIn.getDifficultyForLocation(new 阻止位置(entityliving)), (IEntityLivingData)null);
+                    worldIn.spawnEntityInWorld(实体);
                     entityliving.playLivingSound();
                 }
             }
 
-            return entity;
+            return 实体;
         }
     }
 

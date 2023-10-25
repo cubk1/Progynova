@@ -6,8 +6,8 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.实体;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -28,9 +28,9 @@ public class BlockPressurePlateWeighted extends BlockBasePressurePlate
         this.field_150068_a = p_i46380_2_;
     }
 
-    protected int computeRedstoneStrength(World worldIn, BlockPos pos)
+    protected int computeRedstoneStrength(World worldIn, 阻止位置 pos)
     {
-        int i = Math.min(worldIn.getEntitiesWithinAABB(Entity.class, this.getSensitiveAABB(pos)).size(), this.field_150068_a);
+        int i = Math.min(worldIn.getEntitiesWithinAABB(实体.class, this.getSensitiveAABB(pos)).size(), this.field_150068_a);
 
         if (i > 0)
         {

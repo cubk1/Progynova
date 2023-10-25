@@ -5,68 +5,19 @@ import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import net.minecraft.entity.ai.EntityMinecartMobSpawner;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityEnderCrystal;
-import net.minecraft.entity.item.EntityEnderEye;
-import net.minecraft.entity.item.EntityEnderPearl;
-import net.minecraft.entity.item.EntityExpBottle;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.item.EntityMinecartChest;
-import net.minecraft.entity.item.EntityMinecartEmpty;
-import net.minecraft.entity.item.EntityMinecartFurnace;
-import net.minecraft.entity.item.EntityMinecartHopper;
-import net.minecraft.entity.item.EntityMinecartTNT;
-import net.minecraft.entity.item.EntityPainting;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityCaveSpider;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityEndermite;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityGiantZombie;
-import net.minecraft.entity.monster.EntityGuardian;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntitySilverfish;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.monster.EntitySnowman;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityMooshroom;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityEgg;
-import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.entity.projectile.EntityPotion;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.entity.ai.实体MinecartMobSpawner;
+import net.minecraft.entity.boss.实体Dragon;
+import net.minecraft.entity.boss.实体Wither;
+import net.minecraft.entity.effect.实体LightningBolt;
+import net.minecraft.entity.item.*;
+import net.minecraft.entity.item.实体EnderCrystal;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.monster.实体MagmaCube;
+import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.实体Bat;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.entity.projectile.实体Arrow;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatList;
@@ -77,14 +28,14 @@ import org.apache.logging.log4j.Logger;
 public class EntityList
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final Map < String, Class <? extends Entity >> stringToClassMapping = Maps. < String, Class <? extends Entity >> newHashMap();
-    private static final Map < Class <? extends Entity > , String > classToStringMapping = Maps. < Class <? extends Entity > , String > newHashMap();
-    private static final Map < Integer, Class <? extends Entity >> idToClassMapping = Maps. < Integer, Class <? extends Entity >> newHashMap();
-    private static final Map < Class <? extends Entity > , Integer > classToIDMapping = Maps. < Class <? extends Entity > , Integer > newHashMap();
+    private static final Map < String, Class <? extends 实体>> stringToClassMapping = Maps. < String, Class <? extends 实体>> newHashMap();
+    private static final Map < Class <? extends 实体> , String > classToStringMapping = Maps. < Class <? extends 实体> , String > newHashMap();
+    private static final Map < Integer, Class <? extends 实体>> idToClassMapping = Maps. < Integer, Class <? extends 实体>> newHashMap();
+    private static final Map < Class <? extends 实体> , Integer > classToIDMapping = Maps. < Class <? extends 实体> , Integer > newHashMap();
     private static final Map<String, Integer> stringToIDMapping = Maps.<String, Integer>newHashMap();
     public static final Map<Integer, EntityList.EntityEggInfo> entityEggs = Maps.<Integer, EntityList.EntityEggInfo>newLinkedHashMap();
 
-    private static void addMapping(Class <? extends Entity > entityClass, String entityName, int id)
+    private static void addMapping(Class <? extends 实体> entityClass, String entityName, int id)
     {
         if (stringToClassMapping.containsKey(entityName))
         {
@@ -112,23 +63,23 @@ public class EntityList
         }
     }
 
-    private static void addMapping(Class <? extends Entity > entityClass, String entityName, int entityID, int baseColor, int spotColor)
+    private static void addMapping(Class <? extends 实体> entityClass, String entityName, int entityID, int baseColor, int spotColor)
     {
         addMapping(entityClass, entityName, entityID);
         entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, baseColor, spotColor));
     }
 
-    public static Entity createEntityByName(String entityName, World worldIn)
+    public static 实体 createEntityByName(String entityName, World worldIn)
     {
-        Entity entity = null;
+        实体 实体 = null;
 
         try
         {
-            Class <? extends Entity > oclass = (Class)stringToClassMapping.get(entityName);
+            Class <? extends 实体> oclass = (Class)stringToClassMapping.get(entityName);
 
             if (oclass != null)
             {
-                entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
+                实体 = (实体)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
             }
         }
         catch (Exception exception)
@@ -136,26 +87,26 @@ public class EntityList
             exception.printStackTrace();
         }
 
-        return entity;
+        return 实体;
     }
 
-    public static Entity createEntityFromNBT(NBTTagCompound nbt, World worldIn)
+    public static 实体 createEntityFromNBT(NBTTagCompound nbt, World worldIn)
     {
-        Entity entity = null;
+        实体 实体 = null;
 
         if ("Minecart".equals(nbt.getString("id")))
         {
-            nbt.setString("id", EntityMinecart.EnumMinecartType.byNetworkID(nbt.getInteger("Type")).getName());
+            nbt.setString("id", 实体Minecart.EnumMinecartType.byNetworkID(nbt.getInteger("Type")).getName());
             nbt.removeTag("Type");
         }
 
         try
         {
-            Class <? extends Entity > oclass = (Class)stringToClassMapping.get(nbt.getString("id"));
+            Class <? extends 实体> oclass = (Class)stringToClassMapping.get(nbt.getString("id"));
 
             if (oclass != null)
             {
-                entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
+                实体 = (实体)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
             }
         }
         catch (Exception exception)
@@ -163,29 +114,29 @@ public class EntityList
             exception.printStackTrace();
         }
 
-        if (entity != null)
+        if (实体 != null)
         {
-            entity.readFromNBT(nbt);
+            实体.readFromNBT(nbt);
         }
         else
         {
             logger.warn("Skipping Entity with id " + nbt.getString("id"));
         }
 
-        return entity;
+        return 实体;
     }
 
-    public static Entity createEntityByID(int entityID, World worldIn)
+    public static 实体 createEntityByID(int entityID, World worldIn)
     {
-        Entity entity = null;
+        实体 实体 = null;
 
         try
         {
-            Class <? extends Entity > oclass = getClassFromID(entityID);
+            Class <? extends 实体> oclass = getClassFromID(entityID);
 
             if (oclass != null)
             {
-                entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
+                实体 = (实体)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
             }
         }
         catch (Exception exception)
@@ -193,28 +144,28 @@ public class EntityList
             exception.printStackTrace();
         }
 
-        if (entity == null)
+        if (实体 == null)
         {
             logger.warn("Skipping Entity with id " + entityID);
         }
 
-        return entity;
+        return 实体;
     }
 
-    public static int getEntityID(Entity entityIn)
+    public static int getEntityID(实体 实体In)
     {
-        Integer integer = (Integer)classToIDMapping.get(entityIn.getClass());
+        Integer integer = (Integer)classToIDMapping.get(实体In.getClass());
         return integer == null ? 0 : integer.intValue();
     }
 
-    public static Class <? extends Entity > getClassFromID(int entityID)
+    public static Class <? extends 实体> getClassFromID(int entityID)
     {
         return (Class)idToClassMapping.get(Integer.valueOf(entityID));
     }
 
-    public static String getEntityString(Entity entityIn)
+    public static String getEntityString(实体 实体In)
     {
-        return (String)classToStringMapping.get(entityIn.getClass());
+        return (String)classToStringMapping.get(实体In.getClass());
     }
 
     public static int getIDFromString(String entityName)
@@ -239,7 +190,7 @@ public class EntityList
 
         for (String s : set)
         {
-            Class <? extends Entity > oclass = (Class)stringToClassMapping.get(s);
+            Class <? extends 实体> oclass = (Class)stringToClassMapping.get(s);
 
             if ((oclass.getModifiers() & 1024) != 1024)
             {
@@ -251,15 +202,15 @@ public class EntityList
         return list;
     }
 
-    public static boolean isStringEntityName(Entity entityIn, String entityName)
+    public static boolean isStringEntityName(实体 实体In, String entityName)
     {
-        String s = getEntityString(entityIn);
+        String s = getEntityString(实体In);
 
-        if (s == null && entityIn instanceof EntityPlayer)
+        if (s == null && 实体In instanceof 实体Player)
         {
             s = "Player";
         }
-        else if (s == null && entityIn instanceof EntityLightningBolt)
+        else if (s == null && 实体In instanceof 实体LightningBolt)
         {
             s = "LightningBolt";
         }
@@ -274,68 +225,68 @@ public class EntityList
 
     static
     {
-        addMapping(EntityItem.class, "Item", 1);
-        addMapping(EntityXPOrb.class, "XPOrb", 2);
-        addMapping(EntityEgg.class, "ThrownEgg", 7);
-        addMapping(EntityLeashKnot.class, "LeashKnot", 8);
-        addMapping(EntityPainting.class, "Painting", 9);
-        addMapping(EntityArrow.class, "Arrow", 10);
-        addMapping(EntitySnowball.class, "Snowball", 11);
-        addMapping(EntityLargeFireball.class, "Fireball", 12);
-        addMapping(EntitySmallFireball.class, "SmallFireball", 13);
-        addMapping(EntityEnderPearl.class, "ThrownEnderpearl", 14);
-        addMapping(EntityEnderEye.class, "EyeOfEnderSignal", 15);
-        addMapping(EntityPotion.class, "ThrownPotion", 16);
-        addMapping(EntityExpBottle.class, "ThrownExpBottle", 17);
-        addMapping(EntityItemFrame.class, "ItemFrame", 18);
-        addMapping(EntityWitherSkull.class, "WitherSkull", 19);
-        addMapping(EntityTNTPrimed.class, "PrimedTnt", 20);
-        addMapping(EntityFallingBlock.class, "FallingSand", 21);
-        addMapping(EntityFireworkRocket.class, "FireworksRocketEntity", 22);
-        addMapping(EntityArmorStand.class, "ArmorStand", 30);
-        addMapping(EntityBoat.class, "Boat", 41);
-        addMapping(EntityMinecartEmpty.class, EntityMinecart.EnumMinecartType.RIDEABLE.getName(), 42);
-        addMapping(EntityMinecartChest.class, EntityMinecart.EnumMinecartType.CHEST.getName(), 43);
-        addMapping(EntityMinecartFurnace.class, EntityMinecart.EnumMinecartType.FURNACE.getName(), 44);
-        addMapping(EntityMinecartTNT.class, EntityMinecart.EnumMinecartType.TNT.getName(), 45);
-        addMapping(EntityMinecartHopper.class, EntityMinecart.EnumMinecartType.HOPPER.getName(), 46);
-        addMapping(EntityMinecartMobSpawner.class, EntityMinecart.EnumMinecartType.SPAWNER.getName(), 47);
-        addMapping(EntityMinecartCommandBlock.class, EntityMinecart.EnumMinecartType.COMMAND_BLOCK.getName(), 40);
-        addMapping(EntityLiving.class, "Mob", 48);
-        addMapping(EntityMob.class, "Monster", 49);
-        addMapping(EntityCreeper.class, "Creeper", 50, 894731, 0);
-        addMapping(EntitySkeleton.class, "Skeleton", 51, 12698049, 4802889);
-        addMapping(EntitySpider.class, "Spider", 52, 3419431, 11013646);
-        addMapping(EntityGiantZombie.class, "Giant", 53);
-        addMapping(EntityZombie.class, "Zombie", 54, 44975, 7969893);
-        addMapping(EntitySlime.class, "Slime", 55, 5349438, 8306542);
-        addMapping(EntityGhast.class, "Ghast", 56, 16382457, 12369084);
-        addMapping(EntityPigZombie.class, "PigZombie", 57, 15373203, 5009705);
-        addMapping(EntityEnderman.class, "Enderman", 58, 1447446, 0);
-        addMapping(EntityCaveSpider.class, "CaveSpider", 59, 803406, 11013646);
-        addMapping(EntitySilverfish.class, "Silverfish", 60, 7237230, 3158064);
-        addMapping(EntityBlaze.class, "Blaze", 61, 16167425, 16775294);
-        addMapping(EntityMagmaCube.class, "LavaSlime", 62, 3407872, 16579584);
-        addMapping(EntityDragon.class, "EnderDragon", 63);
-        addMapping(EntityWither.class, "WitherBoss", 64);
-        addMapping(EntityBat.class, "Bat", 65, 4996656, 986895);
-        addMapping(EntityWitch.class, "Witch", 66, 3407872, 5349438);
-        addMapping(EntityEndermite.class, "Endermite", 67, 1447446, 7237230);
-        addMapping(EntityGuardian.class, "Guardian", 68, 5931634, 15826224);
-        addMapping(EntityPig.class, "Pig", 90, 15771042, 14377823);
-        addMapping(EntitySheep.class, "Sheep", 91, 15198183, 16758197);
-        addMapping(EntityCow.class, "Cow", 92, 4470310, 10592673);
-        addMapping(EntityChicken.class, "Chicken", 93, 10592673, 16711680);
-        addMapping(EntitySquid.class, "Squid", 94, 2243405, 7375001);
-        addMapping(EntityWolf.class, "Wolf", 95, 14144467, 13545366);
-        addMapping(EntityMooshroom.class, "MushroomCow", 96, 10489616, 12040119);
-        addMapping(EntitySnowman.class, "SnowMan", 97);
-        addMapping(EntityOcelot.class, "Ozelot", 98, 15720061, 5653556);
-        addMapping(EntityIronGolem.class, "VillagerGolem", 99);
-        addMapping(EntityHorse.class, "EntityHorse", 100, 12623485, 15656192);
-        addMapping(EntityRabbit.class, "Rabbit", 101, 10051392, 7555121);
-        addMapping(EntityVillager.class, "Villager", 120, 5651507, 12422002);
-        addMapping(EntityEnderCrystal.class, "EnderCrystal", 200);
+        addMapping(实体Item.class, "Item", 1);
+        addMapping(实体XPOrb.class, "XPOrb", 2);
+        addMapping(实体Egg.class, "ThrownEgg", 7);
+        addMapping(实体LeashKnot.class, "LeashKnot", 8);
+        addMapping(实体Painting.class, "Painting", 9);
+        addMapping(实体Arrow.class, "Arrow", 10);
+        addMapping(实体Snowball.class, "Snowball", 11);
+        addMapping(实体LargeFireball.class, "Fireball", 12);
+        addMapping(实体SmallFireball.class, "SmallFireball", 13);
+        addMapping(实体EnderPearl.class, "ThrownEnderpearl", 14);
+        addMapping(实体EnderEye.class, "EyeOfEnderSignal", 15);
+        addMapping(实体Potion.class, "ThrownPotion", 16);
+        addMapping(实体ExpBottle.class, "ThrownExpBottle", 17);
+        addMapping(实体ItemFrame.class, "ItemFrame", 18);
+        addMapping(实体WitherSkull.class, "WitherSkull", 19);
+        addMapping(实体TNTPrimed.class, "PrimedTnt", 20);
+        addMapping(实体FallingBlock.class, "FallingSand", 21);
+        addMapping(实体FireworkRocket.class, "FireworksRocketEntity", 22);
+        addMapping(实体ArmorStand.class, "ArmorStand", 30);
+        addMapping(实体Boat.class, "Boat", 41);
+        addMapping(实体MinecartEmpty.class, 实体Minecart.EnumMinecartType.RIDEABLE.getName(), 42);
+        addMapping(实体MinecartChest.class, 实体Minecart.EnumMinecartType.CHEST.getName(), 43);
+        addMapping(实体MinecartFurnace.class, 实体Minecart.EnumMinecartType.FURNACE.getName(), 44);
+        addMapping(实体MinecartTNT.class, 实体Minecart.EnumMinecartType.TNT.getName(), 45);
+        addMapping(实体MinecartHopper.class, 实体Minecart.EnumMinecartType.HOPPER.getName(), 46);
+        addMapping(实体MinecartMobSpawner.class, 实体Minecart.EnumMinecartType.SPAWNER.getName(), 47);
+        addMapping(实体MinecartCommandBlock.class, 实体Minecart.EnumMinecartType.COMMAND_BLOCK.getName(), 40);
+        addMapping(实体Living.class, "Mob", 48);
+        addMapping(实体Mob.class, "Monster", 49);
+        addMapping(实体Creeper.class, "Creeper", 50, 894731, 0);
+        addMapping(实体Skeleton.class, "Skeleton", 51, 12698049, 4802889);
+        addMapping(实体Spider.class, "Spider", 52, 3419431, 11013646);
+        addMapping(实体GiantZombie.class, "Giant", 53);
+        addMapping(实体Zombie.class, "Zombie", 54, 44975, 7969893);
+        addMapping(实体Slime.class, "Slime", 55, 5349438, 8306542);
+        addMapping(实体Ghast.class, "Ghast", 56, 16382457, 12369084);
+        addMapping(实体PigZombie.class, "PigZombie", 57, 15373203, 5009705);
+        addMapping(实体Enderman.class, "Enderman", 58, 1447446, 0);
+        addMapping(实体CaveSpider.class, "CaveSpider", 59, 803406, 11013646);
+        addMapping(实体Silverfish.class, "Silverfish", 60, 7237230, 3158064);
+        addMapping(实体Blaze.class, "Blaze", 61, 16167425, 16775294);
+        addMapping(实体MagmaCube.class, "LavaSlime", 62, 3407872, 16579584);
+        addMapping(实体Dragon.class, "EnderDragon", 63);
+        addMapping(实体Wither.class, "WitherBoss", 64);
+        addMapping(实体Bat.class, "Bat", 65, 4996656, 986895);
+        addMapping(实体Witch.class, "Witch", 66, 3407872, 5349438);
+        addMapping(实体Endermite.class, "Endermite", 67, 1447446, 7237230);
+        addMapping(实体Guardian.class, "Guardian", 68, 5931634, 15826224);
+        addMapping(实体Pig.class, "Pig", 90, 15771042, 14377823);
+        addMapping(实体Sheep.class, "Sheep", 91, 15198183, 16758197);
+        addMapping(实体Cow.class, "Cow", 92, 4470310, 10592673);
+        addMapping(实体Chicken.class, "Chicken", 93, 10592673, 16711680);
+        addMapping(实体Squid.class, "Squid", 94, 2243405, 7375001);
+        addMapping(实体Wolf.class, "Wolf", 95, 14144467, 13545366);
+        addMapping(实体Mooshroom.class, "MushroomCow", 96, 10489616, 12040119);
+        addMapping(实体Snowman.class, "SnowMan", 97);
+        addMapping(实体Ocelot.class, "Ozelot", 98, 15720061, 5653556);
+        addMapping(实体IronGolem.class, "VillagerGolem", 99);
+        addMapping(实体Horse.class, "EntityHorse", 100, 12623485, 15656192);
+        addMapping(实体Rabbit.class, "Rabbit", 101, 10051392, 7555121);
+        addMapping(实体Villager.class, "Villager", 120, 5651507, 12422002);
+        addMapping(实体EnderCrystal.class, "EnderCrystal", 200);
     }
 
     public static class EntityEggInfo

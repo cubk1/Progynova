@@ -1,7 +1,7 @@
 package net.minecraft.network.play.client;
 
 import java.io.IOException;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
@@ -16,14 +16,14 @@ public class C0BPacketEntityAction implements Packet<INetHandlerPlayServer>
     {
     }
 
-    public C0BPacketEntityAction(Entity entity, C0BPacketEntityAction.Action action)
+    public C0BPacketEntityAction(实体 实体, C0BPacketEntityAction.Action action)
     {
-        this(entity, action, 0);
+        this(实体, action, 0);
     }
 
-    public C0BPacketEntityAction(Entity entity, C0BPacketEntityAction.Action action, int auxData)
+    public C0BPacketEntityAction(实体 实体, C0BPacketEntityAction.Action action, int auxData)
     {
-        this.entityID = entity.getEntityId();
+        this.entityID = 实体.getEntityId();
         this.action = action;
         this.auxData = auxData;
     }

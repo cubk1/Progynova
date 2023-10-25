@@ -8,12 +8,12 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemLead;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -37,7 +37,7 @@ public class BlockFence extends Block
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxesToList(World worldIn, 阻止位置 pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, 实体 colliding实体)
     {
         boolean flag = this.canConnectTo(worldIn, pos.north());
         boolean flag1 = this.canConnectTo(worldIn, pos.south());
@@ -61,7 +61,7 @@ public class BlockFence extends Block
         if (flag || flag1)
         {
             this.setBlockBounds(f, 0.0F, f2, f1, 1.5F, f3);
-            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         }
 
         f2 = 0.375F;
@@ -80,7 +80,7 @@ public class BlockFence extends Block
         if (flag2 || flag3 || !flag && !flag1)
         {
             this.setBlockBounds(f, 0.0F, f2, f1, 1.5F, f3);
-            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
+            super.addCollisionBoxesToList(worldIn, pos, state, mask, list, colliding实体);
         }
 
         if (flag)
@@ -96,7 +96,7 @@ public class BlockFence extends Block
         this.setBlockBounds(f, 0.0F, f2, f1, 1.0F, f3);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         boolean flag = this.canConnectTo(worldIn, pos.north());
         boolean flag1 = this.canConnectTo(worldIn, pos.south());
@@ -140,23 +140,23 @@ public class BlockFence extends Block
         return false;
     }
 
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    public boolean isPassable(IBlockAccess worldIn, 阻止位置 pos)
     {
         return false;
     }
 
-    public boolean canConnectTo(IBlockAccess worldIn, BlockPos pos)
+    public boolean canConnectTo(IBlockAccess worldIn, 阻止位置 pos)
     {
         Block block = worldIn.getBlockState(pos).getBlock();
         return block == Blocks.barrier ? false : ((!(block instanceof BlockFence) || block.blockMaterial != this.blockMaterial) && !(block instanceof BlockFenceGate) ? (block.blockMaterial.isOpaque() && block.isFullCube() ? block.blockMaterial != Material.gourd : false) : true);
     }
 
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, 阻止位置 pos, EnumFacing side)
     {
         return true;
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, 阻止位置 pos, IBlockState state, 实体Player playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         return worldIn.isRemote ? true : ItemLead.attachToFence(playerIn, worldIn, pos);
     }
@@ -166,7 +166,7 @@ public class BlockFence extends Block
         return 0;
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         return state.withProperty(NORTH, Boolean.valueOf(this.canConnectTo(worldIn, pos.north()))).withProperty(EAST, Boolean.valueOf(this.canConnectTo(worldIn, pos.east()))).withProperty(SOUTH, Boolean.valueOf(this.canConnectTo(worldIn, pos.south()))).withProperty(WEST, Boolean.valueOf(this.canConnectTo(worldIn, pos.west())));
     }

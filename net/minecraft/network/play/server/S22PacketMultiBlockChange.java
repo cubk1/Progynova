@@ -6,7 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.chunk.Chunk;
 
@@ -81,9 +81,9 @@ public class S22PacketMultiBlockChange implements Packet<INetHandlerPlayClient>
             this.blockState = chunkIn.getBlockState(this.getPos());
         }
 
-        public BlockPos getPos()
+        public 阻止位置 getPos()
         {
-            return new BlockPos(S22PacketMultiBlockChange.this.chunkPosCoord.getBlock(this.chunkPosCrammed >> 12 & 15, this.chunkPosCrammed & 255, this.chunkPosCrammed >> 8 & 15));
+            return new 阻止位置(S22PacketMultiBlockChange.this.chunkPosCoord.getBlock(this.chunkPosCrammed >> 12 & 15, this.chunkPosCrammed & 255, this.chunkPosCrammed >> 8 & 15));
         }
 
         public short func_180089_b()

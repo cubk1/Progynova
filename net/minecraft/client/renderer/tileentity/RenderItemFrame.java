@@ -18,16 +18,16 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.Model图像位置;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityItemFrame;
+import net.minecraft.entity.item.实体ItemFrame;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.item.实体Item;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.storage.MapData;
@@ -35,7 +35,7 @@ import net.optifine.reflect.Reflector;
 import net.optifine.shaders.Shaders;
 import org.lwjgl.opengl.GL11;
 
-public class RenderItemFrame extends Render<EntityItemFrame>
+public class RenderItemFrame extends Render<实体ItemFrame>
 {
     private static final 图像位置 mapBackgroundTextures = new 图像位置("textures/map/map_background.png");
     private final 我的手艺 mc = 我的手艺.得到我的手艺();
@@ -50,13 +50,13 @@ public class RenderItemFrame extends Render<EntityItemFrame>
         this.itemRenderer = itemRendererIn;
     }
 
-    public void doRender(EntityItemFrame entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体ItemFrame entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         光照状态经理.推黑客帝国();
-        BlockPos blockpos = entity.getHangingPosition();
-        double d0 = (double)blockpos.getX() - entity.posX + x;
-        double d1 = (double)blockpos.getY() - entity.posY + y;
-        double d2 = (double)blockpos.getZ() - entity.posZ + z;
+        阻止位置 blockpos = entity.getHangingPosition();
+        double d0 = (double)blockpos.getX() - entity.X坐标 + x;
+        double d1 = (double)blockpos.getY() - entity.Y坐标 + y;
+        double d2 = (double)blockpos.getZ() - entity.Z坐标 + z;
         光照状态经理.理解(d0 + 0.5D, d1 + 0.5D, d2 + 0.5D);
         光照状态经理.辐射(180.0F - entity.旋转侧滑, 0.0F, 1.0F, 0.0F);
         this.renderManager.renderEngine.绑定手感(TextureMap.locationBlocksTexture);
@@ -83,12 +83,12 @@ public class RenderItemFrame extends Render<EntityItemFrame>
         this.renderName(entity, x + (double)((float)entity.facingDirection.getFrontOffsetX() * 0.3F), y - 0.25D, z + (double)((float)entity.facingDirection.getFrontOffsetZ() * 0.3F));
     }
 
-    protected 图像位置 getEntityTexture(EntityItemFrame entity)
+    protected 图像位置 getEntityTexture(实体ItemFrame entity)
     {
         return null;
     }
 
-    private void renderItem(EntityItemFrame itemFrame)
+    private void renderItem(实体ItemFrame itemFrame)
     {
         ItemStack itemstack = itemFrame.getDisplayedItem();
 
@@ -101,8 +101,8 @@ public class RenderItemFrame extends Render<EntityItemFrame>
 
             if (!Config.zoomMode)
             {
-                Entity entity = this.mc.宇轩游玩者;
-                double d0 = itemFrame.getDistanceSq(entity.posX, entity.posY, entity.posZ);
+                实体 实体 = this.mc.宇轩游玩者;
+                double d0 = itemFrame.getDistanceSq(实体.X坐标, 实体.Y坐标, 实体.Z坐标);
 
                 if (d0 > 4096.0D)
                 {
@@ -110,7 +110,7 @@ public class RenderItemFrame extends Render<EntityItemFrame>
                 }
             }
 
-            EntityItem entityitem = new EntityItem(itemFrame.worldObj, 0.0D, 0.0D, 0.0D, itemstack);
+            实体Item entityitem = new 实体Item(itemFrame.worldObj, 0.0D, 0.0D, 0.0D, itemstack);
             Item item = entityitem.getEntityItem().getItem();
             entityitem.getEntityItem().stackSize = 1;
             entityitem.hoverStart = 0.0F;
@@ -158,7 +158,7 @@ public class RenderItemFrame extends Render<EntityItemFrame>
                             double d2 = texturecompass.angleDelta;
                             texturecompass.currentAngle = 0.0D;
                             texturecompass.angleDelta = 0.0D;
-                            texturecompass.updateCompass(itemFrame.worldObj, itemFrame.posX, itemFrame.posZ, (double)MathHelper.wrapAngleTo180_float((float)(180 + itemFrame.facingDirection.getHorizontalIndex() * 90)), false, true);
+                            texturecompass.updateCompass(itemFrame.worldObj, itemFrame.X坐标, itemFrame.Z坐标, (double)MathHelper.wrapAngleTo180_float((float)(180 + itemFrame.facingDirection.getHorizontalIndex() * 90)), false, true);
                             texturecompass.currentAngle = d1;
                             texturecompass.angleDelta = d2;
                         }
@@ -192,9 +192,9 @@ public class RenderItemFrame extends Render<EntityItemFrame>
         }
     }
 
-    protected void renderName(EntityItemFrame entity, double x, double y, double z)
+    protected void renderName(实体ItemFrame entity, double x, double y, double z)
     {
-        if (我的手艺.isGuiEnabled() && entity.getDisplayedItem() != null && entity.getDisplayedItem().hasDisplayName() && this.renderManager.pointedEntity == entity)
+        if (我的手艺.isGuiEnabled() && entity.getDisplayedItem() != null && entity.getDisplayedItem().hasDisplayName() && this.renderManager.pointed实体 == entity)
         {
             float f = 1.6F;
             float f1 = 0.016666668F * f;
@@ -245,7 +245,7 @@ public class RenderItemFrame extends Render<EntityItemFrame>
         }
     }
 
-    private boolean isRenderItem(EntityItemFrame p_isRenderItem_1_)
+    private boolean isRenderItem(实体ItemFrame p_isRenderItem_1_)
     {
         if (Shaders.isShadowPass)
         {
@@ -255,8 +255,8 @@ public class RenderItemFrame extends Render<EntityItemFrame>
         {
             if (!Config.zoomMode)
             {
-                Entity entity = this.mc.getRenderViewEntity();
-                double d0 = p_isRenderItem_1_.getDistanceSq(entity.posX, entity.posY, entity.posZ);
+                实体 实体 = this.mc.getRenderViewEntity();
+                double d0 = p_isRenderItem_1_.getDistanceSq(实体.X坐标, 实体.Y坐标, 实体.Z坐标);
 
                 if (d0 > itemRenderDistanceSq)
                 {

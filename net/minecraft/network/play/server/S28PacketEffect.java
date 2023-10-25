@@ -4,12 +4,12 @@ import java.io.IOException;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 
 public class S28PacketEffect implements Packet<INetHandlerPlayClient>
 {
     private int soundType;
-    private BlockPos soundPos;
+    private 阻止位置 soundPos;
     private int soundData;
     private boolean serverWide;
 
@@ -17,7 +17,7 @@ public class S28PacketEffect implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S28PacketEffect(int soundTypeIn, BlockPos soundPosIn, int soundDataIn, boolean serverWideIn)
+    public S28PacketEffect(int soundTypeIn, 阻止位置 soundPosIn, int soundDataIn, boolean serverWideIn)
     {
         this.soundType = soundTypeIn;
         this.soundPos = soundPosIn;
@@ -61,7 +61,7 @@ public class S28PacketEffect implements Packet<INetHandlerPlayClient>
         return this.soundData;
     }
 
-    public BlockPos getSoundPos()
+    public 阻止位置 getSoundPos()
     {
         return this.soundPos;
     }

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 import net.minecraft.entity.DataWatcher;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
@@ -29,13 +29,13 @@ public class S0CPacketSpawnPlayer implements Packet<INetHandlerPlayClient>
     {
     }
 
-    public S0CPacketSpawnPlayer(EntityPlayer player)
+    public S0CPacketSpawnPlayer(实体Player player)
     {
         this.entityId = player.getEntityId();
         this.playerId = player.getGameProfile().getId();
-        this.x = MathHelper.floor_double(player.posX * 32.0D);
-        this.y = MathHelper.floor_double(player.posY * 32.0D);
-        this.z = MathHelper.floor_double(player.posZ * 32.0D);
+        this.x = MathHelper.floor_double(player.X坐标 * 32.0D);
+        this.y = MathHelper.floor_double(player.Y坐标 * 32.0D);
+        this.z = MathHelper.floor_double(player.Z坐标 * 32.0D);
         this.yaw = (byte)((int)(player.旋转侧滑 * 256.0F / 360.0F));
         this.pitch = (byte)((int)(player.rotationPitch * 256.0F / 360.0F));
         ItemStack itemstack = player.inventory.getCurrentItem();

@@ -6,14 +6,14 @@ import net.minecraft.client.model.ModelDragon;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderDragon;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.实体Dragon;
 import net.optifine.reflect.Reflector;
 
 public class ModelAdapterDragon extends ModelAdapter
 {
     public ModelAdapterDragon()
     {
-        super(EntityDragon.class, "dragon", 0.5F);
+        super(实体Dragon.class, "dragon", 0.5F);
     }
 
     public ModelBase makeModel()

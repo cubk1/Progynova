@@ -3,13 +3,13 @@ package net.minecraft.world.gen.feature;
 import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 public class WorldGenGlowStone2 extends WorldGenerator
 {
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         if (!worldIn.isAirBlock(position))
         {
@@ -25,7 +25,7 @@ public class WorldGenGlowStone2 extends WorldGenerator
 
             for (int i = 0; i < 1500; ++i)
             {
-                BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
+                阻止位置 blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
 
                 if (worldIn.getBlockState(blockpos).getBlock().getMaterial() == Material.air)
                 {

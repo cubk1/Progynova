@@ -9,9 +9,9 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.optifine.config.ConnectedParser;
@@ -393,15 +393,15 @@ public class CustomSkyLayer
 
     private float getPositionBrightnessRaw(World world)
     {
-        Entity entity = 我的手艺.得到我的手艺().getRenderViewEntity();
+        实体 实体 = 我的手艺.得到我的手艺().getRenderViewEntity();
 
-        if (entity == null)
+        if (实体 == null)
         {
             return 0.0F;
         }
         else
         {
-            BlockPos blockpos = entity.getPosition();
+            阻止位置 blockpos = 实体.getPosition();
 
             if (this.biomes != null)
             {

@@ -3,10 +3,10 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelVillager;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.layers.LayerCustomHead;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.实体Villager;
 import net.minecraft.util.图像位置;
 
-public class RenderVillager extends RenderLiving<EntityVillager>
+public class RenderVillager extends RenderLiving<实体Villager>
 {
     private static final 图像位置 villagerTextures = new 图像位置("textures/entity/villager/villager.png");
     private static final 图像位置 farmerVillagerTextures = new 图像位置("textures/entity/villager/farmer.png");
@@ -26,7 +26,7 @@ public class RenderVillager extends RenderLiving<EntityVillager>
         return (ModelVillager)super.getMainModel();
     }
 
-    protected 图像位置 getEntityTexture(EntityVillager entity)
+    protected 图像位置 getEntityTexture(实体Villager entity)
     {
         switch (entity.getProfession())
         {
@@ -50,7 +50,7 @@ public class RenderVillager extends RenderLiving<EntityVillager>
         }
     }
 
-    protected void preRenderCallback(EntityVillager entitylivingbaseIn, float partialTickTime)
+    protected void preRenderCallback(实体Villager entitylivingbaseIn, float partialTickTime)
     {
         float f = 0.9375F;
 

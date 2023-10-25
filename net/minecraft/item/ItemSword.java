@@ -4,12 +4,12 @@ import com.google.common.collect.Multimap;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class ItemSword extends Item
@@ -44,13 +44,13 @@ public class ItemSword extends Item
         }
     }
 
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
+    public boolean hitEntity(ItemStack stack, 实体LivingBase target, 实体LivingBase attacker)
     {
         stack.damageItem(1, attacker);
         return true;
     }
 
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, Block blockIn, BlockPos pos, EntityLivingBase playerIn)
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, Block blockIn, 阻止位置 pos, 实体LivingBase playerIn)
     {
         if ((double)blockIn.getBlockHardness(worldIn, pos) != 0.0D)
         {
@@ -75,7 +75,7 @@ public class ItemSword extends Item
         return 72000;
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         playerIn.setItemInUse(itemStackIn, this.getMaxItemUseDuration(itemStackIn));
         return itemStackIn;

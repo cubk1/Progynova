@@ -14,9 +14,9 @@ import java.util.UUID;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.entity.DataWatcher;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.实体Villager;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.passive.实体Horse;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.图像位置;
@@ -46,36 +46,36 @@ public class RandomEntities
     public static final String PREFIX_MCPATCHER_MOB = "mcpatcher/mob/";
     private static final String[] DEPENDANT_SUFFIXES = new String[] {"_armor", "_eyes", "_exploding", "_shooting", "_fur", "_eyes", "_invulnerable", "_angry", "_tame", "_collar"};
     private static final String PREFIX_DYNAMIC_TEXTURE_HORSE = "horse/";
-    private static final String[] HORSE_TEXTURES = (String[])((String[])ReflectorRaw.getFieldValue((Object)null, EntityHorse.class, String[].class, 2));
-    private static final String[] HORSE_TEXTURES_ABBR = (String[])((String[])ReflectorRaw.getFieldValue((Object)null, EntityHorse.class, String[].class, 3));
+    private static final String[] HORSE_TEXTURES = (String[])((String[])ReflectorRaw.getFieldValue((Object)null, 实体Horse.class, String[].class, 2));
+    private static final String[] HORSE_TEXTURES_ABBR = (String[])((String[])ReflectorRaw.getFieldValue((Object)null, 实体Horse.class, String[].class, 3));
 
-    public static void entityLoaded(Entity entity, World world)
+    public static void entityLoaded(实体 实体, World world)
     {
         if (world != null)
         {
-            DataWatcher datawatcher = entity.getDataWatcher();
-            datawatcher.spawnPosition = entity.getPosition();
+            DataWatcher datawatcher = 实体.getDataWatcher();
+            datawatcher.spawnPosition = 实体.getPosition();
             datawatcher.spawnBiome = world.getBiomeGenForCoords(datawatcher.spawnPosition);
-            UUID uuid = entity.getUniqueID();
+            UUID uuid = 实体.getUniqueID();
 
-            if (entity instanceof EntityVillager)
+            if (实体 instanceof 实体Villager)
             {
-                updateEntityVillager(uuid, (EntityVillager)entity);
+                updateEntityVillager(uuid, (实体Villager) 实体);
             }
         }
     }
 
-    public static void entityUnloaded(Entity entity, World world)
+    public static void entityUnloaded(实体 实体, World world)
     {
     }
 
-    private static void updateEntityVillager(UUID uuid, EntityVillager ev)
+    private static void updateEntityVillager(UUID uuid, 实体Villager ev)
     {
-        Entity entity = IntegratedServerUtils.getEntity(uuid);
+        实体 实体 = IntegratedServerUtils.getEntity(uuid);
 
-        if (entity instanceof EntityVillager)
+        if (实体 instanceof 实体Villager)
         {
-            EntityVillager entityvillager = (EntityVillager)entity;
+            实体Villager entityvillager = (实体Villager) 实体;
             int i = entityvillager.getProfession();
             ev.setProfession(i);
             int j = Reflector.getFieldValueInt(entityvillager, Reflector.EntityVillager_careerId, 0);
@@ -93,12 +93,12 @@ public class RandomEntities
 
             for (int i = 0; i < list.size(); ++i)
             {
-                Entity entity = (Entity)list.get(i);
-                entityLoaded(entity, newWorld);
+                实体 实体 = (实体)list.get(i);
+                entityLoaded(实体, newWorld);
             }
         }
 
-        randomEntity.setEntity((Entity)null);
+        randomEntity.setEntity((实体)null);
         randomTileEntity.setTileEntity((TileEntity)null);
     }
 
@@ -183,9 +183,9 @@ public class RandomEntities
 
     private static IRandomEntity getRandomEntityRendered()
     {
-        if (renderGlobal.renderedEntity != null)
+        if (renderGlobal.rendered实体 != null)
         {
-            randomEntity.setEntity(renderGlobal.renderedEntity);
+            randomEntity.setEntity(renderGlobal.rendered实体);
             return randomEntity;
         }
         else

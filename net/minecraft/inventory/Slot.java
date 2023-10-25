@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.ItemStack;
 
 public class Slot
@@ -43,7 +43,7 @@ public class Slot
     {
     }
 
-    public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
+    public void onPickupFromSlot(实体Player playerIn, ItemStack stack)
     {
         this.onSlotChanged();
     }
@@ -99,7 +99,7 @@ public class Slot
         return inv == this.inventory && slotIn == this.slotIndex;
     }
 
-    public boolean canTakeStack(EntityPlayer playerIn)
+    public boolean canTakeStack(实体Player playerIn)
     {
         return true;
     }

@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -273,7 +273,7 @@ public class ChunkProviderEnd implements IChunkProvider
     public void populate(IChunkProvider chunkProvider, int x, int z)
     {
         BlockFalling.fallInstantly = true;
-        BlockPos blockpos = new BlockPos(x * 16, 0, z * 16);
+        阻止位置 blockpos = new 阻止位置(x * 16, 0, z * 16);
         this.endWorld.getBiomeGenForCoords(blockpos.add(16, 0, 16)).decorate(this.endWorld, this.endWorld.rand, blockpos);
         BlockFalling.fallInstantly = false;
     }
@@ -307,12 +307,12 @@ public class ChunkProviderEnd implements IChunkProvider
         return "RandomLevelSource";
     }
 
-    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, 阻止位置 pos)
     {
         return this.endWorld.getBiomeGenForCoords(pos).getSpawnableList(creatureType);
     }
 
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position)
+    public 阻止位置 getStrongholdGen(World worldIn, String structureName, 阻止位置 position)
     {
         return null;
     }
@@ -326,8 +326,8 @@ public class ChunkProviderEnd implements IChunkProvider
     {
     }
 
-    public Chunk provideChunk(BlockPos blockPosIn)
+    public Chunk provideChunk(阻止位置 阻止位置In)
     {
-        return this.provideChunk(blockPosIn.getX() >> 4, blockPosIn.getZ() >> 4);
+        return this.provideChunk(阻止位置In.getX() >> 4, 阻止位置In.getZ() >> 4);
     }
 }

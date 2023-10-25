@@ -3,11 +3,11 @@ package net.optifine.util;
 import java.util.UUID;
 
 import net.minecraft.client.我的手艺;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
@@ -62,7 +62,7 @@ public class IntegratedServerUtils
         }
     }
 
-    public static Entity getEntity(UUID uuid)
+    public static 实体 getEntity(UUID uuid)
     {
         WorldServer worldserver = getWorldServer();
 
@@ -72,12 +72,12 @@ public class IntegratedServerUtils
         }
         else
         {
-            Entity entity = worldserver.getEntityFromUuid(uuid);
-            return entity;
+            实体 实体 = worldserver.getEntityFromUuid(uuid);
+            return 实体;
         }
     }
 
-    public static TileEntity getTileEntity(BlockPos pos)
+    public static TileEntity getTileEntity(阻止位置 pos)
     {
         WorldServer worldserver = getWorldServer();
 

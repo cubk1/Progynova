@@ -40,15 +40,15 @@ import net.minecraft.client.shader.ShaderLinkHelper;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.实体ItemFrame;
+import net.minecraft.entity.monster.实体Creeper;
+import net.minecraft.entity.monster.实体Enderman;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.entity.boss.BossStatus;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.monster.实体Spider;
+import net.minecraft.entity.passive.实体Animal;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
@@ -57,7 +57,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.src.Config;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.交流组分文本;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EntitySelectors;
@@ -111,7 +111,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     public ItemRenderer itemRenderer;
     private final MapItemRenderer theMapItemRenderer;
     private int rendererUpdateCount;
-    private Entity pointedEntity;
+    private 实体 pointed实体;
     private MouseFilter mouseFilterXAxis = new MouseFilter();
     private MouseFilter mouseFilterYAxis = new MouseFilter();
     private float thirdPersonDistance = 4.0F;
@@ -218,7 +218,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         this.useShader = !this.useShader;
     }
 
-    public void loadEntityShader(Entity entityIn)
+    public void loadEntityShader(实体 实体In)
     {
         if (OpenGlHelper.shadersSupported)
         {
@@ -229,28 +229,28 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
             this.theShaderGroup = null;
 
-            if (entityIn instanceof EntityCreeper)
+            if (实体In instanceof 实体Creeper)
             {
                 this.loadShader(new 图像位置("shaders/post/creeper.json"));
             }
-            else if (entityIn instanceof EntitySpider)
+            else if (实体In instanceof 实体Spider)
             {
                 this.loadShader(new 图像位置("shaders/post/spider.json"));
             }
-            else if (entityIn instanceof EntityEnderman)
+            else if (实体In instanceof 实体Enderman)
             {
                 this.loadShader(new 图像位置("shaders/post/invert.json"));
             }
             else if (Reflector.ForgeHooksClient_loadEntityShader.exists())
             {
-                Reflector.call(Reflector.ForgeHooksClient_loadEntityShader, new Object[] {entityIn, this});
+                Reflector.call(Reflector.ForgeHooksClient_loadEntityShader, new Object[] {实体In, this});
             }
         }
     }
 
     public void activateNextShader()
     {
-        if (OpenGlHelper.shadersSupported && this.mc.getRenderViewEntity() instanceof EntityPlayer)
+        if (OpenGlHelper.shadersSupported && this.mc.getRenderViewEntity() instanceof 实体Player)
         {
             if (this.theShaderGroup != null)
             {
@@ -349,11 +349,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.mc.setRenderViewEntity(this.mc.宇轩游玩者);
         }
 
-        Entity entity = this.mc.getRenderViewEntity();
-        double d2 = entity.posX;
-        double d0 = entity.posY + (double)entity.getEyeHeight();
-        double d1 = entity.posZ;
-        float f2 = this.mc.宇轩の世界.getLightBrightness(new BlockPos(d2, d0, d1));
+        实体 实体 = this.mc.getRenderViewEntity();
+        double d2 = 实体.X坐标;
+        double d0 = 实体.Y坐标 + (double) 实体.getEyeHeight();
+        double d1 = 实体.Z坐标;
+        float f2 = this.mc.宇轩の世界.getLightBrightness(new 阻止位置(d2, d0, d1));
         float f3 = (float)this.mc.游戏一窝.renderDistanceChunks / 16.0F;
         f3 = MathHelper.clamp_float(f3, 0.0F, 1.0F);
         float f4 = f2 * (1.0F - f3) + f3;
@@ -400,16 +400,16 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     public void getMouseOver(float partialTicks)
     {
-        Entity entity = this.mc.getRenderViewEntity();
+        实体 实体 = this.mc.getRenderViewEntity();
 
-        if (entity != null && this.mc.宇轩の世界 != null)
+        if (实体 != null && this.mc.宇轩の世界 != null)
         {
             this.mc.mcProfiler.startSection("pick");
-            this.mc.pointedEntity = null;
+            this.mc.pointed实体 = null;
             double d0 = (double)this.mc.玩家控制者.getBlockReachDistance();
-            this.mc.objectMouseOver = entity.rayTrace(d0, partialTicks);
+            this.mc.objectMouseOver = 实体.rayTrace(d0, partialTicks);
             double d1 = d0;
-            Vec3 vec3 = entity.getPositionEyes(partialTicks);
+            Vec3 vec3 = 实体.getPositionEyes(partialTicks);
             boolean flag = false;
             int i = 3;
 
@@ -428,14 +428,14 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 d1 = this.mc.objectMouseOver.hitVec.distanceTo(vec3);
             }
 
-            Vec3 vec31 = entity.getLook(partialTicks);
+            Vec3 vec31 = 实体.getLook(partialTicks);
             Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
-            this.pointedEntity = null;
+            this.pointed实体 = null;
             Vec3 vec33 = null;
             float f = 1.0F;
-            List<Entity> list = this.mc.宇轩の世界.getEntitiesInAABBexcluding(entity, entity.getEntityBoundingBox().addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand((double)f, (double)f, (double)f), Predicates.and(EntitySelectors.NOT_SPECTATING, new Predicate<Entity>()
+            List<实体> list = this.mc.宇轩の世界.getEntitiesInAABBexcluding(实体, 实体.getEntityBoundingBox().addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand((double)f, (double)f, (double)f), Predicates.and(EntitySelectors.NOT_SPECTATING, new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
                     return p_apply_1_.canBeCollidedWith();
                 }
@@ -444,16 +444,16 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
             for (int j = 0; j < list.size(); ++j)
             {
-                Entity entity1 = (Entity)list.get(j);
-                float f1 = entity1.getCollisionBorderSize();
-                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand((double)f1, (double)f1, (double)f1);
+                实体 实体1 = (实体)list.get(j);
+                float f1 = 实体1.getCollisionBorderSize();
+                AxisAlignedBB axisalignedbb = 实体1.getEntityBoundingBox().expand((double)f1, (double)f1, (double)f1);
                 MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
 
                 if (axisalignedbb.isVecInside(vec3))
                 {
                     if (d2 >= 0.0D)
                     {
-                        this.pointedEntity = entity1;
+                        this.pointed实体 = 实体1;
                         vec33 = movingobjectposition == null ? vec3 : movingobjectposition.hitVec;
                         d2 = 0.0D;
                     }
@@ -468,20 +468,20 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
                         if (Reflector.ForgeEntity_canRiderInteract.exists())
                         {
-                            flag1 = Reflector.callBoolean(entity1, Reflector.ForgeEntity_canRiderInteract, new Object[0]);
+                            flag1 = Reflector.callBoolean(实体1, Reflector.ForgeEntity_canRiderInteract, new Object[0]);
                         }
 
-                        if (!flag1 && entity1 == entity.ridingEntity)
+                        if (!flag1 && 实体1 == 实体.riding实体)
                         {
                             if (d2 == 0.0D)
                             {
-                                this.pointedEntity = entity1;
+                                this.pointed实体 = 实体1;
                                 vec33 = movingobjectposition.hitVec;
                             }
                         }
                         else
                         {
-                            this.pointedEntity = entity1;
+                            this.pointed实体 = 实体1;
                             vec33 = movingobjectposition.hitVec;
                             d2 = d3;
                         }
@@ -489,19 +489,19 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 }
             }
 
-            if (this.pointedEntity != null && flag && vec3.distanceTo(vec33) > 3.0D)
+            if (this.pointed实体 != null && flag && vec3.distanceTo(vec33) > 3.0D)
             {
-                this.pointedEntity = null;
-                this.mc.objectMouseOver = new MovingObjectPosition(MovingObjectPosition.MovingObjectType.MISS, vec33, (EnumFacing)null, new BlockPos(vec33));
+                this.pointed实体 = null;
+                this.mc.objectMouseOver = new MovingObjectPosition(MovingObjectPosition.MovingObjectType.MISS, vec33, (EnumFacing)null, new 阻止位置(vec33));
             }
 
-            if (this.pointedEntity != null && (d2 < d1 || this.mc.objectMouseOver == null))
+            if (this.pointed实体 != null && (d2 < d1 || this.mc.objectMouseOver == null))
             {
-                this.mc.objectMouseOver = new MovingObjectPosition(this.pointedEntity, vec33);
+                this.mc.objectMouseOver = new MovingObjectPosition(this.pointed实体, vec33);
 
-                if (this.pointedEntity instanceof EntityLivingBase || this.pointedEntity instanceof EntityItemFrame)
+                if (this.pointed实体 instanceof 实体LivingBase || this.pointed实体 instanceof 实体ItemFrame)
                 {
-                    this.mc.pointedEntity = this.pointedEntity;
+                    this.mc.pointed实体 = this.pointed实体;
                 }
             }
 
@@ -541,7 +541,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
         else
         {
-            Entity entity = this.mc.getRenderViewEntity();
+            实体 实体 = this.mc.getRenderViewEntity();
             float f = 70.0F;
 
             if (useFOVSetting)
@@ -586,28 +586,28 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 this.mc.renderGlobal.displayListEntitiesDirty = true;
             }
 
-            if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).getHealth() <= 0.0F)
+            if (实体 instanceof 实体LivingBase && ((实体LivingBase) 实体).getHealth() <= 0.0F)
             {
-                float f1 = (float)((EntityLivingBase)entity).deathTime + partialTicks;
+                float f1 = (float)((实体LivingBase) 实体).deathTime + partialTicks;
                 f /= (1.0F - 500.0F / (f1 + 500.0F)) * 2.0F + 1.0F;
             }
 
-            Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.宇轩の世界, entity, partialTicks);
+            Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.宇轩の世界, 实体, partialTicks);
 
             if (block.getMaterial() == Material.water)
             {
                 f = f * 60.0F / 70.0F;
             }
 
-            return Reflector.ForgeHooksClient_getFOVModifier.exists() ? Reflector.callFloat(Reflector.ForgeHooksClient_getFOVModifier, new Object[] {this, entity, block, Float.valueOf(partialTicks), Float.valueOf(f)}): f;
+            return Reflector.ForgeHooksClient_getFOVModifier.exists() ? Reflector.callFloat(Reflector.ForgeHooksClient_getFOVModifier, new Object[] {this, 实体, block, Float.valueOf(partialTicks), Float.valueOf(f)}): f;
         }
     }
 
     private void hurtCameraEffect(float partialTicks)
     {
-        if (this.mc.getRenderViewEntity() instanceof EntityLivingBase)
+        if (this.mc.getRenderViewEntity() instanceof 实体LivingBase)
         {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)this.mc.getRenderViewEntity();
+            实体LivingBase entitylivingbase = (实体LivingBase)this.mc.getRenderViewEntity();
             float f = (float)entitylivingbase.hurtTime - partialTicks;
 
             if (entitylivingbase.getHealth() <= 0.0F)
@@ -632,9 +632,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     private void setupViewBobbing(float partialTicks)
     {
-        if (this.mc.getRenderViewEntity() instanceof EntityPlayer)
+        if (this.mc.getRenderViewEntity() instanceof 实体Player)
         {
-            EntityPlayer entityplayer = (EntityPlayer)this.mc.getRenderViewEntity();
+            实体Player entityplayer = (实体Player)this.mc.getRenderViewEntity();
             float f = entityplayer.distanceWalkedModified - entityplayer.prevDistanceWalkedModified;
             float f1 = -(entityplayer.distanceWalkedModified + f * partialTicks);
             float f2 = entityplayer.prevCameraYaw + (entityplayer.cameraYaw - entityplayer.prevCameraYaw) * partialTicks;
@@ -648,26 +648,26 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     private void orientCamera(float partialTicks)
     {
-        Entity entity = this.mc.getRenderViewEntity();
-        float f = entity.getEyeHeight();
-        double d0 = entity.prevPosX + (entity.posX - entity.prevPosX) * (double)partialTicks;
-        double d1 = entity.prevPosY + (entity.posY - entity.prevPosY) * (double)partialTicks + (double)f;
-        double d2 = entity.prevPosZ + (entity.posZ - entity.prevPosZ) * (double)partialTicks;
+        实体 实体 = this.mc.getRenderViewEntity();
+        float f = 实体.getEyeHeight();
+        double d0 = 实体.prevPosX + (实体.X坐标 - 实体.prevPosX) * (double)partialTicks;
+        double d1 = 实体.prevPosY + (实体.Y坐标 - 实体.prevPosY) * (double)partialTicks + (double)f;
+        double d2 = 实体.prevPosZ + (实体.Z坐标 - 实体.prevPosZ) * (double)partialTicks;
 
-        if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).isPlayerSleeping())
+        if (实体 instanceof 实体LivingBase && ((实体LivingBase) 实体).isPlayerSleeping())
         {
             f = (float)((double)f + 1.0D);
             光照状态经理.理解(0.0F, 0.3F, 0.0F);
 
             if (!this.mc.游戏一窝.debugCamEnable)
             {
-                BlockPos blockpos = new BlockPos(entity);
+                阻止位置 blockpos = new 阻止位置(实体);
                 IBlockState iblockstate = this.mc.宇轩の世界.getBlockState(blockpos);
                 Block block = iblockstate.getBlock();
 
                 if (Reflector.ForgeHooksClient_orientBedCamera.exists())
                 {
-                    Reflector.callVoid(Reflector.ForgeHooksClient_orientBedCamera, new Object[] {this.mc.宇轩の世界, blockpos, iblockstate, entity});
+                    Reflector.callVoid(Reflector.ForgeHooksClient_orientBedCamera, new Object[] {this.mc.宇轩の世界, blockpos, iblockstate, 实体});
                 }
                 else if (block == Blocks.bed)
                 {
@@ -675,8 +675,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
                     光照状态经理.辐射((float)(j * 90), 0.0F, 1.0F, 0.0F);
                 }
 
-                光照状态经理.辐射(entity.prevRotationYaw + (entity.旋转侧滑 - entity.prevRotationYaw) * partialTicks + 180.0F, 0.0F, -1.0F, 0.0F);
-                光照状态经理.辐射(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, -1.0F, 0.0F, 0.0F);
+                光照状态经理.辐射(实体.prevRotationYaw + (实体.旋转侧滑 - 实体.prevRotationYaw) * partialTicks + 180.0F, 0.0F, -1.0F, 0.0F);
+                光照状态经理.辐射(实体.prevRotationPitch + (实体.rotationPitch - 实体.prevRotationPitch) * partialTicks, -1.0F, 0.0F, 0.0F);
             }
         }
         else if (this.mc.游戏一窝.thirdPersonView > 0)
@@ -689,8 +689,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
             }
             else
             {
-                float f1 = entity.旋转侧滑;
-                float f2 = entity.rotationPitch;
+                float f1 = 实体.旋转侧滑;
+                float f2 = 实体.rotationPitch;
 
                 if (this.mc.游戏一窝.thirdPersonView == 2)
                 {
@@ -727,11 +727,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
                     光照状态经理.辐射(180.0F, 0.0F, 1.0F, 0.0F);
                 }
 
-                光照状态经理.辐射(entity.rotationPitch - f2, 1.0F, 0.0F, 0.0F);
-                光照状态经理.辐射(entity.旋转侧滑 - f1, 0.0F, 1.0F, 0.0F);
+                光照状态经理.辐射(实体.rotationPitch - f2, 1.0F, 0.0F, 0.0F);
+                光照状态经理.辐射(实体.旋转侧滑 - f1, 0.0F, 1.0F, 0.0F);
                 光照状态经理.理解(0.0F, 0.0F, (float)(-d3));
-                光照状态经理.辐射(f1 - entity.旋转侧滑, 0.0F, 1.0F, 0.0F);
-                光照状态经理.辐射(f2 - entity.rotationPitch, 1.0F, 0.0F, 0.0F);
+                光照状态经理.辐射(f1 - 实体.旋转侧滑, 0.0F, 1.0F, 0.0F);
+                光照状态经理.辐射(f2 - 实体.rotationPitch, 1.0F, 0.0F, 0.0F);
             }
         }
         else
@@ -743,18 +743,18 @@ public class EntityRenderer implements IResourceManagerReloadListener
         {
             if (!this.mc.游戏一窝.debugCamEnable)
             {
-                float f6 = entity.prevRotationYaw + (entity.旋转侧滑 - entity.prevRotationYaw) * partialTicks + 180.0F;
-                float f7 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
+                float f6 = 实体.prevRotationYaw + (实体.旋转侧滑 - 实体.prevRotationYaw) * partialTicks + 180.0F;
+                float f7 = 实体.prevRotationPitch + (实体.rotationPitch - 实体.prevRotationPitch) * partialTicks;
                 float f8 = 0.0F;
 
-                if (entity instanceof EntityAnimal)
+                if (实体 instanceof 实体Animal)
                 {
-                    EntityAnimal entityanimal1 = (EntityAnimal)entity;
+                    实体Animal entityanimal1 = (实体Animal) 实体;
                     f6 = entityanimal1.prevRotationYawHead + (entityanimal1.rotationYawHead - entityanimal1.prevRotationYawHead) * partialTicks + 180.0F;
                 }
 
-                Block block1 = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.宇轩の世界, entity, partialTicks);
-                Object object = Reflector.newInstance(Reflector.EntityViewRenderEvent_CameraSetup_Constructor, new Object[] {this, entity, block1, Float.valueOf(partialTicks), Float.valueOf(f6), Float.valueOf(f7), Float.valueOf(f8)});
+                Block block1 = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.宇轩の世界, 实体, partialTicks);
+                Object object = Reflector.newInstance(Reflector.EntityViewRenderEvent_CameraSetup_Constructor, new Object[] {this, 实体, block1, Float.valueOf(partialTicks), Float.valueOf(f6), Float.valueOf(f7), Float.valueOf(f8)});
                 Reflector.postForgeBusEvent(object);
                 f8 = Reflector.getFieldValueFloat(object, Reflector.EntityViewRenderEvent_CameraSetup_roll, f8);
                 f7 = Reflector.getFieldValueFloat(object, Reflector.EntityViewRenderEvent_CameraSetup_pitch, f7);
@@ -766,23 +766,23 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
         else if (!this.mc.游戏一窝.debugCamEnable)
         {
-            光照状态经理.辐射(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 1.0F, 0.0F, 0.0F);
+            光照状态经理.辐射(实体.prevRotationPitch + (实体.rotationPitch - 实体.prevRotationPitch) * partialTicks, 1.0F, 0.0F, 0.0F);
 
-            if (entity instanceof EntityAnimal)
+            if (实体 instanceof 实体Animal)
             {
-                EntityAnimal entityanimal = (EntityAnimal)entity;
+                实体Animal entityanimal = (实体Animal) 实体;
                 光照状态经理.辐射(entityanimal.prevRotationYawHead + (entityanimal.rotationYawHead - entityanimal.prevRotationYawHead) * partialTicks + 180.0F, 0.0F, 1.0F, 0.0F);
             }
             else
             {
-                光照状态经理.辐射(entity.prevRotationYaw + (entity.旋转侧滑 - entity.prevRotationYaw) * partialTicks + 180.0F, 0.0F, 1.0F, 0.0F);
+                光照状态经理.辐射(实体.prevRotationYaw + (实体.旋转侧滑 - 实体.prevRotationYaw) * partialTicks + 180.0F, 0.0F, 1.0F, 0.0F);
             }
         }
 
         光照状态经理.理解(0.0F, -f, 0.0F);
-        d0 = entity.prevPosX + (entity.posX - entity.prevPosX) * (double)partialTicks;
-        d1 = entity.prevPosY + (entity.posY - entity.prevPosY) * (double)partialTicks + (double)f;
-        d2 = entity.prevPosZ + (entity.posZ - entity.prevPosZ) * (double)partialTicks;
+        d0 = 实体.prevPosX + (实体.X坐标 - 实体.prevPosX) * (double)partialTicks;
+        d1 = 实体.prevPosY + (实体.Y坐标 - 实体.prevPosY) * (double)partialTicks + (double)f;
+        d2 = 实体.prevPosZ + (实体.Z坐标 - 实体.prevPosZ) * (double)partialTicks;
         this.cloudFog = this.mc.renderGlobal.hasCloudFog(d0, d1, d2, partialTicks);
     }
 
@@ -928,7 +928,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                     this.setupViewBobbing(p_renderHand_1_);
                 }
 
-                flag = this.mc.getRenderViewEntity() instanceof EntityLivingBase && ((EntityLivingBase)this.mc.getRenderViewEntity()).isPlayerSleeping();
+                flag = this.mc.getRenderViewEntity() instanceof 实体LivingBase && ((实体LivingBase)this.mc.getRenderViewEntity()).isPlayerSleeping();
                 boolean flag1 = !ReflectorForge.renderFirstPersonHand(this.mc.renderGlobal, p_renderHand_1_, p_renderHand_2_);
 
                 if (flag1 && this.mc.游戏一窝.thirdPersonView == 0 && !flag && !this.mc.游戏一窝.hideGUI && !this.mc.玩家控制者.isSpectator())
@@ -1163,7 +1163,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
     }
 
-    public float getNightVisionBrightness(EntityLivingBase entitylivingbaseIn, float partialTicks)
+    public float getNightVisionBrightness(实体LivingBase entitylivingbaseIn, float partialTicks)
     {
         int i = entitylivingbaseIn.getActivePotionEffect(Potion.nightVision).getDuration();
         return i > 200 ? 1.0F : 0.7F + MathHelper.sin(((float)i - partialTicks) * (float)Math.PI * 0.2F) * 0.3F;
@@ -1369,16 +1369,16 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
         else
         {
-            Entity entity = this.mc.getRenderViewEntity();
-            boolean flag = entity instanceof EntityPlayer && !this.mc.游戏一窝.hideGUI;
+            实体 实体 = this.mc.getRenderViewEntity();
+            boolean flag = 实体 instanceof 实体Player && !this.mc.游戏一窝.hideGUI;
 
-            if (flag && !((EntityPlayer)entity).capabilities.allowEdit)
+            if (flag && !((实体Player) 实体).capabilities.allowEdit)
             {
-                ItemStack itemstack = ((EntityPlayer)entity).getCurrentEquippedItem();
+                ItemStack itemstack = ((实体Player) 实体).getCurrentEquippedItem();
 
                 if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
                 {
-                    BlockPos blockpos = this.mc.objectMouseOver.getBlockPos();
+                    阻止位置 blockpos = this.mc.objectMouseOver.getBlockPos();
                     IBlockState iblockstate = this.mc.宇轩の世界.getBlockState(blockpos);
                     Block block = iblockstate.getBlock();
 
@@ -1401,7 +1401,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     {
         if (this.mc.游戏一窝.showDebugInfo && !this.mc.游戏一窝.hideGUI && !this.mc.宇轩游玩者.hasReducedDebug() && !this.mc.游戏一窝.reducedDebugInfo)
         {
-            Entity entity = this.mc.getRenderViewEntity();
+            实体 实体 = this.mc.getRenderViewEntity();
             光照状态经理.启用混合品();
             光照状态经理.tryBlendFuncSeparate(770, 771, 1, 0);
             GL11.glLineWidth(1.0F);
@@ -1411,7 +1411,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             光照状态经理.matrixMode(5888);
             光照状态经理.loadIdentity();
             this.orientCamera(partialTicks);
-            光照状态经理.理解(0.0F, entity.getEyeHeight(), 0.0F);
+            光照状态经理.理解(0.0F, 实体.getEyeHeight(), 0.0F);
             RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.005D, 1.0E-4D, 1.0E-4D), 255, 0, 0, 255);
             RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0E-4D, 1.0E-4D, 0.005D), 0, 0, 255, 255);
             RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0E-4D, 0.0033D, 1.0E-4D), 0, 255, 0, 255);
@@ -1507,10 +1507,10 @@ public class EntityRenderer implements IResourceManagerReloadListener
         this.mc.mcProfiler.endStartSection("culling");
         clippinghelper.disabled = Config.isShaders() && !Shaders.isFrustumCulling();
         ICamera icamera = new Frustum(clippinghelper);
-        Entity entity = this.mc.getRenderViewEntity();
-        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
-        double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
-        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
+        实体 实体 = this.mc.getRenderViewEntity();
+        double d0 = 实体.lastTickPosX + (实体.X坐标 - 实体.lastTickPosX) * (double)partialTicks;
+        double d1 = 实体.lastTickPosY + (实体.Y坐标 - 实体.lastTickPosY) * (double)partialTicks;
+        double d2 = 实体.lastTickPosZ + (实体.Z坐标 - 实体.lastTickPosZ) * (double)partialTicks;
 
         if (flag)
         {
@@ -1555,7 +1555,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         this.setupFog(0, partialTicks);
         光照状态经理.shadeModel(7425);
 
-        if (entity.posY + (double)entity.getEyeHeight() < 128.0D + (double)(this.mc.游戏一窝.ofCloudsHeight * 128.0F))
+        if (实体.Y坐标 + (double) 实体.getEyeHeight() < 128.0D + (double)(this.mc.游戏一窝.ofCloudsHeight * 128.0F))
         {
             this.renderCloudsCheck(renderglobal, partialTicks, pass);
         }
@@ -1565,15 +1565,15 @@ public class EntityRenderer implements IResourceManagerReloadListener
         this.mc.得到手感经理().绑定手感(TextureMap.locationBlocksTexture);
         RenderHelper.disableStandardItemLighting();
         this.mc.mcProfiler.endStartSection("terrain_setup");
-        this.checkLoadVisibleChunks(entity, partialTicks, icamera, this.mc.宇轩游玩者.isSpectator());
+        this.checkLoadVisibleChunks(实体, partialTicks, icamera, this.mc.宇轩游玩者.isSpectator());
 
         if (flag)
         {
-            ShadersRender.setupTerrain(renderglobal, entity, (double)partialTicks, icamera, this.frameCount++, this.mc.宇轩游玩者.isSpectator());
+            ShadersRender.setupTerrain(renderglobal, 实体, (double)partialTicks, icamera, this.frameCount++, this.mc.宇轩游玩者.isSpectator());
         }
         else
         {
-            renderglobal.setupTerrain(entity, (double)partialTicks, icamera, this.frameCount++, this.mc.宇轩游玩者.isSpectator());
+            renderglobal.setupTerrain(实体, (double)partialTicks, icamera, this.frameCount++, this.mc.宇轩游玩者.isSpectator());
         }
 
         if (pass == 0 || pass == 2)
@@ -1603,7 +1603,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             ShadersRender.beginTerrainSolid();
         }
 
-        renderglobal.renderBlockLayer(EnumWorldBlockLayer.SOLID, (double)partialTicks, pass, entity);
+        renderglobal.renderBlockLayer(EnumWorldBlockLayer.SOLID, (double)partialTicks, pass, 实体);
         光照状态经理.启用希腊字母表的第1个字母();
 
         if (flag)
@@ -1612,7 +1612,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
 
         this.mc.得到手感经理().getTexture(TextureMap.locationBlocksTexture).setBlurMipmap(false, this.mc.游戏一窝.mipmapLevels > 0);
-        renderglobal.renderBlockLayer(EnumWorldBlockLayer.CUTOUT_MIPPED, (double)partialTicks, pass, entity);
+        renderglobal.renderBlockLayer(EnumWorldBlockLayer.CUTOUT_MIPPED, (double)partialTicks, pass, 实体);
         this.mc.得到手感经理().getTexture(TextureMap.locationBlocksTexture).restoreLastBlurMipmap();
         this.mc.得到手感经理().getTexture(TextureMap.locationBlocksTexture).setBlurMipmap(false, false);
 
@@ -1621,7 +1621,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             ShadersRender.beginTerrainCutout();
         }
 
-        renderglobal.renderBlockLayer(EnumWorldBlockLayer.CUTOUT, (double)partialTicks, pass, entity);
+        renderglobal.renderBlockLayer(EnumWorldBlockLayer.CUTOUT, (double)partialTicks, pass, 实体);
         this.mc.得到手感经理().getTexture(TextureMap.locationBlocksTexture).restoreLastBlurMipmap();
 
         if (flag)
@@ -1646,7 +1646,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 Reflector.callVoid(Reflector.ForgeHooksClient_setRenderPass, new Object[] {Integer.valueOf(0)});
             }
 
-            renderglobal.renderEntities(entity, icamera, partialTicks);
+            renderglobal.renderEntities(实体, icamera, partialTicks);
 
             if (Reflector.ForgeHooksClient_setRenderPass.exists())
             {
@@ -1659,9 +1659,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
             光照状态经理.流行音乐黑客帝国();
             光照状态经理.推黑客帝国();
 
-            if (this.mc.objectMouseOver != null && entity.isInsideOfMaterial(Material.water) && flag1)
+            if (this.mc.objectMouseOver != null && 实体.isInsideOfMaterial(Material.water) && flag1)
             {
-                EntityPlayer entityplayer = (EntityPlayer)entity;
+                实体Player entityplayer = (实体Player) 实体;
                 光照状态经理.禁用希腊字母表的第1个字母();
                 this.mc.mcProfiler.endStartSection("outline");
                 renderglobal.drawSelectionBox(entityplayer, this.mc.objectMouseOver, 0, partialTicks);
@@ -1672,9 +1672,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
         光照状态经理.matrixMode(5888);
         光照状态经理.流行音乐黑客帝国();
 
-        if (flag1 && this.mc.objectMouseOver != null && !entity.isInsideOfMaterial(Material.water))
+        if (flag1 && this.mc.objectMouseOver != null && !实体.isInsideOfMaterial(Material.water))
         {
-            EntityPlayer entityplayer1 = (EntityPlayer)entity;
+            实体Player entityplayer1 = (实体Player) 实体;
             光照状态经理.禁用希腊字母表的第1个字母();
             this.mc.mcProfiler.endStartSection("outline");
 
@@ -1691,7 +1691,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             光照状态经理.启用混合品();
             光照状态经理.tryBlendFuncSeparate(770, 1, 1, 0);
             this.mc.得到手感经理().getTexture(TextureMap.locationBlocksTexture).setBlurMipmap(false, false);
-            renderglobal.drawBlockDamageTexture(Tessellator.getInstance(), Tessellator.getInstance().getWorldRenderer(), entity, partialTicks);
+            renderglobal.drawBlockDamageTexture(Tessellator.getInstance(), Tessellator.getInstance().getWorldRenderer(), 实体, partialTicks);
             this.mc.得到手感经理().getTexture(TextureMap.locationBlocksTexture).restoreLastBlurMipmap();
             光照状态经理.禁用混合品();
         }
@@ -1709,7 +1709,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 Shaders.beginLitParticles();
             }
 
-            effectrenderer.renderLitParticles(entity, partialTicks);
+            effectrenderer.renderLitParticles(实体, partialTicks);
             RenderHelper.disableStandardItemLighting();
             this.setupFog(0, partialTicks);
             this.mc.mcProfiler.endStartSection("particles");
@@ -1719,7 +1719,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 Shaders.beginParticles();
             }
 
-            effectrenderer.renderParticles(entity, partialTicks);
+            effectrenderer.renderParticles(实体, partialTicks);
 
             if (flag)
             {
@@ -1752,7 +1752,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
 
         光照状态经理.depthMask(true);
-        renderglobal.renderWorldBorder(entity, partialTicks);
+        renderglobal.renderWorldBorder(实体, partialTicks);
 
         if (flag)
         {
@@ -1776,7 +1776,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             Shaders.beginWater();
         }
 
-        renderglobal.renderBlockLayer(EnumWorldBlockLayer.TRANSLUCENT, (double)partialTicks, pass, entity);
+        renderglobal.renderBlockLayer(EnumWorldBlockLayer.TRANSLUCENT, (double)partialTicks, pass, 实体);
 
         if (flag)
         {
@@ -1788,7 +1788,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             RenderHelper.enableStandardItemLighting();
             this.mc.mcProfiler.endStartSection("entities");
             Reflector.callVoid(Reflector.ForgeHooksClient_setRenderPass, new Object[] {Integer.valueOf(1)});
-            this.mc.renderGlobal.renderEntities(entity, icamera, partialTicks);
+            this.mc.renderGlobal.renderEntities(实体, icamera, partialTicks);
             光照状态经理.tryBlendFuncSeparate(770, 771, 1, 0);
             Reflector.callVoid(Reflector.ForgeHooksClient_setRenderPass, new Object[] {Integer.valueOf(-1)});
             RenderHelper.disableStandardItemLighting();
@@ -1800,7 +1800,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         光照状态经理.禁用混合品();
         光照状态经理.disableFog();
 
-        if (entity.posY + (double)entity.getEyeHeight() >= 128.0D + (double)(this.mc.游戏一窝.ofCloudsHeight * 128.0F))
+        if (实体.Y坐标 + (double) 实体.getEyeHeight() >= 128.0D + (double)(this.mc.游戏一窝.ofCloudsHeight * 128.0F))
         {
             this.mc.mcProfiler.endStartSection("aboveClouds");
             this.renderCloudsCheck(renderglobal, partialTicks, pass);
@@ -1875,9 +1875,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
         if (f != 0.0F && Config.isRainSplash())
         {
             this.random.setSeed((long)this.rendererUpdateCount * 312987231L);
-            Entity entity = this.mc.getRenderViewEntity();
+            实体 实体 = this.mc.getRenderViewEntity();
             World world = this.mc.宇轩の世界;
-            BlockPos blockpos = new BlockPos(entity);
+            阻止位置 blockpos = new 阻止位置(实体);
             int i = 10;
             double d0 = 0.0D;
             double d1 = 0.0D;
@@ -1896,9 +1896,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
             for (int l = 0; l < k; ++l)
             {
-                BlockPos blockpos1 = world.getPrecipitationHeight(blockpos.add(this.random.nextInt(i) - this.random.nextInt(i), 0, this.random.nextInt(i) - this.random.nextInt(i)));
+                阻止位置 blockpos1 = world.getPrecipitationHeight(blockpos.add(this.random.nextInt(i) - this.random.nextInt(i), 0, this.random.nextInt(i) - this.random.nextInt(i)));
                 BiomeGenBase biomegenbase = world.getBiomeGenForCoords(blockpos1);
-                BlockPos blockpos2 = blockpos1.down();
+                阻止位置 blockpos2 = blockpos1.down();
                 Block block = world.getBlockState(blockpos2).getBlock();
 
                 if (blockpos1.getY() <= blockpos.getY() + i && blockpos1.getY() >= blockpos.getY() - i && biomegenbase.canRain() && biomegenbase.getFloatTemperature(blockpos1) >= 0.15F)
@@ -1967,11 +1967,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
             }
 
             this.enableLightmap();
-            Entity entity = this.mc.getRenderViewEntity();
+            实体 实体 = this.mc.getRenderViewEntity();
             World world = this.mc.宇轩の世界;
-            int i = MathHelper.floor_double(entity.posX);
-            int j = MathHelper.floor_double(entity.posY);
-            int k = MathHelper.floor_double(entity.posZ);
+            int i = MathHelper.floor_double(实体.X坐标);
+            int j = MathHelper.floor_double(实体.Y坐标);
+            int k = MathHelper.floor_double(实体.Z坐标);
             Tessellator tessellator = Tessellator.getInstance();
             WorldRenderer worldrenderer = tessellator.getWorldRenderer();
             光照状态经理.disableCull();
@@ -1979,9 +1979,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
             光照状态经理.启用混合品();
             光照状态经理.tryBlendFuncSeparate(770, 771, 1, 0);
             光照状态经理.alphaFunc(516, 0.1F);
-            double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
-            double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
-            double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
+            double d0 = 实体.lastTickPosX + (实体.X坐标 - 实体.lastTickPosX) * (double)partialTicks;
+            double d1 = 实体.lastTickPosY + (实体.Y坐标 - 实体.lastTickPosY) * (double)partialTicks;
+            double d2 = 实体.lastTickPosZ + (实体.Z坐标 - 实体.lastTickPosZ) * (double)partialTicks;
             int l = MathHelper.floor_double(d1);
             int i1 = 5;
 
@@ -1994,7 +1994,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             float f = (float)this.rendererUpdateCount + partialTicks;
             worldrenderer.setTranslation(-d0, -d1, -d2);
             光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
-            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+            阻止位置.Mutable阻止位置 blockpos$mutableblockpos = new 阻止位置.Mutable阻止位置();
 
             for (int k1 = k - i1; k1 <= k + i1; ++k1)
             {
@@ -2050,8 +2050,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
                                 }
 
                                 double d5 = ((double)(this.rendererUpdateCount + l1 * l1 * 3121 + l1 * 45238971 + k1 * k1 * 418711 + k1 * 13761 & 31) + (double)partialTicks) / 32.0D * (3.0D + this.random.nextDouble());
-                                double d6 = (double)((float)l1 + 0.5F) - entity.posX;
-                                double d7 = (double)((float)k1 + 0.5F) - entity.posZ;
+                                double d6 = (double)((float)l1 + 0.5F) - 实体.X坐标;
+                                double d7 = (double)((float)k1 + 0.5F) - 实体.Z坐标;
                                 float f2 = MathHelper.sqrt_double(d6 * d6 + d7 * d7) / (float)i1;
                                 float f3 = ((1.0F - f2 * f2) * 0.5F + 0.5F) * f5;
                                 blockpos$mutableblockpos.set(l1, i3, k1);
@@ -2080,8 +2080,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
                                 double d8 = (double)(((float)(this.rendererUpdateCount & 511) + partialTicks) / 512.0F);
                                 double d9 = this.random.nextDouble() + (double)f * 0.01D * (double)((float)this.random.nextGaussian());
                                 double d10 = this.random.nextDouble() + (double)(f * (float)this.random.nextGaussian()) * 0.001D;
-                                double d11 = (double)((float)l1 + 0.5F) - entity.posX;
-                                double d12 = (double)((float)k1 + 0.5F) - entity.posZ;
+                                double d11 = (double)((float)l1 + 0.5F) - 实体.X坐标;
+                                double d12 = (double)((float)k1 + 0.5F) - 实体.Z坐标;
                                 float f6 = MathHelper.sqrt_double(d11 * d11 + d12 * d12) / (float)i1;
                                 float f4 = ((1.0F - f6 * f6) * 0.3F + 0.5F) * f5;
                                 blockpos$mutableblockpos.set(l1, i3, k1);
@@ -2126,7 +2126,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     private void updateFogColor(float partialTicks)
     {
         World world = this.mc.宇轩の世界;
-        Entity entity = this.mc.getRenderViewEntity();
+        实体 实体 = this.mc.getRenderViewEntity();
         float f = 0.25F + 0.75F * (float)this.mc.游戏一窝.renderDistanceChunks / 32.0F;
         f = 1.0F - (float)Math.pow((double)f, 0.25D);
         Vec3 vec3 = world.getSkyColor(this.mc.getRenderViewEntity(), partialTicks);
@@ -2144,7 +2144,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         {
             double d0 = -1.0D;
             Vec3 vec32 = MathHelper.sin(world.getCelestialAngleRadians(partialTicks)) > 0.0F ? new Vec3(d0, 0.0D, 0.0D) : new Vec3(1.0D, 0.0D, 0.0D);
-            float f5 = (float)entity.getLook(partialTicks).dotProduct(vec32);
+            float f5 = (float) 实体.getLook(partialTicks).dotProduct(vec32);
 
             if (f5 < 0.0F)
             {
@@ -2189,7 +2189,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.fogColorBlue *= f11;
         }
 
-        Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.宇轩の世界, entity, partialTicks);
+        Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.宇轩の世界, 实体, partialTicks);
 
         if (this.cloudFog)
         {
@@ -2200,10 +2200,10 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
         else if (block.getMaterial() == Material.water)
         {
-            float f12 = (float)EnchantmentHelper.getRespiration(entity) * 0.2F;
+            float f12 = (float)EnchantmentHelper.getRespiration(实体) * 0.2F;
             f12 = Config.limit(f12, 0.0F, 0.6F);
 
-            if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).isPotionActive(Potion.waterBreathing))
+            if (实体 instanceof 实体LivingBase && ((实体LivingBase) 实体).isPotionActive(Potion.waterBreathing))
             {
                 f12 = f12 * 0.3F + 0.6F;
             }
@@ -2211,7 +2211,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.fogColorRed = 0.02F + f12;
             this.fogColorGreen = 0.02F + f12;
             this.fogColorBlue = 0.2F + f12;
-            Vec3 vec35 = CustomColors.getUnderwaterColor(this.mc.宇轩の世界, this.mc.getRenderViewEntity().posX, this.mc.getRenderViewEntity().posY + 1.0D, this.mc.getRenderViewEntity().posZ);
+            Vec3 vec35 = CustomColors.getUnderwaterColor(this.mc.宇轩の世界, this.mc.getRenderViewEntity().X坐标, this.mc.getRenderViewEntity().Y坐标 + 1.0D, this.mc.getRenderViewEntity().Z坐标);
 
             if (vec35 != null)
             {
@@ -2225,7 +2225,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.fogColorRed = 0.6F;
             this.fogColorGreen = 0.1F;
             this.fogColorBlue = 0.0F;
-            Vec3 vec34 = CustomColors.getUnderlavaColor(this.mc.宇轩の世界, this.mc.getRenderViewEntity().posX, this.mc.getRenderViewEntity().posY + 1.0D, this.mc.getRenderViewEntity().posZ);
+            Vec3 vec34 = CustomColors.getUnderlavaColor(this.mc.宇轩の世界, this.mc.getRenderViewEntity().X坐标, this.mc.getRenderViewEntity().Y坐标 + 1.0D, this.mc.getRenderViewEntity().Z坐标);
 
             if (vec34 != null)
             {
@@ -2239,11 +2239,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
         this.fogColorRed *= f13;
         this.fogColorGreen *= f13;
         this.fogColorBlue *= f13;
-        double d1 = (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks) * world.provider.getVoidFogYFactor();
+        double d1 = (实体.lastTickPosY + (实体.Y坐标 - 实体.lastTickPosY) * (double)partialTicks) * world.provider.getVoidFogYFactor();
 
-        if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).isPotionActive(Potion.blindness))
+        if (实体 instanceof 实体LivingBase && ((实体LivingBase) 实体).isPotionActive(Potion.blindness))
         {
-            int i = ((EntityLivingBase)entity).getActivePotionEffect(Potion.blindness).getDuration();
+            int i = ((实体LivingBase) 实体).getActivePotionEffect(Potion.blindness).getDuration();
 
             if (i < 20)
             {
@@ -2276,9 +2276,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.fogColorBlue = this.fogColorBlue * (1.0F - f14) + this.fogColorBlue * 0.6F * f14;
         }
 
-        if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).isPotionActive(Potion.nightVision))
+        if (实体 instanceof 实体LivingBase && ((实体LivingBase) 实体).isPotionActive(Potion.nightVision))
         {
-            float f15 = this.getNightVisionBrightness((EntityLivingBase)entity, partialTicks);
+            float f15 = this.getNightVisionBrightness((实体LivingBase) 实体, partialTicks);
             float f6 = 1.0F / this.fogColorRed;
 
             if (f6 > 1.0F / this.fogColorGreen)
@@ -2313,7 +2313,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         if (Reflector.EntityViewRenderEvent_FogColors_Constructor.exists())
         {
-            Object object = Reflector.newInstance(Reflector.EntityViewRenderEvent_FogColors_Constructor, new Object[] {this, entity, block, Float.valueOf(partialTicks), Float.valueOf(this.fogColorRed), Float.valueOf(this.fogColorGreen), Float.valueOf(this.fogColorBlue)});
+            Object object = Reflector.newInstance(Reflector.EntityViewRenderEvent_FogColors_Constructor, new Object[] {this, 实体, block, Float.valueOf(partialTicks), Float.valueOf(this.fogColorRed), Float.valueOf(this.fogColorGreen), Float.valueOf(this.fogColorBlue)});
             Reflector.postForgeBusEvent(object);
             this.fogColorRed = Reflector.getFieldValueFloat(object, Reflector.EntityViewRenderEvent_FogColors_red, this.fogColorRed);
             this.fogColorGreen = Reflector.getFieldValueFloat(object, Reflector.EntityViewRenderEvent_FogColors_green, this.fogColorGreen);
@@ -2326,33 +2326,33 @@ public class EntityRenderer implements IResourceManagerReloadListener
     private void setupFog(int startCoords, float partialTicks)
     {
         this.fogStandard = false;
-        Entity entity = this.mc.getRenderViewEntity();
+        实体 实体 = this.mc.getRenderViewEntity();
         boolean flag = false;
 
-        if (entity instanceof EntityPlayer)
+        if (实体 instanceof 实体Player)
         {
-            flag = ((EntityPlayer)entity).capabilities.isCreativeMode;
+            flag = ((实体Player) 实体).capabilities.isCreativeMode;
         }
 
         GL11.glFog(GL11.GL_FOG_COLOR, (FloatBuffer)this.setFogColorBuffer(this.fogColorRed, this.fogColorGreen, this.fogColorBlue, 1.0F));
         GL11.glNormal3f(0.0F, -1.0F, 0.0F);
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
-        Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.宇轩の世界, entity, partialTicks);
+        Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.宇轩の世界, 实体, partialTicks);
         float f = -1.0F;
 
         if (Reflector.ForgeHooksClient_getFogDensity.exists())
         {
-            f = Reflector.callFloat(Reflector.ForgeHooksClient_getFogDensity, new Object[] {this, entity, block, Float.valueOf(partialTicks), Float.valueOf(0.1F)});
+            f = Reflector.callFloat(Reflector.ForgeHooksClient_getFogDensity, new Object[] {this, 实体, block, Float.valueOf(partialTicks), Float.valueOf(0.1F)});
         }
 
         if (f >= 0.0F)
         {
             光照状态经理.setFogDensity(f);
         }
-        else if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).isPotionActive(Potion.blindness))
+        else if (实体 instanceof 实体LivingBase && ((实体LivingBase) 实体).isPotionActive(Potion.blindness))
         {
             float f4 = 5.0F;
-            int i = ((EntityLivingBase)entity).getActivePotionEffect(Potion.blindness).getDuration();
+            int i = ((实体LivingBase) 实体).getActivePotionEffect(Potion.blindness).getDuration();
 
             if (i < 20)
             {
@@ -2387,13 +2387,13 @@ public class EntityRenderer implements IResourceManagerReloadListener
             光照状态经理.setFog(2048);
             float f1 = Config.isClearWater() ? 0.02F : 0.1F;
 
-            if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).isPotionActive(Potion.waterBreathing))
+            if (实体 instanceof 实体LivingBase && ((实体LivingBase) 实体).isPotionActive(Potion.waterBreathing))
             {
                 光照状态经理.setFogDensity(0.01F);
             }
             else
             {
-                float f2 = 0.1F - (float)EnchantmentHelper.getRespiration(entity) * 0.03F;
+                float f2 = 0.1F - (float)EnchantmentHelper.getRespiration(实体) * 0.03F;
                 光照状态经理.setFogDensity(Config.limit(f2, 0.0F, f1));
             }
         }
@@ -2432,7 +2432,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 }
             }
 
-            if (this.mc.宇轩の世界.provider.doesXZShowFog((int)entity.posX, (int)entity.posZ))
+            if (this.mc.宇轩の世界.provider.doesXZShowFog((int) 实体.X坐标, (int) 实体.Z坐标))
             {
                 光照状态经理.setFogStart(f3 * 0.05F);
                 光照状态经理.setFogEnd(f3);
@@ -2440,7 +2440,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
             if (Reflector.ForgeHooksClient_onFogRender.exists())
             {
-                Reflector.callVoid(Reflector.ForgeHooksClient_onFogRender, new Object[] {this, entity, block, Float.valueOf(partialTicks), Integer.valueOf(startCoords), Float.valueOf(f3)});
+                Reflector.callVoid(Reflector.ForgeHooksClient_onFogRender, new Object[] {this, 实体, block, Float.valueOf(partialTicks), Integer.valueOf(startCoords), Float.valueOf(f3)});
             }
         }
 
@@ -2708,7 +2708,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
     }
 
-    private void checkLoadVisibleChunks(Entity p_checkLoadVisibleChunks_1_, float p_checkLoadVisibleChunks_2_, ICamera p_checkLoadVisibleChunks_3_, boolean p_checkLoadVisibleChunks_4_)
+    private void checkLoadVisibleChunks(实体 p_checkLoadVisibleChunks_1_, float p_checkLoadVisibleChunks_2_, ICamera p_checkLoadVisibleChunks_3_, boolean p_checkLoadVisibleChunks_4_)
     {
         int i = 201435902;
 
@@ -2732,7 +2732,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
     }
 
-    private void loadAllVisibleChunks(Entity p_loadAllVisibleChunks_1_, double p_loadAllVisibleChunks_2_, ICamera p_loadAllVisibleChunks_4_, boolean p_loadAllVisibleChunks_5_)
+    private void loadAllVisibleChunks(实体 p_loadAllVisibleChunks_1_, double p_loadAllVisibleChunks_2_, ICamera p_loadAllVisibleChunks_4_, boolean p_loadAllVisibleChunks_5_)
     {
         int i = this.mc.游戏一窝.ofChunkUpdates;
         boolean flag = this.mc.游戏一窝.ofLazyChunkLoading;

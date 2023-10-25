@@ -11,12 +11,12 @@ import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体Living;
 import net.minecraft.src.Config;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
@@ -25,7 +25,7 @@ import net.optifine.entity.model.IEntityRenderer;
 import net.optifine.shaders.Shaders;
 import org.lwjgl.opengl.GL11;
 
-public abstract class Render<T extends Entity> implements IEntityRenderer
+public abstract class Render<T extends 实体> implements IEntityRenderer
 {
     private static final 图像位置 shadowTextures = new 图像位置("textures/misc/shadow.png");
     protected final RenderManager renderManager;
@@ -45,7 +45,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
 
         if (axisalignedbb.hasNaN() || axisalignedbb.getAverageEdgeLength() == 0.0D)
         {
-            axisalignedbb = new AxisAlignedBB(livingEntity.posX - 2.0D, livingEntity.posY - 2.0D, livingEntity.posZ - 2.0D, livingEntity.posX + 2.0D, livingEntity.posY + 2.0D, livingEntity.posZ + 2.0D);
+            axisalignedbb = new AxisAlignedBB(livingEntity.X坐标 - 2.0D, livingEntity.Y坐标 - 2.0D, livingEntity.Z坐标 - 2.0D, livingEntity.X坐标 + 2.0D, livingEntity.Y坐标 + 2.0D, livingEntity.Z坐标 + 2.0D);
         }
 
         return livingEntity.isInRangeToRender3d(camX, camY, camZ) && (livingEntity.ignoreFrustumCheck || camera.isBoundingBoxInFrustum(axisalignedbb));
@@ -101,7 +101,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
         this.renderManager.renderEngine.绑定手感(location);
     }
 
-    private void renderEntityOnFire(Entity entity, double x, double y, double z, float partialTicks)
+    private void renderEntityOnFire(实体 实体, double x, double y, double z, float partialTicks)
     {
         光照状态经理.disableLighting();
         TextureMap texturemap = 我的手艺.得到我的手艺().getTextureMapBlocks();
@@ -109,14 +109,14 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
         TextureAtlasSprite textureatlassprite1 = texturemap.getAtlasSprite("minecraft:blocks/fire_layer_1");
         光照状态经理.推黑客帝国();
         光照状态经理.理解((float)x, (float)y, (float)z);
-        float f = entity.width * 1.4F;
+        float f = 实体.width * 1.4F;
         光照状态经理.障眼物(f, f, f);
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         float f1 = 0.5F;
         float f2 = 0.0F;
-        float f3 = entity.height / f;
-        float f4 = (float)(entity.posY - entity.getEntityBoundingBox().minY);
+        float f3 = 实体.height / f;
+        float f4 = (float)(实体.Y坐标 - 实体.getEntityBoundingBox().minY);
         光照状态经理.辐射(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         光照状态经理.理解(0.0F, 0.0F, -0.3F + (float)((int)f3) * 0.02F);
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
@@ -171,7 +171,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
         光照状态经理.enableLighting();
     }
 
-    private void renderShadow(Entity entityIn, double x, double y, double z, float shadowAlpha, float partialTicks)
+    private void renderShadow(实体 实体In, double x, double y, double z, float shadowAlpha, float partialTicks)
     {
         if (!Config.isShaders() || !Shaders.shouldSkipDefaultShadow)
         {
@@ -182,9 +182,9 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             光照状态经理.depthMask(false);
             float f = this.shadowSize;
 
-            if (entityIn instanceof EntityLiving)
+            if (实体In instanceof 实体Living)
             {
-                EntityLiving entityliving = (EntityLiving)entityIn;
+                实体Living entityliving = (实体Living) 实体In;
                 f *= entityliving.getRenderSizeModifier();
 
                 if (entityliving.isChild())
@@ -193,9 +193,9 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
                 }
             }
 
-            double d5 = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double)partialTicks;
-            double d0 = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double)partialTicks;
-            double d1 = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * (double)partialTicks;
+            double d5 = 实体In.lastTickPosX + (实体In.X坐标 - 实体In.lastTickPosX) * (double)partialTicks;
+            double d0 = 实体In.lastTickPosY + (实体In.Y坐标 - 实体In.lastTickPosY) * (double)partialTicks;
+            double d1 = 实体In.lastTickPosZ + (实体In.Z坐标 - 实体In.lastTickPosZ) * (double)partialTicks;
             int i = MathHelper.floor_double(d5 - (double)f);
             int j = MathHelper.floor_double(d5 + (double)f);
             int k = MathHelper.floor_double(d0 - (double)f);
@@ -209,7 +209,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             WorldRenderer worldrenderer = tessellator.getWorldRenderer();
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
 
-            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(new BlockPos(i, k, i1), new BlockPos(j, l, j1)))
+            for (阻止位置 blockpos : 阻止位置.getAllInBoxMutable(new 阻止位置(i, k, i1), new 阻止位置(j, l, j1)))
             {
                 Block block = world.getBlockState(blockpos.down()).getBlock();
 
@@ -231,7 +231,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
         return this.renderManager.worldObj;
     }
 
-    private void renderShadowBlock(Block blockIn, double p_180549_2_, double p_180549_4_, double p_180549_6_, BlockPos pos, float p_180549_9_, float p_180549_10_, double p_180549_11_, double p_180549_13_, double p_180549_15_)
+    private void renderShadowBlock(Block blockIn, double p_180549_2_, double p_180549_4_, double p_180549_6_, 阻止位置 pos, float p_180549_9_, float p_180549_10_, double p_180549_11_, double p_180549_13_, double p_180549_15_)
     {
         if (blockIn.isFullCube())
         {
@@ -300,24 +300,24 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
         光照状态经理.启用手感();
     }
 
-    public void doRenderShadowAndFire(Entity entityIn, double x, double y, double z, float yaw, float partialTicks)
+    public void doRenderShadowAndFire(实体 实体In, double x, double y, double z, float yaw, float partialTicks)
     {
         if (this.renderManager.options != null)
         {
-            if (this.renderManager.options.entityShadows && this.shadowSize > 0.0F && !entityIn.isInvisible() && this.renderManager.isRenderShadow())
+            if (this.renderManager.options.entityShadows && this.shadowSize > 0.0F && !实体In.isInvisible() && this.renderManager.isRenderShadow())
             {
-                double d0 = this.renderManager.getDistanceToCamera(entityIn.posX, entityIn.posY, entityIn.posZ);
+                double d0 = this.renderManager.getDistanceToCamera(实体In.X坐标, 实体In.Y坐标, 实体In.Z坐标);
                 float f = (float)((1.0D - d0 / 256.0D) * (double)this.shadowOpaque);
 
                 if (f > 0.0F)
                 {
-                    this.renderShadow(entityIn, x, y, z, f, partialTicks);
+                    this.renderShadow(实体In, x, y, z, f, partialTicks);
                 }
             }
 
-            if (entityIn.canRenderOnFire() && (!(entityIn instanceof EntityPlayer) || !((EntityPlayer)entityIn).isSpectator()))
+            if (实体In.canRenderOnFire() && (!(实体In instanceof 实体Player) || !((实体Player) 实体In).isSpectator()))
             {
-                this.renderEntityOnFire(entityIn, x, y, z, partialTicks);
+                this.renderEntityOnFire(实体In, x, y, z, partialTicks);
             }
         }
     }

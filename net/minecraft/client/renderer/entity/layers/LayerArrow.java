@@ -6,12 +6,12 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.projectile.实体Arrow;
 import net.minecraft.util.MathHelper;
 
-public class LayerArrow implements LayerRenderer<EntityLivingBase>
+public class LayerArrow implements LayerRenderer<实体LivingBase>
 {
     private final RendererLivingEntity field_177168_a;
 
@@ -20,13 +20,13 @@ public class LayerArrow implements LayerRenderer<EntityLivingBase>
         this.field_177168_a = p_i46124_1_;
     }
 
-    public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体LivingBase entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         int i = entitylivingbaseIn.getArrowCountInEntity();
 
         if (i > 0)
         {
-            Entity entity = new EntityArrow(entitylivingbaseIn.worldObj, entitylivingbaseIn.posX, entitylivingbaseIn.posY, entitylivingbaseIn.posZ);
+            实体 实体 = new 实体Arrow(entitylivingbaseIn.worldObj, entitylivingbaseIn.X坐标, entitylivingbaseIn.Y坐标, entitylivingbaseIn.Z坐标);
             Random random = new Random((long)entitylivingbaseIn.getEntityId());
             RenderHelper.disableStandardItemLighting();
 
@@ -50,12 +50,12 @@ public class LayerArrow implements LayerRenderer<EntityLivingBase>
                 f1 = f1 * -1.0F;
                 f2 = f2 * -1.0F;
                 float f6 = MathHelper.sqrt_float(f * f + f2 * f2);
-                entity.prevRotationYaw = entity.旋转侧滑 = (float)(Math.atan2((double)f, (double)f2) * 180.0D / Math.PI);
-                entity.prevRotationPitch = entity.rotationPitch = (float)(Math.atan2((double)f1, (double)f6) * 180.0D / Math.PI);
+                实体.prevRotationYaw = 实体.旋转侧滑 = (float)(Math.atan2((double)f, (double)f2) * 180.0D / Math.PI);
+                实体.prevRotationPitch = 实体.rotationPitch = (float)(Math.atan2((double)f1, (double)f6) * 180.0D / Math.PI);
                 double d0 = 0.0D;
                 double d1 = 0.0D;
                 double d2 = 0.0D;
-                this.field_177168_a.getRenderManager().renderEntityWithPosYaw(entity, d0, d1, d2, 0.0F, partialTicks);
+                this.field_177168_a.getRenderManager().renderEntityWithPosYaw(实体, d0, d1, d2, 0.0F, partialTicks);
                 光照状态经理.流行音乐黑客帝国();
             }
 

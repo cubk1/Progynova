@@ -1,13 +1,13 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.实体Living;
 
 public class EntityAIOpenDoor extends EntityAIDoorInteract
 {
     boolean closeDoor;
     int closeDoorTemporisation;
 
-    public EntityAIOpenDoor(EntityLiving entitylivingIn, boolean shouldClose)
+    public EntityAIOpenDoor(实体Living entitylivingIn, boolean shouldClose)
     {
         super(entitylivingIn);
         this.theEntity = entitylivingIn;

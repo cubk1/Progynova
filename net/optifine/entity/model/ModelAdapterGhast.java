@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelGhast;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderGhast;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.实体Ghast;
 import net.minecraft.src.Config;
 import net.optifine.reflect.Reflector;
 
@@ -14,7 +14,7 @@ public class ModelAdapterGhast extends ModelAdapter
 {
     public ModelAdapterGhast()
     {
-        super(EntityGhast.class, "ghast", 0.5F);
+        super(实体Ghast.class, "ghast", 0.5F);
     }
 
     public ModelBase makeModel()

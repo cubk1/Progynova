@@ -7,7 +7,7 @@ import java.util.Random;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
@@ -169,8 +169,8 @@ public class ChunkProviderFlat implements IChunkProvider
     {
         int i = x * 16;
         int j = z * 16;
-        BlockPos blockpos = new BlockPos(i, 0, j);
-        BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(new BlockPos(i + 16, 0, j + 16));
+        阻止位置 blockpos = new 阻止位置(i, 0, j);
+        BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(new 阻止位置(i + 16, 0, j + 16));
         boolean flag = false;
         this.random.setSeed(this.worldObj.getSeed());
         long k = this.random.nextLong() / 2L * 2L + 1L;
@@ -195,7 +195,7 @@ public class ChunkProviderFlat implements IChunkProvider
 
         if (this.lavaLakeGenerator != null && !flag && this.random.nextInt(8) == 0)
         {
-            BlockPos blockpos1 = blockpos.add(this.random.nextInt(16) + 8, this.random.nextInt(this.random.nextInt(248) + 8), this.random.nextInt(16) + 8);
+            阻止位置 blockpos1 = blockpos.add(this.random.nextInt(16) + 8, this.random.nextInt(this.random.nextInt(248) + 8), this.random.nextInt(16) + 8);
 
             if (blockpos1.getY() < this.worldObj.getSeaLevel() || this.random.nextInt(10) == 0)
             {
@@ -246,13 +246,13 @@ public class ChunkProviderFlat implements IChunkProvider
         return "FlatLevelSource";
     }
 
-    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, 阻止位置 pos)
     {
         BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
         return biomegenbase.getSpawnableList(creatureType);
     }
 
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position)
+    public 阻止位置 getStrongholdGen(World worldIn, String structureName, 阻止位置 position)
     {
         if ("Stronghold".equals(structureName))
         {
@@ -281,8 +281,8 @@ public class ChunkProviderFlat implements IChunkProvider
         }
     }
 
-    public Chunk provideChunk(BlockPos blockPosIn)
+    public Chunk provideChunk(阻止位置 阻止位置In)
     {
-        return this.provideChunk(blockPosIn.getX() >> 4, blockPosIn.getZ() >> 4);
+        return this.provideChunk(阻止位置In.getX() >> 4, 阻止位置In.getZ() >> 4);
     }
 }

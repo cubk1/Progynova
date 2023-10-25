@@ -3,9 +3,9 @@ package net.minecraft.world.biome;
 import java.util.Random;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
-import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.实体Horse;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -18,7 +18,7 @@ public class BiomeGenSavanna extends BiomeGenBase
     protected BiomeGenSavanna(int id)
     {
         super(id);
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHorse.class, 1, 2, 6));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Horse.class, 1, 2, 6));
         this.theBiomeDecorator.treesPerChunk = 1;
         this.theBiomeDecorator.flowersPerChunk = 4;
         this.theBiomeDecorator.grassPerChunk = 20;
@@ -38,7 +38,7 @@ public class BiomeGenSavanna extends BiomeGenBase
         return biomegenbase;
     }
 
-    public void decorate(World worldIn, Random rand, BlockPos pos)
+    public void decorate(World worldIn, Random rand, 阻止位置 pos)
     {
         DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.GRASS);
 
@@ -81,7 +81,7 @@ public class BiomeGenSavanna extends BiomeGenBase
             this.generateBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
         }
 
-        public void decorate(World worldIn, Random rand, BlockPos pos)
+        public void decorate(World worldIn, Random rand, 阻止位置 pos)
         {
             this.theBiomeDecorator.decorate(worldIn, rand, this, pos);
         }

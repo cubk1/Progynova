@@ -5,13 +5,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.renderer.entity.RenderCow;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.实体Cow;
 
 public class ModelAdapterCow extends ModelAdapterQuadruped
 {
     public ModelAdapterCow()
     {
-        super(EntityCow.class, "cow", 0.7F);
+        super(实体Cow.class, "cow", 0.7F);
     }
 
     public ModelBase makeModel()

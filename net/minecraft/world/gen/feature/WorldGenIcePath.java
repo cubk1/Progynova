@@ -3,7 +3,7 @@ package net.minecraft.world.gen.feature;
 import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class WorldGenIcePath extends WorldGenerator
@@ -16,7 +16,7 @@ public class WorldGenIcePath extends WorldGenerator
         this.basePathWidth = p_i45454_1_;
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public boolean generate(World worldIn, Random rand, 阻止位置 position)
     {
         while (worldIn.isAirBlock(position) && position.getY() > 2)
         {
@@ -43,7 +43,7 @@ public class WorldGenIcePath extends WorldGenerator
                     {
                         for (int k1 = position.getY() - j; k1 <= position.getY() + j; ++k1)
                         {
-                            BlockPos blockpos = new BlockPos(k, k1, l);
+                            阻止位置 blockpos = new 阻止位置(k, k1, l);
                             Block block = worldIn.getBlockState(blockpos).getBlock();
 
                             if (block == Blocks.dirt || block == Blocks.snow || block == Blocks.ice)

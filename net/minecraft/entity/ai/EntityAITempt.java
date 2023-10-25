@@ -1,28 +1,28 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体Creature;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 
 public class EntityAITempt extends EntityAIBase
 {
-    private EntityCreature temptedEntity;
+    private 实体Creature temptedEntity;
     private double speed;
     private double targetX;
     private double targetY;
     private double targetZ;
     private double pitch;
     private double yaw;
-    private EntityPlayer temptingPlayer;
+    private 实体Player temptingPlayer;
     private int delayTemptCounter;
     private boolean isRunning;
     private Item temptItem;
     private boolean scaredByPlayerMovement;
     private boolean avoidWater;
 
-    public EntityAITempt(EntityCreature temptedEntityIn, double speedIn, Item temptItemIn, boolean scaredByPlayerMovementIn)
+    public EntityAITempt(实体Creature temptedEntityIn, double speedIn, Item temptItemIn, boolean scaredByPlayerMovementIn)
     {
         this.temptedEntity = temptedEntityIn;
         this.speed = speedIn;
@@ -77,9 +77,9 @@ public class EntityAITempt extends EntityAIBase
             }
             else
             {
-                this.targetX = this.temptingPlayer.posX;
-                this.targetY = this.temptingPlayer.posY;
-                this.targetZ = this.temptingPlayer.posZ;
+                this.targetX = this.temptingPlayer.X坐标;
+                this.targetY = this.temptingPlayer.Y坐标;
+                this.targetZ = this.temptingPlayer.Z坐标;
             }
 
             this.pitch = (double)this.temptingPlayer.rotationPitch;
@@ -91,9 +91,9 @@ public class EntityAITempt extends EntityAIBase
 
     public void startExecuting()
     {
-        this.targetX = this.temptingPlayer.posX;
-        this.targetY = this.temptingPlayer.posY;
-        this.targetZ = this.temptingPlayer.posZ;
+        this.targetX = this.temptingPlayer.X坐标;
+        this.targetY = this.temptingPlayer.Y坐标;
+        this.targetZ = this.temptingPlayer.Z坐标;
         this.isRunning = true;
         this.avoidWater = ((PathNavigateGround)this.temptedEntity.getNavigator()).getAvoidsWater();
         ((PathNavigateGround)this.temptedEntity.getNavigator()).setAvoidsWater(false);

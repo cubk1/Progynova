@@ -12,7 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class BlockNetherWart extends BlockBush
@@ -34,12 +34,12 @@ public class BlockNetherWart extends BlockBush
         return ground == Blocks.soul_sand;
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    public boolean canBlockStay(World worldIn, 阻止位置 pos, IBlockState state)
     {
         return this.canPlaceBlockOn(worldIn.getBlockState(pos.down()).getBlock());
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World worldIn, 阻止位置 pos, IBlockState state, Random rand)
     {
         int i = ((Integer)state.getValue(AGE)).intValue();
 
@@ -52,7 +52,7 @@ public class BlockNetherWart extends BlockBush
         super.updateTick(worldIn, pos, state, rand);
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, 阻止位置 pos, IBlockState state, float chance, int fortune)
     {
         if (!worldIn.isRemote)
         {
@@ -85,7 +85,7 @@ public class BlockNetherWart extends BlockBush
         return 0;
     }
 
-    public Item getItem(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, 阻止位置 pos)
     {
         return Items.nether_wart;
     }

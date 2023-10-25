@@ -3,11 +3,11 @@ package net.minecraft.client.renderer.entity.layers;
 import net.minecraft.client.model.ModelWither;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.entity.RenderWither;
-import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.boss.实体Wither;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 
-public class LayerWitherAura implements LayerRenderer<EntityWither>
+public class LayerWitherAura implements LayerRenderer<实体Wither>
 {
     private static final 图像位置 WITHER_ARMOR = new 图像位置("textures/entity/wither/wither_armor.png");
     private final RenderWither witherRenderer;
@@ -18,7 +18,7 @@ public class LayerWitherAura implements LayerRenderer<EntityWither>
         this.witherRenderer = witherRendererIn;
     }
 
-    public void doRenderLayer(EntityWither entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(实体Wither entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
     {
         if (entitylivingbaseIn.isArmored())
         {

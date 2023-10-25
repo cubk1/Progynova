@@ -1,10 +1,10 @@
 package net.minecraft.command;
 
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.network.play.server.S29PacketSoundEffect;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.Vec3;
 
 public class CommandPlaySound extends CommandBase
@@ -34,7 +34,7 @@ public class CommandPlaySound extends CommandBase
         {
             int i = 0;
             String s = args[i++];
-            EntityPlayerMP entityplayermp = getPlayer(sender, args[i++]);
+            实体PlayerMP entityplayermp = getPlayer(sender, args[i++]);
             Vec3 vec3 = sender.getPositionVector();
             double d0 = vec3.xCoord;
 
@@ -88,16 +88,16 @@ public class CommandPlaySound extends CommandBase
                     throw new CommandException("commands.playsound.playerTooFar", new Object[] {entityplayermp.getName()});
                 }
 
-                double d8 = d0 - entityplayermp.posX;
-                double d9 = d1 - entityplayermp.posY;
-                double d10 = d2 - entityplayermp.posZ;
+                double d8 = d0 - entityplayermp.X坐标;
+                double d9 = d1 - entityplayermp.Y坐标;
+                double d10 = d2 - entityplayermp.Z坐标;
                 double d11 = Math.sqrt(d8 * d8 + d9 * d9 + d10 * d10);
 
                 if (d11 > 0.0D)
                 {
-                    d0 = entityplayermp.posX + d8 / d11 * 2.0D;
-                    d1 = entityplayermp.posY + d9 / d11 * 2.0D;
-                    d2 = entityplayermp.posZ + d10 / d11 * 2.0D;
+                    d0 = entityplayermp.X坐标 + d8 / d11 * 2.0D;
+                    d1 = entityplayermp.Y坐标 + d9 / d11 * 2.0D;
+                    d2 = entityplayermp.Z坐标 + d10 / d11 * 2.0D;
                 }
 
                 d3 = d5;
@@ -108,7 +108,7 @@ public class CommandPlaySound extends CommandBase
         }
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, 阻止位置 pos)
     {
         return args.length == 2 ? getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames()) : (args.length > 2 && args.length <= 5 ? func_175771_a(args, 2, pos) : null);
     }

@@ -1,6 +1,6 @@
 package net.minecraft.client.player.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.IChatComponent;
@@ -17,7 +17,7 @@ public class LocalBlockIntercommunication implements IInteractionObject
         this.displayName = displayNameIn;
     }
 
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    public Container createContainer(InventoryPlayer playerInventory, 实体Player playerIn)
     {
         throw new UnsupportedOperationException();
     }

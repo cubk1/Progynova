@@ -1,7 +1,7 @@
 package net.minecraft.inventory;
 
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.实体XPOrb;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -10,10 +10,10 @@ import net.minecraft.util.MathHelper;
 
 public class SlotFurnaceOutput extends Slot
 {
-    private EntityPlayer thePlayer;
+    private 实体Player thePlayer;
     private int field_75228_b;
 
-    public SlotFurnaceOutput(EntityPlayer player, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition)
+    public SlotFurnaceOutput(实体Player player, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition)
     {
         super(inventoryIn, slotIndex, xPosition, yPosition);
         this.thePlayer = player;
@@ -34,7 +34,7 @@ public class SlotFurnaceOutput extends Slot
         return super.decrStackSize(amount);
     }
 
-    public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
+    public void onPickupFromSlot(实体Player playerIn, ItemStack stack)
     {
         this.onCrafting(stack);
         super.onPickupFromSlot(playerIn, stack);
@@ -73,9 +73,9 @@ public class SlotFurnaceOutput extends Slot
 
             while (i > 0)
             {
-                int k = EntityXPOrb.getXPSplit(i);
+                int k = 实体XPOrb.getXPSplit(i);
                 i -= k;
-                this.thePlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(this.thePlayer.worldObj, this.thePlayer.posX, this.thePlayer.posY + 0.5D, this.thePlayer.posZ + 0.5D, k));
+                this.thePlayer.worldObj.spawnEntityInWorld(new 实体XPOrb(this.thePlayer.worldObj, this.thePlayer.X坐标, this.thePlayer.Y坐标 + 0.5D, this.thePlayer.Z坐标 + 0.5D, k));
             }
         }
 

@@ -8,15 +8,15 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
@@ -38,12 +38,12 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         this.setUnlocalizedName("doublePlant");
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, 阻止位置 pos)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public BlockDoublePlant.EnumPlantType getVariant(IBlockAccess worldIn, BlockPos pos)
+    public BlockDoublePlant.EnumPlantType getVariant(IBlockAccess worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 
@@ -58,12 +58,12 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         }
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean canPlaceBlockAt(World worldIn, 阻止位置 pos)
     {
         return super.canPlaceBlockAt(worldIn, pos) && worldIn.isAirBlock(pos.up());
     }
 
-    public boolean isReplaceable(World worldIn, BlockPos pos)
+    public boolean isReplaceable(World worldIn, 阻止位置 pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 
@@ -78,13 +78,13 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         }
     }
 
-    protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state)
+    protected void checkAndDropBlock(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (!this.canBlockStay(worldIn, pos, state))
         {
             boolean flag = state.getValue(HALF) == BlockDoublePlant.EnumBlockHalf.UPPER;
-            BlockPos blockpos = flag ? pos : pos.up();
-            BlockPos blockpos1 = flag ? pos.down() : pos;
+            阻止位置 blockpos = flag ? pos : pos.up();
+            阻止位置 blockpos1 = flag ? pos.down() : pos;
             Block block = (Block)(flag ? this : worldIn.getBlockState(blockpos).getBlock());
             Block block1 = (Block)(flag ? worldIn.getBlockState(blockpos1).getBlock() : this);
 
@@ -105,7 +105,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         }
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    public boolean canBlockStay(World worldIn, 阻止位置 pos, IBlockState state)
     {
         if (state.getValue(HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
         {
@@ -136,24 +136,24 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         return state.getValue(HALF) != BlockDoublePlant.EnumBlockHalf.UPPER && state.getValue(VARIANT) != BlockDoublePlant.EnumPlantType.GRASS ? ((BlockDoublePlant.EnumPlantType)state.getValue(VARIANT)).getMeta() : 0;
     }
 
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, 阻止位置 pos, int renderPass)
     {
         BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = this.getVariant(worldIn, pos);
         return blockdoubleplant$enumplanttype != BlockDoublePlant.EnumPlantType.GRASS && blockdoubleplant$enumplanttype != BlockDoublePlant.EnumPlantType.FERN ? 16777215 : BiomeColorHelper.getGrassColorAtPos(worldIn, pos);
     }
 
-    public void placeAt(World worldIn, BlockPos lowerPos, BlockDoublePlant.EnumPlantType variant, int flags)
+    public void placeAt(World worldIn, 阻止位置 lowerPos, BlockDoublePlant.EnumPlantType variant, int flags)
     {
         worldIn.setBlockState(lowerPos, this.getDefaultState().withProperty(HALF, BlockDoublePlant.EnumBlockHalf.LOWER).withProperty(VARIANT, variant), flags);
         worldIn.setBlockState(lowerPos.up(), this.getDefaultState().withProperty(HALF, BlockDoublePlant.EnumBlockHalf.UPPER), flags);
     }
 
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, 阻止位置 pos, IBlockState state, 实体LivingBase placer, ItemStack stack)
     {
         worldIn.setBlockState(pos.up(), this.getDefaultState().withProperty(HALF, BlockDoublePlant.EnumBlockHalf.UPPER), 2);
     }
 
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World worldIn, 实体Player player, 阻止位置 pos, IBlockState state, TileEntity te)
     {
         if (worldIn.isRemote || player.getCurrentEquippedItem() == null || player.getCurrentEquippedItem().getItem() != Items.shears || state.getValue(HALF) != BlockDoublePlant.EnumBlockHalf.LOWER || !this.onHarvest(worldIn, pos, state, player))
         {
@@ -161,7 +161,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         }
     }
 
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    public void onBlockHarvested(World worldIn, 阻止位置 pos, IBlockState state, 实体Player player)
     {
         if (state.getValue(HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
         {
@@ -207,7 +207,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         super.onBlockHarvested(worldIn, pos, state, player);
     }
 
-    private boolean onHarvest(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    private boolean onHarvest(World worldIn, 阻止位置 pos, IBlockState state, 实体Player player)
     {
         BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = (BlockDoublePlant.EnumPlantType)state.getValue(VARIANT);
 
@@ -232,23 +232,23 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         }
     }
 
-    public int getDamageValue(World worldIn, BlockPos pos)
+    public int getDamageValue(World worldIn, 阻止位置 pos)
     {
         return this.getVariant(worldIn, pos).getMeta();
     }
 
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
+    public boolean canGrow(World worldIn, 阻止位置 pos, IBlockState state, boolean isClient)
     {
         BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = this.getVariant(worldIn, pos);
         return blockdoubleplant$enumplanttype != BlockDoublePlant.EnumPlantType.GRASS && blockdoubleplant$enumplanttype != BlockDoublePlant.EnumPlantType.FERN;
     }
 
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    public boolean canUseBonemeal(World worldIn, Random rand, 阻止位置 pos, IBlockState state)
     {
         return true;
     }
 
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    public void grow(World worldIn, Random rand, 阻止位置 pos, IBlockState state)
     {
         spawnAsEntity(worldIn, pos, new ItemStack(this, 1, this.getVariant(worldIn, pos).getMeta()));
     }
@@ -258,7 +258,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         return (meta & 8) > 0 ? this.getDefaultState().withProperty(HALF, BlockDoublePlant.EnumBlockHalf.UPPER) : this.getDefaultState().withProperty(HALF, BlockDoublePlant.EnumBlockHalf.LOWER).withProperty(VARIANT, BlockDoublePlant.EnumPlantType.byMetadata(meta & 7));
     }
 
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         if (state.getValue(HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
         {

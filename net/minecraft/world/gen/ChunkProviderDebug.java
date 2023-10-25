@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -122,13 +122,13 @@ public class ChunkProviderDebug implements IChunkProvider
         return "DebugLevelSource";
     }
 
-    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, 阻止位置 pos)
     {
         BiomeGenBase biomegenbase = this.world.getBiomeGenForCoords(pos);
         return biomegenbase.getSpawnableList(creatureType);
     }
 
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position)
+    public 阻止位置 getStrongholdGen(World worldIn, String structureName, 阻止位置 position)
     {
         return null;
     }
@@ -142,9 +142,9 @@ public class ChunkProviderDebug implements IChunkProvider
     {
     }
 
-    public Chunk provideChunk(BlockPos blockPosIn)
+    public Chunk provideChunk(阻止位置 阻止位置In)
     {
-        return this.provideChunk(blockPosIn.getX() >> 4, blockPosIn.getZ() >> 4);
+        return this.provideChunk(阻止位置In.getX() >> 4, 阻止位置In.getZ() >> 4);
     }
 
     static

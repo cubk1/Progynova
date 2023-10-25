@@ -3,12 +3,12 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.图像位置;
 
-public class RenderSnowball<T extends Entity> extends Render<T>
+public class RenderSnowball<T extends 实体> extends Render<T>
 {
     protected final Item field_177084_a;
     private final RenderItem field_177083_e;
@@ -40,7 +40,7 @@ public class RenderSnowball<T extends Entity> extends Render<T>
         return new ItemStack(this.field_177084_a, 1, 0);
     }
 
-    protected 图像位置 getEntityTexture(Entity entity)
+    protected 图像位置 getEntityTexture(实体 实体)
     {
         return TextureMap.locationBlocksTexture;
     }

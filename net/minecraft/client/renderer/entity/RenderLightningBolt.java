@@ -5,17 +5,17 @@ import net.minecraft.client.renderer.光照状态经理;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.effect.实体LightningBolt;
 import net.minecraft.util.图像位置;
 
-public class RenderLightningBolt extends Render<EntityLightningBolt>
+public class RenderLightningBolt extends Render<实体LightningBolt>
 {
     public RenderLightningBolt(RenderManager renderManagerIn)
     {
         super(renderManagerIn);
     }
 
-    public void doRender(EntityLightningBolt entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(实体LightningBolt entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
@@ -136,7 +136,7 @@ public class RenderLightningBolt extends Render<EntityLightningBolt>
         光照状态经理.启用手感();
     }
 
-    protected 图像位置 getEntityTexture(EntityLightningBolt entity)
+    protected 图像位置 getEntityTexture(实体LightningBolt entity)
     {
         return null;
     }

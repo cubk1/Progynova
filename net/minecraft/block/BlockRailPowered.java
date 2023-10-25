@@ -6,7 +6,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class BlockRailPowered extends BlockRailBase
@@ -27,7 +27,7 @@ public class BlockRailPowered extends BlockRailBase
     }
 
     @SuppressWarnings("incomplete-switch")
-    protected boolean func_176566_a(World worldIn, BlockPos pos, IBlockState state, boolean p_176566_4_, int p_176566_5_)
+    protected boolean func_176566_a(World worldIn, 阻止位置 pos, IBlockState state, boolean p_176566_4_, int p_176566_5_)
     {
         if (p_176566_5_ >= 8)
         {
@@ -127,11 +127,11 @@ public class BlockRailPowered extends BlockRailBase
                     blockrailbase$enumraildirection = BlockRailBase.EnumRailDirection.NORTH_SOUTH;
             }
 
-            return this.func_176567_a(worldIn, new BlockPos(i, j, k), p_176566_4_, p_176566_5_, blockrailbase$enumraildirection) ? true : flag && this.func_176567_a(worldIn, new BlockPos(i, j - 1, k), p_176566_4_, p_176566_5_, blockrailbase$enumraildirection);
+            return this.func_176567_a(worldIn, new 阻止位置(i, j, k), p_176566_4_, p_176566_5_, blockrailbase$enumraildirection) ? true : flag && this.func_176567_a(worldIn, new 阻止位置(i, j - 1, k), p_176566_4_, p_176566_5_, blockrailbase$enumraildirection);
         }
     }
 
-    protected boolean func_176567_a(World worldIn, BlockPos p_176567_2_, boolean p_176567_3_, int distance, BlockRailBase.EnumRailDirection p_176567_5_)
+    protected boolean func_176567_a(World worldIn, 阻止位置 p_176567_2_, boolean p_176567_3_, int distance, BlockRailBase.EnumRailDirection p_176567_5_)
     {
         IBlockState iblockstate = worldIn.getBlockState(p_176567_2_);
 
@@ -146,7 +146,7 @@ public class BlockRailPowered extends BlockRailBase
         }
     }
 
-    protected void onNeighborChangedInternal(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    protected void onNeighborChangedInternal(World worldIn, 阻止位置 pos, IBlockState state, Block neighborBlock)
     {
         boolean flag = ((Boolean)state.getValue(POWERED)).booleanValue();
         boolean flag1 = worldIn.isBlockPowered(pos) || this.func_176566_a(worldIn, pos, state, true, 0) || this.func_176566_a(worldIn, pos, state, false, 0);

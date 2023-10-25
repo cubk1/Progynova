@@ -1,17 +1,17 @@
 package net.minecraft.entity.ai;
 
 import java.util.List;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.monster.实体IronGolem;
+import net.minecraft.entity.passive.实体Villager;
 
 public class EntityAIFollowGolem extends EntityAIBase
 {
-    private EntityVillager theVillager;
-    private EntityIronGolem theGolem;
+    private 实体Villager theVillager;
+    private 实体IronGolem theGolem;
     private int takeGolemRoseTick;
     private boolean tookGolemRose;
 
-    public EntityAIFollowGolem(EntityVillager theVillagerIn)
+    public EntityAIFollowGolem(实体Villager theVillagerIn)
     {
         this.theVillager = theVillagerIn;
         this.setMutexBits(3);
@@ -29,7 +29,7 @@ public class EntityAIFollowGolem extends EntityAIBase
         }
         else
         {
-            List<EntityIronGolem> list = this.theVillager.worldObj.<EntityIronGolem>getEntitiesWithinAABB(EntityIronGolem.class, this.theVillager.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
+            List<实体IronGolem> list = this.theVillager.worldObj.<实体IronGolem>getEntitiesWithinAABB(实体IronGolem.class, this.theVillager.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
 
             if (list.isEmpty())
             {
@@ -37,7 +37,7 @@ public class EntityAIFollowGolem extends EntityAIBase
             }
             else
             {
-                for (EntityIronGolem entityirongolem : list)
+                for (实体IronGolem entityirongolem : list)
                 {
                     if (entityirongolem.getHoldRoseTick() > 0)
                     {

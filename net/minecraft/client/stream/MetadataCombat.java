@@ -1,10 +1,10 @@
 package net.minecraft.client.stream;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 
 public class MetadataCombat extends Metadata
 {
-    public MetadataCombat(EntityLivingBase p_i46067_1_, EntityLivingBase p_i46067_2_)
+    public MetadataCombat(实体LivingBase p_i46067_1_, 实体LivingBase p_i46067_2_)
     {
         super("player_combat");
         this.func_152808_a("player", p_i46067_1_.getName());

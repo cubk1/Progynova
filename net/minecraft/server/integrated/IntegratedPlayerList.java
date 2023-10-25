@@ -2,7 +2,7 @@ package net.minecraft.server.integrated;
 
 import com.mojang.authlib.GameProfile;
 import java.net.SocketAddress;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.management.ServerConfigurationManager;
 
@@ -16,7 +16,7 @@ public class IntegratedPlayerList extends ServerConfigurationManager
         this.setViewDistance(10);
     }
 
-    protected void writePlayerData(EntityPlayerMP playerIn)
+    protected void writePlayerData(实体PlayerMP playerIn)
     {
         if (playerIn.getName().equals(this.getServerInstance().getServerOwner()))
         {

@@ -9,7 +9,7 @@ import net.minecraft.client.model.ModelHorse;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.RenderHorse;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.实体Horse;
 import net.optifine.reflect.Reflector;
 
 public class ModelAdapterHorse extends ModelAdapter
@@ -18,7 +18,7 @@ public class ModelAdapterHorse extends ModelAdapter
 
     public ModelAdapterHorse()
     {
-        super(EntityHorse.class, "horse", 0.75F);
+        super(实体Horse.class, "horse", 0.75F);
     }
 
     protected ModelAdapterHorse(Class entityClass, String name, float shadowSize)

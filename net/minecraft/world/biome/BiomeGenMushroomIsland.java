@@ -1,6 +1,6 @@
 package net.minecraft.world.biome;
 
-import net.minecraft.entity.passive.EntityMooshroom;
+import net.minecraft.entity.passive.实体Mooshroom;
 import net.minecraft.init.Blocks;
 
 public class BiomeGenMushroomIsland extends BiomeGenBase
@@ -17,6 +17,6 @@ public class BiomeGenMushroomIsland extends BiomeGenBase
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityMooshroom.class, 8, 4, 8));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(实体Mooshroom.class, 8, 4, 8));
     }
 }

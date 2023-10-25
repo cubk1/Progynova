@@ -14,18 +14,19 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import net.minecraft.entity.Entity;
+
+import net.minecraft.entity.player.实体PlayerMP;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.实体LivingBase;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.枚举聊天格式;
@@ -41,20 +42,20 @@ public class PlayerSelector
     private static final Pattern keyValueListPattern = Pattern.compile("\\G(\\w+)=([-!]?[\\w-]*)(?:$|,)");
     private static final Set<String> WORLD_BINDING_ARGS = Sets.newHashSet(new String[] {"x", "y", "z", "dx", "dy", "dz", "rm", "r"});
 
-    public static EntityPlayerMP matchOnePlayer(ICommandSender sender, String token)
+    public static 实体PlayerMP matchOnePlayer(ICommandSender sender, String token)
     {
-        return (EntityPlayerMP)matchOneEntity(sender, token, EntityPlayerMP.class);
+        return (实体PlayerMP)matchOneEntity(sender, token, 实体PlayerMP.class);
     }
 
-    public static <T extends Entity> T matchOneEntity(ICommandSender sender, String token, Class <? extends T > targetClass)
+    public static <T extends 实体> T matchOneEntity(ICommandSender sender, String token, Class <? extends T > targetClass)
     {
         List<T> list = matchEntities(sender, token, targetClass);
-        return (T)(list.size() == 1 ? (Entity)list.get(0) : null);
+        return (T)(list.size() == 1 ? (实体)list.get(0) : null);
     }
 
     public static IChatComponent matchEntitiesToChatComponent(ICommandSender sender, String token)
     {
-        List<Entity> list = matchEntities(sender, token, Entity.class);
+        List<实体> list = matchEntities(sender, token, 实体.class);
 
         if (list.isEmpty())
         {
@@ -64,16 +65,16 @@ public class PlayerSelector
         {
             List<IChatComponent> list1 = Lists.<IChatComponent>newArrayList();
 
-            for (Entity entity : list)
+            for (实体 实体 : list)
             {
-                list1.add(entity.getDisplayName());
+                list1.add(实体.getDisplayName());
             }
 
             return CommandBase.join(list1);
         }
     }
 
-    public static <T extends Entity> List<T> matchEntities(ICommandSender sender, String token, Class <? extends T > targetClass)
+    public static <T extends 实体> List<T> matchEntities(ICommandSender sender, String token, Class <? extends T > targetClass)
     {
         Matcher matcher = tokenPattern.matcher(token);
 
@@ -88,7 +89,7 @@ public class PlayerSelector
             else
             {
                 String s = matcher.group(1);
-                BlockPos blockpos = func_179664_b(map, sender.getPosition());
+                阻止位置 blockpos = func_179664_b(map, sender.getPosition());
                 List<World> list = getWorlds(sender, map);
                 List<T> list1 = Lists.<T>newArrayList();
 
@@ -96,7 +97,7 @@ public class PlayerSelector
                 {
                     if (world != null)
                     {
-                        List<Predicate<Entity>> list2 = Lists.<Predicate<Entity>>newArrayList();
+                        List<Predicate<实体>> list2 = Lists.<Predicate<实体>>newArrayList();
                         list2.addAll(func_179663_a(map, s));
                         list2.addAll(getXpLevelPredicates(map));
                         list2.addAll(getGamemodePredicates(map));
@@ -134,7 +135,7 @@ public class PlayerSelector
         return list;
     }
 
-    private static <T extends Entity> boolean isEntityTypeValid(ICommandSender commandSender, Map<String, String> params)
+    private static <T extends 实体> boolean isEntityTypeValid(ICommandSender commandSender, Map<String, String> params)
     {
         String s = func_179651_b(params, "type");
         s = s != null && s.startsWith("!") ? s.substring(1) : s;
@@ -152,9 +153,9 @@ public class PlayerSelector
         }
     }
 
-    private static List<Predicate<Entity>> func_179663_a(Map<String, String> p_179663_0_, String p_179663_1_)
+    private static List<Predicate<实体>> func_179663_a(Map<String, String> p_179663_0_, String p_179663_1_)
     {
-        List<Predicate<Entity>> list = Lists.<Predicate<Entity>>newArrayList();
+        List<Predicate<实体>> list = Lists.<Predicate<实体>>newArrayList();
         String s = func_179651_b(p_179663_0_, "type");
         final boolean flag = s != null && s.startsWith("!");
 
@@ -170,11 +171,11 @@ public class PlayerSelector
         {
             if (flag1)
             {
-                list.add(new Predicate<Entity>()
+                list.add(new Predicate<实体>()
                 {
-                    public boolean apply(Entity p_apply_1_)
+                    public boolean apply(实体 p_apply_1_)
                     {
-                        return p_apply_1_ instanceof EntityPlayer;
+                        return p_apply_1_ instanceof 实体Player;
                     }
                 });
             }
@@ -182,9 +183,9 @@ public class PlayerSelector
         else
         {
             final String s_f = s;
-            list.add(new Predicate<Entity>()
+            list.add(new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
                     return EntityList.isStringEntityName(p_apply_1_, s_f) != flag;
                 }
@@ -194,25 +195,25 @@ public class PlayerSelector
         return list;
     }
 
-    private static List<Predicate<Entity>> getXpLevelPredicates(Map<String, String> p_179648_0_)
+    private static List<Predicate<实体>> getXpLevelPredicates(Map<String, String> p_179648_0_)
     {
-        List<Predicate<Entity>> list = Lists.<Predicate<Entity>>newArrayList();
+        List<Predicate<实体>> list = Lists.<Predicate<实体>>newArrayList();
         final int i = parseIntWithDefault(p_179648_0_, "lm", -1);
         final int j = parseIntWithDefault(p_179648_0_, "l", -1);
 
         if (i > -1 || j > -1)
         {
-            list.add(new Predicate<Entity>()
+            list.add(new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
-                    if (!(p_apply_1_ instanceof EntityPlayerMP))
+                    if (!(p_apply_1_ instanceof 实体PlayerMP))
                     {
                         return false;
                     }
                     else
                     {
-                        EntityPlayerMP entityplayermp = (EntityPlayerMP)p_apply_1_;
+                        实体PlayerMP entityplayermp = (实体PlayerMP)p_apply_1_;
                         return (i <= -1 || entityplayermp.experienceLevel >= i) && (j <= -1 || entityplayermp.experienceLevel <= j);
                     }
                 }
@@ -222,24 +223,24 @@ public class PlayerSelector
         return list;
     }
 
-    private static List<Predicate<Entity>> getGamemodePredicates(Map<String, String> p_179649_0_)
+    private static List<Predicate<实体>> getGamemodePredicates(Map<String, String> p_179649_0_)
     {
-        List<Predicate<Entity>> list = Lists.<Predicate<Entity>>newArrayList();
+        List<Predicate<实体>> list = Lists.<Predicate<实体>>newArrayList();
         final int i = parseIntWithDefault(p_179649_0_, "m", WorldSettings.GameType.NOT_SET.getID());
 
         if (i != WorldSettings.GameType.NOT_SET.getID())
         {
-            list.add(new Predicate<Entity>()
+            list.add(new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
-                    if (!(p_apply_1_ instanceof EntityPlayerMP))
+                    if (!(p_apply_1_ instanceof 实体PlayerMP))
                     {
                         return false;
                     }
                     else
                     {
-                        EntityPlayerMP entityplayermp = (EntityPlayerMP)p_apply_1_;
+                        实体PlayerMP entityplayermp = (实体PlayerMP)p_apply_1_;
                         return entityplayermp.theItemInWorldManager.getGameType().getID() == i;
                     }
                 }
@@ -249,9 +250,9 @@ public class PlayerSelector
         return list;
     }
 
-    private static List<Predicate<Entity>> getTeamPredicates(Map<String, String> p_179659_0_)
+    private static List<Predicate<实体>> getTeamPredicates(Map<String, String> p_179659_0_)
     {
-        List<Predicate<Entity>> list = Lists.<Predicate<Entity>>newArrayList();
+        List<Predicate<实体>> list = Lists.<Predicate<实体>>newArrayList();
         String s = func_179651_b(p_179659_0_, "team");
         final boolean flag = s != null && s.startsWith("!");
 
@@ -263,17 +264,17 @@ public class PlayerSelector
         if (s != null)
         {
             final String s_f = s;
-            list.add(new Predicate<Entity>()
+            list.add(new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
-                    if (!(p_apply_1_ instanceof EntityLivingBase))
+                    if (!(p_apply_1_ instanceof 实体LivingBase))
                     {
                         return false;
                     }
                     else
                     {
-                        EntityLivingBase entitylivingbase = (EntityLivingBase)p_apply_1_;
+                        实体LivingBase entitylivingbase = (实体LivingBase)p_apply_1_;
                         Team team = entitylivingbase.getTeam();
                         String s1 = team == null ? "" : team.getRegisteredName();
                         return s1.equals(s_f) != flag;
@@ -285,16 +286,16 @@ public class PlayerSelector
         return list;
     }
 
-    private static List<Predicate<Entity>> getScorePredicates(Map<String, String> p_179657_0_)
+    private static List<Predicate<实体>> getScorePredicates(Map<String, String> p_179657_0_)
     {
-        List<Predicate<Entity>> list = Lists.<Predicate<Entity>>newArrayList();
+        List<Predicate<实体>> list = Lists.<Predicate<实体>>newArrayList();
         final Map<String, Integer> map = func_96560_a(p_179657_0_);
 
         if (map != null && map.size() > 0)
         {
-            list.add(new Predicate<Entity>()
+            list.add(new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
                     Scoreboard scoreboard = MinecraftServer.getServer().worldServerForDimension(0).getScoreboard();
 
@@ -316,7 +317,7 @@ public class PlayerSelector
                             return false;
                         }
 
-                        String s1 = p_apply_1_ instanceof EntityPlayerMP ? p_apply_1_.getName() : p_apply_1_.getUniqueID().toString();
+                        String s1 = p_apply_1_ instanceof 实体PlayerMP ? p_apply_1_.getName() : p_apply_1_.getUniqueID().toString();
 
                         if (!scoreboard.entityHasObjective(s1, scoreobjective))
                         {
@@ -345,9 +346,9 @@ public class PlayerSelector
         return list;
     }
 
-    private static List<Predicate<Entity>> getNamePredicates(Map<String, String> p_179647_0_)
+    private static List<Predicate<实体>> getNamePredicates(Map<String, String> p_179647_0_)
     {
-        List<Predicate<Entity>> list = Lists.<Predicate<Entity>>newArrayList();
+        List<Predicate<实体>> list = Lists.<Predicate<实体>>newArrayList();
         String s = func_179651_b(p_179647_0_, "name");
         final boolean flag = s != null && s.startsWith("!");
 
@@ -359,9 +360,9 @@ public class PlayerSelector
         if (s != null)
         {
             final String s_f = s;
-            list.add(new Predicate<Entity>()
+            list.add(new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
                     return p_apply_1_.getName().equals(s_f) != flag;
                 }
@@ -371,9 +372,9 @@ public class PlayerSelector
         return list;
     }
 
-    private static List<Predicate<Entity>> func_180698_a(Map<String, String> p_180698_0_, final BlockPos p_180698_1_)
+    private static List<Predicate<实体>> func_180698_a(Map<String, String> p_180698_0_, final 阻止位置 p_180698_1_)
     {
-        List<Predicate<Entity>> list = Lists.<Predicate<Entity>>newArrayList();
+        List<Predicate<实体>> list = Lists.<Predicate<实体>>newArrayList();
         final int i = parseIntWithDefault(p_180698_0_, "rm", -1);
         final int j = parseIntWithDefault(p_180698_0_, "r", -1);
 
@@ -381,9 +382,9 @@ public class PlayerSelector
         {
             final int k = i * i;
             final int l = j * j;
-            list.add(new Predicate<Entity>()
+            list.add(new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
                     int i1 = (int)p_apply_1_.getDistanceSqToCenter(p_180698_1_);
                     return (i < 0 || i1 >= k) && (j < 0 || i1 <= l);
@@ -394,17 +395,17 @@ public class PlayerSelector
         return list;
     }
 
-    private static List<Predicate<Entity>> getRotationsPredicates(Map<String, String> p_179662_0_)
+    private static List<Predicate<实体>> getRotationsPredicates(Map<String, String> p_179662_0_)
     {
-        List<Predicate<Entity>> list = Lists.<Predicate<Entity>>newArrayList();
+        List<Predicate<实体>> list = Lists.<Predicate<实体>>newArrayList();
 
         if (p_179662_0_.containsKey("rym") || p_179662_0_.containsKey("ry"))
         {
             final int i = func_179650_a(parseIntWithDefault(p_179662_0_, "rym", 0));
             final int j = func_179650_a(parseIntWithDefault(p_179662_0_, "ry", 359));
-            list.add(new Predicate<Entity>()
+            list.add(new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
                     int i1 = PlayerSelector.func_179650_a((int)Math.floor((double)p_apply_1_.旋转侧滑));
                     return i > j ? i1 >= i || i1 <= j : i1 >= i && i1 <= j;
@@ -416,9 +417,9 @@ public class PlayerSelector
         {
             final int k = func_179650_a(parseIntWithDefault(p_179662_0_, "rxm", 0));
             final int l = func_179650_a(parseIntWithDefault(p_179662_0_, "rx", 359));
-            list.add(new Predicate<Entity>()
+            list.add(new Predicate<实体>()
             {
-                public boolean apply(Entity p_apply_1_)
+                public boolean apply(实体 p_apply_1_)
                 {
                     int i1 = PlayerSelector.func_179650_a((int)Math.floor((double)p_apply_1_.rotationPitch));
                     return k > l ? i1 >= k || i1 <= l : i1 >= k && i1 <= l;
@@ -429,7 +430,7 @@ public class PlayerSelector
         return list;
     }
 
-    private static <T extends Entity> List<T> filterResults(Map<String, String> params, Class <? extends T > entityClass, List<Predicate<Entity>> inputList, String type, World worldIn, BlockPos position)
+    private static <T extends 实体> List<T> filterResults(Map<String, String> params, Class <? extends T > entityClass, List<Predicate<实体>> inputList, String type, World worldIn, 阻止位置 position)
     {
         List<T> list = Lists.<T>newArrayList();
         String s = func_179651_b(params, "type");
@@ -440,13 +441,13 @@ public class PlayerSelector
         int j = parseIntWithDefault(params, "dy", 0);
         int k = parseIntWithDefault(params, "dz", 0);
         int l = parseIntWithDefault(params, "r", -1);
-        Predicate<Entity> predicate = Predicates.and(inputList);
-        Predicate<Entity> predicate1 = Predicates.<Entity> and (EntitySelectors.selectAnything, predicate);
+        Predicate<实体> predicate = Predicates.and(inputList);
+        Predicate<实体> predicate1 = Predicates.<实体> and (EntitySelectors.selectAnything, predicate);
 
         if (position != null)
         {
             int i1 = worldIn.playerEntities.size();
-            int j1 = worldIn.loadedEntityList.size();
+            int j1 = worldIn.loaded实体List.size();
             boolean flag2 = i1 < j1 / 16;
 
             if (!params.containsKey("dx") && !params.containsKey("dy") && !params.containsKey("dz"))
@@ -483,11 +484,11 @@ public class PlayerSelector
 
                 if (flag && flag2 && !flag1)
                 {
-                    Predicate<Entity> predicate2 = new Predicate<Entity>()
+                    Predicate<实体> predicate2 = new Predicate<实体>()
                     {
-                        public boolean apply(Entity p_apply_1_)
+                        public boolean apply(实体 p_apply_1_)
                         {
-                            return p_apply_1_.posX >= axisalignedbb.minX && p_apply_1_.posY >= axisalignedbb.minY && p_apply_1_.posZ >= axisalignedbb.minZ ? p_apply_1_.posX < axisalignedbb.maxX && p_apply_1_.posY < axisalignedbb.maxY && p_apply_1_.posZ < axisalignedbb.maxZ : false;
+                            return p_apply_1_.X坐标 >= axisalignedbb.minX && p_apply_1_.Y坐标 >= axisalignedbb.minY && p_apply_1_.Z坐标 >= axisalignedbb.minZ ? p_apply_1_.X坐标 < axisalignedbb.maxX && p_apply_1_.Y坐标 < axisalignedbb.maxY && p_apply_1_.Z坐标 < axisalignedbb.maxZ : false;
                         }
                     };
                     list.addAll(worldIn.<T>getPlayers(entityClass, Predicates.<T> and (predicate1, predicate2)));
@@ -514,7 +515,7 @@ public class PlayerSelector
         return list;
     }
 
-    private static <T extends Entity> List<T> func_179658_a(List<T> p_179658_0_, Map<String, String> p_179658_1_, ICommandSender p_179658_2_, Class <? extends T > p_179658_3_, String p_179658_4_, final BlockPos p_179658_5_)
+    private static <T extends 实体> List<T> func_179658_a(List<T> p_179658_0_, Map<String, String> p_179658_1_, ICommandSender p_179658_2_, Class <? extends T > p_179658_3_, String p_179658_4_, final 阻止位置 p_179658_5_)
     {
         int i = parseIntWithDefault(p_179658_1_, "c", !p_179658_4_.equals("a") && !p_179658_4_.equals("e") ? 1 : 0);
 
@@ -527,20 +528,20 @@ public class PlayerSelector
         }
         else if (p_179658_5_ != null)
         {
-            Collections.sort((List<T>)p_179658_0_, new Comparator<Entity>()
+            Collections.sort((List<T>)p_179658_0_, new Comparator<实体>()
             {
-                public int compare(Entity p_compare_1_, Entity p_compare_2_)
+                public int compare(实体 p_compare_1_, 实体 p_compare_2_)
                 {
                     return ComparisonChain.start().compare(p_compare_1_.getDistanceSq(p_179658_5_), p_compare_2_.getDistanceSq(p_179658_5_)).result();
                 }
             });
         }
 
-        Entity entity = p_179658_2_.getCommandSenderEntity();
+        实体 实体 = p_179658_2_.getCommandSenderEntity();
 
-        if (entity != null && p_179658_3_.isAssignableFrom(entity.getClass()) && i == 1 && ((List)p_179658_0_).contains(entity) && !"r".equals(p_179658_4_))
+        if (实体 != null && p_179658_3_.isAssignableFrom(实体.getClass()) && i == 1 && ((List)p_179658_0_).contains(实体) && !"r".equals(p_179658_4_))
         {
-            p_179658_0_ = Lists.newArrayList((T)entity);
+            p_179658_0_ = Lists.newArrayList((T) 实体);
         }
 
         if (i != 0)
@@ -556,7 +557,7 @@ public class PlayerSelector
         return (List)p_179658_0_;
     }
 
-    private static AxisAlignedBB func_179661_a(BlockPos p_179661_0_, int p_179661_1_, int p_179661_2_, int p_179661_3_)
+    private static AxisAlignedBB func_179661_a(阻止位置 p_179661_0_, int p_179661_1_, int p_179661_2_, int p_179661_3_)
     {
         boolean flag = p_179661_1_ < 0;
         boolean flag1 = p_179661_2_ < 0;
@@ -587,9 +588,9 @@ public class PlayerSelector
         return p_179650_0_;
     }
 
-    private static BlockPos func_179664_b(Map<String, String> p_179664_0_, BlockPos p_179664_1_)
+    private static 阻止位置 func_179664_b(Map<String, String> p_179664_0_, 阻止位置 p_179664_1_)
     {
-        return new BlockPos(parseIntWithDefault(p_179664_0_, "x", p_179664_1_.getX()), parseIntWithDefault(p_179664_0_, "y", p_179664_1_.getY()), parseIntWithDefault(p_179664_0_, "z", p_179664_1_.getZ()));
+        return new 阻止位置(parseIntWithDefault(p_179664_0_, "x", p_179664_1_.getX()), parseIntWithDefault(p_179664_0_, "y", p_179664_1_.getY()), parseIntWithDefault(p_179664_0_, "z", p_179664_1_.getZ()));
     }
 
     private static boolean func_179665_h(Map<String, String> p_179665_0_)

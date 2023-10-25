@@ -11,7 +11,7 @@ import net.minecraft.client.resources.model.WeightedBakedModel;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.IBlockAccess;
@@ -36,7 +36,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
         return this.blockModelShapes;
     }
 
-    public void renderBlockDamage(IBlockState state, BlockPos pos, TextureAtlasSprite texture, IBlockAccess blockAccess)
+    public void renderBlockDamage(IBlockState state, 阻止位置 pos, TextureAtlasSprite texture, IBlockAccess blockAccess)
     {
         Block block = state.getBlock();
         int i = block.getRenderType();
@@ -50,7 +50,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
         }
     }
 
-    public boolean renderBlock(IBlockState state, BlockPos pos, IBlockAccess blockAccess, WorldRenderer worldRendererIn)
+    public boolean renderBlock(IBlockState state, 阻止位置 pos, IBlockAccess blockAccess, WorldRenderer worldRendererIn)
     {
         try
         {
@@ -93,7 +93,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
         return this.blockModelRenderer;
     }
 
-    private IBakedModel getBakedModel(IBlockState state, BlockPos pos)
+    private IBakedModel getBakedModel(IBlockState state, 阻止位置 pos)
     {
         IBakedModel ibakedmodel = this.blockModelShapes.getModelForState(state);
 
@@ -105,7 +105,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
         return ibakedmodel;
     }
 
-    public IBakedModel getModelFromBlockState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBakedModel getModelFromBlockState(IBlockState state, IBlockAccess worldIn, 阻止位置 pos)
     {
         Block block = state.getBlock();
 
@@ -148,7 +148,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
                     break;
 
                 case 3:
-                    IBakedModel ibakedmodel = this.getBakedModel(state, (BlockPos)null);
+                    IBakedModel ibakedmodel = this.getBakedModel(state, (阻止位置)null);
                     this.blockModelRenderer.renderModelBrightness(ibakedmodel, state, brightness, true);
             }
         }

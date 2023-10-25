@@ -13,14 +13,14 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.multiplayer.ThreadLanServerPing;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.crash.CrashReport;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketThreadUtil;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.profiler.PlayerUsageSnooper;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.CryptManager;
 import net.minecraft.util.HttpUtil;
 import net.minecraft.util.Util;
@@ -50,7 +50,7 @@ public class IntegratedServer extends MinecraftServer
     private ThreadLanServerPing lanServerPing;
     private long ticksSaveLast = 0L;
     public World difficultyUpdateWorld = null;
-    public BlockPos difficultyUpdatePos = null;
+    public 阻止位置 difficultyUpdatePos = null;
     public DifficultyInstance difficultyLast = null;
 
     public IntegratedServer(我的手艺 mcIn)
@@ -468,7 +468,7 @@ public class IntegratedServer extends MinecraftServer
             {
                 public void run()
                 {
-                    for (EntityPlayerMP entityplayermp : Lists.newArrayList(IntegratedServer.this.getConfigurationManager().getPlayerList()))
+                    for (实体PlayerMP entityplayermp : Lists.newArrayList(IntegratedServer.this.getConfigurationManager().getPlayerList()))
                     {
                         IntegratedServer.this.getConfigurationManager().playerLoggedOut(entityplayermp);
                     }
@@ -518,7 +518,7 @@ public class IntegratedServer extends MinecraftServer
         }
     }
 
-    public DifficultyInstance getDifficultyAsync(World p_getDifficultyAsync_1_, BlockPos p_getDifficultyAsync_2_)
+    public DifficultyInstance getDifficultyAsync(World p_getDifficultyAsync_1_, 阻止位置 p_getDifficultyAsync_2_)
     {
         this.difficultyUpdateWorld = p_getDifficultyAsync_1_;
         this.difficultyUpdatePos = p_getDifficultyAsync_2_;

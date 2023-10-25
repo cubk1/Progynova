@@ -2,11 +2,12 @@ package net.minecraft.village;
 
 import java.util.Iterator;
 import java.util.List;
-import net.minecraft.entity.EntityLiving;
+
+import net.minecraft.entity.monster.实体Zombie;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体Living;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.SpawnerAnimals;
@@ -91,7 +92,7 @@ public class VillageSiege
 
     private boolean func_75529_b()
     {
-        List<EntityPlayer> list = this.worldObj.playerEntities;
+        List<实体Player> list = this.worldObj.playerEntities;
         Iterator iterator = list.iterator();
 
         while (true)
@@ -101,15 +102,15 @@ public class VillageSiege
                 return false;
             }
 
-            EntityPlayer entityplayer = (EntityPlayer)iterator.next();
+            实体Player entityplayer = (实体Player)iterator.next();
 
             if (!entityplayer.isSpectator())
             {
-                this.theVillage = this.worldObj.getVillageCollection().getNearestVillage(new BlockPos(entityplayer), 1);
+                this.theVillage = this.worldObj.getVillageCollection().getNearestVillage(new 阻止位置(entityplayer), 1);
 
                 if (this.theVillage != null && this.theVillage.getNumVillageDoors() >= 10 && this.theVillage.getTicksSinceLastDoorAdding() >= 20 && this.theVillage.getNumVillagers() >= 20)
                 {
-                    BlockPos blockpos = this.theVillage.getCenter();
+                    阻止位置 blockpos = this.theVillage.getCenter();
                     float f = (float)this.theVillage.getVillageRadius();
                     boolean flag = false;
 
@@ -123,7 +124,7 @@ public class VillageSiege
 
                         for (Village village : this.worldObj.getVillageCollection().getVillageList())
                         {
-                            if (village != this.theVillage && village.func_179866_a(new BlockPos(this.field_75532_g, this.field_75538_h, this.field_75539_i)))
+                            if (village != this.theVillage && village.func_179866_a(new 阻止位置(this.field_75532_g, this.field_75538_h, this.field_75539_i)))
                             {
                                 flag = true;
                                 break;
@@ -141,7 +142,7 @@ public class VillageSiege
                         return false;
                     }
 
-                    Vec3 vec3 = this.func_179867_a(new BlockPos(this.field_75532_g, this.field_75538_h, this.field_75539_i));
+                    Vec3 vec3 = this.func_179867_a(new 阻止位置(this.field_75532_g, this.field_75538_h, this.field_75539_i));
 
                     if (vec3 != null)
                     {
@@ -158,7 +159,7 @@ public class VillageSiege
 
     private boolean spawnZombie()
     {
-        Vec3 vec3 = this.func_179867_a(new BlockPos(this.field_75532_g, this.field_75538_h, this.field_75539_i));
+        Vec3 vec3 = this.func_179867_a(new 阻止位置(this.field_75532_g, this.field_75538_h, this.field_75539_i));
 
         if (vec3 == null)
         {
@@ -166,12 +167,12 @@ public class VillageSiege
         }
         else
         {
-            EntityZombie entityzombie;
+            实体Zombie entityzombie;
 
             try
             {
-                entityzombie = new EntityZombie(this.worldObj);
-                entityzombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData)null);
+                entityzombie = new 实体Zombie(this.worldObj);
+                entityzombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new 阻止位置(entityzombie)), (IEntityLivingData)null);
                 entityzombie.setVillager(false);
             }
             catch (Exception exception)
@@ -182,19 +183,19 @@ public class VillageSiege
 
             entityzombie.setLocationAndAngles(vec3.xCoord, vec3.yCoord, vec3.zCoord, this.worldObj.rand.nextFloat() * 360.0F, 0.0F);
             this.worldObj.spawnEntityInWorld(entityzombie);
-            BlockPos blockpos = this.theVillage.getCenter();
+            阻止位置 blockpos = this.theVillage.getCenter();
             entityzombie.setHomePosAndDistance(blockpos, this.theVillage.getVillageRadius());
             return true;
         }
     }
 
-    private Vec3 func_179867_a(BlockPos p_179867_1_)
+    private Vec3 func_179867_a(阻止位置 p_179867_1_)
     {
         for (int i = 0; i < 10; ++i)
         {
-            BlockPos blockpos = p_179867_1_.add(this.worldObj.rand.nextInt(16) - 8, this.worldObj.rand.nextInt(6) - 3, this.worldObj.rand.nextInt(16) - 8);
+            阻止位置 blockpos = p_179867_1_.add(this.worldObj.rand.nextInt(16) - 8, this.worldObj.rand.nextInt(6) - 3, this.worldObj.rand.nextInt(16) - 8);
 
-            if (this.theVillage.func_179866_a(blockpos) && SpawnerAnimals.canCreatureTypeSpawnAtLocation(EntityLiving.SpawnPlacementType.ON_GROUND, this.worldObj, blockpos))
+            if (this.theVillage.func_179866_a(blockpos) && SpawnerAnimals.canCreatureTypeSpawnAtLocation(实体Living.SpawnPlacementType.ON_GROUND, this.worldObj, blockpos))
             {
                 return new Vec3((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
             }

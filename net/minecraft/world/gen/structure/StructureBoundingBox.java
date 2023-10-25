@@ -2,7 +2,7 @@ package net.minecraft.world.gen.structure;
 
 import com.google.common.base.Objects;
 import net.minecraft.nbt.NBTTagIntArray;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Vec3i;
 
@@ -160,7 +160,7 @@ public class StructureBoundingBox
 
     public Vec3i getCenter()
     {
-        return new BlockPos(this.minX + (this.maxX - this.minX + 1) / 2, this.minY + (this.maxY - this.minY + 1) / 2, this.minZ + (this.maxZ - this.minZ + 1) / 2);
+        return new 阻止位置(this.minX + (this.maxX - this.minX + 1) / 2, this.minY + (this.maxY - this.minY + 1) / 2, this.minZ + (this.maxZ - this.minZ + 1) / 2);
     }
 
     public String toString()

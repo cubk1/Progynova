@@ -10,13 +10,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.EntityList;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.MinecraftException;
@@ -277,11 +277,11 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 
         for (int i1 = 0; i1 < chunkIn.getEntityLists().length; ++i1)
         {
-            for (Entity entity : chunkIn.getEntityLists()[i1])
+            for (实体 实体 : chunkIn.getEntityLists()[i1])
             {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 
-                if (entity.writeToNBTOptional(nbttagcompound1))
+                if (实体.writeToNBTOptional(nbttagcompound1))
                 {
                     chunkIn.setHasEntities(true);
                     nbttaglist1.appendTag(nbttagcompound1);
@@ -383,25 +383,25 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
             for (int k2 = 0; k2 < nbttaglist1.tagCount(); ++k2)
             {
                 NBTTagCompound nbttagcompound1 = nbttaglist1.getCompoundTagAt(k2);
-                Entity entity = EntityList.createEntityFromNBT(nbttagcompound1, worldIn);
+                实体 实体 = EntityList.createEntityFromNBT(nbttagcompound1, worldIn);
                 chunk.setHasEntities(true);
 
-                if (entity != null)
+                if (实体 != null)
                 {
-                    chunk.addEntity(entity);
-                    Entity entity1 = entity;
+                    chunk.addEntity(实体);
+                    实体 实体1 = 实体;
 
                     for (NBTTagCompound nbttagcompound4 = nbttagcompound1; nbttagcompound4.hasKey("Riding", 10); nbttagcompound4 = nbttagcompound4.getCompoundTag("Riding"))
                     {
-                        Entity entity2 = EntityList.createEntityFromNBT(nbttagcompound4.getCompoundTag("Riding"), worldIn);
+                        实体 实体2 = EntityList.createEntityFromNBT(nbttagcompound4.getCompoundTag("Riding"), worldIn);
 
-                        if (entity2 != null)
+                        if (实体2 != null)
                         {
-                            chunk.addEntity(entity2);
-                            entity1.mountEntity(entity2);
+                            chunk.addEntity(实体2);
+                            实体1.mountEntity(实体2);
                         }
 
-                        entity1 = entity2;
+                        实体1 = 实体2;
                     }
                 }
             }
@@ -443,7 +443,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
                         block = Block.getBlockById(nbttagcompound3.getInteger("i"));
                     }
 
-                    worldIn.scheduleBlockUpdate(new BlockPos(nbttagcompound3.getInteger("x"), nbttagcompound3.getInteger("y"), nbttagcompound3.getInteger("z")), block, nbttagcompound3.getInteger("t"), nbttagcompound3.getInteger("p"));
+                    worldIn.scheduleBlockUpdate(new 阻止位置(nbttagcompound3.getInteger("x"), nbttagcompound3.getInteger("y"), nbttagcompound3.getInteger("z")), block, nbttagcompound3.getInteger("t"), nbttagcompound3.getInteger("p"));
                 }
             }
         }

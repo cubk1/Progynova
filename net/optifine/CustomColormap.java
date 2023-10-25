@@ -13,7 +13,7 @@ import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.IBlockAccess;
@@ -135,7 +135,7 @@ public class CustomColormap implements CustomColors.IColorizer
 
                 if (this.format == 1)
                 {
-                    this.color = this.getColorGrid(BiomeGenBase.plains, new BlockPos(0, 64, 0));
+                    this.color = this.getColorGrid(BiomeGenBase.plains, new 阻止位置(0, 64, 0));
                 }
             }
         }
@@ -361,15 +361,15 @@ public class CustomColormap implements CustomColors.IColorizer
         return this.colorsRgb;
     }
 
-    public int getColor(IBlockState blockState, IBlockAccess blockAccess, BlockPos blockPos)
+    public int getColor(IBlockState blockState, IBlockAccess blockAccess, 阻止位置 阻止位置)
     {
-        return this.getColor(blockAccess, blockPos);
+        return this.getColor(blockAccess, 阻止位置);
     }
 
-    public int getColor(IBlockAccess blockAccess, BlockPos blockPos)
+    public int getColor(IBlockAccess blockAccess, 阻止位置 阻止位置)
     {
-        BiomeGenBase biomegenbase = CustomColors.getColorBiome(blockAccess, blockPos);
-        return this.getColor(biomegenbase, blockPos);
+        BiomeGenBase biomegenbase = CustomColors.getColorBiome(blockAccess, 阻止位置);
+        return this.getColor(biomegenbase, 阻止位置);
     }
 
     public boolean isColorConstant()
@@ -377,9 +377,9 @@ public class CustomColormap implements CustomColors.IColorizer
         return this.format == 2;
     }
 
-    public int getColor(BiomeGenBase biome, BlockPos blockPos)
+    public int getColor(BiomeGenBase biome, 阻止位置 阻止位置)
     {
-        return this.format == 0 ? this.getColorVanilla(biome, blockPos) : (this.format == 1 ? this.getColorGrid(biome, blockPos) : this.color);
+        return this.format == 0 ? this.getColorVanilla(biome, 阻止位置) : (this.format == 1 ? this.getColorGrid(biome, 阻止位置) : this.color);
     }
 
     public int getColorSmooth(IBlockAccess blockAccess, double x, double y, double z, int radius)
@@ -397,7 +397,7 @@ public class CustomColormap implements CustomColors.IColorizer
             int i1 = 0;
             int j1 = 0;
             int k1 = 0;
-            BlockPosM blockposm = new BlockPosM(0, 0, 0);
+            阻止位置M blockposm = new 阻止位置M(0, 0, 0);
 
             for (int l1 = i - radius; l1 <= i + radius; ++l1)
             {
@@ -419,9 +419,9 @@ public class CustomColormap implements CustomColors.IColorizer
         }
     }
 
-    private int getColorVanilla(BiomeGenBase biome, BlockPos blockPos)
+    private int getColorVanilla(BiomeGenBase biome, 阻止位置 阻止位置)
     {
-        double d0 = (double)MathHelper.clamp_float(biome.getFloatTemperature(blockPos), 0.0F, 1.0F);
+        double d0 = (double)MathHelper.clamp_float(biome.getFloatTemperature(阻止位置), 0.0F, 1.0F);
         double d1 = (double)MathHelper.clamp_float(biome.getFloatRainfall(), 0.0F, 1.0F);
         d1 = d1 * d0;
         int i = (int)((1.0D - d0) * (double)(this.width - 1));
@@ -429,14 +429,14 @@ public class CustomColormap implements CustomColors.IColorizer
         return this.getColor(i, j);
     }
 
-    private int getColorGrid(BiomeGenBase biome, BlockPos blockPos)
+    private int getColorGrid(BiomeGenBase biome, 阻止位置 阻止位置)
     {
         int i = biome.biomeID;
-        int j = blockPos.getY() - this.yOffset;
+        int j = 阻止位置.getY() - this.yOffset;
 
         if (this.yVariance > 0)
         {
-            int k = blockPos.getX() << 16 + blockPos.getZ();
+            int k = 阻止位置.getX() << 16 + 阻止位置.getZ();
             int l = Config.intHash(k);
             int i1 = this.yVariance * 2 + 1;
             int j1 = (l & 255) % i1 - this.yVariance;

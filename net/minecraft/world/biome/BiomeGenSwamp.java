@@ -3,9 +3,9 @@ package net.minecraft.world.biome;
 import java.util.Random;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.实体Slime;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -26,7 +26,7 @@ public class BiomeGenSwamp extends BiomeGenBase
         this.theBiomeDecorator.sandPerChunk = 0;
         this.theBiomeDecorator.grassPerChunk = 5;
         this.waterColorMultiplier = 14745518;
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySlime.class, 1, 1, 1));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(实体Slime.class, 1, 1, 1));
     }
 
     public WorldGenAbstractTree genBigTreeChance(Random rand)
@@ -34,18 +34,18 @@ public class BiomeGenSwamp extends BiomeGenBase
         return this.worldGeneratorSwamp;
     }
 
-    public int getGrassColorAtPos(BlockPos pos)
+    public int getGrassColorAtPos(阻止位置 pos)
     {
         double d0 = GRASS_COLOR_NOISE.func_151601_a((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D);
         return d0 < -0.1D ? 5011004 : 6975545;
     }
 
-    public int getFoliageColorAtPos(BlockPos pos)
+    public int getFoliageColorAtPos(阻止位置 pos)
     {
         return 6975545;
     }
 
-    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos)
+    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, 阻止位置 pos)
     {
         return BlockFlower.EnumFlowerType.BLUE_ORCHID;
     }

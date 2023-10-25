@@ -2,7 +2,7 @@ package net.optifine.util;
 
 import java.util.HashMap;
 import java.util.Map;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.EntityList;
 import net.minecraft.src.Config;
 
@@ -12,9 +12,9 @@ public class EntityUtils
     private static final Map<String, Integer> mapIdByName = new HashMap();
     private static final Map<String, Class> mapClassByName = new HashMap();
 
-    public static int getEntityIdByClass(Entity entity)
+    public static int getEntityIdByClass(实体 实体)
     {
-        return entity == null ? -1 : getEntityIdByClass(entity.getClass());
+        return 实体 == null ? -1 : getEntityIdByClass(实体.getClass());
     }
 
     public static int getEntityIdByClass(Class cls)

@@ -6,10 +6,10 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.实体LivingBase;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class BlockPressurePlate extends BlockBasePressurePlate
@@ -34,19 +34,19 @@ public class BlockPressurePlate extends BlockBasePressurePlate
         return state.withProperty(POWERED, Boolean.valueOf(strength > 0));
     }
 
-    protected int computeRedstoneStrength(World worldIn, BlockPos pos)
+    protected int computeRedstoneStrength(World worldIn, 阻止位置 pos)
     {
         AxisAlignedBB axisalignedbb = this.getSensitiveAABB(pos);
-        List <? extends Entity > list;
+        List <? extends 实体> list;
 
         switch (this.sensitivity)
         {
             case EVERYTHING:
-                list = worldIn.getEntitiesWithinAABBExcludingEntity((Entity)null, axisalignedbb);
+                list = worldIn.getEntitiesWithinAABBExcludingEntity((实体)null, axisalignedbb);
                 break;
 
             case MOBS:
-                list = worldIn.<Entity>getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb);
+                list = worldIn.<实体>getEntitiesWithinAABB(实体LivingBase.class, axisalignedbb);
                 break;
 
             default:
@@ -55,9 +55,9 @@ public class BlockPressurePlate extends BlockBasePressurePlate
 
         if (!list.isEmpty())
         {
-            for (Entity entity : list)
+            for (实体 实体 : list)
             {
-                if (!entity.doesEntityNotTriggerPressurePlate())
+                if (!实体.doesEntityNotTriggerPressurePlate())
                 {
                     return 15;
                 }

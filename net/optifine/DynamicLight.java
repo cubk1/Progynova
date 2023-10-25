@@ -7,17 +7,17 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.chunk.CompiledChunk;
 import net.minecraft.client.renderer.chunk.RenderChunk;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class DynamicLight
 {
-    private Entity entity = null;
+    private 实体 实体 = null;
     private double offsetY = 0.0D;
     private double lastPosX = -2.147483648E9D;
     private double lastPosY = -2.147483648E9D;
@@ -25,13 +25,13 @@ public class DynamicLight
     private int lastLightLevel = 0;
     private boolean underwater = false;
     private long timeCheckMs = 0L;
-    private Set<BlockPos> setLitChunkPos = new HashSet();
-    private BlockPos.MutableBlockPos blockPosMutable = new BlockPos.MutableBlockPos();
+    private Set<阻止位置> setLitChunkPos = new HashSet();
+    private 阻止位置.Mutable阻止位置 blockPosMutable = new 阻止位置.Mutable阻止位置();
 
-    public DynamicLight(Entity entity)
+    public DynamicLight(实体 实体)
     {
-        this.entity = entity;
-        this.offsetY = (double)entity.getEyeHeight();
+        this.实体 = 实体;
+        this.offsetY = (double) 实体.getEyeHeight();
     }
 
     public void update(RenderGlobal renderGlobal)
@@ -48,10 +48,10 @@ public class DynamicLight
             this.timeCheckMs = i;
         }
 
-        double d6 = this.entity.posX - 0.5D;
-        double d0 = this.entity.posY - 0.5D + this.offsetY;
-        double d1 = this.entity.posZ - 0.5D;
-        int j = DynamicLights.getLightLevel(this.entity);
+        double d6 = this.实体.X坐标 - 0.5D;
+        double d0 = this.实体.Y坐标 - 0.5D + this.offsetY;
+        double d1 = this.实体.Z坐标 - 0.5D;
+        int j = DynamicLights.getLightLevel(this.实体);
         double d2 = d6 - this.lastPosX;
         double d3 = d0 - this.lastPosY;
         double d4 = d1 - this.lastPosZ;
@@ -74,28 +74,28 @@ public class DynamicLight
                 this.underwater = block == Blocks.water;
             }
 
-            Set<BlockPos> set = new HashSet();
+            Set<阻止位置> set = new HashSet();
 
             if (j > 0)
             {
                 EnumFacing enumfacing2 = (MathHelper.floor_double(d6) & 15) >= 8 ? EnumFacing.EAST : EnumFacing.WEST;
                 EnumFacing enumfacing = (MathHelper.floor_double(d0) & 15) >= 8 ? EnumFacing.UP : EnumFacing.DOWN;
                 EnumFacing enumfacing1 = (MathHelper.floor_double(d1) & 15) >= 8 ? EnumFacing.SOUTH : EnumFacing.NORTH;
-                BlockPos blockpos = new BlockPos(d6, d0, d1);
+                阻止位置 blockpos = new 阻止位置(d6, d0, d1);
                 RenderChunk renderchunk = renderGlobal.getRenderChunk(blockpos);
-                BlockPos blockpos1 = this.getChunkPos(renderchunk, blockpos, enumfacing2);
+                阻止位置 blockpos1 = this.getChunkPos(renderchunk, blockpos, enumfacing2);
                 RenderChunk renderchunk1 = renderGlobal.getRenderChunk(blockpos1);
-                BlockPos blockpos2 = this.getChunkPos(renderchunk, blockpos, enumfacing1);
+                阻止位置 blockpos2 = this.getChunkPos(renderchunk, blockpos, enumfacing1);
                 RenderChunk renderchunk2 = renderGlobal.getRenderChunk(blockpos2);
-                BlockPos blockpos3 = this.getChunkPos(renderchunk1, blockpos1, enumfacing1);
+                阻止位置 blockpos3 = this.getChunkPos(renderchunk1, blockpos1, enumfacing1);
                 RenderChunk renderchunk3 = renderGlobal.getRenderChunk(blockpos3);
-                BlockPos blockpos4 = this.getChunkPos(renderchunk, blockpos, enumfacing);
+                阻止位置 blockpos4 = this.getChunkPos(renderchunk, blockpos, enumfacing);
                 RenderChunk renderchunk4 = renderGlobal.getRenderChunk(blockpos4);
-                BlockPos blockpos5 = this.getChunkPos(renderchunk4, blockpos4, enumfacing2);
+                阻止位置 blockpos5 = this.getChunkPos(renderchunk4, blockpos4, enumfacing2);
                 RenderChunk renderchunk5 = renderGlobal.getRenderChunk(blockpos5);
-                BlockPos blockpos6 = this.getChunkPos(renderchunk4, blockpos4, enumfacing1);
+                阻止位置 blockpos6 = this.getChunkPos(renderchunk4, blockpos4, enumfacing1);
                 RenderChunk renderchunk6 = renderGlobal.getRenderChunk(blockpos6);
-                BlockPos blockpos7 = this.getChunkPos(renderchunk5, blockpos5, enumfacing1);
+                阻止位置 blockpos7 = this.getChunkPos(renderchunk5, blockpos5, enumfacing1);
                 RenderChunk renderchunk7 = renderGlobal.getRenderChunk(blockpos7);
                 this.updateChunkLight(renderchunk, this.setLitChunkPos, set);
                 this.updateChunkLight(renderchunk1, this.setLitChunkPos, set);
@@ -112,12 +112,12 @@ public class DynamicLight
         }
     }
 
-    private BlockPos getChunkPos(RenderChunk renderChunk, BlockPos pos, EnumFacing facing)
+    private 阻止位置 getChunkPos(RenderChunk renderChunk, 阻止位置 pos, EnumFacing facing)
     {
         return renderChunk != null ? renderChunk.getBlockPosOffset16(facing) : pos.offset(facing, 16);
     }
 
-    private void updateChunkLight(RenderChunk renderChunk, Set<BlockPos> setPrevPos, Set<BlockPos> setNewPos)
+    private void updateChunkLight(RenderChunk renderChunk, Set<阻止位置> setPrevPos, Set<阻止位置> setNewPos)
     {
         if (renderChunk != null)
         {
@@ -128,7 +128,7 @@ public class DynamicLight
                 renderChunk.setNeedsUpdate(true);
             }
 
-            BlockPos blockpos = renderChunk.getPosition();
+            阻止位置 blockpos = renderChunk.getPosition();
 
             if (setPrevPos != null)
             {
@@ -144,16 +144,16 @@ public class DynamicLight
 
     public void updateLitChunks(RenderGlobal renderGlobal)
     {
-        for (BlockPos blockpos : this.setLitChunkPos)
+        for (阻止位置 blockpos : this.setLitChunkPos)
         {
             RenderChunk renderchunk = renderGlobal.getRenderChunk(blockpos);
-            this.updateChunkLight(renderchunk, (Set<BlockPos>)null, (Set<BlockPos>)null);
+            this.updateChunkLight(renderchunk, (Set<阻止位置>)null, (Set<阻止位置>)null);
         }
     }
 
-    public Entity getEntity()
+    public 实体 getEntity()
     {
-        return this.entity;
+        return this.实体;
     }
 
     public double getLastPosX()
@@ -188,6 +188,6 @@ public class DynamicLight
 
     public String toString()
     {
-        return "Entity: " + this.entity + ", offsetY: " + this.offsetY;
+        return "Entity: " + this.实体 + ", offsetY: " + this.offsetY;
     }
 }

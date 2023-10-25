@@ -11,14 +11,14 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.Map.Entry;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.实体PlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S21PacketChunkData;
 import net.minecraft.network.play.server.S22PacketMultiBlockChange;
 import net.minecraft.network.play.server.S23PacketBlockChange;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.LongHashMap;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkCoordIntPair;
@@ -33,14 +33,14 @@ public class PlayerManager
 {
     private static final Logger pmLogger = LogManager.getLogger();
     private final WorldServer theWorldServer;
-    private final List<EntityPlayerMP> players = Lists.<EntityPlayerMP>newArrayList();
+    private final List<实体PlayerMP> players = Lists.<实体PlayerMP>newArrayList();
     private final LongHashMap<PlayerManager.PlayerInstance> playerInstances = new LongHashMap();
     private final List<PlayerManager.PlayerInstance> playerInstancesToUpdate = Lists.<PlayerManager.PlayerInstance>newArrayList();
     private final List<PlayerManager.PlayerInstance> playerInstanceList = Lists.<PlayerManager.PlayerInstance>newArrayList();
     private int playerViewRadius;
     private long previousTotalWorldTime;
     private final int[][] xzDirectionsConst = new int[][] {{1, 0}, {0, 1}, { -1, 0}, {0, -1}};
-    private final Map<EntityPlayerMP, Set<ChunkCoordIntPair>> mapPlayerPendingEntries = new HashMap();
+    private final Map<实体PlayerMP, Set<ChunkCoordIntPair>> mapPlayerPendingEntries = new HashMap();
 
     public PlayerManager(WorldServer serverWorld)
     {
@@ -55,17 +55,17 @@ public class PlayerManager
 
     public void updatePlayerInstances()
     {
-        Set<Entry<EntityPlayerMP, Set<ChunkCoordIntPair>>> set = this.mapPlayerPendingEntries.entrySet();
+        Set<Entry<实体PlayerMP, Set<ChunkCoordIntPair>>> set = this.mapPlayerPendingEntries.entrySet();
         Iterator iterator = set.iterator();
 
         while (iterator.hasNext())
         {
-            Entry<EntityPlayerMP, Set<ChunkCoordIntPair>> entry = (Entry)iterator.next();
+            Entry<实体PlayerMP, Set<ChunkCoordIntPair>> entry = (Entry)iterator.next();
             Set<ChunkCoordIntPair> set1 = (Set)entry.getValue();
 
             if (!set1.isEmpty())
             {
-                EntityPlayerMP entityplayermp = (EntityPlayerMP)entry.getKey();
+                实体PlayerMP entityplayermp = (实体PlayerMP)entry.getKey();
 
                 if (entityplayermp.worldObj != this.theWorldServer)
                 {
@@ -146,7 +146,7 @@ public class PlayerManager
         return playermanager$playerinstance;
     }
 
-    public void markBlockForUpdate(BlockPos pos)
+    public void markBlockForUpdate(阻止位置 pos)
     {
         int i = pos.getX() >> 4;
         int j = pos.getZ() >> 4;
@@ -158,12 +158,12 @@ public class PlayerManager
         }
     }
 
-    public void addPlayer(EntityPlayerMP player)
+    public void addPlayer(实体PlayerMP player)
     {
-        int i = (int)player.posX >> 4;
-        int j = (int)player.posZ >> 4;
-        player.managedPosX = player.posX;
-        player.managedPosZ = player.posZ;
+        int i = (int)player.X坐标 >> 4;
+        int j = (int)player.Z坐标 >> 4;
+        player.managedPosX = player.X坐标;
+        player.managedPosZ = player.Z坐标;
         int k = Math.min(this.playerViewRadius, 8);
         int l = i - k;
         int i1 = i + k;
@@ -190,13 +190,13 @@ public class PlayerManager
         this.filterChunkLoadQueue(player);
     }
 
-    public void filterChunkLoadQueue(EntityPlayerMP player)
+    public void filterChunkLoadQueue(实体PlayerMP player)
     {
         List<ChunkCoordIntPair> list = Lists.newArrayList(player.loadedChunks);
         int i = 0;
         int j = this.playerViewRadius;
-        int k = (int)player.posX >> 4;
-        int l = (int)player.posZ >> 4;
+        int k = (int)player.X坐标 >> 4;
+        int l = (int)player.Z坐标 >> 4;
         int i1 = 0;
         int j1 = 0;
         ChunkCoordIntPair chunkcoordintpair = this.getPlayerInstance(k, l, true).chunkCoords;
@@ -242,7 +242,7 @@ public class PlayerManager
         }
     }
 
-    public void removePlayer(EntityPlayerMP player)
+    public void removePlayer(实体PlayerMP player)
     {
         this.mapPlayerPendingEntries.remove(player);
         int i = (int)player.managedPosX >> 4;
@@ -271,12 +271,12 @@ public class PlayerManager
         return i >= -radius && i <= radius ? j >= -radius && j <= radius : false;
     }
 
-    public void updateMountedMovingPlayer(EntityPlayerMP player)
+    public void updateMountedMovingPlayer(实体PlayerMP player)
     {
-        int i = (int)player.posX >> 4;
-        int j = (int)player.posZ >> 4;
-        double d0 = player.managedPosX - player.posX;
-        double d1 = player.managedPosZ - player.posZ;
+        int i = (int)player.X坐标 >> 4;
+        int j = (int)player.Z坐标 >> 4;
+        double d0 = player.managedPosX - player.X坐标;
+        double d1 = player.managedPosZ - player.Z坐标;
         double d2 = d0 * d0 + d1 * d1;
 
         if (d2 >= 64.0D)
@@ -321,13 +321,13 @@ public class PlayerManager
                 }
 
                 this.filterChunkLoadQueue(player);
-                player.managedPosX = player.posX;
-                player.managedPosZ = player.posZ;
+                player.managedPosX = player.X坐标;
+                player.managedPosZ = player.Z坐标;
             }
         }
     }
 
-    public boolean isPlayerWatchingChunk(EntityPlayerMP player, int chunkX, int chunkZ)
+    public boolean isPlayerWatchingChunk(实体PlayerMP player, int chunkX, int chunkZ)
     {
         PlayerManager.PlayerInstance playermanager$playerinstance = this.getPlayerInstance(chunkX, chunkZ, false);
         return playermanager$playerinstance != null && playermanager$playerinstance.playersWatchingChunk.contains(player) && !player.loadedChunks.contains(playermanager$playerinstance.chunkCoords);
@@ -341,10 +341,10 @@ public class PlayerManager
         {
             int i = radius - this.playerViewRadius;
 
-            for (EntityPlayerMP entityplayermp : Lists.newArrayList(this.players))
+            for (实体PlayerMP entityplayermp : Lists.newArrayList(this.players))
             {
-                int j = (int)entityplayermp.posX >> 4;
-                int k = (int)entityplayermp.posZ >> 4;
+                int j = (int)entityplayermp.X坐标 >> 4;
+                int k = (int)entityplayermp.Z坐标 >> 4;
                 Set<ChunkCoordIntPair> set = this.getPendingEntriesSafe(entityplayermp);
 
                 if (i > 0)
@@ -399,7 +399,7 @@ public class PlayerManager
         return distance * 16 - 16;
     }
 
-    private PriorityQueue<ChunkCoordIntPair> getNearest(Set<ChunkCoordIntPair> p_getNearest_1_, EntityPlayerMP p_getNearest_2_, int p_getNearest_3_)
+    private PriorityQueue<ChunkCoordIntPair> getNearest(Set<ChunkCoordIntPair> p_getNearest_1_, 实体PlayerMP p_getNearest_2_, int p_getNearest_3_)
     {
         float f;
 
@@ -441,7 +441,7 @@ public class PlayerManager
         return priorityqueue;
     }
 
-    private Set<ChunkCoordIntPair> getPendingEntriesSafe(EntityPlayerMP p_getPendingEntriesSafe_1_)
+    private Set<ChunkCoordIntPair> getPendingEntriesSafe(实体PlayerMP p_getPendingEntriesSafe_1_)
     {
         Set<ChunkCoordIntPair> set = (Set)this.mapPlayerPendingEntries.get(p_getPendingEntriesSafe_1_);
 
@@ -464,7 +464,7 @@ public class PlayerManager
 
     class PlayerInstance
     {
-        private final List<EntityPlayerMP> playersWatchingChunk = Lists.<EntityPlayerMP>newArrayList();
+        private final List<实体PlayerMP> playersWatchingChunk = Lists.<实体PlayerMP>newArrayList();
         private final ChunkCoordIntPair chunkCoords;
         private short[] locationOfBlockChange = new short[64];
         private int numBlocksToUpdate;
@@ -477,7 +477,7 @@ public class PlayerManager
             PlayerManager.this.getWorldServer().theChunkProviderServer.loadChunk(chunkX, chunkZ);
         }
 
-        public void addPlayer(EntityPlayerMP player)
+        public void addPlayer(实体PlayerMP player)
         {
             if (this.playersWatchingChunk.contains(player))
             {
@@ -495,7 +495,7 @@ public class PlayerManager
             }
         }
 
-        public void removePlayer(EntityPlayerMP player)
+        public void removePlayer(实体PlayerMP player)
         {
             if (this.playersWatchingChunk.contains(player))
             {
@@ -566,7 +566,7 @@ public class PlayerManager
         {
             for (int i = 0; i < this.playersWatchingChunk.size(); ++i)
             {
-                EntityPlayerMP entityplayermp = (EntityPlayerMP)this.playersWatchingChunk.get(i);
+                实体PlayerMP entityplayermp = (实体PlayerMP)this.playersWatchingChunk.get(i);
 
                 if (!entityplayermp.loadedChunks.contains(this.chunkCoords))
                 {
@@ -584,7 +584,7 @@ public class PlayerManager
                     int k1 = (this.locationOfBlockChange[0] >> 12 & 15) + this.chunkCoords.chunkXPos * 16;
                     int i2 = this.locationOfBlockChange[0] & 255;
                     int k2 = (this.locationOfBlockChange[0] >> 8 & 15) + this.chunkCoords.chunkZPos * 16;
-                    BlockPos blockpos = new BlockPos(k1, i2, k2);
+                    阻止位置 blockpos = new 阻止位置(k1, i2, k2);
                     this.sendToAllPlayersWatchingChunk(new S23PacketBlockChange(PlayerManager.this.theWorldServer, blockpos));
 
                     if (PlayerManager.this.theWorldServer.getBlockState(blockpos).getBlock().hasTileEntity())
@@ -601,7 +601,7 @@ public class PlayerManager
                         int l1 = (this.locationOfBlockChange[j1] >> 12 & 15) + this.chunkCoords.chunkXPos * 16;
                         int j2 = this.locationOfBlockChange[j1] & 255;
                         int l2 = (this.locationOfBlockChange[j1] >> 8 & 15) + this.chunkCoords.chunkZPos * 16;
-                        BlockPos blockpos1 = new BlockPos(l1, j2, l2);
+                        阻止位置 blockpos1 = new 阻止位置(l1, j2, l2);
 
                         if (PlayerManager.this.theWorldServer.getBlockState(blockpos1).getBlock().hasTileEntity())
                         {

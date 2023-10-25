@@ -4,13 +4,13 @@ import net.minecraft.client.我的手艺;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderCaveSpider;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityCaveSpider;
+import net.minecraft.entity.monster.实体CaveSpider;
 
 public class ModelAdapterCaveSpider extends ModelAdapterSpider
 {
     public ModelAdapterCaveSpider()
     {
-        super(EntityCaveSpider.class, "cave_spider", 0.7F);
+        super(实体CaveSpider.class, "cave_spider", 0.7F);
     }
 
     public IEntityRenderer makeEntityRender(ModelBase modelBase, float shadowSize)

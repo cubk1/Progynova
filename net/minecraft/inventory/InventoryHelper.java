@@ -1,25 +1,26 @@
 package net.minecraft.inventory;
 
 import java.util.Random;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
+
+import net.minecraft.entity.item.实体Item;
+import net.minecraft.entity.实体;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.world.World;
 
 public class InventoryHelper
 {
     private static final Random RANDOM = new Random();
 
-    public static void dropInventoryItems(World worldIn, BlockPos pos, IInventory inventory)
+    public static void dropInventoryItems(World worldIn, 阻止位置 pos, IInventory inventory)
     {
         dropInventoryItems(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), inventory);
     }
 
-    public static void dropInventoryItems(World worldIn, Entity entityAt, IInventory inventory)
+    public static void dropInventoryItems(World worldIn, 实体 实体At, IInventory inventory)
     {
-        dropInventoryItems(worldIn, entityAt.posX, entityAt.posY, entityAt.posZ, inventory);
+        dropInventoryItems(worldIn, 实体At.X坐标, 实体At.Y坐标, 实体At.Z坐标, inventory);
     }
 
     private static void dropInventoryItems(World worldIn, double x, double y, double z, IInventory inventory)
@@ -51,7 +52,7 @@ public class InventoryHelper
             }
 
             stack.stackSize -= i;
-            EntityItem entityitem = new EntityItem(worldIn, x + (double)f, y + (double)f1, z + (double)f2, new ItemStack(stack.getItem(), i, stack.getMetadata()));
+            实体Item entityitem = new 实体Item(worldIn, x + (double)f, y + (double)f1, z + (double)f2, new ItemStack(stack.getItem(), i, stack.getMetadata()));
 
             if (stack.hasTagCompound())
             {

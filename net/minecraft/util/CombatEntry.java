@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.实体LivingBase;
 
 public class CombatEntry
 {
@@ -33,7 +33,7 @@ public class CombatEntry
 
     public boolean isLivingDamageSrc()
     {
-        return this.damageSrc.getEntity() instanceof EntityLivingBase;
+        return this.damageSrc.getEntity() instanceof 实体LivingBase;
     }
 
     public String func_94562_g()

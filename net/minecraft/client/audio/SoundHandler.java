@@ -18,7 +18,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.图像位置;
 import org.apache.commons.io.IOUtils;
@@ -200,7 +200,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
         this.sndManager.playDelayedSound(sound, delay);
     }
 
-    public void setListener(EntityPlayer player, float p_147691_2_)
+    public void setListener(实体Player player, float p_147691_2_)
     {
         this.sndManager.setListener(player, p_147691_2_);
     }

@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntityEndPortal;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -35,9 +35,9 @@ public class ShadersRender
         frustum.setPosition(x, y, z);
     }
 
-    public static void setupTerrain(RenderGlobal renderGlobal, Entity viewEntity, double partialTicks, ICamera camera, int frameCount, boolean playerSpectator)
+    public static void setupTerrain(RenderGlobal renderGlobal, 实体 view实体, double partialTicks, ICamera camera, int frameCount, boolean playerSpectator)
     {
-        renderGlobal.setupTerrain(viewEntity, partialTicks, camera, frameCount, playerSpectator);
+        renderGlobal.setupTerrain(view实体, partialTicks, camera, frameCount, playerSpectator);
     }
 
     public static void beginTerrainSolid()
@@ -235,10 +235,10 @@ public class ShadersRender
             ClippingHelper clippinghelper = ClippingHelperShadow.getInstance();
             宇轩的世界.mcProfiler.endStartSection("shadow culling");
             Frustum frustum = new Frustum(clippinghelper);
-            Entity entity = 宇轩的世界.getRenderViewEntity();
-            double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
-            double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
-            double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
+            实体 实体 = 宇轩的世界.getRenderViewEntity();
+            double d0 = 实体.lastTickPosX + (实体.X坐标 - 实体.lastTickPosX) * (double)partialTicks;
+            double d1 = 实体.lastTickPosY + (实体.Y坐标 - 实体.lastTickPosY) * (double)partialTicks;
+            double d2 = 实体.lastTickPosZ + (实体.Z坐标 - 实体.lastTickPosZ) * (double)partialTicks;
             frustum.setPosition(d0, d1, d2);
             光照状态经理.shadeModel(7425);
             光照状态经理.启用纵深();
@@ -252,19 +252,19 @@ public class ShadersRender
             int i = 0;
             i = entityRenderer.frameCount;
             entityRenderer.frameCount = i + 1;
-            renderglobal.setupTerrain(entity, (double)partialTicks, frustum, i, 宇轩的世界.宇轩游玩者.isSpectator());
+            renderglobal.setupTerrain(实体, (double)partialTicks, frustum, i, 宇轩的世界.宇轩游玩者.isSpectator());
             宇轩的世界.mcProfiler.endStartSection("shadow updatechunks");
             宇轩的世界.mcProfiler.endStartSection("shadow terrain");
             光照状态经理.matrixMode(5888);
             光照状态经理.推黑客帝国();
             光照状态经理.禁用希腊字母表的第1个字母();
-            renderglobal.renderBlockLayer(EnumWorldBlockLayer.SOLID, (double)partialTicks, 2, entity);
+            renderglobal.renderBlockLayer(EnumWorldBlockLayer.SOLID, (double)partialTicks, 2, 实体);
             Shaders.checkGLError("shadow terrain solid");
             光照状态经理.启用希腊字母表的第1个字母();
-            renderglobal.renderBlockLayer(EnumWorldBlockLayer.CUTOUT_MIPPED, (double)partialTicks, 2, entity);
+            renderglobal.renderBlockLayer(EnumWorldBlockLayer.CUTOUT_MIPPED, (double)partialTicks, 2, 实体);
             Shaders.checkGLError("shadow terrain cutoutmipped");
             宇轩的世界.得到手感经理().getTexture(TextureMap.locationBlocksTexture).setBlurMipmap(false, false);
-            renderglobal.renderBlockLayer(EnumWorldBlockLayer.CUTOUT, (double)partialTicks, 2, entity);
+            renderglobal.renderBlockLayer(EnumWorldBlockLayer.CUTOUT, (double)partialTicks, 2, 实体);
             Shaders.checkGLError("shadow terrain cutout");
             宇轩的世界.得到手感经理().getTexture(TextureMap.locationBlocksTexture).restoreLastBlurMipmap();
             光照状态经理.shadeModel(7424);
@@ -279,7 +279,7 @@ public class ShadersRender
                 Reflector.callVoid(Reflector.ForgeHooksClient_setRenderPass, new Object[] {Integer.valueOf(0)});
             }
 
-            renderglobal.renderEntities(entity, frustum, partialTicks);
+            renderglobal.renderEntities(实体, frustum, partialTicks);
             Shaders.checkGLError("shadow entities");
             光照状态经理.matrixMode(5888);
             光照状态经理.流行音乐黑客帝国();
@@ -310,7 +310,7 @@ public class ShadersRender
             if (Shaders.isRenderShadowTranslucent())
             {
                 宇轩的世界.mcProfiler.endStartSection("shadow translucent");
-                renderglobal.renderBlockLayer(EnumWorldBlockLayer.TRANSLUCENT, (double)partialTicks, 2, entity);
+                renderglobal.renderBlockLayer(EnumWorldBlockLayer.TRANSLUCENT, (double)partialTicks, 2, 实体);
                 Shaders.checkGLError("shadow translucent");
             }
 
@@ -318,7 +318,7 @@ public class ShadersRender
             {
                 RenderHelper.enableStandardItemLighting();
                 Reflector.call(Reflector.ForgeHooksClient_setRenderPass, new Object[] {Integer.valueOf(1)});
-                renderglobal.renderEntities(entity, frustum, partialTicks);
+                renderglobal.renderEntities(实体, frustum, partialTicks);
                 Reflector.call(Reflector.ForgeHooksClient_setRenderPass, new Object[] {Integer.valueOf(-1)});
                 RenderHelper.disableStandardItemLighting();
                 Shaders.checkGLError("shadow entities 1");

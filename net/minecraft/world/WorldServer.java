@@ -19,16 +19,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EntityTracker;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.INpc;
-import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityWaterMob;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.*;
+import net.minecraft.entity.passive.实体Animal;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.player.实体PlayerMP;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.effect.实体LightningBolt;
+import net.minecraft.entity.passive.实体WaterMob;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -46,7 +43,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.IThreadListener;
@@ -79,7 +76,7 @@ public class WorldServer extends World implements IThreadListener
     private final PlayerManager thePlayerManager;
     private final Set<NextTickListEntry> pendingTickListEntriesHashSet = Sets.<NextTickListEntry>newHashSet();
     private final TreeSet<NextTickListEntry> pendingTickListEntriesTreeSet = new TreeSet();
-    private final Map<UUID, Entity> entitiesByUuid = Maps.<UUID, Entity>newHashMap();
+    private final Map<UUID, 实体> entitiesByUuid = Maps.<UUID, 实体>newHashMap();
     public ChunkProviderServer theChunkProviderServer;
     public boolean disableLevelSaving;
     private boolean allPlayersSleeping;
@@ -212,13 +209,13 @@ public class WorldServer extends World implements IThreadListener
         this.sendQueuedBlockEvents();
     }
 
-    public BiomeGenBase.SpawnListEntry getSpawnListEntryForTypeAt(EnumCreatureType creatureType, BlockPos pos)
+    public BiomeGenBase.SpawnListEntry getSpawnListEntryForTypeAt(EnumCreatureType creatureType, 阻止位置 pos)
     {
         List<BiomeGenBase.SpawnListEntry> list = this.getChunkProvider().getPossibleCreatures(creatureType, pos);
         return list != null && !list.isEmpty() ? (BiomeGenBase.SpawnListEntry)WeightedRandom.getRandomItem(this.rand, list) : null;
     }
 
-    public boolean canCreatureTypeSpawnHere(EnumCreatureType creatureType, BiomeGenBase.SpawnListEntry spawnListEntry, BlockPos pos)
+    public boolean canCreatureTypeSpawnHere(EnumCreatureType creatureType, BiomeGenBase.SpawnListEntry spawnListEntry, 阻止位置 pos)
     {
         List<BiomeGenBase.SpawnListEntry> list = this.getChunkProvider().getPossibleCreatures(creatureType, pos);
         return list != null && !list.isEmpty() ? list.contains(spawnListEntry) : false;
@@ -233,7 +230,7 @@ public class WorldServer extends World implements IThreadListener
             int i = 0;
             int j = 0;
 
-            for (EntityPlayer entityplayer : this.playerEntities)
+            for (实体Player entityplayer : this.playerEntities)
             {
                 if (entityplayer.isSpectator())
                 {
@@ -253,7 +250,7 @@ public class WorldServer extends World implements IThreadListener
     {
         this.allPlayersSleeping = false;
 
-        for (EntityPlayer entityplayer : this.playerEntities)
+        for (实体Player entityplayer : this.playerEntities)
         {
             if (entityplayer.isPlayerSleeping())
             {
@@ -276,7 +273,7 @@ public class WorldServer extends World implements IThreadListener
     {
         if (this.allPlayersSleeping && !this.isRemote)
         {
-            for (EntityPlayer entityplayer : this.playerEntities)
+            for (实体Player entityplayer : this.playerEntities)
             {
                 if (entityplayer.isSpectator() || !entityplayer.isPlayerFullyAsleep())
                 {
@@ -303,7 +300,7 @@ public class WorldServer extends World implements IThreadListener
         int j = this.worldInfo.getSpawnZ();
         int k = 0;
 
-        while (this.getGroundAboveSeaLevel(new BlockPos(i, 0, j)).getMaterial() == Material.air)
+        while (this.getGroundAboveSeaLevel(new 阻止位置(i, 0, j)).getMaterial() == Material.air)
         {
             i += this.rand.nextInt(8) - this.rand.nextInt(8);
             j += this.rand.nextInt(8) - this.rand.nextInt(8);
@@ -350,11 +347,11 @@ public class WorldServer extends World implements IThreadListener
                 {
                     this.updateLCG = this.updateLCG * 3 + 1013904223;
                     int i1 = this.updateLCG >> 2;
-                    BlockPos blockpos = this.adjustPosToNearbyEntity(new BlockPos(k + (i1 & 15), 0, l + (i1 >> 8 & 15)));
+                    阻止位置 blockpos = this.adjustPosToNearbyEntity(new 阻止位置(k + (i1 & 15), 0, l + (i1 >> 8 & 15)));
 
                     if (this.isRainingAt(blockpos))
                     {
-                        this.addWeatherEffect(new EntityLightningBolt(this, (double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ()));
+                        this.addWeatherEffect(new 实体LightningBolt(this, (double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ()));
                     }
                 }
 
@@ -364,8 +361,8 @@ public class WorldServer extends World implements IThreadListener
                 {
                     this.updateLCG = this.updateLCG * 3 + 1013904223;
                     int k2 = this.updateLCG >> 2;
-                    BlockPos blockpos2 = this.getPrecipitationHeight(new BlockPos(k + (k2 & 15), 0, l + (k2 >> 8 & 15)));
-                    BlockPos blockpos1 = blockpos2.down();
+                    阻止位置 blockpos2 = this.getPrecipitationHeight(new 阻止位置(k + (k2 & 15), 0, l + (k2 >> 8 & 15)));
+                    阻止位置 blockpos1 = blockpos2.down();
 
                     if (this.canBlockFreezeNoWater(blockpos1))
                     {
@@ -406,7 +403,7 @@ public class WorldServer extends World implements IThreadListener
                                 if (block.getTickRandomly())
                                 {
                                     ++i;
-                                    block.randomTick(this, new BlockPos(l1 + k, j2 + extendedblockstorage.getYLocation(), i2 + l), iblockstate, this.rand);
+                                    block.randomTick(this, new 阻止位置(l1 + k, j2 + extendedblockstorage.getYLocation(), i2 + l), iblockstate, this.rand);
                                 }
                             }
                         }
@@ -418,32 +415,32 @@ public class WorldServer extends World implements IThreadListener
         }
     }
 
-    protected BlockPos adjustPosToNearbyEntity(BlockPos pos)
+    protected 阻止位置 adjustPosToNearbyEntity(阻止位置 pos)
     {
-        BlockPos blockpos = this.getPrecipitationHeight(pos);
-        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), this.getHeight(), blockpos.getZ()))).expand(3.0D, 3.0D, 3.0D);
-        List<EntityLivingBase> list = this.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, new Predicate<EntityLivingBase>()
+        阻止位置 blockpos = this.getPrecipitationHeight(pos);
+        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(blockpos, new 阻止位置(blockpos.getX(), this.getHeight(), blockpos.getZ()))).expand(3.0D, 3.0D, 3.0D);
+        List<实体LivingBase> list = this.getEntitiesWithinAABB(实体LivingBase.class, axisalignedbb, new Predicate<实体LivingBase>()
         {
-            public boolean apply(EntityLivingBase p_apply_1_)
+            public boolean apply(实体LivingBase p_apply_1_)
             {
                 return p_apply_1_ != null && p_apply_1_.isEntityAlive() && WorldServer.this.canSeeSky(p_apply_1_.getPosition());
             }
         });
-        return !list.isEmpty() ? ((EntityLivingBase)list.get(this.rand.nextInt(list.size()))).getPosition() : blockpos;
+        return !list.isEmpty() ? ((实体LivingBase)list.get(this.rand.nextInt(list.size()))).getPosition() : blockpos;
     }
 
-    public boolean isBlockTickPending(BlockPos pos, Block blockType)
+    public boolean isBlockTickPending(阻止位置 pos, Block blockType)
     {
         NextTickListEntry nextticklistentry = new NextTickListEntry(pos, blockType);
         return this.pendingTickListEntriesThisTick.contains(nextticklistentry);
     }
 
-    public void scheduleUpdate(BlockPos pos, Block blockIn, int delay)
+    public void scheduleUpdate(阻止位置 pos, Block blockIn, int delay)
     {
         this.updateBlockTick(pos, blockIn, delay, 0);
     }
 
-    public void updateBlockTick(BlockPos pos, Block blockIn, int delay, int priority)
+    public void updateBlockTick(阻止位置 pos, Block blockIn, int delay, int priority)
     {
         NextTickListEntry nextticklistentry = new NextTickListEntry(pos, blockIn);
         int i = 0;
@@ -486,7 +483,7 @@ public class WorldServer extends World implements IThreadListener
         }
     }
 
-    public void scheduleBlockUpdate(BlockPos pos, Block blockIn, int delay, int priority)
+    public void scheduleBlockUpdate(阻止位置 pos, Block blockIn, int delay, int priority)
     {
         NextTickListEntry nextticklistentry = new NextTickListEntry(pos, blockIn);
         nextticklistentry.setPriority(priority);
@@ -634,7 +631,7 @@ public class WorldServer extends World implements IThreadListener
             while (iterator.hasNext())
             {
                 NextTickListEntry nextticklistentry = (NextTickListEntry)iterator.next();
-                BlockPos blockpos = nextticklistentry.position;
+                阻止位置 blockpos = nextticklistentry.position;
 
                 if (blockpos.getX() >= structureBB.minX && blockpos.getX() < structureBB.maxX && blockpos.getZ() >= structureBB.minZ && blockpos.getZ() < structureBB.maxZ)
                 {
@@ -657,19 +654,19 @@ public class WorldServer extends World implements IThreadListener
         return list;
     }
 
-    public void updateEntityWithOptionalForce(Entity entityIn, boolean forceUpdate)
+    public void updateEntityWithOptionalForce(实体 实体In, boolean forceUpdate)
     {
-        if (!this.canSpawnAnimals() && (entityIn instanceof EntityAnimal || entityIn instanceof EntityWaterMob))
+        if (!this.canSpawnAnimals() && (实体In instanceof 实体Animal || 实体In instanceof 实体WaterMob))
         {
-            entityIn.setDead();
+            实体In.setDead();
         }
 
-        if (!this.canSpawnNPCs() && entityIn instanceof INpc)
+        if (!this.canSpawnNPCs() && 实体In instanceof INpc)
         {
-            entityIn.setDead();
+            实体In.setDead();
         }
 
-        super.updateEntityWithOptionalForce(entityIn, forceUpdate);
+        super.updateEntityWithOptionalForce(实体In, forceUpdate);
     }
 
     private boolean canSpawnNPCs()
@@ -696,7 +693,7 @@ public class WorldServer extends World implements IThreadListener
         for (int i = 0; i < this.loadedTileEntityList.size(); ++i)
         {
             TileEntity tileentity = (TileEntity)this.loadedTileEntityList.get(i);
-            BlockPos blockpos = tileentity.getPos();
+            阻止位置 blockpos = tileentity.getPos();
 
             if (blockpos.getX() >= minX && blockpos.getY() >= minY && blockpos.getZ() >= minZ && blockpos.getX() < maxX && blockpos.getY() < maxY && blockpos.getZ() < maxZ)
             {
@@ -707,7 +704,7 @@ public class WorldServer extends World implements IThreadListener
         return list;
     }
 
-    public boolean isBlockModifiable(EntityPlayer player, BlockPos pos)
+    public boolean isBlockModifiable(实体Player player, 阻止位置 pos)
     {
         return !this.mcServer.isBlockProtected(this, pos, player) && this.getWorldBorder().contains(pos);
     }
@@ -766,11 +763,11 @@ public class WorldServer extends World implements IThreadListener
     {
         if (!this.provider.canRespawnHere())
         {
-            this.worldInfo.setSpawn(BlockPos.ORIGIN.up(this.provider.getAverageGroundLevel()));
+            this.worldInfo.setSpawn(阻止位置.ORIGIN.up(this.provider.getAverageGroundLevel()));
         }
         else if (this.worldInfo.getTerrainType() == WorldType.DEBUG_WORLD)
         {
-            this.worldInfo.setSpawn(BlockPos.ORIGIN.up());
+            this.worldInfo.setSpawn(阻止位置.ORIGIN.up());
         }
         else
         {
@@ -778,7 +775,7 @@ public class WorldServer extends World implements IThreadListener
             WorldChunkManager worldchunkmanager = this.provider.getWorldChunkManager();
             List<BiomeGenBase> list = worldchunkmanager.getBiomesToSpawnIn();
             Random random = new Random(this.getSeed());
-            BlockPos blockpos = worldchunkmanager.findBiomePosition(0, 0, 256, list, random);
+            阻止位置 blockpos = worldchunkmanager.findBiomePosition(0, 0, 256, list, random);
             int i = 0;
             int j = this.provider.getAverageGroundLevel();
             int k = 0;
@@ -807,7 +804,7 @@ public class WorldServer extends World implements IThreadListener
                 }
             }
 
-            this.worldInfo.setSpawn(new BlockPos(i, j, k));
+            this.worldInfo.setSpawn(new 阻止位置(i, j, k));
             this.findingSpawnPoint = false;
 
             if (settings.isBonusChestEnabled())
@@ -825,7 +822,7 @@ public class WorldServer extends World implements IThreadListener
         {
             int j = this.worldInfo.getSpawnX() + this.rand.nextInt(6) - this.rand.nextInt(6);
             int k = this.worldInfo.getSpawnZ() + this.rand.nextInt(6) - this.rand.nextInt(6);
-            BlockPos blockpos = this.getTopSolidOrLiquidBlock(new BlockPos(j, 0, k)).up();
+            阻止位置 blockpos = this.getTopSolidOrLiquidBlock(new 阻止位置(j, 0, k)).up();
 
             if (worldgeneratorbonuschest.generate(this, this.rand, blockpos))
             {
@@ -834,7 +831,7 @@ public class WorldServer extends World implements IThreadListener
         }
     }
 
-    public BlockPos getSpawnCoordinate()
+    public 阻止位置 getSpawnCoordinate()
     {
         return this.provider.getSpawnCoordinate();
     }
@@ -891,12 +888,12 @@ public class WorldServer extends World implements IThreadListener
         this.mapStorage.saveAllData();
     }
 
-    protected void onEntityAdded(Entity entityIn)
+    protected void onEntityAdded(实体 实体In)
     {
-        super.onEntityAdded(entityIn);
-        this.entitiesById.addKey(entityIn.getEntityId(), entityIn);
-        this.entitiesByUuid.put(entityIn.getUniqueID(), entityIn);
-        Entity[] aentity = entityIn.getParts();
+        super.onEntityAdded(实体In);
+        this.entitiesById.addKey(实体In.getEntityId(), 实体In);
+        this.entitiesByUuid.put(实体In.getUniqueID(), 实体In);
+        实体[] aentity = 实体In.getParts();
 
         if (aentity != null)
         {
@@ -907,12 +904,12 @@ public class WorldServer extends World implements IThreadListener
         }
     }
 
-    protected void onEntityRemoved(Entity entityIn)
+    protected void onEntityRemoved(实体 实体In)
     {
-        super.onEntityRemoved(entityIn);
-        this.entitiesById.removeObject(entityIn.getEntityId());
-        this.entitiesByUuid.remove(entityIn.getUniqueID());
-        Entity[] aentity = entityIn.getParts();
+        super.onEntityRemoved(实体In);
+        this.entitiesById.removeObject(实体In.getEntityId());
+        this.entitiesByUuid.remove(实体In.getUniqueID());
+        实体[] aentity = 实体In.getParts();
 
         if (aentity != null)
         {
@@ -923,11 +920,11 @@ public class WorldServer extends World implements IThreadListener
         }
     }
 
-    public boolean addWeatherEffect(Entity entityIn)
+    public boolean addWeatherEffect(实体 实体In)
     {
-        if (super.addWeatherEffect(entityIn))
+        if (super.addWeatherEffect(实体In))
         {
-            this.mcServer.getConfigurationManager().sendToAllNear(entityIn.posX, entityIn.posY, entityIn.posZ, 512.0D, this.provider.getDimensionId(), new S2CPacketSpawnGlobalEntity(entityIn));
+            this.mcServer.getConfigurationManager().sendToAllNear(实体In.X坐标, 实体In.Y坐标, 实体In.Z坐标, 512.0D, this.provider.getDimensionId(), new S2CPacketSpawnGlobalEntity(实体In));
             return true;
         }
         else
@@ -936,14 +933,14 @@ public class WorldServer extends World implements IThreadListener
         }
     }
 
-    public void setEntityState(Entity entityIn, byte state)
+    public void setEntityState(实体 实体In, byte state)
     {
-        this.getEntityTracker().func_151248_b(entityIn, new S19PacketEntityStatus(entityIn, state));
+        this.getEntityTracker().func_151248_b(实体In, new S19PacketEntityStatus(实体In, state));
     }
 
-    public Explosion newExplosion(Entity entityIn, double x, double y, double z, float strength, boolean isFlaming, boolean isSmoking)
+    public Explosion newExplosion(实体 实体In, double x, double y, double z, float strength, boolean isFlaming, boolean isSmoking)
     {
-        Explosion explosion = new Explosion(this, entityIn, x, y, z, strength, isFlaming, isSmoking);
+        Explosion explosion = new Explosion(this, 实体In, x, y, z, strength, isFlaming, isSmoking);
         explosion.doExplosionA();
         explosion.doExplosionB(false);
 
@@ -952,18 +949,18 @@ public class WorldServer extends World implements IThreadListener
             explosion.clearAffectedBlockPositions();
         }
 
-        for (EntityPlayer entityplayer : this.playerEntities)
+        for (实体Player entityplayer : this.playerEntities)
         {
             if (entityplayer.getDistanceSq(x, y, z) < 4096.0D)
             {
-                ((EntityPlayerMP)entityplayer).playerNetServerHandler.sendPacket(new S27PacketExplosion(x, y, z, strength, explosion.getAffectedBlockPositions(), (Vec3)explosion.getPlayerKnockbackMap().get(entityplayer)));
+                ((实体PlayerMP)entityplayer).playerNetServerHandler.sendPacket(new S27PacketExplosion(x, y, z, strength, explosion.getAffectedBlockPositions(), (Vec3)explosion.getPlayerKnockbackMap().get(entityplayer)));
             }
         }
 
         return explosion;
     }
 
-    public void addBlockEvent(BlockPos pos, Block blockIn, int eventID, int eventParam)
+    public void addBlockEvent(阻止位置 pos, Block blockIn, int eventID, int eventParam)
     {
         BlockEventData blockeventdata = new BlockEventData(pos, blockIn, eventID, eventParam);
 
@@ -1075,8 +1072,8 @@ public class WorldServer extends World implements IThreadListener
 
         for (int i = 0; i < this.playerEntities.size(); ++i)
         {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)this.playerEntities.get(i);
-            BlockPos blockpos = entityplayermp.getPosition();
+            实体PlayerMP entityplayermp = (实体PlayerMP)this.playerEntities.get(i);
+            阻止位置 blockpos = entityplayermp.getPosition();
             double d0 = blockpos.distanceSq(xCoord, yCoord, zCoord);
 
             if (d0 <= 256.0D || longDistance && d0 <= 65536.0D)
@@ -1086,9 +1083,9 @@ public class WorldServer extends World implements IThreadListener
         }
     }
 
-    public Entity getEntityFromUuid(UUID uuid)
+    public 实体 getEntityFromUuid(UUID uuid)
     {
-        return (Entity)this.entitiesByUuid.get(uuid);
+        return (实体)this.entitiesByUuid.get(uuid);
     }
 
     public ListenableFuture<Object> addScheduledTask(Runnable runnableToSchedule)

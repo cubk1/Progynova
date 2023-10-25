@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.tileentity;
 
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.光照状态经理;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.图像位置;
@@ -61,7 +61,7 @@ public class TileEntityEnchantmentTableRenderer extends TileEntitySpecialRendere
 
         float f5 = te.bookSpreadPrev + (te.bookSpread - te.bookSpreadPrev) * partialTicks;
         光照状态经理.enableCull();
-        this.field_147541_c.render((Entity)null, f, f3, f4, f5, 0.0F, 0.0625F);
+        this.field_147541_c.render((实体)null, f, f3, f4, f5, 0.0F, 0.0625F);
         光照状态经理.流行音乐黑客帝国();
     }
 }

@@ -12,10 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-import net.minecraft.entity.Entity;
+
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.player.实体PlayerMP;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.network.NetworkManager;
@@ -44,7 +45,7 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.StatList;
 import net.minecraft.stats.StatisticsFile;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.枚举聊天格式;
 import net.minecraft.util.IChatComponent;
@@ -69,8 +70,8 @@ public abstract class ServerConfigurationManager
     private static final Logger logger = LogManager.getLogger();
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
     private final MinecraftServer mcServer;
-    private final List<EntityPlayerMP> playerEntityList = Lists.<EntityPlayerMP>newArrayList();
-    private final Map<UUID, EntityPlayerMP> uuidToPlayerMap = Maps.<UUID, EntityPlayerMP>newHashMap();
+    private final List<实体PlayerMP> playerEntityList = Lists.<实体PlayerMP>newArrayList();
+    private final Map<UUID, 实体PlayerMP> uuidToPlayerMap = Maps.<UUID, 实体PlayerMP>newHashMap();
     private final UserListBans bannedPlayers;
     private final BanList bannedIPs;
     private final UserListOps ops;
@@ -97,7 +98,7 @@ public abstract class ServerConfigurationManager
         this.maxPlayers = 8;
     }
 
-    public void initializeConnectionToPlayer(NetworkManager netManager, EntityPlayerMP playerIn)
+    public void initializeConnectionToPlayer(NetworkManager netManager, 实体PlayerMP playerIn)
     {
         GameProfile gameprofile = playerIn.getGameProfile();
         PlayerProfileCache playerprofilecache = this.mcServer.getPlayerProfileCache();
@@ -114,11 +115,11 @@ public abstract class ServerConfigurationManager
             s1 = netManager.getRemoteAddress().toString();
         }
 
-        logger.info(playerIn.getName() + "[" + s1 + "] logged in with entity id " + playerIn.getEntityId() + " at (" + playerIn.posX + ", " + playerIn.posY + ", " + playerIn.posZ + ")");
+        logger.info(playerIn.getName() + "[" + s1 + "] logged in with entity id " + playerIn.getEntityId() + " at (" + playerIn.X坐标 + ", " + playerIn.Y坐标 + ", " + playerIn.Z坐标 + ")");
         WorldServer worldserver = this.mcServer.worldServerForDimension(playerIn.dimension);
         WorldInfo worldinfo = worldserver.getWorldInfo();
-        BlockPos blockpos = worldserver.getSpawnPoint();
-        this.setPlayerGameTypeBasedOnOther(playerIn, (EntityPlayerMP)null, worldserver);
+        阻止位置 blockpos = worldserver.getSpawnPoint();
+        this.setPlayerGameTypeBasedOnOther(playerIn, (实体PlayerMP)null, worldserver);
         NetHandlerPlayServer nethandlerplayserver = new NetHandlerPlayServer(this.mcServer, netManager, playerIn);
         nethandlerplayserver.sendPacket(new S01PacketJoinGame(playerIn.getEntityId(), playerIn.theItemInWorldManager.getGameType(), worldinfo.isHardcoreModeEnabled(), worldserver.provider.getDimensionId(), worldserver.getDifficulty(), this.getMaxPlayers(), worldinfo.getTerrainType(), worldserver.getGameRules().getBoolean("reducedDebugInfo")));
         nethandlerplayserver.sendPacket(new S3FPacketCustomPayload("MC|Brand", (new PacketBuffer(Unpooled.buffer())).writeString(this.getServerInstance().getServerModName())));
@@ -144,7 +145,7 @@ public abstract class ServerConfigurationManager
         chatcomponenttranslation.getChatStyle().setColor(枚举聊天格式.YELLOW);
         this.sendChatMsg(chatcomponenttranslation);
         this.playerLoggedIn(playerIn);
-        nethandlerplayserver.setPlayerLocation(playerIn.posX, playerIn.posY, playerIn.posZ, playerIn.旋转侧滑, playerIn.rotationPitch);
+        nethandlerplayserver.setPlayerLocation(playerIn.X坐标, playerIn.Y坐标, playerIn.Z坐标, playerIn.旋转侧滑, playerIn.rotationPitch);
         this.updateTimeAndWeatherForPlayer(playerIn, worldserver);
 
         if (this.mcServer.getResourcePackUrl().length() > 0)
@@ -161,19 +162,19 @@ public abstract class ServerConfigurationManager
 
         if (nbttagcompound != null && nbttagcompound.hasKey("Riding", 10))
         {
-            Entity entity = EntityList.createEntityFromNBT(nbttagcompound.getCompoundTag("Riding"), worldserver);
+            实体 实体 = EntityList.createEntityFromNBT(nbttagcompound.getCompoundTag("Riding"), worldserver);
 
-            if (entity != null)
+            if (实体 != null)
             {
-                entity.forceSpawn = true;
-                worldserver.spawnEntityInWorld(entity);
-                playerIn.mountEntity(entity);
-                entity.forceSpawn = false;
+                实体.forceSpawn = true;
+                worldserver.spawnEntityInWorld(实体);
+                playerIn.mountEntity(实体);
+                实体.forceSpawn = false;
             }
         }
     }
 
-    protected void sendScoreboard(ServerScoreboard scoreboardIn, EntityPlayerMP playerIn)
+    protected void sendScoreboard(ServerScoreboard scoreboardIn, 实体PlayerMP playerIn)
     {
         Set<ScoreObjective> set = Sets.<ScoreObjective>newHashSet();
 
@@ -232,7 +233,7 @@ public abstract class ServerConfigurationManager
         });
     }
 
-    public void preparePlayer(EntityPlayerMP playerIn, WorldServer worldIn)
+    public void preparePlayer(实体PlayerMP playerIn, WorldServer worldIn)
     {
         WorldServer worldserver = playerIn.getServerForPlayer();
 
@@ -242,7 +243,7 @@ public abstract class ServerConfigurationManager
         }
 
         worldserver.getPlayerManager().addPlayer(playerIn);
-        worldserver.theChunkProviderServer.loadChunk((int)playerIn.posX >> 4, (int)playerIn.posZ >> 4);
+        worldserver.theChunkProviderServer.loadChunk((int)playerIn.X坐标 >> 4, (int)playerIn.Z坐标 >> 4);
     }
 
     public int getEntityViewDistance()
@@ -250,7 +251,7 @@ public abstract class ServerConfigurationManager
         return PlayerManager.getFurthestViewableBlock(this.getViewDistance());
     }
 
-    public NBTTagCompound readPlayerDataFromFile(EntityPlayerMP playerIn)
+    public NBTTagCompound readPlayerDataFromFile(实体PlayerMP playerIn)
     {
         NBTTagCompound nbttagcompound = this.mcServer.worldServers[0].getWorldInfo().getPlayerNBTTagCompound();
         NBTTagCompound nbttagcompound1;
@@ -269,7 +270,7 @@ public abstract class ServerConfigurationManager
         return nbttagcompound1;
     }
 
-    protected void writePlayerData(EntityPlayerMP playerIn)
+    protected void writePlayerData(实体PlayerMP playerIn)
     {
         this.playerNBTManagerObj.writePlayerData(playerIn);
         StatisticsFile statisticsfile = (StatisticsFile)this.playerStatFiles.get(playerIn.getUniqueID());
@@ -280,36 +281,36 @@ public abstract class ServerConfigurationManager
         }
     }
 
-    public void playerLoggedIn(EntityPlayerMP playerIn)
+    public void playerLoggedIn(实体PlayerMP playerIn)
     {
         this.playerEntityList.add(playerIn);
         this.uuidToPlayerMap.put(playerIn.getUniqueID(), playerIn);
-        this.sendPacketToAllPlayers(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.ADD_PLAYER, new EntityPlayerMP[] {playerIn}));
+        this.sendPacketToAllPlayers(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.ADD_PLAYER, new 实体PlayerMP[] {playerIn}));
         WorldServer worldserver = this.mcServer.worldServerForDimension(playerIn.dimension);
         worldserver.spawnEntityInWorld(playerIn);
         this.preparePlayer(playerIn, (WorldServer)null);
 
         for (int i = 0; i < this.playerEntityList.size(); ++i)
         {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)this.playerEntityList.get(i);
-            playerIn.playerNetServerHandler.sendPacket(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.ADD_PLAYER, new EntityPlayerMP[] {entityplayermp}));
+            实体PlayerMP entityplayermp = (实体PlayerMP)this.playerEntityList.get(i);
+            playerIn.playerNetServerHandler.sendPacket(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.ADD_PLAYER, new 实体PlayerMP[] {entityplayermp}));
         }
     }
 
-    public void serverUpdateMountedMovingPlayer(EntityPlayerMP playerIn)
+    public void serverUpdateMountedMovingPlayer(实体PlayerMP playerIn)
     {
         playerIn.getServerForPlayer().getPlayerManager().updateMountedMovingPlayer(playerIn);
     }
 
-    public void playerLoggedOut(EntityPlayerMP playerIn)
+    public void playerLoggedOut(实体PlayerMP playerIn)
     {
         playerIn.triggerAchievement(StatList.leaveGameStat);
         this.writePlayerData(playerIn);
         WorldServer worldserver = playerIn.getServerForPlayer();
 
-        if (playerIn.ridingEntity != null)
+        if (playerIn.riding实体 != null)
         {
-            worldserver.removePlayerEntityDangerously(playerIn.ridingEntity);
+            worldserver.removePlayerEntityDangerously(playerIn.riding实体);
             logger.debug("removing player mount");
         }
 
@@ -317,7 +318,7 @@ public abstract class ServerConfigurationManager
         worldserver.getPlayerManager().removePlayer(playerIn);
         this.playerEntityList.remove(playerIn);
         UUID uuid = playerIn.getUniqueID();
-        EntityPlayerMP entityplayermp = (EntityPlayerMP)this.uuidToPlayerMap.get(uuid);
+        实体PlayerMP entityplayermp = (实体PlayerMP)this.uuidToPlayerMap.get(uuid);
 
         if (entityplayermp == playerIn)
         {
@@ -325,7 +326,7 @@ public abstract class ServerConfigurationManager
             this.playerStatFiles.remove(uuid);
         }
 
-        this.sendPacketToAllPlayers(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.REMOVE_PLAYER, new EntityPlayerMP[] {playerIn}));
+        this.sendPacketToAllPlayers(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.REMOVE_PLAYER, new 实体PlayerMP[] {playerIn}));
     }
 
     public String allowUserToConnect(SocketAddress address, GameProfile profile)
@@ -364,14 +365,14 @@ public abstract class ServerConfigurationManager
         }
     }
 
-    public EntityPlayerMP createPlayerForUser(GameProfile profile)
+    public 实体PlayerMP createPlayerForUser(GameProfile profile)
     {
-        UUID uuid = EntityPlayer.getUUID(profile);
-        List<EntityPlayerMP> list = Lists.<EntityPlayerMP>newArrayList();
+        UUID uuid = 实体Player.getUUID(profile);
+        List<实体PlayerMP> list = Lists.<实体PlayerMP>newArrayList();
 
         for (int i = 0; i < this.playerEntityList.size(); ++i)
         {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)this.playerEntityList.get(i);
+            实体PlayerMP entityplayermp = (实体PlayerMP)this.playerEntityList.get(i);
 
             if (entityplayermp.getUniqueID().equals(uuid))
             {
@@ -379,14 +380,14 @@ public abstract class ServerConfigurationManager
             }
         }
 
-        EntityPlayerMP entityplayermp2 = (EntityPlayerMP)this.uuidToPlayerMap.get(profile.getId());
+        实体PlayerMP entityplayermp2 = (实体PlayerMP)this.uuidToPlayerMap.get(profile.getId());
 
         if (entityplayermp2 != null && !list.contains(entityplayermp2))
         {
             list.add(entityplayermp2);
         }
 
-        for (EntityPlayerMP entityplayermp1 : list)
+        for (实体PlayerMP entityplayermp1 : list)
         {
             entityplayermp1.playerNetServerHandler.kickPlayerFromServer("You logged in from another location");
         }
@@ -402,17 +403,17 @@ public abstract class ServerConfigurationManager
             iteminworldmanager = new ItemInWorldManager(this.mcServer.worldServerForDimension(0));
         }
 
-        return new EntityPlayerMP(this.mcServer, this.mcServer.worldServerForDimension(0), profile, iteminworldmanager);
+        return new 实体PlayerMP(this.mcServer, this.mcServer.worldServerForDimension(0), profile, iteminworldmanager);
     }
 
-    public EntityPlayerMP recreatePlayerEntity(EntityPlayerMP playerIn, int dimension, boolean conqueredEnd)
+    public 实体PlayerMP recreatePlayerEntity(实体PlayerMP playerIn, int dimension, boolean conqueredEnd)
     {
         playerIn.getServerForPlayer().getEntityTracker().removePlayerFromTrackers(playerIn);
         playerIn.getServerForPlayer().getEntityTracker().untrackEntity(playerIn);
         playerIn.getServerForPlayer().getPlayerManager().removePlayer(playerIn);
         this.playerEntityList.remove(playerIn);
         this.mcServer.worldServerForDimension(playerIn.dimension).removePlayerEntityDangerously(playerIn);
-        BlockPos blockpos = playerIn.getBedLocation();
+        阻止位置 blockpos = playerIn.getBedLocation();
         boolean flag = playerIn.isSpawnForced();
         playerIn.dimension = dimension;
         ItemInWorldManager iteminworldmanager;
@@ -426,7 +427,7 @@ public abstract class ServerConfigurationManager
             iteminworldmanager = new ItemInWorldManager(this.mcServer.worldServerForDimension(playerIn.dimension));
         }
 
-        EntityPlayerMP entityplayermp = new EntityPlayerMP(this.mcServer, this.mcServer.worldServerForDimension(playerIn.dimension), playerIn.getGameProfile(), iteminworldmanager);
+        实体PlayerMP entityplayermp = new 实体PlayerMP(this.mcServer, this.mcServer.worldServerForDimension(playerIn.dimension), playerIn.getGameProfile(), iteminworldmanager);
         entityplayermp.playerNetServerHandler = playerIn.playerNetServerHandler;
         entityplayermp.clonePlayer(playerIn, conqueredEnd);
         entityplayermp.setEntityId(playerIn.getEntityId());
@@ -436,7 +437,7 @@ public abstract class ServerConfigurationManager
 
         if (blockpos != null)
         {
-            BlockPos blockpos1 = EntityPlayer.getBedSpawnLocation(this.mcServer.worldServerForDimension(playerIn.dimension), blockpos, flag);
+            阻止位置 blockpos1 = 实体Player.getBedSpawnLocation(this.mcServer.worldServerForDimension(playerIn.dimension), blockpos, flag);
 
             if (blockpos1 != null)
             {
@@ -449,16 +450,16 @@ public abstract class ServerConfigurationManager
             }
         }
 
-        worldserver.theChunkProviderServer.loadChunk((int)entityplayermp.posX >> 4, (int)entityplayermp.posZ >> 4);
+        worldserver.theChunkProviderServer.loadChunk((int)entityplayermp.X坐标 >> 4, (int)entityplayermp.Z坐标 >> 4);
 
-        while (!worldserver.getCollidingBoundingBoxes(entityplayermp, entityplayermp.getEntityBoundingBox()).isEmpty() && entityplayermp.posY < 256.0D)
+        while (!worldserver.getCollidingBoundingBoxes(entityplayermp, entityplayermp.getEntityBoundingBox()).isEmpty() && entityplayermp.Y坐标 < 256.0D)
         {
-            entityplayermp.setPosition(entityplayermp.posX, entityplayermp.posY + 1.0D, entityplayermp.posZ);
+            entityplayermp.setPosition(entityplayermp.X坐标, entityplayermp.Y坐标 + 1.0D, entityplayermp.Z坐标);
         }
 
         entityplayermp.playerNetServerHandler.sendPacket(new S07PacketRespawn(entityplayermp.dimension, entityplayermp.worldObj.getDifficulty(), entityplayermp.worldObj.getWorldInfo().getTerrainType(), entityplayermp.theItemInWorldManager.getGameType()));
-        BlockPos blockpos2 = worldserver.getSpawnPoint();
-        entityplayermp.playerNetServerHandler.setPlayerLocation(entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, entityplayermp.旋转侧滑, entityplayermp.rotationPitch);
+        阻止位置 blockpos2 = worldserver.getSpawnPoint();
+        entityplayermp.playerNetServerHandler.setPlayerLocation(entityplayermp.X坐标, entityplayermp.Y坐标, entityplayermp.Z坐标, entityplayermp.旋转侧滑, entityplayermp.rotationPitch);
         entityplayermp.playerNetServerHandler.sendPacket(new S05PacketSpawnPosition(blockpos2));
         entityplayermp.playerNetServerHandler.sendPacket(new S1FPacketSetExperience(entityplayermp.experience, entityplayermp.experienceTotal, entityplayermp.experienceLevel));
         this.updateTimeAndWeatherForPlayer(entityplayermp, worldserver);
@@ -471,7 +472,7 @@ public abstract class ServerConfigurationManager
         return entityplayermp;
     }
 
-    public void transferPlayerToDimension(EntityPlayerMP playerIn, int dimension)
+    public void transferPlayerToDimension(实体PlayerMP playerIn, int dimension)
     {
         int i = playerIn.dimension;
         WorldServer worldserver = this.mcServer.worldServerForDimension(playerIn.dimension);
@@ -482,7 +483,7 @@ public abstract class ServerConfigurationManager
         playerIn.isDead = false;
         this.transferEntityToWorld(playerIn, i, worldserver, worldserver1);
         this.preparePlayer(playerIn, worldserver);
-        playerIn.playerNetServerHandler.setPlayerLocation(playerIn.posX, playerIn.posY, playerIn.posZ, playerIn.旋转侧滑, playerIn.rotationPitch);
+        playerIn.playerNetServerHandler.setPlayerLocation(playerIn.X坐标, playerIn.Y坐标, playerIn.Z坐标, playerIn.旋转侧滑, playerIn.rotationPitch);
         playerIn.theItemInWorldManager.setWorld(worldserver1);
         this.updateTimeAndWeatherForPlayer(playerIn, worldserver1);
         this.syncPlayerInventory(playerIn);
@@ -493,39 +494,39 @@ public abstract class ServerConfigurationManager
         }
     }
 
-    public void transferEntityToWorld(Entity entityIn, int p_82448_2_, WorldServer oldWorldIn, WorldServer toWorldIn)
+    public void transferEntityToWorld(实体 实体In, int p_82448_2_, WorldServer oldWorldIn, WorldServer toWorldIn)
     {
-        double d0 = entityIn.posX;
-        double d1 = entityIn.posZ;
+        double d0 = 实体In.X坐标;
+        double d1 = 实体In.Z坐标;
         double d2 = 8.0D;
-        float f = entityIn.旋转侧滑;
+        float f = 实体In.旋转侧滑;
         oldWorldIn.theProfiler.startSection("moving");
 
-        if (entityIn.dimension == -1)
+        if (实体In.dimension == -1)
         {
             d0 = MathHelper.clamp_double(d0 / d2, toWorldIn.getWorldBorder().minX() + 16.0D, toWorldIn.getWorldBorder().maxX() - 16.0D);
             d1 = MathHelper.clamp_double(d1 / d2, toWorldIn.getWorldBorder().minZ() + 16.0D, toWorldIn.getWorldBorder().maxZ() - 16.0D);
-            entityIn.setLocationAndAngles(d0, entityIn.posY, d1, entityIn.旋转侧滑, entityIn.rotationPitch);
+            实体In.setLocationAndAngles(d0, 实体In.Y坐标, d1, 实体In.旋转侧滑, 实体In.rotationPitch);
 
-            if (entityIn.isEntityAlive())
+            if (实体In.isEntityAlive())
             {
-                oldWorldIn.updateEntityWithOptionalForce(entityIn, false);
+                oldWorldIn.updateEntityWithOptionalForce(实体In, false);
             }
         }
-        else if (entityIn.dimension == 0)
+        else if (实体In.dimension == 0)
         {
             d0 = MathHelper.clamp_double(d0 * d2, toWorldIn.getWorldBorder().minX() + 16.0D, toWorldIn.getWorldBorder().maxX() - 16.0D);
             d1 = MathHelper.clamp_double(d1 * d2, toWorldIn.getWorldBorder().minZ() + 16.0D, toWorldIn.getWorldBorder().maxZ() - 16.0D);
-            entityIn.setLocationAndAngles(d0, entityIn.posY, d1, entityIn.旋转侧滑, entityIn.rotationPitch);
+            实体In.setLocationAndAngles(d0, 实体In.Y坐标, d1, 实体In.旋转侧滑, 实体In.rotationPitch);
 
-            if (entityIn.isEntityAlive())
+            if (实体In.isEntityAlive())
             {
-                oldWorldIn.updateEntityWithOptionalForce(entityIn, false);
+                oldWorldIn.updateEntityWithOptionalForce(实体In, false);
             }
         }
         else
         {
-            BlockPos blockpos;
+            阻止位置 blockpos;
 
             if (p_82448_2_ == 1)
             {
@@ -537,13 +538,13 @@ public abstract class ServerConfigurationManager
             }
 
             d0 = (double)blockpos.getX();
-            entityIn.posY = (double)blockpos.getY();
+            实体In.Y坐标 = (double)blockpos.getY();
             d1 = (double)blockpos.getZ();
-            entityIn.setLocationAndAngles(d0, entityIn.posY, d1, 90.0F, 0.0F);
+            实体In.setLocationAndAngles(d0, 实体In.Y坐标, d1, 90.0F, 0.0F);
 
-            if (entityIn.isEntityAlive())
+            if (实体In.isEntityAlive())
             {
-                oldWorldIn.updateEntityWithOptionalForce(entityIn, false);
+                oldWorldIn.updateEntityWithOptionalForce(实体In, false);
             }
         }
 
@@ -555,18 +556,18 @@ public abstract class ServerConfigurationManager
             d0 = (double)MathHelper.clamp_int((int)d0, -29999872, 29999872);
             d1 = (double)MathHelper.clamp_int((int)d1, -29999872, 29999872);
 
-            if (entityIn.isEntityAlive())
+            if (实体In.isEntityAlive())
             {
-                entityIn.setLocationAndAngles(d0, entityIn.posY, d1, entityIn.旋转侧滑, entityIn.rotationPitch);
-                toWorldIn.getDefaultTeleporter().placeInPortal(entityIn, f);
-                toWorldIn.spawnEntityInWorld(entityIn);
-                toWorldIn.updateEntityWithOptionalForce(entityIn, false);
+                实体In.setLocationAndAngles(d0, 实体In.Y坐标, d1, 实体In.旋转侧滑, 实体In.rotationPitch);
+                toWorldIn.getDefaultTeleporter().placeInPortal(实体In, f);
+                toWorldIn.spawnEntityInWorld(实体In);
+                toWorldIn.updateEntityWithOptionalForce(实体In, false);
             }
 
             oldWorldIn.theProfiler.endSection();
         }
 
-        entityIn.setWorld(toWorldIn);
+        实体In.setWorld(toWorldIn);
     }
 
     public void onTick()
@@ -582,7 +583,7 @@ public abstract class ServerConfigurationManager
     {
         for (int i = 0; i < this.playerEntityList.size(); ++i)
         {
-            ((EntityPlayerMP)this.playerEntityList.get(i)).playerNetServerHandler.sendPacket(packetIn);
+            ((实体PlayerMP)this.playerEntityList.get(i)).playerNetServerHandler.sendPacket(packetIn);
         }
     }
 
@@ -590,7 +591,7 @@ public abstract class ServerConfigurationManager
     {
         for (int i = 0; i < this.playerEntityList.size(); ++i)
         {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)this.playerEntityList.get(i);
+            实体PlayerMP entityplayermp = (实体PlayerMP)this.playerEntityList.get(i);
 
             if (entityplayermp.dimension == dimension)
             {
@@ -599,7 +600,7 @@ public abstract class ServerConfigurationManager
         }
     }
 
-    public void sendMessageToAllTeamMembers(EntityPlayer player, IChatComponent message)
+    public void sendMessageToAllTeamMembers(实体Player player, IChatComponent message)
     {
         Team team = player.getTeam();
 
@@ -607,7 +608,7 @@ public abstract class ServerConfigurationManager
         {
             for (String s : team.getMembershipCollection())
             {
-                EntityPlayerMP entityplayermp = this.getPlayerByUsername(s);
+                实体PlayerMP entityplayermp = this.getPlayerByUsername(s);
 
                 if (entityplayermp != null && entityplayermp != player)
                 {
@@ -617,7 +618,7 @@ public abstract class ServerConfigurationManager
         }
     }
 
-    public void sendMessageToTeamOrEvryPlayer(EntityPlayer player, IChatComponent message)
+    public void sendMessageToTeamOrEvryPlayer(实体Player player, IChatComponent message)
     {
         Team team = player.getTeam();
 
@@ -629,7 +630,7 @@ public abstract class ServerConfigurationManager
         {
             for (int i = 0; i < this.playerEntityList.size(); ++i)
             {
-                EntityPlayerMP entityplayermp = (EntityPlayerMP)this.playerEntityList.get(i);
+                实体PlayerMP entityplayermp = (实体PlayerMP)this.playerEntityList.get(i);
 
                 if (entityplayermp.getTeam() != team)
                 {
@@ -642,7 +643,7 @@ public abstract class ServerConfigurationManager
     public String func_181058_b(boolean p_181058_1_)
     {
         String s = "";
-        List<EntityPlayerMP> list = Lists.newArrayList(this.playerEntityList);
+        List<实体PlayerMP> list = Lists.newArrayList(this.playerEntityList);
 
         for (int i = 0; i < ((List)list).size(); ++i)
         {
@@ -651,11 +652,11 @@ public abstract class ServerConfigurationManager
                 s = s + ", ";
             }
 
-            s = s + ((EntityPlayerMP)list.get(i)).getName();
+            s = s + ((实体PlayerMP)list.get(i)).getName();
 
             if (p_181058_1_)
             {
-                s = s + " (" + ((EntityPlayerMP)list.get(i)).getUniqueID().toString() + ")";
+                s = s + " (" + ((实体PlayerMP)list.get(i)).getUniqueID().toString() + ")";
             }
         }
 
@@ -668,7 +669,7 @@ public abstract class ServerConfigurationManager
 
         for (int i = 0; i < this.playerEntityList.size(); ++i)
         {
-            astring[i] = ((EntityPlayerMP)this.playerEntityList.get(i)).getName();
+            astring[i] = ((实体PlayerMP)this.playerEntityList.get(i)).getName();
         }
 
         return astring;
@@ -680,7 +681,7 @@ public abstract class ServerConfigurationManager
 
         for (int i = 0; i < this.playerEntityList.size(); ++i)
         {
-            agameprofile[i] = ((EntityPlayerMP)this.playerEntityList.get(i)).getGameProfile();
+            agameprofile[i] = ((实体PlayerMP)this.playerEntityList.get(i)).getGameProfile();
         }
 
         return agameprofile;
@@ -716,9 +717,9 @@ public abstract class ServerConfigurationManager
         return this.ops.hasEntry(profile) || this.mcServer.isSinglePlayer() && this.mcServer.worldServers[0].getWorldInfo().areCommandsAllowed() && this.mcServer.getServerOwner().equalsIgnoreCase(profile.getName()) || this.commandsAllowedForAll;
     }
 
-    public EntityPlayerMP getPlayerByUsername(String username)
+    public 实体PlayerMP getPlayerByUsername(String username)
     {
-        for (EntityPlayerMP entityplayermp : this.playerEntityList)
+        for (实体PlayerMP entityplayermp : this.playerEntityList)
         {
             if (entityplayermp.getName().equalsIgnoreCase(username))
             {
@@ -731,20 +732,20 @@ public abstract class ServerConfigurationManager
 
     public void sendToAllNear(double x, double y, double z, double radius, int dimension, Packet packetIn)
     {
-        this.sendToAllNearExcept((EntityPlayer)null, x, y, z, radius, dimension, packetIn);
+        this.sendToAllNearExcept((实体Player)null, x, y, z, radius, dimension, packetIn);
     }
 
-    public void sendToAllNearExcept(EntityPlayer p_148543_1_, double x, double y, double z, double radius, int dimension, Packet p_148543_11_)
+    public void sendToAllNearExcept(实体Player p_148543_1_, double x, double y, double z, double radius, int dimension, Packet p_148543_11_)
     {
         for (int i = 0; i < this.playerEntityList.size(); ++i)
         {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)this.playerEntityList.get(i);
+            实体PlayerMP entityplayermp = (实体PlayerMP)this.playerEntityList.get(i);
 
             if (entityplayermp != p_148543_1_ && entityplayermp.dimension == dimension)
             {
-                double d0 = x - entityplayermp.posX;
-                double d1 = y - entityplayermp.posY;
-                double d2 = z - entityplayermp.posZ;
+                double d0 = x - entityplayermp.X坐标;
+                double d1 = y - entityplayermp.Y坐标;
+                double d2 = z - entityplayermp.Z坐标;
 
                 if (d0 * d0 + d1 * d1 + d2 * d2 < radius * radius)
                 {
@@ -758,7 +759,7 @@ public abstract class ServerConfigurationManager
     {
         for (int i = 0; i < this.playerEntityList.size(); ++i)
         {
-            this.writePlayerData((EntityPlayerMP)this.playerEntityList.get(i));
+            this.writePlayerData((实体PlayerMP)this.playerEntityList.get(i));
         }
     }
 
@@ -796,7 +797,7 @@ public abstract class ServerConfigurationManager
     {
     }
 
-    public void updateTimeAndWeatherForPlayer(EntityPlayerMP playerIn, WorldServer worldIn)
+    public void updateTimeAndWeatherForPlayer(实体PlayerMP playerIn, WorldServer worldIn)
     {
         WorldBorder worldborder = this.mcServer.worldServers[0].getWorldBorder();
         playerIn.playerNetServerHandler.sendPacket(new S44PacketWorldBorder(worldborder, S44PacketWorldBorder.Action.INITIALIZE));
@@ -810,7 +811,7 @@ public abstract class ServerConfigurationManager
         }
     }
 
-    public void syncPlayerInventory(EntityPlayerMP playerIn)
+    public void syncPlayerInventory(实体PlayerMP playerIn)
     {
         playerIn.sendContainerToPlayer(playerIn.inventoryContainer);
         playerIn.setPlayerHealthUpdated();
@@ -837,11 +838,11 @@ public abstract class ServerConfigurationManager
         this.whiteListEnforced = whitelistEnabled;
     }
 
-    public List<EntityPlayerMP> getPlayersMatchingAddress(String address)
+    public List<实体PlayerMP> getPlayersMatchingAddress(String address)
     {
-        List<EntityPlayerMP> list = Lists.<EntityPlayerMP>newArrayList();
+        List<实体PlayerMP> list = Lists.<实体PlayerMP>newArrayList();
 
-        for (EntityPlayerMP entityplayermp : this.playerEntityList)
+        for (实体PlayerMP entityplayermp : this.playerEntityList)
         {
             if (entityplayermp.getPlayerIP().equals(address))
             {
@@ -872,7 +873,7 @@ public abstract class ServerConfigurationManager
         this.gameType = p_152604_1_;
     }
 
-    private void setPlayerGameTypeBasedOnOther(EntityPlayerMP p_72381_1_, EntityPlayerMP p_72381_2_, World worldIn)
+    private void setPlayerGameTypeBasedOnOther(实体PlayerMP p_72381_1_, 实体PlayerMP p_72381_2_, World worldIn)
     {
         if (p_72381_2_ != null)
         {
@@ -895,7 +896,7 @@ public abstract class ServerConfigurationManager
     {
         for (int i = 0; i < this.playerEntityList.size(); ++i)
         {
-            ((EntityPlayerMP)this.playerEntityList.get(i)).playerNetServerHandler.kickPlayerFromServer("Server closed");
+            ((实体PlayerMP)this.playerEntityList.get(i)).playerNetServerHandler.kickPlayerFromServer("Server closed");
         }
     }
 
@@ -911,7 +912,7 @@ public abstract class ServerConfigurationManager
         this.sendChatMsgImpl(component, true);
     }
 
-    public StatisticsFile getPlayerStatsFile(EntityPlayer playerIn)
+    public StatisticsFile getPlayerStatsFile(实体Player playerIn)
     {
         UUID uuid = playerIn.getUniqueID();
         StatisticsFile statisticsfile = uuid == null ? null : (StatisticsFile)this.playerStatFiles.get(uuid);
@@ -955,14 +956,14 @@ public abstract class ServerConfigurationManager
         }
     }
 
-    public List<EntityPlayerMP> getPlayerList()
+    public List<实体PlayerMP> getPlayerList()
     {
         return this.playerEntityList;
     }
 
-    public EntityPlayerMP getPlayerByUUID(UUID playerUUID)
+    public 实体PlayerMP getPlayerByUUID(UUID playerUUID)
     {
-        return (EntityPlayerMP)this.uuidToPlayerMap.get(playerUUID);
+        return (实体PlayerMP)this.uuidToPlayerMap.get(playerUUID);
     }
 
     public boolean bypassesPlayerLimit(GameProfile p_183023_1_)

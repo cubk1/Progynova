@@ -1,7 +1,7 @@
 package net.minecraft.world;
 
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -73,7 +73,7 @@ public abstract class WorldProvider
 
     public boolean canCoordinateBeSpawn(int x, int z)
     {
-        return this.worldObj.getGroundAboveSeaLevel(new BlockPos(x, 0, z)) == Blocks.grass;
+        return this.worldObj.getGroundAboveSeaLevel(new 阻止位置(x, 0, z)) == Blocks.grass;
     }
 
     public float calculateCelestialAngle(long worldTime, float partialTicks)
@@ -162,7 +162,7 @@ public abstract class WorldProvider
         return true;
     }
 
-    public BlockPos getSpawnCoordinate()
+    public 阻止位置 getSpawnCoordinate()
     {
         return null;
     }

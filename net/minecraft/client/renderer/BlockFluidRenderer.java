@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.block.model.FaceBakery;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.src.Config;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -35,7 +35,7 @@ public class BlockFluidRenderer
         this.atlasSpritesWater[1] = texturemap.getAtlasSprite("minecraft:blocks/water_flow");
     }
 
-    public boolean renderFluid(IBlockAccess blockAccess, IBlockState blockStateIn, BlockPos blockPosIn, WorldRenderer worldRendererIn)
+    public boolean renderFluid(IBlockAccess blockAccess, IBlockState blockStateIn, 阻止位置 阻止位置In, WorldRenderer worldRendererIn)
     {
         boolean flag2;
 
@@ -43,24 +43,24 @@ public class BlockFluidRenderer
         {
             if (Config.isShaders())
             {
-                SVertexBuilder.pushEntity(blockStateIn, blockPosIn, blockAccess, worldRendererIn);
+                SVertexBuilder.pushEntity(blockStateIn, 阻止位置In, blockAccess, worldRendererIn);
             }
 
             BlockLiquid blockliquid = (BlockLiquid)blockStateIn.getBlock();
-            blockliquid.setBlockBoundsBasedOnState(blockAccess, blockPosIn);
+            blockliquid.setBlockBoundsBasedOnState(blockAccess, 阻止位置In);
             TextureAtlasSprite[] atextureatlassprite = blockliquid.getMaterial() == Material.lava ? this.atlasSpritesLava : this.atlasSpritesWater;
-            RenderEnv renderenv = worldRendererIn.getRenderEnv(blockStateIn, blockPosIn);
-            int i = CustomColors.getFluidColor(blockAccess, blockStateIn, blockPosIn, renderenv);
+            RenderEnv renderenv = worldRendererIn.getRenderEnv(blockStateIn, 阻止位置In);
+            int i = CustomColors.getFluidColor(blockAccess, blockStateIn, 阻止位置In, renderenv);
             float f = (float)(i >> 16 & 255) / 255.0F;
             float f1 = (float)(i >> 8 & 255) / 255.0F;
             float f2 = (float)(i & 255) / 255.0F;
-            boolean flag = blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.up(), EnumFacing.UP);
-            boolean flag1 = blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.down(), EnumFacing.DOWN);
+            boolean flag = blockliquid.shouldSideBeRendered(blockAccess, 阻止位置In.up(), EnumFacing.UP);
+            boolean flag1 = blockliquid.shouldSideBeRendered(blockAccess, 阻止位置In.down(), EnumFacing.DOWN);
             boolean[] aboolean = renderenv.getBorderFlags();
-            aboolean[0] = blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.north(), EnumFacing.NORTH);
-            aboolean[1] = blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.south(), EnumFacing.SOUTH);
-            aboolean[2] = blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.west(), EnumFacing.WEST);
-            aboolean[3] = blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.east(), EnumFacing.EAST);
+            aboolean[0] = blockliquid.shouldSideBeRendered(blockAccess, 阻止位置In.north(), EnumFacing.NORTH);
+            aboolean[1] = blockliquid.shouldSideBeRendered(blockAccess, 阻止位置In.south(), EnumFacing.SOUTH);
+            aboolean[2] = blockliquid.shouldSideBeRendered(blockAccess, 阻止位置In.west(), EnumFacing.WEST);
+            aboolean[3] = blockliquid.shouldSideBeRendered(blockAccess, 阻止位置In.east(), EnumFacing.EAST);
 
             if (flag || flag1 || aboolean[0] || aboolean[1] || aboolean[2] || aboolean[3])
             {
@@ -70,20 +70,20 @@ public class BlockFluidRenderer
                 float f5 = 0.8F;
                 float f6 = 0.6F;
                 Material material = blockliquid.getMaterial();
-                float f7 = this.getFluidHeight(blockAccess, blockPosIn, material);
-                float f8 = this.getFluidHeight(blockAccess, blockPosIn.south(), material);
-                float f9 = this.getFluidHeight(blockAccess, blockPosIn.east().south(), material);
-                float f10 = this.getFluidHeight(blockAccess, blockPosIn.east(), material);
-                double d0 = (double)blockPosIn.getX();
-                double d1 = (double)blockPosIn.getY();
-                double d2 = (double)blockPosIn.getZ();
+                float f7 = this.getFluidHeight(blockAccess, 阻止位置In, material);
+                float f8 = this.getFluidHeight(blockAccess, 阻止位置In.south(), material);
+                float f9 = this.getFluidHeight(blockAccess, 阻止位置In.east().south(), material);
+                float f10 = this.getFluidHeight(blockAccess, 阻止位置In.east(), material);
+                double d0 = (double) 阻止位置In.getX();
+                double d1 = (double) 阻止位置In.getY();
+                double d2 = (double) 阻止位置In.getZ();
                 float f11 = 0.001F;
 
                 if (flag)
                 {
                     flag2 = true;
                     TextureAtlasSprite textureatlassprite = atextureatlassprite[0];
-                    float f12 = (float)BlockLiquid.getFlowDirection(blockAccess, blockPosIn, material);
+                    float f12 = (float)BlockLiquid.getFlowDirection(blockAccess, 阻止位置In, material);
 
                     if (f12 > -999.0F)
                     {
@@ -130,7 +130,7 @@ public class BlockFluidRenderer
                         f20 = textureatlassprite.getInterpolatedV((double)(8.0F + (-f22 - f21) * 16.0F));
                     }
 
-                    int k2 = blockliquid.getMixedBrightnessForBlock(blockAccess, blockPosIn);
+                    int k2 = blockliquid.getMixedBrightnessForBlock(blockAccess, 阻止位置In);
                     int l2 = k2 >> 16 & 65535;
                     int i3 = k2 & 65535;
                     float f24 = f4 * f;
@@ -141,7 +141,7 @@ public class BlockFluidRenderer
                     worldRendererIn.pos(d0 + 1.0D, d1 + (double)f9, d2 + 1.0D).color(f24, f25, f26, 1.0F).tex((double)f15, (double)f19).lightmap(l2, i3).endVertex();
                     worldRendererIn.pos(d0 + 1.0D, d1 + (double)f10, d2 + 0.0D).color(f24, f25, f26, 1.0F).tex((double)f16, (double)f20).lightmap(l2, i3).endVertex();
 
-                    if (blockliquid.shouldRenderSides(blockAccess, blockPosIn.up()))
+                    if (blockliquid.shouldRenderSides(blockAccess, 阻止位置In.up()))
                     {
                         worldRendererIn.pos(d0 + 0.0D, d1 + (double)f7, d2 + 0.0D).color(f24, f25, f26, 1.0F).tex((double)f13, (double)f17).lightmap(l2, i3).endVertex();
                         worldRendererIn.pos(d0 + 1.0D, d1 + (double)f10, d2 + 0.0D).color(f24, f25, f26, 1.0F).tex((double)f16, (double)f20).lightmap(l2, i3).endVertex();
@@ -157,7 +157,7 @@ public class BlockFluidRenderer
                     float f36 = atextureatlassprite[0].getMaxU();
                     float f37 = atextureatlassprite[0].getMinV();
                     float f38 = atextureatlassprite[0].getMaxV();
-                    int l1 = blockliquid.getMixedBrightnessForBlock(blockAccess, blockPosIn.down());
+                    int l1 = blockliquid.getMixedBrightnessForBlock(blockAccess, 阻止位置In.down());
                     int i2 = l1 >> 16 & 65535;
                     int j2 = l1 & 65535;
                     float f41 = FaceBakery.getFaceBrightness(EnumFacing.DOWN);
@@ -193,7 +193,7 @@ public class BlockFluidRenderer
                         ++j1;
                     }
 
-                    BlockPos blockpos = blockPosIn.add(j1, 0, k1);
+                    阻止位置 blockpos = 阻止位置In.add(j1, 0, k1);
                     TextureAtlasSprite textureatlassprite1 = atextureatlassprite[1];
                     worldRendererIn.setSprite(textureatlassprite1);
 
@@ -285,14 +285,14 @@ public class BlockFluidRenderer
         return flag2;
     }
 
-    private float getFluidHeight(IBlockAccess blockAccess, BlockPos blockPosIn, Material blockMaterial)
+    private float getFluidHeight(IBlockAccess blockAccess, 阻止位置 阻止位置In, Material blockMaterial)
     {
         int i = 0;
         float f = 0.0F;
 
         for (int j = 0; j < 4; ++j)
         {
-            BlockPos blockpos = blockPosIn.add(-(j & 1), 0, -(j >> 1 & 1));
+            阻止位置 blockpos = 阻止位置In.add(-(j & 1), 0, -(j >> 1 & 1));
 
             if (blockAccess.getBlockState(blockpos.up()).getBlock().getMaterial() == blockMaterial)
             {

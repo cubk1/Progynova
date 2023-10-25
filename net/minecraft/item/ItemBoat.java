@@ -2,13 +2,13 @@ package net.minecraft.item;
 
 import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.实体Player;
+import net.minecraft.entity.实体;
+import net.minecraft.entity.item.实体Boat;
 import net.minecraft.init.Blocks;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -22,14 +22,14 @@ public class ItemBoat extends Item
         this.setCreativeTab(CreativeTabs.tabTransport);
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, 实体Player playerIn)
     {
         float f = 1.0F;
         float f1 = playerIn.prevRotationPitch + (playerIn.rotationPitch - playerIn.prevRotationPitch) * f;
         float f2 = playerIn.prevRotationYaw + (playerIn.旋转侧滑 - playerIn.prevRotationYaw) * f;
-        double d0 = playerIn.prevPosX + (playerIn.posX - playerIn.prevPosX) * (double)f;
-        double d1 = playerIn.prevPosY + (playerIn.posY - playerIn.prevPosY) * (double)f + (double)playerIn.getEyeHeight();
-        double d2 = playerIn.prevPosZ + (playerIn.posZ - playerIn.prevPosZ) * (double)f;
+        double d0 = playerIn.prevPosX + (playerIn.X坐标 - playerIn.prevPosX) * (double)f;
+        double d1 = playerIn.prevPosY + (playerIn.Y坐标 - playerIn.prevPosY) * (double)f + (double)playerIn.getEyeHeight();
+        double d2 = playerIn.prevPosZ + (playerIn.Z坐标 - playerIn.prevPosZ) * (double)f;
         Vec3 vec3 = new Vec3(d0, d1, d2);
         float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
         float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
@@ -50,16 +50,16 @@ public class ItemBoat extends Item
             Vec3 vec32 = playerIn.getLook(f);
             boolean flag = false;
             float f9 = 1.0F;
-            List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity(playerIn, playerIn.getEntityBoundingBox().addCoord(vec32.xCoord * d3, vec32.yCoord * d3, vec32.zCoord * d3).expand((double)f9, (double)f9, (double)f9));
+            List<实体> list = worldIn.getEntitiesWithinAABBExcludingEntity(playerIn, playerIn.getEntityBoundingBox().addCoord(vec32.xCoord * d3, vec32.yCoord * d3, vec32.zCoord * d3).expand((double)f9, (double)f9, (double)f9));
 
             for (int i = 0; i < list.size(); ++i)
             {
-                Entity entity = (Entity)list.get(i);
+                实体 实体 = (实体)list.get(i);
 
-                if (entity.canBeCollidedWith())
+                if (实体.canBeCollidedWith())
                 {
-                    float f10 = entity.getCollisionBorderSize();
-                    AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().expand((double)f10, (double)f10, (double)f10);
+                    float f10 = 实体.getCollisionBorderSize();
+                    AxisAlignedBB axisalignedbb = 实体.getEntityBoundingBox().expand((double)f10, (double)f10, (double)f10);
 
                     if (axisalignedbb.isVecInside(vec3))
                     {
@@ -76,14 +76,14 @@ public class ItemBoat extends Item
             {
                 if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
                 {
-                    BlockPos blockpos = movingobjectposition.getBlockPos();
+                    阻止位置 blockpos = movingobjectposition.getBlockPos();
 
                     if (worldIn.getBlockState(blockpos).getBlock() == Blocks.snow_layer)
                     {
                         blockpos = blockpos.down();
                     }
 
-                    EntityBoat entityboat = new EntityBoat(worldIn, (double)((float)blockpos.getX() + 0.5F), (double)((float)blockpos.getY() + 1.0F), (double)((float)blockpos.getZ() + 0.5F));
+                    实体Boat entityboat = new 实体Boat(worldIn, (double)((float)blockpos.getX() + 0.5F), (double)((float)blockpos.getY() + 1.0F), (double)((float)blockpos.getZ() + 0.5F));
                     entityboat.旋转侧滑 = (float)(((MathHelper.floor_double((double)(playerIn.旋转侧滑 * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
 
                     if (!worldIn.getCollidingBoundingBoxes(entityboat, entityboat.getEntityBoundingBox().expand(-0.1D, -0.1D, -0.1D)).isEmpty())

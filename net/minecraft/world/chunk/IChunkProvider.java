@@ -2,7 +2,7 @@ package net.minecraft.world.chunk;
 
 import java.util.List;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.阻止位置;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -13,7 +13,7 @@ public interface IChunkProvider
 
     Chunk provideChunk(int x, int z);
 
-    Chunk provideChunk(BlockPos blockPosIn);
+    Chunk provideChunk(阻止位置 阻止位置In);
 
     void populate(IChunkProvider chunkProvider, int x, int z);
 
@@ -27,9 +27,9 @@ public interface IChunkProvider
 
     String makeString();
 
-    List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos);
+    List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, 阻止位置 pos);
 
-    BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position);
+    阻止位置 getStrongholdGen(World worldIn, String structureName, 阻止位置 position);
 
     int getLoadedChunkCount();
 

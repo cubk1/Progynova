@@ -1,17 +1,17 @@
 package net.minecraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.实体Creature;
 import net.minecraft.util.Vec3;
 
 public class EntityAIPanic extends EntityAIBase
 {
-    private EntityCreature theEntityCreature;
+    private 实体Creature theEntityCreature;
     protected double speed;
     private double randPosX;
     private double randPosY;
     private double randPosZ;
 
-    public EntityAIPanic(EntityCreature creature, double speedIn)
+    public EntityAIPanic(实体Creature creature, double speedIn)
     {
         this.theEntityCreature = creature;
         this.speed = speedIn;

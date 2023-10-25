@@ -1,7 +1,7 @@
 package net.minecraft.dispenser;
 
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.实体;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -16,7 +16,7 @@ public abstract class BehaviorProjectileDispense extends BehaviorDefaultDispense
         EnumFacing enumfacing = BlockDispenser.getFacing(source.getBlockMetadata());
         IProjectile iprojectile = this.getProjectileEntity(world, iposition);
         iprojectile.setThrowableHeading((double)enumfacing.getFrontOffsetX(), (double)((float)enumfacing.getFrontOffsetY() + 0.1F), (double)enumfacing.getFrontOffsetZ(), this.func_82500_b(), this.func_82498_a());
-        world.spawnEntityInWorld((Entity)iprojectile);
+        world.spawnEntityInWorld((实体)iprojectile);
         stack.splitStack(1);
         return stack;
     }
