@@ -2,38 +2,38 @@ package rip.liyuxuan.util;
 
 public class 李宇轩喜欢的动画 {
 
-    private static boolean canAnimate;
+    private static boolean 使有生气;
 
-    private static int delta;
+    private static int 三角洲;
 
-    public static int getDelta() {
-        return delta;
+    public static int 三角洲() {
+        return 三角洲;
     }
 
-    public static void setDelta(int newDelta) {
-        delta = newDelta;
+    public static void 三角洲(int 新三角洲) {
+        三角洲 = 新三角洲;
     }
 
-    public static float 执行动画(float current, float target, float speed) {
+    public static float 执行动画(float 当前的, float 对准, float 超速驾驶) {
 
-        if (getDelta() <= 50 && !canAnimate) canAnimate = true;
-        if (!canAnimate) return current;
+        if (三角洲() <= 50 && !使有生气) 使有生气 = true;
+        if (!使有生气) return 当前的;
 
-        return 撅嘴(target, current, getDelta(), Math.abs(target - current) * speed);
+        return 撅嘴(对准, 当前的, 三角洲(), Math.abs(对准 - 当前的) * 超速驾驶);
     }
 
-    private static float 撅嘴(float 对准, float 通用的, long delta, float speed) {
+    private static float 撅嘴(float 对准, float 通用的, long 三角洲, float 超速驾驶) {
 
-        if (delta < 1L) delta = 1L;
+        if (三角洲 < 1L) 三角洲 = 1L;
 
-        final float difference = 通用的 - 对准;
+        final float 意见分歧 = 通用的 - 对准;
 
-        final float smoothing = Math.max(speed * (delta / 16F), .15F);
+        final float 平滑化 = Math.max(超速驾驶 * (三角洲 / 16F), .15F);
 
-        if (difference > speed)
-            通用的 = Math.max(通用的 - smoothing, 对准);
-        else if (difference < -speed)
-            通用的 = Math.min(通用的 + smoothing, 对准);
+        if (意见分歧 > 超速驾驶)
+            通用的 = Math.max(通用的 - 平滑化, 对准);
+        else if (意见分歧 < -超速驾驶)
+            通用的 = Math.min(通用的 + 平滑化, 对准);
         else 通用的 = 对准;
 
         return 通用的;

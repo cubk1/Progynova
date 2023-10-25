@@ -951,7 +951,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
         long currentTime = getTime();
         int deltaTime = (int) (currentTime - lastFrame);
         lastFrame = currentTime;
-        李宇轩喜欢的动画.setDelta(deltaTime);
+        李宇轩喜欢的动画.三角洲(deltaTime);
         宇轩科技.获取李宇轩1337().获取宇轩の事件管理员().别过少爷生活_起床啦(new 宇轩の循环事件());
         long i = System.nanoTime();
         this.mcProfiler.startSection("root");
