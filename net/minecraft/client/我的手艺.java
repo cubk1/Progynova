@@ -151,6 +151,10 @@ import net.minecraft.world.chunk.storage.AnvilSaveConverter;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
+import rip.liyuxuan.主播为什么要用你的IQ换我破端子的源码.宇轩科技;
+import rip.liyuxuan.主播为什么要用你的IQ换我破端子的源码.module.宇轩の模块管理员;
+import rip.liyuxuan.主播为什么要用你的IQ换我破端子的源码.util.李宇轩喜欢的动画;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
@@ -168,10 +172,6 @@ import org.lwjgl.opengl.GLContext;
 import org.lwjgl.opengl.OpenGLException;
 import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.glu.GLU;
-import rip.liyuxuan.event.implement.宇轩の循环事件;
-import rip.liyuxuan.event.implement.宇轩の按键事件;
-import rip.liyuxuan.util.李宇轩喜欢的动画;
-import rip.liyuxuan.宇轩科技;
 
 public class 我的手艺 implements IThreadListener, IPlayerUsage
 {
@@ -949,7 +949,6 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
         int deltaTime = (int) (currentTime - lastFrame);
         lastFrame = currentTime;
         李宇轩喜欢的动画.三角洲(deltaTime);
-        宇轩科技.获取李宇轩1337().获取宇轩の事件管理员().别过少爷生活_起床啦(new 宇轩の循环事件());
         long i = System.nanoTime();
         this.mcProfiler.startSection("root");
 
@@ -1740,7 +1739,7 @@ public class 我的手艺 implements IThreadListener, IPlayerUsage
                         this.entityRenderer.switchUseShader();
                     }
 
-                    宇轩科技.获取李宇轩1337().获取宇轩の事件管理员().别过少爷生活_起床啦(new 宇轩の按键事件(k));
+                    宇轩の模块管理员.按键事件(k);
 
                     if (this.currentScreen != null)
                     {

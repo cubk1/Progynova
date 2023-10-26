@@ -40,9 +40,9 @@ import net.minecraft.util.MovementInput;
 import net.minecraft.util.图像位置;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
-import rip.liyuxuan.event.implement.宇轩の玩家更新事件;
-import rip.liyuxuan.event.implement.宇轩の移动事件;
-import rip.liyuxuan.宇轩科技;
+import rip.liyuxuan.主播为什么要用你的IQ换我破端子的源码.宇轩科技;
+import rip.liyuxuan.主播为什么要用你的IQ换我破端子的源码.module.implement.movement.宇轩腿脚不好;
+import rip.liyuxuan.主播为什么要用你的IQ换我破端子的源码.module.implement.movement.宇轩自动跑动;
 
 public class 实体PlayerSP extends AbstractClientPlayer
 {
@@ -153,21 +153,15 @@ public class 实体PlayerSP extends AbstractClientPlayer
 
         if (this.isCurrentViewEntity())
         {
-            final 宇轩の玩家更新事件 pre = new 宇轩の玩家更新事件(this.旋转侧滑, this.rotationPitch, this.X坐标, this.getEntityBoundingBox().minY, this.Z坐标, this.onGround);
-            宇轩科技.获取李宇轩1337().获取宇轩の事件管理员().别过少爷生活_起床啦(pre);
+            宇轩腿脚不好.宇轩玩家更新(true);
+            宇轩自动跑动.宇轩玩家更新(true);
 
-            if (pre.射了吗())
-            {
-                宇轩科技.获取李宇轩1337().获取宇轩の事件管理员().别过少爷生活_起床啦(new 宇轩の玩家更新事件()); // POST
-                return;
-            }
-
-            double x = pre.得到插();
-            double y = pre.得到歪();
-            double z = pre.得到贼();
-            float yaw = pre.getYaw();
-            float pitch = pre.得到投掷();
-            boolean ground = pre.在地上吗();
+            double x = this.X坐标;
+            double y = this.Y坐标;
+            double z = this.Z坐标;
+            float yaw = this.旋转侧滑;
+            float pitch = this.rotationPitch;
+            boolean ground = this.onGround;
             double d0 = x - this.lastReportedPosX;
             double d1 = y - this.lastReportedPosY;
             double d2 = z - this.lastReportedPosZ;
@@ -208,15 +202,14 @@ public class 实体PlayerSP extends AbstractClientPlayer
                 this.lastReportedPitch = pitch;
             }
 
-            宇轩科技.获取李宇轩1337().获取宇轩の事件管理员().别过少爷生活_起床啦(new 宇轩の玩家更新事件());
+            宇轩腿脚不好.宇轩玩家更新(false);
+            宇轩自动跑动.宇轩玩家更新(false);
         }
     }
 
     @Override
     public void moveEntity(double x, double y, double z) {
-        final 宇轩の移动事件 event = new 宇轩の移动事件(x, y, z);
-        宇轩科技.获取李宇轩1337().获取宇轩の事件管理员().别过少爷生活_起床啦(event);
-        super.moveEntity(event.得到插(), event.得到歪(), event.得到贼());
+        super.moveEntity(x, y, z);
     }
 
     public 实体Item dropOneItem(boolean dropAll)

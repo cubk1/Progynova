@@ -17,7 +17,7 @@ public class MovingObjectPosition
 
     public MovingObjectPosition(Vec3 p_i45552_1_, EnumFacing facing)
     {
-        this(MovingObjectPosition.MovingObjectType.BLOCK, p_i45552_1_, facing, 阻止位置.ORIGIN);
+        this(MovingObjectPosition.MovingObjectType.BLOCK, p_i45552_1_, facing, new 阻止位置(0, 0, 0));
     }
 
     public MovingObjectPosition(实体 实体In)

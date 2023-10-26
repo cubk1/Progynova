@@ -43,8 +43,8 @@ import net.minecraft.util.图像位置;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.border.WorldBorder;
 import net.optifine.CustomColors;
-import rip.liyuxuan.event.implement.宇轩の渲染2D事件;
-import rip.liyuxuan.宇轩科技;
+import rip.liyuxuan.主播为什么要用你的IQ换我破端子的源码.宇轩科技;
+import rip.liyuxuan.主播为什么要用你的IQ换我破端子的源码.module.implement.visual.宇轩的头部显示;
 
 public class 鬼Ingame extends 鬼
 {
@@ -139,7 +139,7 @@ public class 鬼Ingame extends 鬼
             this.renderTooltip(scaledresolution, partialTicks);
         }
 
-        宇轩科技.获取李宇轩1337().获取宇轩の事件管理员().别过少爷生活_起床啦(new 宇轩の渲染2D事件(scaledresolution, partialTicks));
+        宇轩的头部显示.宇轩渲染事件();
 
         光照状态经理.色彩(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.得到手感经理().绑定手感(icons);
