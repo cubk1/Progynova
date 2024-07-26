@@ -30,6 +30,6 @@ Step 2:
 || Progynova |Vape|
 | ----------- | ----------- |- |
 | compatibility| All platforms/genders|male only|
-|price| 30 cny/box|114514$/30days|
+|price| 30 CNY/30days|114514 USD/30days|
 |efficiency|very well|lags sometimes|
 |UI overview|kawaii :3|ugly, masculine|
