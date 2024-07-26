@@ -25,3 +25,11 @@ Step 2:
 - 支持鸿蒙(华为)、国产Linux等多种平台
 - 支持基于汉芯一号的硬件
 - 使用编程语言木兰重构
+
+## Progynova 与外国开挂软件 VAPE 的对比
+|| Progynova |Vape|
+| ----------- | ----------- |- |
+| compatibility| All platforms/genders|male only|
+|price| 30 cny/box|114514$/30days|
+|efficiency|very well|lags sometimes|
+|UI overview|kawaii :3|ugly, masculine|
