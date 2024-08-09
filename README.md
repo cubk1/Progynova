@@ -29,7 +29,7 @@ Step 2:
 ## Progynova 与外国开挂软件 VAPE 的对比
 || Progynova |Vape|
 | ----------- | ----------- |- |
-| compatibility| All platforms/genders|male only|
-|price| 30 CNY/30days|114514 USD/30days|
-|efficiency|very well|lags sometimes|
-|UI overview|kawaii :3|ugly, masculine|
+| compatibility|Gender friendly, all platforms|Male Only|
+|price|Free To Use|114514 USD/30 Days|
+|efficiency|Very Well|Lags Sometimes|
+|UI overview|kawaii :3|Ugly, Masculine|
